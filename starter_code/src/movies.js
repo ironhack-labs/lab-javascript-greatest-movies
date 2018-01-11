@@ -38,14 +38,12 @@ function dramaMoviesRate(movie) {
         return;
     }
 
-    var total = drama.reduce(function (sum, item) {
+    var average = drama.reduce(function (sum, item) {
         item.rate = item.rate || 0;
         return sum + parseFloat(item.rate);
-    }, 0);
-    
-    var average = total / drama.length;
+    }, 0) / drama.length;
 
-    return Math.round(average*100)/1007
+    return Math.round(average*100)/100
 }
   
   dramaMoviesRate(movies);
