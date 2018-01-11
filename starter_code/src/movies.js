@@ -3,7 +3,6 @@
 function minutesCalc(str) {
     var newArr = str.split(" ");
     var hours = Number((newArr[0].split("h"))[0]);
-
     if (newArr.length > 1) {
         var duration = hours * 60 + Number((newArr[1].split("min"))[0]);
     } else {
@@ -35,9 +34,8 @@ function ratesAverage(arr) {
 // Get the average of Drama Movies
 function dramaMoviesRate(arr) {
     var dramaMovies = arr.filter(function (item) {
-        return item.genre.find(function (a) {
-            return a === "Drama";
-        }) === "Drama";
+        return item.genre.find(function (a) {return a === "Drama";}) 
+        === "Drama";
     });
     if (dramaMovies.length > 0) {
         return ratesAverage(dramaMovies);
@@ -93,7 +91,8 @@ function orderAlphabetically(arr) {
     return arr.reduce(function(accumulator, item, index) {
         if (index < 20) {
             accumulator.push(item.title);
-            console.log(accumulator);
+            return accumulator;
+        } else {
             return accumulator;
         }
         
