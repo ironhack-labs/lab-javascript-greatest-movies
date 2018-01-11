@@ -17,17 +17,22 @@ function ratesAverage(elements){
 function dramaMoviesRate(elements){
     var count = 0;
     var sum = elements.reduce(function(accumulator,item){
-        if(Number(item.rate) === 0){
-            count++;
+        
+        if(item.find(function(value){
+            return value.genre !== 'Drama';
+        })){
+            return undefined;
         }
-        if(item.genre.includes('Drama') <= 0){
+        else {
+            
+        }
+        if(item.genre.includes('Drama')){
             count++;
             return accumulator + parseFloat(item.rate);
         }
         else{
             return accumulator;
-        }
-        
+        } 
     }, 0);
     
    return Math.round(sum / count*100)/100;
