@@ -2,10 +2,53 @@
 // Turn duration of the movies from hours to minutes 
 
 
+
+
 // Get the average of all rates with 2 decimals 
 
 
+
+
+function ratesAverage(film) {
+    var average = film.reduce(function (sum, item) {
+      return sum + parseFloat(item.rate);
+    }, 0) / film.length;
+
+    return Math.round(average*100)/100
+  }
+  
+  ratesAverage(movies);
+  console.log(ratesAverage(movies));
+  
 // Get the average of Drama Movies
+
+
+//var drama = movies.filter(function(movies) {
+  //  return movies.genre.includes("Drama");
+//});
+
+
+
+function dramaMoviesRate(movie) {
+    var drama = movie.filter(function(movie) {
+        return movie.genre.includes("Drama");
+    }); 
+
+    if (drama.length === 0) {
+        return;
+    }
+
+    var average = drama.reduce(function (sum, item) {
+        item.rate = item.rate || 0;
+        return sum + parseFloat(item.rate);
+    }, 0) / drama.length;
+
+    return Math.round(average*100)/100
+}
+  
+  dramaMoviesRate(movies);
+  console.log(dramaMoviesRate(movies));
+
 
 
 // Order by time duration, in growing order
