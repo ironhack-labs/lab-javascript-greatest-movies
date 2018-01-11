@@ -2041,8 +2041,11 @@ return avg;
 function orderAlphabetically (movies){
 
   var order = movies.sort(function (acc,element){
-    return acc.title - element.title;
-
+    if (acc.title < element.title) //sort string ascending
+        return -1 
+    if (acc.title > element.title)
+        return 1
+    return 0 //default return value (no sorting)
 
   })
   
