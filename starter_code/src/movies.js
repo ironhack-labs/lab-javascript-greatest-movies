@@ -39,28 +39,30 @@ function ratesAverage(a){
   return parseFloat(allRates);
 }
 
-
-// function ratesAverage(a){
-  
-//   var allRates = a.map(function(movie){
-//     return movie.rate;
-//   });
-  
-//   allRates = allRates.reduce(function(acc,e,i){
-//     return e/a.length + acc;
-//   },0)
-  
-  
-//   if(allRates.toString().indexOf(".") > -1){
-//     allRates = allRates.toFixed(2);
-//   }
-
-//   return parseInt(allRates);
-// }
-
 // Get the average of Drama Movies
-
-
+function dramaMoviesRate(a){
+  
+  var dramaMovies = [];
+  
+  a.forEach(function(mov){
+    mov.genre.forEach(function(gen){
+      if(gen == "Drama"){
+        dramaMovies.push(mov.rate)
+      }
+    })
+  })
+  
+  
+  var dramaMedia = dramaMovies.reduce(function(acc,e,i){
+    return e/dramaMovies.length + acc;
+  },0)
+  
+  if(dramaMedia.toString().indexOf(".") > -1){
+    dramaMedia = dramaMedia.toFixed(2);
+    dramaMedia = parseFloat(dramaMedia)
+  }
+  return dramaMedia;
+}
 // Order by time duration, in growing order
 
 
