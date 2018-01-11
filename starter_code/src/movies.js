@@ -3,11 +3,10 @@
 
 
 
+
 // Get the average of all rates with 2 decimals 
 
-/*var total = movies.reduce(sum, item), {
-    return sum + item.rate;
-};*/
+
 
 
 function ratesAverage(film) {
@@ -23,22 +22,28 @@ function ratesAverage(film) {
   
 // Get the average of Drama Movies
 
-//let drama = movies.filter(movies = movies.genre = "Drama");
-//console.log(drama);
+
+//var drama = movies.filter(function(movies) {
+  //  return movies.genre.includes("Drama");
+//});
 
 
 
-/*function dramaMovieRate(drama) {
+function dramaMoviesRate(movie) {
+    var drama = movie.filter(function(movie) {
+        return movie.genre.includes("Drama");
+    });
     var average = drama.reduce(function (sum, item) {
+      item.rate = item.rate || 0;
       return sum + parseFloat(item.rate);
     }, 0) / drama.length;
 
     return Math.round(average*100)/100
   }
   
-  ratesAverage(movies);
-  console.log(ratesAverage(movies));
-*/
+  dramaMoviesRate(movies);
+  console.log(dramaMoviesRate(movies));
+
 
 
 // Order by time duration, in growing order
