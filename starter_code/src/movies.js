@@ -2007,75 +2007,25 @@ var movies = [
 
 
 // Get the average of all rates with 2 decimals 
-//  function ratesAverage(acc, item){
-//   return acc + Math.floor(item.rate);
-//   };
 
-
-
- var ratesAverage = movies.reduce(function(acc, item){
-     return acc + Math.floor(item.rate);
-    
-     },0);
-    console.log(ratesAverage);
-
+function ratesAverage(movies){
+  var total = movies.reduce(function(acc, item){
+    return acc + Math.floor(item.rate);
    
-var avg = ratesAverage / movies.length;
+    },0);
+  
+var avg = total / movies.length;
 avg = Math.round(avg*100) / 100;
- console.log(avg);
+console.log(avg);
+return avg;
 
 
-
-//  var ratesAverage = movies.reduce(function(acc, item){
-//     return acc + Math.floor(item.rate);
-    
-//     },0);
-//     console.log(test);
-
-// console.log(Math.floor('9') + Math.floor('9'));
-   
-//  var avg = test / movies.length;
-//  avg = Math.round(avg*100) / 100;
-//  console.log(avg);
- 
-// ". The average is: " + avg + "<br/>");
+}
 
 
 
 // Get the average of Drama Movies
 
-
-/*
-
-
-var dramaMoviesRate = movies.filter(function (acc, index) {
-    
-    return (acc.genre[1] === 'Drama');
-       
-  });
- 
-var fore = movies.forEach(function(element){
-console.log(element);
-
-
-});
-    */
-
-
-
-
-
-// var ratesAverage = movies.reduce(function(acc, item){
-//     return acc + Math.floor(item.rate);
-    
-//     },0);
-    
-
-
-   
-//  var avg = test / movies.length;
-//  avg = Math.round(avg*100) / 100;
-//  console.log(avg);
 
 
 
@@ -2087,6 +2037,17 @@ console.log(element);
 
 
 // Order by title and print the first 20 titles
+
+function orderAlphabetically (movies){
+
+  var order = movies.sort(function (acc,element){
+    return acc.title - element.title;
+
+
+  })
+  
+
+}
 
 
 // Best yearly rate average
