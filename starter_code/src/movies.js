@@ -32,14 +32,21 @@ function ratesAverage(film) {
 function dramaMoviesRate(movie) {
     var drama = movie.filter(function(movie) {
         return movie.genre.includes("Drama");
-    });
-    var average = drama.reduce(function (sum, item) {
-      item.rate = item.rate || 0;
-      return sum + parseFloat(item.rate);
-    }, 0) / drama.length;
+    }); 
 
-    return Math.round(average*100)/100
-  }
+    if (drama.length === 0) {
+        return;
+    }
+
+    var total = drama.reduce(function (sum, item) {
+        item.rate = item.rate || 0;
+        return sum + parseFloat(item.rate);
+    }, 0);
+    
+    var average = total / drama.length;
+
+    return Math.round(average*100)/1007
+}
   
   dramaMoviesRate(movies);
   console.log(dramaMoviesRate(movies));
