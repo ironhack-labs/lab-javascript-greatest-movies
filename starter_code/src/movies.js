@@ -10,15 +10,35 @@
 };*/
 
 
-function ratesAverage(movies) {
-    var average = movies.reduce(function (sum, item) {
-      return sum + +item;
-    }) / movies.length;
-    return average;
+function ratesAverage(film) {
+    var average = film.reduce(function (sum, item) {
+      return sum + parseFloat(item.rate);
+    }, 0) / film.length;
+
+    return Math.round(average*100)/100
   }
   
   ratesAverage(movies);
+  console.log(ratesAverage(movies));
+  
 // Get the average of Drama Movies
+
+//let drama = movies.filter(movies = movies.genre = "Drama");
+//console.log(drama);
+
+
+
+/*function dramaMovieRate(drama) {
+    var average = drama.reduce(function (sum, item) {
+      return sum + parseFloat(item.rate);
+    }, 0) / drama.length;
+
+    return Math.round(average*100)/100
+  }
+  
+  ratesAverage(movies);
+  console.log(ratesAverage(movies));
+*/
 
 
 // Order by time duration, in growing order
