@@ -18,14 +18,15 @@ function dramaMoviesRate(elements){
     var count = 0;
     var sum = elements.reduce(function(accumulator,item){
         
-        if(item.find(function(value){
-            return value.genre !== 'Drama';
-        })){
-            return undefined;
-        }
-        else {
+        // if(item.find(function(value){
+        //     return value.genre !== 'Drama';
+        // })){
+        //     return undefined;
+        // }
+        // else {
             
-        }
+        // }
+        
         if(item.genre.includes('Drama')){
             count++;
             return accumulator + parseFloat(item.rate);
