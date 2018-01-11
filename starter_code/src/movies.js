@@ -6,12 +6,21 @@ function turnHoursToMinutes(inputArray){
      returnArray= inputArray.map(
         function (element){
             var object=element;
-            var timeArray =element.duration.split(' ');
-            var hours= timeArray[0];
-            var min = timeArray[1];
-            if (timeArray.length === 1){
+            var hours ="";
+            var min ="";
+
+            if (element.duration.includes("h") && element.duration.includes("min")){
+                var timeArray =element.duration.split(' ');
+                 hours= timeArray[0];
+                 min = timeArray[1];
+            } else if (element.duration.includes("h") && !element.duration.includes("min")) {
                 min = "0min";
-            }
+                hours=element.duration;
+            }else if (element.duration.includes("min") && !element.duration.includes("h")) {
+                hours = "0h";
+                min=element.duration;
+                       }
+
             object.duration = (Number(hours.charAt(0))*60+Number(min.slice(0,min.length-3)));
             return object;
         }
