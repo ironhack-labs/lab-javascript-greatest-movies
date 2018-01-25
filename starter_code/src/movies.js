@@ -47,9 +47,41 @@ function orderByDuration(array){
 }
 
 // How many movies did STEVEN SPIELBERG
+function howManyMovies(array){
+  var dramaFilter = array.filter(function(movie){
+    return movie.genre.indexOf("Drama") > -1; 
+  })
+  console.log(dramaFilter);
+  var Spielberg = dramaFilter.filter(function(movie){
 
+    return movie.director==='Steven Spielberg';
+  })
+  return Spielberg;
+}
+}
 
 // Order by title and print the first 20 titles
-
+function orderAlphabetically(array){
+  var newArray=array.sort(function(a,b){
+    var nameA = a.title.toUpperCase(); 
+    var nameB = b.title.toUpperCase(); 
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  })
+  
+  var titles=newArray.map(function(movie){
+    return movie.title;
+  })
+  var firstTwenty=[];
+  for (var i=0; i<20; i++){
+        firstTwenty.push(titles[i]);
+      }
+  return firstTwenty;
+}
 
 // Best yearly rate average
