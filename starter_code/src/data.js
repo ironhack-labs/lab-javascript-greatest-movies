@@ -2000,3 +2000,22 @@ var movies = [
     rate: '8.0'
   }
 ];
+
+function  turnHoursToMinutes(array){
+  array.forEach(function(element) {
+    var hour = parseInt(element.duration.substring(0,1));
+    var minutes = parseInt(element.duration.split("min")[0].substring(2));
+    element.duration = hour *60 + minutes;
+  });
+  return array
+}
+function promedio(array){
+  var total = 0
+  array.forEach(function(elementos){
+    var totalRating = parseFloat(elementos.rate);
+    total+=totalRating
+ })
+  console.log(total)
+  return total/array.length
+};
+promedio(movies);
