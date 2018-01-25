@@ -82,5 +82,41 @@ function uniquifyArray(array){
     return array;
   }
 
-
+  function bestYearAvg(array){
+    //Crea la variable years que guarda un array con todos los años que se encuentran en movies
+    var years = array.map(function(movie){
+      return movie.year;
+    });
+    
+    //Elimina los años que se encuentran duplicados dentro del arreglo years 
+    years = uniquifyArray(years);
+    
+    //Variable que va a contener los averages por años y el contador
+    best = [0];
+    count = 0;
+    
+    //Se recorre cada elemento del arreglo years
+    years.forEach(function(year){
+      //Se filtra el arreglo movies para que recorra cada objeto del arreglo
+      var y = array.map(function(movie){
+      return movie.year;
+      });
+      //Se asigna el avg rate  a una var
+      var ans= ratesAverage(y)
+      //Se inserta el valor de avg en un arreglo
+      best.push(ans);
+      //Si el valor del avg del año es mayor que count, se le asigna ese valor a count
+      if (ans > count){
+        count = ans}
+    });
+      
+      //Se obtiene el indice del elemento que tuvo el mayor avg
+      best.indexOf(count);
+    
+    //Regresa el año con el mayor avg
+    return years[count];
+    
+  }
+  
+  console.log(bestYearAvg(movies));
 
