@@ -2000,3 +2000,28 @@ var movies = [
     rate: '8.0'
   }
 ];
+
+
+function  turnHoursToMinutes(array){
+  array.forEach(function(element) {
+    var hour = parseInt(element.duration.substring(0,1));
+    var minutes = parseInt(element.duration.split("min")[0].substring(2));
+    element.duration = hour *60 + minutes;
+  });
+  return array
+}
+//-----
+function ratesAverages(array){
+  var sum = 0;
+  array.forEach(function(element){
+    var rate = parseFloat(element.rate);
+    sum += rate
+    }
+);
+console.log(sum)
+var average = (sum / array.length).toFixed(2);
+return average
+}
+
+
+console.log(ratesAverages(movies))
