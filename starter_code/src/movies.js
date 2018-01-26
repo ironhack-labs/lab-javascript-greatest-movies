@@ -2002,77 +2002,73 @@ var movies = [
     rate: '8.0',
   },
 ];
-// function turnHoursToMinutes(array) {
-//   const movies = array.map(function(movie) {
-//     let durationArray = movie.duration.split(' ');
-//     let firstNumber = parseInt(durationArray[0].slice(0, 1)) * 60;
-//     let secondNumber = parseInt(durationArray[1].slice(0, 2));
-//     movie.duration = firstNumber + secondNumber;
-//     return movie;
-//   });
-//   return movies;
-// }
+function turnHoursToMinutes(array) {
+  const moviesCopy = array.map(function(movie) {
+    movie.duration =
+      parseInt(movie.duration.split(' ').slice(0, 1)) * 60 + parseInt(movie.duration.split(' ').slice(1));
+    return movie;
+  });
+  return moviesCopy;
+}
 // // Get the average of all rates with 2 decimals
-// function ratesAverage(array) {
-//   const ratesTotal = array.reduce(function(previous, current) {
-//     return previous + parseFloat(current.rate);
-//   }, 0);
-//   return (ratesTotal / array.length).toFixed(2);
-// }
-// // Get the average of Drama Movies
-// function dramaMoviesRate(array) {
-//   let sum = 0;
-//   let currentRate = 0;
-//   let dramaCount = 0;
+function ratesAverage(array) {
+  const ratesTotal = array.reduce(function(previous, current) {
+    return previous + parseFloat(current.rate);
+  }, 0);
+  return (ratesTotal / array.length).toFixed(2);
+}
+// Get the average of Drama Movies
+function dramaMoviesRate(array) {
+  let sum = 0;
+  let currentRate = 0;
+  let dramaCount = 0;
 
-//   array.forEach(function(movies) {
-//     movies.genre.forEach(function(genre) {
-//       if (genre === 'Drama') {
-//         currentRate += parseFloat(movies.rate);
-//         dramaCount++;
-//       }
-//     });
-//   });
-//   console.log((currentRate / dramaCount).toFixed(2));
-// }
+  array.forEach(function(movies) {
+    movies.genre.forEach(function(genre) {
+      if (genre === 'Drama') {
+        currentRate += parseFloat(movies.rate);
+        dramaCount++;
+      }
+    });
+  });
+  console.log((currentRate / dramaCount).toFixed(2));
+}
 
 // // Order by time duration, in growing order
-// function orderByDuration(array) {
-//   var currMovies = turnHoursToMinutes(array);
-//   currMovies.sort(function(a, b) {
-//     return a.duration - b.duration;
-//   });
-//   return currMovies;
-// }
+function orderByDuration(array) {
+  var currMovies = turnHoursToMinutes(array);
+  currMovies.sort(function(a, b) {
+    return a.duration - b.duration;
+  });
+  return currMovies;
+}
 
-// orderByDuration(movies);
 // // How many movies did STEVEN SPIELBERG
-// function howManyMovies(array) {
-//   const spielbergMovies = array.filter(function(movie) {
-//     let currMovie;
-//     if (movie.director === 'Steven Spielberg') {
-//       movie.genre.forEach(function(genre) {
-//         if (genre === 'Drama') {
-//           currMovie = movie;
-//         }
-//       });
-//     }
-//     return currMovie;
-//   });
-//   return spielbergMovies;
-// }
+function howManyMovies(array) {
+  const spielbergMovies = array.filter(function(movie) {
+    let currMovie;
+    if (movie.director === 'Steven Spielberg') {
+      movie.genre.forEach(function(genre) {
+        if (genre === 'Drama') {
+          currMovie = movie;
+        }
+      });
+    }
+    return currMovie;
+  });
+  return spielbergMovies;
+}
 
-// howManyMovies(movies);
 // Order by title and print the first 20 titles
-// function orderAlphabetically(array) {
-//   const movieTitles = [];
-//   array.forEach(function(movie, index) {
-//     if (index < 20) {
-//       movieTitles.push(movie.title);
-//     }
-//   });
-//   return movieTitles.sort();
-// }
+function orderAlphabetically(array) {
+  const movieTitles = [];
+  array.forEach(function(movie, index) {
+    if (index < 20) {
+      movieTitles.push(movie.title);
+    }
+  });
+  return movieTitles.sort();
+}
 
 // orderAlphabetically(movies);
 // Best yearly rate average
@@ -2085,17 +2081,12 @@ function bestYearlyRate(array) {
   let years = array.map(function(movie) {
     return parseInt(movie.year);
   });
-  // years.sort(function(a, b) {
-  //   return a - b;
-  // });
-
   years.forEach(function(year, index) {
     movieByYears[year] = {
       moviesByYear: [],
     };
   });
   array.forEach(function(movie) {
-    // create object moviesByYears with years as props, and array of movie objects that have same year.
     for (let prop in movieByYears) {
       if (prop === movie.year) {
         movieByYears[prop].moviesByYear.push(movie);
@@ -2103,10 +2094,10 @@ function bestYearlyRate(array) {
     }
   });
   for (let prop in movieByYears) {
-    let currRate = 0;
+    let yearRateSum = 0;
     movieByYears[prop].moviesByYear.forEach(function(movies, index, array) {
-      currRate += parseFloat(movies.rate);
-      let yearlyAvg = (currRate / (index + 1)).toFixed(2); // this returns the average per year
+      yearRateSum += parseFloat(movies.rate);
+      let yearlyAvg = (yearRateSum / (index + 1)).toFixed(2); // this returns the average per year
       if (index === array.length - 1) {
         averageArray.push({
           ['year']: movies.year,
@@ -2122,17 +2113,6 @@ function bestYearlyRate(array) {
   }
   console.log(maxAvg);
   return maxAvg;
-  // console.log(averageArray);
-  // movieByYears object
-  // each movies prop is array of movies with same year, so
-  // I should iterate through movieByYears
-  // at each year, get average of all rates (sum / length of prop)
-  // store that in a new array that will have an object in each element
-  // with prop year and value of average rate of that year
-
-  // console.log(movieByYears);
-  // iterate through each movie element
-  // assign movie element to movie prop on movieByYears based on movie.year
 }
 
-bestYearlyRate(movies);
+// bestYearlyRate(movies);
