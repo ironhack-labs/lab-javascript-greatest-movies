@@ -24,7 +24,7 @@ function ratesAverage(array){
   var averageRateRound= Math.round(averageRate * 100) / 100;
   return averageRateRound;
 }
-
+}
 
 
 // Get the average of Drama Movies
@@ -38,12 +38,29 @@ function dramaMoviesRate(array){
 }
 
 // Order by time duration, in growing order
+
 function orderByDuration(array){
-    newMovies=turnHourToMinutes(array);
-    newMovies.sort(function(a,b){
-      return a-b;
-    });
-    return newMovies;
+  var newMovies2=turnHourToMinutes(array);
+  
+  var durationsArray = newMovies2.sort(function(a, b){
+      if (a.duration===b.duration){
+        var nameA= a.title.toUpperCase(); 
+        var nameB= b.title.toUpperCase();
+     
+     if (nameA < nameB) {
+       console.log(nameA)
+        return -1;
+        }
+      if (nameA > nameB) {
+      console.log(nameA)
+        return 1;
+        }
+      }
+      return a.duration-b.duration;
+  });
+  console.log(durationsArray);
+  
+return durationsArray;
 }
 
 // How many movies did STEVEN SPIELBERG
@@ -84,4 +101,30 @@ function orderAlphabetically(array){
   return firstTwenty;
 }
 
-// Best yearly rate average
+//Not Finished
+//sort movies by year to find starting and end
+//filter by year
+//take that array and find averageRate 
+//store by rate and year to new array 
+//sort array by rate ascending or use forEach with counter variable 
+
+function bestYearlyRate(array){
+//sort movies by year to find starting and end year
+  var yearsSorted = array.sort(function(a,b){
+    return a.year-b.year;
+})
+var firstYear=yearsSorted[0].year;
+var lastYear=yearsSorted[(yearsSorted.length)-1].year;
+
+//filters by year
+var rates =[];
+for(var i=firstYear; i<lastYear-firstYear+1; i++){
+  var year = array.filter(function(movie){
+      return movie.year===i;
+    });
+  //take that year and find averageRate
+  var newRate = ratesAverage(year);
+//store an object with average rate and year to new array 
+  rates.push({rate: newRate, year: i});
+}
+}
