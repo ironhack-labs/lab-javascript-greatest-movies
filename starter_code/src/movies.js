@@ -1,7 +1,7 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
 function turnHoursToMinutes(arr){
-    var newArr = movies.map(function(movie){
+    var newArr = arr.map(function(movie){
       var movieLengthArr = movie.duration.split(" ");
       if(movieLengthArr[0].includes("min"))
       {
@@ -53,6 +53,10 @@ function dramaMoviesRate(arr){
 function orderByDuration(arr){
   var minutes = turnHoursToMinutes(arr);
   var ordered = minutes.sort(function(a,b) {
+      if (a.duration === b.duration)
+      {
+        return a.title.localeCompare(b.title);
+      }
       return a.duration - b.duration;
     });
   return ordered;
@@ -88,3 +92,68 @@ function orderAlphabetically(arr){
 }
 
 // Best yearly rate average
+function bestYearAvg(movies){
+  //Sort by year
+  if (movies.length === 0)
+  {
+    return undefined;
+  }
+  var yearSortedArr = movies.sort(function(a,b){
+    return Number(a.year - b.year);
+  });
+  //Split sorted array
+  var splitYear = [];
+  for (var i = 0; i < 250; i++){
+    splitYear.push([]);
+  }
+  var count = 0;
+  var year = yearSortedArr[0].title
+  var index = 0;
+  previousYear = 0;
+  while (count < yearSortedArr.length)
+  {
+    if (yearSortedArr[count].year != previousYear)
+    {
+      index++;
+      previousYear = yearSortedArr[count].year;
+    }
+    splitYear[index].push(yearSortedArr[count])
+    count++;
+  }
+  splitYear.splice(0,1);
+  //Splice empty array values off of end of sorted array
+  for (i = 0; i < splitYear.length; i++)
+  {
+    if(splitYear[i].length === 0)
+    {
+      splitYear = splitYear.splice(0, i)
+    }
+  }
+  var sum = 0;
+  var scoreArray = [];
+  //Sum score on each split array
+  for (i = 0; i < splitYear.length; i++)
+  {
+    sum = 0;
+    for (var j = 0; j < splitYear[i].length; j++)
+    {
+      sum += Number(splitYear[i][j].rate);
+    }
+    scoreArray.push(sum);
+  }
+  //Divide score by length of array, push to new array of scores
+  var avgArray = scoreArray.map(function(sum, i){
+    return sum / splitYear[i].length;
+  });
+  //Find max score in array
+  var max = 0;
+  index = 0;
+  avgArray.forEach(function(score, i){
+    if (score > max){
+      max = score;
+      index = i;
+    }
+  });
+  //Associate it with year in second array
+  return "The best year was " + splitYear[index][0].year + " with an average rate of " + max;
+}
