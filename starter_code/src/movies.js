@@ -102,29 +102,45 @@ function orderAlphabetically(array){
 }
 
 //Not Finished
-//sort movies by year to find starting and end
-//filter by year
-//take that array and find averageRate 
-//store by rate and year to new array 
-//sort array by rate ascending or use forEach with counter variable 
+
+ 
+
 
 function bestYearlyRate(array){
-//sort movies by year to find starting and end year
-  var yearsSorted = array.sort(function(a,b){
-    return a.year-b.year;
-})
-var firstYear=yearsSorted[0].year;
-var lastYear=yearsSorted[(yearsSorted.length)-1].year;
-
-//filters by year
-var rates =[];
-for(var i=firstYear; i<lastYear-firstYear+1; i++){
-  var year = array.filter(function(movie){
-      return movie.year===i;
-    });
-  //take that year and find averageRate
-  var newRate = ratesAverage(year);
-//store an object with average rate and year to new array 
-  rates.push({rate: newRate, year: i});
-}
-}
+  //Sort movies by year to find starting and end year
+    var yearsSorted = array.sort(function(a,b){
+      return a.year-b.year;
+  })
+  var firstYear=parseInt(yearsSorted[0].year);
+  var lastYear=parseInt(yearsSorted[(yearsSorted.length)-1].year);
+  
+  //Filter by year
+  var years=[];
+  var rates=[];
+  for(var i=firstYear; i<lastYear+1; i++){
+  
+  for(var j=0; j<(array.length-1); j++){
+   
+    if(movies[j].year === i.toString()){
+      newObject={};
+      newObject.rate = movies[j].rate; 
+      newObject.year = movies[j].year; 
+      years.push(newObject);
+    }
+  }
+  //Find average rate for year and store the average rate and year to new array 
+  finalRateObject={};
+  finalRateObject.rate=ratesAverage(years);
+  finalRateObject.year=i
+  rates.push(finalRateObject);
+  years=[];
+  }
+  
+//Sort average rates in ascending order. Highest rating is at beginning of line.
+  var bestSort = rates.sort(function(a,b){
+    return b.rate-a.rate;
+  });
+  
+  var bestYear = bestSort[0]
+  return "The year with the highest rating is " + bestYear.year + " with a rating of " + bestYear.rate + "!";
+  }
