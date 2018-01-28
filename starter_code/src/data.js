@@ -2004,6 +2004,8 @@ var movies = [
 
 
 
+
+
 //Iteration 1: Time Format
 
 function  turnHoursToMinutes(array){
@@ -2014,6 +2016,7 @@ function  turnHoursToMinutes(array){
   });
   return array
 }
+
 //Iteration 2: All rates average
 function ratesAverages(array){
   var sum = 0;
@@ -2047,54 +2050,83 @@ function  dramaMoviesRate(array){
 
 console.log(`The Drama rate avarage is: ${dramaMoviesRate(movies)}`);
 
-//----Iteration 4: Ordering by the duration ---falta ordenarlas alf son iguales
+//----Iteration 4: Ordering by the duration
+
+
 
 function orderByDuration(array){
   function compare(a,b) {
+    if (a.title < b.title) {
+      return -1;
+    }
+    else if (a.title > b.title) {
+      return 1;
+    } else {
+    return 0;
+    }
+    
+  }
+
+array = array.sort(compare);
+
+function compare2(a,b) {
   if (a.duration < b.duration) {
     return -1;
   }
-  if (a.duration > b.duration) {
+  else if (a.duration > b.duration) {
     return 1;
   } else {
   return 0;
   }
 }
 
-return array.sort(compare);
+return array.sort(compare2);
 }
 
 orderByDuration(movies);
 
 //----Iteration 5: Steven Spielberg. The best?
 
-function howManyMovies(array) {
+function howManyMovies(array) { 
+  var array1= []
   var moviesSpielberg = array.filter(function(movie){
-    return movie.director === "Steven Spielberg";
-});
+          return movie.director === "Steven Spielberg";
+   })
 
-return moviesSpielberg.length
+   moviesSpielberg .forEach(function(element) {
+    element.genre.forEach(function(genre) {
+      if (genre === "Drama") {
+        array1.push(1)
+       }
+      })
+    });
+    
+  console.log(`Las películas de Steven Spielberg que tratan de drama son: ${array1.length}`)
 }
 
-console.log(`Hay ${howManyMovies(movies)} peliculas de Steven Spielberg`)
+howManyMovies(movies)
 
 //----Iteration 6: Alphabetic Order---falta solo tomar las 20 primeras
 
 function orderAlphabetically(array) {
+  var array2 = []
   function compare(a,b) {
     if (a.title < b.title) {
       return -1;
     }
-    if (a.title > b.title) {
+    else if (a.title > b.title) {
       return 1;
     } else {
     return 0;
     }
   }
 array.sort(compare).forEach(function(element){
-    console.log(element.title);
-   
-    });
+     array2.push(element.title);
+});
+
+for(var i=0; i<=20; i++){
+  console.log(array2[i])
+}
 
 }
 
