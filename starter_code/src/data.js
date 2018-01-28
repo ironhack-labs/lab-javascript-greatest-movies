@@ -2000,3 +2000,102 @@ var movies = [
     rate: '8.0'
   }
 ];
+
+
+
+
+//Iteration 1: Time Format
+
+function  turnHoursToMinutes(array){
+  array.forEach(function(element) {
+    var hour = parseInt(element.duration.substring(0,1));
+    var minutes = parseInt(element.duration.split("min")[0].substring(2));
+    element.duration = hour *60 + minutes;
+  });
+  return array
+}
+//Iteration 2: All rates average
+function ratesAverages(array){
+  var sum = 0;
+  array.forEach(function(element){
+    var rate = parseFloat(element.rate);
+    sum += rate
+    }
+);
+var average = (sum / array.length).toFixed(2);
+return average
+}
+
+console.log(`The rate avarage is: ${ratesAverages(movies)}`);
+
+//Iteration 3: Drama movies
+
+function  dramaMoviesRate(array){
+  var sum = 0;
+  
+  array.forEach(function(element) {
+    element.genre.forEach(function(genre) {
+      if (genre === "Drama") {
+        var dramaRate = parseFloat(element.rate);
+        sum += dramaRate
+      }
+    });
+  });
+  var dramaAverage = (sum / array.length).toFixed(2);
+  return dramaAverage
+}
+
+console.log(`The Drama rate avarage is: ${dramaMoviesRate(movies)}`);
+
+//----Iteration 4: Ordering by the duration ---falta ordenarlas alf son iguales
+
+function orderByDuration(array){
+  function compare(a,b) {
+  if (a.duration < b.duration) {
+    return -1;
+  }
+  if (a.duration > b.duration) {
+    return 1;
+  } else {
+  return 0;
+  }
+}
+
+return array.sort(compare);
+}
+
+orderByDuration(movies);
+
+//----Iteration 5: Steven Spielberg. The best?
+
+function howManyMovies(array) {
+  var moviesSpielberg = array.filter(function(movie){
+    return movie.director === "Steven Spielberg";
+});
+
+return moviesSpielberg.length
+}
+
+console.log(`Hay ${howManyMovies(movies)} peliculas de Steven Spielberg`)
+
+//----Iteration 6: Alphabetic Order---falta solo tomar las 20 primeras
+
+function orderAlphabetically(array) {
+  function compare(a,b) {
+    if (a.title < b.title) {
+      return -1;
+    }
+    if (a.title > b.title) {
+      return 1;
+    } else {
+    return 0;
+    }
+  }
+array.sort(compare).forEach(function(element){
+    console.log(element.title);
+   
+    });
+
+}
+
+orderAlphabetically(movies)
