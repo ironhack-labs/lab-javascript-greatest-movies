@@ -27,7 +27,6 @@ function ratesAverage(arr) {
 
     return arr.reduce(function(rating) {
         
-
         avg = arr.rate / arr.rate.length;
     });
 }
