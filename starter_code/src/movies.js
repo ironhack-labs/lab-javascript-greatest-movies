@@ -36,22 +36,30 @@ function dramaMoviesRate(moviesArray) {
     return movie.genre.includes("Drama");
   });
 
-  if (dramaMovies.length === 0 || dramaMovies.rate === '' ) {
+  if (dramaMovies.length === 0 || dramaMovies.rate === "") {
     return undefined;
   } else {
+    console.log(ratesAverage(dramaMovies));
     return ratesAverage(dramaMovies);
   }
 }
 
-dramaMoviesRate(movies)
+var rates = movies.map(function(movie) {
+  return movie.rate;
+});
 
-var rates = movies.map(function(movie){
-  return movie.rate
-})
 
-console.log(rates.sort())
 // Order by time duration, in growing order
+function orderByDuration(moviesArray) {
+  var moviesTransform = turnHoursToMinutes(moviesArray);
+  var sorted = moviesTransform.sort(function(a, b){
+    return a.duration - b.duration
+  })
+  console.log(sorted);
+  return sorted;
+}
 
+orderByDuration(movies)
 // How many movies did STEVEN SPIELBERG
 
 // Order by title and print the first 20 titles
