@@ -16,10 +16,19 @@ function turnHoursToMinutes(movies){
 }
 
 // Get the average of all rates with 2 decimals 
-
+function ratesAverage(movies){
+  var numberOfFilms = 0;
+  var sum = movies.reduce(function(acum, e){
+    numberOfFilms++;
+    return acum + parseFloat(e.rate);
+  }, 0);
+  return parseFloat(sum/numberOfFilms);
+}
 
 // Get the average of Drama Movies
-
+function dramaMoviesRate(movies){
+  
+}
 
 // Order by time duration, in growing order
 
