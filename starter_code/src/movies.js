@@ -33,6 +33,11 @@ function dramaMoviesRate(moviesArray) {
     return movie.genre.includes("Drama");
   });
 
+  // if there is not drama movies, return undefined
+  if( dramaMovies.length == 0 ) {
+    return;
+  }
+
   var total = dramaMovies.reduce(function(sum, movie) {
     var rate = 0;
     if(movie.rate != "") {
