@@ -53,13 +53,31 @@ console.log("Drama movies average rate: " + dramaMoviesRate(movies));
 
 // Order by time duration, in growing order
 function orderByDuration(moviesArray) {
-  var durationOrder = moviesArray.sort(function(a, b) {
-    return parseInt(a.duration) - parseInt(b.duration);
+  // get duration in minutes
+  var minutesMovies = turnHoursToMinutes(moviesArray);
+  var durationOrder = minutesMovies.sort(function(a, b) {
+    if( a.duration < b.duration ) {
+      return -1;
+    }
+    
+    if( a.duration > b.duration ) {
+      return 1;
+    }
+    
+    if( a.duration == b.duration ) {
+      // if duration is equal, order alphatically
+      if(a.title.toLowerCase() < b.title.toLowerCase()) {
+        return -1;
+      }
+  
+      if(a.title.toLowerCase() > b.title.toLowerCase()) {
+        return 1;
+      }
+  
+      return 0;
+      }
   });
-
-  /*var alphabeticOrder = durationOrder.sort(function(a, b) {
-    return a.title < b.title;
-  })*/
+  
   return durationOrder;
 }
 
