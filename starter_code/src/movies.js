@@ -18,11 +18,13 @@ turnHoursToMinutes(movies);
 // Get the average of all rates with 2 decimals 
 function ratesAverage(moviesArray) {
   var total = moviesArray.reduce(function(sum, movie){
-    return sum + movie.rate;
+    return sum + parseInt(movie.rate);
   }, 0);
 
   return parseFloat((total/moviesArray.length).toFixed(2));
 }
+
+console.log("Average rate: " + ratesAverage(movies));
 
 // Get the average of Drama Movies
 function dramaMoviesRate(moviesArray) {
@@ -32,12 +34,17 @@ function dramaMoviesRate(moviesArray) {
   });
 
   var total = dramaMovies.reduce(function(sum, movie) {
-    return sum + movie.rate;
+    var rate = 0;
+    if(movie.rate != "") {
+      rate = parseInt(movie.rate);
+    }
+    return sum + rate;
   }, 0);
 
   return parseFloat((total/dramaMovies.length).toFixed(2));
 }
 
+console.log("Drama movies average rate: " + dramaMoviesRate(movies));
 
 // Order by time duration, in growing order
 
