@@ -44,17 +44,15 @@ var rates = movies.map(function(movie) {
 
 // Order by time duration, in growing order
 function orderByDuration(moviesArray) {
-  var moviesTransform = turnHoursToMinutes(moviesArray);
-  var sorted = moviesTransform.sort(function(a, b) {
-    if (a.duration > b.duration) {
-      return 1;
+  moviesArray.sort(function (a, b) {
+    if (a.duration === b.duration) {
+      if (a.title > b.title) {
+        return 1;
+      }
     }
-    if (a.duration < b.duration) {
-      return -1;
-    }
+    return a.duration - b.duration;
   });
-  console.log(sorted);
-  return sorted;
+  return moviesArray;
 }
 
 orderByDuration(movies);
