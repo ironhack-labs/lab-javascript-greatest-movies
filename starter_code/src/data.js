@@ -1,3 +1,4 @@
+
 var movies = [
   {
     title: 'The Shawshank Redemption',
