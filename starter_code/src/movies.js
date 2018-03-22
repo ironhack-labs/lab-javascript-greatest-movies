@@ -21,11 +21,22 @@ function ratesAverage(moviesArray) {
     return sum + movie.rate;
   }, 0);
 
-  return total/moviesArray.length;
+  return parseFloat((total/moviesArray.length).toFixed(2));
 }
 
 // Get the average of Drama Movies
+function dramaMoviesRate(moviesArray) {
+  // get drama movies
+  var dramaMovies = moviesArray.filter(function(movie) {
+    return movie.genre.includes("Drama");
+  });
 
+  var total = dramaMovies.reduce(function(sum, movie) {
+    return sum + movie.rate;
+  }, 0);
+
+  return parseFloat((total/dramaMovies.length).toFixed(2));
+}
 
 
 // Order by time duration, in growing order
