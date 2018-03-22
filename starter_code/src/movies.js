@@ -133,3 +133,19 @@ function orderAlphabetically(moviesArray) {
 }
 
 // Best yearly rate average
+
+/*function bestYearAvg(movieArray) {
+  
+  var moviesByYear = {};
+  
+  movieArray.forEach( function(e) {
+    var year = e.year;
+    if( year in moviesByYear ) {
+      moviesByYear.year.push(e);
+    } else {
+      moviesByYear.year = [];
+      moviesByYear.year.push(e);
+    }
+  });
+  
+}*/
