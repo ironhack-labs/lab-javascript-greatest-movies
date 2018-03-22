@@ -27,7 +27,19 @@ function ratesAverage(movies){
 
 // Get the average of Drama Movies
 function dramaMoviesRate(movies){
-  
+  var dramaMovies = movies.filter(function(e){
+    if(e.genre.indexOf("Drama") !== -1) {return e; }
+  });
+      
+  var numberOfFilms = 0;
+
+  if(dramaMovies.length > 0){
+    var sum = dramaMovies.reduce(function(acum, e){
+    numberOfFilms++;
+    return acum + (e.rate === "" ? 0 : parseFloat(e.rate));
+    }, 0);
+    return parseFloat((sum / numberOfFilms).toFixed(2));
+  }
 }
 
 // Order by time duration, in growing order
