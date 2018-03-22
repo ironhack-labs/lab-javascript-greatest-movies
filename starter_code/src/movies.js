@@ -57,7 +57,10 @@ function orderByDuration(moviesArray) {
     return parseInt(a.duration) - parseInt(b.duration);
   });
 
-  return durationOrder.sort()
+  /*var alphabeticOrder = durationOrder.sort(function(a, b) {
+    return a.title < b.title;
+  })*/
+  return durationOrder;
 }
 
 // How many movies did STEVEN SPIELBERG
@@ -65,7 +68,7 @@ function howManyMovies(moviesArray) {
   if( moviesArray == "" ) {
     return;
   }
-  
+
   var dramaSpielberg = moviesArray.filter(function(movie) {
     return movie.genre.includes("Drama") && movie.director == "Steven Spielberg";
   });
@@ -78,6 +81,37 @@ function howManyMovies(moviesArray) {
 }
 
 // Order by title and print the first 20 titles
+function orderAlphabetically(moviesArray) {
 
+  var movies = [];
+
+  // get 20 movies
+  if( moviesArray.length < 20 ) {
+    movies = moviesArray.slice(0, moviesArray.length);
+  } else {
+    movies = moviesArray.slice(0, 20);
+  }
+
+  // order movies
+  var ordered = movies.sort(function(a, b) {
+    if(a.title.toLowerCase() < b.title.toLowerCase()) {
+      return -1;
+    }
+
+    if(a.title.toLowerCase() > b.title.toLowerCase()) {
+      return 1;
+    }
+
+    return 0;
+  });
+
+  // get only title
+  var titles = ordered.map(function(e){
+    return e.title;
+  })
+
+  return titles;
+
+}
 
 // Best yearly rate average
