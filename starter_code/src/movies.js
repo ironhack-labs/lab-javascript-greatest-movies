@@ -24,7 +24,7 @@ function turnHoursToMinutes(moviesArray) {
 
 function ratesAverage(moviesArray) {
   var sum = moviesArray.reduce(function(sum, movie) {
-      return sum + parseFloat(movie.rate);
+    return sum + parseFloat(movie.rate);
   }, 0);
   var average = (sum / moviesArray.length).toFixed(2);
   return parseFloat(average);
@@ -35,7 +35,11 @@ function dramaMoviesRate(moviesArray) {
   var dramaMovies = moviesArray.filter(function(movie) {
     return movie.genre.includes("Drama");
   });
-  return ratesAverage(dramaMovies);
+  if (dramaMovies.length == 0) {
+    return undefined;
+  } else {
+    return ratesAverage(dramaMovies);
+  }
 }
 
 // Order by time duration, in growing order
