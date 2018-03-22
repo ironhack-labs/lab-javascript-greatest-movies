@@ -1,25 +1,18 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-  return moviesArray.map(function(elem) {
-    var hours = 0;
-    var minutes = 0;
-    if (elem.duration.indexOf("h") !== -1) {
-      hours = parseInt(elem.duration[0], 10) * 60;
-    }
-    if (elem.duration.indexOf("min") !== -1) {
-      minutes = parseInt(
-        elem.duration.substring(
-          elem.duration.length - 5,
-          elem.duration.length - 3
-        ),
-        10
-      );
-    }
-    return Object.assign({}, elem, { duration: hours + minutes });
+  return moviesArray.map(function (elem) {
+      var hours = 0;
+      var minutes = 0;
+      if (elem.duration.indexOf('h') !== -1) {
+          hours = parseInt(elem.duration[0], 10) * 60;
+      }
+      if (elem.duration.indexOf('min') !== -1) {
+          minutes = parseInt(elem.duration.substring(elem.duration.length - 5, elem.duration.length - 3), 10);
+      }
+      return Object.assign({}, elem, { duration: hours + minutes });
   });
 }
-
 // Get the average of all rates with 2 decimals
 
 function ratesAverage(moviesArray) {
@@ -31,8 +24,9 @@ function ratesAverage(moviesArray) {
 }
 
 // Get the average of Drama Movies
+
 function dramaMoviesRate(moviesArray) {
-  var dramaMovies = moviesArray.filter(function(movie) {
+  dramaMovies = moviesArray.filter(function(movie) {
     return movie.genre.includes("Drama");
   });
 
@@ -48,20 +42,35 @@ var rates = movies.map(function(movie) {
   return movie.rate;
 });
 
-
 // Order by time duration, in growing order
 function orderByDuration(moviesArray) {
   var moviesTransform = turnHoursToMinutes(moviesArray);
-  var sorted = moviesTransform.sort(function(a, b){
-    return a.duration - b.duration
-  })
+  var sorted = moviesTransform.sort(function(a, b) {
+    if (a.duration > b.duration) {
+      return 1;
+    }
+    if (a.duration < b.duration) {
+      return -1;
+    }
+  });
   console.log(sorted);
   return sorted;
 }
 
-orderByDuration(movies)
-// How many movies did STEVEN SPIELBERG
+orderByDuration(movies);
 
+// How many movies did STEVEN SPIELBERG
+function howManyMovies(moviesArray) {
+  var dramaMoviesSct = function dramaMoviesSelect(moviesArray) {
+    dramaMovies = moviesArray.filter(function(movie) {
+      return movie.genre.includes("Drama");
+    });
+    if (dramaMovies.length === 0 || dramaMovies.rate === "") {
+      return undefined;
+    }
+  }
+  var spielberg
+}
 // Order by title and print the first 20 titles
 
 // Best yearly rate average
