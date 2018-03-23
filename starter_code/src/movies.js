@@ -1,16 +1,23 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
 function turnHoursToMinutes(moviesArray) {
+  
   return moviesArray.map(function (elem) {
     var hours = 0;
     var minutes = 0;
-    if (elem.duration.indexOf('h') !== -1) {
-      hours = parseInt(elem.duration[0], 10) * 60;
+    
+    if(typeof(elem.duration) !== 'number'){
+      if (elem.duration.indexOf('h') !== -1) {
+        hours = parseInt(elem.duration[0], 10) * 60;
+      }
+      if (elem.duration.indexOf('min') !== -1) {
+        minutes = parseInt(elem.duration.substring(elem.duration.length - 5, elem.duration.length - 3), 10);
+      }
+      return Object.assign({}, elem, { duration: hours + minutes });
     }
-    if (elem.duration.indexOf('min') !== -1) {
-      minutes = parseInt(elem.duration.substring(elem.duration.length - 5, elem.duration.length - 3), 10);
+    else{
+      return elem;
     }
-    return Object.assign({}, elem, { duration: hours + minutes });
   });
 }
 turnHoursToMinutes(movies);
@@ -28,12 +35,11 @@ function dramaMoviesRate(movies){
     var dramas = movies.filter(function(movie){
       if(movie.genre.indexOf('Drama') !== -1){
         if(movie.rate === ''){
-          return false
+          movie.rate = 4
         }
         return true
       }
     });
-    console.log(dramas)
     if (dramas.length > 0){
       return parseFloat(ratesAverage(dramas).toFixed(2))
     } else {
@@ -45,10 +51,12 @@ function dramaMoviesRate(movies){
 // Order by time duration, in growing order
   function orderByDuration(movies){
     var standardized = turnHoursToMinutes(movies)
+    console.log(standardized)
 
-   
-
-    if( standardized.length > 1){
+    if( standardized.length === 1)
+    return movies
+    if( standardized.length > 1)
+    {
       var sorted = standardized.sort(function(a,b){
         return a.duration - b.duration
       })
@@ -67,11 +75,8 @@ function dramaMoviesRate(movies){
         }
       })
       return sortedTitles
-    }else{
-      return standardized
-    }
   }
-
+} 
 // How many movies did STEVEN SPIELBERG
 
 
