@@ -32,8 +32,8 @@ function dramaMoviesRate(moviesArray) {
     var dramaMovie = moviesArray.filter(function (pelicula) {
       return pelicula.genre.indexOf('Drama') !== -1;
     });
-    if (ratesAverage(dramaMovie)===NaN) {
-        return undefined;
+    if (dramaMovie.length===0) {
+        return ;
     }
     return (ratesAverage(dramaMovie));
   }
@@ -60,10 +60,10 @@ function howManyMovies(moviesArray) {
     if (moviesArray.length === 0) {
       return undefined;
     }
-    var directorMovies = moviesArray.filter(function (elemento) {
-      return elemento.director === 'Steven Spielberg' && elemento.genre.indexOf('Drama') !== -1;
+    var directorSpiel = moviesArray.filter(function (elemento) {
+      return elemento.director === 'Steven Spielberg' && elemento.genre.indexOf('Drama') !=-1;
     });
-    return 'Steven Spielberg directed ' + directorMovies.length + ' drama movies!';
+    return 'Steven Spielberg directed ' + directorSpiel.length + ' drama movies!';
   }
 
 
