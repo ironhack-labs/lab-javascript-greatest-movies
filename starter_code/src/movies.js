@@ -18,23 +18,24 @@ turnHoursToMinutes(movies);
 // Get the average of all rates with 2 decimals 
 //conseguir un array con todos los average => y luego lo sumamos con reduce 
 
-
 function ratesAverage(array){
+  //arrayRates => array que tiene en cada posición el rate de cada película
   var arrayRates =  array.map(function(element){
-    
     if(isNaN(parseFloat(element.rate))){
+      //caso por si la propiedad rate es rate: ""; 
       return 0.0;
     }
    
      return parseFloat(element.rate);
    });
  
+   //total => variable que tiene el total de rates de todas las películas
    var total =  arrayRates.reduce(function(accumulator, current){
      
      return accumulator + current;
    }, 0);
  
-
+  //se redondea a 2 decimales
    return  Math.round(((total/(array.length))) * 100) / 100;
  }
  
@@ -45,10 +46,8 @@ function ratesAverage(array){
 function dramaMoviesRate (array){
   
   var dramaMoviesAvg = array.filter(function(movie){
-    console.log(movie.genre);
-  
+    //hay que poner indexOf porque la propiedad genre es un array => genre: ["Drama", "Crime"]
     if(movie.genre.indexOf('Drama') != -1){
-      console.log("entra");
       return true;
     }else{
       return false;
@@ -60,6 +59,7 @@ function dramaMoviesRate (array){
   //genero drama
   console.log(dramaMoviesAvg);
   if(dramaMoviesAvg.length===0){
+    // si no ha encontrado ninguna pelicula con ese genero => devuelve undefinde
     return undefined;
   }
   return ratesAverage(dramaMoviesAvg);
@@ -70,16 +70,15 @@ function dramaMoviesRate (array){
 // Order by time duration, in growing order
 
 function orderByDuration(array){
-  
-
  var ordenado = array.sort(function(a,b) {
    if(a.duration - b.duration === 0){
      //misma duracion => hay que ordenarlo alfabeticamente segun titulo
      return a.title > b.title;
-   }else{return a.duration - b.duration;}
+   }else{
+     return a.duration - b.duration;
+    }
   
 });
-
  return ordenado; 
 }
 
@@ -88,8 +87,6 @@ function orderByDuration(array){
 function howManyMovies(array){
   var stevenMovies = array.filter(function(movie){
     if(movie.director ==="Steven Spielberg"  && movie.genre.indexOf('Drama')!= -1){
-
-
       return true;
     }else{
       return false;
@@ -99,6 +96,7 @@ function howManyMovies(array){
   });
 
 if(array.length===0){
+  //si no encuentra ninguna película => devuleve undefined
   return undefined;
   
 }else{ 
@@ -106,7 +104,8 @@ if(array.length===0){
 
 }
 
-// Order by title and print the first 20 titles
+// Order by title and print the first 20 titles => solo hay que devolver las 20 primeras
+//primero se ordena, luego se trunca el array
 
 function orderAlphabetically (array){
 
@@ -122,7 +121,8 @@ function orderAlphabetically (array){
 
 function bestYearAvg (array){
   //puedo calcular el avg con el método de arriba, para ello, tengo que conseguir tener un array con todas las 
-  //peliculas de un año
-  
-
+  //peliculas de un año  
+  var ordenado = array.sort(function(a,b) {
+   return  a.parseInt(year) - b.parseInt(year);
+  } );
 }
