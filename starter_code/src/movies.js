@@ -1,7 +1,7 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {
-  return moviesArray.map(function(elem) {
+function turnHoursToMinutes(array) {
+  return array.map(function(elem) {
     var hours = 0;
     var minutes = 0;
     if (elem.duration.indexOf("h") !== -1) {
@@ -20,11 +20,26 @@ function turnHoursToMinutes(moviesArray) {
   });
 }
 turnHoursToMinutes(movies);
+
+function orderByDuration (array) {
+  array.sort(function (a, b) {
+      if (a.duration === b.duration) {
+          if (a.title > b.title) {
+              return 1;
+          }
+      }
+      return a.duration - b.duration;
+  });
+  return array;
+}
 // Get the average of all rates with 2 decimals
 function ratesAverage(array) {
   var rate = 0;
   rate = array.reduce(function(accumulator, current) {
     console.log(accumulator, current.rate);
+    if(!current.hasOwnProperty('rate')){
+      return undefined;
+    }
     return accumulator + Number(current.rate);
   }, 0);
   console.log(rate, array.length);
@@ -33,49 +48,41 @@ function ratesAverage(array) {
 }
 console.log(ratesAverage(movies));
 
-
-// Get the average of Drama Movies
-function dramaMoviesRate(array) {
-  var rate = 0;
-  var dramas = 0;
-  rate = array.reduce(function(accumulator, current) {
-    console.log(accumulator, current.rate);
-    if (current.genre.indexOf("Drama") > -1 && current.genre.length == 1) {
-      if(current.hasOwnProperty('rate')){
-        dramas++;
-        return accumulator + Number(current.rate);
-      }else{
-        return 0;
-      }
+function dramaMoviesRate(array){
+  var flag = false;
+  var generoBusqueda = array.filter(function(e){
+    if(e.genre.indexOf("Drama") != -1){
+      flag = true;
     }
-  }, 0);
-  console.log(rate, array.length);
-  rate /= dramas;
-  return Number(rate.toFixed(2));
-}
+    return e.genre.indexOf("Drama") != -1
+    
+  });
+  if(!flag)  {
+    return undefined;
+  }
+  return ratesAverage(generoBusqueda);
+}; 
+
 console.log(dramaMoviesRate(movies));
 
 
-// Order by time duration, in growing order
-function orderByDuration(array) {
-  var durationOrdered = array.sort(function(a, b) {
-    if (turnHoursToMinutes(a.duration) < turnHoursToMinutes(b.duration)) {
-      return -1;
-    }
-    if (turnHoursToMinutes(a.duration) > turnHoursToMinutes(b.duration)) {
-      return 1;
-    }
-    if (a.title < b.title) {
-      return -1;
-    }
-    if (a.title > b.title) {
-      return 1;
-    }
-  });
-  return durationOrdered;
-}
 // How many movies did STEVEN SPIELBERG
 
+function howManyMovies(array) {
+  if (array.length == 0) {
+    return undefined;
+  }
+  var dramaList = array.filter(function(drama){
+    for (i = 0; i<drama.genre.length;i++){
+       if (drama.genre[i] == "Drama") {
+        return drama.director == 'Steven Spielberg' 
+       }         
+    }    
+  });
+
+return ("Steven Spielberg directed "+ dramaList.length + " drama movies!");  
+
+}
 // Order by title and print the first 20 titles
 
 function orderAlphabetically(array) {
@@ -97,3 +104,8 @@ function orderAlphabetically(array) {
 console.log(orderAlphabetically(movies));
 
 // Best yearly rate average
+function bestYearAverage(array) {
+  var year = 0;
+
+  return year;
+}
