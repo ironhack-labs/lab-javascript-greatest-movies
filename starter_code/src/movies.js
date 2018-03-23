@@ -1,22 +1,31 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
 function turnHoursToMinutes(moviesArray) {
-    return moviesArray.map(function (elem) {
+    return moviesArray.map(function(elem) {
       var hours = 0;
       var minutes = 0;
-      if (elem.duration.indexOf('h') !== -1) {
-        hours = parseInt(elem.duration[0], 10) * 60;
+  
+      if (typeof elem.duration !== "number") {
+        if (elem.duration.indexOf("h") !== -1) {
+          hours = parseInt(elem.duration[0], 10) * 60;
+        }
+        if (elem.duration.indexOf("min") !== -1) {
+          minutes = parseInt(
+            elem.duration.substring(
+              elem.duration.length - 5,
+              elem.duration.length - 3
+            ),
+            10
+          );
+        }
+        return Object.assign({}, elem, { duration: hours + minutes });
+      } else {
+        return elem;
       }
-      if (elem.duration.indexOf('min') !== -1) {
-        minutes = parseInt(elem.duration.substring(elem.duration.length - 5, elem.duration.length - 3), 10);
-      }
-      return Object.assign({}, elem, { duration: hours + minutes });
     });
   }
+  
   turnHoursToMinutes(movies);
-  console.log(movies);
-  
-  
   
 
 // Get the average of all rates with 2 decimals 
@@ -31,7 +40,14 @@ function ratesAverage(moviesArray) {
  ratesAverage(movies);
 // Get the average of Drama Movies
 
-function dramaMoviesRate(moviesArray) {
+function dramaMoviesRate(moviesArray){
+    var generoBusqueda = moviesArray.filter(function(e){
+      return e.genre.indexOf("Drama") != -1
+      
+    });
+    
+
+/*function dramaMoviesRate(moviesArray) {
     var drama = moviesArray.filter(lloron);
 
     function lloron (e) {
@@ -52,30 +68,24 @@ function dramaMoviesRate(moviesArray) {
 }
 }
  
- dramaMoviesRate(movies);
+ dramaMoviesRate(movies);*/
  
 // Order by time duration, in growing order
 
-function orderByduration (moviesArray){
-    durationArray = turnHoursToMinutes(moviesArray);
-    durationArray.sort(compareDuration);
-
-    function compareDuration(a,b) {
-        if (a.duration === b.duration) {
-        if (a.title < b.title) {
-            return -1;
-        }
-    } else if (a.title > b.title) {
+function orderByDuration(moviesArray) {
+    var moviesTransform = turnHoursToMinutes(moviesArray);
+    var sorted = moviesTransform.sort(function(a, b) {
+      if (a.duration > b.duration) {
         return 1;
-    } else {
-        return a.duration - b.duration
-    }
-    }
-   
-    return durationArray;
-}
-    
-orderByduration(movies);
+      }
+      if (a.duration < b.duration) {
+        return -1;
+      }
+    });
+    console.log(sorted);
+    return sorted;
+  }
+    orderByDuration(movies);
         
 // How many movies did STEVEN SPIELBERG
 
