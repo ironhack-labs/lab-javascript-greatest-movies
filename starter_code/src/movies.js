@@ -97,7 +97,7 @@ function orderAlphabetically(array) {
     return 0;
   });
   for (let i = 0; i < 20 && i < array.length; i++) {
-    moviesOrdered.push(array[i]);
+    moviesOrdered.push(array[i].title);
   }
   return moviesOrdered;
 }
