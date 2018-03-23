@@ -62,6 +62,18 @@ function orderByDuration (moviesArray) {
 
 // How many movies did STEVEN SPIELBERG
 
+function orderByDuration (moviesArray) {
+  moviesArray.sort(function (a, b) {
+      if (a.duration === b.duration) {
+          if (a.title > b.title) {
+              return 1;
+          }
+      }
+      return a.duration - b.duration;
+  });
+  return moviesArray;
+}
+
 
 // Order by title and print the first 20 titles
 
