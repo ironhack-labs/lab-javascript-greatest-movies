@@ -81,12 +81,11 @@ function howManyMovies(movies){
   dramas = movies.filter(function(movie){
    return movie.genre.indexOf('Drama') !== -1
   })
-  console.log(dramas);
 
   var wasAny = dramas.filter(function(movie){
     return movie.director.indexOf('Steven Spielberg') != -1
   })
-  console.log(wasAny.length)
+
   if( dramas.length === 0){
     return
   }
@@ -101,5 +100,27 @@ function howManyMovies(movies){
 }
 // Order by title and print the first 20 titles
 
-
+  function orderAlphabetically (movies){
+    sortedTitles = movies.sort(function(x,y){
+        if(x.title < y.title)
+          return -1
+        if(x.title > y.title)
+          return 1
+        return 0   
+  })
+  var list = []
+  if(sortedTitles.length > 0){
+    if(sortedTitles.length < 20){
+      for(i = 0; i < sortedTitles.length ; i++)
+      list[i] = sortedTitles[i].title
+      return list
+    }
+    if(sortedTitles.length >= 20){ 
+      for(i = 0; i < 20 ; i++){
+      list[i] = sortedTitles[i].title
+      }
+    }
+  }
+  return list
+}
 // Best yearly rate average
