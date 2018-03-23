@@ -115,11 +115,17 @@ function howManyMovies(array) {   //No se porque me da error.
 console.log(howManyMovies(movies));
 // Order by title and print the first 20 titles
 function orderAlphabetically(array) {
+  var x = [];
   array = array.sort(function(a, b){
-    
+    return a.title > b.title;
   })
-  console.log();
+  console.log(x);
+  for (let i = 0; i < array.length; i++) {
+     x.push(array[i].title);   
+   }
   
+  
+  return x;
 }
-
+console.log(orderAlphabetically([{ title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }]));
 // Best yearly rate average
