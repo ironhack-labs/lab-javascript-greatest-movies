@@ -17,21 +17,60 @@ turnHoursToMinutes(movies);
 
 // Get the average of all rates with 2 decimals 
 function ratesAverage(movies){
-  
- var sum = movies.reduce(function(accum, currentMov){
-    return accum + parseInt(currentMov.rate);
-  },0);
-  console.log(sum)
-  var ratesAverage = sum/movies.length
-
-return ratesAverage;
+  var sumAverages = movies.reduce(function(accum, currentMov){
+    return accum + parseFloat(currentMov.rate);
+  },0)
+    return sumAverages/movies.length
 }
-
 // Get the average of Drama Movies
+function dramaMoviesRate(movies){
+  
+    var dramas = movies.filter(function(movie){
+      if(movie.genre.indexOf('Drama') !== -1){
+        if(movie.rate === ''){
+          return false
+        }
+        return true
+      }
+    });
+    console.log(dramas)
+    if (dramas.length > 0){
+      return parseFloat(ratesAverage(dramas).toFixed(2))
+    } else {
+      return
+    }
 
+} 
 
 // Order by time duration, in growing order
+  function orderByDuration(movies){
+    var standardized = turnHoursToMinutes(movies)
 
+   
+
+    if( standardized.length > 1){
+      var sorted = standardized.sort(function(a,b){
+        return a.duration - b.duration
+      })
+      var sortedTitles = sorted.sort(function(x,y){
+        if(x.duration - y.duration === 0){
+          if(x.title < y.title)
+            return -1
+          if(x.title > y.title)
+            return 1
+          return 0
+        }else{
+          if(x.duration < y.duration)
+           return -1
+          if(x.duration > y.duration)
+            return 1
+        }
+      })
+      return sortedTitles
+    }else{
+      return standardized
+    }
+  }
 
 // How many movies did STEVEN SPIELBERG
 
