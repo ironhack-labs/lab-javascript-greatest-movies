@@ -104,8 +104,92 @@ function orderAlphabetically(array) {
 console.log(orderAlphabetically(movies));
 
 // Best yearly rate average
-function bestYearAverage(array) {
+function bestYearAvg(array) {
+  var bestYear = 0;
+  var yearAvg = 0;
+  var years = [];
+  var yearsCount = 0;
+  var yearsOrdered = [];
   var year = 0;
+  if(array.length == 0) {
+    return undefined;
+  }
+  //function countYears()
+  array.sort(function(a, b){
+    if(a.year < b.year){
+      return -1;
+    }
+    if (a.title > b.title) {
+      return 1;
+    }
+    return 0;
+  });
+  for (let i = 0; i < array.length; i++) {
+    yearsOrdered.push(array[i]);
+  }
+  year = yearsOrdered[0];
+  yearsOrdered.forEach(e => {
+    if(year != e.year){
+      yearsCount++;
+    }
+    years.push(e.year);
+  });
+  //-------
+  /*Quitar las repetidas y terminamos con un array de años unicos.
+  Usamos ese array para encontrar la media por año usando un for de reduces con una comparación de valor maximo en bestYear
+  */
+  uniquifyArray(years);
+  years.forEach(element => {
+    var rate = array.reduce(function(accumulator, current) {
+      if(!current.hasOwnProperty('rate')){
+        return undefined;
+      }
+      if(array.year == element) {
+        year = array.year;
+        return accumulator + Number(current.rate);
+      }
+      return 0;
+    }, 0);
+    rate /= array.length;
+    if (rate > bestYear) {
+      bestYear = year;
+    }
+  });
+  return "The best year was " + year.year + " with an average rate of " +year.rate;
+}
 
-  return year;
+function uniquifyArray(array) {
+  var uniqueArray = [];
+  var booleano = false;
+  var index;
+  if(array.length === 0){
+    return undefined;
+  }else if (array.length === 1){
+    return array;
+  }
+  
+    
+    for (let x = 0; x <  array.length; x++) {
+      if (array.indexOf(array[x],x+1) === -1){
+        if (uniqueArray.indexOf(array[x],0) === -1){
+          uniqueArray.push(array[x]);
+          booleano = true;
+        }
+
+      }else{
+        if (uniqueArray.indexOf(array[x],0) === -1){
+          uniqueArray.push(array[x]);}
+          booleano = true;
+      }
+    
+    
+  }
+
+  console.log(array);
+  console.log(uniqueArray);
+  if (booleano){
+    return uniqueArray;
+  } else {
+    return array;
+  }
 }
