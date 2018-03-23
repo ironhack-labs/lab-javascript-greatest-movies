@@ -44,7 +44,7 @@ dramaMoviesRate(movies);
 // Order by time duration, in growing order
 
 
-function orderByDuration(moviesArray){
+/* function orderByDuration(moviesArray){
     
     filmByDuretion = movies.map(function (elem) {
         return elem.duration;
@@ -57,14 +57,61 @@ function orderByDuration(moviesArray){
     return filmByDuretion // Array que retorna oredenada por su duracion
 
 }
+ */
+function orderByDuration(moviesArray) {
+
+filmArrayDuration = moviesArray.sort(function (a,b) {
+    return a.duration - b.duration;
+    if(a.duration < b.duration){
+        return -1;
+    }else if(a.duration > b.duration){
+        return 1;
+    }else{
+        return 0;
+    }
+    return filmArrayDuration;
+    
+})
+}
 
 orderByDuration(movies);
 
 
 // How many movies did STEVEN SPIELBERG
 
+function howManyMovies(moviesArray) {
+    if (moviesArray.length === 0) {
+        return undefined;
+    }                                           // para pasar el filtro si esta vacio
+    var dramaList = moviesArray.filter(function (elem) {
+        for (i = 0; i < elem.genre.length; i++) {
+            if (elem.genre[i] === "Drama") {
+                return elem.director === 'Steven Spielberg'
+            }
+        }
+    });
+
+    return ("Steven Spielberg directed " + dramaList.length + " drama movies!"); // Es un length porque es un array, no???
+
+}
+
 
 // Order by title and print the first 20 titles
+
+
+function orderAlphabetically(moviesArray) {
+
+    var orderTitles = moviesArray.sort(function (a,b) {
+        var newArray = 0;
+
+
+        
+    })
+    
+}
+
+
+
 
 
 // Best yearly rate average
