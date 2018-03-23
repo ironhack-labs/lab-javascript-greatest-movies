@@ -2,7 +2,7 @@ var movies = [
     {
       title: 'The Shawshank Redemption',
       year: '1994',
-      director: 'Frank Darabont',
+      director: 'Steven Spielberg',
       duration: '2h 22min',
       genre: ['Crime', 'Drama'],
       rate: '8.45'
@@ -100,9 +100,9 @@ function howManyMovies(array) {   //No se porque me da error.
     return undefined;
   }
   for (let i = 0; i < array.length; i++) {
-    if( array[i].director === "Steven Spielberg"){
+    if( array[i].director.toLowerCase().replace(/[^a-z]/g, '') === "stevenspielberg"){
       for (let j = 0; j < array[i].genre.length; j++) {
-        if (array[i].genre[j] === 'Drama') {
+        if (array[i].genre[j].toLowerCase().replace(/[^a-z]/g, '') === 'drama') {
           cont++;
         };
         
