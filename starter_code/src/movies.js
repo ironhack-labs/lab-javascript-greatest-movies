@@ -27,10 +27,16 @@ return Math.round((suma/moviesArray.length) * 100) / 100;
 
 // Get the average of Drama Movies
 function dramaMoviesRate(moviesArray) {
+  
   var arr = moviesArray.filter(function(elem){
   return elem.genre.indexOf("Drama") != -1;
   }); 
-  return ratesAverage(arr); 
+  if(arr.length == 0){
+    return;
+  } else {
+    return ratesAverage(arr);
+  }
+   
 }
 
 
@@ -47,6 +53,7 @@ function howManyMovies(moviesArray){
     if(moviesArray.length === 0) {
       return;
     }
+
     var arr = moviesArray.filter(function(elem){
        return elem.director.indexOf("Steven Spielberg") != -1 && elem.genre.indexOf("Drama") != -1;
     });
@@ -88,9 +95,9 @@ function howManyMovies(moviesArray){
 // Push primero y sort despues
 function orderAlphabetically(moviesArray) {
   var salida = [];
-  
-   moviesArray.forEach(function(element) {
-    salida.push(element.title);
+
+  moviesArray.forEach(function(element) {
+  salida.push(element.title);
 });
   var arr = salida.sort(function(a, b){
     if (a < b){
