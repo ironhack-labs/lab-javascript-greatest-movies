@@ -64,7 +64,7 @@ function howManyMovies(moviesArray){
 }
 
 // Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {
+/* function orderAlphabetically(moviesArray) {
   var salida = [];
   var arr = moviesArray.sort(function(a, b){
     if (a > b){
@@ -82,7 +82,27 @@ function orderAlphabetically(moviesArray) {
     salida.push(element.title);
     
 });
-    return salida.slice(0,19);
+    return salida.slice(0,20);
+} */
+
+// Push primero y sort despues
+function orderAlphabetically(moviesArray) {
+  var salida = [];
+  
+   moviesArray.forEach(function(element) {
+    salida.push(element.title);
+});
+  var arr = salida.sort(function(a, b){
+    if (a < b){
+        return -1;
+    }
+
+    if (a > b){
+        return 1;
+    }
+    return 0;
+});
+    return arr.slice(0,20);
 }
 
 // Best yearly rate average
