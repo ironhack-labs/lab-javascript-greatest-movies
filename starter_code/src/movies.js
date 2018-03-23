@@ -85,8 +85,7 @@ function howManyMovies(moviesArray){
   });
   
 
-	spielbergMovies.forEach(function(element)	{
-			
+	spielbergMovies.forEach(function(element)	{		
 		for (let i = 0; i < element.genre.length; i++){
   			if (element.genre[i] === 'Drama'){
   				movieList.push(element);
@@ -94,7 +93,6 @@ function howManyMovies(moviesArray){
 		}
   
 	});
- 
  
     return "Steven Spielberg directed "+ movieList.length + " drama movies!";
   
@@ -104,6 +102,38 @@ function howManyMovies(moviesArray){
 }
 
 // Order by title and print the first 20 titles
+
+function orderAlphabetically(moviesArray) {
+  
+  // Array ordenador
+  var newArray = [];
+    
+  // Sorting por título
+  moviesArray.sort(function (a,b){
+    	if (a.title > b.title){
+    		return 1;
+      }
+      if (a.title < b.title){
+    		return -1;
+    	}
+    });
+    
+    // Si array inferior a 20, pasar todos.
+    if (moviesArray.length <= 19){
+      for (let i =  0; i < moviesArray.length;  i++){
+        newArray[i] = moviesArray[i].title;
+      }
+    }
+    // SI array inferior a 20, pasar todos.
+    else {
+      for (let i =  0; i < 20;  i++){
+        newArray[i] = moviesArray[i].title;
+      }
+    }
+    
+    return newArray;
+
+}
 
 
 // Best yearly rate average
