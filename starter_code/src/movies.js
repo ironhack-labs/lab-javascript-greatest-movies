@@ -48,6 +48,7 @@ var rates = movies.map(function(movie) {
   return movie.rate;
 });
 
+
 // Order by time duration, in growing order
 function orderByDuration(moviesArray) {
   moviesArray.sort(function(a, b) {
@@ -77,6 +78,16 @@ function howManyMovies(moviesArray) {
     return "Steven Spielberg directed " + moviesArray.length + " drama movies!";
   }
 }
+
 // Order by title and print the first 20 titles
+function orderAlphabetically(moviesArray){
+  moviesArray = moviesArray.sort(function(a, b){
+    if (a.title > b.title) {
+      return 1;
+    }
+  })
+  moviesArray = moviesArray.slice(0, 20);
+  return moviesArray;
+}
 
 // Best yearly rate average
