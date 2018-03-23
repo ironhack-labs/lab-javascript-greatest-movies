@@ -114,3 +114,40 @@ function orderAlphabetically(moviesArray){
 orderAlphabetically(movies);
 
 // Best yearly rate average
+
+function bestYearAvg(){
+  function orderByYear(moviesArray){
+    for (i = 0; i < moviesArray.length; i++){
+      moviesArray[i].year = parseInt(moviesArray[i].year)
+    }
+    var year = moviesArray;
+    for(j = 0; j < year.length; j++){
+      year.sort(function(a, b){
+        return a.year - b.year
+      })
+    return year;
+    }
+  }
+  
+  orderByYear(movies);
+  
+  var a = orderByYear(movies);
+  
+  function bestYearAvg(a){
+    var stringYearAvg = [];
+    var yearSumRate = 0;
+    var yearRate = 0;
+    for (i = 0; i < orderByYear(moviesArray) - 1; i++){
+      if (orderByYear(moviesArray)[i] === orderByYear(moviesArray)[(i+1)]){
+        yearSumRate += orderByYear(moviesArray).rate;
+        yearRate++;
+      } else {
+        stringYearAvg.push(yearSumRate/yearRate)
+        yearSumRate = 0;
+        yearRate = 0;
+        stringYearAvg.push(orderByYear(moviesArray)[i].year)
+      }
+    }
+    return stringYearAvg
+  }
+}
