@@ -19,24 +19,19 @@ function turnHoursToMinutes(moviesArray) {
   
 function ratesAverage (moviesArray){
   var rate = moviesArray.reduce(function(accum, current){
-
+   if(current.rate.length == " " || current.rate.lengtn !== " ")
     return accum + parseInt(current.rate);
   }, 0);
     return rate/moviesArray.length;
 }
-
-
 // Get the average of Drama Movies
 function dramaMoviesRate (moviesArray){
-    
-  var dramas = moviesArray.filter(function(elem){
-    if (elem.rate.length === 0){
-  return ratesAverage(dramas);}
-    return elem.genre.indexOf("Drama") != -1;
+ var dramas = moviesArray.filter(function(elem){
+ return elem.genre.indexOf("Drama") != -1;
   });
   return ratesAverage(dramas);
 }
-dramaMoviesRate(movies);
+
 
 // Order by time duration, in growing order
 
