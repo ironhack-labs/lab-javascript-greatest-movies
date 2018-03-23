@@ -27,11 +27,9 @@ function ratesAverage(moviesArray){
       current.rate = 0;
     }
     return accumulator + parseFloat(current.rate);
-
  }, 0);
 
-  return Math.round((total/moviesArray.length)*100)/100;
-  
+  return Math.round((total/moviesArray.length)*100)/100;  
 }
 ratesAverage(movies);
 
@@ -42,29 +40,28 @@ function dramaMoviesRate(moviesArray) {
   
   var dramaList = moviesArray.filter(function(drama){
     for (i = 0; i<drama.genre.length;i++){
-       return drama.genre[i] == "Drama"; 
-          
-    }
-      
+       return drama.genre[i] == "Drama";         
+    }   
   });
   if (dramaList.length == 0) {
     return;
-
-  }
-  
+  }  
   return ratesAverage(dramaList);
-
 }
 
 
 
 // Order by time duration, in growing order
 
-
-
-
-
-
+function orderByDuration(moviesArray) {
+  var durationList = turnHoursToMinutes(moviesArray).map(function(elemento){
+    return elemento.duration;
+  })
+  durationList.sort(function(a,b) {
+    return a - b;
+  });
+  return durationList;
+}
 
 
 
@@ -72,8 +69,58 @@ function dramaMoviesRate(moviesArray) {
 
 // How many movies did STEVEN SPIELBERG
 
+function howManyMovies(moviesArray) {
+  if (moviesArray.length == 0) {
+    return undefined
+  }
+  var dramaList = moviesArray.filter(function(drama){
+    for (i = 0; i<drama.genre.length;i++){
+      if (drama.genre[i] == "Drama") {
+        return drama.director == 'Steven Spielberg' 
+       }          
+    }      
+  });
+
+return ("Steven Spielberg directed "+ dramaList.length + " drama movies!");
+}
+
+
 
 // Order by title and print the first 20 titles
 
 
+function orderAlphabetically(moviesArray) {
+  var orderedList = moviesArray.map(function(elemento){
+    return elemento.title;
+  });
+  orderedList.sort();
+  if (orderedList.length<20){
+    return orderedList;
+  }
+  else {
+    headerList = [];
+    for (i=0; i< 20; i++) {
+    headerList.push(orderedList[i]);
+    } 
+  }
+  return headerList;
+}
+
 // Best yearly rate average
+
+
+
+
+
+
+/*function orderByDuration (moviesArray) {
+    moviesArray.sort(function (a, b) {
+        if (a.duration === b.duration) {
+            if (a.title > b.title) {
+                return 1;
+            }
+        }
+        return a.duration - b.duration;
+    });
+    return moviesArray;
+} */
