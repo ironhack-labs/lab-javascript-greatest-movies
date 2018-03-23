@@ -54,16 +54,19 @@ function dramaMoviesRate(moviesArray) {
 // Order by time duration, in growing order
 
 function orderByDuration(moviesArray) {
-  var durationList = turnHoursToMinutes(moviesArray).map(function(elemento){
-    return elemento.duration;
-  })
-  durationList.sort(function(a,b) {
-    return a - b;
-  });
-  return durationList;
+  moviesArray.sort(function (a, b) {
+    if (a.duration === b.duration) {
+        if (a.title > b.title) {
+            return 1;
+        }
+    }
+    return a.duration - b.duration;
+});
+return moviesArray;
 }
 
 
+  
 
 
 
