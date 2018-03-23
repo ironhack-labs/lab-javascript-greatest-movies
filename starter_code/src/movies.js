@@ -45,7 +45,6 @@ function dramaMoviesRate(movies){
     } else {
       return
     }
-
 } 
 
 // Order by time duration, in growing order
@@ -124,3 +123,62 @@ function howManyMovies(movies){
   return list
 }
 // Best yearly rate average
+
+function bestYearAvg(movies){
+  if(movies.length === 0)
+  return 
+  if(movies.length > 0)
+  var averages = ratesAverage(movies)
+  
+  function explodeArray(array, prop) {
+    //Creamos un array que nos guarda nuevo orden
+    var newSorting = [];
+    //Recorremos el array antiguo
+    for (var i=0; i<array.length; i++) {
+      //Antigua propiedad es la dimension principal de nuestro nuevo array
+      var p = array[i][prop];
+      //En el caso que no existiese dicha propiedad en algun objeto, le metemos una clave vacía
+      if (!newSorting[p]) { newSorting[p] = []; }
+      //En otros casos hacemos push de la dimension principal de nuestro array actual
+      newSorting[p].push(array[i]);
+    }
+    return newSorting;
+  }
+  
+  
+  /* Eso también valdría
+  function explodeArray(array, property) {
+    return array.reduce(function(accumulator, element) {
+      if (!accumulator[element[property]]) { 
+          accumulator[element[property]] = []; 
+      }
+      accumulator[element[property]].push(element);
+      return accumulator;
+    }, {});
+  }
+  */
+
+  arrayOfYears = explodeArray(movies, 'year')
+
+  function yearsAverage(array){
+    return array.forEach(function(year){
+      var yearAverageSum = year.reduce(function(accum, currentMovie){
+        return accum + parseFloat(currentMovie.rate);
+        },0)
+        //aquí hay una chapucería grande
+        year.average = yearAverageSum/year.length
+      })
+  }
+  yearsAverage(arrayOfYears);
+  var arrayOfYears = arrayOfYears.sort(function(a,b){
+    return b.average - a.average
+  })
+  if (arrayOfYears.length === 1){
+    return "The best year was " +  arrayOfYears[0][0].year + " with an average rate of " + arrayOfYears[0][0].rate
+  }else{}
+    if(arrayOfYears.indexOf('average') !== -1){
+      return "The best year was " +  arrayOfYears[1][0].year + " with an average rate of " + arrayOfYears[1].average
+    }else{
+      return "The best year was " +  arrayOfYears[0][0].year + " with an average rate of " + arrayOfYears[0].average
+    }
+  }
