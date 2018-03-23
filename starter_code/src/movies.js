@@ -25,23 +25,19 @@ turnHoursToMinutes(movies);
 // Get the average of all rates with 2 decimals 
 function ratesAverage(movies){
   var sumAverages = movies.reduce(function(accum, currentMov){
-    return accum + parseFloat(currentMov.rate);
+    return accum + currentMov.rate;
   },0)
-    return sumAverages/movies.length
+    return parseFloat((sumAverages/movies.length).toFixed(2))
 }
 // Get the average of Drama Movies
 function dramaMoviesRate(movies){
   
     var dramas = movies.filter(function(movie){
-      if(movie.genre.indexOf('Drama') !== -1){
-        if(movie.rate === ''){
-          movie.rate = 4
-        }
-        return true
-      }
+      return  movie.genre.indexOf('Drama') !== -1
+
     });
     if (dramas.length > 0){
-      return parseFloat(ratesAverage(dramas).toFixed(2))
+      return ratesAverage(dramas)
     } else {
       return
     }
@@ -161,15 +157,16 @@ function bestYearAvg(movies){
   arrayOfYears = explodeArray(movies, 'year')
 
   function yearsAverage(array){
-    return array.forEach(function(year){
+    return array.forEach(function(year,key, array){
       var yearAverageSum = year.reduce(function(accum, currentMovie){
         return accum + parseFloat(currentMovie.rate);
         },0)
         //aquí hay una chapucería grande
-        year.average = yearAverageSum/year.length
+        array[key].average = yearAverageSum/year.length
       })
   }
   yearsAverage(arrayOfYears);
+  console.log(arrayOfYears)
   var arrayOfYears = arrayOfYears.sort(function(a,b){
     return b.average - a.average
   })
