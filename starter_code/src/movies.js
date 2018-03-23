@@ -108,12 +108,12 @@ function bestYearAvg(movies){
           disctintYears[i].rate += 0;
           disctintYears[i].films += 1;
         } else {
-          disctintYears[i].rate += parseInt(e.rate);
+          disctintYears[i].rate += parseFloat(e.rate);
           disctintYears[i].films += 1;
         }
       }
     });
-    disctintYears[i].rate /= disctintYears[i].films;
+    disctintYears[i].rate = parseFloat(disctintYears[i].rate / disctintYears[i].films);
   }
   
   disctintYears.sort(function(a,b) { 
