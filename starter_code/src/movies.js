@@ -36,15 +36,13 @@ ratesAverage(movies);
 function dramaMoviesRate(moviesArray){
   var dramaRates = [];
   for (i = 0; i < moviesArray.length; i++){
-    if (isNaN(moviesArray[i].rate)){
-      return NaN;
-    } else {
+    if (moviesArray[i].rate > 0){
       for (j = 0; j < moviesArray[i].genre.length; j++){
         if(moviesArray[i].genre[j] === 'Drama'){
           dramaRates.push(parseFloat(moviesArray[i].rate))
         } 
       }
-    }
+    } 
   }
   if (dramaRates.length === 0){
     return undefined;
@@ -56,7 +54,7 @@ function dramaMoviesRate(moviesArray){
   }
 }
 
-console.log(dramaMoviesRate(movies))
+console.log("Drama Movies Rate: " + dramaMoviesRate(movies))
 
 // Order by time duration, in growing order
 
@@ -98,16 +96,12 @@ howManyMovies(movies);
 // Order by title and print the first 20 titles
 
 function orderAlphabetically(moviesArray){
-  var orderA = moviesArray;
-  for(i = 0; i < orderA.length; i++){
-    orderA.sort(function(a, b){
-        return a.title - b.title
-    })
+  var orderA = [];
+  for(i = 0; i < moviesArray.length; i++){
+    orderA.push(moviesArray[i].title)
   }
+  orderA.sort()
   var twentyFirst = orderA.slice(0,20)
-  for (j = 0; j < twentyFirst.length; j++){
-    twentyFirst[j] = twentyFirst[j].title
-  }
   return twentyFirst;
 }
 
@@ -115,39 +109,62 @@ orderAlphabetically(movies);
 
 // Best yearly rate average
 
-function bestYearAvg(){
-  function orderByYear(moviesArray){
-    for (i = 0; i < moviesArray.length; i++){
-      moviesArray[i].year = parseInt(moviesArray[i].year)
-    }
-    var year = moviesArray;
-    for(j = 0; j < year.length; j++){
-      year.sort(function(a, b){
-        return a.year - b.year
-      })
-    return year;
-    }
-  }
-  
-  orderByYear(movies);
-  
-  var a = orderByYear(movies);
-  
-  function bestYearAvg(a){
-    var stringYearAvg = [];
-    var yearSumRate = 0;
-    var yearRate = 0;
-    for (i = 0; i < orderByYear(moviesArray) - 1; i++){
-      if (orderByYear(moviesArray)[i] === orderByYear(moviesArray)[(i+1)]){
-        yearSumRate += orderByYear(moviesArray).rate;
-        yearRate++;
-      } else {
-        stringYearAvg.push(yearSumRate/yearRate)
-        yearSumRate = 0;
-        yearRate = 0;
-        stringYearAvg.push(orderByYear(moviesArray)[i].year)
+function bestYearAvg (moviesArray) {
+  if (moviesArray.length > 0){
+    function orderByYear(moviesArray){
+      for (i = 0; i < moviesArray.length; i++){
+        moviesArray[i].year = parseInt(moviesArray[i].year)
+      }
+      var year = moviesArray;
+      for(j = 0; j < year.length; j++){
+        year.sort(function(a, b){
+          return a.year - b.year
+        })
+      return year;
       }
     }
-    return stringYearAvg
+    
+    var a = orderByYear(moviesArray);
+    
+    function yearAvg(moviesArray){
+      var stringYearAvg = [];
+      var yearSumRate;
+      var yearRate;
+      if (moviesArray.length === 1) {
+        yearSumRate = parseFloat(moviesArray[0].rate);
+        return yearSumRate;
+      } else {
+        for (i = 0; i < (moviesArray.length - 1); i++){
+          yearSumRate = parseFloat(moviesArray[i].rate);
+          yearRate = 1;
+          if (moviesArray[i].year === moviesArray[(i+1)].year){
+            yearSumRate += parseFloat(moviesArray[i+1].rate);
+            yearRate++;
+          } else {
+            stringYearAvg.push(parseFloat(yearSumRate/yearRate))
+            yearRate = 1;
+            stringYearAvg.push(moviesArray[i].year)
+          }
+        }
+        return stringYearAvg
+      }
+    }
+    
+    var b = yearAvg(moviesArray)
+
+    var orderAvg = [];
+    
+    for (i = 0; i < b.length; i++) {
+      orderAvg.push(b[i]);
+      i++
+    }
+    
+    orderAvg.sort().reverse();
+    
+    var y = b.indexOf(orderAvg[0]);
+    
+    return 'The best year was ' + b[y+1] + ' with an average rate of ' + orderAvg[0];
   }
 }
+
+bestYearAvg(movies)
