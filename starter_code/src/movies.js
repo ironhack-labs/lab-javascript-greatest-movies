@@ -49,13 +49,17 @@ function ratesAverage(array) {
 
 // Get the average of Drama Movies
 function dramaMoviesRate(array) {
-   var count = 0;
-	var dramaMov = array.filter(function(movie) {
-		return movie.genre.indexOf('Drama') > -1;
-	});
+	var dramaMov = dramaMovieFunc(array);
 
 	if (dramaMov.length === 0) return undefined;
 	return ratesAverage(dramaMov);
+}
+
+//Finding every Drama movie
+function dramaMovieFunc(array){
+  return array.filter(function(movie) {
+		return movie.genre.indexOf('Drama') > -1;
+	});
 }
 
 // Order by time duration, in growing order
@@ -73,24 +77,67 @@ function orderByDuration(array){
 
 // How many movies did STEVEN SPIELBERG
 function howManyMovies (array){
+	
+  if (array.length === 0) return undefined;
+
   var stevDirect = array.filter(function(movie){
-    return movie.director === "Steven Spielberg" && movie.director === "Drama"; 
+    return movie.director === "Steven Spielberg"; 
   });
+  
+  var stevsMovies= dramaMovieFunc(stevDirect);
 
-  if (stevDirect.length === 0) return undefined;
-
-  return "Steven Spielberg directed "+ toString(stevDirect.length) +" drama movies!";
+  
+  return "Steven Spielberg directed "+ stevsMovies.length +" drama movies!";
 }
 
-// Order by title and print the first 20 titles
+// // Order by title and print the first 20 titles
 function orderAlphabetically(array){
   var newArray = [];
   var count = 0;
-  while (count < array.length && count < 20){
-    newArray.push(array.title);
+  while (count < array.length){
+    newArray.push(array[count].title);
+    count++;
   }
-  return newArray.sort();
+  return newArray.sort().slice(0, 20);
 }
 
-
 // Best yearly rate average
+
+function simpleAverage(array){
+  
+  var amount = array.reduce(function(sum, curr) {
+  		  return sum + curr;
+  	}, 0);
+  	return amount / array.length;
+}
+
+function bestYearAvg(array){
+
+	if (array.length === 0) return undefined;	
+
+	var yearsDict = {};
+	
+	array.forEach(function(obj){
+	  if (obj.year in yearsDict){
+	   yearsDict[obj.year].push(obj.rate);
+	    
+	  }
+	 else {
+	   yearsDict[obj.year] = [obj.rate];
+	    console.log(yearsDict);
+	 }
+	});
+	
+	var maxAverage = 0;
+	var greatYear = 0;
+	for (var key in yearsDict) {
+	  var temp = simpleAverage(yearsDict[key]);
+    if (temp > maxAverage){
+	    maxAverage = temp;
+	    greatYear = key; 
+	}
+  }
+  
+  return 'The best year was ' + greatYear + ' with an average rate of '+  maxAverage;
+}
+
