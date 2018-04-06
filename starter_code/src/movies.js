@@ -67,6 +67,9 @@ function orderByDuration(array) {
   var minutes = turnHoursToMinutes(array);
   var result = minutes.sort(function(a,b) {
     return a.duration - b.duration;
+    // if (a.duration - b.duration) === 0 {
+    //   return a.title - b.title;
+    // }
   });
   return result;
 }
