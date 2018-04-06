@@ -1,4 +1,4 @@
-var movies = [
+var movies [
   {
     title: 'The Shawshank Redemption',
     year: '1994',
@@ -2000,3 +2000,6 @@ var movies = [
     rate: '8.0'
   }
 ];
+
+
+module.export = movies;
