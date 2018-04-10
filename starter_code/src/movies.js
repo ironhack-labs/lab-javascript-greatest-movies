@@ -33,7 +33,7 @@ function doMath(duration) {
 // Main function
 
 function turnHoursToMinutes(movies) {
-  var newMoviesArray = movies.map(function(movie) {
+  var newMoviesArray = movies.map(function (movie) {
     var newMovie = {};
     newMovie.title = movie.title;
     newMovie.year = movie.year;
@@ -54,51 +54,29 @@ turnHoursToMinutes(movies);
 // reduce method?
 // function ratesAverage(arr) {}
 
-// ----------------------------------------------------------
-// Get the average of Drama Movies
-// function dramaMoviesRate(){
 
-// }
-// ----------------------------------------------------------
-// Order by time duration, in growing order
-// Listen to the keywords, order tells me I need to sort. Use the sort method in this solution.
-
-// ----------------------------------------------------------
-// How many movies did STEVEN SPIELBERG
-
-// ----------------------------------------------------------
-// Order by title and print the first 20 titles
-// Listen to the keywords, order tells me I need to sort. Use the sort method in this solution.
-
-// ----------------------------------------------------------
-// Best yearly rate average
-
-// =========================================
-
-// Get the average of all rates with 2 decimals
+// Get the average of all rates with 2 decimals 
 function ratesAverage(movies) {
-  var theSum = movies.reduce(function(sum, movie) {
+  var theSum = movies.reduce(function (sum, movie) {
     return sum + Number(movie.rate);
   }, 0);
   var rateAvg = theSum / movies.length;
-  // return rateAvg.toFixed(2);
-  return Math.floor(rateAvg * 100) / 100;
+  return Math.floor(rateAvg * 100) / 100
 }
 
-ratesAverage(movies);
+ratesAverage(movies)
 
 // ==========================================
 
 // Get the average of Drama Movies
 
 function dramasOnly(movies) {
-  var dramas = movies.filter(function(movie) {
-    // if string: return movie.genre === "Drama"
-    return movie.genre.includes('Drama');
-  });
-  return dramas;
+  var dramas = movies.filter(function (movie) {
+    return movie.genre.includes("Drama")
+  })
+  return dramas
 }
-dramasOnly(movies);
+dramasOnly(movies)
 
 function dramaMoviesRate(movies) {
   var dramas = dramasOnly(movies);
@@ -109,13 +87,13 @@ function dramaMoviesRate(movies) {
   return dramaRate;
 }
 
-dramaMoviesRate(movies);
+dramaMoviesRate(movies)
 // ==========================================
 
 // Order by time duration, in growing order
 //passing the tests but not working
 function orderByDuration(movies) {
-  movies.sort(function(movieA, movieB) {
+  movies.sort(function (movieA, movieB) {
     var result = movieA.duration - movieB.duration;
     if (result !== 0) {
       return result;
@@ -127,26 +105,27 @@ function orderByDuration(movies) {
       return 1;
     }
     return 0;
-  });
+  })
   return movies;
 }
-orderByDuration(movies);
+orderByDuration(movies)
 
 // ===========================================
 
 // How many drama movies did STEVEN SPIELBERG
 
 function howManyMovies(movies) {
+
   if (movies.length === 0) {
     return;
   }
-  // get all steven's movies:
-  var stevesMovies = movies.filter(function(movie) {
-    return movie.director === 'Steven Spielberg';
-  });
-  var stevesDramas = dramasOnly(stevesMovies);
 
-  return 'Steven Spielberg directed ' + stevesDramas.length + ' drama movies!';
+  var stevesMovies = movies.filter(function (movie) {
+    return movie.director === "Steven Spielberg";
+  })
+  var stevesDramas = dramasOnly(stevesMovies)
+
+  return "Steven Spielberg directed " + stevesDramas.length + " drama movies!";
 }
 
 howManyMovies(movies);
@@ -156,13 +135,12 @@ howManyMovies(movies);
 // Order by title and print the first 20 titles
 
 function orderAlphabetically(array) {
-  var ordered = array
-    .map(function(movie) {
-      return movie.title;
+  var ordered = array.map(function (movie) {
+      return movie.title
     })
     .sort()
-    .slice(0, 4);
-  return ordered;
+    .slice(0, 4)
+  return ordered
 }
 
-orderAlphabetically(movies);
+orderAlphabetically(movies)
