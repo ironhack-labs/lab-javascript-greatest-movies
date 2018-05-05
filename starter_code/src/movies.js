@@ -16,7 +16,7 @@ function turnHoursToMinutes (moviesArray){
     }
     else{
       if (movieDuration[0].indexOf("h")===-1){
-        movieDuration[0] = Number(movieDuration[1].replace("min", ""));
+        movieDuration[0] = Number(movieDuration[0].replace("min", ""));
       }
       else{
         movieDuration[0] =  Number(movieDuration[0].replace("h", ""))*60;
@@ -34,10 +34,28 @@ function turnHoursToMinutes (moviesArray){
 
 
 // Get the average of all rates with 2 decimals 
-
+function ratesAverage(moviesArray) {
+  return moviesArray.reduce(function(acc, movie, index, moviesArray){
+    if (index === moviesArray.length - 1) {
+      return Number(((Number(acc) + Number(movie.rate)) / moviesArray.length).toFixed(2));
+    } else {
+      return Number((Number(acc) + Number(movie.rate)).toFixed(2));
+    }
+  }, 0);
+}
 
 // Get the average of Drama Movies
-
+function dramaMoviesRate(moviesArray) {
+  return moviesArray.filter(function(movie){
+    return movie.genre.indexOf("drama")!==-1;
+  }).reduce(function(acc, movie, index, moviesArray){
+    if (index === moviesArray.length - 1) {
+      return Number(((Number(acc) + Number(movie.rate)) / moviesArray.length).toFixed(2));
+    } else {
+      return Number((Number(acc) + Number(movie.rate)).toFixed(2));
+    }
+  }, 0);
+}
 
 // Order by time duration, in growing order
 
