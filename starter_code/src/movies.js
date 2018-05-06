@@ -44,17 +44,25 @@ function howManyMovies(movieArray) {
     if(!movieArray.length){
         return undefined;
     }
-    
+
     var steveMovies = movieArray.filter(function (item) {
         return item.director === 'Steven Spielberg' &&
             item.genre.some(
                 function (item) {
-                    return item === 'Drama'
+                    return item === 'Drama';
                 });
     });
-    return 'Steven Spielberg directed ' + steveMovies.length + ' drama movies!'
+    return 'Steven Spielberg directed ' + steveMovies.length + ' drama movies!';
 }
 // Order by title and print the first 20 titles
-
+function orderAlphabetically(moviesArray){
+    var moviesTitle=moviesArray.map(function(item){
+        return item.title;
+    }).sort(function (title1, title2) {
+        return title1.localeCompare(title2)
+      });
+    
+    return moviesTitle.length > 20 ? moviesTitle.filter((item,i)=> i < 20) : moviesTitle ;
+}
 
 // Best yearly rate average
