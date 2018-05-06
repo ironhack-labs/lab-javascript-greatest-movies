@@ -41,6 +41,48 @@ function ratesAverage(movies) {
 
 // Get the average of Drama Movies
 
+/*function dramaMoviesRate (array){
+  var dramaMovies = array.filter(function(movie){
+    return movie.genre.indexOf('Drama') > -1;
+  })
+  var dramaAvg = dramaMovies.reduce(function(rate, movie, index, dramaMovies){
+    if (index === dramaMovies.length - 1) {
+      var a = (rate + Number(movie.rate)) / dramaMovies.length;
+      var b = Math.round(a*100);
+      return b / 100;
+    } else {
+      return rate + Number(movie.rate);
+    }
+  }, 0)
+  return dramaAvg;
+}
+dramaMoviesRate(movies);
+*/
+
+function dramaMoviesRate (array){
+  var dramaAvg = 0;
+  for (i = 0 ; i < array.length ; i++){
+    if (array[i].genre.indexOf('Drama') > -1 ){ 
+      var dramaMovies = array.filter(function(movie){
+        return movie.genre.indexOf('Drama') > -1;
+        })
+      dramaAvg = dramaMovies.reduce(function(rate, movie, index, dramaMovies){
+        if (index === dramaMovies.length - 1) {
+        var a = (rate + Number(movie.rate)) / dramaMovies.length;
+        var b = Math.round(a*100);
+        return b / 100;
+        } else {
+          return rate + Number(movie.rate);
+        }
+      }, 0)
+      return dramaAvg;
+    } else {
+      dramaAvg = undefined;
+    } 
+  } 
+  return dramaAvg;
+}
+dramaMoviesRate(movies);
 
 // Order by time duration, in growing order
 
