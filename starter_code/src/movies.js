@@ -47,7 +47,10 @@ function ratesAverage(moviesArray) {
 // Get the average of Drama Movies
 function dramaMoviesRate(moviesArray) {
   return moviesArray.filter(function(movie){
-    return movie.genre.indexOf("drama")!==-1;
+    if(movie.genre.indexOf("Drama")===-1){
+      retune undefined;
+    } else {}
+    return movie.genre.indexOf("Drama")!==-1;
   }).reduce(function(acc, movie, index, moviesArray){
     if (index === moviesArray.length - 1) {
       return Number(((Number(acc) + Number(movie.rate)) / moviesArray.length).toFixed(2));
