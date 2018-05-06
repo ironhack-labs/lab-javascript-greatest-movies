@@ -7,7 +7,7 @@
 function turnHoursToMinutes(movieArray) {
 
     return movieArray.map(function (item) {
-        var newMovieArry =Object.assign({},item);
+        var newMovieArry = Object.assign({}, item);
         var transformToMinutes = newMovieArry.duration.split(' ');
 
         if (transformToMinutes.length === 2) {
@@ -18,7 +18,7 @@ function turnHoursToMinutes(movieArray) {
 
         if (transformToMinutes.length === 1) {
             if (transformToMinutes[0].includes('h')) {
-                newMovieArry.duration =  Number(transformToMinutes[0].slice(0, transformToMinutes.indexOf('h'))) * 60;
+                newMovieArry.duration = Number(transformToMinutes[0].slice(0, transformToMinutes.indexOf('h'))) * 60;
             }
             else if (transformToMinutes[0].includes('min')) {
                 newMovieArry.duration = Number(transformToMinutes[0].replace('min', ''));
@@ -40,7 +40,20 @@ function turnHoursToMinutes(movieArray) {
 
 // How many movies did STEVEN SPIELBERG
 
-
+function howManyMovies(movieArray) {
+    if(!movieArray.length){
+        return undefined;
+    }
+    
+    var steveMovies = movieArray.filter(function (item) {
+        return item.director === 'Steven Spielberg' &&
+            item.genre.some(
+                function (item) {
+                    return item === 'Drama'
+                });
+    });
+    return 'Steven Spielberg directed ' + steveMovies.length + ' drama movies!'
+}
 // Order by title and print the first 20 titles
 
 
