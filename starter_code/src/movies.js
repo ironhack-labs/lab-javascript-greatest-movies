@@ -93,8 +93,36 @@ function howManyMovies(array) {
 howManyMovies(movies);
 
 
-
 // Order by title and print the first 20 titles
 
+function orderAlphabetically(array) {
+  if (array.length < 20) {
+    return titleArray(orderArray(array));
+  }
+  return titleArray(cutArray(orderArray(array)));  
+}
+
+function orderArray(array) {
+  return array.sort(function(movie1, movie2){
+    if (movie2.title < movie1.title) return 1;
+    if (movie2.title > movie1.title) return -1;
+  });
+}
+
+function cutArray(array) {
+  var resultArray = [];
+  for (i = 0; i <20; i++) {
+    resultArray[i] = array[i];
+  }
+  return resultArray;
+}
+
+function titleArray(array) {
+  var resultArray = [];
+  for (i = 0; i < array.length; i++) {
+    resultArray[i] = array[i].title;
+  }
+  return resultArray;
+}
 
 // Best yearly rate average
