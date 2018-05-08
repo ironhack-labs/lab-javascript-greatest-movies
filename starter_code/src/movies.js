@@ -30,36 +30,83 @@ function turnHoursToMinutes(movieArray) {
 }
 
 // Get the average of all rates with 2 decimals 
+/*
+    function ratesAverage(movies) {
+        var ratesAverage = movies.reduce(function (preview, next) {
+            return preview + parseFloat(next.rate)
+        }, 0) / movies.length;
+
+        return Math.round(ratesAverage * 100) / 100;
+    }
+*/
 
 function ratesAverage(movies) {
-    var ratesAverage = movies.reduce(function (preview, next) {
-        return preview + parseFloat(next.rate)
-    }, 0) / movies.length;
-
-    return Math.round(ratesAverage * 100) / 100;
+    var sum = movies.reduce(function (acc, movie) {
+        // return acc + Number(movie.rate);
+        return acc + parseFloat(movie.rate);
+    }, 0);
+    // console.log((sum / movies.length).toFixed(2));
+    return ((sum / movies.length).toFixed(2));
 }
+
+console.log(ratesAverage(movies));
+
 
 // Get the average of Drama Movies
+/*
+    function dramaMoviesRate(movies) {
+        var filterMoviesDrama = movies.filter(function (item) {
+            return item.genre.some(
+                function (item) {
+                    return item === 'Drama';
+                })
+        });
+        return filterMoviesDrama.length ? ratesAverage(filterMoviesDrama) : undefined;
+    }
+*/
+
 function dramaMoviesRate(movies) {
-    var filterMoviesDrama = movies.filter(function (item) {
-        return item.genre.some(
-            function (item) {
-                return item === 'Drama';
-            })
+    var arrayDramaMovies = movies.filter(function (movie) {
+        if (movie.genre.indexOf("Drama") != -1) {
+            return movie;
+        }
     });
 
-    return filterMoviesDrama.length ? ratesAverage(filterMoviesDrama) : undefined;
+    var sumDramaMovies2 = arrayDramaMovies.reduce(function (acc, movie) {
+        return acc + Number(movie.rate);
+    }, 0);
+    return ((sumDramaMovies2 / arrayDramaMovies.length).toFixed(2));
 }
+console.log(dramaMoviesRate(movies));
 
 // Order by time duration, in growing order
+
+/*
+    function orderByDuration(movies) {
+        var moviesParseToMinutes = turnHoursToMinutes(movies);
+
+        return moviesParseToMinutes.sort(function (item1, item2) {
+            return item2.duration - item1.duration;
+        });
+    }
+*/
+
 function orderByDuration(movies) {
-    var moviesParseToMinutes = turnHoursToMinutes(movies);
-
-    return moviesParseToMinutes.sort(function (item1, item2) {
-        return item2.duration - item1.duration;
+    var orderMovies = movies.map(function (movie) {
+        return movie;
+    }).sort(function (movieRate1, movieRate2) {
+        if (movieRate1.duration < movieRate2.duration) {
+            return movieRate1;
+        } else if (movieRate1.duration === movieRate2.duration) {
+            return ([movieRate1, movieRate2].sort())[0];
+        } else {
+            return movieRate2;
+        }
     });
-
+    console.log(orderMovies);
 }
+orderByDuration(turnHoursToMinutes(movies));
+
 
 // How many movies did STEVEN SPIELBERG
 
@@ -78,7 +125,9 @@ function howManyMovies(movieArray) {
 
     return 'Steven Spielberg directed ' + steveMovies.length + ' drama movies!';
 }
+
 // Order by title and print the first 20 titles
+
 function orderAlphabetically(moviesArray) {
     var moviesTitle = moviesArray.map(function (item) {
         return item.title;
@@ -95,12 +144,39 @@ function bestYearAvg(movies) {
         return undefined;
     }
 
-    var year = movies.map(item => item.year).unique();
+    var year = 0;
+    var yearRates = [];
 
+    var orderArray = movies.sort(function (item1, item2) {
+        return item1.year - item2.year;
+    }).reduce(function (preview, next) {
+        if (year === 0) {
+            preview.push({ 
+                year: next.year, 
+                rate: next.rate
+                });
+        } else if (next.year > year) {
+            preview.push(
+                {
+                    year: year,
+                    rate: yearRates.reduce(
+                        function (preview, next) {
+                            return preview + Number(next);
+                        }, 0) / yearRates.length
+                }
+            );
+            yearRates = [];
+        }
 
+        if (year <= next.year) {
+            year = next.year;
+            yearRates.push(next.rate);
+        }
 
+        return preview;
+    }, []).sort(function (item1, item2) {
+        return item2.rate - item1.rate;
+    });
 
-    var arrayYears = movies.reduce(function (preview, next) {
-
-    }, {})
+    return 'The best year was ' + orderArray[0].year + ' with an average rate of ' + orderArray[0].rate
 }
