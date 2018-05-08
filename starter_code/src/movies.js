@@ -125,4 +125,29 @@ function titleArray(array) {
   return resultArray;
 }
 
+
 // Best yearly rate average
+
+function bestYearAvg(array) {
+  if (array.length === 0) return undefined;
+  var year = 0;
+  var rate = 0;
+  var superObject = {};
+  array.sort(function(movie1, movie2){
+    return movie1.year - movie2.year;
+  }).forEach(function(movie){
+    if (superObject[movie.year] !== undefined) {
+      superObject[movie.year].push(movie);
+    }
+    if (superObject[movie.year] === undefined) {
+      superObject[movie.year] = [movie];
+    }
+  });
+  for (var yearPos in superObject) {
+    if (ratesAverage(superObject[yearPos]) > rate) {
+      rate =  ratesAverage(superObject[yearPos]);
+      year = yearPos;
+    }
+  }
+  return 'The best year was ' + year + ' with an average rate of ' + rate;
+}
