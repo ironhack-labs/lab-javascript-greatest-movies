@@ -136,11 +136,10 @@ function bestYearAvg(array) {
   array.sort(function(movie1, movie2){
     return movie1.year - movie2.year;
   }).forEach(function(movie){
-    if (superObject[movie.year] !== undefined) {
-      superObject[movie.year].push(movie);
-    }
     if (superObject[movie.year] === undefined) {
       superObject[movie.year] = [movie];
+    } else {
+      superObject[movie.year].push(movie);
     }
   });
   for (var yearPos in superObject) {
