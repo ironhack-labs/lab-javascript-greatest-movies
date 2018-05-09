@@ -105,20 +105,6 @@ function bestYearAvg(array){
     if(array === 0){
         return undefined;
     }
-    let obj ={};
-
-    for(let i=0; i<array.length; i++){
-        if (obj[array[i].year] == undefined){
-            obj[year] = obj[array[i].year];
-            obj[year][rate] = array[i].rate;
-        } else {
-            obj[year][rate] += array[i].rate;
-            obj[year][rate] = obj[year][rate] / 2;
-        }
-    }
-
-    let result = obj.indexOf(Math.max(...obj[year][rate]));
-
-    return obj[result];
+    
 
 }
