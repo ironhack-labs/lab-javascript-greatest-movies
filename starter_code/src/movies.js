@@ -206,7 +206,6 @@ let orderAlphabetically = (array) => {
     
     if (finalfinalfinal[0].avg % 1 == 0) {
         let frase = 'The best year was ' + finalfinalfinal[0].year + ' with an average rate of ' + parseInt(finalfinalfinal[0].avg);  
-      console.log("hola");
       return frase  
       
     } 
