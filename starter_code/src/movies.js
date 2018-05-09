@@ -9,7 +9,6 @@ let turnHoursToMinutes = (array) => {
         return durationOfficial;
       }
       
-      
       let minutesWithoutLetters = durationOfficial.split(" ");
       
       if (minutesWithoutLetters[0].includes("min")){
@@ -53,8 +52,6 @@ let turnHoursToMinutes = (array) => {
     })
   }
   
-
-
 let ratesAverage = (array) => {
   let sum = array.reduce(function (accumulator, current) {
     
@@ -73,7 +70,6 @@ let ratesAverage = (array) => {
 
 
 let dramaMoviesRate = (array) => {
-
   let dramaMovies = array.filter(function(element){
     
     let yes = element.genre.find(function(word){
@@ -95,7 +91,6 @@ let dramaMoviesRate = (array) => {
 
 
 let orderByDuration = (array) => {
-
   let moviesMinutes = turnHoursToMinutes(array);
 
   return array.sort(function(movieA, movieB){
@@ -116,11 +111,11 @@ let orderByDuration = (array) => {
 
 let howManyMovies = (array) => {
   
-if(array.length === 0){
-  return undefined;
-}
+  if(array.length === 0){
+    return undefined;
+  }
 
-    let dramaMoviesSpielberg = array.filter(function(movie){
+  let dramaMoviesSpielberg = array.filter(function(movie){
   
     let drama = movie.genre.find(function(word){
       return word == 'Drama'
@@ -131,15 +126,12 @@ if(array.length === 0){
     return drama === "Drama" && steven == 'Steven Spielberg';
   });
 
-
-    
-    if (dramaMoviesSpielberg === []){
+  if (dramaMoviesSpielberg === []){
       return undefined;
-    } else{
-    
+  } else {
       howMany = dramaMoviesSpielberg.length;
       return "Steven Spielberg directed " + howMany + " drama movies!";
-      } 
+    } 
   
   }
 
@@ -167,16 +159,6 @@ let orderAlphabetically = (array) => {
     return finalArray;
     
   };
-    
-    var moviesArr = [{ title: 'aab' }, { title: 'aaa' }, { title: 'abc' }, { title: 'acb' }, { title: 'abb' }];
-    
-    orderAlphabetically(moviesArr);
-    
-    
-  //
-  //
-  //
-  //
     
 
   let bestYearAvg = (array) => {
@@ -233,10 +215,3 @@ let orderAlphabetically = (array) => {
       
       return frase
   }
-  
-  
-  
-  console.log(typeof bestYearAvg(movies));
-  console.log(typeof bestYearAvg([]));
-  
-  console.log(bestYearAvg([{ year: '2007', rate: 8 }]));
