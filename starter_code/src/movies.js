@@ -30,12 +30,18 @@ function parseDurationToMins(duration) {
   };
   ratesAverage(movies);
   // Get the average of Drama Movies
-  function dramaMoviesRate(movies) {
-    var dramaMovie = movies.filter(function(movie){
-      return movie.genre.indexOf("Drama") === 1;
-    });
-        return ratesAverage(dramaMovie)
+function dramaMoviesRate(movies){
+  var filteredDrama = movies.filter(function(movie){
+    return movie.genre.indexOf("Drama") !== -1;
+  });
+  var average = filteredDrama.reduce(function (acc, points) {
+    return acc + Number(points.rate);
+  }, 0);
+  if (average === 0){
+    return undefined;
   }
+  return parseFloat(average / filteredDrama.length).toFixed(2);
+}
   dramaMoviesRate(movies);
   
   //To review, I have too many errors in Jasmine with NaN output with empty key values.
