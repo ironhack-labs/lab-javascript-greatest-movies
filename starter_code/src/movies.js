@@ -40,16 +40,16 @@ function turnHoursToMinutes(movieArray) {
     }
 */
 
+// Get the average of all rates with 2 decimals 
 function ratesAverage(movies) {
     var sum = movies.reduce(function (acc, movie) {
         // return acc + Number(movie.rate);
         return acc + parseFloat(movie.rate);
     }, 0);
     // console.log((sum / movies.length).toFixed(2));
-    return ((sum / movies.length).toFixed(2));
+    return (Number((sum / movies.length).toFixed(2)));
 }
-
-console.log(ratesAverage(movies));
+ratesAverage(movies);
 
 
 // Get the average of Drama Movies
@@ -70,14 +70,25 @@ function dramaMoviesRate(movies) {
         if (movie.genre.indexOf("Drama") != -1) {
             return movie;
         }
+        else {
+            return undefined;
+        }
     });
+    // Devolvemos undefined si no hay películas de drama
+    if (arrayDramaMovies.length === 0) {
+        return undefined;
+    }
+    else {
+        var sumDramaMovies2 = arrayDramaMovies.reduce(function (acc, movie) {
+            return acc + Number(movie.rate);
+        }, 0);
 
-    var sumDramaMovies2 = arrayDramaMovies.reduce(function (acc, movie) {
-        return acc + Number(movie.rate);
-    }, 0);
-    return ((sumDramaMovies2 / arrayDramaMovies.length).toFixed(2));
+        return Number((sumDramaMovies2 / arrayDramaMovies.length).toFixed(2));
+    }
+
 }
-console.log(dramaMoviesRate(movies));
+
+dramaMoviesRate(movies);
 
 // Order by time duration, in growing order
 
@@ -92,18 +103,15 @@ console.log(dramaMoviesRate(movies));
 */
 
 function orderByDuration(movies) {
-    var orderMovies = movies.map(function (movie) {
-        return movie;
-    }).sort(function (movieRate1, movieRate2) {
-        if (movieRate1.duration < movieRate2.duration) {
-            return movieRate1;
-        } else if (movieRate1.duration === movieRate2.duration) {
-            return ([movieRate1, movieRate2].sort())[0];
-        } else {
-            return movieRate2;
+    var newOrderMovies = movies.sort(function (movieRate1, movieRate2) {
+        if (movieRate1.duration === movieRate2.duration ) {
+            return movieRate1.title < movieRate2.title ? -1 : 1;
+        }
+        else {
+            return movieRate1.duration - movieRate2.duration;
         }
     });
-    console.log(orderMovies);
+    return newOrderMovies;
 }
 orderByDuration(turnHoursToMinutes(movies));
 
