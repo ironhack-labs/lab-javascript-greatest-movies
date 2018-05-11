@@ -1,11 +1,11 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes
 const turnHoursToMinutes = (arr) => {
-    const itemHoursToMinutes(dur) => parseInt(dur.split(' ')[1])*60 + parseInt(dur.split(' ')[2]);
-    const result = arr.map(item => {
-        item.duration = itemHoursToMinutes(item.duration);
-        return item
-    });
+  const itemHoursToMinutes = dur => ((parseInt(dur.split(' ')[1], 10) * 60) + parseInt(dur.split(' ')[2], 10));
+  const result = arr.map((item) => {
+    item.duration = itemHoursToMinutes(item.duration);
+    return item;
+  });
   return result;
 };
 
