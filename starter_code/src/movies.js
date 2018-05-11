@@ -2053,7 +2053,7 @@ function dramaMoviesRate2(array){
 console.log(dramaMoviesRate2(movies));
 
 
-////ITERATION 3 LO HAGO TODO JUNTO PERO HASTA QUE NO TERMINE EL BUCLE NO HAGO LA DIVISION POR ESO EL IF
+///ITERATION 3 LO HAGO TODO JUNTO PERO HASTA QUE NO TERMINE EL BUCLE NO HAGO LA DIVISION POR ESO EL IF
 function dramaMoviesRate3(array){
   return array.filter(function(elem, index){     
     return elem.genre.indexOf('Drama') !== -1;
