@@ -14,17 +14,22 @@ const itemHoursToMinutes = ({ duration: dur }) => {
 };
 const turnHoursToMinutes = (arr) => {
   const result = arr.map((item) => {
-    item.duration = itemHoursToMinutes(item);
-    return item;
+    const copy = Object.assign({}, item);
+    copy.duration = itemHoursToMinutes(copy);
+    return copy;
   });
   return result;
 };
 
-const w = turnHoursToMinutes([{ duration: '2h 12m' }, { duration: '2h' }]);
-w;
 // Get the average of all rates with 2 decimals
 const ratesAverage = (arr) => {
-
+  const ratesArray = arr.map((item) => {
+    const copy = Object.assign({}, item);
+    return parseInt(copy.rate, 10);
+  });
+  const avg = (1 / ratesArray.length) *
+    ratesArray.reduce((prev, curr) => prev + curr, 0);
+  return (parseFloat(avg.toFixed(2)));
 };
 
 // Get the average of Drama Movies
