@@ -34,7 +34,9 @@ const ratesAverage = (arr) => {
 
 // Get the average of Drama Movies
 const dramaMoviesRate = (arr) => {
-
+  const dramasArray = arr.filter(item => item.genre.includes('Drama'));
+  if (dramasArray.length === 0) return undefined;
+  ratesAverage(dramasArray);
 };
 
 // Order by time duration, in growing order
