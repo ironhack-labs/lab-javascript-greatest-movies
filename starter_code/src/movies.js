@@ -65,8 +65,12 @@ const orderAlphabetically = (arr) => {
 // Best yearly rate average
 const bestYearAvg = (arr) => {
   if (arr.length === 0) return undefined;
-  const arrByYears = arr
-    .reduce((prev, curr) => (prev[curr.year]).push(curr), {});
+  const arrByYears = arr.reduce((prev, curr) => {
+    const temp = prev;
+    return (temp[(curr.year)]) || (temp[(curr.year)] = [])
+      .append(curr);
+  }, {});
+  console.log(arrByYears);
   const best = Object.values(arrByYears)
     .reduce((prev, curr) => (prev.avgRate < ratesAverage(curr)
       ? ({ year: curr.year, avgRate: ratesAverage(curr) })
