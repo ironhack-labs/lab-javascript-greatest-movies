@@ -1,8 +1,73 @@
-/* eslint no-undef: "off" */
-/* eslint jasmine/no-spec-dupes: "off" */
+let movies = [
+  {
+    title: 'The Shawshank Redemption',
+    year: '1994',
+    director: 'Frank Darabont',
+    duration: '2h 22min',
+    genre: ['Crime', 'Drama'],
+    rate: '9.3'
+  },
+  {
+    title: 'The Godfather',
+    year: '1972',
+    director: 'Francis Ford Coppola',
+    duration: '22min',
+    genre: ['Crime', 'Drama'],
+    rate: '9.2'
+  }
+];
 
-describe('Turn duration of the movies - turnHoursToMinutes', function () {
-  it('Defines turnHoursToMinutes', function () {
+function turnHoursToMinutes(movies){
+    let moviesTime = movies.map((conversor)=>{
+    let tiempo = conversor.duration;
+    let horas = tiempo.substring(0,tiempo.indexOf("h"));
+    let minutos = 0;
+    let resultado = 0;
+
+    // h o m
+    console.log(tiempo.indexOf(" ")===-1);
+    if (tiempo.indexOf(" ")===-1){
+      console.log(tiempo.indexOf("m")>=0);
+
+
+      if (tiempo.indexOf("m">=0)){
+      resultado = (parseInt(minutos));
+      }
+      if (tiempo.indexOf("h">=0)){
+      resultado = (parseInt(horas) * 60);
+      }
+    } else {
+      minutos = tiempo.substring(tiempo.indexOf(" ")+1,tiempo.indexOf("m"));
+      resultado = ((parseInt(horas) * 60) + parseInt(minutos));
+    }
+
+    return {
+      title: conversor.title,
+      year: conversor.year,
+      director: conversor.director,
+      duration: resultado,
+      genre: conversor.genre,
+      rate: conversor.rate
+    }
+  });
+  return moviesTime;
+}
+
+console.log(turnHoursToMinutes(movies));
+
+//console.log(resultado);
+
+//  tiempo = tiempo.substring(0);
+//  console.log (tiempo);
+//  console.log (tiempo.indexOf("h"));
+//  console.log (tiempo.substring(0,2));
+//  console.log (tiempo.substring(0,tiempo.indexOf("h")));
+//  console.log (tiempo.substring(0,tiempo.indexOf("h"))*60);
+
+//console.log (tiempo.substring(tiempo.indexOf(" ")+1,tiempo.indexOf("m")));
+
+
+/*  it('Defines turnHoursToMinutes', function () {
     expect(typeof turnHoursToMinutes).toBe('function');
   });
 
