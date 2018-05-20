@@ -2046,21 +2046,6 @@ function searchGenre(genreArray, genre) {
   if (genreArray.indexOf(genre) != -1) { return true; }
 }
 
-// function selectByValue (moviesArray, property, value) {
-//   if (property != "genre") {
-//     return moviesArray.filter(function(movie) {
-//       return movie[property] === value;
-//     });
-//   } else {
-//       var filmsByGenre = moviesArray.filter(function(movie) {
-//         return searchGenre(movie.genre, value);
-//       });
-
-//       if (filmsByGenre.length === 0) { return; }
-//         else { return filmsByGenre; }
-//     }
-// }
-
 function selectByValue (moviesArray, property, value) {
   if (property != "genre") {
     return moviesArray.filter(function(movie) {
@@ -2084,6 +2069,17 @@ function dramaMoviesRate(moviesArray) {
 
 // Order by time duration, in growing order
 
+function compareMinutes(a, b) {
+  if (a.duration === b.duration) {
+    return a.title.localeCompare(b.title);
+  } else {
+    return a.duration - b.duration;
+  }
+}
+
+function orderByDuration(minuteArray) {
+  return minuteArray.sort(compareMinutes);
+}
 
 // How many movies did STEVEN SPIELBERG
 
