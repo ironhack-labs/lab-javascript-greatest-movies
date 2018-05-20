@@ -102,7 +102,7 @@ function orderAlphabetically(movies)
 function bestYearAvg(movies){
     if(movies.length === 0) return;
 
-    var yearsMovie = [];    //array d'objectes year, pelicules
+    var yearsMovie = [];
     movies.forEach(function(movie){
         var added=false;
         yearsMovie.forEach(function(objYear){
@@ -129,6 +129,7 @@ function bestYearAvg(movies){
 
     yearsMovie.forEach(function(objYear){
         objYear.avg=objYear.sumRate/objYear.counter;
+        // objYear.avg=ratesAverage(objYear.movies);
     });
 
     yearsMovie.sort(function(objYearA, objYearB){
@@ -140,7 +141,6 @@ function bestYearAvg(movies){
             else return -1;
         }
     });
-
     return "The best year was " + yearsMovie[0].year + " with an average rate of " + yearsMovie[0].avg;
 }
 
