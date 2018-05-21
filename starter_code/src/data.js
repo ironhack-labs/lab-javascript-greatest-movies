@@ -1998,7 +1998,7 @@ var movies = [
     director: 'Peter Weir',
     duration: '2h 8min',
     genre: ['Comedy', 'Drama'],
-    rate: ''//'8.0'
+    rate: '8.0'
   }
  ];
 

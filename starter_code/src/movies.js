@@ -46,19 +46,17 @@ function ratesAverage(arrayMovies) {
 // Get the average of Drama Movies
 function dramaMoviesRate(arrayMovies) {
   var moviesDrama = [];
-  console.log(arrayMovies);
+
   moviesDrama = arrayMovies.filter(function (element) {
     return element.genre[0]==='Drama' ;//&& element.rate>0;
   });
-  console.log(moviesDrama);
   return ratesAverage(moviesDrama);
 }
 
 // Order by time duration, in growing order
-function orderByDuration(moviesToSort) {
+function orderByDuration(arrayMovies) {
 
-  return moviesToSort.sort(function (elementA, elementB) {
-    console.log(elementA.duration + "<->" + elementB.duration);
+  return arrayMovies.sort(function (elementA, elementB) {
     if (elementA.duration > elementB.duration) {
       return 1;
     } else if (elementA.duration < elementB.duration) {
@@ -73,20 +71,55 @@ function orderByDuration(moviesToSort) {
       return 0;
     }
   });
-  return moviesToSort;
+  return arrayMovies;
 }
 
 // How many movies did STEVEN SPIELBERG
 function howManyMovies(arrayMovies) {
-
+  var movies = [];
+  if (arrayMovies.length > 0) {
+    movies = arrayMovies.filter(function (element) {
+      return element.genre.indexOf('Drama') > -1 && element.director === 'Steven Spielberg';
+    });
+    return ('Steven Spielberg directed ' + movies.length + ' drama movies!');
+  } else return undefined;
 }
 
 // Order by title and print the first 20 titles
 function orderAlphabetically(arrayMovies) {
+  var orderedMovies = [];
+  var iterator = 0;
+  var lengthOfArray = 0;
 
+  if (arrayMovies.length > -1) {
+    arrayMovies.sort(function (elementA, elementB) {
+      if (elementA.title > elementB.title) {
+        return 1;
+      } else if (elementA.title < elementB.title) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+
+    lengthOfArray = (arrayMovies.length < 20 ? arrayMovies.length : 20);
+
+    for (var i = 0; i < lengthOfArray; i++) {
+      orderedMovies.push(arrayMovies[i].title);
+    }
+    return orderedMovies;
+  } else {
+    return undefined;
+  }
 }
 
 // Best yearly rate average
-function bestAverageRate(arrayMovies) {
+function bestYearAvg(arrayMovies) {
+  var yearAvg=0, yearRate=0;
+  if (arrayMovies.length>0){
 
+    return ('The best year was '+yearAvg+ 'with an average rate of' +yearRate);
+  }else{
+    return undefined;
+  }
 }
