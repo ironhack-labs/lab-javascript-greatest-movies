@@ -26,32 +26,35 @@ function turnHoursToMinutes(arrayMovies) {
       "genre": element.genre,
       "rate": element.rate
     };
-
     return movie;
   });
 }
 
 // Get the average of all rates with 2 decimals 
 function ratesAverage(arrayMovies) {
-  return arrayMovies.reduce(function (accumulated, element) {
-    return accumulated += parseFloat(element.rate);
-  }, 0) / arrayMovies.length;
+  if (arrayMovies.length > 0) {
+    return Number((arrayMovies.reduce(function (accumulated, element) {
+      if (!element.rate>0) {element.rate=0.00;}
+      return accumulated += parseFloat(element.rate);
+    }, 0) / arrayMovies.length).toFixed(2));
+  } else return undefined;
 }
 
 // Get the average of Drama Movies
 function dramaMoviesRate(arrayMovies) {
   var moviesDrama = [];
-
+  console.log(arrayMovies);
   moviesDrama = arrayMovies.filter(function (element) {
-    return element.genre.indexOf('Drama') > 0 && element.rate>0;
+    return element.genre[0]==='Drama' ;//&& element.rate>0;
   });
+  console.log(moviesDrama);
   return ratesAverage(moviesDrama);
 }
 
 // Order by time duration, in growing order
 function orderByDuration(arrayMovies) {
   return arrayMovies.sort(function (element){
-    
+
   } );
 }
 
