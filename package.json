@@ -1,0 +1,23 @@
+{
+  "name": "lab-javascript-all-times-movies",
+  "version": "1.0.0",
+  "description": "![Ironhack Logo](https://i.imgur.com/1QgrNNw.png)",
+  "main": "index.js",
+  "scripts": {
+    "start": "browser-sync start --server --watch --serveStatic 'public'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grannysimons/lab-javascript-all-times-movies.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grannysimons/lab-javascript-all-times-movies/issues"
+  },
+  "homepage": "https://github.com/grannysimons/lab-javascript-all-times-movies#readme",
+  "devDependencies": {
+    "browser-sync": "^2.24.4"
+  }
+}
