@@ -1,5 +1,5 @@
 var movies = [
-  {
+ {
     title: 'The Shawshank Redemption',
     year: '1994',
     director: 'Frank Darabont',
@@ -7,6 +7,7 @@ var movies = [
     genre: ['Crime', 'Drama'],
     rate: '9.3'
   },
+  
   {
     title: 'The Godfather',
     year: '1972',
@@ -22,6 +23,22 @@ var movies = [
     duration: '3h 22min',
     genre: ['Crime', 'Drama'],
     rate: '9.0'
+  },
+  {
+    title: 'Platoon',
+    year: '1986',
+    director: 'Oliver Stone',
+    duration: '2h',
+    genre: ['Drama', 'War'],
+    rate: '8.1'
+  },
+  {
+    title: 'The Wolf of Wall Street',
+    year: '2013',
+    director: 'Martin Scorsese',
+    duration: '3h',
+    genre: ['Biography', 'Comedy', 'Crime', 'Drama'],
+    rate: '8.2'
   },
   {
     title: 'The Dark Knight',
@@ -63,7 +80,7 @@ var movies = [
     genre: ['Adventure', 'Drama', 'Fantasy'],
     rate: '8.9'
   },
-  {
+ {
     title: 'Il buono, il brutto, il cattivo',
     year: '1966',
     director: 'Sergio Leone',
@@ -1200,14 +1217,6 @@ var movies = [
     rate: '8.2'
   },
   {
-    title: 'The Wolf of Wall Street',
-    year: '2013',
-    director: 'Martin Scorsese',
-    duration: '3h',
-    genre: ['Biography', 'Comedy', 'Crime', 'Drama'],
-    rate: '8.2'
-  },
-  {
     title: 'The General',
     year: '1926',
     director: 'Clyde Bruckman',
@@ -1494,14 +1503,6 @@ var movies = [
     duration: '1h 44min',
     genre: ['Crime', 'Drama', 'Mystery', 'Thriller'],
     rate: '8.3'
-  },
-  {
-    title: 'Platoon',
-    year: '1986',
-    director: 'Oliver Stone',
-    duration: '2h',
-    genre: ['Drama', 'War'],
-    rate: '8.1'
   },
   {
     title: 'Hotel Rwanda',
@@ -1997,6 +1998,7 @@ var movies = [
     director: 'Peter Weir',
     duration: '2h 8min',
     genre: ['Comedy', 'Drama'],
-    rate: '8.0'
+    rate: ''//'8.0'
   }
-];
+ ];
+
