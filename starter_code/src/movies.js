@@ -8,7 +8,10 @@ function turnHoursToMinutes(arrayMovies) {
       minutes = 0,
       movie = [];
 
-    if (element.duration.indexOf('min') < 0) {
+    if (element.duration == '') {
+      hours = 0;
+      minutes = 0;
+    } else if (element.duration.indexOf('min') < 0) {
       hours = element.duration.slice(0, element.duration.indexOf('h'));
       minutes = 0;
     } else if (element.duration.indexOf('h') < 0) {
@@ -52,10 +55,25 @@ function dramaMoviesRate(arrayMovies) {
 }
 
 // Order by time duration, in growing order
-function orderByDuration(arrayMovies) {
-  return arrayMovies.sort(function (element){
+function orderByDuration(moviesToSort) {
 
-  } );
+  return moviesToSort.sort(function (elementA, elementB) {
+    console.log(elementA.duration + "<->" + elementB.duration);
+    if (elementA.duration > elementB.duration) {
+      return 1;
+    } else if (elementA.duration < elementB.duration) {
+      return -1;
+    } else if (elementA.duration === elementB.duration) {
+      if (elementA.title > elementB.title) {
+        return 1;
+      } else {
+        return -1;
+      }
+    } else {
+      return 0;
+    }
+  });
+  return moviesToSort;
 }
 
 // How many movies did STEVEN SPIELBERG
