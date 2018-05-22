@@ -90,7 +90,6 @@ function orderAlphabetically(arrayMovies) {
   var orderedMovies = [];
   var iterator = 0;
   var lengthOfArray = 0;
-
   if (arrayMovies.length > -1) {
     arrayMovies.sort(function (elementA, elementB) {
       if (elementA.title > elementB.title) {
@@ -115,10 +114,44 @@ function orderAlphabetically(arrayMovies) {
 
 // Best yearly rate average
 function bestYearAvg(arrayMovies) {
-  var yearAvg=0, yearRate=0;
+  var prevYear=0, actualYear=0, rate=0.0, avg=0.0;
+  var years=0, bestYear='1900', bestAvg=0.0;
+
   if (arrayMovies.length>0){
 
-    return ('The best year was '+yearAvg+ 'with an average rate of' +yearRate);
+    arrayMovies.sort(function (elementA, elementB) {
+      if (elementA.year > elementB.year) {
+        return 1;
+      } else if (elementA.year < elementB.year) {
+        return -1;
+      } else {
+        return 0;
+      }
+    }); 
+
+    arrayMovies.forEach(function(movie){
+      years++;
+      actualYear=movie.year;
+      rate+= parseFloat(movie.rate);
+      avg=parseFloat(rate/years);
+      console.log("Rate: "+rate+" AVG: "+avg+" BAVG: "+bestAvg+" Y: "+years+" BY:"+bestYear);
+      if (movie.year>prevYear){
+        console.log(avg>bestAvg);
+        if (avg>bestAvg){
+          bestYear=prevYear;        
+          bestAvg=avg;
+          console.log("in:"+actualYear+">"+prevYear+">"+bestYear);
+        }
+        years=1;
+        avg=1;
+        rate=movie.rate;
+        prevYear=actualYear;
+        actualYear=movie.year;
+      }
+    });
+    console.log(arrayMovies);
+    console.log(actualYear+">"+prevYear+">"+bestYear);
+    return ('The best year was '+ bestYear + ' with an average rate of ' + bestAvg);
   }else{
     return undefined;
   }
