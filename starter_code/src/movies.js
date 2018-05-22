@@ -43,11 +43,12 @@ function searchGenre(genreArray, genre) {
   if (genreArray.indexOf(genre) != -1) { return true; }
 }
 
-function selectByValue (moviesArray, property, value) {
+// Creates array with all films that match the key/value pair passed as arguments.
+function selectByValue (moviesArray, key, value) {
   if (moviesArray.length === 0) { return [] }
-  if (property != "genre") {
+  if (key != "genre") {
     return moviesArray.filter(function(movie) {
-      return movie[property] === value;
+      return movie[key] === value;
     });
   } else {
       var filmsByGenre = moviesArray.filter(function(movie) {
@@ -87,6 +88,7 @@ function orderByDuration(minuteArray) {
 
 function howManyMovies(moviesArray) {
   if (moviesArray.length === 0) { return; }
+  // filmsToCount = All the films with 'Steven Spielberg' as director && 'Drama' as genre.
   var filmsToCount = selectByValue(selectByValue(moviesArray, "director", "Steven Spielberg"), "genre", "Drama");
   console.log(filmsToCount);
   if ((filmsToCount) || (filmsToCount.length === 0)) { return `Steven Spielberg directed ${ filmsToCount.length.toString() } drama movies!`; }
@@ -102,6 +104,7 @@ function orderAlphabetically(moviesArray) {
 
 // Best yearly rate average
 
+// Returns array from unique values from array passed as argument.
 function getUniques(arrayToFilter) {
   return arrayToFilter.filter(function(element, index) {
     return arrayToFilter.indexOf(element) === index;
@@ -111,6 +114,7 @@ function getUniques(arrayToFilter) {
 function bestYearAvg(moviesArray) {
   var highestAvg = 0,
       lowestYear = 0,
+      // yearArray = unique elements of the sorted array of years.
       yearArray = getUniques(moviesArray.map(function(movie) { return movie.year }).sort(function(a, b) { return a - b }));
 
   if (moviesArray.length === 0) { return; }
