@@ -114,8 +114,9 @@ function orderAlphabetically(arrayMovies) {
 
 // Best yearly rate average
 function bestYearAvg(arrayMovies) {
-  var prevYear=0, actualYear=0, rate=0.0, avg=0.0;
-  var years=0, bestYear='1900', bestAvg=0.0;
+  var prevYear='1900', actualYear=0, rate=0.0, avg=0.0;
+  var itemsOfArray=0.0, bestYear='1900', bestAvg=0.0;
+  var elementos=0;
 
   if (arrayMovies.length>0){
 
@@ -130,27 +131,34 @@ function bestYearAvg(arrayMovies) {
     }); 
 
     arrayMovies.forEach(function(movie){
-      years++;
-      actualYear=movie.year;
-      rate+= parseFloat(movie.rate);
-      avg=parseFloat(rate/years);
-      console.log("Rate: "+rate+" AVG: "+avg+" BAVG: "+bestAvg+" Y: "+years+" BY:"+bestYear);
-      if (movie.year>prevYear){
-        console.log(avg>bestAvg);
-        if (avg>bestAvg){
-          bestYear=prevYear;        
-          bestAvg=avg;
-          console.log("in:"+actualYear+">"+prevYear+">"+bestYear);
-        }
-        years=1;
-        avg=1;
-        rate=movie.rate;
-        prevYear=actualYear;
+      
+      if(itemsOfArray===0){
+        itemsOfArray++;
+        rate+= parseFloat(movie.rate);
+        avg=parseFloat(rate)/itemsOfArray;
         actualYear=movie.year;
-      }
+        console.log("Rate1: "+rate+" AVG: "+avg+" BAVG: "+bestAvg+" Y: "+itemsOfArray+" BY:"+bestYear);
+        elementos++;
+      }else if (movie.year===prevYear){
+        itemsOfArray++;
+        rate+= parseFloat(movie.rate);
+        avg=parseFloat(rate)/itemsOfArray;
+        actualYear=movie.year;
+        console.log("Rate2: "+rate+" AVG: "+avg+" BAVG: "+bestAvg+" Y: "+itemsOfArray+" BY:"+bestYear);
+        elementos++;
+      }else if(movie.year>prevYear){
+        prevYear=actualYear;
+        itemsOfArray++;
+        rate+= parseFloat(movie.rate);
+        avg=parseFloat(rate)/itemsOfArray;
+        actualYear=movie.year;
+        console.log("Rate3: "+rate+" AVG: "+avg+" BAVG: "+bestAvg+" Y: "+itemsOfArray+" BY:"+bestYear);
+        elementos++;
+      } 
+      
+
     });
-    console.log(arrayMovies);
-    console.log(actualYear+">"+prevYear+">"+bestYear);
+    console.log(elementos);
     return ('The best year was '+ bestYear + ' with an average rate of ' + bestAvg);
   }else{
     return undefined;
