@@ -1996,7 +1996,7 @@ var movies = [
     year: '1989',
     director: 'Peter Weir',
     duration: '2h 8min',
-    genre: ['Comedy', 'Drama', 'TEST'],
+    genre: ['Comedy', 'Drama'],
     rate: '8.0'
   }
 ];
