@@ -5,6 +5,8 @@ function turnHoursToMinutes(movieInHour) {
     
     var movieInMinute = movieInHour.map(function(movie){
 
+ 
+
       if(movie.duration.length>=8) {
         var movieAfter={
           title: movie.title,
@@ -84,9 +86,33 @@ function dramaMoviesRate(arr){
 
 // Order by time duration, in growing order
 
+function orderByDuration(arr){
+    return arr.sort(function(a,b){
+        if(a.duration==b.duration){
+            if(a.title>b.title){
+                return 1;
+            } else {
+                return -1;
+            }
+        } else {
+        return a.duration - b.duration;
+        }
+    });
+}
+
 
 // How many movies did STEVEN SPIELBERG
 
+function howManyMovies(arr){
+    var arrDrama = arr.filter(function(movie){
+        return movie.genre.indexOf("Drama")>-1;
+    });
+    var arrSteven = arrDrama.filter(function(movie){
+        return movie.director.indexOf("Steven Spielberg")>-1;
+    });
+    
+    return arrSteven;
+}
 
 // Order by title and print the first 20 titles
 
