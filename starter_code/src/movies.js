@@ -1,6 +1,9 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
+function turnHoursToMinutes(arrayOfThatMovieObject) {
 
+    return arrrayOfThatMovieObject;
+}
 
 // Get the average of all rates with 2 decimals 
 
