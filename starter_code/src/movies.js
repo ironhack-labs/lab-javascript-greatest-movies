@@ -46,7 +46,12 @@ function ratesAverage(arrayOfMovies) {
 }
 
 // Get the average of Drama Movies
+function dramaMoviesRate(arrayOfMovies) {
 
+    var dramaArray = arrayOfMovies.filter((movie) => movie.genre == "Drama")
+
+    return dramaArray.length ? ratesAverage(dramaArray).toFixed(2) * 1 : undefined;
+}
 
 // Order by time duration, in growing order
 
