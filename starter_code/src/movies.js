@@ -114,29 +114,43 @@ function orderAlphabetically(arrayMovies) {
 
 // Best yearly rate average
 function bestYearAvg(arrayMovies) {
-  var prevYear='1900', rate=0.0, avg=0.0;
-  var itemsOfArray=0, bestYear='1900', bestAvg=0.0;
-  var elementos=0;
+  var rate=0.0, avg=0.0;
+  var arrayOfYears=[]; 
 
   if (arrayMovies.length>0){
+    
+    arrayMovies.forEach(function(element, index, array) {
+      var counter=0;
+      var actualYear=element.year;
 
-    arrayMovies.sort(function (elementA, elementB) {
-      if (elementA.year > elementB.year) {
+      console.log(arrayOfYears.indexOf(actualYear));
+      if(arrayOfYears.findIndex(function(element){return element.year===actualYear})===-1){
+        rate=array.reduce(function (accumulator, iterator){
+          if(iterator.year===actualYear){
+            counter++;
+            return accumulator += parseFloat(iterator.rate);
+          }else{         
+            return accumulator;
+          }
+        }, 0);
+        console.log(rate+'/'+counter+'='+rate/counter);
+        arrayOfYears.push([{year:element.year, avg:(rate/counter)}]);
+      }
+    });
+    console.log(arrayOfYears);
+    arrayOfYears.sort(function (elementA, elementB) {
+      if (elementA.avg > elementB.avg) {
         return 1;
-      } else if (elementA.year < elementB.year) {
+      } else if (elementA.avg < elementB.avg) {
         return -1;
       } else {
         return 0;
       }
     }); 
-    arrayMovies.reduce(function (accumulator, element){
-      
-    })
-
-    console.log(elementos);
-    return ('The best year was '+ bestYear + ' with an average rate of ' + bestAvg);
-  }else{
+    return ('The best year was '+ arrayOfYears[0].year + ' with an average rate of ' + arrayOfYears[0].avg);
+  }  else{
     return undefined;
-  }
+  } 
 }
+
 
