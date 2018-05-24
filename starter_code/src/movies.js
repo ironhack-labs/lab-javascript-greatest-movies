@@ -114,17 +114,16 @@ function orderAlphabetically(arrayMovies) {
 
 // Best yearly rate average
 function bestYearAvg(arrayMovies) {
-  var rate=0.0, avg=0.0;
+
   var arrayOfYears=[]; 
 
   if (arrayMovies.length>0){
     
     arrayMovies.forEach(function(element, index, array) {
       var counter=0;
+      var rate=0.0;
       var actualYear=element.year;
-
-      console.log(arrayOfYears.indexOf(actualYear));
-      if(arrayOfYears.findIndex(function(element){return element.year===actualYear})===-1){
+      if(arrayOfYears.length<0 || arrayOfYears.findIndex(function(element){return element.year===actualYear})==-1){
         rate=array.reduce(function (accumulator, iterator){
           if(iterator.year===actualYear){
             counter++;
@@ -133,20 +132,22 @@ function bestYearAvg(arrayMovies) {
             return accumulator;
           }
         }, 0);
-        console.log(rate+'/'+counter+'='+rate/counter);
-        arrayOfYears.push([{year:element.year, avg:(rate/counter)}]);
+        arrayOfYears.push({year: (element.year) , avg:(rate/counter)});
       }
     });
-    console.log(arrayOfYears);
+
     arrayOfYears.sort(function (elementA, elementB) {
       if (elementA.avg > elementB.avg) {
-        return 1;
-      } else if (elementA.avg < elementB.avg) {
         return -1;
+      } else if (elementA.avg < elementB.avg) {
+        return 1;
       } else {
-        return 0;
+        if (elementA.year > elementB.year) {
+          return 1;
+        }
       }
-    }); 
+    });
+
     return ('The best year was '+ arrayOfYears[0].year + ' with an average rate of ' + arrayOfYears[0].avg);
   }  else{
     return undefined;
