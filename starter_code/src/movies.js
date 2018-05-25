@@ -152,5 +152,44 @@ function orderAlphabetically(arr){
 // Best yearly rate average
 
 function bestYearAvg(arr){
+    if(arr[0]==null){
+        return undefined;
+    }
+
+    var yearList=[];
+    for (i=0; i<arr.length;i++){
+        if(yearList.indexOf(arr[i].year)<0){
+            yearList.push(arr[i].year);
+        }
+    }
+    var rateList = new Array(yearList.length);
+    var counterList = new Array(yearList.length);
+    for (i=0;i<yearList.length;i++){
+        rateList[i]=0;
+        counterList[i]=0;
+    }
+    for(i=0;i<arr.length;i++){
+        rateList[yearList.indexOf(arr[i].year)]+=parseFloat(arr[i].rate);
+        counterList[yearList.indexOf(arr[i].year)]+=1;
+    }
+    for (i=0;i<yearList.length;i++){
+        rateList[i]/=counterList[i];
+    }
+
+    var maxIndex=0;
+    for (i=0;i<yearList.length;i++){
+        if(rateList[maxIndex]<rateList[i]){
+            maxIndex=i;
+        } else if (rateList[maxIndex]==rateList[i]){
+            if (yearList[i]<yearList[maxIndex]){
+                maxIndex=i;
+            }
+        }
+    }
     
+
+    return "The best year was "+yearList[maxIndex]+" with an average rate of "+rateList[maxIndex];
+
+
+
 }
