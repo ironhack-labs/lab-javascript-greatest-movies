@@ -15,14 +15,17 @@ function getMinutes(movie){
 var turnHoursToMinutes = function(list) {
   var result = [];
   list.map( function( movie, index) {
-    var newMovie = {
-      title: movie.title,
-      year: movie.year,
-      director: movie.director,
-      duration: movie.duration,
-      genre: movie.genre,
-      rate: movie.rate,
-    };
+    // var newMovie = {
+    //   title: movie.title,
+    //   year: movie.year,
+    //   director: movie.director,
+    //   duration: movie.duration,
+    //   genre: movie.genre,
+    //   rate: movie.rate,
+    // };
+    // you can avoid the above lines
+    // using Object.assign()
+    var newMovie = Object.assign({}, movie); // one line for the above lines
     result.push( newMovie );
     result[index].duration = getMinutes(movie);
   });
