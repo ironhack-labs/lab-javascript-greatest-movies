@@ -31,19 +31,33 @@ turnHoursToMinutes(moviesArray);
 
 // Get the average of all rates with 2 decimals 
 
-function ratesAverage(moviesArray) {
-  
-  var numMov = moviesArray.length;
+  function ratesAverage(movies) {
+    
+    var numMov = movies.length;
 
-  var totalAvg = moviesArray.reduce(function (acc, elem) { 
-    return (acc + elem.rate) / numMov ;
-  }, 0);
-  
-}
-ratesAverage(moviesArray);
+    var output = [];
+    for (var i = 0; i < numMov; ++i) {
+      output.push(movies[i].rate);
+    }
+    var totalAvgString = output.reduce(function(acc, elt) {
+      return (acc + elt) / numMov;
+    });
+    totalAvg = parseFloat(totalAvgString);
+
+    // var factor = Math.pow(10, 2);
+    // totalAvg = Math.round(totalAvg * factor) / factor;
+    // console.log(totalAvg);
+    return totalAvg;
+  }
+  ratesAverage(movies);
+
 
 // Get the average of Drama Movies
 
+function dramaMoviesRate(movies) {
+
+}
+dramaMoviesRate(movies);
 
 // Order by time duration, in growing order
 
