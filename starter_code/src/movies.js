@@ -25,7 +25,9 @@ var turnHoursToMinutes = function(list) {
     // };
     // you can avoid the above lines
     // using Object.assign()
-    var newMovie = Object.assign({}, movie); // one line for the above lines
+
+    // one line to avoid the above lines -> thanks for the suggestion
+    var newMovie = Object.assign({}, movie);
     result.push( newMovie );
     result[index].duration = getMinutes(movie);
   });
@@ -87,28 +89,40 @@ function orderAlphabetically(list) {
 }
 
 // Best yearly rate average
+function doesYearExist(arr, obj) {
+  for (var i = 0; i < arr.length;i++) {
+    if (arr[i].year == obj.year) { return arr[i] }
+  }
+}
+
 function bestYearAvg(list) {
-  var years = [];
-  var qty = [];
-  var totalRate = [];
-  list.map( function(movie) {
-    if (!years.includes(movie.year)) {
-      years.push(movie.year);
-      qty.push(1);
-      totalRate.push(movie.rate);
-    } else {
-      var index = years.indexOf(movie.year);
-      qty[index] += 1;
-      totalRate[index] += movie.rate;
-    }
-  });
-  console.log(years);
-  console.log(qty);
-  console.log(totalRate);
-  var averages = [];
-  totalRate.map( function(total, index) {
-    averages.push( total / qty[index] );
-  } )
-  console.log("averages", averages);
-  //return "The best year was " + year + " with a average of " + average;
+  if (list.length == 0) {
+    return undefined;
+  } else {
+    var yearsList = [];
+    list.map( function( movie ) {
+      var yearItem = doesYearExist( yearsList, movie );
+      if ( yearItem ) {
+        yearItem.rate += parseFloat( movie.rate );
+        yearItem.moviesCount += 1;
+      } else {
+        yearsList.push( {
+          year: movie.year,
+          rate: parseFloat( movie.rate ),
+          moviesCount: 1
+        });
+      }
+    });
+    var yearsAvg = yearsList.map( function(obj) {
+      return { year: obj.year, average: parseFloat(obj.rate / obj.moviesCount).toFixed(2) };
+    });
+    var bestYear = yearsAvg.sort(function(a,b) {
+      if ( b.average > a.average || ( b.average === a.average && b.year < a.year) ) {
+        return 1;
+      } else {
+        return -1;
+      }
+    } )[0];
+    return 'The best year was ' + bestYear.year + ' with an average rate of ' + Math.round(bestYear.average * 100) / 100;
+  }
 }
