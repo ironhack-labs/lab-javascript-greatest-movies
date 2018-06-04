@@ -114,7 +114,7 @@ function bestYearAvg(array) {
         res.push(elmt);
       }
     })
-
+g
     totalRes = 0;
     for (var i = 0 ; i < res.length; i ++) {
       totalRes += parseInt(res[i]);
