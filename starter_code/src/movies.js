@@ -72,6 +72,23 @@ return arrayduration.sort(compare);
 
 
 // How many movies did STEVEN SPIELBERG
+function howManyMovies(array) {
+      if (typeof array != "undefined" && array != null && array.length != null && array.length > 0) {
+      var spielberg = array.filter(function (elem) {
+        return (elem.director === "Steven Spielberg") && (elem.genre.includes('Drama'));
+      });
+      
+      if (array===[]) {
+          return undefined ;
+      }else if(spielberg.length == 0) {
+        return "Steven Spielberg directed 0 drama movies!";
+        
+      } else {
+        return 'Steven Spielberg directed ' + spielberg.length + ' drama movies!';
+      }
+  }
+}
+
 
 // Order by title and print the first 20 titles
 
