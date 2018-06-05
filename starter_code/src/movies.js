@@ -91,5 +91,27 @@ function howManyMovies(array) {
 
 
 // Order by title and print the first 20 titles
+function orderAlphabetically(array) {
+      if (typeof array != "undefined" && array.length > 0) {
+        array.sort(function (a, b) {
+          if (a.title > b.title) {
+            return 1;
+          }
+          if (a.title < b.title) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+        let finalarray = [];
+        let l=(array.length>=20)? 20:array.length;
+        for (i = 0; i < l; i++) {  
+          finalarray.push(array[i].title)
+        };
+        return finalarray;
+      } else {
+      return [];
+      }
+  }
 
 // Best yearly rate average
