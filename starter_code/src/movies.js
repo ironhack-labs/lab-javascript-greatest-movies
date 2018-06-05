@@ -115,3 +115,17 @@ function orderAlphabetically(array) {
   }
 
 // Best yearly rate average
+function bestYearAvg (array){
+
+//Create an array of all the years
+var ArrayYears=array.map(function(elmt) {return elmt.year});
+
+//Remove duplicate and sort to obtain a list of unique years
+function onlyUnique(value, index, self) { 
+  return self.indexOf(value) === index;
+}
+
+//Work in progress. To do calculate for the list above the average
+
+
+}
