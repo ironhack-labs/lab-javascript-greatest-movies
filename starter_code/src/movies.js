@@ -48,6 +48,28 @@ var averageDrama=ratesAverage(arrayDrama)
 }
 
 // Order by time duration, in growing order
+function orderByDuration(array){
+var arrayduration=turnHoursToMinutes(array);
+
+function compare(a,b) {
+  if (a.duration < b.duration){
+    return -1;}
+  if (a.duration> b.duration){
+    return 1;}
+
+  if (a.duration===b.duration){
+      if(a.title < b.title) return -1;
+      if(a.title > b.title) return 1;
+      return 0;}
+}
+
+return arrayduration.sort(compare);
+
+
+
+}
+
+
 
 // How many movies did STEVEN SPIELBERG
 
