@@ -15,19 +15,23 @@ function turnHoursToMinutes(arr){
 };
 
 // Get the average of all rates with 2 decimals 
-function ratesAverage(arr){
-  for (var i=0;i<arr.length;i++ ){
-  var ratesArray = [];
-  ratesArray.push(arr[i].rate);
-  console.log(ratesArray);
-  var average = ratesArray.reduce(function(accumulator, current){
-    return +accumulator + current / ratesArray.length;
-  }, 0);
-  }
+function ratesAverage(arr){ 
+  var total = arr.reduce(function(accumulator, current){
+    return accumulator + parseInt(current.rate) / arr.length;
+  },0);
+  return Math.round(total * 100)/100;  
 };
 
 // Get the average of Drama Movies
-
+function dramaMoviesRate(arr){
+  for(var i = 0; i < arr.length; i++){
+    arr.filter(function(e){
+      console.log(e.genre);
+      return(e.genre);
+    });
+  }
+ 
+}
 
 // Order by time duration, in growing order
 
