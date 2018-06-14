@@ -111,3 +111,26 @@ function orderAlphabetically(movies) {
 }
 
 // Best yearly rate average
+function bestYearAvg(arr){
+    if(arr.length==0)
+        return undefined;
+    var bestMovies={};
+    arr.forEach(function(e)  {
+        bestMovies[e.year]=[];
+    });
+    arr.forEach(function(e)  {
+        bestMovies[e.year].push(e.rate);
+    });
+    var best={rate:0}
+    Object.keys(bestMovies).forEach(function(e,i){
+        var best2=bestMovies[e].reduce(function(acc,e2){
+            return acc + e2/bestMovies[e].length;
+        },0)    
+        if(best2>best.rate){
+            best.rate=best2;
+            best.year=e;
+        }
+
+    });
+    return 'The best year was ' +best.year +' with an average rate of '+best.rate; 
+}
