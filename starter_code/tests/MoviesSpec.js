@@ -1,7 +1,7 @@
 /* eslint no-undef: "off" */
 /* eslint jasmine/no-spec-dupes: "off" */
 
-describe('Turn duration of the movies - turnHoursToMinutes', function () {
+  describe('Turn duration of the movies - turnHoursToMinutes', function () {
   it('Defines turnHoursToMinutes', function () {
     expect(typeof turnHoursToMinutes).toBe('function');
   });
