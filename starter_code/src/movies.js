@@ -1,20 +1,19 @@
-/* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
 
 
-// Get the average of all rates with 2 decimals 
+function turnHoursToMinutes(h){
+  var mintime = h.map(function(elem){
+    var hora = elem.duration.split("h");
+    var min = hora[1].split("min");
+    if(hora[1] === "") {
+      elem.duration = parseInt(hora[0]) * 60;
+    }else {
+    elem.duration = parseInt(hora[0]) * 60 + parseInt(min);
+  }
+    return elem;
+  })
+  return mintime;
+}
+console.log(turnHoursToMinutes(movies));
 
-
-// Get the average of Drama Movies
-
-
-// Order by time duration, in growing order
-
-
-// How many movies did STEVEN SPIELBERG
-
-
-// Order by title and print the first 20 titles
-
-
-// Best yearly rate average
+//hasta aqui pudimos llegar//
