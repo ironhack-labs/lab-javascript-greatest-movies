@@ -1,47 +1,47 @@
 /* eslint no-undef: "off" */
 /* eslint jasmine/no-spec-dupes: "off" */
 
-describe('Turn duration of the movies - turnHoursToMinutes', function () {
-  it('Defines turnHoursToMinutes', function () {
-    expect(typeof turnHoursToMinutes).toBe('function');
-  });
+// describe('Turn duration of the movies - turnHoursToMinutes', function () {
+//   it('Defines turnHoursToMinutes', function () {
+//     expect(typeof turnHoursToMinutes).toBe('function');
+//   });
 
-  it('Should return an array', function () {
-    expect(typeof turnHoursToMinutes(movies)).toBe('object');
-  });
+//   it('Should return an array', function () {
+//     expect(typeof turnHoursToMinutes(movies)).toBe('object');
+//   });
 
-  it('Should return a new array, not update the original one', function () {
-    expect(turnHoursToMinutes(movies)).not.toEqual(movies);
-  });
+//   it('Should return a new array, not update the original one', function () {
+//     expect(turnHoursToMinutes(movies)).not.toEqual(movies);
+//   });
 
-  it('The duration of the movie should be a number', function () {
-    expect(typeof turnHoursToMinutes(movies)[0].duration).toBe('number');
-  });
+//   it('The duration of the movie should be a number', function () {
+//     expect(typeof turnHoursToMinutes(movies)[0].duration).toBe('number');
+//   });
 
-  it('The duration of the movie should return the correct number to a short movie - 31 minutes', function () {
-    var movieTry = [{ duration: '0h 31min' }];
+//   it('The duration of the movie should return the correct number to a short movie - 31 minutes', function () {
+//     var movieTry = [{ duration: '0h 31min' }];
 
-    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(31);
-  });
+//     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(31);
+//   });
 
-  it('The duration of the movie should return the correct number for really long movie - 341 minutes', function () {
-    var movieTry = [{ duration: '5h 41min' }];
+//   it('The duration of the movie should return the correct number for really long movie - 341 minutes', function () {
+//     var movieTry = [{ duration: '5h 41min' }];
 
-    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(341);
-  });
+//     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(341);
+//   });
 
-  it('It should return the correct number when the duration is only in hours', function () {
-    var movieTry = [{ duration: '2h' }];
+//   it('It should return the correct number when the duration is only in hours', function () {
+//     var movieTry = [{ duration: '2h' }];
 
-    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(120);
-  });
+//     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(120);
+//   });
 
-  it('It should return the correct number when the duration is only in minutes', function () {
-    var movieTry = [{ duration: '54min' }];
+//   it('It should return the correct number when the duration is only in minutes', function () {
+//     var movieTry = [{ duration: '54min' }];
 
-    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(54);
-  });
-});
+//     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(54);
+//   });
+// });
 
 describe('Get the average rate - ratesAverage', function () {
   it('Defines ratesAverage', function () {
