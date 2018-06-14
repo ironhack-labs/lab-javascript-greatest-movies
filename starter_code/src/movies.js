@@ -29,11 +29,17 @@ var ratesAverage = function(arr){
     var av=0;
     var sumRates = arr.reduce(function(acc, elem){
         if(elem.hasOwnProperty("rate")) {
-           if(elem.rate){
-               return acc;} 
-           return acc + parseFloat(elem.rate); 
+           if(!elem.rate){
+               return acc;
+            }
+        if(typeof elem.rate == "string"){
+            return acc + parseFloat(elem.rate);  
+        } else if(typeof elem.rate == 'number'){
+            return acc + elem.rate;
+        }
         } else { 
             return acc;
+    
         } 
     }, 0);
     return Math.round(sumRates/arr.length*100)/100;
