@@ -49,28 +49,27 @@ function ratesAverage(arrMovies){
 
 // Get the average of Drama Movies
 function dramaMoviesRate(arrMovies){
-  var avg = 0;
-  if (arrMovies.length > 0){
-    avg = arrMovies.reduce(function(acum, e){
-      if (e.genre.indexOf("Drama") > 0 && e.rate != 0){
-        console.log(e.rate)
-       return acum + parseFloat(e.rate)/arrMovies.length;
-      }else{
-        return 0;
-      }
-    }, 0) 
-  }
-  else{
-    return undefined;
-  }
-  console.log(avg.toFixed(2));
-  return avg;
-}
+ 
+  avg=arrMovies.reduce(function(a,e){
+    return a+e.rate/arrMovies.length 
+  
+  },0)
+  console.log(avg)
+  return Number(avg.toFixed(2))
+ 
+} 
 
 // Order by time duration, in growing order
 function orderByDuration(arrMovies){
- 
-}
+  var arr=arrMovies.sort(function(a,b){
+   if(a.duration === b.duration){
+     return a.title > b.title
+   }
+   return a.duration - b.duration
+  })
+  
+  return arr
+ }
 
 // How many movies did STEVEN SPIELBERG
 function howManyMovies(arrMovies){
@@ -93,6 +92,17 @@ function howManyMovies(arrMovies){
 }
 
 // Order by title and print the first 20 titles
+function orderAlphabetically(arrMovies){
 
+  var arr=arrMovies.map(function(e){
+    return e.title
+  })
+   var primerasVeinte=arr.sort()
+   if(primerasVeinte.length>20){
+     primerasVeinte=primerasVeinte.slice(0,20)
+   }
+  
+  return primerasVeinte
+}
 
 // Best yearly rate average
