@@ -2,30 +2,39 @@
 
 // Turn duration of the movies from hours to minutes
 
-function turnHoursToMinutes(movies){
-    var turnedTime = movies.map(function(element){
-       var totalDuration = element.duration
-       var finalHour;
-       var finalMinutes1;
-       var finalMinutes2;
-       var finalMinutes3;
-       var endMinutes;
-       for (i=0; i<totalDuration.length; i++){
-           if(totalDuration.charAt[i]==='h'){
-            finalHour=totalDuration.charAt[i-1];
-           }
-           if(totalDuration.charAt[i]==='m'){
-            finalMinute1=totalDuration.charAt[i-1];
-            finalMinute2=totalDuration.charAt[i-2];
-            finalMinutes3=finalMinutes1.toString()+finalMinutes2.toString();
-           }
-       }
-       endMinutes=finalHour*60+finalMinutes3;
-       element.duration=endMinutes;
-    });
-    return turnedTime
-
+function turnHoursToMinutes(arr){
+  var timeString;
+  var timeStringSplited;
+  var hours
+  var minutes
+  var total=0;
+  var finalArray = arr.map(function(element){
+    timeString=element.duration
+    timeStringSplited=element.duration.split(" ")
+    hours=0;
+    minutes=0;
+    total=0;
+    console.log(timeStringSplited)
+    if (timeStringSplited[0].charAt(1)==='h'){
+      hours =  parseInt(timeStringSplited[0].replace(/(?![0-9])\w+/g,""));
+      if(timeStringSplited.length>1 && timeStringSplited[1].indexOf('m')>-1){
+        minutes = parseInt(timeStringSplited[1].replace(/(?![0-9])\w+/g,""));
+        total=hours*60+minutes
+      }else{
+        total=hours*60
+      }
+    }else{
+      minutes = parseInt(timeStringSplited[0].replace(/(?![0-9])\w+/g,""));
+      total=minutes
+    }
+   element.duration=total
+   return element
+  });
+  return finalArray
+  console.log(finalArray)
 }
+
+turnHoursToMinutes(movies)
 
 // Get the average of all rates with 2 decimals
 
@@ -97,68 +106,3 @@ function orderAlphabetically(movies){
 // Best yearly rate average
 
 
-/*
-
-var movies = [
-  {
-    title: 'The Shawshank Redemption',
-    year: '1994',
-    director: 'Frank Darabont',
-    duration: '2h 22min',
-    genre: ['Crime', 'Drama'],
-    rate: '9.3'
-  },
-  {
-    title: 'The Godfather',
-    year: '1972',
-    director: 'Francis Ford Coppola',
-    duration: '2h 55min',
-    genre: ['Crime', 'Drama'],
-    rate: '9.2'
-  },
-  {
-    title: 'The Godfather: Part II',
-    year: '1974',
-    director: 'Francis Ford Coppola',
-    duration: '3h 22min',
-    genre: ['Crime', 'Drama'],
-    rate: '9.0'
-  }
-]
-
-
-function turnHoursToMinutes(movies) {
-  var newArray = movies.map(function (element) {
-    var totalDuration = element.duration
-    var finalHour;
-    var finalMinutes1;
-    var finalMinutes2;
-    var finalMinutes3;
-    var endMinutes;
-    console.log(totalDuration)
-    for (var i = 0; i < totalDuration.length; i++) {
-     // console.log(totalDuration.charAt(i))
-      if (totalDuration.charAt(i) === 'h') {
-        finalHour = totalDuration.charAt(i - 1);
-        //console.log(finalHour)
-      }
-      if (totalDuration.charAt(i) === 'm') {
-        finalMinute1 = totalDuration.charAt(i - 1);
-        finalMinute2 = totalDuration.charAt(i - 2);
-        finalMinutes3 = finalMinutes1.toString()+finalMinutes2.toString()
-        console.log(finalMinute1)
-        console.log(finalMinute2)
-        console.log(finalMinutes3)
-      }
-    }
-    return totalDuration
-  });
-
-  console.log(newArray)
-}
-
-turnHoursToMinutes(movies)
-
-
-
-*/
