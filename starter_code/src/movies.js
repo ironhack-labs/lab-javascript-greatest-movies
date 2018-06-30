@@ -102,7 +102,69 @@ function orderAlphabetically(movies){
     return result;
 }
 
+// Order by duration 
+
+
+
+function turnHoursToMinutes(arr) {
+  var timeString;
+  var timeStringSplited;
+  var hours
+  var minutes
+  var total = 0;
+  var finalArray = arr.map(function (element) {
+    timeString = element.duration
+    timeStringSplited = element.duration.split(" ")
+    hours = 0;
+    minutes = 0;
+    total = 0;
+    console.log(timeStringSplited)
+    if (timeStringSplited[0].charAt(1) === 'h') {
+      hours = parseInt(timeStringSplited[0].replace(/(?![0-9])\w+/g, ""));
+      if (timeStringSplited.length > 1 && timeStringSplited[1].indexOf('m') > -1) {
+        minutes = parseInt(timeStringSplited[1].replace(/(?![0-9])\w+/g, ""));
+        total = hours * 60 + minutes
+      } else {
+        total = hours * 60
+      }
+    } else {
+      minutes = parseInt(timeStringSplited[0].replace(/(?![0-9])\w+/g, ""));
+      total = minutes
+    }
+    element.duration = total
+    return element
+  });
+  return finalArray
+}
+
+
+
+function orderByDuration(array) {
+  var durationArray = turnHoursToMinutes(array)
+  var sortedByNumbers = durationArray.sort(function (a, b) {
+    if (a.title > b.title) {
+      return 1
+    }
+    if (a.title < b.title) {
+      return -1
+    }
+    if (a.title === b.title) {
+      return 0;
+    }
+  });
+  
+  sortedByNumbers.sort(function(a,b){
+    return a.duration-b.duration
+  });
+  return sortedByNumbers
+
+}
+
+orderByDuration(movies)
+
+
 
 // Best yearly rate average
+
 
 
