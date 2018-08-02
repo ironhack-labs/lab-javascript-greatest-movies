@@ -1,63 +1,6 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes
 
-const exampleData = [
-  {
-    title: "Dead Poets Society",
-    year: "1989",
-    director: "Peter Weir",
-    duration: "5h 41min",
-    genre: ["Comedy", "Drama"],
-    rate: "8.0"
-  },
-  {
-    title: "Dog Day Afternoon",
-    year: "1975",
-    director: "Steven Spielberg",
-    duration: "5h 41min",
-    genre: ["Biography", "Crime", "Thriller"],
-    rate: "8.0"
-  },
-  {
-    title: "The Godfather: Part II",
-    year: "1974",
-    director: "Francis Ford Coppola",
-    duration: "3h 22min",
-    genre: ["Crime", "Drama"],
-    rate: "9.0"
-  },
-  {
-    title: "jndqwidsn",
-    year: "1993",
-    director: "Steven Spielberg",
-    duration: "3h 15min",
-    genre: ["Biography", "Drama", "History"],
-    rate: "8.9"
-  },
-  {
-    title: "Schindler's List",
-    year: "1993",
-    director: "Steven Spielberg",
-    duration: "3h 15min",
-    genre: ["Biography", "Drama", "History"],
-    rate: "8.9"
-  }
-];
-
-function turnHoursToMinutes(arr) {}
-
-// Get the average of all rates with 2 decimals
-
-// Get the average of Drama Movies
-
-// Order by time duration, in growing order
-
-// How many movies did STEVEN SPIELBERG
-
-// Order by title and print the first 20 titles
-
-// Best yearly rate average
-
 function turnHoursToMinutes(moviesArr) {
   return moviesArr.map(movie => {
     return Object.assign({}, movie, {
@@ -80,6 +23,8 @@ function convertHours(time) {
   return hours * 60 + minutes;
 }
 
+// Get the average of all rates with 2 decimals
+
 function ratesAverage(moviesArr) {
   const totalRating = avgRating(moviesArr);
   return Math.round(totalRating * 100) / 100;
@@ -96,11 +41,21 @@ function avgRating(moviesArr) {
   );
 }
 
+// Get the average of Drama Movies
+
 function dramaMoviesRate(moviesArr) {
   const dramaMovies = moviesArr.filter(movie => movie.genre.includes("Drama"));
   const dramaRatings = avgRating(dramaMovies);
 
   return dramaRatings;
+}
+
+// Order by time duration, in growing order
+
+function sortByTitle(a, b) {
+  if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+  if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
+  return 0;
 }
 
 function orderByDuration(moviesArr) {
@@ -117,6 +72,8 @@ function orderByDuration(moviesArr) {
   });
 }
 
+// How many movies did STEVEN SPIELBERG
+
 function howManyMovies(moviesArr) {
   if (!moviesArr.length) {
     return undefined;
@@ -127,6 +84,8 @@ function howManyMovies(moviesArr) {
   ).length;
   return `Steven Spielberg directed ${moviesCount} drama movies!`;
 }
+
+// Order by title and print the first 20 titles
 
 function orderAlphabetically(movieArr) {
   const orderedArr = movieArr
@@ -140,11 +99,7 @@ function orderAlphabetically(movieArr) {
   return orderedArr;
 }
 
-function sortByTitle(a, b) {
-  if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
-  if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
-  return 0;
-}
+// Best yearly rate average
 
 function bestYearAvg(moviesArr) {
   if (!moviesArr.length) {
@@ -185,5 +140,3 @@ function bestYearAvg(moviesArr) {
     result[result.length - 1].year
   } with an average rate of ${result[result.length - 1].rating}`;
 }
-
-console.log(orderAlphabetically(exampleData));
