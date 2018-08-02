@@ -43,18 +43,36 @@ return acc + Number(value.rate);
 }, 0);
   return Number((rate / movies.length).toFixed(2));
 };
+ 
+function dramaMoviesRate(movies) {
+  var Drama = movies.filter(object => object.genre.includes("Drama"));
+    if (Drama.length === 0) {return undefined}
+    else {return ratesAverage(Drama)}
+}
 
+function orderByDuration(movies) {
+  return movies.sort(function (a,b) {
+    return (a.duration > b.duration || (a.duration === b.duration) && a.title > b.title) ? 1 : -1;
+})
+};
 
-// Get the average of all rates with 2 decimals 
-
-
-// Get the average of Drama Movies
-
-
-// Order by time duration, in growing order
-
-
-// How many movies did STEVEN SPIELBERG
+function howManyMovies(movies) {
+  if (movies.length === 0) {return undefined};
+  var spielberg = 0
+  var newVar = movies.filter(object => object.genre.includes("Drama") && object.director === "Steven Spielberg");
+  spielberg = newVar.length
+return 'Steven Spielberg directed ' + spielberg + ' drama movies!';
+}
+function orderAlphabetically(movies) {
+  var evenNewer = [];
+  var newArray = movies.sort((a,b) => (a.title > b.title) ? 1 : (-1));
+    if (newArray.length >= 20) {
+    for (var i = 0; i < 20; i++) {
+      evenNewer.push(newArray[i].title)}
+    }
+    else {newArray.map((a, index) => evenNewer.push(newArray[index].title))}
+  return evenNewer;
+}
 
 
 // Order by title and print the first 20 titles
