@@ -29,7 +29,7 @@ function ratesAverage(movies) {
 }
 
 // Get the average of Drama Movies
-function dramaMoviesRate(movies) {
+function getDramaMovies(movies) {
   var dramaMovies = [];
   movies.forEach(function(movie) {
     var drama = movie.genre.find(function(g) {
@@ -39,6 +39,11 @@ function dramaMoviesRate(movies) {
       dramaMovies.push(movie);
     }
   });
+
+  return dramaMovies;
+}
+function dramaMoviesRate(movies) {
+  var dramaMovies = getDramaMovies(movies);
 
   if (dramaMovies.length === 0) return undefined;
 
@@ -71,7 +76,36 @@ var modifiedTimeMovies = turnHoursToMinutes(movies);
 var moviesOrderedByDuration = orderByDuration(modifiedTimeMovies);
 
 // How many movies did STEVEN SPIELBERG
+function howManyMovies(movies) {
+  var dramaMovies = getDramaMovies(movies);
+  var spielBergMovies = dramaMovies.filter(
+    movie => movie.director === "Steven Spielberg"
+  );
+  return (
+    "Steven Spielberg directed " + spielBergMovies.length + " drama movies!"
+  );
+}
 
+spielBergMovies = howManyMovies(movies);
+console.log(spielBergMovies);
 // Order by title and print the first 20 titles
+function orderAlphabetically(movies) {
+  var top20 = [];
+  movies.slice(0, 20).map(function(movie) {
+    top20.push(movie.title);
+  });
+  top20.sort(function(a, b) {
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+  });
+  return top20;
+}
+orderAlphabetically(movies);
+
+// Best yearly rate average
 
 // Best yearly rate average
