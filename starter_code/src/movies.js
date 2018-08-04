@@ -1,23 +1,28 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
-  var modifiedTimeArr = movies.slice();
-  modifiedTimeArr.map(function(movie) {
-    var splitArr = movie.duration.split(" ");
-    var minutes = 0;
-    if (splitArr.length === 2) {
-      minutes += parseInt(splitArr[0].split("h")) * 60;
-      minutes += parseInt(splitArr[1].split("min"));
-    } else if (splitArr.length === 1) {
-      if (splitArr[0][splitArr[0].length - 1] === "h") {
-        minutes += parseInt(splitArr[0].split("h")) * 60;
-      } else if (splitArr[0][splitArr[0].length - 1] === "n") {
-        minutes += parseInt(splitArr[0].split("min"));
-      }
-    }
-    movie.duration = parseInt(minutes);
+  return movies.map(function(movie) {
+    return Object.assign({}, movie, {
+      duration: minutesCalculation(movie)
+    });
   });
-  return modifiedTimeArr;
+}
+
+function minutesCalculation(movie) {
+  var splitArr = movie.duration.split(" ");
+  var minutes = 0;
+  if (splitArr.length === 2) {
+    minutes += parseInt(splitArr[0].split("h")) * 60;
+    minutes += parseInt(splitArr[1].split("min"));
+  } else if (splitArr.length === 1) {
+    if (splitArr[0][splitArr[0].length - 1] === "h") {
+      minutes += parseInt(splitArr[0].split("h")) * 60;
+    } else if (splitArr[0][splitArr[0].length - 1] === "n") {
+      minutes += parseInt(splitArr[0].split("min"));
+    }
+  }
+  movie.duration = parseInt(minutes);
+  return movie.duration;
 }
 
 // Get the average of all rates with 2 decimals
@@ -61,7 +66,7 @@ console.log(ratingsDramaMovies);
 // Order by time duration, in growing order
 function orderByDuration(movies) {
   var orderedNumbers = movies.slice();
-  orderedNumbers.sort(function(a, b) {
+  return orderedNumbers.sort(function(a, b) {
     if (a.duration > b.duration) {
       return 1;
     } else if (a.duration < b.duration) {
@@ -81,6 +86,8 @@ var moviesOrderedByDuration = orderByDuration(modifiedTimeMovies);
 
 // How many movies did STEVEN SPIELBERG
 function howManyMovies(movies) {
+  if (movies.length === 0) return undefined;
+
   var dramaMovies = getDramaMovies(movies);
   var spielBergMovies = dramaMovies.filter(
     movie => movie.director === "Steven Spielberg"
