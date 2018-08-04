@@ -22,10 +22,15 @@ function turnHoursToMinutes(movies) {
 
 // Get the average of all rates with 2 decimals
 function ratesAverage(movies) {
-  var totalRatings = movies.reduce(function(acc, cur) {
+  var moviesWithRate = movies.filter(
+    movie => !isNaN(movie.rate) && movie.rate !== ""
+  );
+
+  var totalRatings = moviesWithRate.reduce(function(acc, cur) {
     return acc + parseFloat(cur.rate);
   }, 0);
-  return parseFloat((totalRatings / movies.length).toFixed(2));
+
+  return parseFloat((totalRatings / moviesWithRate.length).toFixed(2));
 }
 
 // Get the average of Drama Movies
@@ -47,7 +52,6 @@ function dramaMoviesRate(movies) {
 
   if (dramaMovies.length === 0) return undefined;
 
-  ratesAverage(dramaMovies);
   return parseFloat(ratesAverage(dramaMovies));
 }
 
@@ -95,10 +99,10 @@ function orderAlphabetically(movies) {
     top20.push(movie.title);
   });
   top20.sort(function(a, b) {
-    if (a < b) {
+    if (a.toLowerCase() < b.toLowerCase()) {
       return -1;
     }
-    if (a > b) {
+    if (a.toLowerCase() > b.toLowerCase()) {
       return 1;
     }
   });
