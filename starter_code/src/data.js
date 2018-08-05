@@ -2000,27 +2000,3 @@ var movies = [
     rate: '8.0'
   }
 ];
-
-function turnHoursToMinutes(moviesArray) {
-  return moviesArray.map(function (elem) {
-    var hours = 0;
-    var minutes = 0;
-    if (elem.duration.indexOf('h') !== -1) {
-      hours = parseInt(elem.duration[0], 10) * 60;
-    }
-    if (elem.duration.indexOf('min') !== -1) {
-      minutes = parseInt(elem.duration.substring(elem.duration.length - 5, elem.duration.length - 3), 10);
-    }
-    return Object.assign({}, elem, { duration: hours + minutes });
-  });
-}
-
-//turnHoursToMinutes(movies);
-//console.log(movies);
-function ratesAverage(moviesRates) {
-  return moviesRates.reduce(function (acc,value) {
-    return acc + Number(value.rate);
-  },0) / movies.length;}
-var finalRates = (ratesAverage(movies).toFixed(2))
-ratesAverage(movies);
-console.log(finalRates)
