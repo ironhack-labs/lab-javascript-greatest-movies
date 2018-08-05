@@ -10,16 +10,17 @@ var turnHoursToMinutes = movies.map(function(movies) {
 });
 console.log(movies);
 // Get the average of all rates with 2 decimals
-var ratesAverage = movies.map(function(movie) {
-	var moviescores = parseFloat(movie.rate);
 
-	var movierates = [ 9.3, 9.2, 9 ];
-	var rates = movierates.reduce(function(sum, score) {
-		return sum + score;
-	}, 0);
-	return rates;
-});
-console.log(ratesAverage);
+function ratesAverage(movies) {
+	var scores = movies.map(function(movies) {
+		return movies.rate * 1;
+	});
+	var averageScore = (scores.reduce((prev, next) => prev + next, 0) / scores.length).toFixed(2);
+	//return scores;
+
+	return averageScore;
+}
+console.log(ratesAverage(movies));
 
 // Get the average of Drama Movies
 function dramaMoviesRate(movielist) {}
