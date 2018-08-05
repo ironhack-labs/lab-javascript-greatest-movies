@@ -3,7 +3,7 @@ var movies = [
     title: 'The Shawshank Redemption',
     year: '1994',
     director: 'Frank Darabont',
-    duration: '22min',
+    duration: '22h',
     genre: ['Crime', 'Drama'],
     rate: '9.3'
   },

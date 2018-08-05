@@ -2,20 +2,28 @@
 // Turn duration of the movies from hours to minutes
 
 
- console.log(movies)
+// console.log(movies)
 
-// var moviesDuration = movies;
-var moviesDuration = Object.assign({}, movies);
-  console.log(movies); // { a: 1 }
+// var moviesDuration = movies.slice(0);
+// // var moviesDuration = [];
+// // var moviesDuration = Object.assign({}, movies);
+// // Array.prototype.push.apply(moviesDuration, movies);
+// // console.log(movies); // { a: 1 }
 
-function turnHoursToMinutes(moviesDuration) {
+// // moviesDuration[0].duration = 123;
+//  console.log(moviesDuration);
 
-  Object.keys(moviesDuration).forEach(function (item) {
+function turnHoursToMinutes(movies) {
 
-    // console.log(moviesDuration[item].duration);
-    // Declaraciòn de variables
-    var horasArray = moviesDuration[item].duration.split(" ");
-    // console.log(horasArray);
+  return movies.map(function (item) {
+
+    // Se genera un nuevo array que no cambie el original movies
+    var moviesDuration = Object.assign({}, item);
+
+    // Transformamos duration en un array para poder maniiipularlo despues
+    var horasArray = moviesDuration.duration.split(" ");
+
+    // Asignamos valores iniciales a las variables;
     var horasNumber = 0;
     var minNumber = 0;
 
@@ -34,20 +42,19 @@ function turnHoursToMinutes(moviesDuration) {
     // Calculo convierte horas-minutos a minutos
     var minutos = horasNumber * 60 + minNumber;
 
-
     //Se adiciona el valor a la matriz
-    moviesDuration[item].duration = minutos;
-    // console.log(item);
-  });
+    moviesDuration.duration = minutos;
 
-  // console.log(moviesDuration);
-  return moviesDuration;
-
+    // Regresamos el valor
+    return moviesDuration;
+  })
 }
 
 //  console.log(turnHoursToMinutes(movies))
-console.log(movies);
-turnHoursToMinutes(movies);
+// console.log(moviesDuration[1].duration);
+
+turnHoursToMinutes(movies)
+
 
 // Get the average of all rates with 2 decimals 
 
