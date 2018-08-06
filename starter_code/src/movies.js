@@ -17,11 +17,20 @@ function turnHoursToMinutes(moviesArray) {
 // Get the average of all rates with 2 decimals 
 function ratesAverage(b) {
   return Number(b.reduce(function(acc, c){
+    if (c.rate === ''){c.rate === 0};
     var avg = acc + parseFloat(c.rate) / b.length;
     return avg;
   },0).toFixed(2));
   }
-
+// Suggest answer from Andre does not work...
+//function ratesAverage(z) {
+//  var result = z.reduce(function (acc, value) {
+//    if (value.rate === '')
+//      value.rate = 0;
+//    return acc + parseFloat(value.rate);
+//  }, 0) / z.length;
+//  return Math.round(result * 100) / 100;
+//}  
 // Get the average of Drama Movies
 function dramaMoviesRate(arr) {
   var dramaOnly =  arr.filter( d => d.genre.includes('Drama'));
@@ -38,7 +47,7 @@ function orderByDuration(arrDur){
 
 // How many movies did STEVEN SPIELBERG
 function howManyMovies(stevens) {
-  if (stevens === []){return undefined};
+  if (stevens == ''){return undefined};
   var steven = stevens.filter(e => e.director.includes('Spielberg'));
   var steven =  steven.filter( d => d.genre.includes('Drama'));
   var output =  "Steven Spielberg directed "+steven.length+" drama movies!";
