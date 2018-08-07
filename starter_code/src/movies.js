@@ -1,38 +1,68 @@
 /* eslint no-restricted-globals: 'off' */
 
 // Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(objeto) {
-  var conversion = objeto.map(function(time) {
-    var arr_tiempo = time.duration.split(" ");
 
-    if (arr_tiempo[0].indexOf("min") >= 0) {
-      return parseInt(arr_tiempo[0].split("min"));
-    }
+function turnHoursToMinutes(object) {
+  var newArray = object.map(function(movie) {
+    if (movie.duration.includes(" ")) {
+      var splitTime = movie.duration.split(" ");
+      var horas = parseInt(splitTime[0].replace("h", "")) * 60;
+      var minutos = parseInt(splitTime[1].replace("min", ""));
 
-    var horas = parseInt(arr_tiempo[0].split("h")) * 60;
-    if (arr_tiempo.length > 1) {
-      var minutos = parseInt(arr_tiempo[1].split("min"));
-
-      if (horas === 0) {
-        return minutos;
+      movie.duration = horas + minutos;
+    } else {
+      if (movie.duration.includes("h")) {
+        movie.duration = parseInt(movie.duration.replace("h", "")) * 60;
+      } else {
+        movie.duration = parseInt(movie.duration.replace("min", ""));
       }
-
-      return horas + minutos;
     }
-
-    return horas;
+    return movie;
   });
 
-  if (Array.isArray(conversion)) {
-    return conversion;
-  }
-
-  console.log(coversion);
-  return conversion[0];
+  return newArray;
 }
+
 // Get the average of all rates with 2 decimals
 
+function ratesAverage(object) {
+  var newArray = object.map(function(movie) {
+    //console.log(movie.rate);
+    return parseFloat(movie.rate);
+  });
+
+  var rate = newArray
+    .reduce(function(acum, n) {
+      return acum + n;
+    })
+    .toFixed(2);
+
+  return rate / newArray.length;
+}
+
 // Get the average of Drama Movies
+
+function dramaMoviesRate(object) {
+  var arrayDrama = [];
+  var newArray = object.map(function(movie) {
+    if (movie.genre.indexOf("Drama") >= 0) {
+      arrayDrama.push(movie.rate);
+    }
+  });
+
+  if (arrayDrama.length <= 0 || arrayDrama === undefined) {
+    return undefined;
+  }
+
+  var rate = arrayDrama.reduce(function(acum, n) {
+    return acum + n;
+  });
+
+  rate = rate / arrayDrama.length;
+
+  console.log(rate);
+  return rate;
+}
 
 // Order by time duration, in growing order
 
