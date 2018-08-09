@@ -4,24 +4,24 @@
 
 // console.log(movies)
 
-// var moviesDuration = movies.slice(0);
-// // var moviesDuration = [];
-// // var moviesDuration = Object.assign({}, movies);
-// // Array.prototype.push.apply(moviesDuration, movies);
+// var moviesDurationOrder = movies.slice(0);
+// // var moviesDurationOrder = [];
+// // var moviesDurationOrder = Object.assign({}, movies);
+// // Array.prototype.push.apply(moviesDurationOrder, movies);
 // // console.log(movies); // { a: 1 }
 
-// // moviesDuration[0].duration = 123;
-//  console.log(moviesDuration);
+// // moviesDurationOrder[0].duration = 123;
+//  console.log(moviesDurationOrder);
 
 function turnHoursToMinutes(movies) {
 
   return movies.map(function (item) {
 
     // Se genera un nuevo array que no cambie el original movies
-    var moviesDuration = Object.assign({}, item);
+    var moviesDurationOrder = Object.assign({}, item);
 
     // Transformamos duration en un array para poder maniiipularlo despues
-    var horasArray = moviesDuration.duration.split(" ");
+    var horasArray = moviesDurationOrder.duration.split(" ");
 
     // Asignamos valores iniciales a las variables;
     var horasNumber = 0;
@@ -43,10 +43,10 @@ function turnHoursToMinutes(movies) {
     var minutos = horasNumber * 60 + minNumber;
 
     //Se adiciona el valor a la matriz
-    moviesDuration.duration = minutos;
+    moviesDurationOrder.duration = minutos;
 
     // Regresamos el valor
-    return moviesDuration;
+    return moviesDurationOrder;
   })
 }
 turnHoursToMinutes(movies);
@@ -78,23 +78,33 @@ function dramaMoviesRate(drama) {
     }
   });
 
-  console.log(dramaArray);
   // Regresa indefinido si no hay peliculas de drama
   if (dramaArray.length === 0) return undefined;
-  if (dramaArray.rate == "") {
-    console.log("drama.title")
+  if (!dramaArray.rate) {
     drama.rate = 0;
-  }
+  };
 
   // Usamos la funcion anteriormente creada para obtener el promedio:
   return ratesAverage(dramaArray);
 }
 var drm = dramaMoviesRate(movies)
-console.log(drm);
+console.log("Drama average rate: " + drm);
 
 
 
 // Order by time duration, in growing order
+
+function orderByDuration(movies) {
+  var moviesDurationOrder = movies.sort(function(a, b) {
+    if (a.title > b.title) return 1;
+    if (a.title < b.title) return -1;
+    return 0;
+  });
+  var moviesDurationOrder = moviesDurationOrder.sort(function(a, b) {
+    return a.duration - b.duration;
+  });
+  return moviesDurationOrder;
+}
 
 
 // How many movies did STEVEN SPIELBERG
