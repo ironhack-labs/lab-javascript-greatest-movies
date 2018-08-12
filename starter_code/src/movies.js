@@ -95,12 +95,12 @@ console.log("Drama average rate: " + drm);
 // Order by time duration, in growing order
 
 function orderByDuration(movies) {
-  var moviesDurationOrder = movies.sort(function(a, b) {
+  var moviesDurationOrder = movies.sort(function (a, b) {
     if (a.title > b.title) return 1;
     if (a.title < b.title) return -1;
     return 0;
   });
-  var moviesDurationOrder = moviesDurationOrder.sort(function(a, b) {
+  var moviesDurationOrder = moviesDurationOrder.sort(function (a, b) {
     return a.duration - b.duration;
   });
   return moviesDurationOrder;
@@ -108,8 +108,8 @@ function orderByDuration(movies) {
 
 
 // How many movies did STEVEN SPIELBERG
-function howManyMovies(movies){
-  if(!movies.length) return undefined;
+function howManyMovies(movies) {
+  if (!movies.length) return undefined;
 
   var numberdDramaSpielberg = " ";
   var dramaArray = movies.filter(function (movie) {
@@ -119,14 +119,29 @@ function howManyMovies(movies){
     }
   });
 
-  var dramaSpielberg = dramaArray.filter(function(movie){
+  var dramaSpielberg = dramaArray.filter(function (movie) {
     return movie.director.includes("Steven Spielberg");
   })
-  
+
   return numberdDramaSpielberg = "Steven Spielberg directed " + dramaSpielberg.length + " drama movies!";
 }
 
 // Order by title and print the first 20 titles
+function orderAlphabetically(movies) {
+  var titles = [];
+  var ordered = movies.sort(function (a, b) {
+    if (a.title > b.title) return 1;
+    if (a.title < b.title) return -1;
+    return 0;
+  });
+  var first20Titles = ordered.splice(0, 20);
+  first20Titles.forEach(item => titles.push(item.title));
+  console.log(titles);
+  return titles;
+}
 
+orderAlphabetically(movies);
 
 // Best yearly rate average
+function orderAlphabetically(movie) {
+}
