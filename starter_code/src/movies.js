@@ -20,14 +20,16 @@ function turnHoursToMinutes(arrayMovies) {
   return arrayMoviesParsed;
 }
 
-/* function turnHoursToMinutes (arrayMovies) {
-  var newMovies = arrayMovies.map(function(film, i){
-    
-  })
-} */
-
 // Get the average of all rates with 2 decimals 
 
+var ratesAverage = function(arrayMovies) {
+  var averageRate;
+  var sumRates = arrayMovies.reduce(function(acc, movie, index){
+    return acc + parseInt(movie.rate);
+  }, 0);
+  averageRate = sumRates / arrayMovies.length;
+  return averageRate;
+}
 
 // Get the average of Drama Movies
 
@@ -36,7 +38,6 @@ function turnHoursToMinutes(arrayMovies) {
 
 
 // How many movies did STEVEN SPIELBERG
-
 
 // Order by title and print the first 20 titles
 
