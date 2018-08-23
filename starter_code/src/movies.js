@@ -28,7 +28,7 @@ var ratesAverage = function(arrayMovies) {
     return acc + parseInt(movie.rate);
   }, 0);
   averageRate = sumRates / arrayMovies.length;
-  return averageRate;
+  console.log(Math.round(averageRate*100)/100)
 }
 
 // Get the average of Drama Movies
