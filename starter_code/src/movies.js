@@ -1,33 +1,31 @@
 /* eslint no-restricted-globals: 'off' */
 function turnHoursToMinutes (arr){
-  var arrMoviesNew = arr.map(function(elem){
-    return elem;   
-  });
+  var arrMoviesNew = arr.map(function(elem){ 
 
   var hours = 0;
   var minutes = 0;
   var totalTime =0;
-  var origTime = [];
+  var origTime = elem.duration;
 
   if(origTime.includes('h')){
     if(origTime.includes('m')){
       hours = parseInt(origTime.split('h')[0])*60;
       minutes = parseInt(origTime.split('h')[1].split('min')[0]);
-      totalTime= (hours+minutes).toString();
+      totalTime= (hours+minutes);
     } else {
       hours = parseInt(origTime.split('h')[0])*60; 
-      totalTime = hours.toString();       
+      totalTime = hours;       
     }
   } else{
     minutes = parseInt(origTime.split('h')[1].split('min')[0]);
-    console.log('hola ');
-    totalTime = minutes.toString();
+    totalTime = minutes;
   }
-  elem.duration = totalTime;
-  //return arrMoviesNew;
-  return {duration:totalTime };
-  
+  //elem.duration = totalTime;
+  //
+  return Object.assign({}, elem,{duration: totalTime} );
+});
 
+return arrMoviesNew;
   //arrMoviesNew.map(function(elem, i){
     //origTime = elem.duration;
     //console.log('primera' +origTime);
