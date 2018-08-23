@@ -4,32 +4,46 @@
 function turnHoursToMinutes(movies) {
   if (movies.length !== 0) {
     var moviesFormated = movies.map(function(e) {
-      console.log(typeof e.duration);
-      var eSplitted = e.duration.split(" ");
-      var hourToMinutes;
+      var durationSplitted;
+      var duration = e.duration;
+      var clearHours;
+      var clearMinutes;
       var totalDuration;
-      var minutes;
-      if (eSplitted.length === 2) {
-        hourToMinutes = parseInt(eSplitted[0].slice(0, -1)) * 60;
-        minutes = parseInt(eSplitted[1].slice(0, -3));
-        totalDuration = hourToMinutes + minutes;
+      var parseHourInMinutes;
+
+      //if duration has 2 items
+      if (e.duration.indexOf(" ") >= 0) {
+        durationSplitted = e.duration.split(" ");
+        if (durationSplitted.length === 2) {
+          clearHours = durationSplitted[0].slice(0, -1);
+          clearMinutes = durationSplitted[1].slice(0, -3);
+        }
       } else {
-        if (eSplitted[0].indexOf("h")) {
-          hourToMinutes = parseInt(eSplitted[0].slice(0, -1)) * 60;
-          totalDuration = hourToMinutes;
+        if (duration.indexOf("h") >= 0) {
+          clearHours = duration.slice(0, -1);
         } else {
-          minutes = parseInt(eSplitted[1].slice(0, -3));
-          totalDuration = minutes;
+          clearMinutes = duration.slice(0, -3);
+          console.log('MINUTES', clearMinutes);
         }
       }
-      e.duration = totalDuration;
-      return e;
+
+      if (clearHours && clearMinutes) {
+        parseHourInMinutes = parseInt(clearHours) * 60;
+        parseMinutes = parseInt(clearMinutes);
+        totalDuration = parseHourInMinutes + parseMinutes;
+      } else if (clearHours) {
+        totalDuration = parseInt(clearHours) * 60;
+      } else {
+        totalDuration = parseInt(clearMinutes);
+      }
+
+      return Object.assign({}, e, {duration:totalDuration});
     });
   }
   return moviesFormated;
 }
 
-console.log(turnHoursToMinutes(movies));
+//console.log(turnHoursToMinutes(movies));
 
 // Get the average of all rates with 2 decimals
 
