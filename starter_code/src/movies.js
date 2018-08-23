@@ -45,4 +45,20 @@ let steven = movies.filter(stev=> stev.director === "Steven Spielberg");
 // Order by title and print the first 20 titles
 
 
+
+function orderAlphabetically(array){
+    let titles = array.map(i=>i.title)
+    if (array.length <= 20) {
+        for (i = 0; i<array.length; i++) {
+            console.log(titles.sort()[i]);
+        }
+    } else {
+    for (i = 0; i<20; i++) {
+        console.log(titles.sort()[i]);
+    }
+    }
+}
+
+
 // Best yearly rate average
+
