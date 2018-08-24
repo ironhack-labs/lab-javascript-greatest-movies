@@ -86,7 +86,8 @@ function howManyMovies(array){
 
 // Order by title and print the first 20 titles
 function orderAlphabetically(array){
-    
+    movies = []
+
     sortTitle = array.sort(function(a, b) {
         var movieA = a.title.toString()
         var movieB = b.title.toString()
@@ -99,8 +100,13 @@ function orderAlphabetically(array){
             return 0;
         } 
     });
-    sortTitle = sortTitle.splice(0, 20)
-   return sortTitle;
+
+    array.map(function(e){
+        var title =e.title;
+        movies.push(title);
+    });
+
+   return movies.splice(0, 20)
 }
 
 
