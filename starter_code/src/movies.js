@@ -1,11 +1,14 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
+function turnHoursToMinutes(array){
+    
 
+}
 
 // Get the average of all rates with 2 decimals 
 function ratesAverage(array){
     var sum = array.reduce(function(acc, currentValue){
-        return acc + currentValue.rate
+        return acc += currentValue.rate
     }, 0);
     return sum/array.length
 }
@@ -41,37 +44,24 @@ function howManyMovies(array){
             return drama === "Drama";
         });
     });
-    var totalDrama = dramasOfSpielberg.map(function(total){
-        return total.title;
-    })
-    if(totalDrama.length == 1){
-        return "Steven Spielberg directed 1 drama movies!"
-    }
-    else if(totalDrama.length == 2){
-        return "Steven Spielberg directed 2 drama movies!"
-    }
-    else if(totalDrama.length == 3){
-        return "Steven Spielberg directed 3 drama movies!"
-    }
-    else if(totalDrama.length == 4){
-        return "Steven Spielberg directed 4 drama movies!"
-    }
-    else if(!totalDrama){
-        return "Steven Spielberg directed 0 drama movies!"
+    var total = "Steven Spielberg directed " + dramasOfSpielberg.length + " drama movies!"
+    if (!dramasOfSpielberg){
+        "Steven Spielberg directed 0 drama movies!";
     }else{
-        return "Debe haber otra forma de hacer esto que sea automática, pero no se me ocurre"
+        return total;
     }
+    //Me iluminé (ni siquiera recordaba por qué había hecho el map) :D
 };
 
 // Order by title and print the first 20 titles
 function orderAlphabetically(array){
     var movieTitles = array.map(function(titles){
         return titles.title;
-    })
-    var titlesOrdered = movieTitles.sort();
+    }).sort();
     for(var i = 0; i < 20;i++){
-        console.log(titlesOrdered[i]);
+        console.log(movieTitles[i]);
     }
+    //He limpiado un poco el código resumiéndolo en una única variable
 }
 
 // Best yearly rate average
