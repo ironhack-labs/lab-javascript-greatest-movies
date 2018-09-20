@@ -3,16 +3,62 @@
 
 
 // Get the average of all rates with 2 decimals 
-
+function ratesAverage(movieDataBase){
+  var rateReducer = (acumulator,currentValue) => acumulator + currentValue.rate;
+  var sumRate = movieDataBase.reduce(rateReducer, 0);
+  console.log(parseFloat((sumRate/movieDataBase.length).toFixed(2))); 
+  return parseFloat((sumRate/movieDataBase.length).toFixed(2));
+}
 
 // Get the average of Drama Movies
-
+function dramaMoviesRate(movieDataBase) {
+  var dramaMovies = movieDataBase.filter(function(movie) { 
+    var passTest = false;
+    var isDrama = movie.genre.find(item => item === 'Drama');
+    if (isDrama !== undefined){
+       passTest = true;
+    }
+    return passTest;
+  })
+  if (!dramaMovies.length){
+    return undefined
+  }
+  return ratesAverage(dramaMovies);
+}
 
 // Order by time duration, in growing order
-
+function orderByDuration(movieDataBase){
+    var sortedList =  movieDataBase.sort(function(a,b){
+      return parseFloat(a.duration) - parseFloat(b.duration);
+    })
+    var durationComparator = 0;
+    sortedList.forEach(function(movie){
+      // no logre cambiar solo dos objetos de lugar en el array segun el valor de una de sus propiedades
+      if (movie.duration === durationComparator) {
+      }
+    })
+    return sortedList;
+}
 
 // How many movies did STEVEN SPIELBERG
-
+function howManyMovies(movieDataBase) {
+    var spilbergMovies = movieDataBase.filter(name => name.director === 'Steven Spielberg');
+    if (((movieDataBase.find(name => name.director === 'Steven Spielberg')) === undefined) & (movieDataBase.length)) {
+      return 'Steven Spielberg directed 0 drama movies!';
+    } 
+    else if (!spilbergMovies.length)  {
+       return undefined;
+    }
+    var spilbergDramaMovies = spilbergMovies.filter(function(movie) {
+      var passTest = false;
+      var isDrama = movie.genre.find(item => item === 'Drama');
+      if (isDrama !== undefined){
+        passTest = true;
+      }
+      return passTest;
+    })
+return "Steven Spielberg directed " + spilbergDramaMovies.length + " drama movies!";
+}
 
 // Order by title and print the first 20 titles
 
