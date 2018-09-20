@@ -29,14 +29,14 @@ function dramaMoviesRate(movieDataBase) {
 // Order by time duration, in growing order
 function orderByDuration(movieDataBase){
     var sortedList =  movieDataBase.sort(function(a,b){
-      return parseFloat(a.duration) - parseFloat(b.duration);
-    })
-    var durationComparator = 0;
-    sortedList.forEach(function(movie){
-      // no logre cambiar solo dos objetos de lugar en el array segun el valor de una de sus propiedades
-      if (movie.duration === durationComparator) {
+      if (a.duration === b.duration){
+        if (a.title > b.title){
+          return 1
+        }
       }
-    })
+      else {
+        return a.duration - b.duration;
+      }})
     return sortedList;
 }
 
