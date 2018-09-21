@@ -66,10 +66,10 @@ function orderByDuration (array){
   var moviePorMinutos = turnHoursToMinutes(array);
   moviePorMinutos.sort(function(a,b){
     if (a.duration === b.duration){
-      if (a.title<b.title){
-        return a.duration;
+      if (a.title>b.title){
+        return 1;
       }
-      return b.duration;
+      
     }
     return a.duration - b.duration;
   });
