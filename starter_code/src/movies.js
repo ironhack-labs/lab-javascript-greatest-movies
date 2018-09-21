@@ -2,8 +2,43 @@
 // Turn duration of the movies from hours to minutes 
 
 function turnHoursToMinutes(array){
+  
+  var duration = array.map(function(movie){
 
-}
+    var movieCopy = Object.assign({}, movie);
+
+    if (!movieCopy.duration.length){
+      return undefined;
+    }
+    if (movieCopy.duration.indexOf('min') === -1){  
+      //si no hay minutos
+      var durationArray = movieCopy.duration.split();
+      var hoursToMinutes = durationArray[0].split("h")[0] * 60;
+      var totalDuration = Number(hoursToMinutes);
+      
+      movieCopy.duration = totalDuration;
+      return movieCopy;
+
+    } else
+      if (movieCopy.duration.indexOf('h') === -1){ 
+        //si no hay horas
+        var durationArray = movieCopy.duration.split(); 
+        var minutes = durationArray[0].split("min")[0];
+        var totalDuration = Number(minutes);
+        movieCopy.duration = totalDuration;
+        return movieCopy;
+    }
+    //si hay minutos y horas
+    var durationArray = movieCopy.duration.split(" ");
+    var hoursToMinutes = durationArray[0].split("h")[0] * 60;
+    var minutes = durationArray[1].split("min")[0];
+    var totalDuration = Number(hoursToMinutes) + Number(minutes);
+    movieCopy.duration = totalDuration;
+    return movieCopy;
+  })
+  return duration;
+ }
+
 
 // Get the average of all rates with 2 decimals 
 function ratesAverage(array){
@@ -27,7 +62,19 @@ function dramaMoviesRate(array){
 }
 
 // Order by time duration, in growing order
-
+function orderByDuration (array){
+  var moviePorMinutos = turnHoursToMinutes(array);
+  moviePorMinutos.sort(function(a,b){
+    if (a.duration === b.duration){
+      if (a.title<b.title){
+        return a.duration;
+      }
+      return b.duration;
+    }
+    return a.duration - b.duration;
+  });
+  return moviePorMinutos;
+}
 
 // How many movies did STEVEN SPIELBERG
 function dramaMovies(array){
@@ -44,30 +91,17 @@ function dramaMovies(array){
 }
 
 function howManyMovies(array){
-if (!array.length){
-  return undefined;
-}
-var filmDrama = dramaMovies(array);
-var directorSpielberg = filmDrama.filter(function(movie){
-
-  return movie.director === 'Steven Spielberg';
+  if (!array.length){
+    return undefined;
+  }
+  var filmDrama = dramaMovies(array);
+  var directorSpielberg = filmDrama.filter(function(movie){
+    return movie.director === 'Steven Spielberg';
   });
-  if(!directorSpielberg.length){
-    return "Steven Spielberg directed 0 drama movies!";
-  } 
-  if (directorSpielberg.length === 1){
-    return "Steven Spielberg directed 1 drama movies!";
-  }
-  if (directorSpielberg.length === 2){
-    return "Steven Spielberg directed 2 drama movies!";
-  }
-  if (directorSpielberg.length === 4){
-    return "Steven Spielberg directed 4 drama movies!";
-  }
-  return directorSpielberg.length.toString();
+
+  return  "Steven Spielberg directed " + directorSpielberg.length + " drama movies!"
+
 }
-
-
 // Order by title and print the first 20 titles
 function orderAlphabetically(array){
   var filmTitles = [];
