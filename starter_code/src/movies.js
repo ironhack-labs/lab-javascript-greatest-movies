@@ -61,6 +61,54 @@ return "Steven Spielberg directed " + spilbergDramaMovies.length + " drama movie
 }
 
 // Order by title and print the first 20 titles
-
+function orderAlphabetically (movieDataBase) {
+  var top20Movies;
+  movieDataBase.sort(function(a,b){
+    var titleA = a.title.toUpperCase();
+    var titleB = b.title.toUpperCase();
+    if (titleA < titleB) {
+      return -1;
+    }
+    if (titleB < titleA) {
+      return 1;
+    }
+    return 0;
+  })
+  top20Movies = movieDataBase.map(function(movie){
+    return movie.title;
+  })
+  if (movieDataBase.length > 20){
+    top20Movies = top20Movies.filter(function(movie, index){
+      while (index < 20){
+        return true;    
+      } 
+    }) 
+  }
+  return top20Movies;
+}
 
 // Best yearly rate average
+function bestYearAvg(movieDataBase) {
+  var yearsMovies = {};
+  var highestRates = 0;
+  var highestYear = 0;
+  if (!movieDataBase.length){
+    return undefined;
+  }
+  movieDataBase.forEach(function(movie) {
+    if (!yearsMovies[movie.year]) {
+      yearsMovies[movie.year] = [];
+    }
+    yearsMovies[movie.year].push(movie);
+  })
+  for (years in yearsMovies) {
+    yearsMovies[years] = ratesAverage(yearsMovies[years]);
+  }
+  for (years in yearsMovies) {
+    if (yearsMovies[years] > highestRates){
+      highestRates = yearsMovies[years];
+      highestYear = years;
+    }
+  }
+ return ('The best year was ' + highestYear + ' with an average rate of ' + highestRates); 
+}
