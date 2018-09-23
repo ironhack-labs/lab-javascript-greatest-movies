@@ -1,7 +1,7 @@
 /* eslint no-undef: "off" */
 /* eslint jasmine/no-spec-dupes: "off" */
-
-/*describe('Turn duration of the movies - turnHoursToMinutes', function () {
+/*
+describe('Turn duration of the movies - turnHoursToMinutes', function () {
   it('Defines turnHoursToMinutes', function () {
     expect(typeof turnHoursToMinutes).toBe('function');
   });
@@ -42,7 +42,7 @@
     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(54);
   });
 });
-*/
+
 describe('Get the average rate - ratesAverage', function () {
   it('Defines ratesAverage', function () {
     expect(typeof ratesAverage).toBe('function');
@@ -219,7 +219,7 @@ describe('Order alphabetically - orderAlphabetically', function () {
     expect(orderAlphabetically(moviesArr)).toEqual(['aaa', 'aab', 'acb', 'acs', 'afb', 'agb', 'anc', 'apo', 'bab', 'bbb', 'bbt', 'bca', 'bvc', 'ccc', 'cdf', 'era', 'ert', 'frt', 'gda', 'gha']);
   });
 });
-
+*/
 describe('Best year average - bestYearAvg', function () {
   it('Defines bestYearAvg', function () {
     expect(typeof bestYearAvg).toBe('function');
