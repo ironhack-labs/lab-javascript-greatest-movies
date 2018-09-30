@@ -55,11 +55,9 @@ function dramaMoviesRate(moviesArray) {
 // Order by time duration, in growing order
 function orderByDuration(moviesArray) {
   var moviesArrInMinString = turnHoursToMinutes(moviesArray);
-  var moviesArrInMinInt = moviesArrInMinString.map(function(movie) {
-    return { duration: parseInt(movie.duration()) };
-  });
 
-  moviesArrInMinInt.sort(function(a, b) {
+
+  moviesArrInMinString.sort(function(a, b) {
     return a.duration - b.duration;
   });
 }
