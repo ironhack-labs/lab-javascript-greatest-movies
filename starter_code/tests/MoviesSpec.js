@@ -78,10 +78,6 @@ describe('Average rate of Drama Movies - dramaMoviesRate', function () {
     expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }])).toBe(8);
   });
 
-  it('Return Average even if one of the movies does not have rate!', function () {
-    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Drama'], rate: '' }])).toBe(4);
-  });
-
   it('It should return the average of the array!', function () {
     expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Drama'], rate: 9 }, { genre: ['Drama'], rate: 7 }])).toBe(8);
   });
