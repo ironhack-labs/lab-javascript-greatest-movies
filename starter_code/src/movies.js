@@ -7,7 +7,23 @@ function turnHoursToMinutes(moviesArray) {
       title: movie.title,
       year: movie.year,
       director: movie.director,
-      duration: convertToMinutes(movie.duration),
+      duration: convertToMinutes(movie.duration),      
+      genre: movie.genre,
+      rate: movie.rate
+    };
+    return newMovieObject;
+  });
+  return minutesConverted;
+}
+
+function turnHoursToMinutesArray(moviesArray) {
+  if (moviesArray.length === 0) return undefined;
+  var minutesConverted = moviesArray.map(movie => {
+    var newMovieObject = {
+      title: movie.title,
+      year: movie.year,
+      director: movie.director,
+      duration: [convertToMinutes(movie.duration)],      
       genre: movie.genre,
       rate: movie.rate
     };
@@ -18,15 +34,18 @@ function turnHoursToMinutes(moviesArray) {
 
 function convertToMinutes(stringDuration) {
   var minutes = 0;
-  if (stringDuration.length === 3) {
-    return (minutes += parseInt(stringDuration[0]) * 60);
+  var hours = 0;
+  if (stringDuration.includes ("h")) {
+    hours = parseInt(stringDuration[0]);
   }
-  if (stringDuration.length === 5) {
-    return parseInt(stringDuration[0] + stringDuration[1]);
-  }
-  return (minutes +=
-    parseInt(stringDuration[0]) * 60 +
-    parseInt(stringDuration[3] + stringDuration[4]));
+  if (stringDuration.includes("min")) {
+    minutes = parseInt(stringDuration.substring(
+          stringDuration.length - 5,
+          stringDuration.length - 3
+        ),
+        10
+      )};
+  return (hours * 60) + minutes;
 }
 // Get the average of all rates with 2 decimals
 function ratesAverage(moviesArray) {
@@ -91,3 +110,34 @@ function orderAlphabetically(moviesArray) {
     });
 }
 // Best yearly rate average
+
+
+function bestYearAvg(moviesArray) {
+  var bestYear = 0
+  var maxRate = 0;
+  var totalOfTheYear;
+  var numberOfFilms;
+  var avgOfTheYear;
+
+  if (moviesArray.length === 0) return undefined;
+
+  for (let year = 1900; year < 2019; year++) {
+    numberOfFilms = 0;
+    totalOfTheYear = 0;
+    avgOfTheYear = 0;
+
+    moviesArray.forEach(element => {
+      if (parseInt(element.year) === year) {
+        totalOfTheYear += element.rate;
+        numberOfFilms++;
+      }      
+    });
+    avgOfTheYear = (totalOfTheYear / numberOfFilms);
+
+    if (avgOfTheYear > maxRate) {
+      maxRate = avgOfTheYear;
+      bestYear = year
+  }
+}
+return "The best year was " + bestYear + " with an average rate of " + maxRate;
+}
