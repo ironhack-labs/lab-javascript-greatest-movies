@@ -1,47 +1,42 @@
 /* eslint no-undef: "off" */
 /* eslint jasmine/no-spec-dupes: "off" */
 
-describe('Turn duration of the movies - turnHoursToMinutes', function () {
-  it('Defines turnHoursToMinutes', function () {
-    expect(typeof turnHoursToMinutes).toBe('function');
+describe('Get summary - getSummary', function () {
+  it('Defines getSummary', function () {
+    expect(typeof getSummary).toBe('function');
   });
 
   it('Should return an array', function () {
-    expect(typeof turnHoursToMinutes(movies)).toBe('object');
+    expect(Array.isArray(getSummary(movies))).toBe(true);
   });
 
   it('Should return a new array, not update the original one', function () {
-    expect(turnHoursToMinutes(movies)).not.toEqual(movies);
+    expect(getSummary(movies)).not.toEqual(movies);
   });
 
-  it('The duration of the movie should be a number', function () {
-    expect(typeof turnHoursToMinutes(movies)[0].duration).toBe('number');
+  it('Should return an array of strings', function () {
+    expect(typeof getSummary(movies)[0]).toBe('string');
   });
 
-  it('The duration of the movie should return the correct number to a short movie - 31 minutes', function () {
-    var movieTry = [{ duration: '0h 31min' }];
+  it('Test with a simple movie', function () {
+    var movieTry = [{
+      title: 'Ironman',
+      director: 'Jon Favreau',
+      year: '2008'
+    }];
 
-    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(31);
+    expect(getSummary(movieTry)[0]).toBe("Ironman by Jon Favreau (2008)");
   });
 
-  it('The duration of the movie should return the correct number for really long movie - 341 minutes', function () {
-    var movieTry = [{ duration: '5h 41min' }];
-
-    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(341);
+  it('Test with the first movie', function () {
+    expect(getSummary(movies)[0]).toBe("The Shawshank Redemption by Frank Darabont (1994)");
   });
-
-  it('It should return the correct number when the duration is only in hours', function () {
-    var movieTry = [{ duration: '2h' }];
-
-    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(120);
-  });
-
-  it('It should return the correct number when the duration is only in minutes', function () {
-    var movieTry = [{ duration: '54min' }];
-
-    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(54);
+  
+  it('Test with the last movie', function () {
+    expect(getSummary(movies)[249]).toBe("Dead Poets Society by Peter Weir (1989)");
   });
 });
+
 
 describe('Get the average rate - ratesAverage', function () {
   it('Defines ratesAverage', function () {
@@ -64,6 +59,7 @@ describe('Get the average rate - ratesAverage', function () {
     expect(ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }])).toBeCloseTo(8.67, 2);
   });
 });
+
 
 describe('Average rate of Drama Movies - dramaMoviesRate', function () {
   it('Defines dramaMoviesRate', function () {
@@ -99,13 +95,14 @@ describe('Average rate of Drama Movies - dramaMoviesRate', function () {
   });
 });
 
+
 describe('Order the movies by duration - orderByDuration', function () {
   it('Defines orderByDuration', function () {
     expect(typeof orderByDuration).toBe('function');
   });
 
   it('Should return an array', function () {
-    expect(typeof orderByDuration(movies)).toBe('object');
+    expect(Array.isArray(orderByDuration(movies))).toBe(true);
   });
 
   it('Should return the element in a single element array', function () {
@@ -120,6 +117,7 @@ describe('Order the movies by duration - orderByDuration', function () {
     expect(orderByDuration([{ title: 'abc', duration: 180 }, { title: 'bac', duration: 90 }, { title: 'aab', duration: 90 }])).toEqual([{ title: 'aab', duration: 90 }, { title: 'bac', duration: 90 }, { title: 'abc', duration: 180 }]);
   });
 });
+
 
 describe('Get how many movies - howManyMovies', function () {
   it('Defines howManyMovies', function () {
@@ -182,13 +180,14 @@ describe('Get how many movies - howManyMovies', function () {
   });
 });
 
+
 describe('Order alphabetically - orderAlphabetically', function () {
   it('Defines orderAlphabetically', function () {
     expect(typeof orderAlphabetically).toBe('function');
   });
 
   it('You should return an array', function () {
-    expect(typeof orderAlphabetically([])).toBe('object');
+    expect(Array.isArray(orderAlphabetically([]))).toBe(true);
   });
 
   it('Only return the title of the movies! Each element should be a string', function () {
@@ -219,6 +218,50 @@ describe('Order alphabetically - orderAlphabetically', function () {
     expect(orderAlphabetically(moviesArr)).toEqual(['aaa', 'aab', 'acb', 'acs', 'afb', 'agb', 'anc', 'apo', 'bab', 'bbb', 'bbt', 'bca', 'bvc', 'ccc', 'cdf', 'era', 'ert', 'frt', 'gda', 'gha']);
   });
 });
+
+
+describe('Turn duration of the movies - turnHoursToMinutes', function () {
+  it('Defines turnHoursToMinutes', function () {
+    expect(typeof turnHoursToMinutes).toBe('function');
+  });
+
+  it('Should return an array', function () {
+    expect(Array.isArray(turnHoursToMinutes(movies))).toBe(true);
+  });
+
+  it('Should return a new array, not update the original one', function () {
+    expect(turnHoursToMinutes(movies)).not.toEqual(movies);
+  });
+
+  it('The duration of the movie should be a number', function () {
+    expect(typeof turnHoursToMinutes(movies)[0].duration).toBe('number');
+  });
+
+  it('The duration of the movie should return the correct number to a short movie - 31 minutes', function () {
+    var movieTry = [{ duration: '0h 31min' }];
+
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(31);
+  });
+
+  it('The duration of the movie should return the correct number for really long movie - 341 minutes', function () {
+    var movieTry = [{ duration: '5h 41min' }];
+
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(341);
+  });
+
+  it('It should return the correct number when the duration is only in hours', function () {
+    var movieTry = [{ duration: '2h' }];
+
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(120);
+  });
+
+  it('It should return the correct number when the duration has only 1 digit for min', function () {
+    var movieTry = [{ duration: '2h 5min' }];
+
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(125);
+  });
+});
+
 
 describe('Best year average - bestYearAvg', function () {
   it('Defines bestYearAvg', function () {

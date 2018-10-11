@@ -1,5 +1,6 @@
 /* eslint no-restricted-globals: 'off' */
-// Turn duration of the movies from hours to minutes 
+
+// Get summary - getSummary
 
 
 // Get the average of all rates with 2 decimals 
@@ -15,6 +16,13 @@
 
 
 // Order by title and print the first 20 titles
+
+
+
+
+// ----- BONUS -----
+
+// Turn duration of the movies from hours to minutes 
 
 
 // Best yearly rate average
