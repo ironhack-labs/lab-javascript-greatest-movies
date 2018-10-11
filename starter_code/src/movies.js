@@ -2080,7 +2080,7 @@ const myMovies =  [
 {
   title: 'Dog Day Afternoon',
   year: '1975',
-  director: 'Sidney Lumet',
+  director: 'Steven Spielberg',
   duration: '2h 5min',
   genre: ['Biography', 'Crime', 'Drama', 'Thriller'],
   rate: '8.0'
@@ -2096,41 +2096,103 @@ const myMovies =  [
 ];
 
 function orderByDuration(movies) {
-  let moviesInMinutes = turnHoursToMinutes(movies);
-  moviesInMinutes = moviesInMinutes.sort((a, b) => a.duration - b.duration);
 
-  moviesInMinutes = moviesInMinutes.sort((a,b) => {
-    if (a.duration === b.duration) {
-      if(a.title > b.title) {
-        return -1;
+  let moviesWithMinutes = turnHoursToMinutes(movies)
+    .sort((a,b)=>{
+
+
+      if (a.duration === b.duration) { 
+        return a.title > b.title ? 1 : -1;
+
       }
-    }
-  });
-  return moviesInMinutes;
+      
+
+
+      return b.duration - a.duration;
+    });
+
+  // movies with minutes
+  // sort by minutes
+
+
+  return moviesWithMinutes;
+
 }
 
-// console.log(orderByDuration(movies));
+console.log(orderByDuration(movies));
 
 
 // How many movies did STEVEN SPIELBERG
 
 function howManyMovies(movies) {
-  const answer = movies.reduce((acc, movie)=>{
-    if (movie.director === 'Steven Spielberg') {
-      return acc++;
-    }
-    return acc;
-  }, 0);
+  if (movies.length === 0)
+  return undefined;
 
-  console.log(answer);
+  let movieCount = movies.filter(obj => obj.director === 'Steven Spielberg')
+  .filter(obj => obj.genre.includes('Drama'));
 
-  return answer;
+
+  return `Steven Spielberg directed ${movieCount.length} drama movies!`
+
 }
 
-console.log(howManyMovies(movies));
+// console.log(howManyMovies(movies));
 
 
 // Order by title and print the first 20 titles
 
+function orderAlphabetically(array) {
+
+  const orderedMovies = array.map(obj => obj.title)
+    .sort().slice(0, 20);
+
+  return orderedMovies;
+
+
+}
+
+// console.log(orderAlphabetically(movies));
+
 
 // Best yearly rate average
+
+function bestYearAvg(movies) {
+
+  if (movies.length === 0)
+    return undefined;
+
+  if (movies.length === 1) {
+    return movies[0].year;
+  }  
+
+  let moviesObj = {};
+
+
+  movies.forEach(movie => {
+    if (movie.year in moviesObj)
+      moviesObj[movie.year].push(movie);
+    else
+      moviesObj[movie.year] = [movie];
+
+  });
+
+
+  let array = [];
+
+  for (key in moviesObj) {
+    moviesObj[key] = ratesAverage(moviesObj[key]);
+    array.push([key, moviesObj[key]])
+  }
+
+  array.sort((a,b) => b[1] - a[1]);
+
+
+
+  return array[0][0];
+
+
+}
+
+
+console.log(bestYearAvg(movies));
+
