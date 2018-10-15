@@ -36,6 +36,8 @@ function turnHoursToMinutes (array){
     
 // Get the average of all rates with 2 decimals 
 function createAvg(array) {
+    // console.log("==============")
+    // console.log("from the createAVG function:", array);
     if(!!array === false){
       return undefined;
     }
@@ -48,29 +50,29 @@ function ratesAverage(array) {
     if(array[0] === undefined){
         return undefined;
     }
-    return parseFloat((array.reduce(function(acc, n){
-        return (acc + Number(n));
+    var dramaRates = parseFloat((array.reduce(function(acc, n){
+        // console.log("=====================================")
+        // // console.log("from the ratesAverage function:", array);
+        // console.log("acc:", acc);
+        // console.log("n.rate:", n.rate);
+        if (n.rate === undefined) 
+            return acc + n;
+        else if (typeof n.rate === "string") {
+            return acc + Number(n.rate)
+        } else
+            return acc + n.rate;
     }, 0)/array.length).toFixed(2));
+    return dramaRates;
 };
-
-// function ratesAverage(array) {
-//     if(array[0] === undefined){
-//       return undefined;
-//     }
-//     var num = (array.reduce(function(acc, n){
-//         return (acc + n);
-//     },0)/array.length).toFixed(2);
-//     return parseFloat(num);
-// };
 
 // Get the average of Drama Movies
 function dramaMoviesRate(array) {
-    return ratesAverage(createAvg(array.filter(function(item) {
-      if (!(item.genre.includes('Drama'))){
-          return undefined;
-        }
-        return item.genre.includes('Drama');
-      })));
+    let dramaArr = array.filter(function(movie) {
+      return movie.genre.includes("Drama");
+    });
+    if (dramaArr.length > 0) {
+      return ratesAverage(dramaArr);
+    }
   };
   
   dramaMoviesRate(movies);
