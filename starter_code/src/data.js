@@ -2000,3 +2000,119 @@ var movies = [
     rate: '8.0'
   }
 ];
+
+var minutes = movies.map(function(item) {
+  item.duration = item.duration.slice(0, 1)
+
+});
+
+function turnHoursToMinutes(moviesList) {
+  let newList = [];
+
+  moviesList.forEach(movie => {
+    let newMovie = {
+      ...movie
+    };
+
+    let duration = movie.duration.split(" ");
+    //Turns into number and reset it.
+    newMovie.duration = 0;
+
+    if (duration === null) {
+      minutes = 0;
+    }
+    //If it only has hours
+    else if (duration[0].includes('h') && duration.length === 1) {
+      newMovie.duration += parseInt(duration[0]) * 60;
+    }
+    //More than 1 hour and also has minutes
+    else if (duration.length > 1) {
+      newMovie.duration += parseInt(duration[0]) * 60 + parseInt(duration[1]);
+    }
+    //Less than 1 hour and only has minutes
+    else {
+      newMovie.duration += parseInt(duration[0]);
+    }
+
+    newList.push(newMovie);
+  });
+  return newList;
+}
+
+/*
+
+function turnHoursToMinutes(arr) {
+  let newArray = arr.slice(0, arr.length-1);
+  newArray.map(function(item){
+    let arrDuration = item.duration.split(' ');
+    if (arrDuration === null) item.duration = 0;
+
+  })
+
+  let newArray = arr.map(function(item) {
+   var arrDuration = item.duration.split(' ');
+    return arrDuration.map(function(time) {
+      var duration; 
+      if(time.length === 1) {
+        duration = parseInt(time[0] * 60);
+        // console.log(duration);
+      }
+      else {
+        duration = parseInt(item[0] * 60) + parseInt(item[1]);
+        // console.log(duration);
+      }
+      return duration;
+    }); 
+    
+  });
+  return newArray;
+};
+turnHoursToMinutes(movies);
+*/ 
+
+function ratesAverage(arr) {
+  var sum = arr.reduce(function(a, b) {
+    return a + parseFloat(b.rate);
+  }, 0)
+  var rounded = Math.round((sum / arr.length) * 100) / 100;
+  return rounded;
+};
+
+
+
+function dramaMoviesRate(arr) {
+  var drama = arr.filter(function(a) {
+    return a.genre.includes('Drama');    
+  })
+  console.log(drama);
+  return ratesAverage(drama);
+};
+console.log(dramaMoviesRate(movies));
+
+function howManyMovies(array) {
+  if(array.length === 0) return;
+  var steve = array.filter(function(item) {
+
+    return item.director === "Steven Spielberg" && item.genre.includes('Drama');
+
+  });
+  if(steve.length === 0) {
+    return  "Steven Spielberg directed 0 drama movies!";
+
+  }
+  else {
+  return "Steven Spielberg directed " + steve.length + " drama movies!";
+}
+}
+console.log(howManyMovies(movies));
+
+function orderAlphabetically(array) {
+  var alphabet = array.map(function(item) {
+    return item.title;
+  //var first20 = alphabet.slice(0, 20);
+  //return first20.title;
+  });
+
+  return alphabet.sort().slice(0, 20);
+};
+console.log(orderAlphabetically(movies));
