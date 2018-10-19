@@ -2001,10 +2001,10 @@ var movies = [
   }
 ];
 
-var minutes = movies.map(function(item) {
+/* var minutes = movies.map(function(item) {
   item.duration = item.duration.slice(0, 1)
 
-});
+}); */
 
 function turnHoursToMinutes(moviesList) {
   let newList = [];
@@ -2068,10 +2068,11 @@ function turnHoursToMinutes(arr) {
   return newArray;
 };
 turnHoursToMinutes(movies);
-*/ 
+*/
 
 function ratesAverage(arr) {
-  var sum = arr.reduce(function(a, b) {
+  var sum = arr.reduce(function (a, b) {
+    if (!b.rate) return a + 0;
     return a + parseFloat(b.rate);
   }, 0)
   var rounded = Math.round((sum / arr.length) * 100) / 100;
@@ -2081,38 +2082,133 @@ function ratesAverage(arr) {
 
 
 function dramaMoviesRate(arr) {
-  var drama = arr.filter(function(a) {
-    return a.genre.includes('Drama');    
+  var drama = arr.filter(function (a) {
+    if (!a.genre.includes('Drama')) return;
+    return a.genre.includes('Drama');
   })
-  console.log(drama);
+  // console.log(drama);
+  if (drama.length === 0) return;
   return ratesAverage(drama);
 };
 console.log(dramaMoviesRate(movies));
 
 function howManyMovies(array) {
-  if(array.length === 0) return;
-  var steve = array.filter(function(item) {
+  if (array.length === 0) return;
+  var steve = array.filter(function (item) {
 
     return item.director === "Steven Spielberg" && item.genre.includes('Drama');
 
   });
-  if(steve.length === 0) {
-    return  "Steven Spielberg directed 0 drama movies!";
+  if (steve.length === 0) {
+    return "Steven Spielberg directed 0 drama movies!";
 
   }
   else {
-  return "Steven Spielberg directed " + steve.length + " drama movies!";
-}
+    return "Steven Spielberg directed " + steve.length + " drama movies!";
+  }
 }
 console.log(howManyMovies(movies));
 
 function orderAlphabetically(array) {
-  var alphabet = array.map(function(item) {
+  var alphabet = array.map(function (item) {
     return item.title;
-  //var first20 = alphabet.slice(0, 20);
-  //return first20.title;
+    //var first20 = alphabet.slice(0, 20);
+    //return first20.title;
   });
 
   return alphabet.sort().slice(0, 20);
 };
 console.log(orderAlphabetically(movies));
+
+function orderByDuration(arr) {
+  console.log(arr);
+  let durationOrder = turnHoursToMinutes(arr);
+  //console.log(durationOrder);
+  //console.log(durationOrder.duration);
+  durationOrder.sort(function (a, b) {
+    if (b.duration === a.duration) {
+      if (b.title > a.title) return -1;
+      else if (a.title < b.title) return 1;
+      else return 0;
+    }
+    return b.duration - a.duration;
+  });
+  //console.log(durationOrder);
+  return durationOrder;
+}
+
+orderByDuration(movies);
+
+let bestYearAvg = (arr) => {
+  if(arr.length===0)return;
+//console.log(arr.length);
+  let yearExecuted = [];
+  let yearMaxAvg = {
+    year:'',
+    avg:0,
+  };
+
+  arr.forEach((movie, movieIndex) => {
+    
+    if (!yearExecuted.includes(movie.year)){
+      yearExecuted.push(movie.year);
+      let sum = parseFloat(movie.rate);
+      let count = 0;
+      for(let i = movieIndex+1 ; i < arr.length ;i += 1){
+        if (arr[i].year === movie.year){
+          sum += parseFloat(arr[i].rate);
+          count += 1;
+          console.log('mulhermaravilhaaaaaaaaa' , count , sum , movie.year);  
+        }
+      }
+      if((sum/count) > yearMaxAvg.avg){
+        yearMaxAvg.avg = (sum/count);
+        yearMaxAvg.year = movie.year;
+      }
+      else if((sum/count) === yearMaxAvg.avg){
+        if (parseInt(yearMaxAvg.year) > parseInt(movie.year)){
+          yearMaxAvg.avg = (sum/count);
+          yearMaxAvg.year = movie.year;
+        }
+      }
+    }
+  });
+  return yearMaxAvg.year;
+}
+
+console.log(bestYearAvg(movies));
+
+    // if (yearMovies.length === 0) {
+    //   yearMovies.push({
+    //     year: movie.year,
+    //     sumRate: parseFloat(movie.rate),
+    //     count: 1,
+    //   });
+    //   console.log('batmaaaaaaan' ,yearMovies);
+    // }
+    // else {
+    //   yearMovies.forEach((pelicula) => {
+    //     if (pelicula.year === movie.year) {
+    //       pelicula.sumRate += parseFloat(movie.rate);
+    //       pelicula.count += 1;
+    //       console.log('robinnnnnnnnnn' , yearMovies);
+    //     }
+        // else {
+        //   yearMovies.push({
+        //     year: movie.year,
+        //     sumRate: movie.rate,
+        //     count: 1,
+        //   });
+        //   console.log(yearMovies);
+        // }
+//       });
+//     }
+//   });
+// }
+
+
+
+
+
+
+console.log(bestYearAvg(movies));
