@@ -1,18 +1,20 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
 
-/* function turnHoursintoMinutes (movieArray) {
+function turnHoursToMinutes (movieArray) {
     var newMovieArray = movieArray.map(function(elem) {
-      var hours=0,minutes=0
-      //console.log(elem);
-      if (elem.duration.indexOf("h")>=0) hours=Number(elem.duration.split(" ")[0].replace("h",""));
-      if (elem.duration.indexOf("min")>=0)  minutes=Number(elem.duration.split(" ")[1].replace("min",""));
+      var arr = elem.duration.toString().split('h');    
+      if (arr.length < 2) {
+          arr.unshift("0");        
+      }    
+      var hours = Number(arr[0]);
+      var minutes = Number(arr[1].toString().split("min")[0]);
       elem.duration=hours*60+minutes;
-    return elem;
+      return elem;
   })
-
+return newMovieArray.reverse();
 }
-console.log(turnHoursintoMinutes(movies)); */
+// console.log(turnHoursToMinutes(movies));
 
 
 // Get the average of all rates with 2 decimals 
@@ -23,20 +25,21 @@ function ratesAverage(movieArray) {
   },0)/movieArray.length*100)/100;
 }
 
-console.log(ratesAverage(movies));
+// console.log(ratesAverage(movies));
 
 // Get the average of Drama Movies
 
 function dramaMoviesRate (movieArray) {
-  var dramaMovies=movies.filter(function(elem){
+  var dramaMovies=movieArray.filter(function(elem){
     //if (elem.genre.indexOf("Drama")>=0) console.log(elem.genre);
     return elem.genre.indexOf("Drama")>=0;
   });
-  console.log(dramaMovies);
+  console.log(dramaMovies.length);
+  if (dramaMovies.length===0) return undefined;
   return ratesAverage(dramaMovies);
 }
 
-dramaMoviesRate(movies);
+console.log(dramaMoviesRate(movies));
 
 
 // Order by time duration, in growing order
