@@ -17,6 +17,20 @@
 
 //       return minutes;
 
+// function turnHoursToMinutes(moviesArr) {
+//     var resultArr = moviesArr.map(function(movie) {
+//         var obj = {
+//             title: el.title,
+//             year: el.year,
+//             director: el.directork
+//             duration: stringToMinutes(el.duration),
+//             genre
+//         }
+//             return obj
+//     }
+
+// }
+
 // Get the average of all rates with 2 decimals
 function ratesAverage(arr) {
   var sum = arr.reduce(function(acc, movie) {
@@ -28,10 +42,18 @@ function ratesAverage(arr) {
 console.log(ratesAverage(movies));
 
 // Get the average of Drama Movies
+//go into each object on the string and check if the key genre contains drama (filter)
+//if  then apply ratesAverage function
 
-//function dramaMovieRate(arr) {
-
-//}
+function dramaMoviesRate(arr) {
+  var newArr = arr.filter(function(elem) {
+    return elem.genre.includes("Drama");
+  });
+  if (newArr.length === 0) {
+    return undefined;
+  }
+  return ratesAverage(newArr);
+}
 
 // Order by time duration, in growing order
 
