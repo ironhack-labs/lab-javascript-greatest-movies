@@ -1,23 +1,26 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(string) {
+function stringToMinutes(string) {
   var arr = string.split("h");
   if (arr.length < 2) {
     arr.unshift("0");
-  var hours = Number(arr[0]);
-  var minutes = Number(arr[1].split("min")[0]);
+    var hours = Number(arr[0]);
+    var minutes = Number(arr[1].split("min")[0]);
 
-  return hours * 60 + minutes;
-};
+    return hours * 60 + minutes;
+  }
+}
 
+function turnHoursToMinutes(array) {
   var result = array.map(function(movie) {
-    
+    var obj = {
       title: movie.title,
       year: movie.year,
       director: movie.director,
-      duration: turnHoursToMinutes(movie.duration),
+      duration: stringToMinutes(movie.duration),
       genre: movie.genre,
       rate: movie.rate
+    };
   });
   return result;
 }
