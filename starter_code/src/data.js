@@ -1994,9 +1994,10 @@ var movies = [
   {
     title: 'Dead Poets Society',
     year: '1989',
-    director: 'Peter Weir',
     duration: '2h 8min',
+    director: 'Peter Weir',
+    rate: '8.0',
     genre: ['Comedy', 'Drama'],
-    rate: '8.0'
   }
 ];
+
