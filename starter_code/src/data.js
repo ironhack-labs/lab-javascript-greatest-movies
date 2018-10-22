@@ -2000,3 +2000,71 @@ var movies = [
     rate: '8.0'
   }
 ];
+
+// Turning hours to minutes
+var turnHoursToMinutes = movies.map(function(element){
+  var arr = element.duration.split('h');    
+  if (arr.length < 2) {
+    arr.unshift("0")        
+  }    
+var hours = Number(arr[0]);
+var minutes = Number(arr[1].split("min")[0]);
+
+return {
+  name: element.title,
+  year: element.year,
+  director: element.director,
+  duration: hours*60+minutes,
+  genre: element.genre,
+  rate: element.rate
+  }
+});
+
+console.log(turnHoursToMinutes);
+
+
+//Average Rating
+var movieRates = movies.map(function(element) {
+  return parseFloat(element.rate);
+})
+
+console.log(movieRates)
+
+var ratesSum = movieRates.reduce(function(sum, movieRates){
+  return sum += movieRates;
+}, 0);
+
+console.log(ratesSum)
+
+var ratesAverage = ratesSum / movieRates.length;
+console.log(ratesAverage)
+
+//Drama Movies
+
+var dramaMovies= movies.filter(function(elemt){
+  if(elemt.genre.includes('Drama') === true){
+    return elemt;
+  }
+});
+
+var dramaMoviesNumbers= dramaMovies.map(function(element) {
+  return parseFloat(element.rate);
+})
+console.log(dramaMoviesNumbers)
+
+
+var dramaMoviesSum = dramaMoviesNumbers.reduce(function(sum, dramaMoviesNumbers){
+    return sum += dramaMoviesNumbers;
+})
+console.log(dramaMoviesSum)
+
+
+var dramaMoviesRate = dramaMoviesSum / dramaMoviesNumbers.length
+console.log(dramaMoviesRate)
+
+
+//Sort by duration
+var orderByDuration = turnHoursToMinutes.sort(function(a, b) {
+  return a.duration - b.duration;
+});
+console.log(orderByDuration)
