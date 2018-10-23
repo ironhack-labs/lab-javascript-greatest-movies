@@ -2003,7 +2003,7 @@ var movies = [
 
 
 
-// ITERATION 1
+//// ITERATION 1
 function turnHoursToMinutes(array){
   return array.map(function(element){
     var movie = Object.assign({}, element);
@@ -2017,12 +2017,12 @@ function turnHoursToMinutes(array){
     movie.duration = duration;    
     return movie;
   }); 
-
 } 
 console.log(turnHoursToMinutes(movies));
 
 
-////ITERATION 2 AVERAGE RATE
+
+//ITERATION 2 AVERAGE RATE
 function ratesAverage(array){
   return (array.reduce(function(acc, curr){    
     return Number(acc + Number(curr.rate));
@@ -2031,7 +2031,7 @@ function ratesAverage(array){
 console.log(ratesAverage(movies));
 
 
-////ITERATION 3 RE-USE ANOTHER FUNCTION
+//ITERATION 3 RE-USE ANOTHER FUNCTION
 function dramaMoviesRate(array){
   var arrayDrama =  array.filter(function(elem){    
     return elem.genre.indexOf('Drama') !== -1;
@@ -2040,12 +2040,13 @@ function dramaMoviesRate(array){
 }
 console.log(dramaMoviesRate(movies));
 
-///ITERATION 3 LO PONGO DETRAS PERO SI TENGO FUNCIONES SEPARADAS
+
+//ITERATION 3 SEPARATED FUNCTIONS
 function dramaMoviesRate2(array){
   var arrayDrama =  array.filter(function(el){
     return el.genre.indexOf('Drama') !== -1;
   });
-
+  
   return (arrayDrama.reduce(function(acc, curr){
     return acc + Number(curr.rate);
   }, 0) / arrayDrama.length).toFixed(2);
@@ -2053,7 +2054,7 @@ function dramaMoviesRate2(array){
 console.log(dramaMoviesRate2(movies));
 
 
-///ITERATION 3 LO HAGO TODO JUNTO PERO HASTA QUE NO TERMINE EL BUCLE NO HAGO LA DIVISION POR ESO EL IF
+///ITERATION 3 WHEN IS THE LAST ITEM
 function dramaMoviesRate3(array){
   return array.filter(function(elem, index){     
     return elem.genre.indexOf('Drama') !== -1;
@@ -2067,6 +2068,7 @@ function dramaMoviesRate3(array){
 }
 console.log(dramaMoviesRate3(movies));
 
+
 //// ITERATION 4 ORDER BY DURATION
 function orderByDuration(movies){  
   return movies.sort(function(item1, item2){
@@ -2075,7 +2077,7 @@ function orderByDuration(movies){
 }
 console.log(orderByDuration(turnHoursToMinutes(movies)));
 
-////ITERATION 5 Steven Spielberg
+//ITERATION 5 Steven Spielberg
 function howManyMovies(array){
   return array.filter(function(elem){
     return elem.director.indexOf('Steven Spielberg') !== -1 && elem.genre.indexOf('Drama') !== -1;
@@ -2083,9 +2085,9 @@ function howManyMovies(array){
 }
 console.log(howManyMovies(movies));
 
-///ITERATION 6 Order alphabetically
+//ITERATION 6 Order alphabetically
 function orderAlphabetically(array){
- var moviesArr =  array.map(function(movies) {
+  var moviesArr =  array.map(function(movies) {
     return movies;
   }).sort(function(first, second){
     return first.title > second.title;
@@ -2093,3 +2095,5 @@ function orderAlphabetically(array){
   return moviesArr.splice(0, 20);
 }
 console.log(orderAlphabetically(movies));
+
+
