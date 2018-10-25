@@ -32,14 +32,16 @@ function ratesAverage(movies) {
 }
 
 // Get the average of Drama Movies
+function getMoviesByGenre(movies, genre) {
+  return movies.filter(function(movie) {
+    return movie.genre.includes(genre); 
+  });
+}
+
 function dramaMoviesRate(movies) {
   if (movies.length === 0) return;
 
-  var result = movies.filter(function(movie) {
-    return movie.genre.includes("Drama"); 
-  });
-
-  return ratesAverage(result);
+  return ratesAverage(getMoviesByGenre(movies, "Drama"));
 }
 
 // Order by time duration, in growing order
@@ -54,7 +56,19 @@ function orderByDuration(movies) {
 }
 
 // How many movies did STEVEN SPIELBERG
+function getMoviesByDirector(movies, director) {
+  return movies.filter(function(movie) {
+    return movie.director.includes(director); 
+  });
+}
 
+function howManyMovies(movies) {
+  if (movies.length === 0) return;
+
+  var totalMovies = getMoviesByDirector(getMoviesByGenre(movies, "Drama"), "Steven Spielberg").length;
+
+  return `Steven Spielberg directed ${totalMovies} drama movies!`;
+}
 
 // Order by title and print the first 20 titles
 
