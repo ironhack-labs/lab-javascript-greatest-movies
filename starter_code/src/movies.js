@@ -71,6 +71,12 @@ function howManyMovies(movies) {
 }
 
 // Order by title and print the first 20 titles
-
+function orderAlphabetically(movies) {
+  return movies.sort(function(movie1, movie2) {
+    return (movie1.duration < movie2.duration) ? movie1.duration - movie2.duration : movie1.duration + movie2.duration;
+  }).map(function(movie) {
+    return movie.title;
+  }).splice(0,20);
+}
 
 // Best yearly rate average
