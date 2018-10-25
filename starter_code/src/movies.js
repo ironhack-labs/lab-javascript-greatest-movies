@@ -69,19 +69,38 @@ function howManyMovies(arr) {
         var dramaMovies = arr.filter(function (elem) {
             return elem.genre.includes("Drama");
         });
-        var stevenMovies = dramaMovies.map(function(elem) {
-            if (elem.director === "Steven Spielberg") {
-                return `Steven Spielberg directed ${elem} drama movies!`
-            } else {
+        var counter = 0;
+        var stevenMovies = dramaMovies.reduce(function (acc, elem) {
+            if (elem.director === 'Steven Spielberg') {
+                counter++
                 return
             }
-        })
+        }, 0)
+    }
+    var stevenMovies = counter;
+    return `Steven Spielberg directed ${stevenMovies} drama movies!`;
 }
-console.log(stevenMovies)
-return stevenMovies;
-}
+
 
 // Order by title and print the first 20 titles
 
-
+function orderAlphabetically(arr) {
+    var orderedMovies = arr.sort(function (a, b) {
+        return a.title < b.title;
+    }).reverse()
+    var counter = []
+    var titleMovies = orderedMovies.reduce(function (acc, elem) {
+        return counter.push(elem.title)
+    }, "")
+    var top20 = []
+    counter.sort();
+    if (counter.length > 20) {
+        for (var i = 0; i < 20; i++) {
+            top20.push(counter[i])
+        }
+        return top20;
+    } else {
+        return counter;
+    }
+}
 // Best yearly rate average
