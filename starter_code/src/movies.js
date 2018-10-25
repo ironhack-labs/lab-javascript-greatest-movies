@@ -50,24 +50,42 @@ function howManyMovies(array) {
 
 // Order by title and print the first 20 titles
 function orderAlphabetically(array){
-    if (array.length > 20){
-        var titles= array.map(function(ithem){
-            return ithem.title
-        })
-        var sortedTitles = titles.sort(function(a,b){
-            return a.localeCompare(b)
-        })
-        return sortedTitles.splice(20)
-    } else{
-        var titles= array.map(function(ithem){
-            return ithem.title
-        })
-        var sortedTitles = titles.sort(function(a,b){
-            return a.localeCompare(b)
-        })
-        return sortedTitles
-    }
+    var titleMovies = array.map(function(movie) {
+        return movie.title;
+    });
+    titleMovies.sort(function(a,b) {
+        return a.localeCompare(b)
+    });
+    
 
+    if (array.length > 20){
+        titleMovies.splice(20)
+        return titleMovies
+    } else{
+        return titleMovies
+    }
 }
+
+
+
+    // if (array.length > 20){
+    //     var titles= array.map(function(ithem){
+    //         return ithem.title
+    //     })
+    //     var sortedTitles = titles.sort(function(a,b){
+    //         return a.localeCompare(b)
+    //     })
+    //     return sortedTitles.splice(20)
+    // } else{
+    //     var titles= array.map(function(ithem){
+    //         return ithem.title
+    //     })
+    //     var sortedTitles = titles.sort(function(a,b){
+    //         return a.localeCompare(b)
+    //     })
+    //     return sortedTitles
+    // }
+
+// }
 
 // Best yearly rate average
