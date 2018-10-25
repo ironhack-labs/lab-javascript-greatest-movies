@@ -21,17 +21,28 @@ function turnHoursToMinutes(movies) {
 
 // Get the average of all rates with 2 decimals 
 function ratesAverage(movies) {
+  if (movies.length === 0) return;
+
   var moviesCopy = Object.assign([], movies);
   
   var average = moviesCopy.reduce(function(acumulator, current) {
-    return acumulator + parseFloat(current.rate);
+    return acumulator + current.rate;
   }, 0) / moviesCopy.length;
-  
   return Math.round(average * 100) / 100;
 }
 
 // Get the average of Drama Movies
+function dramaMoviesRate(movies) {
+  if (movies.length === 0) return;
 
+  var result = movies.filter(function(movie) {
+    return movie.genre.includes("Drama"); 
+  });
+
+  if (result.length === 0) return;
+
+  return ratesAverage(result);
+}
 
 // Order by time duration, in growing order
 
