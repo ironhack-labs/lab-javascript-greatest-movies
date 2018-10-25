@@ -57,17 +57,6 @@ Print on the console the result!
  */
 function dramaMoviesRate(moviesArray){
     if(moviesArray.length === 0 ) return;
-    /*var acumulator=0;
-    var cont=0;
-    moviesArray.forEach(function(movie){
-        if((movie.genre).includes('Drama')){
-            acumulator+=movie.rate;
-            cont++;
-            console.log(acumulator);
-        }
-    });
-    if(acumulator === 0 ) return;
-    return Math.round(acumulator/cont* 100) / 100 ;*/
     var newNewArray=moviesArray.filter(function(movie){
         return (movie.genre).includes('Drama');
     });
@@ -80,8 +69,12 @@ function dramaMoviesRate(moviesArray){
 We need to sort the movies in ascending order by their duration. This should be easy using one of the methods we just learn. Create a method orderByDuration that receives an array as parameter and return the sorted array. */
 
 function orderByDuration(moviesArray){
-
-   // var newFilmArray = 
+   if(moviesArray.length === 0 ) return;
+   var newFilmArray = [...moviesArray]; 
+   newFilmArray.sort(function (item1, item2) {
+    return (item1.duration - item2.duration)
+   })
+   return newFilmArray;
 }
 
 // How many movies did STEVEN SPIELBERG
