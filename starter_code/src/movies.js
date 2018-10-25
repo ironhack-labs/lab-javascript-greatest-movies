@@ -26,7 +26,7 @@ function ratesAverage(movies) {
   var moviesCopy = Object.assign([], movies);
   
   var average = moviesCopy.reduce(function(acumulator, current) {
-    return acumulator + current.rate;
+    return acumulator + parseFloat(current.rate);
   }, 0) / moviesCopy.length;
   return Math.round(average * 100) / 100;
 }
@@ -82,3 +82,26 @@ function orderAlphabetically(movies) {
 }
 
 // Best yearly rate average
+function bestYearAvg(movies) {
+  if (movies.length === 0) return;
+
+
+  var clasifiedMovies = [];
+  
+  movies.forEach(function(movie) {
+    if (Object.keys(clasifiedMovies).indexOf(movie.year) === -1) clasifiedMovies[movie.year] = [];
+    clasifiedMovies[movie.year].push(movie);
+  });
+
+  var rateYear = clasifiedMovies.map(function(moviesByYear, index) {
+    return {year: index, rate: ratesAverage(moviesByYear)};
+  });
+
+  var bestYear = rateYear.sort(function(a, b) {
+    return a - b;
+  })[0];
+
+  console.log(`The best year was ${bestYear.year} with an average rate of ${bestYear.rate}`);
+
+  return `The best year was ${bestYear.year} with an average rate of ${bestYear.rate}`;
+}
