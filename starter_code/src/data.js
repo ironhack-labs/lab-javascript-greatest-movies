@@ -2000,3 +2000,49 @@ var movies = [
     rate: '8.0'
   }
 ];
+
+//turnHourToMinutes
+
+
+function turnHourToMinute(arr){
+  return minutes = arr.movies[duration](function element) {
+    var newDuration = ""
+    if ()
+
+
+  }
+
+
+  
+     return function({},element,newDuration)
+
+}
+//ratesAverage
+
+{
+  var average = 0
+  var totalAverage = movies.reduce(function ratesAverage(acumulator,total){
+    return (acumulator/total)
+  }
+  )
+  ratesAverage()
+
+//dramaMoviesRate
+function dramaMoviesRate(arr){
+
+}
+
+//orderByDuration
+function orderByDuration(arr){
+
+}
+
+//howManyMovies
+function howManyMovies(arr){
+
+}
+
+//orderAlphabetically
+function orderAlphabetically(arr){
+
+}
