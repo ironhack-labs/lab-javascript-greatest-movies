@@ -6,24 +6,29 @@ function turnHoursToMinutes(newObject) {
 
   newObject.forEach(function(element) {
     minutes = element.duration;
-
-    minutes = minutes.split(" ");
-    if (minutes.length == 2) {
-      minutes = parseInt(minutes[0]) * 60 + parseInt(minutes[1]);
-    } else {
-      if (minutes[0].length > 3) {
-        minutes = parseInt(minutes[0]);
-      } else {
-        minutes = parseInt(minutes[0]) * 60;
+    if((minutes.indexOf('h'))!=-1||(minutes.indexOf('m')!=-1)){
+      console.log(minutes)
+      minutes = minutes.split(' ');
+      if (minutes.length == 2) {
+        minutes = parseInt(minutes[0]) * 60 + parseInt(minutes[1]);
+      } else 
+      {
+        if (minutes[0].length > 3) 
+        {
+          minutes = parseInt(minutes[0]);
+        } else {
+          minutes = parseInt(minutes[0]) * 60;
+        }
       }
     }
+  
 
     element.duration = minutes;
 
     Objreturn.push(element);
   });
 
-  return [...newObject];
+  return Objreturn;
 }
 
 // Get the average of all rates with 2 decimals
