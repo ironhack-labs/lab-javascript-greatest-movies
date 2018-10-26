@@ -74,4 +74,31 @@ function orderAlphabetically(movies){
   return sortedTitles;
 }
 
+
 // Best yearly rate average
+function calculateYearAverage(movies,year){
+  var moviesByYear = movies.filter(function(movie){
+      return movie.year==year;
+  });
+  return ratesAverage(moviesByYear);
+}
+
+function bestYearAvg(movies){
+  if (movies.length==0){
+    return undefined;
+  }
+  var calculatedYears=[];
+  var bestYearAverage=movies.reduce(function(ac, cu) {    
+    if (calculatedYears.indexOf(cu.year)==-1){
+      var currentAverage=calculateYearAverage(movies,cu.year);
+      if(currentAverage>ac.ratesAverage ||
+        (currentAverage==ac.ratesAverage && cu.year<ac.year)){
+          ac.year=cu.year;
+          ac.ratesAverage=currentAverage;
+        }
+    }
+
+    return ac;
+  }, {year: undefined, ratesAverage: 0});
+  return (`The best year was ${bestYearAverage.year} with an average rate of ${bestYearAverage.ratesAverage}`);
+}
