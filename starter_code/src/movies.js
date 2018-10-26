@@ -104,13 +104,8 @@ function orderAlphabetically(movies) {
 
   var moviesFirstTwenty;
 
-  if (movies.length < 20) {
-    moviesFirstTwenty = movies.splice(0, movies.length);
-  } else {
-    moviesFirstTwenty = movies.splice(0, 20);
-  }
 
-  var moviesSorted = moviesFirstTwenty.sort(function (a, b) {
+  var moviesSorted = movies.sort(function (a, b) {
     if (a.title > b.title) {
       return 1;
     }
@@ -122,8 +117,14 @@ function orderAlphabetically(movies) {
     return 0;
   });
 
+  if (movies.length < 20) {
+    moviesFirstTwenty = moviesSorted.splice(0, movies.length);
+  } else {
+    moviesFirstTwenty = moviesSorted.splice(0, 20);
+  }
 
-  var moviesSortedTitle = moviesSorted.map(function (movie) {
+ 
+  var moviesSortedTitle = moviesFirstTwenty.map(function (movie) {
     return movie.title;
   });
 
