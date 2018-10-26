@@ -38,7 +38,13 @@ var hoursToMin = function(hoursFormat){
 },0);
 
 // Get the average of Drama Movies
-
+var dramaRatings = 0;
+var dramaRatesAverage = moviesDurationMin.reduce(function(ratingAcumulator, currentRating) {
+    if(currentRating.genre.includes("drama")){
+        dramaRatings += parseFloat(currentRating.rate);
+    }
+    return parseFloat((dramaRatings / moviesDurationMin.length).toFixed(2));
+},0);
 
 // Order by time duration, in growing order
 
