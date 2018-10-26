@@ -5,7 +5,6 @@
 
 // Get the average of all rates with 2 decimals 
 
-
 function ratesAverage (movies) {
 
     /*var sum = [0, 1, 2, 3].reduce(function (accumulator, currentValue) {
@@ -44,6 +43,19 @@ function dramaMoviesRate(movies){
 
 // Order by time duration, in growing order
 
+function orderByDuration(movies){
+    
+    
+    var orderedFilms =   movies.sort(function compareFilms(a, b){
+        if(a.duration === b.duration){
+            return (a.title).localeCompare(b.title);
+        }else{
+            return a.duration - b.duration;
+        }
+    });
+
+    return orderedFilms;
+}
 
 // How many movies did STEVEN SPIELBERG
 
@@ -55,7 +67,6 @@ function howManyMovies(movies){
     Only Steven Spielberg movies! Should return "Steven Spielberg directed 2 drama movies!"
     Should return "Steven Spielberg directed 4 drama movies!"
     */
-
 
     var spielbergMovies =  movies.filter(function(item){
         return item.director.includes("Steven Spielberg") && item.genre.includes("Drama");
@@ -77,6 +88,22 @@ function howManyMovies(movies){
 }
 
 // Order by title and print the first 20 titles
+
+function orderAlphabetically(movies){
+    if(movies.length >= 20)
+    {
+        var spliceArray = movies.sort(function compareFilms(a, b){ 
+            return (a.title).localeCompare(b.title);
+        });
+        var orderedSpliceArray= spliceArray.slice(0,20);
+        return orderedSpliceArray.map(a => a.title);
+    } else {
+        var orderedArray =   movies.sort(function compareFilms(a, b){ 
+            return (a.title).localeCompare(b.title);
+        });
+        return orderedArray.map(a => a.title);
+    } 
+}
 
 
 // Best yearly rate average
