@@ -26,29 +26,16 @@ var hoursToMin = function(hoursFormat){
       return film;
   
     });
+
+    //moviesDurationMin;
   
 
 // Get the average of all rates with 2 decimals 
-/*var ratesAverage = function(rates){
-    var totalRating = rates.reduce(function(ratingAccumulator, currentRating){
-      console.log(parseFloat(currentRating));
-     return ratingAccumulator + parseFloat(currentRating)
-   },0);
-   console.log(totalRating);
-     return totalRating / movies.length;
-};*/
-   /*var allRates = [];
-   var durationmovies = movies.map(function(film){
-     film.duration = hoursToMin(film.duration);
-     allRates.push(film.rate);
-     return film;
-     });
-   
-   ratesAverage(allRates);*/
-
+   var allRatings = 0;
    var ratesAverage = moviesDurationMin.reduce(function(ratingAcumulator, currentRating) {
-
-   },0);
+     allRatings += parseFloat(currentRating.rate);
+     return parseFloat((allRatings / moviesDurationMin.length).toFixed(2));
+},0);
 
 // Get the average of Drama Movies
 
