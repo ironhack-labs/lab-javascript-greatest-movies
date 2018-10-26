@@ -88,3 +88,20 @@ function orderAlphabetically(movies){
 }
 
 // Best yearly rate average
+function bestYearAvg(movies){
+  var titles=movies.map(function(movie){
+    
+    return movie.rate;
+  }).sort(function(a, b) {
+    return b - a;
+  });
+  console.log(titles);
+  var bestYear=0;
+  if(titles.length==0)
+  return undefined;
+  var best= movies.forEach(function(aux){
+    if(aux.rate==titles[0])
+    bestYear =aux.year;
+  });
+  return `The best year was ${bestYear} with an average rate of ${titles[0]}`;
+}
