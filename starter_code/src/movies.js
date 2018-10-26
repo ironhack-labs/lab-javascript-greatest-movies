@@ -1,5 +1,3 @@
-/* eslint no-restricted-globals: 'off' */
-// Turn duration of the movies from hours to minutes 
 
 
 function hoursToMinutes(hoursMinutes){
@@ -32,7 +30,7 @@ function ratesAverage(movies){
     return undefined;
   }
   return Math.round((movies.reduce(function(acc,movie){
-     return acc + parseInt(movie.rate==''?0:movie.rate);
+     return acc + parseFloat(movie.rate==''?0:movie.rate);
      },0)/movies.length)*100)/100;
    
  }
@@ -94,6 +92,7 @@ function bestYearAvg(movies){
       if(currentAverage>ac.ratesAverage ||
         (currentAverage==ac.ratesAverage && cu.year<ac.year)){
           ac.year=cu.year;
+          console.log(currentAverage)
           ac.ratesAverage=currentAverage;
         }
     }
