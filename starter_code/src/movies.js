@@ -9,24 +9,18 @@ function turnHoursToMinutes(arr) {
 
       let tempDuration = movie.duration;
       let hours = parseInt(tempDuration, 10) * 60;
-      movie.duration = hours; 
-      
+      movie.duration = hours;     
       if (parseInt(tempDuration.substr(2), 10)) {
 
       let minutes = parseInt(tempDuration.substr(2), 10);
       movie.duration += minutes;
     }
-      movie.duration = movie.duration.toString();
       return movie
-
     } else {
-
       let tempDuration = movie.duration;
       let minutes = parseInt(tempDuration, 10);
       movie.duration = minutes;
-      movie.duration = movie.duration.toString();
       return movie
-
     }
   });
 
@@ -71,6 +65,14 @@ function orderByDuration(arr) {
     }
     if (Number(a.duration) < Number(b.duration)) {
       return -1
+    } 
+    else if (Number(a.duration) = Number(b.duration)) {
+      if (a.title > b.title) {
+        return 1;
+      }
+      if (a.title < b.title) {
+        return -1;
+      }
     }
     return 0;
   })
@@ -79,8 +81,34 @@ function orderByDuration(arr) {
 
 // How many movies did STEVEN SPIELBERG
 
+function howManyMovies(arr) {
+
+  let filteredArray = arr.filter(movie => {
+    return movie.genre.indexOf("Drama") !== -1;
+  });
+  return filteredArray.filter(movie => {
+    return movie.director.indexOf("Steven Spielberg") !== -1;
+  }).length;
+}
 
 // Order by title and print the first 20 titles
 
+function orderAlphabetically(arr) {
+  let resultArray = arr.sort((a, b) => {
+    if (a.title > b.title) {
+        return 1;
+    }
+    if (a.duration < b.duration) {
+      return -1
+    } 
+   return 0;
+   
+})
+  return resultArray.slice(0, 20);
+}
 
 // Best yearly rate average
+
+function bestYear(arr) {
+  arr.map()
+}
