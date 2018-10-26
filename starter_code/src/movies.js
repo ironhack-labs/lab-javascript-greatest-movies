@@ -45,7 +45,6 @@ var dramaRatesAverage = moviesDurationMin.reduce(function(ratingAcumulator, curr
     }
     return parseFloat((dramaRatings / moviesDurationMin.length).toFixed(2));
 },0);
-
 // Order by time duration, in growing order
 
 
