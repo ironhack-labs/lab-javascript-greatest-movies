@@ -10,16 +10,13 @@ function turnHoursToMinutes(arr) {
       let tempDuration = movie.duration;
       let hours = parseInt(tempDuration, 10) * 60;
       movie.duration = hours;     
-      if (parseInt(tempDuration.substr(2), 10)) {
-
-      let minutes = parseInt(tempDuration.substr(2), 10);
-      movie.duration += minutes;
-    }
+        if (parseInt(tempDuration.substr(2), 10)) {
+        let minutes = parseInt(tempDuration.substr(2), 10);
+        movie.duration += minutes;
+       }
       return movie
     } else {
-      let tempDuration = movie.duration;
-      let minutes = parseInt(tempDuration, 10);
-      movie.duration = minutes;
+      movie.duration = parseInt(movie.duration, 10);
       return movie
     }
   });
@@ -30,11 +27,10 @@ function turnHoursToMinutes(arr) {
 
 function ratesAverage(arr) {
 
-  let average = arr.reduce((total, movie) => {
+  return Number((arr.reduce((total, movie) => {
     return total + Number(movie.rate);
-    }, 0)/arr.length
+    }, 0)/arr.length).toFixed(2))
 
-    return Number(average.toFixed(2));
 };
 
 // Get the average of Drama Movies
@@ -48,7 +44,7 @@ function dramaMoviesRate(arr) {
     return undefined
   }
 
-  return Number(ratesAverage(filteredArray).toFixed(2));
+  return Number(ratesAverage(filteredArray));
 
 };
 
@@ -82,13 +78,16 @@ function orderByDuration(arr) {
 // How many movies did STEVEN SPIELBERG
 
 function howManyMovies(arr) {
-
+  if (arr.length === 0){
+    return undefined;
+  }
   let filteredArray = arr.filter(movie => {
     return movie.genre.indexOf("Drama") !== -1;
   });
-  return filteredArray.filter(movie => {
+  let spielbergMovies = filteredArray.filter(movie => {
     return movie.director.indexOf("Steven Spielberg") !== -1;
   }).length;
+  return `Steven Spielberg directed ${spielbergMovies} drama movies!`
 }
 
 // Order by title and print the first 20 titles
@@ -98,17 +97,53 @@ function orderAlphabetically(arr) {
     if (a.title > b.title) {
         return 1;
     }
-    if (a.duration < b.duration) {
+    if (a.title < b.title) {
       return -1
     } 
    return 0;
    
 })
-  return resultArray.slice(0, 20);
+   let titleArray = resultArray.map(x => {
+    return x.title;
+  });
+  return titleArray.slice(0, 20);
 }
 
 // Best yearly rate average
 
-function bestYear(arr) {
-  arr.map()
-}
+function groupBy(arr, key) {
+  return arr.reduce((x, y) => {
+    (x[y[key]] = x[y[key]] || []).push(y);
+    return x;
+  }, {});
+};
+
+
+function bestYearAvg(arr) {
+  if (arr.length === 0) {
+    return undefined
+  } else if (arr.length === 1) {
+    return `The best year was ${arr[0].year} with an average rate of ${arr[0].rate}`;
+  }
+  let moviesByYear = groupBy(arr, "year");
+  let yearsArr = Object.keys(moviesByYear);
+  let ratesArr = [];
+  yearsArr.map(year => {
+    ratesArr.push({"year":year, "rate":ratesAverage(moviesByYear[year])})
+    return year 
+  });
+  let result = ratesArr.reduce((x, y) => {
+    if(x.rate > y.rate) {
+      return x
+    } else if(y.rate > x.rate) {
+      return y
+    } else if (x.year > y.year) {
+      return y
+    } else return x
+    ;
+  });
+    return `The best year was ${result.year} with an average rate of ${result.rate}`
+};
+
+
+
