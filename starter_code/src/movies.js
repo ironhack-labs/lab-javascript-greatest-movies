@@ -15,9 +15,9 @@ function getTheMinutes(duration) {
     }
 }
 
-function turnHoursToMinutes(movieCollection) {
-    return movieCollection.map(function (movie) {
-        let movieCopy = {...movie};
+function turnHoursToMinutes(moviesCollection) {
+    return moviesCollection.map(function (movie) {
+        let movieCopy = { ...movie };
         movieCopy.duration = getTheMinutes(movie.duration);
         return movieCopy;
     })
@@ -30,9 +30,9 @@ function ratesAverage(moviesCollection) {
         return parseFloat(movie.rate)
     });
     let ratesSum = rates.reduce(function (ac, cu) {
-        if (isNaN(cu)){
+        if (isNaN(cu)) {
             return ac
-            }
+        }
         return ac + cu
     });
     return Math.round(100 * ratesSum / rates.length, 2) / 100
@@ -46,24 +46,24 @@ function dramaMoviesRate(moviesCollection) {
         return movie.genre.indexOf("Drama") !== -1
     });
 
-    if (dramaMovies.length===0) return;
+    if (dramaMovies.length === 0) return;
 
     return ratesAverage(dramaMovies)
 }
 
 // Order by time duration, in growing order
 
-function orderByDuration(moviesCollection){
+function orderByDuration(moviesCollection) {
     internalMoviesCol = turnHoursToMinutes(moviesCollection);
-    return internalMoviesCol.sort(function(a,b){
-        if (a.duration > b.duration){
+    return internalMoviesCol.sort(function (a, b) {
+        if (a.duration > b.duration) {
             return 1
         };
-        if (a.duration < b.duration){
+        if (a.duration < b.duration) {
             return -1
         };
-        if (a.duration === b.duration){
-            if (a.title > b.title){
+        if (a.duration === b.duration) {
+            if (a.title > b.title) {
                 return 1
             } else if (a.title < b.title) {
                 return -1
@@ -71,7 +71,7 @@ function orderByDuration(moviesCollection){
                 return 0
             }
         }
-        
+
     })
 }
 
@@ -82,10 +82,10 @@ function howManyMovies(moviesCollection) {
         return movie.genre.indexOf("Drama") !== -1
     });
 
-    if (dramaMovies.length===0) return;
+    if (dramaMovies.length === 0) return;
 
-    let spielbergDramaMovies = dramaMovies.filter( function(movie) {
-        return movie.director==="Steven Spielberg"
+    let spielbergDramaMovies = dramaMovies.filter(function (movie) {
+        return movie.director === "Steven Spielberg"
     });
 
     return `Steven Spielberg directed ${spielbergDramaMovies.length} drama movies!`
@@ -94,14 +94,14 @@ function howManyMovies(moviesCollection) {
 // Order by title and print the first 20 titles
 
 function orderAlphabetically(moviesCollection) {
-    
-    let movieTitles = moviesCollection.map( function(movie) {
+
+    let movieTitles = moviesCollection.map(function (movie) {
         return movie.title;
     })
 
-    let orderedMovieTitles = movieTitles.sort(function(a,b){
-        if (a>b) return 1;
-        if (a<b) return -1;
+    let orderedMovieTitles = movieTitles.sort(function (a, b) {
+        if (a > b) return 1;
+        if (a < b) return -1;
         return 0
     })
 
@@ -110,3 +110,46 @@ function orderAlphabetically(moviesCollection) {
 
 
 // Best yearly rate average
+
+function bestYearAvg(moviesCollection) {
+
+    if (moviesCollection.length === 0) return undefined;
+
+    //Within the array "scoresPerYear": for each year create an object, subsequently store the ratings on their corresponding object.
+    let scoresPerYear = [];
+    moviesCollection.forEach(function (movie) {
+        let searchArray = scoresPerYear.filter(function (movieOnScoresArr) {
+            return movieOnScoresArr.year === movie.year
+        })
+        if (searchArray.length === 0) {
+            scoresPerYear.push({
+                year: movie.year,
+                scores: [parseFloat(movie.rate),]
+            })
+        } else {
+            let position = scoresPerYear.findIndex(function (movieOnScoresArr) {
+                return movieOnScoresArr.year === movie.year
+            })
+            scoresPerYear[position].scores.push(parseFloat(movie.rate));
+        }
+    })
+
+    let yearlyAverage = scoresPerYear.map(function (scoredYear) {
+        return {
+            year: scoredYear.year,
+            totalscore: scoredYear.scores.reduce(function (ac, cu) {
+                return ac + cu;
+            })/scoredYear.scores.length
+        }
+    }).sort(function (a, b) {
+        if (a.totalscore > b.totalscore) return -1;
+        if (a.totalscore < b.totalscore) return 1;
+        if (a.totalscore === b.totalscore) {
+            if (a.year < b.year) return -1;
+            if (a.year > b.year) return 1;
+            return 0
+        }
+    });
+
+    return `The best year was ${yearlyAverage[0].year} with an average rate of ${yearlyAverage[0].totalscore}`
+}
