@@ -1,34 +1,22 @@
 /* eslint no-restricted-globals: 'off' */
-// Turn duration of the movies from hours to minutes 
+// Turn duration of the movies from hours to minutes
 
-const turnHoursToMinutes = (arr) => {
+function turnHoursToMinutes(movies) {
+  return movies.map(function(movie) {
+    var newDuration = "";
 
-     arr.map(function(movie){
+    if (movie.duration.indexOf("h") == -1) {
+      newDuration = parseInt(movie.duration);
+    } else if (movie.duration.indexOf("m") == -1) {
+      newDuration = parseInt(movie.duration) * 60;
+    } else {
+      newDuration =
+        parseInt(movie.duration.split(" ")[0]) * 60 +
+        parseInt(movie.duration.split(" ")[1]);
+    }
 
-      var newDuration = 0;
-
-      if (movie.duration.include(h) && movie.duration.includes("m")){
-
-        newDuration += parseInt.movie(movie.duration * 60);
-
-
-      }else if (movie.duration.include(h) && movie.duration.indexof(m) == -1 ){
-
-        newDuration += parseInt(movie.duration * 60);
-
-      }else (movie.duration.indexof(h) == -1 && movie.duration.include(m)){
-        newDuration += parseInt(movie.duration);
-      }
-
-    });
-
-    console.log('newDuration');
-
-    // Object.assign({},e,{duration: new timeee})
-
-
-
-
+    return Object.assign({}, movie, { duration: newDuration });
+  });
 }
 
 
@@ -37,19 +25,57 @@ const turnHoursToMinutes = (arr) => {
 
 
 
-// Get the average of all rates with 2 decimals 
+
+
+
+
+
+// Get the average of all rates with 2 decimals
+function ratesAverage(movies) {
+
+  
+  var stringToNum = movies.map(function(film) {
+    var num = film.rate.split(".");
+
+    return (num[0] + num[1]) / 10;
+  });
+
+  var sumRate = stringToNum.reduce(function(sum, total) {
+    return sum + total;
+  });
+
+ 
+  return parseFloat((sumRate / stringToNum.length).toFixed(2));
+
+
+  
+};
+
+var getRate8 = movies.filter(function(film){
+
+  return film.rate === '8.0';
+
+})
+
+  return((ratesAverage(getRate8).toFixed(2)))
+
+
+
+
+
+
+
+
+
+
 
 
 // Get the average of Drama Movies
 
-
 // Order by time duration, in growing order
-
 
 // How many movies did STEVEN SPIELBERG
 
-
 // Order by title and print the first 20 titles
-
 
 // Best yearly rate average
