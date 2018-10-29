@@ -1,3 +1,24 @@
+function turnHoursToMinutes(arr) {
+  
+  return arr.map(movie => {
+     if (movie.duration.charAt(1) === "h") {
+       let tempDuration = movie.duration;
+      let hours = parseInt(tempDuration, 10) * 60;
+      movie.duration = hours;     
+        if (parseInt(tempDuration.substr(2), 10)) {
+        let minutes = parseInt(tempDuration.substr(2), 10);
+        movie.duration += minutes;
+       }
+      return movie
+    } else {
+      movie.duration = parseInt(movie.duration, 10);
+      return movie
+    }
+  });
+ }
+
+
+
 function ratesAverage(array){
   var sum = array.reduce(function(accum, current){
     accum = accum + current.rate
@@ -17,6 +38,22 @@ function dramaMoviesRate(movies){
  if(dramaMovies.length > 0){
  return ratesAverage(dramaMovies)
 }
+}
+function orderAlphabetically(arr) {
+  let resultArray = arr.sort((a, b) => {
+    if (a.title > b.title) {
+        return 1;
+    }
+    if (a.title < b.title) {
+      return -1
+    } 
+   return 0;
+   
+})
+   let titleArray = resultArray.map(x => {
+    return x.title;
+  });
+  return titleArray.slice(0, 20);
 } 
 
 
