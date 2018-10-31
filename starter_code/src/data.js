@@ -1,3 +1,4 @@
+
 var movies = [
   {
     title: 'The Shawshank Redemption',
@@ -2000,3 +2001,60 @@ var movies = [
     rate: '8.0'
   }
 ];
+
+
+//function getHours(timeString) {
+  // a)get the minutes from timeString loop up slice
+  // b) convert the minutes to hours
+  // c) get the hours from timestring
+  // add b + c and return
+  // slice and index of
+//}
+
+//var durationInFilmOne = movies[0].duration;
+
+//var durationWithoutH = durationInFilmOne.replace('h', '' ).replace('min', '');
+
+//use split to split hours from minutes
+//convert string to integer
+//multiple hours with 60 to get minutes = hoursToMinutes
+//hoursToMinutes add minutes
+
+// map rersude and filter
+
+// x.reduce(function(plant)) . map reduces, filters takes out and 
+
+/* console.log(durationWithoutH)
+
+var  h = movies[0].duration
+var x = h.slice(h)* 60
+var y = h.indexOf(3)
+
+function convert(x) {
+  var s = Math.floor(x)
+
+  return (s+y)
+}
+*/
+
+var time = movies[0].duration
+
+
+function giveMeHours(timeString) {
+  
+  var hours = timeString.slice(0, timeString.indexOf("h"))
+
+  var minutes = timeString.slice(timeString.indexOf(" ") + 1, timeString.indexOf("min"))
+
+  minutes = parseInt(minutes)
+  hours = parseInt(hours)
+
+  return (minutes/ 60) + hours
+}
+giveMeHours(time)
+movies[0].duration = giveMeHours(time)
+
+
+
+
+
