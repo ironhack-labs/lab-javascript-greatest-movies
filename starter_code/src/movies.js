@@ -72,10 +72,18 @@ let orderAlphabetically = (movies) => {
         });
     }
     orderArray.sort((a,b) => {
-        return a-b;
+        var nameA = a.title.toUpperCase();
+        var nameB = b.title.toUpperCase(); 
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+        return 0;
     });
     for(let i=0; i<21;i++){
-        twentyArray=orderArray[i];
+        twentyArray.push(orderArray[i]);
     }
     return twentyArray;
 }
