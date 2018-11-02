@@ -119,6 +119,7 @@ function dramaMoviesRate (arr){
   
       }
     }
+    
     return arre;
   }
 
