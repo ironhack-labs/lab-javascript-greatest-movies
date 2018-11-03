@@ -143,3 +143,7 @@ Go ahead and find which year have the best average rate for the movies that were
 Happy coding!
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_dfc3fe557576abca4dba274e3aabe9a3.gif)
+
+stayOut
+========
+    title: , year, director: , duration ,genre, rate
