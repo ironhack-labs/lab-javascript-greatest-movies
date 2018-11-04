@@ -15,10 +15,13 @@ function turnHoursToMinutes(array) {
     }
   });
   
+  return newArray;
 }
 
 
 // Get the average of all rates with 2 decimals 
+
+
 
 
 // Get the average of Drama Movies
