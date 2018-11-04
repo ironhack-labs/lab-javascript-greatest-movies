@@ -22,14 +22,10 @@ function turnHoursToMinutes(array) {
 // Get the average of all rates with 2 decimals 
 
 function ratesAverage(array) {
-    var arrRates = [];
-    array.forEach(function(elem) {
-        arrRates.push(elem.rate);
-    });
 
-    var sumRates = arrRates.reduce(function(acc, elem){
-        return acc + Number(elem);
-    });
+    var sumRates = array.reduce(function(acc, elem){
+        return acc + Number(elem.rate);
+    }, 0);
 
     return (sumRates/array.length).toFixed(2);
 }
