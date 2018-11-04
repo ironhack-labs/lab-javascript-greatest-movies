@@ -31,12 +31,18 @@ function ratesAverage(array) {
         return acc + Number(elem);
     });
 
-    return sumRates/array.length;
+    return (sumRates/array.length).toFixed(2);
 }
 
 
 
 // Get the average of Drama Movies
+
+function dramaMoviesRate(array){
+
+
+
+}
 
 
 // Order by time duration, in growing order
