@@ -11,16 +11,21 @@ function turnHoursToMinutes(array) {
        
     }else{
         var newDuration = newElem.duration.replace('h','').replace('min','').split(' ');
-        newElem.duration = ((Number(newDuration[0])+ 60) + Number(newDuration[1])).toString();
+        newElem.duration = ((Number(newDuration[0])* 60) + Number(newDuration[1])).toString();
     }
   });
-  
+
   return newArray;
 }
 
 
 // Get the average of all rates with 2 decimals 
 
+function ratesAverage(array) {
+
+
+
+}
 
 
 
