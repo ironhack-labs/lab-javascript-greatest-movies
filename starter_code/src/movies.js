@@ -6,9 +6,14 @@ function turnHoursToMinutes(array) {
 
   newArray = array.map(function (elem) {
     var newElem = Object.assign({}, el);
-    var newDuration = newElem.duration.replace('h','').replace('min','').split(' ');
-    var hours = Number(newDuration[0])
-  })
+    if(newElem.duration.search('h') < 0){
+        newElem.duration = newElem.duration.replace('min','');
+       
+    }else{
+        var newDuration = newElem.duration.replace('h','').replace('min','').split(' ');
+        newElem.duration = (Number(newDuration[0]) + Number(newDuration[1])).toString();
+    }
+  });
   
 }
 
