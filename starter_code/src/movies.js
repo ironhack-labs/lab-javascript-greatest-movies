@@ -11,7 +11,7 @@ function turnHoursToMinutes(array) {
        
     }else{
         var newDuration = newElem.duration.replace('h','').replace('min','').split(' ');
-        newElem.duration = (Number(newDuration[0]) + Number(newDuration[1])).toString();
+        newElem.duration = ((Number(newDuration[0])+ 60) + Number(newDuration[1])).toString();
     }
   });
   
