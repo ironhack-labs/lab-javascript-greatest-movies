@@ -1,8 +1,37 @@
-/* eslint no-restricted-globals: 'off' */
-// Turn duration of the movies from hours to minutes
+const movies = [
+  {
+  "title":"The Shawshank Redemption",
+  "year":"1994",
+  "director":"Frank Darabont",
+  "duration":"2h 22min",
+  "genre":["Crime","Drama"],
+  "rate":"9.3"
+},
+{
+  "title":"The Shawshank Redemption",
+  "year":"1994",
+  "director":"Frank Darabont",
+  "duration":"2h 3min",
+  "genre":["Crime","Drama"],
+  "rate":"9.3"
+},
+{
+  "title":"The Shawshank Redemption",
+  "year":"1994",
+  "director":"Frank Darabont",
+  "duration":"1h 57min",
+  "genre":["Crime","Drama"],
+  "rate":"9.3"
+}
+]
+
+
+
+
+
 
 function turnHoursToMinutes(movieArray){
-  let newMovie = [];
+
   return movieArray.map((movieObject)=>{
 
   let durationArray = movieObject.duration.split(' ');
@@ -13,7 +42,6 @@ function turnHoursToMinutes(movieArray){
   let newMovie = movieObject;
   newMovie.duration =  totalDuration.toString();
 
-    
   return newMovie;
 
   })
@@ -25,20 +53,3 @@ function turnHoursToMinutes(movieArray){
 // }
 
 turnHoursToMinutes(movies)
-
-// Get the average of all rates with 2 decimals 
-
-
-// Get the average of Drama Movies
-
-
-// Order by time duration, in growing order
-
-
-// How many movies did STEVEN SPIELBERG
-
-
-// Order by title and print the first 20 titles
-
-
-// Best yearly rate average
