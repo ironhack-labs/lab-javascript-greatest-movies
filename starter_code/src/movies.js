@@ -2,7 +2,7 @@
 // Turn duration of the movies from hours to minutes 
 
 
-//Version terminada
+//Version terminada 2
 
 
 // iteracion 1
