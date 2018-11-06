@@ -4,21 +4,24 @@ function turnHoursToMinutes(movies) {
   return movies.map(function(film) {
     var newEl = Object.assign({}, film)
     var splitTime = newEl.duration.split(' ');
-    console.log(splitTime);
 
-    if (newEl.duration.includes('h')) {
-      var timeHours = newEl.duration.replace("h", "");
-      console.log(timeHours);
+    if (splitTime.length === 2) {
+      var timeTotal = parseFloat(splitTime[0]) * 60 + parseFloat(splitTime[1]);
+      newEl.duration = timeTotal
+    } else if (splitTime.length === 1 && splitTime[0].indexOf('h') > -1) {
+      var timeHours = newEl.duration.replace('h', '');
       var timeHoursTotal = parseFloat(timeHours *60);
-      console.log(timeHoursTotal)
+      newEl.duration = timeHoursTotal
+    } else if (splitTime.length === 1 && splitTime[0].indexOf('min') > -1) {
+      var timeMinutes = newEl.duration.replace('min', '');
+      newEl.duration = timeMinutes
     }
-    
-    var timeTotal = parseFloat(splitTime[0]) * 60 + parseFloat(splitTime[1]);
-    newEl.duration = timeTotal
-
+  
     return newEl;
   });
 }
+
+turnHoursToMinutes(movies)
 
 // Get the average of all rates with 2 decimals 
 
