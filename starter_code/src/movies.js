@@ -3,11 +3,19 @@
 function turnHoursToMinutes(movies) {
   return movies.map(function(film) {
     var newEl = Object.assign({}, film)
-    
     var splitTime = newEl.duration.split(' ');
+    console.log(splitTime);
+
+    if (newEl.duration.includes('h')) {
+      var timeHours = newEl.duration.replace("h", "");
+      console.log(timeHours);
+      var timeHoursTotal = parseFloat(timeHours *60);
+      console.log(timeHoursTotal)
+    }
+    
     var timeTotal = parseFloat(splitTime[0]) * 60 + parseFloat(splitTime[1]);
     newEl.duration = timeTotal
-    
+
     return newEl;
   });
 }
