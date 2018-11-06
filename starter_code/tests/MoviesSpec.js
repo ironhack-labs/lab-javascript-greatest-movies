@@ -36,39 +36,39 @@ describe('Turn duration of the movies - turnHoursToMinutes', function () {
     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(120);
   });
 
-  // it('It should return the correct number when the duration is only in minutes', function () {
-  //   var movieTry = [{ duration: '54min' }];
+  it('It should return the correct number when the duration is only in minutes', function () {
+    var movieTry = [{ duration: '54min' }];
 
-  //   expect(turnHoursToMinutes(movieTry)[0].duration).toBe(54);
-  // });
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(54);
+  });
 });
 
 describe('Get the average rate - ratesAverage', function () {
-  // it('Defines ratesAverage', function () {
-  //   expect(typeof ratesAverage).toBe('function');
-  // });
+  it('Defines ratesAverage', function () {
+    expect(typeof ratesAverage).toBe('function');
+  });
 
-  // it('You should return a number my friend! Check parseFloat method!', function () {
-  //   expect(typeof ratesAverage(movies)).toBe('number');
-  // });
+  it('You should return a number my friend! Check parseFloat method!', function () {
+    expect(typeof ratesAverage(movies)).toBe('number');
+  });
 
-  // it('You should return the average rate of 2 movies with rate 8 each!', function () {
-  //   expect(ratesAverage([{ rate: 8 }, { rate: 8 }])).toBe(8);
-  // });
+  it('You should return the average rate of 2 movies with rate 8 each!', function () {
+    expect(ratesAverage([{ rate: 8 }, { rate: 8 }])).toBe(8);
+  });
 
-  // it('It should be rounded to 2 decimals digits', function () {
-  //   expect(ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }, { rate: 7 }])).toBeCloseTo(8.25, 2);
-  // });
+  it('It should be rounded to 2 decimals digits', function () {
+    expect(ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }, { rate: 7 }])).toBeCloseTo(8.25, 2);
+  });
 
-  // it('It should be rounded to nearest hundredths ', function () {
-  //   expect(ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }])).toBeCloseTo(8.67, 2);
-  // });
+  it('It should be rounded to nearest hundredths ', function () {
+    expect(ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }])).toBeCloseTo(8.67, 2);
+  });
 });
 
 describe('Average rate of Drama Movies - dramaMoviesRate', function () {
-  // it('Defines dramaMoviesRate', function () {
-  //   expect(typeof dramaMoviesRate).toBe('function');
-  // });
+  it('Defines dramaMoviesRate', function () {
+    expect(typeof dramaMoviesRate).toBe('function');
+  });
 
   // it('You should return a number!', function () {
   //   expect(typeof dramaMoviesRate(movies)).toBe('number');

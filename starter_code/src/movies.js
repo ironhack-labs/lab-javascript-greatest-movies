@@ -14,7 +14,8 @@ function turnHoursToMinutes(movies) {
       newEl.duration = timeHoursTotal
     } else if (splitTime.length === 1 && splitTime[0].indexOf('min') > -1) {
       var timeMinutes = newEl.duration.replace('min', '');
-      newEl.duration = timeMinutes
+      var timeMinutesTotal = parseFloat(timeMinutes);
+      newEl.duration = timeMinutesTotal
     }
   
     return newEl;
@@ -25,6 +26,14 @@ turnHoursToMinutes(movies)
 
 // Get the average of all rates with 2 decimals 
 
+function ratesAverage(arr) {
+  var sum = arr.reduce(function (acc,currentValue) {
+    return acc + parseFloat(currentValue.rate);
+  },0)
+  return sum / arr.length;
+}
+
+ratesAverage(movies)
 
 // Get the average of Drama Movies
 
