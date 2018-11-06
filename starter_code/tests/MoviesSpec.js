@@ -70,13 +70,13 @@ describe('Average rate of Drama Movies - dramaMoviesRate', function () {
     expect(typeof dramaMoviesRate).toBe('function');
   });
 
-  // it('You should return a number!', function () {
-  //   expect(typeof dramaMoviesRate(movies)).toBe('number');
-  // });
+  it('You should return a number!', function () {
+    expect(typeof dramaMoviesRate(movies)).toBe('number');
+  });
 
-  // it('Return the rate of a single element array!', function () {
-  //   expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }])).toBe(8);
-  // });
+  it('Return the rate of a single element array!', function () {
+    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }])).toBe(8);
+  });
 
   // it('Return Average even if one of the movies does not have rate!', function () {
   //   expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Drama'], rate: '' }])).toBe(4);
