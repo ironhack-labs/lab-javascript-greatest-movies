@@ -37,7 +37,7 @@ ratesAverage(movies)
 
 // Get the average of Drama Movies
 
-function dramaMoviesRate (arr) {
+function dramaMoviesRate(arr){
   var dramaMovies = arr.filter(function (movie) {
     return movie.genre.find(function (genre) {
       return genre === 'Drama';
