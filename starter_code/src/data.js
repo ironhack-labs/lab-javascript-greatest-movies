@@ -2054,6 +2054,61 @@ function giveMeHours(timeString) {
 giveMeHours(time)
 movies[0].duration = giveMeHours(time)
 
+// I understand the concept here of using Math,floor and slice method , 
+// but il like to have an explanation to have a better understanidng of the application
+
+// like for the rating  believe we should access the rating and then application 
+// of Math.floor to round up to decimal and *10 to get 2 decimals
+
+
+
+
+var rating = movies[0].rate   // this should access the ratings and 
+
+var ratesAverage = Math.floor(rating * 10)  // this should round up to 2 decimal places
+
+
+// to get the average rate of drama movies i believe we have to start by making an iniration tru the movies
+// then apply an if else statment and index of to push the movies with drama into an empty Array
+// then lastly get the new array with the drama movies and devide by original array.length
+
+const drama = []
+
+for ( let i = 0; i < movies.length;i++) {
+  if (drama.indexOf(movies[i]) === -1){
+    drama.push(movies[i])
+  }
+}
+ 
+console.log(drama)   // this should contain the values of the movies with drama
+
+// to get an average of movies with drama we should devide by the movies.length
+
+let averageDramaMovies = drama / movies.length
+
+console.log(averageDramaMovies)
+
+ // ititration 4 we should sort the movies in asending order by duration starting with the shortest movie
+
+ // step 1 we start with an itieration of the movies again to
+ 
+ 
+ function myFunction() {
+  points.sort(function(a, b){return b-a});
+  document.getElementById("demo").innerHTML = points;
+}       
+
+// i found this code on w3schools which does the sort shorter i believe .sort() works for alphabetica order and this works for digits
+
+ function moviesRank(movies){
+  points.sort(function(a, b){return b-a});
+ }
+
+ // i am not too sure on how to apply this code kindly explain 
+
+ // Iteration 6 which is order Alphabetically this is the same implementation but this time we use the .sort()  method.
+
+
 
 
 
