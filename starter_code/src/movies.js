@@ -63,7 +63,7 @@ function dramaMoviesRate(array){
 function orderByDuration(array){
  var ordered = turnHoursToMinutes(array);
     ordered.map(function(elem){
-        return {elem: title.toLowerCase().replace(" ", ""), elem: duration};
+        return {elem: title.toLowerCase(), elem: duration};
     })
     ordered.sort(function(a, b){
         if (a.duration > b.duration) {
@@ -108,11 +108,16 @@ function orderAlphabetically(array) {
     var orderedByTitle = [];
 
     orderedByTitle = array.map(function (elem, i) {
-        var movie = Object.assign({}, el);
+        var element = Object.assign({}, el);
+       if (i === 20){ break; }
+            element = element.title.toLowerCase();
+         
+     });
         
+     orderedByTitle.sort();
+       
 
-
-
+    return orderedByTitle;
 
 }
 
