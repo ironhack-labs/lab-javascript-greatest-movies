@@ -1,5 +1,14 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
+function turnHoursToMinutes(movies) {
+  return movies.map(function(film) {
+    return Object.assign({}, film);
+  });
+
+  //Split al string de duration
+  include (movies[0].duration[0])
+  
+} 
 
 
 // Get the average of all rates with 2 decimals 
