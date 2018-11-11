@@ -1,13 +1,23 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
-function turnHoursToMinutes(movies) {
-  return movies.map(function(film) {
-    return Object.assign({}, film);
-  });
 
-  //Split al string de duration
-  include (movies[0].duration[0])
-  
+function calcMinutes (duration){
+  duration = duration.split(" ");
+
+  for (i=0, l=movies.length; i<l; i++){
+    var toMinutes = parseInt(duration[0],10); //parseInt coge de un string los numeros. 2do arg es en que base 10 ->decimal)
+    var minutes = parseInt(duration[1], 10);
+    var time = toMinutes*60 + minutes;
+  }
+  return time;
+}
+
+function turnHoursToMinutes(movies) {
+  return movies.map(function(films) {
+    films = Object.assign({}, films);
+    films.duration = calcMinutes (films.duration);
+  return films;
+  });
 } 
 
 
