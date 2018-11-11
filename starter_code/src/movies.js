@@ -23,6 +23,13 @@ function turnHoursToMinutes(movies) {
 
 // Get the average of all rates with 2 decimals 
 
+function ratesAverage(films) {
+  var average = films.reduce(function(acc, films) {
+      return acc += Number(films.rate);
+  }, 0);
+  average/= films.length;
+  return average;
+}
 
 // Get the average of Drama Movies
 
