@@ -66,37 +66,37 @@ describe('Get the average rate - ratesAverage', function () {
 });
 
 describe('Average rate of Drama Movies - dramaMoviesRate', function () {
-  // it('Defines dramaMoviesRate', function () {
-  //   expect(typeof dramaMoviesRate).toBe('function');
-  // });
+  it('Defines dramaMoviesRate', function () {
+    expect(typeof dramaMoviesRate).toBe('function');
+  });
 
-  // it('You should return a number!', function () {
-  //   expect(typeof dramaMoviesRate(movies)).toBe('number');
-  // });
+  it('You should return a number!', function () {
+    expect(typeof dramaMoviesRate(movies)).toBe('number');
+  });
 
-  // it('Return the rate of a single element array!', function () {
-  //   expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }])).toBe(8);
-  // });
+  it('Return the rate of a single element array!', function () {
+    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }])).toBe(8);
+  });
 
-  // it('Return Average even if one of the movies does not have rate!', function () {
-  //   expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Drama'], rate: '' }])).toBe(4);
-  // });
+  it('Return Average even if one of the movies does not have rate!', function () {
+    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Drama'], rate: '' }])).toBe(4);
+  });
 
-  // it('It should return the average of the array!', function () {
-  //   expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Drama'], rate: 9 }, { genre: ['Drama'], rate: 7 }])).toBe(8);
-  // });
+  it('It should return the average of the array!', function () {
+    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Drama'], rate: 9 }, { genre: ['Drama'], rate: 7 }])).toBe(8);
+  });
 
-  // it('It should return the average of the array, float!', function () {
-  //   expect(dramaMoviesRate([{ genre: ['Drama'], rate: 9 }, { genre: ['Drama'], rate: 9 }, { genre: ['Drama'], rate: 7 }])).toBe(8.33);
-  // });
+  it('It should return the average of the array, float!', function () {
+    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 9 }, { genre: ['Drama'], rate: 9 }, { genre: ['Drama'], rate: 7 }])).toBe(8.33);
+  });
 
-  // it('Only Drama Movies! You should return the average of Drama movies only!', function () {
-  //   expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Romance'], rate: 9 }, { genre: ['Drama'], rate: 7 }])).toBe(7.5);
-  // });
+  it('Only Drama Movies! You should return the average of Drama movies only!', function () {
+    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Romance'], rate: 9 }, { genre: ['Drama'], rate: 7 }])).toBe(7.5);
+  });
 
-  // it('Should return undefined if there is no Drama movie!', function () {
-  //   expect(dramaMoviesRate([{ genre: ['Action'], rate: 8 }, { genre: ['Romance'], rate: 9 }, { genre: ['Sci-Fi'], rate: 7 }])).toBe(undefined);
-  // });
+  it('Should return undefined if there is no Drama movie!', function () {
+    expect(dramaMoviesRate([{ genre: ['Action'], rate: 8 }, { genre: ['Romance'], rate: 9 }, { genre: ['Sci-Fi'], rate: 7 }])).toBe(undefined);
+  });
 });
 
 describe('Order the movies by duration - orderByDuration', function () {
