@@ -48,4 +48,35 @@ turnHoursToMinutes = (movies) => {
     return Object.assign({...movie, duration: newDuration});
 });
 }
-console.log(turnHoursToMinutes(movies));
+//console.log(turnHoursToMinutes(movies));
+ratesAverage = (movies) => {
+ const moviesLen = movies.length;
+ const sumRate =  movies.reduce((sum, movie) => {
+    const rate = parseFloat(movie.rate);
+     if(rate === " "){
+        return 0;
+     }else{
+        return sum + rate;
+     }
+     }
+      ,0);
+      const avgRate = sumRate/moviesLen;
+    return parseFloat(avgRate.toFixed(2));
+
+}
+//console.log(ratesAverage(movies));
+
+dramaMoviesRate = (movies) => {
+    if(movies.length != 0){
+  const drama = movies.filter((movie) => {
+        if(movie.genre.includes('Drama')){
+            return movie;
+        }
+    });
+    console.log(drama);
+  return ratesAverage(drama);
+    }
+}
+
+
+console.log(dramaMoviesRate(movies));
