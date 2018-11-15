@@ -43,9 +43,9 @@ turnHoursToMinutes = (movies) => {
         }
     }else{
 //Esse else é para se a duração só tiver minutos
-        newDuration =  duration;
+        newDuration =  parseInt(duration[0]);
     }  
-    return Object.assign({...movie, duration: `${newDuration}min`});
+    return Object.assign({...movie, duration: newDuration});
 });
 }
 console.log(turnHoursToMinutes(movies));
