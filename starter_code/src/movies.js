@@ -1,3 +1,4 @@
+
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
 
@@ -18,3 +19,31 @@
 
 
 // Best yearly rate average
+
+clearArray = (str) => {
+    var clear = str.split('h');
+    clear = clear.join(" ").replace('min', '');
+    clear = clear.split(" ");
+    return clear;
+}
+
+turnHoursToMinutes = (movies) => {
+ return movies.map((movie) => {
+    const duration = clearArray(movie.duration);
+    if(duration.length != 1){
+    const hour = duration[0]*60;
+    const min = parseInt(duration[2]);
+        if(duration.length === 2){
+//Quando não tiver minutos e só hora
+            return hour;
+        }else{
+//Aqui retorna hora+minuto
+            return hour+min;
+        }
+    }else{
+//Esse else é para se a duração só tiver minutos
+        return duration;
+    }  
+})
+}
+console.log(turnHoursToMinutes(movies));
