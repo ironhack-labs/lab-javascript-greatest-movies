@@ -50,10 +50,11 @@ turnHoursToMinutes = (movies) => {
 }
 //console.log(turnHoursToMinutes(movies));
 ratesAverage = (movies) => {
+    if(movies.length !=0){
  const moviesLen = movies.length;
  const sumRate =  movies.reduce((sum, movie) => {
     const rate = parseFloat(movie.rate);
-     if(rate === " "){
+     if(rate === ""){
         return 0;
      }else{
         return sum + rate;
@@ -62,20 +63,18 @@ ratesAverage = (movies) => {
       ,0);
       const avgRate = sumRate/moviesLen;
     return parseFloat(avgRate.toFixed(2));
-
+    }
 }
 //console.log(ratesAverage(movies));
 
-dramaMoviesRate = (movies) => {
-    if(movies.length != 0){
+dramaMoviesRate = (movies) => { 
   const drama = movies.filter((movie) => {
         if(movie.genre.includes('Drama')){
             return movie;
         }
     });
     console.log(drama);
-  return ratesAverage(drama);
-    }
+  return ratesAverage(drama);  
 }
 
 
