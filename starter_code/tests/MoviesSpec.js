@@ -65,160 +65,160 @@ describe('Get the average rate - ratesAverage', function () {
   });
 });
 
-// // describe('Average rate of Drama Movies - dramaMoviesRate', function () {
-// //   it('Defines dramaMoviesRate', function () {
-// //     expect(typeof dramaMoviesRate).toBe('function');
-// //   });
+describe('Average rate of Drama Movies - dramaMoviesRate', function () {
+  it('Defines dramaMoviesRate', function () {
+    expect(typeof dramaMoviesRate).toBe('function');
+  });
 
-// //   it('You should return a number!', function () {
-// //     expect(typeof dramaMoviesRate(movies)).toBe('number');
-// //   });
+  it('You should return a number!', function () {
+    expect(typeof dramaMoviesRate(movies)).toBe('number');
+  });
 
-// //   it('Return the rate of a single element array!', function () {
-// //     expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }])).toBe(8);
-// //   });
+  it('Return the rate of a single element array!', function () {
+    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }])).toBe(8);
+  });
 
-// //   it('Return Average even if one of the movies does not have rate!', function () {
-// //     expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Drama'], rate: '' }])).toBe(4);
-// //   });
+  it('Return Average even if one of the movies does not have rate!', function () {
+    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Drama'], rate: '' }])).toBe(4);
+  });
 
-// //   it('It should return the average of the array!', function () {
-// //     expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Drama'], rate: 9 }, { genre: ['Drama'], rate: 7 }])).toBe(8);
-// //   });
+  it('It should return the average of the array!', function () {
+    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Drama'], rate: 9 }, { genre: ['Drama'], rate: 7 }])).toBe(8);
+  });
 
-// //   it('It should return the average of the array, float!', function () {
-// //     expect(dramaMoviesRate([{ genre: ['Drama'], rate: 9 }, { genre: ['Drama'], rate: 9 }, { genre: ['Drama'], rate: 7 }])).toBe(8.33);
-// //   });
+  it('It should return the average of the array, float!', function () {
+    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 9 }, { genre: ['Drama'], rate: 9 }, { genre: ['Drama'], rate: 7 }])).toBe(8.33);
+  });
 
-// //   it('Only Drama Movies! You should return the average of Drama movies only!', function () {
-// //     expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Romance'], rate: 9 }, { genre: ['Drama'], rate: 7 }])).toBe(7.5);
-// //   });
+  it('Only Drama Movies! You should return the average of Drama movies only!', function () {
+    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Romance'], rate: 9 }, { genre: ['Drama'], rate: 7 }])).toBe(7.5);
+  });
 
-// //   it('Should return undefined if there is no Drama movie!', function () {
-// //     expect(dramaMoviesRate([{ genre: ['Action'], rate: 8 }, { genre: ['Romance'], rate: 9 }, { genre: ['Sci-Fi'], rate: 7 }])).toBe(undefined);
-// //   });
-// });
+  it('Should return undefined if there is no Drama movie!', function () {
+    expect(dramaMoviesRate([{ genre: ['Action'], rate: 8 }, { genre: ['Romance'], rate: 9 }, { genre: ['Sci-Fi'], rate: 7 }])).toBe(undefined);
+  });
+});
 
-// describe('Order the movies by duration - orderByDuration', function () {
-//   it('Defines orderByDuration', function () {
-//     expect(typeof orderByDuration).toBe('function');
-//   });
+describe('Order the movies by duration - orderByDuration', function () {
+  it('Defines orderByDuration', function () {
+    expect(typeof orderByDuration).toBe('function');
+  });
 
-//   it('Should return an array', function () {
-//     expect(typeof orderByDuration(movies)).toBe('object');
-//   });
+  it('Should return an array', function () {
+    expect(typeof orderByDuration(movies)).toBe('object');
+  });
 
-//   it('Should return the element in a single element array', function () {
-//     expect(orderByDuration([{ duration: 100 }])).toEqual([{ duration: 100 }]);
-//   });
+  it('Should return the element in a single element array', function () {
+    expect(orderByDuration([{ duration: 100 }])).toEqual([{ duration: 100 }]);
+  });
 
-//   it('Return the new array in growing order', function () {
-//     expect(orderByDuration([{ duration: 100 }, { duration: 180 }, { duration: 90 }])).toEqual([{ duration: 90 }, { duration: 100 }, { duration: 180 }]);
-//   });
+  it('Return the new array in growing order', function () {
+    expect(orderByDuration([{ duration: 100 }, { duration: 180 }, { duration: 90 }])).toEqual([{ duration: 90 }, { duration: 100 }, { duration: 180 }]);
+  });
 
-//   it('If two movies have the same length, order them alphabetically by their title', function () {
-//     expect(orderByDuration([{ title: 'abc', duration: 180 }, { title: 'bac', duration: 90 }, { title: 'aab', duration: 90 }])).toEqual([{ title: 'aab', duration: 90 }, { title: 'bac', duration: 90 }, { title: 'abc', duration: 180 }]);
-//   });
-// });
+  it('If two movies have the same length, order them alphabetically by their title', function () {
+    expect(orderByDuration([{ title: 'abc', duration: 180 }, { title: 'bac', duration: 90 }, { title: 'aab', duration: 90 }])).toEqual([{ title: 'aab', duration: 90 }, { title: 'bac', duration: 90 }, { title: 'abc', duration: 180 }]);
+  });
+});
 
-// describe('Get how many movies - howManyMovies', function () {
-//   it('Defines howManyMovies', function () {
-//     expect(typeof howManyMovies).toBe('function');
-//   });
+describe('Get how many movies - howManyMovies', function () {
+  it('Defines howManyMovies', function () {
+    expect(typeof howManyMovies).toBe('function');
+  });
 
-//   it('Should return an string', function () {
-//     expect(typeof howManyMovies(movies)).toBe('string');
-//   });
+  it('Should return an string', function () {
+    expect(typeof howManyMovies(movies)).toBe('string');
+  });
 
-//   it('Should return undefined if the array is empty', function () {
-//     expect(howManyMovies([])).toBe(undefined);
-//   });
+  it('Should return undefined if the array is empty', function () {
+    expect(howManyMovies([])).toBe(undefined);
+  });
 
-//   it('Return "Steven Spielberg directed 0 drama movies!" if he does not directed none of the movies in the array', function () {
-//     expect(howManyMovies([
-//       {
-//         director: 'James McTeigue',
-//         genre: ['Action', 'Drama', 'Thriller']
-//       }
-//     ])).toBe('Steven Spielberg directed 0 drama movies!');
-//   });
+  it('Return "Steven Spielberg directed 0 drama movies!" if he does not directed none of the movies in the array', function () {
+    expect(howManyMovies([
+      {
+        director: 'James McTeigue',
+        genre: ['Action', 'Drama', 'Thriller']
+      }
+    ])).toBe('Steven Spielberg directed 0 drama movies!');
+  });
 
-//   it('Only drama movies! Should return "Steven Spielberg directed 1 drama movies!"', function () {
-//     expect(howManyMovies([
-//       {
-//         director: 'Steven Spielberg',
-//         genre: ['Action', 'Drama', 'Thriller']
-//       },
-//       {
-//         director: 'Steven Spielberg',
-//         genre: ['Action']
-//       }
-//     ])).toBe('Steven Spielberg directed 1 drama movies!');
-//   });
+  it('Only drama movies! Should return "Steven Spielberg directed 1 drama movies!"', function () {
+    expect(howManyMovies([
+      {
+        director: 'Steven Spielberg',
+        genre: ['Action', 'Drama', 'Thriller']
+      },
+      {
+        director: 'Steven Spielberg',
+        genre: ['Action']
+      }
+    ])).toBe('Steven Spielberg directed 1 drama movies!');
+  });
 
-//   it('Only Steven Spielberg movies! Should return "Steven Spielberg directed 2 drama movies!"', function () {
-//     expect(howManyMovies([
-//       {
-//         director: 'Steven Spielberg',
-//         genre: ['Action', 'Drama', 'Thriller']
-//       },
-//       {
-//         director: 'James McTeigue',
-//         genre: ['Action', 'Drama']
-//       },
-//       {
-//         director: 'Karl Moses',
-//         genre: ['Thriller', 'Drama']
-//       },
-//       {
-//         director: 'Steven Spielberg',
-//         genre: ['Drama', 'Thriller']
-//       }
-//     ])).toBe('Steven Spielberg directed 2 drama movies!');
-//   });
+  it('Only Steven Spielberg movies! Should return "Steven Spielberg directed 2 drama movies!"', function () {
+    expect(howManyMovies([
+      {
+        director: 'Steven Spielberg',
+        genre: ['Action', 'Drama', 'Thriller']
+      },
+      {
+        director: 'James McTeigue',
+        genre: ['Action', 'Drama']
+      },
+      {
+        director: 'Karl Moses',
+        genre: ['Thriller', 'Drama']
+      },
+      {
+        director: 'Steven Spielberg',
+        genre: ['Drama', 'Thriller']
+      }
+    ])).toBe('Steven Spielberg directed 2 drama movies!');
+  });
 
-//   it('Should return "Steven Spielberg directed 4 drama movies!"', function () {
-//     expect(howManyMovies(movies)).toBe('Steven Spielberg directed 4 drama movies!');
-//   });
-// });
+  it('Should return "Steven Spielberg directed 4 drama movies!"', function () {
+    expect(howManyMovies(movies)).toBe('Steven Spielberg directed 4 drama movies!');
+  });
+});
 
-// describe('Order alphabetically - orderAlphabetically', function () {
-//   it('Defines orderAlphabetically', function () {
-//     expect(typeof orderAlphabetically).toBe('function');
-//   });
+describe('Order alphabetically - orderAlphabetically', function () {
+  it('Defines orderAlphabetically', function () {
+    expect(typeof orderAlphabetically).toBe('function');
+  });
 
-//   it('You should return an array', function () {
-//     expect(typeof orderAlphabetically([])).toBe('object');
-//   });
+  it('You should return an array', function () {
+    expect(typeof orderAlphabetically([])).toBe('object');
+  });
 
-//   it('Only return the title of the movies! Each element should be a string', function () {
-//     expect(typeof orderAlphabetically([{ title: 'aab' }])[0]).toBe('string');
-//   });
+  it('Only return the title of the movies! Each element should be a string', function () {
+    expect(typeof orderAlphabetically([{ title: 'aab' }])[0]).toBe('string');
+  });
 
-//   it('If there are less than 20 elements, return all of them.', function () {
-//     var moviesArr = [{ title: 'aab' }, { title: 'bab' }, { title: 'acb' }];
+  it('If there are less than 20 elements, return all of them.', function () {
+    var moviesArr = [{ title: 'aab' }, { title: 'bab' }, { title: 'acb' }];
 
-//     expect(orderAlphabetically(moviesArr).length).toEqual(3);
-//   });
+    expect(orderAlphabetically(moviesArr).length).toEqual(3);
+  });
 
-//   it('If there are more than 20 elements, return only 20 of them.', function () {
-//     var moviesArr = [{ title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }];
+  it('If there are more than 20 elements, return only 20 of them.', function () {
+    var moviesArr = [{ title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aab' }, { title: 'bab' }, { title: 'acb' }];
 
-//     expect(orderAlphabetically(moviesArr).length).toEqual(20);
-//   });
+    expect(orderAlphabetically(moviesArr).length).toEqual(20);
+  });
 
-//   it('You should order them alphabetically.', function () {
-//     var moviesArr = [{ title: 'aab' }, { title: 'aaa' }, { title: 'abc' }, { title: 'acb' }, { title: 'abb' }];
+  it('You should order them alphabetically.', function () {
+    var moviesArr = [{ title: 'aab' }, { title: 'aaa' }, { title: 'abc' }, { title: 'acb' }, { title: 'abb' }];
 
-//     expect(orderAlphabetically(moviesArr)).toEqual(['aaa', 'aab', 'abb', 'abc', 'acb']);
-//   });
+    expect(orderAlphabetically(moviesArr)).toEqual(['aaa', 'aab', 'abb', 'abc', 'acb']);
+  });
 
-//   it('You should return the top20 after order them alphabetically.', function () {
-//     var moviesArr = [{ title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aaa' }, { title: 'bbb' }, { title: 'anc' }, { title: 'kns' }, { title: 'zds' }, { title: 'pow' }, { title: 'gda' }, { title: 'res' }, { title: 'ter' }, { title: 'bca' }, { title: 'ccc' }, { title: 'bbt' }, { title: 'qas' }, { title: 'kmn' }, { title: 'frt' }, { title: 'afb' }, { title: 'agb' }, { title: 'apo' }, { title: 'poa' }, { title: 'cdf' }, { title: 'sea' }, { title: 'lom' }, { title: 'acs' }, { title: 'qas' }, { title: 'mns' }, { title: 'bvc' }, { title: 'gha' }, { title: 'lkj' }, { title: 'era' }, { title: 'ert' }, { title: 'tex' }, { title: 'zas' }, { title: 'pol' }];
+  it('You should return the top20 after order them alphabetically.', function () {
+    var moviesArr = [{ title: 'aab' }, { title: 'bab' }, { title: 'acb' }, { title: 'aaa' }, { title: 'bbb' }, { title: 'anc' }, { title: 'kns' }, { title: 'zds' }, { title: 'pow' }, { title: 'gda' }, { title: 'res' }, { title: 'ter' }, { title: 'bca' }, { title: 'ccc' }, { title: 'bbt' }, { title: 'qas' }, { title: 'kmn' }, { title: 'frt' }, { title: 'afb' }, { title: 'agb' }, { title: 'apo' }, { title: 'poa' }, { title: 'cdf' }, { title: 'sea' }, { title: 'lom' }, { title: 'acs' }, { title: 'qas' }, { title: 'mns' }, { title: 'bvc' }, { title: 'gha' }, { title: 'lkj' }, { title: 'era' }, { title: 'ert' }, { title: 'tex' }, { title: 'zas' }, { title: 'pol' }];
 
-//     expect(orderAlphabetically(moviesArr)).toEqual(['aaa', 'aab', 'acb', 'acs', 'afb', 'agb', 'anc', 'apo', 'bab', 'bbb', 'bbt', 'bca', 'bvc', 'ccc', 'cdf', 'era', 'ert', 'frt', 'gda', 'gha']);
-//   });
-// });
+    expect(orderAlphabetically(moviesArr)).toEqual(['aaa', 'aab', 'acb', 'acs', 'afb', 'agb', 'anc', 'apo', 'bab', 'bbb', 'bbt', 'bca', 'bvc', 'ccc', 'cdf', 'era', 'ert', 'frt', 'gda', 'gha']);
+  });
+});
 
 // describe('Best year average - bestYearAvg', function () {
 //   it('Defines bestYearAvg', function () {
