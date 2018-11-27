@@ -139,8 +139,7 @@ var sortedByYear = reduceGroups.sort(function(a,b){
     return b.rate - a.rate;
   });
 
-  console.log(sortedByYear)
-  console.log(sortedByYear.filter(year => year.year == '2007'))
+
 
   return "The best year was "+sortedByYear.slice(0,1)[0].year+" with an average rate of "+sortedByYear.slice(0,1)[0].rate;
 }else{
