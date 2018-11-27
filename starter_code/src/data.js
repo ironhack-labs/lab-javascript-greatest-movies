@@ -2000,3 +2000,71 @@ var movies = [
     rate: '8.0'
   }
 ];
+
+var res;
+var moviesWithDuration = movies.map(function(data){
+  var newHour =  data.duration.split(' ');
+if(newHour[1]){
+
+    var hourToMin = newHour[0].replace("h", '');
+      hourToMin *= 60;
+      var min = newHour[1].replace("min",'');
+      min *= 1;
+      res = hourToMin + min;
+   
+
+    }else{
+
+      if(newHour[0].includes("h")){
+        var hourToMin = newHour[0].replace("h", '');
+       res = hourToMin * 60;
+      }else{
+        var min = newHour[0].replace("min", '');
+        res = min;
+      }
+    }
+
+  
+
+  return {
+    title: data.title,
+    year: data.year,
+    director: data.director,
+    duration: res,
+    genre: data.genre,
+    rate: data.rate
+  }
+},0);
+
+function turnHourToMin(data){
+  return data;
+}
+
+console.log(turnHourToMin(moviesWithDuration));
+
+
+function ratesAverage(data){
+
+  var totalRate = data.reduce(function(acc,current){
+      return acc + data.rate;
+  },0);
+
+  return (totalRate/data.length);
+
+}
+
+
+console.log(ratesAverage(movies));
+
+function dramaMoviesRate(data){
+  var dramaRate = data.filter(function(data){
+     return data.genre.indexOf("Drama");
+  });
+  var totalRate = dramaRate.reduce(function(acc,current){
+   return acc + current.rate;
+},0);
+ return (totalRate/dramaRate.length);
+  
+}
+
+console.log(dramaMoviesRate(movies));
