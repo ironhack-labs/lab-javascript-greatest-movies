@@ -1,32 +1,5 @@
 /* eslint no-restricted-globals: 'off' */
 
-var mov = [
-  {
-    title: 'The Shawshank Redemption',
-    year: '1994',
-    director: 'Frank Darabont',
-    duration: '2h 22min',
-    genre: ['Crime', 'Drama'],
-    rate: '10'
-  },
-  {
-    title: 'Pirates of the Caribbean: The Curse of the Black Pearl',
-    year: '2003',
-    director: 'Gore Verbinski',
-    duration: '2h 23min',
-    genre: ['Action', 'Adventure', 'Fantasy'],
-    rate: '8.0'
-  },
-  {
-    title: 'Jaws',
-    year: '1975',
-    director: 'Steven Spielberg',
-    duration: '2h 4min',
-    genre: ['Adventure', 'Drama', 'Thriller'],
-    rate: '8.0'
-  },
-]
-
 // Turn duration of the movies from hours to minutes 
 function turnHoursToMinutes(array){
   
@@ -165,7 +138,66 @@ function orderAlphabetically(array){
 // Best yearly rate average
 
 function bestYearAvg(array){
-  let year;
+  if (array.length === 0){
+    return undefined;
+  }else{
+    //Creo un array con los años de todas las películas
+    let auxArray = [];
+    array.forEach( (movie) => auxArray.push(movie.year) );
+  
+    //Elimino los años duplicados
+    let years = [];
+    years.push(auxArray[0]);
+    for (let i = 1; i < auxArray.length; i++) {
+      let repetido = false;
+      for (let j = 0; j < years.length; j++) {
+        if (auxArray[i] === years[j]){
+          repetido = true;
+          break;
+        }
+      }
+      if(!repetido)
+        years.push(auxArray[i]);
+    }
 
-  return year;
+    console.log(years);
+  
+    //Creo un array con los rates medios por año
+    let yearAverage=[];
+    for (let i = 0; i < years.length; i++) {
+      let auxYear = array.filter( (movie) => movie.year === years[i] );
+      console.log(auxYear);
+      let auxAverage = auxYear.reduce( (acc, movie) => acc + (parseFloat(movie.rate)) ,0);
+      auxAverage = parseFloat((auxAverage / auxYear.length).toFixed(2));
+      yearAverage.push({year: years[i], average: auxAverage});
+    }
+
+    //Ordeno el array de medias por años (de menor a mayor)
+    yearAverage = yearAverage.sort(
+      (movie1, movie2) => {
+        if (movie1.year > movie2.year)
+          return 1;
+        else if (movie1.year < movie2.year)
+          return -1;
+        else
+          return 0;
+      }
+    );
+
+    //Busco la mayor media
+    let mayor = 0;
+    yearAverage.forEach(
+      (media) => {if(media.average > mayor) mayor = media.average}
+    );  
+
+    //Busco el menor año con la mayor media
+    console.log(yearAverage);
+    console.log(mayor);
+
+    let bestYear = yearAverage.find(
+      (year) => year.average === mayor
+    );
+    
+    return `The best year was ${bestYear.year} with an average rate of ${bestYear.average}`;
+  }
 }
