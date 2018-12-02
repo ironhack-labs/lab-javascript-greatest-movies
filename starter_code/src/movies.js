@@ -159,14 +159,11 @@ function bestYearAvg(array){
       if(!repetido)
         years.push(auxArray[i]);
     }
-
-    console.log(years);
   
     //Creo un array con los rates medios por año
     let yearAverage=[];
     for (let i = 0; i < years.length; i++) {
       let auxYear = array.filter( (movie) => movie.year === years[i] );
-      console.log(auxYear);
       let auxAverage = auxYear.reduce( (acc, movie) => acc + (parseFloat(movie.rate)) ,0);
       auxAverage = parseFloat((auxAverage / auxYear.length).toFixed(2));
       yearAverage.push({year: years[i], average: auxAverage});
@@ -191,9 +188,6 @@ function bestYearAvg(array){
     );  
 
     //Busco el menor año con la mayor media
-    console.log(yearAverage);
-    console.log(mayor);
-
     let bestYear = yearAverage.find(
       (year) => year.average === mayor
     );
