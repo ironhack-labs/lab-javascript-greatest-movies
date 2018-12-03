@@ -1,6 +1,33 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
 
+function turnHoursToMinutes (movies){
+  let separateHoursFromMinutes = [];
+
+  separateHoursFromMinutes = movies.map(function(movie){
+    return movie.duration.split(" ");
+  });
+  
+  let timeWithoutLetters = separateHoursFromMinutes.map(function (time){
+    timeGood = [];
+    timeGood.push(time[0].replace(/h/g, ''));
+    timeGood.push(time[1].replace(/min/g, ''));
+    return timeGood;
+  });
+
+  let timeToNumber = timeWithoutLetters.map(function (time){
+    let timeInNumbers = [];
+    timeInNumbers.push(parseFloat(time[0])*60);
+    timeInNumbers.push(parseFloat(time[1]));
+    return timeInNumbers[0] + timeInNumbers[1];
+  });
+ 
+  
+  // console.log(hoursInMinutes);
+  return timeToNumber;
+}
+
+console.log(turnHoursToMinutes(movies));
 
 // Get the average of all rates with 2 decimals 
 
