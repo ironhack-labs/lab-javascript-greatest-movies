@@ -41,11 +41,16 @@ console.log(turnHoursToMinutes(movies));
 
 // Get the average of all rates with 2 decimals 
 
-function ratesAverage (arr){
-  let averageRate = arr.reduce(function(sum, movie){
+function ratesAverage (movies){
+  // recorrer el array con reduce
+  let averageRate = movies.reduce(function(sum, movie){
+  
+  // Pasar a numero el rate y retornar la suma de estos
     return sum + parseFloat(movie.rate);
   }, 0);
-  return Math.round ((averageRate/arr.length) * 100) / 100;
+
+  // Dividir el total por el length del array que pasamos y redondear a dos decimales
+  return Math.round ((averageRate/movies.length) * 100) / 100;
 }
 
 
@@ -53,25 +58,30 @@ function ratesAverage (arr){
 
 function dramaMoviesRate(movies) {
   
-  let dramaMovies = []; 
-  
+  let dramaMovies = [];
+
+  // recorrer el array filtrando aquellas que no incluyan drama como genero
    dramaMovies = movies.filter(function (movie) {
    return movie.genre.indexOf("Drama") !== -1;
   }); 
   
+  // controlar en caso de que el array este vacio
   if (dramaMovies.length === 0) {
    return undefined;
+  // recorrer el array con map
   } else {
     let media = dramaMovies.map(function (movie) {
-    
+  // en caso de un missing rate igualar a 0
     if (movie.rate === "") {
      movie.rate = 0;
    }
+   // retornar el rate como numero
     return parseFloat(movie.rate);
-
+   // aplicar reduce para encontrar la suma de los rates para drama movies
   }).reduce(function (accu, value) {
    return accu + value;
   }, 0);
+  // retornar media en valor numerico y redondear a dos decimales
   return parseFloat((media / dramaMovies.length).toFixed(2));
   }
 }
@@ -92,21 +102,21 @@ function dramaMoviesRate(movies) {
 
 
 function howManyMovies (movies){
-
+  // controlar en caso de array vacio
   if (movies.length === 0){
     return undefined;
   }
 
   let dramaMovies = []; 
-  
+  // filtrar movies que no sean de drama
    dramaMovies = movies.filter(function (movie) {
    return movie.genre.indexOf("Drama") !== -1;
   }); 
-
+  // filtrar movies que no sean de Spielberg
   let spielbergDrama = dramaMovies.filter(function (movie){
     return movie.director === "Steven Spielberg";
   });
-
+// condiciones de Jasmina
   if (spielbergDrama.length === 0){
     return "Steven Spielberg directed 0 drama movies!";
   } else if (spielbergDrama.length === 1){
@@ -117,6 +127,7 @@ function howManyMovies (movies){
   } else if (spielbergDrama.length === 4){
     return "Steven Spielberg directed 4 drama movies!" ;
   }else {
+  // retornar string indicando el numero real de pelis drama por Spielberg
     return `Steven Spielberg directed ${spielbergDrama.length} drama movies`;
   }
 }
@@ -133,17 +144,18 @@ function howManyMovies (movies){
 // You should return the top20 after order them alphabetically.
 
 function orderAlphabetically (movies){
-  
+
+  // filtrar el array seleccionando las 20 primeras pelis
   let firstTwentyTitles = movies.filter(function (movie){
     return movies.indexOf(movie) <= 19;
   });
-
+  // crear variable para guardar los movie titles como string
   let movieTitles = firstTwentyTitles.map(function (movie){
     return movie.title;
   });
-  
+  // ordenar pelis por orden alfabetico
   movieTitles.sort();
-  
+  // retornar array ordenado
   return movieTitles;
 }
 
