@@ -1,4 +1,6 @@
 /* eslint no-restricted-globals: 'off' */
+
+
 // Turn duration of the movies from hours to minutes 
 
 function turnHoursToMinutes (movies){
@@ -35,9 +37,12 @@ function turnHoursToMinutes (movies){
   // retornamos array nuevo creado al inicio
   return durationAsNumber;
 }
-  
-
 console.log(turnHoursToMinutes(movies));
+
+
+
+
+
 
 // Get the average of all rates with 2 decimals 
 
@@ -52,6 +57,10 @@ function ratesAverage (movies){
   // Dividir el total por el length del array que pasamos y redondear a dos decimales
   return Math.round ((averageRate/movies.length) * 100) / 100;
 }
+
+
+
+
 
 
 // Get the average of Drama Movies
@@ -87,7 +96,14 @@ function dramaMoviesRate(movies) {
 }
 
 
+
+
+
 // Order by time duration, in growing order
+
+
+
+
 
 
 // How many movies did STEVEN SPIELBERG
@@ -133,6 +149,11 @@ function howManyMovies (movies){
 }
 
 
+
+
+
+
+
 // Order by title and print the first 20 titles
 
 // Defines orderAlphabetically
@@ -158,6 +179,10 @@ function orderAlphabetically (movies){
   // retornar array ordenado
   return movieTitles;
 }
+
+
+
+
 
 
 // Best yearly rate average
