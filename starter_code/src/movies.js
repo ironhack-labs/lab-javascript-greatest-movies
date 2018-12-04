@@ -137,6 +137,8 @@ function orderAlphabetically(array){
 
 // Best yearly rate average
 
+/* version 1.0
+
 function bestYearAvg(array){
   if (array.length === 0){
     return undefined;
@@ -192,6 +194,48 @@ function bestYearAvg(array){
       (year) => year.average === mayor
     );
     
+    return `The best year was ${bestYear.year} with an average rate of ${bestYear.average}`;
+  }
+}*/
+
+/* version 2.0 */
+function bestYearAvg(array){
+  if (array.length === 0){
+    return undefined;
+  }else{
+    let yearAvg = {};
+
+    array.forEach(
+      (movie) => {
+        let keys = Object.keys(yearAvg);
+        if ((keys.length === 0) || (yearAvg[movie.year] === undefined)){
+          yearAvg[movie.year] = [movie.rate];
+        }else{
+          yearAvg[movie.year].push(movie.rate);
+        }
+      }
+    );
+
+    let keys = Object.keys(yearAvg);
+    keys.forEach(
+      (key) => {
+        let cont = yearAvg[key].length;
+        yearAvg[key] = (yearAvg[key].reduce((acc, rate) => acc + (parseFloat(rate)) ,0))/cont;
+      }
+    );
+
+    let bestYear = {"year": 0, "average": 0};
+    Object.keys(yearAvg).forEach(
+      (key) => {
+        if(yearAvg[key] > bestYear.average){
+          bestYear.year = key;
+          bestYear.average = yearAvg[key];
+        }
+      }
+    );
+
+
+
     return `The best year was ${bestYear.year} with an average rate of ${bestYear.average}`;
   }
 }
