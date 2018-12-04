@@ -2,30 +2,40 @@
 // Turn duration of the movies from hours to minutes 
 
 function turnHoursToMinutes (movies){
-  let separateHoursFromMinutes = [];
+  // Creamos nuevo array para el producto final
+  let durationAsNumber = [];
 
-  separateHoursFromMinutes = movies.map(function(movie){
-    return movie.duration.split(" ");
-  });
-  
-  let timeWithoutLetters = separateHoursFromMinutes.map(function (time){
-    timeGood = [];
-    timeGood.push(time[0].replace(/h/g, ''));
-    timeGood.push(time[1].replace(/min/g, ''));
-    return timeGood;
-  });
+  // recorremos el array con map 
+  durationAsNumber = movies.map(function(movie){
+    
+    // Creamos variable y separamos la duración en un array de dos elementos
+    let separate = movie.duration.split(" ");
 
-  let timeToNumber = timeWithoutLetters.map(function (time){
-    let timeInNumbers = [];
-    timeInNumbers.push(parseFloat(time[0])*60);
-    timeInNumbers.push(parseFloat(time[1]));
-    return timeInNumbers[0] + timeInNumbers[1];
+    //  eliminamos las letras de cada elemento en el array
+    // en este caso h y min y hacemos push a una nueva variable
+    let noLetters = [];
+    noLetters.push(separate[0].replace(/h/g, ''));
+    noLetters.push(separate[1].replace(/min/g, ''));
+
+    // Convertimos cada elemento del array a numero
+    // multiplicamos la hora por 60 y lo sumamos a los minutos
+    let inNumbers = [];
+    inNumbers.push(parseFloat(noLetters[0]*60) + parseFloat(noLetters[1]));
+    
+    return { title: movie.title,
+        year: movie.year,
+        director: movie.director,
+        // retornamos cada objeto movie. La duración se pasa primero a string
+        // y luego a numero.
+        duration: parseInt(inNumbers.join()),
+        genre: movie.genre,
+        rate: movie.rate
+      };
   });
- 
-  
-  // console.log(hoursInMinutes);
-  return timeToNumber;
+  // retornamos array nuevo creado al inicio
+  return durationAsNumber;
 }
+  
 
 console.log(turnHoursToMinutes(movies));
 
