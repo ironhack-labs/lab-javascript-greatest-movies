@@ -80,6 +80,74 @@ console.log(orderAlphabetically(movies));
 
 // Best yearly rate average
 
+function bestYearAvg(movies) {
+  if (movies.length === 0) {
+    return undefined;
+  }else {
+    let moviesByYear = {};
+    let max = 0;
+    let yearMax = "";
+
+    movies.forEach(function(movie) {
+      if (moviesByYear[movie.year] === undefined) {
+        moviesByYear[movie.year] = [];
+        moviesByYear[movie.year].push(parseFloat(movie.rate));
+      } else {
+        moviesByYear[movie.year].push(parseFloat(movie.rate));
+      }
+    });
+    for (let year in moviesByYear) {
+      let avgOfRates = moviesByYear[year].reduce(function(acc,rate) {
+        return acc + rate;
+      })/moviesByYear[year].length;
+      moviesByYear[year] = avgOfRates;
+      if (max < moviesByYear[year]) {
+        max = moviesByYear[year];
+        yearMax = year;
+      }
+    }
+    return `The best year was ${yearMax} with an average rate of ${max}`;
+  }
+}
+
+console.log(bestYearAvg(movies))
+
+
+
+
+// Codigo de Thor
+/*
+function bestYearAvg (movies) {
+  let listByYear = {};
+  let max = 0;
+  let year = "";
+  movies.forEach(movies => {
+    if (listByYear.hasOwnProperty(movie.year)) {
+      listByYear[movie.year].push(parseFloat(movie.rate))
+    } else {
+      listByYear[movie.yar] = [];
+      listByYear[movie.year].push(parseFloat(movie.rate))
+    }
+  });
+  for (let key in listByYear) {
+    let total = listByYear[key].reduce((acc, item) => {
+      return acc +item;
+    }, 0);
+    let avg = total / listByYear[key].length;
+    listByYear[key] = avg;
+    if (avg > max) {
+      max = avg;
+      year = key;
+    }
+  }
+  return `The best year was ${parseFloat(year)} with an average rate of ${max}`
+}
+
+console.log(bestYearAvg(movies));
+*/
+
+//Codigo con Gerard
+/*
 function bestYearAvg (movies) {
   if (movies.length === 0) {
     return undefined;
@@ -138,15 +206,15 @@ function bestYearAvg (movies) {
     return `The best year was ${bestYear.year} with an average rate of ${bestYear.avgRate}`;
     }
 };
+*/
 
-console.log(bestYearAvg(movies));
 
 /*
 function bestYearAvg (movies) {
   if (movies.length === 0) {
     return undefined;
   } else { 
-    /* let newMoviesArray = movies.map(function(movie) {
+    let newMoviesArray = movies.map(function(movie) {
       let sameYear = movies.filter(function(movie) {
         let movieYear = parseFloat(movie.year); // Can I do that?
         return movieYear === parseFloat(movie.year); // I think this is the mistake
@@ -159,7 +227,9 @@ function bestYearAvg (movies) {
         year: sameYear,
         rate: avgYearRate
       };
-    });  */
+    }); 
+    */
+
     /* This part above is supposed to make a new array with
     an objet including as parameters year and rate (average 
     rate of the year). I know there migth be repeated years as it will
