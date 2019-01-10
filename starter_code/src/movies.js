@@ -2032,7 +2032,7 @@ function ratesAverage(arr) {
 // Get the average of Drama Movies
 
 function dramaMoviesRate(arr) {
-  var output = arr.filter((val) => val.genre.filter((val) => val.includes("Drama")));
+  var output = arr.filter((val) => val.genre.includes("Drama"));
   return ratesAverage(output);
 }
 
