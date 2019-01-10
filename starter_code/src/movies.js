@@ -1,8 +1,7 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
 
-var minutes = [];
-var hoursMinuts = []
+
 
 function turnHoursToMinutes (array){
   
@@ -10,27 +9,31 @@ function turnHoursToMinutes (array){
     var newDuration= 0;
     var partition = [];
     
+    
 
     if (typeof(movie.duration) == 'number'){
-      newDuration = movie.duration;
+      return 
     } 
     
     if (typeof(movie.duration) == 'string'){
       if (movie.duration.includes("h") && movie.duration.includes("min")){
         partition = movie.duration.split(" ");
-        var hours = parseInt(partition[0])
+        var hours = parseInt(partition[0]);
         var minutes = parseInt(partition[1]);
-        return newDuration = hours * 60 + minutes;
+        newDuration = (hours * 60) + minutes;
      
-      } 
-     if (!movie.duration.includes("h")){
-        return newDuration = parseInt(partition[1]); 
-        } 
-     if (movie.duration.includes("h") && !movie.duration.includes("min")){
-      return newDuration = parseInt(partition[0]) * 60;
-     } 
+      } else if (movie.duration.includes("h")){
+        newDuration = parseInt(partition[0]) * 60;
+
+      } else if (movie.duration.includes("min")){
+        newDuration = parseInt(partition[1]); 
+     }
+     return newDuration     
     } 
-    return Object.assign({},movie,movie.duration=newDuration)
+    
+    var newMovies=Object.assign({},movie,{duration:newDuration})
+    return newMovies
+
   })
   return arrayToReturn
 }
