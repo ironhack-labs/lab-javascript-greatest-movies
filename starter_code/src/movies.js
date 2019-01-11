@@ -49,9 +49,9 @@ function dramaMoviesRate (allmovies)
       return parseFloat(average+=movie.rate)
       
     }, 0);
-    console.log("---------------->"+averDrama) 
+    //console.log("---------------->"+averDrama) 
     if (arrayDramaMovies.length==0){return undefined}
-    return (Math.trunc((averDrama/arrayDramaMovies.length)*100))/100;
+    return (Math.round((averDrama/arrayDramaMovies.length)*100))/100;
 }
 console.log(dramaMoviesRate (movies));
 
