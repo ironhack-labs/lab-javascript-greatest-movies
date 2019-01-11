@@ -9,28 +9,22 @@ function turnHoursToMinutes (array){
     var newDuration= 0;
     var partition = [];
     
-    
-
-    if (typeof(movie.duration) == 'number'){
-      return 
-    } 
-    
     if (typeof(movie.duration) == 'string'){
       if (movie.duration.includes("h") && movie.duration.includes("min")){
         partition = movie.duration.split(" ");
         var hours = parseInt(partition[0]);
         var minutes = parseInt(partition[1]);
         newDuration = (hours * 60) + minutes;
-     
+      
       } else if (movie.duration.includes("h")){
-        newDuration = parseInt(partition[0]) * 60;
+          newDuration = parseInt(movie.duration) * 60;
 
-      } else if (movie.duration.includes("min")){
-        newDuration = parseInt(partition[1]); 
-     }
-     return newDuration     
-    } 
+        } else if (movie.duration.includes("min")){
+          newDuration = parseInt(movie.duration); 
+      }
     
+    } 
+      
     var newMovies=Object.assign({},movie,{duration:newDuration})
     return newMovies
 
@@ -38,8 +32,6 @@ function turnHoursToMinutes (array){
   return arrayToReturn
 }
 
-
-// hoursMinuts = array.duration.splice(" ")
 
 
 
