@@ -2127,16 +2127,14 @@ function bestYearAvg(movies) {
     // 2. loop through movies array, set a counter to count duplicate years, calculate average rate
     var counter = 1; // count duplicate year
     var sumRate = parseFloat(movies[0].rate);
+    var tempYear = movies[0].year;
 
-    for (var i = 0; i < movies.length; i++) {
-      if (i + 1 !== movies.length && movies[i].year === movies[i + 1].year) {
+    for (var i = 1; i < movies.length; i++) {
+      if (movies[i].year === tempYear) {
         counter += 1;
-        sumRate += parseFloat(movies[i + 1].rate);
-      } else if (
-        i + 1 !== movies.length &&
-        movies[i].year !== movies[i + 1].year
-      ) {
-        var year = movies[i].year;
+        sumRate += parseFloat(movies[i].rate);
+      } else if (movies[i].year !== tempYear) {
+        var year = tempYear;
         var avgRate = parseFloat((sumRate / counter).toFixed(2));
         // push average rate of the year to the avg array
         avg.push({
@@ -2147,6 +2145,7 @@ function bestYearAvg(movies) {
         counter = 1;
         sumRate = parseFloat(movies[i].rate);
       }
+      tempYear = movies[i].year;
     }
 
     // 3. Loop through avg array and check which year has the maximum average rate
@@ -2166,14 +2165,14 @@ function bestYearAvg(movies) {
       }
     });
   }
-    // return the year and rate
-    return (
-      "The best year was " +
-      avg[0].year +
-      " with an average rate of " +
-      avg[0].avgRate
-    );
-  }
 
+  // return the year and rate
+  return (
+    "The best year was " +
+    avg[0].year +
+    " with an average rate of " +
+    avg[0].avgRate
+  );
+}
 
 console.log(bestYearAvg(movies));
