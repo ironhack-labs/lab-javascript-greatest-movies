@@ -21,7 +21,18 @@ function turnHoursToMinutes(movies) {
 }
 
 // Get the average of all rates with 2 decimals 
+function ratesAverage (movies){
+  var moviesaverage = movies.map(function (movie){
+     return movie
+  })
 
+  var averageReduce = moviesaverage.reduce(function(valorAnterior, valorActual){
+    return valorAnterior + valorActual
+  },0)
+  console.log(averageReduce)
+}
+
+ratesAverage (movies)
 
 // Get the average of Drama Movies
 
