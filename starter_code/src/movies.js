@@ -6,7 +6,8 @@
 function turnHoursToMinutes(movies){
   var data2;
   data2 = movies.map(function(movie){
-  var result = 0;
+  
+    var result = 0;
     if(typeof(movie.duration) == "number"){
           result = movie.duration;
       } else{
@@ -22,7 +23,7 @@ function turnHoursToMinutes(movies){
   var newMovies = Object.assign({},movie,{duration:result});
   return newMovies;
   });
-  return data2; console.log(data2)
+  return data2; 
 }
 
 
@@ -69,6 +70,13 @@ console.log(minutes);*/
 
 
 // Get the average of all rates with 2 decimals
+
+function ratesAverage(movies){
+var averageArray = movies.reduce(function(amount, movie){
+  var total = amount + parseInt(movie.rate) ;
+  return total;
+})
+}
 
 // Get the average of Drama Movies
 
