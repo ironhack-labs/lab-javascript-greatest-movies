@@ -3,7 +3,7 @@ var movies = [
     title: 'The Shawshank Redemption',
     year: '1994',
     director: 'Frank Darabont',
-    duration: '2h 22min',
+    duration: '5h 41min',
     genre: ['Crime', 'Drama'],
     rate: '9.3'
   },
@@ -11,7 +11,7 @@ var movies = [
     title: 'The Godfather',
     year: '1972',
     director: 'Francis Ford Coppola',
-    duration: '2h 55min',
+    duration: '31min',
     genre: ['Crime', 'Drama'],
     rate: '9.2'
   },
