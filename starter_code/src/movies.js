@@ -73,8 +73,12 @@ function orderByDuration(movies){
 // How many movies did STEVEN SPIELBERG
 // I'm try to do that not using arrow function but i can't do it and it's late, but i really like to know how do it
 function howManyMovies(movies){
-    var films = movies.filter(movie => movie.director === 'Steven Spielberg' && movie.genre.includes("Drama"));
-    return `Steven Spielberg directed ${films.length} drama movies!`;
+    if(movies.length < 1){
+        return undefined;
+    } else {
+        var films = movies.filter(movie => movie.director === 'Steven Spielberg' && movie.genre.includes("Drama"));
+        return `Steven Spielberg directed ${films.length} drama movies!`;
+    }
 }
 // Order by title and print the first 20 titles
 function orderAlphabetically(movies){
