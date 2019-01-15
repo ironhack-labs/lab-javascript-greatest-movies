@@ -28,17 +28,18 @@ function turnHoursToMinutes(movies) {
 
 // Get the average of all rates with 2 decimals 
 function ratesAverage(movies){
-    var average = movies.reduce(function(accumulator, movie){
-        return accumulator + movie.rate;
+    var sumNumber = movies.reduce(function(accumulator, movie){
+        return accumulator + parseFloat(movie.rate);
     },0);
-    var sumNumber = parseFloat(average);
     return Math.round((sumNumber / movies.length) * 100) / 100;
 };
 
 // Get the average of Drama Movies
 
 function dramaMoviesRate(movies){
-    var dramaArr = movies.filter(movie => movie.genre.includes("Drama"));
+    var dramaArr = movies.filter(function(movie){ 
+        return movie.genre.includes("Drama");
+    });
 
     if(dramaArr.length <= 0){
         return undefined;
@@ -76,7 +77,9 @@ function howManyMovies(movies){
     if(movies.length < 1){
         return undefined;
     } else {
-        var films = movies.filter(movie => movie.director === 'Steven Spielberg' && movie.genre.includes("Drama"));
+        var films = movies.filter(function(movie){ 
+            return movie.director === 'Steven Spielberg' && movie.genre.includes("Drama");
+    });
         return `Steven Spielberg directed ${films.length} drama movies!`;
     }
 }
