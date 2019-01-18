@@ -59,6 +59,16 @@ function dramaMoviesRate(y) {
 
 // How many movies did STEVEN SPIELBERG
 
+let howManyMovies = ((arr) => {
+    let stevenMovies = arr.filter((obj) => {
+      if (obj.director === 'Steven Spielberg' && obj.genre.includes("Drama"))  {
+        return obj
+      }
+    })
+    return stevenMovies
+})
+
+console.log (howManyMovies(movies))
 
 // Order by title and print the first 20 titles
 
