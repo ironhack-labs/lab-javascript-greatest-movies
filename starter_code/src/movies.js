@@ -16,7 +16,7 @@ let turnHoursToMinutes = array => {
     obj.duration = h * 60 + m
     return obj
   })
- console.log(newArray)
+ return newArray
 }
 
 // Get the average of all rates with 2 decimals 
@@ -28,7 +28,7 @@ let ratesAverage = arr => {
     return acc+num
   }, 0)
   let result = parseFloat(avg/arr.length).toFixed(2)
-  console.log(result)
+  return result
 }
 
 // Get the average of Drama Movies
@@ -41,7 +41,7 @@ let dramaMoviesRate = arr => {
     return acc+num
   }, 0)
   let result = avg/arr.length
-  console.log(result.toFixed(2))
+  return result.toFixed(2)
 }
 
 // Order by time duration, in growing order
