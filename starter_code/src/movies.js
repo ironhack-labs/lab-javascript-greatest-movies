@@ -1,10 +1,19 @@
 /* eslint no-restricted-globals: 'off' */
-// Turn duration of the movies from hours to minutes 
+// Turn duration of the movies from hours to minutes
+function cloneArrayWithObject(array){
+  let newArray = []
+  for (elem in array) {
+    newArray.push(Object.assign({},array[elem]))
+  }
+  return newArray
+}
+
 function turnHoursToMinutes(array) {
   let array2 = []
+  array2 = cloneArrayWithObject(array)
   //array2 = array
   //array2 = array.splice()
-  array2 = array.map(el => el)
+  //array2 = array.map(el => el)
   //console.log("------Start-------")
   //console.log(array[0].duration)
   //console.log(array2[0].duration)
