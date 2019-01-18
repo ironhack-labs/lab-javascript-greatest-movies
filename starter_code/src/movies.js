@@ -71,5 +71,23 @@ console.log (howManyMovies(movies))
 
 // Order by title and print the first 20 titles
 
+let orderAlphabetically = ( (arr) => {
+  let counterArray = []
+  let newArray = ((arr) => {
+    for (i = 0; i < 20; i++) {
+      counterArray.push(i)
+        arr.sort ((a, b) => {
+          if (a.title > b.title) {
+            return 1
+          } else {
+            return -1
+          }
+        })
+      }
+    })
+  return newArray(arr)
+})
 
-// Best yearly rate average
+console.log (orderAlphabetically(movies))
+
+// BONUS Best yearly rate average
