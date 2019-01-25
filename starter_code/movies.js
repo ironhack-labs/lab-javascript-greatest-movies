@@ -9,12 +9,6 @@
 //movieLength so original objects are not altered
 movieLength = []
 
-function convertStringToInt(array){
-  array.forEach(function(item){
-    item.parseInt(item,10)
-  })
-}
-
 function stripText(){
   for (let i =0; i<movies.length;i+=1){
     movieLength.push((movies[i].duration))
@@ -24,8 +18,18 @@ function stripText(){
   for (let i =0; i<movieLength.length;i+=1){
     movieLength[i] = movieLength[i].replace(alphaCharReg,'')
   }
-  convertedNumber = convertStringToInt(movieLength)
-  console.log(movieLength.sort())
+
+
+  console.log(movieLength)
+  for (let item = 0; item<movieLength.length;item+=1){
+    // movieLength[item].split(" ")
+    movieLength[item][1] = Number(movieLength[item].split(' ')[1])
+    movieLength[item] = Number(movieLength[item].split(' ')[1])
+
+
+  }
+
+  console.log(movieLength)
 }
 
 
