@@ -49,36 +49,60 @@
 // stripText()
 
 // Get the average of all rates with 2 decimals
-avgRating = []
-
-function pushRatings(){
-  for (let i =0; i<movies.length;i+=1){
-    avgRating.push((movies[i].rate))
-    }
-    splitRating(avgRating)
-  }
-
-  function splitRating(array){
-    for (let i =0; i<array.length;i+=1){
-      array[i] = parseFloat(array[i],10)
-    }
-
-    array = (array.reduce((a, b) => a + b, 0)/250).toFixed(2)
-    console.log("Average ratting" +array);
-  }
-
-pushRatings()
+// avgRating = []
+//
+// function pushRatings(){
+//   for (let i =0; i<movies.length;i+=1){
+//     avgRating.push((movies[i].rate))
+//     }
+//     splitRating(avgRating)
+//   }
+//
+//   function splitRating(array){
+//     for (let i =0; i<array.length;i+=1){
+//       array[i] = parseFloat(array[i],10)
+//     }
+//
+//     array = (array.reduce((a, b) => a + b, 0)/array.length).toFixed(2)
+//     console.log('Average: ' + array);
+//   }
+//
+// pushRatings()
 
 
 
 // Get the average of Drama Movies
 
+  function getDramas(){
+    const dramaMovies = movies.filter(function(movies){
+      return movies.genre == "Drama"
+    })
+    dramaRatings = []
 
+    for (let i = 0; i<dramaMovies.length; i+=1){
+      dramaRatings.push(dramaMovies[i].rate)
+    }
+    avgDramaRating(dramaRatings)
+  }
 
+  function avgDramaRating(array){
+    for (let i =0; i<array.length;i+=1){
+      array[i] = parseFloat(array[i],10)
+    }
 
+    array = (array.reduce((a, b) => a + b, 0)/dramaRatings.length).toFixed(2)
+    console.log('Average: ' + array);
+  }
+getDramas()
 // Order by time duration, in growing order
 
 
+function ascendingOrder(){
+  let moviesCopy = movies
+  moviesCopy.sort((a, b) => (a.duration>b.duration) ? 1 : -1)
+  console.log(moviesCopy);
+}
+ascendingOrder()
 // How many movies did STEVEN SPIELBERG
 
 
