@@ -91,7 +91,7 @@
     }
 
     array = (array.reduce((a, b) => a + b, 0)/dramaRatings.length).toFixed(2)
-    console.log('Average: ' + array);
+    console.log('Average Drama Rating : ' + array);
   }
 getDramas()
 // Order by time duration, in growing order
@@ -100,12 +100,25 @@ getDramas()
 function ascendingOrder(){
   let moviesCopy = movies
   moviesCopy.sort((a, b) => (a.duration>b.duration) ? 1 : -1)
-  console.log(moviesCopy);
+  for (let i =0; i<moviesCopy.length;i+=1){
+    console.log(moviesCopy[i].title, moviesCopy[i].duration )
+  }
 }
 ascendingOrder()
 // How many movies did STEVEN SPIELBERG
+function directorMovies(){
+const director = movies.filter(function(movies){
+  return movies.director == "Steven Spielberg"
+})
 
+spielBergMovies = []
 
+for (let i = 0; i<director.length; i+=1){
+  spielBergMovies.push(director[i].title)
+}
+console.log("Steven Spielberg movies has "+ spielBergMovies.length+ " movies: "+ spielBergMovies )
+}
+directorMovies()
 // Order by title and print the first 20 titles
 
 
