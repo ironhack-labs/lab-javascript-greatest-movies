@@ -1,13 +1,11 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(array) {
-    let movies = array.map((movie)=>{
+    //var newArray = [];
+    let movies = array.map((oldMovie)=>{
+        let movie = {...oldMovie}
         let movieDuration = movie.duration;
         let minutes = 0;
-        if(Number.isInteger(movieDuration)==true){
-            minutes = movieDuration;
-            return movie;
-        }
         if(movieDuration.includes("min")){
             if(movieDuration.includes("h")){
                 movieDuration = movieDuration.replace("h", "");
@@ -28,8 +26,10 @@ function turnHoursToMinutes(array) {
             minutes = movieDuration;   
         }
         movie.duration = minutes;
+        //newArray.push(movie);
         return movie;
     });
+    //return newArray;
     return movies;
 }
 
@@ -51,10 +51,16 @@ ratesAverage(movies);
 function dramaMoviesRate(array) {
     let dramaMovies = [];
     let movies = array.map((movie) => {
-        if(movie.genre.includes("Drama") && movie.rate != ""){
+        if(movie.genre.includes("Drama")){
+            if(movie.rate == ""){
+                movie.rate = 0;
+            }
             dramaMovies.push(movie);
         }
     });
+    if(dramaMovies.length == 0){
+        return undefined;
+    }
     console.log(dramaMovies);
     let dramaAverage = ratesAverage(dramaMovies);
     return dramaAverage;
@@ -73,8 +79,8 @@ function orderByDuration(array) {
     sortedArray.sort(function(a, b){
         return a[1] - b[1];
     });
-
-    console.log(sortedArray);
+    return sortedArray;
+    //console.log(sortedArray);
 };
 
 // How many movies did STEVEN SPIELBERG
