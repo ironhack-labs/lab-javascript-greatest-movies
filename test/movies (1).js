@@ -1,9 +1,9 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes
-
 function turnHoursToMinutes(array) {
-    newMovies = array.map((originalMovie)=>{
-        let movie = {...originalMovie};
+    //var newArray = [];
+    let movies = array.map((movie)=>{
+        
         let movieDuration = movie.duration;
         let minutes = 0;
         if(movieDuration.includes("min")){
@@ -26,9 +26,11 @@ function turnHoursToMinutes(array) {
             minutes = movieDuration;   
         }
         movie.duration = minutes;
+        //newArray.push(movie);
         return movie;
     });
-    return newMovies;
+    //return newArray;
+    return movies;
 }
 
 // Get the average of all rates with 2 decimals 
@@ -49,10 +51,7 @@ ratesAverage(movies);
 function dramaMoviesRate(array) {
     let dramaMovies = [];
     let movies = array.map((movie) => {
-        if(movie.genre.includes("Drama")){
-            if(movie.rate==""){
-                movie.rate = 0;
-            }
+        if(movie.genre.includes("Drama") && movie.rate != ""){
             dramaMovies.push(movie);
         }
     });
@@ -65,9 +64,9 @@ function dramaMoviesRate(array) {
 };
 
 // Order by time duration, in growing order
-
 function orderByDuration(array) {
     let minutesArray = turnHoursToMinutes(array);
+
     let sortedArray = [];
 
     let orderByMinutes = minutesArray.map((movie) => {
@@ -78,43 +77,36 @@ function orderByDuration(array) {
         return a[1] - b[1];
     });
     return sortedArray;
+    //console.log(sortedArray);
 };
 
 // How many movies did STEVEN SPIELBERG
-function howManyMovies(array) {
-    let dSpielberg = [];
-    let newMovies = array.map((originalMovie)=>{
-        let movie = {...originalMovie};
-        if (movie.genre.includes("Drama")){
-            if (movie.director.includes("Steven Spielberg")){
-                dSpielberg.push(movie);
-            };
-        };
-    });
-    if (dSpielberg.length != 0){
-        return ("Steven Spielberg directed " + dSpielberg.length + " drama movies!");
-    }else{
-        console.log ("Steven Spielberg directed " + dSpielberg.length + " drama movies!");
-        return undefined;
-    }
-};
+
 
 // Order by title and print the first 20 titles
-function orderAlphabetically(array){
-    let titleArry = [];
-    let newMovies = array.map((originalMovie)=>{
-        let movie = {...originalMovie};
-        titleArry.push(movie.title);
-    });
-    titleArry.sort();
-    return titleArry.slice(0,20);
-}
-
-
-
-
-
 
 
 // Best yearly rate average
 
+
+
+// function turnHoursToMinutes(array){
+//     let minutes = 0;
+//     let newMovies = array.map(obj)=>{
+//         let movieDuration = obj.duration;
+//         if (movieDuration.includes("h", "min")){
+//             movieDuration = movieDuration.replace("h", '');
+//             movieDuration = movieDuration.replace("min", '');
+//             movieDuration = movieDuration.split(" ");
+//             minutes = parseInt(movieDuration[0])*60 + parseInt(movieDuration[1]);
+//         }else if(movieDuration.includes("h")){
+//             movieDuration = movieDuration.replace("h", '');
+//             minutes = parseInt(movieDuration[0])*60;
+//         }else if(movieDuration.includes("min")){
+//             movieDuration = movieDuration.replace("min", '');
+//             minutes = parseInt(movieDuration[0]);
+//         }
+//         obj.duration = minutes;
+//     }
+//     return newMovies;
+// }
