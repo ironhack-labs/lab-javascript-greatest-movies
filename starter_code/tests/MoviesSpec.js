@@ -1,6 +1,6 @@
 /* eslint no-undef: "off" */
 /* eslint jasmine/no-spec-dupes: "off" */
-
+// console.log(movies)
 describe('Turn duration of the movies - turnHoursToMinutes', function () {
   it('Defines turnHoursToMinutes', function () {
     expect(typeof turnHoursToMinutes).toBe('function');
@@ -20,7 +20,6 @@ describe('Turn duration of the movies - turnHoursToMinutes', function () {
 
   it('The duration of the movie should return the correct number to a short movie - 31 minutes', function () {
     var movieTry = [{ duration: '0h 31min' }];
-
     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(31);
   });
 
