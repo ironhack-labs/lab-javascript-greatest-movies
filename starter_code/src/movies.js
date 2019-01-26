@@ -1,20 +1,20 @@
-// const movies = [{
-//     title: 'The Shawshank Redemption',
-//     year: '1994',
-//     director: 'Frank Darabont',
-//     duration: '2h 55min',
-//     genre: ['Crime'],
-//     rate: '9.3'
-//     },
-//     {
-//       title: 'The Godfather',
-//       year: '1972',
-//       director: 'Francis Ford Coppola',
-//       duration: '2h 55min',
-//       genre: ['Crime', 'Drama'],
-//       rate: '9.2'
-//     },
-// ];
+const movies = [{
+    title: 'The Shawshank Redemption',
+    year: '1994',
+    director: 'Frank Darabont',
+    duration: '2h 55min',
+    genre: ['Crime'],
+    rate: '9.3'
+    },
+    {
+      title: 'The Godfather',
+      year: '1972',
+      director: 'Francis Ford Coppola',
+      duration: '2h 55min',
+      genre: ['Crime', 'Drama'],
+      rate: '9.2'
+    },
+];
 
 const timeStringToNumber = (string) => {
 
@@ -103,3 +103,5 @@ const bestYearAvg = (array) => {
 
     return `The best year was ${sorted[0][0]} with an average rate of ${sorted[0][1]}`
 };
+
+
