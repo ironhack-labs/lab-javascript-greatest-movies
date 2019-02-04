@@ -49,11 +49,29 @@ function turnHoursToMinutes (arr) {
 
   function orderByDuration (arr) { 
       return arr.sort(function(a,b){
-          if (a.duration === b.duration) {
-              return 
+          if (a.duration == b.duration) {
+              if (a.title.toLowerCase() < b.title.toLowerCase()) {
+                  return -1;
+              } else if (a.title.toLowerCase() > b.title.toLowerCase()) {
+                  return 1;
+              } else {
+                  return 0;
+              }
+          } else {
+            return a.duration - b.duration;
           }
-        return a.duration - b.duration;
       })
+  }
+
+  function howManyMovies (arr) {
+      var stevenMovies = arr.filter(function(object){
+        return object.director === "Steven Spielberg" && object.genre.includes("Drama") ;
+      })
+        var numberMovies =[];
+        stevenMovies.forEach(function(element){
+          return numberMovies.push(element.title);
+      })
+      return numberMovies;
   }
 
 // Get the average of all rates with 2 decimals 
