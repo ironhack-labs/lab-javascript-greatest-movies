@@ -6,68 +6,83 @@ function turnHoursToMinutes(moviesArray) {
 
     var totalMinutes, h, hour, min, minute;
     var durationArray = movie.duration.split(" ");
-    if (durationArray[0].indexOf("h") !== -1 && durationArray[1].indexOf("min") !== -1){
-      
-      h = durationArray[0].replace("h","");
-      hour = parseInt(h)*60;
-      min = durationArray[1].replace("min","")
-      minute = parseInt(min)
-      console.log(hour)
-      totalMinutes = hour + minute;
 
-     } else if (durationArray[0].indexOf("min") !== -1){
+    if (durationArray.length == 1) {
 
-      min = durationArray[0].replace("min","")
-      minute = parseInt(min)
-      totalMinutes = minute;
-      console.log(minute)
+      if (movie.duration.indexOf("m") !== -1) {
 
-    } else if (durationArray[0].indexOf("h") !== -1 && durationArray[1].indexOf("min") === -1) {
-      
-        h = durationArray[0].replace("h","");
-        hour = parseInt(h)*60;
-  
-        console.log(hour)
+        min = movie.duration.replace("min", "")
+        minute = parseInt(min)
+        totalMinutes = minute;
+
+      } else {
+
+        h = movie.duration.replace("h", "");
+        hour = parseInt(h) * 60;
         totalMinutes = hour;
-  }
-    /*
-    var h = movie.duration.indexOf("h") 
-    var minutes = movie.duration[h-1] * 60;
-    
-    var minu = movie.duration.indexOf("min") 
-    var minutes = movie.duration[minu-1];
-    var minutes10 = movie.duration[minu-2] * 10;
-    */
+      }
+
+    } else {
+
+      h = durationArray[0].replace("h", "");
+      hour = parseInt(h) * 60;
+      min = durationArray[1].replace("min", "")
+      minute = parseInt(min)
+
+      totalMinutes = hour + minute;
+    }
+
     var obj = {
       title: movie.title,
       year: movie.year,
-      director: movie.director,  
+      director: movie.director,
       duration: totalMinutes,
       genre: movie.genre,
       rate: movie.rate
     }
-    console.log(obj)
     return obj
-  }
-)}
-
-//if duration contiene h lo anterior a h * 60
-//if duration no contiene h return lo anterior a Min 
-//if duration contiene h y m suma ambas
+  });
+}
+turnHoursToMinutes(movies);
 
 // Get the average of all rates with 2 decimals 
+function ratesAverage(totalRate) {
+  suma = totalRate.reduce(function (accumulator, movie) {
+    rates = parseFloat(movie.rate);
+    return accumulator += rates;
+  }, 0); 
+  average = suma / totalRate.length;
+  console.log(average);
+  
+  return average;
+}
+/*function ratesAverage(rateArray) {
+    var rates 
+    = parseInt(movie.rate);
+    rateArray.rate.reduce(function(acc,0){
+      return acc;
+    }   
+    console.log(rateArray.rate);
+    })
+  }
+  ratesAverage(movies);
+  */
+  /*function ratesAverage(rates) {
+    rateArray = 
+    return movies.rate.
+  }*/
 
 
-// Get the average of Drama Movies
+  // Get the average of Drama Movies
 
 
-// Order by time duration, in growing order
+  // Order by time duration, in growing order
 
 
-// How many movies did STEVEN SPIELBERG
+  // How many movies did STEVEN SPIELBERG
 
 
-// Order by title and print the first 20 titles
+  // Order by title and print the first 20 titles
 
 
-// Best yearly rate average
+  // Best yearly rate average
