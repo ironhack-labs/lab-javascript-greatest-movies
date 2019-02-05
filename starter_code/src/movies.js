@@ -64,14 +64,83 @@ function turnHoursToMinutes (arr) {
   }
 
   function howManyMovies (arr) {
-      var stevenMovies = arr.filter(function(object){
-        return object.director === "Steven Spielberg" && object.genre.includes("Drama") ;
-      })
-        var numberMovies =[];
-        stevenMovies.forEach(function(element){
-          return numberMovies.push(element.title);
-      })
-      return numberMovies;
+      if (arr.length === 0) {
+          return arr[0];
+      } else {
+        var stevenMovies = arr.filter(function(object){
+            return object.director === "Steven Spielberg" && object.genre.includes("Drama") ;
+          })
+            /*var numberMovies =[];
+            stevenMovies.forEach(function(element){
+              return numberMovies.push(element.title);
+          })*/
+          return "Steven Spielberg directed " + stevenMovies.length + " drama movies!";
+      }
+
+  }
+
+  function orderAlphabetically (arr) {
+    var long = arr.length;
+    if (long > 20) {
+        long = 20;
+    }
+    var ordered = arr.sort (function(a,b) {
+        if (a.title < b.title) {
+            return -1;
+        } else if (a.title > b.title) {
+            return 1;
+        } else {
+            return 0;
+        }
+    })
+    var result =[];
+    for (var i = 0; i <long; i++) {
+        result.push(ordered[i].title);
+    }
+    return result;
+  }
+
+  function bestYearAvg (arr) {
+    if (arr.length === 0) {
+        return arr[0];
+    } else {
+        var object = {
+            year: "",
+            avgRate:""
+        };
+    
+        var yearToRates = [object];
+        yearToRates[0].year = arr[0].year;
+    
+        var yearOrdered = arr.sort(function (a,b) {
+            return a.year-b.year;
+        })
+         
+         for (var i=1; i<yearOrdered.length;i++) {
+             if (yearOrdered[i].year !== yearToRates[yearToRates.length-1].year) {
+                 yearToRates.push(Object.assign({},object));
+                 yearToRates[yearToRates.length-1].year = yearOrdered[i].year;
+             }
+         }
+    
+         var eachYearAvgRate = yearToRates.map(function (object){
+             var films = arr.filter(element=> element.year == object.year);
+             object.avgRate = ratesAverage (films);
+             return object;
+         } )
+    
+         eachYearAvgRate.sort(function (a,b){
+            if (b.avgRate === a.avgRate) {
+                return a.year - b.year;
+            } else {
+                return b.avgRate-a.avgRate;
+            }
+         });
+    
+         return "The best year was " + eachYearAvgRate[0].year + " with an average rate of " + eachYearAvgRate[0].avgRate;
+        
+    }
+    
   }
 
 // Get the average of all rates with 2 decimals 
