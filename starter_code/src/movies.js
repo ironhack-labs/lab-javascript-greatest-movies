@@ -4,10 +4,10 @@
 
 
 function turnHoursToMinutes(e) {
-  const movie = [...e]
+  const movie = e;
   
     var mov = movie.map(e => {
-        var arr = e; 
+        var arr = Object.assign({},e); 
         arr.duration = arr.duration.split('');
         console.log(arr.duration);
         if (arr.duration.includes('h') && arr.duration.includes('m'))
@@ -92,7 +92,11 @@ function orderByDuration(e){
 
 
 // How many movies did STEVEN SPIELBERG
-
+function howManyMovies(e){
+  var arr = e.filter(e => e.director.includes('Steven')); 
+  arr = arr.filter(e => e.genre.includes('Drama'));
+  return "Steven Spielberg directed " +arr.length +" drama movies!"   
+}
 
 // Order by title and print the first 20 titles
 
