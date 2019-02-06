@@ -220,7 +220,7 @@ pelis.forEach(function(peli, index){
   pelis.forEach(function(a,index2){
     if(a.year==anio){ 
         yearAvgMovies.push({year:a.year, rate:a.rate});
-        pelis.splice(index2,1);
+        //pelis.splice(index2,1);
     }
 
   });
@@ -238,9 +238,29 @@ pelis.forEach(function(peli, index){
 
 result.sort(function(a,b){
 
-if(a.rate>b.rate){
+/*if(a.rate>b.rate){
 
 return 1;
+
+}else{
+
+return -1;
+
+}*/
+if(parseFloat(b.rate) - parseFloat(a.rate)>0){
+
+    return  1;
+
+}else if(parseFloat(b.rate) - parseFloat(a.rate)==0){
+
+    if(parseInt(a.year) > parseInt(b.year)){
+
+      return 1;
+
+    }else{
+
+        return -1;
+    }
 
 }else{
 
