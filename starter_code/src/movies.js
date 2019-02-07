@@ -1,26 +1,27 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
 
+
+
+
 function turnHoursToMinutes (array){
-    results = []
-    array.forEach(function(element){
+
+    var results = array.map(function(element){
         if(element.duration.includes("h")&&element.duration.includes("min")){
             var min1 = parseInt(element.duration[element.duration.indexOf("h")-1])*60
             var min2 = parseInt(element.duration.slice(element.duration.indexOf("m")-2,element.duration.indexOf("m")))
             var result = min1+min2
-            var obj=Object.assign({},element, {duration: result})
-            results.push(obj)
+            return Object.assign({},element, {duration: result})
         } else if(element.duration.includes("h")&&(!element.duration.includes("min"))){
             var min1 = parseInt(element.duration[element.duration.indexOf("h")-1])*60
-            var obj=Object.assign({},element, {duration: min1 })
-            results.push(obj)
+            return Object.assign({},element, {duration: min1 })
         } else {
             var min2 = parseInt(element.duration.slice(element.duration.indexOf("m")-2,element.duration.indexOf("m")))
-            var obj=Object.assign({},element, {duration: min2})
-            results.push(obj)
+            return Object.assign({},element, {duration: min2})
         }
     })
     return results
+
 }
 
 
