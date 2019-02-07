@@ -109,5 +109,30 @@ function howManyMovies (arr) {
 
 // Order by title and print the first 20 titles
 
+function orderAlphabetically (arr) {
+
+    var sorted = arr.sort (function (a,b) {
+        return a['title'].localeCompare(b['title'])
+    })
+
+    var onlyTitles = []
+    sorted.forEach (function(elm){
+        onlyTitles.push(elm.title)
+    })
+
+    if (onlyTitles.length <= 20){
+
+        return onlyTitles
+
+    } else {
+        onlyTitles = onlyTitles.slice(0,20)
+        return onlyTitles
+    }
+
+}
 
 // Best yearly rate average
+
+return bestYearAvg (arr) {
+    
+}
