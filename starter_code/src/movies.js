@@ -62,9 +62,9 @@ console.log(dramaMoviesRate(movies))
 
 // Order by time duration, in growing order
 
-function orderByDuration (movies) {
+function orderByDuration (arr) {
 
-    var copied = movies.map (function (elm){
+    var copied = arr.map (function (elm){
         var copia = Object.assign({},elm)
         return copia
     })
@@ -96,6 +96,16 @@ function orderByDuration (movies) {
 
 // How many movies did STEVEN SPIELBERG
 
+function howManyMovies (arr) {
+    if (arr.length === 0){
+        return undefined
+    } else {
+        var filtered = arr.filter (function (elm){
+        return elm.director === 'Steven Spielberg' && elm['genre'].includes('Drama')
+    })
+    return "Steven Spielberg directed " + filtered.length + " drama movies!" 
+    }
+}
 
 // Order by title and print the first 20 titles
 
