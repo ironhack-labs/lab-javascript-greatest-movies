@@ -63,13 +63,8 @@ console.log(dramaMoviesRate(movies))
 // Order by time duration, in growing order
 
 function orderByDuration (arr) {
-
-    var copied = arr.map (function (elm){
-        var copia = Object.assign({},elm)
-        return copia
-    })
     
-    var sorted = copied.sort(function (a,b) {
+    var sorted = arr.sort(function (a,b) {
         if (a.duration > b.duration) {
             return 1
         } 
