@@ -132,7 +132,3 @@ function orderAlphabetically (arr) {
 }
 
 // Best yearly rate average
-
-return bestYearAvg (arr) {
-    
-}
