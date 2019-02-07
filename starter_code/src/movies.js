@@ -132,3 +132,69 @@ function orderAlphabetically (arr) {
 }
 
 // Best yearly rate average
+
+function bestYearAvg (arr) {
+
+    if (arr.length === 0){
+        return undefined
+    }
+
+    var years = []
+    arr.forEach (function(movie){
+        years.push(movie.year)
+    })
+
+    console.log("Array de años:")
+    console.log(years)
+
+    var rates = []
+    years.forEach (function(year) {
+        var currentYear = arr.filter (function(movie){
+            return movie.year === year
+        })
+        rates.push(ratesAverage(currentYear))
+    })
+
+    console.log("Array de rates:")
+    console.log(rates)
+    
+    var ratesByYear = []
+
+    for (var i = 0; i < years.length; i++){
+        ratesByYear[i] = {}
+        ratesByYear[i].year = years[i]
+        ratesByYear[i].rate = rates[i]
+    }
+
+    console.log("Array de objetos year/rate:")
+    console.log(ratesByYear)
+
+    var sorted = ratesByYear.sort (function(a,b) {
+        return b.rate - a.rate
+    })
+
+    console.log("Array ordenado:")
+    console.log(sorted)
+
+    if (sorted.length === 1){
+        return "The best year was " + sorted[0].year + " with an average rate of " + sorted[0].rate
+    }
+    else if (sorted[0].rate === sorted[1].rate) {
+        
+        var bestRate = sorted[0].rate
+
+        var tied = sorted.filter (function (elm) {
+            return elm.rate === bestRate
+        })
+    
+        var tiedAndSorted = tied.sort (function (a,b){
+            return a.year - b.year
+        })
+    
+        return "The best year was " + tiedAndSorted[0].year + " with an average rate of " + tiedAndSorted[0].rate
+
+    } else {
+        return "The best year was " + sorted[0].year + " with an average rate of " + sorted[0].rate
+    }
+
+}
