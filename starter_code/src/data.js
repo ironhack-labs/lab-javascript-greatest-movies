@@ -7,7 +7,7 @@ var movies = [
     genre: ['Crime', 'Drama'],
     rate: '9.3'
   },
-  {
+  { 
     title: 'The Godfather',
     year: '1972',
     director: 'Francis Ford Coppola',
