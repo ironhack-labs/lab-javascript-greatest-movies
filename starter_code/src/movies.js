@@ -16,8 +16,6 @@ function turnHoursToMinutes (arr) {
     return newArr
 }
 
-console.log(turnHoursToMinutes(movies))
-
 // Get the average of all rates with 2 decimals 
 
 function ratesAverage (arr) {
@@ -28,8 +26,6 @@ function ratesAverage (arr) {
     var average = parseFloat((sum / arr.length).toFixed(2));
     return average
 }
-
-console.log(ratesAverage(movies))
 
 // Get the average of Drama Movies
 
@@ -57,8 +53,6 @@ function dramaMoviesRate (arr) {
     return average
     }
 }
-
-console.log(dramaMoviesRate(movies))
 
 // Order by time duration, in growing order
 
@@ -139,9 +133,6 @@ function bestYearAvg (arr) {
         years.push(movie.year)
     })
 
-    console.log("Array de años:")
-    console.log(years)
-
     var rates = []
     years.forEach (function(year) {
         var currentYear = arr.filter (function(movie){
@@ -149,9 +140,6 @@ function bestYearAvg (arr) {
         })
         rates.push(ratesAverage(currentYear))
     })
-
-    console.log("Array de rates:")
-    console.log(rates)
     
     var ratesByYear = []
 
@@ -161,15 +149,9 @@ function bestYearAvg (arr) {
         ratesByYear[i].rate = rates[i]
     }
 
-    console.log("Array de objetos year/rate:")
-    console.log(ratesByYear)
-
     var sorted = ratesByYear.sort (function(a,b) {
         return b.rate - a.rate
     })
-
-    console.log("Array ordenado:")
-    console.log(sorted)
 
     if (sorted.length === 1){
         return "The best year was " + sorted[0].year + " with an average rate of " + sorted[0].rate
