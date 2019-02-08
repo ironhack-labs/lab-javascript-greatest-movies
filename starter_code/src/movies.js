@@ -1,6 +1,6 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
-/*
+
 var movies = arr[
   {
     title: 'The Shawshank Redemption',
@@ -18,25 +18,23 @@ var movies = arr[
     genre: ['Crime', 'Drama'],
     rate: '9.2'
   }]
-*/
 
-var turnHoursToMinutes = function(arr){
+var arr = movies
+
+function turnHoursToMinutes(arr){
   arr.map(function(elm){
     elm.duration.changeFormatTime()
-  })  
-  console.log(turnHoursToMinutes) 
-
-  var keep = object.assign({},arraySalida[0], arr);
-
-
-  //var take = Object.assign({}, a, {name: 'test'});
-  
-  return keep
+  })
+  var keeper = object.assign({}, arr)
+  return keeper
 }
+console.log(keeper)
 
 
-// Funcional que transforma string de duración a number
-var str = "2h 22min"
+// Funcion que transforma string de duración a number
+
+// var str = "2h 22min"
+var str = arr.duration
 var horas = 0
 var minutos = 0
 
@@ -49,21 +47,22 @@ function changeFormatTime(str){
   }
   return horas * 60 + minutos
 }
-console.log(changeFormatTime(str))
+//console.log(changeFormatTime(str))
 
-
-
-
-
-
-var b = object.assign({},arr[0], {movies.name}
-  
-  b.forEach.changeFormatTime(arr.duration)
 
 // Get the average of all rates with 2 decimals 
 function ratesAverage(arr){
+  var extraccion = arr.rate.map(function(elm){
 
-}
+    return elm.parseFloat()
+  })
+    
+  var arrayAverage = extraccion.reduce(function(Acumulador, valorActual){
+    return (Acumulador + valorActual)/arr.length
+  } 
+  )
+console.log(ratesAverage(movies))
+
 
 // Get the average of Drama Movies
 
