@@ -41,8 +41,10 @@ return newArray;
 
 // Get the average of all rates with 2 decimals 
 function ratesAverage(elm){
-
+    elm.parseFloat(newArray)
+    console.log(newArray)
 }
+
 
 
 // Get the average of Drama Movies
