@@ -2,19 +2,30 @@
 // Turn duration of the movies from hours to minutes 
 
 
-// Get the average of all rates with 2 decimals 
+function turnHoursToMinutes(array) {
+
+  var newArray = []
+
+  newArray = array.map(function (movie) {
+    var copiaMovie = Object.assign({}, movie)
+
+    var contador = 0
+    var arrayDuration = copiaMovie.duration.split(" ")
+    arrayDuration.forEach(function (elemt) {
+      if (elemt.includes("h")) {
+        contador += parseInt(elemt * 60)
+      } else if (elemt.includes("min")) {
+        contador += parseInt(elemt)
+      }
+
+      copiaMovie.duration = parseInt(contador)
+
+      return copiaMovie
+    })
+
+  })
+  return newArray
+}
 
 
-// Get the average of Drama Movies
 
-
-// Order by time duration, in growing order
-
-
-// How many movies did STEVEN SPIELBERG
-
-
-// Order by title and print the first 20 titles
-
-
-// Best yearly rate average
