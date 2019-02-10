@@ -42,21 +42,31 @@ let newMovies = changeDuration
 let ratesSum = newMovies.reduce((sum, curVal) => sum + parseFloat(curVal.rate), 0);
 //console.log(ratesSum);
 
-let ratesAverage = (ratesSum/newMovies.length);
+function averageArray(array){
+  var arrayAverage = array.reduce((sum, curVal) => sum + parseFloat(curVal.rate), 0)
+  var result = arrayAverage/newMovies.length
+  return result.toFixed(2);
+}
 
-console.log(ratesAverage.toFixed(2));
+console.log("newMovies average rate; ", averageArray(newMovies))
+
+// let ratesAverage = (ratesSum/newMovies.length);
+
+// console.log(ratesAverage.toFixed(2));
 
 //
 // 3. Get the average of Drama Movies 
 //
 
   let dramaArray = newMovies.filter(movie => movie.genre.includes("Drama"));
-  console.log(dramaArray);
+  // console.log(dramaArray);
+  let dramaMoviesAverage = averageArray(dramaArray)
+  console.log("Drama movies average rate; ", averageArray(dramaArray))
+
+  // let dramaMoviesRateSum = dramaArray.reduce((sum, curVal) => sum + parseFloat(curVal.rate), 0);
+  // let dramaMoviesRateAvg = dramaMoviesRateSum/dramaArray.length;
   
-  let dramaMoviesRateSum = dramaArray.reduce((sum, curVal) => sum + parseFloat(curVal.rate), 0);
-  let dramaMoviesRateAvg = dramaMoviesRateSum/dramaArray.length;
-  
-  console.log("Drama movies average rate; ", dramaMoviesRateAvg.toFixed(2));
+  // console.log("Drama movies average rate; ", dramaMoviesRateAvg.toFixed(2));
 
 
 //
