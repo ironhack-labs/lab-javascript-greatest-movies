@@ -69,7 +69,6 @@ function orderByDuration(movies) {
 }
 
 // How many movies did STEVEN SPIELBERG
-
 function howManyMovies(movies) {
     if (movies.length == 0) return undefined;
     let stevenMovies = movies.filter(function (movie) {
@@ -106,7 +105,6 @@ function orderAlphabetically(movies) {
           if (a.title < b.title) {
             return -1;
           }
-          // a must be equal to b
           return 0;
     });
 
@@ -126,18 +124,25 @@ function bestYearAvg(movies) {
         return `The best year was ${movies[0].year} with an average rate of ${movies[0].rate}`;
     }
 
-    // console.log(movies);
+    var bestObj = [];
 
-    let bestObj = [];
+    let best = movies.reduce(function(last, now, index, arr) {
 
-    let best = movies.map(function(mov) {
-        
-
-
-        bestObj.push({year: mov.year, rate: mov.rate});
-        
+        last = bestObj.filter(function(mov) {
+            return mov.year == now.year;
+        });
+        if (last.length < 1) {
+            bestObj.push({year:now.year, rate:Number.parseInt(now.rate)})
+        } else {
+            // console.log(arr)
+            // Number.parseInt(bestObj[index].rate) + Number.parseFloat(now.rate);
+            // console.log(last)
+        }
+        console.log(last)
+        return last;
+        // console.log(found)
     });
     
-    console.log(bestObj)
-
+    // console.log(bestObj)
 }
+//'The best year was 1972 with an average rate of 9.2'
