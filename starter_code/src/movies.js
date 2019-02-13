@@ -67,10 +67,21 @@ function howManyMovies (array) {
 
 // Order by title and print the first 20 titles
 function orderAlphabetically(array){
-  /*var arrLength = array.length;
-  if (arrLength > 20){
-    arrLength = 20;
-  }*/
+  if (array.length > 20){
+    array.length  = 20;
+  }
+  //var arrLength = array.length;
+  return array.sort(function(a,b){
+    if(a.title.toLowerCase() < b.title.toLowerCase()){
+      return -1;
+    } else if (a.title.toLowerCase() > b.title.toLowerCase()){
+      return 1;
+    } else{
+      return 0;
+    }
+  });
+  return 
 }
+
 
 // Best yearly rate average
