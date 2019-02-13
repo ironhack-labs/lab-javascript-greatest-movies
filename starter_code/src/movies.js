@@ -53,11 +53,8 @@ var evenNumbers = numbers.filter(function(number){
 */
 function dramaMoviesRate(filmarray){
     var dramaarray=filmarray.filter(film =>  {
-        var found=film.genre.array.forEach(element => {
-            if (element.genre ===  'Drama')
-               return true;
-        });
-        if (found) return film;
+        if (film.genre.array.indexOf('Drama') )
+           return film;
     });
     let result=ratesAverage(dramarray);
     console.log(result);
