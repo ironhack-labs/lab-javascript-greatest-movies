@@ -121,7 +121,7 @@ describe('Order the movies by duration - orderByDuration', function () {
   });
 });
 
-describe('Get how many movies - howManyMovies', function () {
+describe('  ', function () {
   it('Defines howManyMovies', function () {
     expect(typeof howManyMovies).toBe('function');
   });
