@@ -3,7 +3,6 @@
 function turnHoursToMinutes(arr){
   return arr.map(movie => {
     var hours, minutes;
-
     var rawHours = movie.duration.match(/[\d]+h/g);
 
     hours = rawHours ? rawHours.map(hour => hour.replace(/[A-Za-z]+/g, ''))
@@ -30,7 +29,9 @@ function dramaMoviesRate(arr){
   };
 
 // Order by time duration, in growing order
-const orderByDuration = (arr) => arr.length !== 1 ? [...arr].sort((a, b) => a.duration === b.duration ? a.title.localeCompare(b.title) : a.duration - b.duration) : arr;
+const orderByDuration = (arr) => arr.length !== 1 ? 
+  [...arr].sort((a, b) => a.duration === b.duration ? a.title.localeCompare(b.title) : a.duration - b.duration) 
+    : arr;
 
 // How many movies did STEVEN SPIELBERG
 function howManyMovies(arr){
