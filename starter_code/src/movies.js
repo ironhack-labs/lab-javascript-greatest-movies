@@ -19,14 +19,14 @@ function turnHoursToMinutes(arr){
 }
 
 // Get the average of all rates with 2 decimals 
-const ratesAverage = (arr) => arr.reduce((acc, next) => acc + parseFloat(next.rate), 0)/arr.length;
+const ratesAverage = (arr) => arr.reduce((acc, next) => acc + Number(next.rate), 0)/arr.length;
 
 // Get the average of Drama Movies
 function dramaMoviesRate(arr){
   var dramaMovies = arr.filter(movie => movie.genre.includes('Drama'));
   return dramaMovies.reduce((acc, movie) => {
     if(isNaN(Number(movie.rate))){return acc;}
-    return Number(acc + Number(movie.rate)/dramaMovies.length)}, 0) || undefined;
+    return Math.round(Number(acc + Number(movie.rate)/dramaMovies.length)*100)/100}, 0) || undefined;
   };
 
 // Order by time duration, in growing order
@@ -41,8 +41,33 @@ function howManyMovies(arr){
 }
 
 // Order by title and print the first 20 titles
-function orderAlphabetically(arr){
-  return [...arr].sort((a, b) => a.title.localeCompare(b.title)).slice(0, 20).map(movie => movie.title);
-}
+const orderAlphabetically = 
+  (arr) => [...arr]
+    .sort((a, b) => a.title.localeCompare(b.title))
+    .slice(0, 20)
+    .map(movie => movie.title);
 
 // Best yearly rate average
+function bestYearAvg(arr){
+  if(arr.length === 0){return;}
+  var years = {};
+  arr.forEach(movie => {
+    if(!years[movie.year]){
+      years[movie.year] = [{...movie}];
+    }else{
+      years[movie.year].push(movie);
+    }
+  });
+  var avgRatesByYear = Object.keys(years).map(year => [year, ratesAverage(years[year])]);
+  var bestYear = 0;
+  var bestRate = 0;
+
+  avgRatesByYear.sort((a, b) => a[0]-b[0])
+    .forEach(year => {
+      if(year[1] > bestRate){
+        bestYear = year[0];
+        bestRate = year[1];
+      }
+  });
+  return `The best year was ${bestYear} with an average rate of ${bestRate}`;
+}
