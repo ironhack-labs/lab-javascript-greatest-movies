@@ -38,36 +38,15 @@ var movies = [
 // }
 // console.log(bestYearAvg(movies));
 
-function bestYearAvg(arr) {
-  let years = arr.map(x => x.year);
-  let unique = [...new Set(years)];
-
-  let long = unique.length;
-
-  let rates = [];
-  for (let i = 0; i < long; i++) {
-    rates.push(0);
-  }
-
-  let averages = [];
-  for (let x = 0; x < long; x++) {
-    averages.push(0);
-  }
-
-  for (let z = 0; z < arr.length; z++) {
-    for (let y = 0; y < unique.length; y++) {
-      if (arr[z].year == unique[y]) {
-        rates[y] += Number(arr[z].rate);
-        if (averages[y] == 0) {
-          averages[y] += Number(arr[z].rate);
-        } else {
-          averages[y] += Number(arr[z].rate) / 2;
-        }
-      }
+function bestYearAvg(a) {
+  let years = a.map(x => x.year);
+  let uniqueY = [...new Set(years)];
+  let yearAvg = [];
+  for (var i = 0; i < a.length; i++) {
+    if (a[i].year === a[0].year) {
+      yearAvg.push(Number(a[i].rate));
     }
   }
-
-  let i = averages.indexOf(Math.max(...averages));
-  return unique[i];
+  return yearAvg.reduce((a, b) => a + b) / yearAvg.length;
 }
 console.log(bestYearAvg(movies));
