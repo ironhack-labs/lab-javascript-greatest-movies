@@ -81,10 +81,9 @@ function filterSP(movielist) {
 }
 
 function howManyMovies(movieSP) {
-	if (!movieSP.length) return;
-
 	var filtermovieSP = filterSP(movieSP);
-	if (!filtermovieSP) 
+	if (!movieSP.length) return;
+	else if (!filtermovieSP.length) 
 		return "Steven Spielberg directed 0 drama movies!";
 	else 
 		return ("Steven Spielberg directed " + filtermovieSP.length + " drama movies!");
