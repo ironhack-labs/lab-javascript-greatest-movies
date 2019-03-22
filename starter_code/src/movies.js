@@ -3,12 +3,12 @@
 
 function turnHoursToMinutes(movies) {
     let moviesWithDuration = movies.map(function (movie) {
-        var duration, hours, minutes;
+        var duration, horas, minutes;
 
-        hours = movie.duration.toString().match(/\d+h/g);
-        minutes = movie.duration.toString().match(/\d+min/g);
+        horas = movie.duration.toString().match(/\d+h/g);
+        mins = movie.duration.toString().match(/\d+min/g);
 
-        movie.duration = ((hours !== null) ? Number.parseInt(hours) * 60 : 0) + ((minutes !== null) ? Number.parseInt(minutes) : 0);
+        movie.duration = ((horas !== null) ? Number.parseInt(horas) * 60 : 0) + ((mins !== null) ? Number.parseInt(minutes) : 0);
         // console.log(movie.duration)
         // return movie;
         return Object.create({
