@@ -91,10 +91,28 @@ function howManyMovies(movieSP) {
 
 
 // Order by title and print the first 20 titles
-// Approach
-// 1. 
+// Result: return an array: max length == 20, contains only movie titles, sorted in alphabetical order
 
+// Approach
+// 1. create a function --> new array of strings that only contains movie titles
+// 2. create a function --> sorts array of titles, --> return new ordered array alphabetically
+// 3. --> if the array.length is >20 --> return only first 20
+
+function movieTitles(movieArray) {
+	const onlyTitles = movieArray.map (movie => 
+		movie.title)
+	return onlyTitles;
+};
+
+function orderAlphabetically(movies) {
+	var titlesArray = movieTitles(movies);
+	var sortedTitles = titlesArray.sort()
+	
+	if (titlesArray.length < 20) return sortedTitles;
+	else {
+		sortedTitles.length = 20;
+		return sortedTitles;
+	}
+}
 
 // Best yearly rate average
-
-console.log("hello");
