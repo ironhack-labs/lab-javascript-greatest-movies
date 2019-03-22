@@ -13,7 +13,7 @@ function turnHoursToMinutes(arr){
     minutes = rawMinutes ? rawMinutes.map(minute => minute.replace(/[A-Za-z]+/g, ''))
       .reduce((acum, next) => acum + next, 0) : 0;
 
-    return Object.assign({}, movie, {duration: parseInt(hours)*60 + parseInt(minutes)});
+    return {...movie, duration: parseInt(hours)*60 + parseInt(minutes)};
   });
 }
 
