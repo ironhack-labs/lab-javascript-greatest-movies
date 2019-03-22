@@ -96,3 +96,5 @@ function howManyMovies(movieSP) {
 
 
 // Best yearly rate average
+
+console.log("hello");
