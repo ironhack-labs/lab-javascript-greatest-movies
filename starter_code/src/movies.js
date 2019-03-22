@@ -2,15 +2,29 @@
 // Turn duration of the movies from hours to minutes 
 
 function turnHoursToMinutes(movies) {
+
+    function construirPelis (movies) {
+        title: movie.title,
+        year: movie.year,
+        director: movie.director,
+        duration: movie.duration,
+        genre: movie.genre,
+        rate: movie.rate
+
+    };
+
+
+
+    ________________________
+
     let moviesWithDuration = movies.map(function (movie) {
-        var duration, horas, minutes;
+        var duration ,horas, minutes;
 
         horas = movie.duration.toString().match(/\d+h/g);
         mins = movie.duration.toString().match(/\d+min/g);
 
         movie.duration = ((horas !== null) ? Number.parseInt(horas) * 60 : 0) + ((mins !== null) ? Number.parseInt(minutes) : 0);
-        // console.log(movie.duration)
-        // return movie;
+       
         return Object.create({
             title: movie.title,
             year: movie.year,
