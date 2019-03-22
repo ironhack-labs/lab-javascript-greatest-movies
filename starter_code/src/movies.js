@@ -117,18 +117,21 @@ function averageBy(arr) {
 //RETURNING THE BEST YEAR
 
 function bestYearAvg(arr) {
+  /*Obtener un array con los años sin repetir para saber la longitud del array*/
   let years = arr.map(x => x.year);
   let unique = [...new Set(years)];
-  console.log(unique);
 
+  /*obtener la longitud del array*/
   let long = unique.length;
   console.log(long);
 
+  /*obtener array de rates sumatorios igual longitud a unique pero con todos valores 0*/
   let rates = [];
   for (let i = 0; i < long; i++) {
     rates.push(0);
   };
   console.log(rates);
+  /*obtener array de medias igual longitud a unique pero con todos valores 0*/
 
   let averages = [];
   for (let x = 0; x < long; x++) {
@@ -136,14 +139,21 @@ function bestYearAvg(arr) {
   };
   console.log(averages);
 
+  /*comparacion y asignacion de valores*/
+
   for (let z = 0; z < arr.length; z++) {
+    /*entra en bucle comparación de objetos peliculas en array movies*/
     for (let y = 0; y < unique.length; y++) {
+      /*Entra en bucle array unique*/
       if (arr[z].year == unique[y]) {
-        rates[y] += Number(arr[z].rate);
+        /*compara el año de la peli si es igual que el de unique*/
+        rates[y] += Number(arr[z].rate); /*suma a rates, el rate de la pelicula*/
         if (averages[y] == 0) {
-          averages[y] += Number(arr[z].rate);
+          /*si las medias es 0*/
+          averages[y] += Number(arr[z].rate); /*suma el rate de la pelicula*/
         } else {
-          averages[y] += Number(arr[z].rate) / 2;
+          /*sino, significa que ya ha puesto datos antes*/
+          averages[y] += Number(arr[z].rate) / 2; /*suma a averages el rate de la pelicula y divide por dos para calcular la media*/
         };
       };
     };
