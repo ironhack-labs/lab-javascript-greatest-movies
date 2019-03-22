@@ -32,14 +32,14 @@ function turnHoursToMinutes(movies) {
 // Get the average of all rates with 2 decimals
 
 function ratesAverage(a) {
-  for (let i in a) {
-    if (i.rate === undefined) {
-      i.rate = 0;
-    }
-  }
-
   let allRate = 0;
-  a.forEach(movie => (allRate += parseFloat(movie.rate)));
+  a.forEach(movie => {
+    if (movie.rate == '') {
+      movie.rate = null;
+    } else {
+      return (allRate += parseFloat(movie.rate));
+    }
+  });
   return parseFloat((allRate / a.length).toFixed(2));
 }
 
