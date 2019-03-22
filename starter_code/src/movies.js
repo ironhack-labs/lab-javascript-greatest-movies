@@ -56,13 +56,21 @@ function dramaMoviesRate(a) {
 // Order by time duration, in growing order
 function orderByDuration(m) {
   function order(a, b) {
-    if (a.duration < b.duration) return -1;
-    if (a.duration > b.duration) return 1;
-    if (a.duration === b.duration) {
-      if (a.title < b.title) return -1;
-      if (a.title > b.title) return 1;
-    }
-    return 0;
+    return a.duration === b.duration
+      ? a.title > b.title
+        ? 1
+        : -1
+      : a.duration > b.duration
+      ? 1
+      : -1;
+
+    // if (a.duration < b.duration) return -1;
+    // if (a.duration > b.duration) return 1;
+    // if (a.duration === b.duration) {
+    //   if (a.title < b.title) return -1;
+    //   if (a.title > b.title) return 1;
+    // }
+    // return 0;
   }
   return m.sort(order);
 }
@@ -84,7 +92,34 @@ function orderAlphabetically(arr) {
 }
 // Best yearly rate average
 function bestYearAvg(arr) {
-  arr.forEach(e => {
-    e.rate.sort();
-  });
+  let years = arr.map(x => x.year);
+  let unique = [...new Set(years)];
+
+  let long = unique.length;
+
+  let rates = [];
+  for (let i = 0; i < long; i++) {
+    rates.push(0);
+  }
+
+  let averages = [];
+  for (let x = 0; x < long; x++) {
+    averages.push(0);
+  }
+
+  for (let z = 0; z < arr.length; z++) {
+    for (let y = 0; y < unique.length; y++) {
+      if (arr[z].year == unique[y]) {
+        rates[y] += Number(arr[z].rate);
+        if (averages[y] == 0) {
+          averages[y] += Number(arr[z].rate);
+        } else {
+          averages[y] += Number(arr[z].rate) / 2;
+        }
+      }
+    }
+  }
+
+  let i = averages.indexOf(Math.max(...averages));
+  return unique[i];
 }
