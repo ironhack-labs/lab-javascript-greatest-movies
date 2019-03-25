@@ -102,8 +102,7 @@ function bestYearAvg(a) {
   let year = '';
 
   for (let i in years) {
-    let filter = a.filter(m => m.year == years[i]);
-    let rate = filter.map(m => parseFloat(m.rate));
+    let rate = a.filter(m => m.year == years[i]).map(m => parseFloat(m.rate));
     let sum = rate.reduce((a, b) => a + b);
     yearAvg = parseFloat(sum / rate.length);
 
