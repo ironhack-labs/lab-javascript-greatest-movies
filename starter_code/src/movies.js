@@ -91,12 +91,14 @@ function orderAlphabetically(arr) {
   return titles.sort().slice(0, 20);
 }
 // Best yearly rate average
-
 function bestYearAvg(a) {
   if (!a.length) return undefined;
-  const sortedY = a.map(m => m.year).sort();
-  const years = sortedY.filter((item, i, a) => a.indexOf(item) === i);
-  console.log(years);
+
+  const years = a
+    .map(m => m.year)
+    .sort()
+    .filter((item, i, a) => a.indexOf(item) === i);
+
   let bestYearAvg = 0;
   let yearAvg = 0;
   let year = '';
@@ -113,3 +115,5 @@ function bestYearAvg(a) {
   }
   return `The best year was ${year} with an average rate of ${bestYearAvg}`;
 }
+
+console.log(bestYearAvg(movies));

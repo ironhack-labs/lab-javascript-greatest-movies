@@ -44,15 +44,13 @@ function ratesAverage(a) {
   });
   return parseFloat((allRate / a.length).toFixed(2));
 }
-
 function bestYearAvg(a) {
   if (!a.length) return undefined;
+
   const years = a
     .map(m => m.year)
     .sort()
-    .filter((item, i, a) => a.indexOf(item) === i); // Sorted years
-
-  console.log(years);
+    .filter((item, i, a) => a.indexOf(item) === i);
 
   let bestYearAvg = 0;
   let yearAvg = 0;
@@ -70,5 +68,3 @@ function bestYearAvg(a) {
   }
   return `The best year was ${year} with an average rate of ${bestYearAvg}`;
 }
-
-console.log(bestYearAvg(movies));
