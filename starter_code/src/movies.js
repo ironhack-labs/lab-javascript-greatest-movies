@@ -43,7 +43,7 @@ function ratesAverage(a) {
   return parseFloat((allRate / a.length).toFixed(2));
 }
 
-var x = console.log();
+let x = console.log();
 
 // Get the average of Drama Movies
 
@@ -91,35 +91,27 @@ function orderAlphabetically(arr) {
   return titles.sort().slice(0, 20);
 }
 // Best yearly rate average
-function bestYearAvg(arr) {
-  let years = arr.map(x => x.year);
-  let unique = [...new Set(years)];
 
-  let long = unique.length;
+function bestYearAvg(a) {
+  if (!a.length) return undefined;
+  const sortedY = a.map(m => m.year).sort();
+  const years = sortedY.filter((item, i, a) => a.indexOf(item) == i);
 
-  let rates = [];
-  for (let i = 0; i < long; i++) {
-    rates.push(0);
-  }
+  let bestYearAvg = 0;
+  let yearAvg = 0;
+  let year = '';
 
-  let averages = [];
-  for (let x = 0; x < long; x++) {
-    averages.push(0);
-  }
+  for (let i in years) {
+    let filter = a.filter(m => m.year == years[i]);
+    let rate = filter.map(m => parseFloat(m.rate));
+    let sum = rate.reduce((a, b) => a + b);
+    yearAvg = parseFloat(sum / rate.length);
 
-  for (let z = 0; z < arr.length; z++) {
-    for (let y = 0; y < unique.length; y++) {
-      if (arr[z].year == unique[y]) {
-        rates[y] += Number(arr[z].rate);
-        if (averages[y] == 0) {
-          averages[y] += Number(arr[z].rate);
-        } else {
-          averages[y] += Number(arr[z].rate) / 2;
-        }
-      }
+    if (yearAvg > bestYearAvg) {
+      bestYearAvg = yearAvg;
+      year = years[i];
     }
   }
-
-  let i = averages.indexOf(Math.max(...averages));
-  return unique[i];
+  return `The best year was ${year} with an average rate of ${bestYearAvg}`;
 }
+console.log(bestYearAvg(movies));
