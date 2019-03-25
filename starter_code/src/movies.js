@@ -116,53 +116,41 @@ function averageBy(arr) {
 
 //RETURNING THE BEST YEAR
 
-function bestYearAvg(arr) {
-  /*Obtener un array con los años sin repetir para saber la longitud del array*/
-  let years = arr.map(x => x.year);
-  let unique = [...new Set(years)];
+function bestYearAvg(movies) {
+  if (!movies.length) return undefined;
+  if (movies.length === 1)
+    return `The best year was ${
+      movies[0].year
+    } with an average rate of ${+movies[0].rate}`;
 
-  /*obtener la longitud del array*/
-  let long = unique.length;
-  console.log(long);
+  let globalArr = [];
+  for (let i = 0; i < movies.length; i++) {
+    globalArr.push(
+      movies.filter(movie => {
+        return movie.year === movies[i].year;
+      })
+    );
+  }
+  globalArr = globalArr.sort((a, b) => {
+    if (a[0].year < b[0].year) return -1;
+    if (a[0].year > b[0].year) return 1;
+    return 0;
+  });
+  console.log(globalArr);
 
-  /*obtener array de rates sumatorios igual longitud a unique pero con todos valores 0*/
-  let rates = [];
-  for (let i = 0; i < long; i++) {
-    rates.push(0);
-  };
-  console.log(rates);
-  /*obtener array de medias igual longitud a unique pero con todos valores 0*/
-
-  let averages = [];
-  for (let x = 0; x < long; x++) {
-    averages.push(0);
-  };
-  console.log(averages);
-
-  /*comparacion y asignacion de valores*/
-
-  for (let z = 0; z < arr.length; z++) {
-    /*entra en bucle comparación de objetos peliculas en array movies*/
-    for (let y = 0; y < unique.length; y++) {
-      /*Entra en bucle array unique*/
-      if (arr[z].year == unique[y]) {
-        /*compara el año de la peli si es igual que el de unique*/
-        rates[y] += Number(arr[z].rate); /*suma a rates, el rate de la pelicula*/
-        if (averages[y] == 0) {
-          /*si las medias es 0*/
-          averages[y] += Number(arr[z].rate); /*suma el rate de la pelicula*/
-        } else {
-          /*sino, significa que ya ha puesto datos antes*/
-          averages[y] += Number(arr[z].rate) / 2; /*suma a averages el rate de la pelicula y divide por dos para calcular la media*/
-        };
-      };
-    };
-  };
-  console.log(rates);
-  console.log(averages);
-
-  let i = averages.indexOf(Math.max(...averages));
-  console.log(i);
-  console.log(unique[i]);
-  return (unique[i]);
-};
+  let bestYear = null;
+  let bestYearAverage = 0;
+  for (let i = 0; i < globalArr.length; i++) {
+    let currentYearAverage = globalArr[i].reduce(
+      (acc, current) => (acc += +current.rate),
+      0
+    );
+    if (
+      +(currentYearAverage / globalArr[i].length).toFixed(2) > bestYearAverage
+    ) {
+      bestYearAverage = +(currentYearAverage / globalArr[i].length).toFixed(2);
+      bestYear = globalArr[i][0].year;
+    }
+  }
+  return `The best year was ${bestYear} with an average rate of ${bestYearAverage}`;
+}
