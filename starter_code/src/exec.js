@@ -48,15 +48,14 @@ function ratesAverage(a) {
 function bestYearAvg(a) {
   if (!a.length) return undefined;
   const sortedY = a.map(m => m.year).sort();
-  const years = sortedY.filter((item, i, a) => a.indexOf(item) == i);
-
+  const years = sortedY.filter((item, i, a) => a.indexOf(item) === i);
+  console.log(years);
   let bestYearAvg = 0;
   let yearAvg = 0;
   let year = '';
 
   for (let i in years) {
-    let filter = a.filter(m => m.year == years[i]);
-    let rate = filter.map(m => parseFloat(m.rate));
+    let rate = a.filter(m => m.year == years[i]).map(m => parseFloat(m.rate));
     let sum = rate.reduce((a, b) => a + b);
     yearAvg = parseFloat(sum / rate.length);
 
@@ -67,4 +66,5 @@ function bestYearAvg(a) {
   }
   return `The best year was ${year} with an average rate of ${bestYearAvg}`;
 }
+
 console.log(bestYearAvg(movies));
