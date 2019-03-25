@@ -54,10 +54,10 @@ function howManyMovies(movies) {
 
 // Order by title and print the first 20 titles
 function orderAlphabetically(movies){
- const newTitle = movies.filter(element=>movies.length<=20);
-  console.log(newTitle);
+ //const newTitle = movies.filter(element=>element.length<=20);
+  //console.log(newTitle, "eeeeeeeee");
   
-  return movies.sort(function(titleOne,titleTwo){
+  var sorted =  movies.sort(function(titleOne,titleTwo){
     if(titleOne.title < titleTwo.title){
       return -1;
     } else if (titleOne.title > titleTwo.title){
@@ -67,6 +67,10 @@ function orderAlphabetically(movies){
     }    
   
   }); 
+
+  console.log(sorted[0].title);
+  return sorted
+  
   
 }
 
