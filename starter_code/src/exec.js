@@ -47,9 +47,13 @@ function ratesAverage(a) {
 
 function bestYearAvg(a) {
   if (!a.length) return undefined;
-  const sortedY = a.map(m => m.year).sort();
-  const years = sortedY.filter((item, i, a) => a.indexOf(item) === i);
+  const years = a
+    .map(m => m.year)
+    .sort()
+    .filter((item, i, a) => a.indexOf(item) === i); // Sorted years
+
   console.log(years);
+
   let bestYearAvg = 0;
   let yearAvg = 0;
   let year = '';
