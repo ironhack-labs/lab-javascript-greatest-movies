@@ -1,20 +1,27 @@
-/* eslint no-restricted-globals: 'off' */
-// Turn duration of the movies from hours to minutes 
+function ratesAverage (movies){
+    var tableau = [];
+    var total=0;
+    for (let i = 0; i < movies.length ; i++ ){
+        converteur = parseFloat(movies[i].rate);
+        tableau.push(converteur);
+    }
+    var reducer = (accumulator, currentValue) => accumulator + currentValue ;
+    total = tableau.reduce(reducer)
+    total = total / movies.length;
+    console.log(total);
+}ratesAverage(movies);
 
-
-// Get the average of all rates with 2 decimals 
-
-
-// Get the average of Drama Movies
-
-
-// Order by time duration, in growing order
-
-
-// How many movies did STEVEN SPIELBERG
-
-
-// Order by title and print the first 20 titles
-
-
-// Best yearly rate average
+function dramaMoviesRate(movies){
+    var tableau = [];
+    var total=0;
+    for (let i = 0; i < movies.length ; i++ ){  
+        if(movies[i].genre.indexOf('Drama')){ 
+            converteur = parseFloat(movies[i].rate);    
+            tableau.push(converteur);              
+        };
+    };
+    var reducer = (accumulator, currentValue) => accumulator + currentValue ; 
+    total = tableau.reduce(reducer);   
+    total = total / tableau.length; 
+    console.log(total.toFixed(2));  
+}dramaMoviesRate(movies);       
