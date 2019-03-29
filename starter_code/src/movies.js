@@ -1,54 +1,28 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
-// function turnHoursToMinutes(arr){
-//   let convertedArr = arr.map((movie) =>{
-//     const dato = `${movie.duration}`.split(' ')
-//     const horas = []
-//     const minutos = []
-//     let sumHm = 0;
-//     console.log(dato, horas, minutos)
-//     if(parseInt(horas) > 0){
-//       if(minutos > 0){
-//         sumHm = (horas * 60) + minutos
-//         movie.duration = sumHm
-//       }else{
-//         sumHm = (Number(horas[0])* 60)
-//         movie.duration = sumHm
-//       } 
-//     }else if((Number(minutos) > 0)){
-//       sumHm = ((Number(minutos[1])))
-//       movie.duration = sumHm
-//     }
-//     return movie
-//   })
-//   return convertedArr
-// }
 
-function turnHoursToMinutes(arr){
-  let newArr = arr.map(function(e){
-    let hrs = e.duration.search('h')
-    if(hrs !== -1){
-      hrs = parseInt(e.duration) * 60
-    }else{
-      hrs = 0
+const turnHoursToMinutes = arr => {
+  const nwArr = arr.map(ele => {
+    const duration = ele.duration;
+    let minutes = 0;
+
+    if (duration.includes(' ')) {
+      duration.split(' ').forEach(time => {
+        if (time.includes('h')) minutes += parseInt(time, 10) * 60;
+        if (time.includes('m')) minutes += parseInt(time, 10);
+      });
+    } else {
+      if (duration.includes('h')) minutes += parseInt(duration, 10) * 60;
+      if (duration.includes('m')) minutes += parseInt(duration, 10);
     }
-    let mins = e.duration.search("m")
-    if(mins !== -1){
-      mins = parseInt(e.duration.split(" ")[1])
-    }else{
-      mins = 0
-    }
-    e.duration = hrs + mins
-    return e
-  })
-  return newArr
-}
-// function turnHoursToMinutes(arr){
-//   console.log(arr)
-//   return arr.map(function(movie){
-//     return Object.assign({},movie)
-//  });
-// }
+    return {
+      ...ele,
+      duration: minutes
+    };
+  });
+  return nwArr;
+};
+
 
 // Get the average of all rates with 2 decimals 
 function ratesAverage(arr){
@@ -60,18 +34,13 @@ function ratesAverage(arr){
 
 // Get the average of Drama Movies
 function dramaMoviesRate(arr){
-  const avg = arr.filter(function(movie){
-    movie.genre['']
-  })
-
-  const avgDrama = arr.reduce(function(movie){
-
-  })
+  const avgDrama = arr.filter(function(ele){
+    ele.genre.includes('Drama')
 }
 
 // Order by time duration, in growing order
 function orderByDuration(){
-
+  
 }
 
 // How many movies did STEVEN SPIELBERG
@@ -88,3 +57,4 @@ function orderAlphabetically(){
 function bestYearAvg(){
 
 }
+const drinkingGame = (player) => { player ? console.log(`${player} drink a shot of tequila `) : console.log("Drink a shot of tequila")}
