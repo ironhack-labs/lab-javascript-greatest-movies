@@ -61,7 +61,7 @@ function ratesAverage(arr){
 // Get the average of Drama Movies
 function dramaMoviesRate(arr){
   const avg = arr.filter(function(movie){
-    
+    movie.genre['']
   })
 
   const avgDrama = arr.reduce(function(movie){
