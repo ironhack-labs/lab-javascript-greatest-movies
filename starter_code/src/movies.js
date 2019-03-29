@@ -57,35 +57,38 @@ ratesAverage(movies)
 
 
 // Get the average of Drama Movies
-function dramaMoviesRate(movies){ 
-  const dramaMovies = movies.filter(original => original.genre.includes("Drama") && original.genre.length === 1 && original.rate !== "")
- let sum = dramaMovies.reduce((acc, curr) => acc + Number(curr.rate),0)
-    sum = sum/ dramaMovies.length
-    sum = sum.toFixed(2)
-      console.log(sum);
-      return sum
+const dramaMoviesRate = arr => { 
+  let dramaMovies = arr.filter(original => original.genre.includes("Drama"))
+  if (dramaMovies.length === 0) return undefined
+  let sum = dramaMovies.reduce((total, original) => total + Number(original.rate),0)
+  let avgRate = sum / dramaMovies.length
+  return Number( avgRate.toFixed(2))
    }
 
 dramaMoviesRate(movies)
 
 // Order by time duration, in growing order
-function orderByDuration(movies){
-  const dramaMovies = movies.filter(original => original.genre.includes("Drama") && original.genre.length === 1)
-  console.log("Orden por duración"+dramaMovies)
-}
-orderByDuration(movies)
+const orderByDuration = array => {
+  array.sort( (a,b) => {
+    if (a.duration !== b.duration) return a.duration - b.duration
+    else return a.title.localeCompare(b.title)
+  })
+  return array
+ }
+ orderByDuration(movies)
 
 
 // How many movies did STEVEN SPIELBERG
 
 function howManyMovies(movies){
-  const dramaMovies = movies.filter(original => original.director == "Steven Spielberg" && original.genre.includes("Drama") )
-  if (dramaMovies== 0){
+  const bySpielberg = movies.filter(original => original.genre.includes("Drama"))
+  const dramasBySpielberg = movies.filter(original => original.genre.includes("Drama")&&original.director === "Steven Spielberg" )
+  if (bySpielberg== 0){
     return undefined
   }
   else{
-    console.log(`Steven Spielberg directed ${dramaMovies.length} drama movies!`)
-  return `Steven Spielberg directed ${dramaMovies.length} drama movies!`;
+    console.log(`Steven Spielberg directed ${dramasBySpielberg.length} drama movies!`)
+  return `Steven Spielberg directed ${dramasBySpielberg.length} drama movies!`;
   }
   
 } 
@@ -93,10 +96,9 @@ function howManyMovies(movies){
 howManyMovies(movies)
 
 // Order by title and print the first 20 titles
-function orderAlphabetically(movies){
-
-}
+const orderAlphabetically = movies => movies.map(original => original.title).sort().slice(0,20)
  orderAlphabetically(movies)
+
 // Best yearly rate average
 
 function bestYearAvg(movies){
