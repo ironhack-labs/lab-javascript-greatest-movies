@@ -1,5 +1,12 @@
 /* eslint no-restricted-globals: 'off' */
-// Turn duration of the movies from hours to minutes 
+// Turn duration of the movies from hours to minutes
+
+//
+const emptyArr = (arr) => {
+    if(arr.length === 0){
+        return undefined
+    }
+}
 
 const turnHoursToMinutes = arr => {
   const nwArr = arr.map(ele => {
@@ -24,7 +31,7 @@ const turnHoursToMinutes = arr => {
 };
 
 
-// Get the average of all rates with 2 decimals 
+// Get the average of all rates with 2 decimals
 function ratesAverage(arr){
   const avgRate = arr.reduce(function(sum,movie){
     return sum += parseFloat(movie.rate)
@@ -33,28 +40,46 @@ function ratesAverage(arr){
 }
 
 // Get the average of Drama Movies
-function dramaMoviesRate(arr){
-  const avgDrama = arr.filter(function(ele){
-    ele.genre.includes('Drama')
+const dramaMoviesRate = (arr) => {
+  let avgDrama = arr.filter( element => element.genre.includes('Drama'))
+  if(avgDrama.length === 0) return undefined
+  let sumRate = avgDrama.reduce((acum, ele) => acum + Number(ele.rate), 0)
+  let avgRate = sumRate / avgDrama.length
+  return Number(avgRate.toFixed(2))
 }
 
 // Order by time duration, in growing order
-function orderByDuration(){
-  
+const orderByDuration = (arr) => {
+    arr.sort((a,b) => {
+        if(a.duration !== b.duration) {
+            return a.duration - b.duration
+        }else {
+            return a.title.localeCompare(b.title)
+        }
+    })
+    return arr
 }
 
 // How many movies did STEVEN SPIELBERG
-function howManyMovies(){
-
+const howManyMovies = (arr) => {
+    if (arr.length === 0) { return undefined }
+    let movies = arr.filter( element => element.genre.includes("Drama") && element.director === 'Steven Spielberg')
+    return `Steven Spielberg directed ${movies.length} drama movies!`
 }
 
 // Order by title and print the first 20 titles
-function orderAlphabetically(){
-
+const orderAlphabetically = (arr) => {
+    return arr.map( el => el.title).sort().slice(0,20)
 }
+// No entendi por que no funciona de esta manera
+// const orderAlphabetically = (arr) => {
+//     return arr.map((element) => {
+//         element.title
+//     }).sort().slice(0,20)
+//
+// }
 
 // Best yearly rate average
-function bestYearAvg(){
-
+const bestYearAvg = (arr) => {
 }
-const drinkingGame = (player) => { player ? console.log(`${player} drink a shot of tequila `) : console.log("Drink a shot of tequila")}
+const drinkingGame = (player) => { (player) ? console.log(`${player} drink a shot of tequila `) : console.log("Drink a shot of tequila")}
