@@ -2011,16 +2011,7 @@ function turnHoursToMinutes(){
 
 console.log(movies[0].genre.includes("drama"));
 
-// console.log(movies.filter(test))
-
-// function test(valor){
-//     return valor.genre[valor.indexOf('Drama')]
-// }
-
-
 // Get the average of all rates with 2 decimals 
-
-// console.log(parseFloat(movies[249].rate))
 
 function ratesAverage(min) {
     let sumRate = 0;
@@ -2036,7 +2027,7 @@ function ratesAverage(min) {
         }
     }
     console.log((sumRate / min.length).toFixed(2), medTwo)
-    return Math.round((sumRate / min.length)).toFixed(2), medTwo;
+    return parseFloat((sumRate / min.length).toFixed(2)), medTwo;
 }
 
 ratesAverage(movies);
@@ -2047,13 +2038,16 @@ ratesAverage(movies);
 function  dramaMoviesRate(arrDrama){
     let dramRate = 0;
     let avgDram = 0;
-    let count = 0
+    let count = 0;
     for(let i = 0; i < arrDrama.length; i += 1){
         if(arrDrama[i].genre.includes("Drama") === true){
             dramRate += arrDrama[i].rate;
             count += 1;
             avgDram = dramRate / count;
         }
+    if(count === 0){
+      return undefined;
+    }
     }return avgDram
 
 }
@@ -2066,8 +2060,36 @@ dramaMoviesRate(movies)
 // How many movies did STEVEN SPIELBERG
 
 
+
+var mova = movies.filter(function(stve){
+  return stve.genre.includes('Drama') === true && stve.director === 'Steven Spielberg';
+});
+
+function howManyMovies(stvSpil){
+  if(stvSpil.length === 0){
+    return undefined
+  }
+  if(mova.length === 0){
+    return "Steven Spielberg directed 0 drama movies!";
+  }
+  if(mova.length === 1){
+    return "Steven Spielberg directed 1 drama movies!";
+  }
+  if(mova.length === 2){
+    return "Steven Spielberg directed 2 drama movies!";
+  }
+  if(mova.length === 4){
+    return "Steven Spielberg directed 4 drama movies!";
+  }
+}
+
+howManyMovies(movies)
+
 // Order by title and print the first 20 titles
 
+function orderAlphabetically(alfaOrder){
+  
+}
 
 // Best yearly rate average
 
