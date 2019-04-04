@@ -100,11 +100,9 @@ function howManyMovies(array) {
     }
   });
   if (counter == 0) {
-    console.log("Steven Spielberg directed", counter, "drama movies!");
-    return "Steven Spielberg directed 0 drama movies!";
+    return `Steven Spielberg directed 0 drama movies!`;
   } else {
-    console.log("Steven Spielberg directed", counter, "drama movies!");
-    return "Steven Spielberg directed", counter, "drama movies!";
+    return `Steven Spielberg directed ${counter} drama movies!`;
   }
 }
 // Order by title and print the first 20 titles
