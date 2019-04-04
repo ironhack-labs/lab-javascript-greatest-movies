@@ -2,7 +2,27 @@
 // Turn duration of the movies from hours to minutes 
 
 
-// Get the average of all rates with 2 decimals 
+function turnHoursToMinutes(movies){
+ 
+    var minutesArray = movies.map((eachMovie)=>{ //looped through all movies
+        let movie = eachMovie.duration.split(" ") //made the duration string into array 
+        let totalMinutes = 0; 
+        movie.forEach((m)=>{ //loop through array 
+            if(m.includes('h')){  
+                totalMinutes+=Number(m.replace('h',''))*60 //if has h do this math
+            } 
+            if(m.includes('min')){
+                totalMinutes+=Number(m.replace('min','')) //if has min do this
+            }
+        })
+        return {...eachMovie, duration: totalMinutes} //return all the old movie stuff with different duration
+
+    })
+   
+    return minutesArray //return ENTIRE new ARRAY with durations 
+    
+}
+//turnHoursToMinutes(movies)// Get the average of all rates with 2 decimals 
 
 
 // Get the average of Drama Movies
