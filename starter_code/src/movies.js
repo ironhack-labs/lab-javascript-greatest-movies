@@ -79,7 +79,8 @@ function howManyMovies(arr){
 
 // Order by title and print the first 20 titles
 function orderAlphabetically(movies){
-  const sortByTitle = (movies) => {
+  movies.sort(title)
+  /*const sortByTitle = (movies) => {
   return movies.sort(function(a, b){
     return a.name > b.name;
   });
