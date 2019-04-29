@@ -33,7 +33,22 @@ function howManyMovies(movies){
 	   
 }
 console.log(howManyMovies(movies))
+
+
 // Order by title and print the first 20 titles
 
+
+function orderAlphabetically(movies){
+    let alpha = movies.map(movie => movie.title)
+    alpha= alpha.sort()
+    if(alpha.length>20){
+        return alpha.slice(0,20)
+    }  
+    if(alpha.length < 20)  {
+        return alpha
+    }
+}
+
+console.log(orderAlphabetically(movies))
 
 // Best yearly rate average
