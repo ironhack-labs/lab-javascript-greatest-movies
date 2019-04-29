@@ -1,7 +1,30 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
-
-
+//let newMovies = movies.map(movie => {
+//    let hours= parseInt(movie.duration[0] * 60 )
+//    let minutesIdx = movie.duration.indexOf("min")
+//    //let turnHoursToMinutes= hours+(movie.duration.substring(minutesIdx-2, minutesIdx-1))
+//    
+//    let minutes= ""
+//    if (minutesIdx==-1){
+//     minutes=0
+//    }else if(newMovies.duration[minutesIdx-2] === " "){
+//     minutes=newMovies.duration[minutesIdx-1]
+//    }else{
+//     minutes=newMovies.duration[minutesIdx-2] + newMovies.duration[minutesIdx-1]
+//    }
+//    const outputMins = {
+//        ...movies,
+//        duration= parseInt(minutes) + hours
+//    
+//    
+//    
+//    return outputMins
+//    
+//    })
+//    
+//    console.log(newMovies)
+//
 // Get the average of all rates with 2 decimals 
 function ratesAverage(movies){
     const sumRates = movies.reduce((sum, elem) => {
