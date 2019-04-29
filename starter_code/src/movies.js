@@ -85,9 +85,11 @@ function orderByDuration(movies) {
       console.log("Entro a comparar por titulo", a.title, b.title)
       if (a.title.localeCompare(b.title) > 0) { //el titulo de a esta antes
         return 1
-      } else {
+      }
+      if (a.title.localeCompare(b.title) < 0) { //el titulo de a esta antes
         return -1
       }
+      return 0;
     }
   })
   console.log('Ordered Movies', orderedMovies)
@@ -95,11 +97,13 @@ function orderByDuration(movies) {
 }
 
 // How many movies did STEVEN SPIELBERG
+console.log(movies)
 
 function howManyMovies(movies) {
 
+  /* console.log(movies) */
   const spielbergMovies = movies.filter(movie => movie.genre.indexOf('Drama') != -1).filter(movie => movie.director === 'Steven Spielberg')
-  console.log(spielbergMovies)
+  /* console.log(spielbergMovies) */
 
   if (spielbergMovies.length != 0) {
     return `Steven Spielberg directed ${spielbergMovies.length} drama movies!`
@@ -111,5 +115,34 @@ function howManyMovies(movies) {
 
 // Order by title and print the first 20 titles
 
+function orderAlphabetically(movies) {
 
+  console.log(movies)
+  let orderedMovies = movies.map(movie => {
+    return movie.title
+    /*  return {
+       title: movie.title
+     } */
+  }).sort((a, b) => {
+    if (a < b) {
+      return -1
+    }
+    if (a > b) {
+      return 1
+    }
+    return 0;
+  })
+
+  console.log(orderedMovies)
+
+  if (orderedMovies.length > 20) {
+    orderedMovies = orderedMovies.slice(0, 20)
+    console.log("After slice", orderedMovies.length)
+    console.log("After slice array", orderedMovies)
+  }
+
+  return orderedMovies
+
+
+}
 // Best yearly rate average

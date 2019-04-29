@@ -1998,30 +1998,4 @@ const movies = [{
     genre: ['Comedy', 'Drama'],
     rate: '8.0'
   }
-]
-
-/* const movies = [{
-    title: 'Dead Poets Society',
-    year: '1989',
-    director: 'Peter Weir',
-    duration: '2h 54min',
-    genre: ['Comedy', 'Drama'],
-    rate: '8.0'
-  },
-  {
-    title: 'Pirates of the Caribbean: The Curse of the Black Pearl',
-    year: '2003',
-    director: 'Gore Verbinski',
-    duration: '2h 5min',
-    genre: ['Action', 'Adventure', 'Fantasy'],
-    rate: '8.0'
-  },
-  {
-    title: 'Dog Day Afternoon',
-    year: '1975',
-    director: 'Sidney Lumet',
-    duration: '2h 5min',
-    genre: ['Biography', 'Crime', 'Drama', 'Thriller'],
-    rate: '8.0'
-  }
-] */
+];
