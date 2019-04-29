@@ -85,9 +85,32 @@ const dramaMoviesRate = movies => {
   return dramaAverage;
 };
 // Order by time duration, in growing order
+const orderByDuration = movies => {
+  let orderMovies = movies.sort((a, b) => {
+    if (a.duration > b.duration) {
+      return 1;
+    } else if (a.duration < b.duration) {
+      return -1;
+    } else if (a.duration == b.duration) {
+      if (a.title > b.title) {
+        return 1;
+      } else if (a.title < b.title) {
+        return -1;
+      } else {
+        return 0;
+      }
+    }
+  });
+  return orderMovies;
+};
 
 // How many movies did STEVEN SPIELBERG
-
+const howManyMovies = movies => {
+  let dramaMovies = movies.filter(movie => movie.genre.includes("Drama"));
+  let dramaMoviesSpielberg = dramaMovies.filter(movie =>
+    movie.director.includes("Steven Spielberg")
+  );
+};
 // Order by title and print the first 20 titles
 
 // Best yearly rate average
