@@ -77,7 +77,7 @@ const ratesAverage = movies => {
 // Get the average of Drama Movies
 const dramaMoviesRate = movies => {
   let dramaMovies = movies.filter(movie => movie.genre.includes("Drama"));
-  if (dramaMovies.legth == 0) {
+  if (dramaMovies.length == 0) {
     return undefined;
   }
   console.log(dramaMovies);
