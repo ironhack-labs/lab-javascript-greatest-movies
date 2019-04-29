@@ -27,20 +27,12 @@ function turnHoursToMinutes(movies) {
       /* console.log("solo minutos")
       console.log("minutos:", minutes) */
     }
-    console.log({
+    return ({
       ...movie,
       duration: hoursToMin + minutes
-      /*  title: movie.title,
-       year: movie.year,
-       director: movie.director,
-       duration: hoursToMin + minutes,
-       genre: movie.genre,
-       rate: movie.rate */
     })
 
   })
-
-
 }
 
 // Get the average of all rates with 2 decimals 
