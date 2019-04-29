@@ -24,8 +24,8 @@ function turnHoursToMinutes(movies) {
       minutes = +movie.duration.substr(movie.duration.indexOf(' ') + 1, movie.duration.lastIndexOf('min') - 3)
     } else {
       minutes = Number(movie.duration.substr(0, movie.duration.length - 3))
-      console.log("solo minutos")
-      console.log("minutos:", minutes)
+      /* console.log("solo minutos")
+      console.log("minutos:", minutes) */
     }
     return {
       title: movie.title,
@@ -42,6 +42,13 @@ function turnHoursToMinutes(movies) {
 
 // Get the average of all rates with 2 decimals 
 
+function ratesAverage(movies) {
+  const sumRates = movies.reduce((ac, movie) => {
+    return ac + movie.rate
+  }, 0)
+  /* console.log("avgRate:", +(sumRates / movies.length).toFixed(2)) */
+  return +(sumRates / movies.length).toFixed(2)
+}
 
 // Get the average of Drama Movies
 
