@@ -1,5 +1,4 @@
-var movies = [
-  {
+/* const movies = [{
     title: 'The Shawshank Redemption',
     year: '1994',
     director: 'Frank Darabont',
@@ -1999,4 +1998,22 @@ var movies = [
     genre: ['Comedy', 'Drama'],
     rate: '8.0'
   }
-];
+] */
+
+const movies = [{
+    title: 'Dead Poets Society',
+    year: '1989',
+    director: 'Peter Weir',
+    duration: '2h 54min',
+    genre: ['Comedy', 'Drama'],
+    rate: '8.0'
+  },
+  {
+    title: 'Dead Poets Society',
+    year: '1989',
+    director: 'Peter Weir',
+    duration: '54min',
+    genre: ['Comedy', 'Drama'],
+    rate: '8.0'
+  }
+]
