@@ -61,9 +61,12 @@ const min =number(movieCopy.duration) */
 // Get the average of all rates with 2 decimals
 const ratesAverage = movies => {
   let totalRate = movies.reduce((sum, elem) => {
+    if (elem.rate == "") {
+      elem.rate = 0;
+    }
     return sum + parseFloat(elem.rate);
   }, 0);
-  console.log(totalRate);
+  //console.log(totalRate);
   const averageRate = totalRate / movies.length;
 
   return parseFloat(averageRate.toFixed(2));
@@ -72,7 +75,15 @@ const ratesAverage = movies => {
 // console.log(`the average is ${averageRate}`);
 
 // Get the average of Drama Movies
-
+const dramaMoviesRate = movies => {
+  let dramaMovies = movies.filter(movie => movie.genre.includes("Drama"));
+  if (dramaMovies.legth == 0) {
+    return undefined;
+  }
+  console.log(dramaMovies);
+  const dramaAverage = ratesAverage(dramaMovies);
+  return dramaAverage;
+};
 // Order by time duration, in growing order
 
 // How many movies did STEVEN SPIELBERG
