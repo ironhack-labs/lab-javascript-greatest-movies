@@ -1,4 +1,4 @@
-const movies = [{
+/* const movies = [{
     title: 'The Shawshank Redemption',
     year: '1994',
     director: 'Frank Darabont',
@@ -1998,9 +1998,9 @@ const movies = [{
     genre: ['Comedy', 'Drama'],
     rate: '8.0'
   }
-]
+] */
 
-/* const movies = [{
+const movies = [{
     title: 'Dead Poets Society',
     year: '1989',
     director: 'Peter Weir',
@@ -2009,11 +2009,19 @@ const movies = [{
     rate: '8.0'
   },
   {
-    title: 'Dead Poets Society',
-    year: '1989',
-    director: 'Peter Weir',
-    duration: '54min',
-    genre: ['Comedy', 'Drama'],
+    title: 'Dog Day Afternoon',
+    year: '1975',
+    director: 'Sidney Lumet',
+    duration: '2h 5min',
+    genre: ['Biography', 'Crime', 'Drama', 'Thriller'],
+    rate: '8.0'
+  },
+  {
+    title: 'Pirates of the Caribbean: The Curse of the Black Pearl',
+    year: '2003',
+    director: 'Gore Verbinski',
+    duration: '2h 23min',
+    genre: ['Action', 'Adventure', 'Fantasy'],
     rate: '8.0'
   }
-] */
+]
