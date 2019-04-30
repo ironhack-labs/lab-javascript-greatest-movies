@@ -5,15 +5,7 @@ const turnHoursToMinutes = movies => {
   return movies.map(movie => {
     let movieCopy = { ...movie };
     let duration = 0;
-    //console.log(movieCopy.duration);
-    //let hoursPorMinutos = Number(movieCopy.duration.charAt(0) * 60);
-    //let minutos = "";
-    /* by sachin
-if(movieCopy.duration.indexof("min") == -1)
-const horas = number(movieCopy.duration)
-elseif(movieCopy.duration.indexof("h")== -1)
-const min =number(movieCopy.duration) */
-    //console.log(movieCopy.duration);
+
     if (movieCopy.duration.indexOf("min") == -1) {
       const hours = parseInt(movieCopy.duration.charAt(0)) * 60;
       //console.log(hours);
@@ -121,5 +113,12 @@ const howManyMovies = movies => {
   console.log(moviesSpielberg);
 };
 // Order by title and print the first 20 titles
-
+const orderAlphabetically = movies => {
+  const moviesTitles = movies.map(movie => movie.title);
+  console.log(moviesTitles);
+  console.log(orderAlphabetically);
+  console.log(`array ${orderByTitle}`);
+  return orderByTitle;
+};
+orderAlphabetically(movies);
 // Best yearly rate average
