@@ -74,16 +74,13 @@ function howManyMovies(movies) {
     movie =>
       movie.director == "Steven Spielberg" && movie.genre.includes("Drama")
   );
-  const title = spielbergMovies.map(steven => {
-    if (steven.title == []) {
-      return undefined;
-    }
-    return steven.title;
-  });
-  console.log(title);
-  return title.toString();
+  console.log(movies.length);
+  if (movies.length == 0) {
+    return undefined;
+  } else {
+    return `Steven Spielberg directed ${spielbergMovies.length} drama movies!`;
+  }
 }
-
 // Order by title and print the first 20 titles
 
 // Best yearly rate average
