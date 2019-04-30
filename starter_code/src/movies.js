@@ -24,14 +24,20 @@
 //    })
 //    
 //    console.log(newMovies)
+
+
+
 //
 // Get the average of all rates with 2 decimals 
 function ratesAverage(movies){
     const sumRates = movies.reduce((sum, elem) => {
-        return sum + parseFloat( elem.rate)
+        if(elem.rate==""){
+            elem.rate=0
+        }
+        return sum + parseFloat(elem.rate)
     }, 0)
     
-    return (sumRates/movies.length).toFixed(2)
+    return parseFloat((sumRates/movies.length).toFixed(2))
 }
 console.log(ratesAverage(movies))
 
@@ -39,7 +45,11 @@ console.log(ratesAverage(movies))
 
 function dramaMoviesRate(movies){
     const dramaRate = movies.filter(movie => movie.genre.indexOf("Drama") !=-1) //si es TRUE se añade a dramaRate
-   
+    
+    //if(dramaRate==[]){
+    //    return undefined
+   // }
+
     return ratesAverage(dramaRate)
 	   
 }
@@ -55,7 +65,7 @@ function howManyMovies(movies){
     return stevenMovies
 	   
 }
-console.log(howManyMovies(movies))
+console.log(howManyMovies(movies))  //Tiene q devolver string
 
 
 // Order by title and print the first 20 titles
