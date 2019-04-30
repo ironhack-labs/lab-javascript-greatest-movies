@@ -49,11 +49,13 @@ function orderByDuration(movies) {
   //     a.duration - b.duration );
 
   const order = movies.sort((a, b) => {
-    if (a.duration > b.duration) {
-      return 1;
-    } else if (a.duration < b.duration) {
-      return -1;
-    } else if (a.duration == b.duration) {
+    if (a.duration > b.duration || a.duration < b.duration) {
+      return a.duration - b.duration;
+    }
+    // else if (a.duration < b.duration) {
+    //   return -1;
+    // }
+    else if (a.duration == b.duration) {
       if (a.title > b.title) {
         return 1;
       } else if (a.title < b.title) {
