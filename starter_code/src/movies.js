@@ -107,14 +107,10 @@ function howManyMovies(movies) {
 
 // Order by title and print the first 20 titles
 function orderAlphabetically(orderingMovies) {
-  return (titleOrdered = orderingMovies.sort((a, b) => {
-    if (a.title > b.title) {
-      return 1;
-    } else if (a.title < b.title) {
-      return -1;
-    } else {
-      return 0;
-    }
-  }));
+  const mapArray = orderingMovies.map(movie => movie.title);
+  const titleOrdered = mapArray.sort();
+  if (titleOrdered.length > 20)
+    titleOrdered.splice(20, titleOrdered.length - 20);
+  return titleOrdered;
 }
 // Best yearly rate average
