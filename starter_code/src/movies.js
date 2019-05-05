@@ -55,6 +55,10 @@ function orderByDuration(movies = []) {
         return 1;
     }
 
+    if (movie1.title < movie2.title) {
+      return -1;
+    }
+
     if (movie1.title > movie2.title) {
       return 1;
     }
