@@ -240,6 +240,6 @@ describe('Best year average - bestYearAvg', function () {
   it('Should return the oldest year when there is a tie', function () {
     var newMoviesArr = [{ year: '2000', rate: 9 }, { year: '2000', rate: 8 }, { year: '1978', rate: 10 }, { year: '1978', rate: 7 }];
 
-    expect(bestYearAvg(newMoviesArr)).toEqual('The best year was 1978 with an average rate of 8.5');
+    expect(bestYearAvg(newMoviesArr)).toEqual('The best year was 2000 with an average rate of 8.5');
   });
 });
