@@ -237,10 +237,6 @@ function bestYearAvg(listaMovies) {
         }
     });
 
-
-
-    //buscar el maxRate de todos los años
-
     return getTextoRespuestaBestYear(bestYear);
 
 }
