@@ -60,16 +60,26 @@ function turnHoursToMinutes(data) {
 
 }
 
-function ratesAverage(arrayOfRating) {
+function ratesAverage(lista) {
 
-    let numItems = arrayOfRating.length;
+    //quitar aquellso que no tendna rate
+
+
+    let numItems = lista.length;
 
     if (numItems === 0) {
         return;
     }
 
-    let sumaTotal = arrayOfRating.reduce((total, item) => {
-        return total + parseFloat(item.rate);
+    let sumaTotal = lista.reduce((total, item) => {
+
+        if(item.rate ===undefined || item.rate===''){
+            return total;
+        }else{
+            return total + parseFloat(item.rate);
+        }
+
+
     }, 0);
 
 
