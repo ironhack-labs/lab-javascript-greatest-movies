@@ -168,12 +168,17 @@ function orderAlphabetically(listaMovies) {
 function bestYearAvg(listaMovies) {
 
 
+    
+    function getRespuestoFromModel(model) {
+        return `The best year was ${model.year} with an average rate of ${model.rate}`
+    }
+    
     if (listaMovies.length === 0) {
         return;
     }
 
     if (listaMovies.length === 1) {
-        return;
+        return getRespuestoFromModel(listaMovies[0]);
     }
 
 
@@ -209,17 +214,23 @@ function bestYearAvg(listaMovies) {
 
     });
 
-    let bestYearRate = {year: null, rate: 0};
+    let bestYear = {year: null, rate: 0};
+
     listaRatePerYear.forEach(yearRate => {
 
-        if (yearRate.rate > bestYearRate.rate) {
-            bestYearRate = yearRate;
+        if(yearRate.rate === bestYear.rate && yearRate.year > bestYear.year){
+            bestYear = yearRate;
+        }
+
+        if (yearRate.rate > bestYear.rate) {
+            bestYear = yearRate;
         }
     });
 
 
+
     //buscar el maxRate de todos los años
 
-    return `The best year was ${bestYearRate.year} with an average rate of ${bestYearRate.rate}`
+    return getRespuestoFromModel(bestYear);
 
 }
