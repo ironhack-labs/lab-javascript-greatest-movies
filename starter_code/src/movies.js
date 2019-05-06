@@ -228,7 +228,7 @@ function bestYearAvg(listaMovies) {
 
     listaRatePerYear.forEach(yearRate => {
 
-        if(yearRate.rate === bestYear.rate && yearRate.year > bestYear.year){
+        if(yearRate.rate === bestYear.rate && yearRate.year < bestYear.year){
             bestYear = yearRate;
         }
 
