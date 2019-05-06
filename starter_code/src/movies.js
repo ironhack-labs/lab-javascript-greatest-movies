@@ -69,7 +69,7 @@ function ratesAverage(arrayOfRating) {
     }
 
     let sumaTotal = arrayOfRating.reduce((total, item) => {
-        return total + item.rate;
+        return total + parseFloat(item.rate);
     }, 0);
 
 
@@ -146,7 +146,7 @@ function howManyMovies(listaMovies) {
 
 function orderAlphabetically(listaMovies) {
 
-    let lista= listaMovies
+    let lista = listaMovies
         .map((movie) => {
             return movie.title
         })
@@ -155,8 +155,8 @@ function orderAlphabetically(listaMovies) {
         });
 
 
-    if(lista.length>20){
-        lista=lista.slice(0,20);
+    if (lista.length > 20) {
+        lista = lista.slice(0, 20);
     }
 
 
@@ -165,11 +165,61 @@ function orderAlphabetically(listaMovies) {
 
 /* ************************************************************ */
 
-function bestYearAvg(listaMovies){
+function bestYearAvg(listaMovies) {
 
-    if(listaMovies.length===0){
-        return ;
+
+    if (listaMovies.length === 0) {
+        return;
     }
 
+    if (listaMovies.length === 1) {
+        return;
+    }
+
+
+    /*
+    * buscar cual es el max rate de todos los años
+    * los datos viene como rate:"8.0"
+    * vamos a crear un objeto data{year,maxrate} y paso 2 sacar el item
+    * */
+
+    //buscar todos los años
+    let listaYear = [];
+    listaMovies.forEach(movie => {
+
+        let year = movie.year;
+
+        let indexYear = listaYear.indexOf(year);
+        if (indexYear === -1) {
+            listaYear.push(year);
+        }
+    });
+
+
+    let listaRatePerYear = listaYear.map(y => {
+
+        //filtrar todas las peliculas del año
+        let listaMoviesYear = listaMovies.filter((item => {
+            return item.year === y;
+        }));
+
+        let promedio = ratesAverage(listaMoviesYear);
+
+        return {'year': y, 'rate': promedio};
+
+    });
+
+    let bestYearRate = {year: null, rate: 0};
+    listaRatePerYear.forEach(yearRate => {
+
+        if (yearRate.rate > bestYearRate.rate) {
+            bestYearRate = yearRate;
+        }
+    });
+
+
+    //buscar el maxRate de todos los años
+
+    return `The best year was ${bestYearRate.year} with an average rate of ${bestYearRate.rate}`
 
 }
