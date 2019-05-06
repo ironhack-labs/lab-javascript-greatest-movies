@@ -179,7 +179,7 @@ function bestYearAvg(listaMovies) {
 
 
     
-    function getRespuestoFromModel(model) {
+    function getTextoRespuestaBestYear(model) {
         return `The best year was ${model.year} with an average rate of ${model.rate}`
     }
     
@@ -188,7 +188,7 @@ function bestYearAvg(listaMovies) {
     }
 
     if (listaMovies.length === 1) {
-        return getRespuestoFromModel(listaMovies[0]);
+        return getTextoRespuestaBestYear(listaMovies[0]);
     }
 
 
@@ -241,6 +241,6 @@ function bestYearAvg(listaMovies) {
 
     //buscar el maxRate de todos los años
 
-    return getRespuestoFromModel(bestYear);
+    return getTextoRespuestaBestYear(bestYear);
 
 }
