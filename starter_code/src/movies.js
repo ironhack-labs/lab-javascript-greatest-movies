@@ -1,9 +1,3 @@
-var movies2 = [
-
-  { title: 'abc', duration: 180 }, { title: 'bac', duration: 90 }, { title: 'aab', duration: 90 }
-]
-
-
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes
 
@@ -17,7 +11,7 @@ function convertToMin(hourAndMin) {
           hourAndMin.indexOf("m")
         )
       )
-    ); é
+    );
   } else
     return Number(
       hourAndMin.substring(hourAndMin.indexOf(" ") + 1, hourAndMin.indexOf("m"))
@@ -54,64 +48,52 @@ function dramaMoviesRate(moviesArray) {
 
 function orderByDuration(moviesArray) {
 
-  result = moviesArray.sort((a, b) => {
+  return moviesArray.sort((a, b) => {
     if (a.duration != b.duration) return a.duration - b.duration;
     else if (a.title > b.title) return 1;
     else if (b.title > a.title) return -1;
   });
-
-  //console.log(result);
-  return result;
 }
+
 // How many movies did STEVEN SPIELBERG
 
 function howManyMovies(moviesArray) {
-  moviesSteven = moviesArray.filter(
-    x => x.director.includes("Steven Spielberg") && x.genre.includes("Drama")
-  );
+
   return moviesArray.length == 0
     ? undefined
-    : "Steven Spielberg directed " + moviesSteven.length + " drama movies!";
+    : "Steven Spielberg directed " + moviesArray.filter(x => x.director.includes("Steven Spielberg") && x.genre.includes("Drama")).length + " drama movies!";
 }
 
 // Order by title and print the first 20 titles
 
 function orderAlphabetically(moviesArray) {
+
+  //Sort the movies array alphabetically, slice the top 20 lines and then push into a new Array with only the titles
+
   slicedArrayWithTitles = [];
-  sortedArray = moviesArray.sort((a, b) => {
+
+  moviesArray.sort((a, b) => {
     if (a.title < b.title) return -1;
     else if (b.title > a.title) return 1;
     else return 0;
-  });
+  }).slice(0, 20).forEach(x => slicedArrayWithTitles.push(x.title));;
 
-  slicedArray = sortedArray.slice(0, 20);
-  slicedArray.forEach(x => slicedArrayWithTitles.push(x.title));
   return slicedArrayWithTitles;
 }
 
 // Best yearly rate average
 
-function bestYearAvg(movies) {
-
-  result = [];
-
-
-  for (i = 0; i <= 117; i++) {
-
-    if (yearAverage(movies, 1900 + i) > 0) {
-      result.push({ year: 1900 + i, average: yearAverage(movies, 1900 + i) });
-    }
-  }
-
-  highestRate = result.sort((a, b) => b.average - a.average)[0];
-  return (movies.length === 0) ? undefined : "The best year was " + highestRate.year + " with an average rate of " + highestRate.average;
-}
-
 function yearAverage(matrix, yearToCheck) {
+
+  //The function calculates the average for a all the movies for produced in certain year. 
+
+  //Filter the areas first fot the year
 
   filteredArray = matrix.filter(x => {
     return Number(x.year) === Number(yearToCheck)
   });
+
+  //Then calculates the average using Reduce function
 
   if (filteredArray.length != 0) {
     average =
@@ -120,11 +102,35 @@ function yearAverage(matrix, yearToCheck) {
           (accumulator += Number(currentValue.rate)),
         0
       ) / filteredArray.length;
-  } else average = 0;
+  } else average = null;
 
   return average;
 }
 
-console.log(movies2);
-console.log("-------");
-console.log(orderByDuration(movies2));
+function bestYearAvg(movies) {
+
+  //The function returns the highest average for a set of years
+
+  //Creates a tables with all the year (moviesYear) - Iterates over the years and return the average movie rate for each of them in a result array
+
+  moviesYear = [];
+  result = [];
+  movies.forEach(x => moviesYear.push(x.year));
+  moviesYear.forEach(yearIterator => {
+    if (yearAverage(movies, yearIterator) != null) {
+      result.push({ year: yearIterator, average: yearAverage(movies, yearIterator) });
+    }
+  });
+
+  //Go through the results Array and extract the highest average
+
+  highestRate = result.sort((a, b) => {
+    if (b.average != a.average) return b.average - a.average
+    else if (b.year > a.year) return -1;
+    else if (a.year > b.year) return 1;
+  })[0];
+
+  return (movies.length === 0) ? undefined : "The best year was " + highestRate.year + " with an average rate of " + highestRate.average;
+
+}
+
