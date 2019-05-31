@@ -7,53 +7,48 @@ function ratesAverage(movies) {
   var total = movies.reduce((acc, currentMovie) => {
     return (acc += Number(currentMovie.rate));
   }, 0);
-  console.log(total);
-  return total / movies.length;
+  const avg = (total / movies.length).toFixed(2);
+  return Number(avg);
 }
 
 // Get the average of Drama Movies
 function dramaMoviesRate(movies) {
-  var dramaMovies = movies.filter(movie => {
+  var dramaMovies = movies.filter(movie=> {
     return movie.genre.includes("Drama");
-  });
-  return ratesAverage(dramaMovies);
+});
+if (dramaMovies.length > 0) {
+    return ratesAverage(dramaMovies);
+  } else {  
+     return undefined;
+    } 
 }
-
 // Order by time duration, in growing order
 
-//function orderByDuration(movies){
-//  return movies.duration.sort();
-
+ 
 // How many movies did STEVEN SPIELBERG
 function howManyMovies(movies) {
-    var spielbergMovies = movies.filter((movie) => {
-        return movie.director.includes("Steven Spielberg");
-      }
+  if (movies.length == 0) {
+    return undefined;
+  }
+  var dramaMovies = movies.filter(function(movie) {
+  return movie.director.includes('Steven Spielberg') && movie.genre.includes ('Drama');
+ });
+  if (dramaMovies.length >= 0) {
+  return `Steven Spielberg directed ${(dramaMovies.length)} drama movies!`;
+ } 
+ }
+
+// alphabetical
+function orderAlphabetically(movies){
+//  var firstTwenty = movies.slice(0,19);
+   movies.sort();  
+   return movies;
+   
+  }
+
+
+//return String(spielbergMovies.length);
       
-
-      if (spielbergMovies.length == 0){ 
-          return "Steven Spielberg directed 0 drama movies!";
-    } else if (spielbergMovies.length == 1){
-        return "Steven Spielberg directed 1 drama movies!";
-    }
-    else (spielbergMovies.length == 4){
-        return "Steven Spielberg directed 4 drama movies!";
-    }
-    });
-    //return String(spielbergMovies.length);
-
-
-      
-        
-      
-
-
 // Order by title and print the first 20 titles
-function orderAlphabetically(movies) {
-    movies.title.sort();
-    return movies;
-}
 
 // Best yearly rate average
-
-
