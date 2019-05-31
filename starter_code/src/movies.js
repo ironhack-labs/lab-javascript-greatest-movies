@@ -26,7 +26,7 @@ sumRate = (movies) =>
    var sum=movies.reduce( (sum, movie) => 
     {
     if(movie.rate==""){movie.rate=0}
-    sum+= parseInt(movie.rate);
+    sum+= parseFloat(movie.rate);
     return sum
     },0)
 
@@ -109,13 +109,86 @@ byYear = (movies) => {
 
 }
 
+getYears = (movies)=> {
+  
+    const yearsArray=[]
+    movies.forEach( (movie) => {
+      yearsArray.push(movie.year)
+    })
+    const uniqueYears = Array.from(new Set(yearsArray));
+    return uniqueYears
+  
+  }
 
-bestYearAvg=(movies)=>{
+byYear=(movies)=>{
 
-    years= byYear (movies)
-    var ratesByYear=[]
-    years.forEach( (movie) => {
-        ratesByYear.push(ratesAverage(movie.rate))
+    const byYear=[]
+    uniqueYears=getYears(movies)
+    
+    for (i=0; i< uniqueYears.length; i++ )
+    {
+        
+        yearI=uniqueYears[i]
+        movieFiltered=movies.filter((movie) => {return movie.year==yearI})
+
+        byYear[i]={
+            year : yearI,
+            rate : [],
+        }
+
+        movieFiltered.forEach( (movie) => { byYear[i].rate.push(movie.rate)
+        })  
+    }
+    return byYear==undefined ? undefined :byYear
+}
+
+AvgRateByYear = (movies) => {
+
+    var avgByYear=[];
+    var byY=byYear(movies)
+
+    byY.forEach( (movie, index) => 
+    {   
+        avgByYear.push(
+            {
+                year: movie.year,
+                avgRate: 0,
+            }
+        )
+        var sum=0;
+        for (let i=0; i<movie.rate.length; i++){
+            console.log(movie.rate[i])
+            sum+= parseFloat(movie.rate[i])
+        }
+        avgByYear[index].avgRate=round(sum/movie.rate.length,3)
+      
+    })
+    return avgByYear
+}
+
+getMaxAvgRate = (movies) => {  
+    return movies.reduce ( (max, movie) => {
+        return movie.avgRate > max ? movie.avgRate : max
+    }, 0)
+}
+
+bestYearAvg = (movies) => {
+
+    avgByYear=AvgRateByYear(movies)
+
+    console.log(avgByYear)
+
+    sortedByYear=avgByYear.sort( (a,b) => { 
+        return parseInt(a.year) - parseInt(b.year)
+        //if (a.year > b.year) return 1;
+	    //if (a.year < b.year) return -1;
     })
 
+    maxAvg=getMaxAvgRate(avgByYear)
+
+    bestYear=avgByYear.find( (movie) => { return movie.avgRate==maxAvg})
+
+    return movies===[] ? undefined : 'The best year was ' + bestYear.year + ' with an average rate of ' + maxAvg
+
 }
+
