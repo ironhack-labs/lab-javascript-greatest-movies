@@ -1,3 +1,9 @@
+var movies2 = [
+
+  { title: 'abc', duration: 180 }, { title: 'bac', duration: 90 }, { title: 'aab', duration: 90 }
+]
+
+
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes
 
@@ -11,7 +17,7 @@ function convertToMin(hourAndMin) {
           hourAndMin.indexOf("m")
         )
       )
-    );
+    ); é
   } else
     return Number(
       hourAndMin.substring(hourAndMin.indexOf(" ") + 1, hourAndMin.indexOf("m"))
@@ -47,10 +53,15 @@ function dramaMoviesRate(moviesArray) {
 // Order by time duration, in growing order
 
 function orderByDuration(moviesArray) {
-  return moviesArray.sort((a, b) => {
+
+  result = moviesArray.sort((a, b) => {
     if (a.duration != b.duration) return a.duration - b.duration;
-    else if (a.title > b.title) return -1;
+    else if (a.title > b.title) return 1;
+    else if (b.title > a.title) return -1;
   });
+
+  //console.log(result);
+  return result;
 }
 // How many movies did STEVEN SPIELBERG
 
@@ -93,7 +104,6 @@ function bestYearAvg(movies) {
   }
 
   highestRate = result.sort((a, b) => b.average - a.average)[0];
-  console.log(highestRate);
   return (movies.length === 0) ? undefined : "The best year was " + highestRate.year + " with an average rate of " + highestRate.average;
 }
 
@@ -115,5 +125,6 @@ function yearAverage(matrix, yearToCheck) {
   return average;
 }
 
-bestYearAvg(movies);
-
+console.log(movies2);
+console.log("-------");
+console.log(orderByDuration(movies2));
