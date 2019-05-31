@@ -102,18 +102,20 @@ orderAlphabetically =(movies)=>{
 }
 // Best yearly rate average
 
+byYear = (movies) => {
 
+    const filteredByYear= movies.filter((x) => {return x.year.includes(x.year)})
+    return filteredByYear       
 
-var groupBy = function(arr, key) {
-    return arr.reduce(function(rv, x) {
-      (rv[x[key]] = rv[x[key]] || []).push(x);
-      return rv;
-    }, {});
-  };
+}
 
 
 bestYearAvg=(movies)=>{
 
-    byYear= groupBy (movies, movie => movie.year)
+    years= byYear (movies)
+    var ratesByYear=[]
+    years.forEach( (movie) => {
+        ratesByYear.push(ratesAverage(movie.rate))
+    })
 
 }
