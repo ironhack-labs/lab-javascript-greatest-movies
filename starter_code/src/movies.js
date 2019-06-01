@@ -1,7 +1,9 @@
 /* eslint no-restricted-globals: 'off' */
+
 // Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
   if (movies.length > 0) {
+    //copy the array movies to work on
     const movieDurations = movies.map(movie => {
       const newMovie = {
         title: movie.title,
@@ -12,6 +14,7 @@ function turnHoursToMinutes(movies) {
         rate: movie.rate
         // or : ...movie
       };
+      // clean the string with a Regexp
       let modifiedDuration = newMovie.duration.replace(/min/gi, "");
       let splitDuration = modifiedDuration.split("h");
       if (splitDuration.length === 1) {
@@ -43,7 +46,7 @@ function ratesAverage(movies) {
 // Get the average of Drama Movies
 function dramaMoviesRate(movies) {
   const dramaMovies = movies.filter(
-    movie => movie.genre.indexOf("Drama") !== -1
+    movie => movie.genre.indexOf("Drama") !== -1 // if Drama was here, it will return 0 or a positive index
   );
   if (dramaMovies.length > 0) {
     const averageRatings = ratesAverage(dramaMovies);
@@ -93,14 +96,12 @@ function howManyMovies(movies) {
 function orderAlphabetically(movies) {
   if (movies.length > 0) {
     const listOfTitle = movies.map(movie => movie.title);
-    const alphabeticOrder = listOfTitle.sort(); //renvoie -1, 1 ou 0 à sort
+    const alphabeticOrder = listOfTitle.sort(); //send back -1, 1 ou 0
     const bestMovies = alphabeticOrder.filter((movie, i) => i < 20);
     return bestMovies;
   }
   return movies;
 }
-//}
-//}
 
 // Best yearly rate average
 function bestYearAvg(movies) {
@@ -136,7 +137,6 @@ function bestYearAvg(movies) {
     return `The best year was ${
       reallyBestYear[0].year
     } with an average rate of ${reallyBestYear[0].averageRatings}`;
-    //should return the correct answer to a single element array
   }
   //return undefined if the array is empty
 }
