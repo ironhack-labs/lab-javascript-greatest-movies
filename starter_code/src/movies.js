@@ -103,3 +103,40 @@ function orderAlphabetically(movies) {
 //}
 
 // Best yearly rate average
+function bestYearAvg(movies) {
+  if (movies.length > 0) {
+    // store year unique
+    const years = [];
+    for (let i = 0; i < movies.length; i++) {
+      if (!years.includes(movies[i].year)) {
+        years.push(movies[i].year);
+      }
+    }
+    // create an array of objects. For each year create an object that
+    // has a year and all the movies of this year
+    const moviesByYear = years.map(year => {
+      const moviesForYears = movies.filter(movie => movie.year === year);
+      //reuse the ratesAverage function defined above
+      const averageRatings = ratesAverage(moviesForYears);
+      return { year, averageRatings };
+    });
+    const bestYear = moviesByYear.sort(
+      (a, b) => b.averageRatings - a.averageRatings
+    );
+    const reallyBestYear = bestYear.sort((a, b) => {
+      if (a.averageRatings === b.averageRatings) {
+        if (a.year > b.year) {
+          return 1;
+        } else if (a.year < b.year) {
+          return -1;
+        }
+        return 0;
+      }
+    });
+    return `The best year was ${
+      reallyBestYear[0].year
+    } with an average rate of ${reallyBestYear[0].averageRatings}`;
+    //should return the correct answer to a single element array
+  }
+  //return undefined if the array is empty
+}
