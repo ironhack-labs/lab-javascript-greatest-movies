@@ -1,6 +1,34 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(movies) {
+  var newMovieList = []
+  var timeRegex = /(\d+h)?\ ?(\d+\min)?/i;
+
+  movies.forEach(function(movie) {
+      newMovie = Object.assign({}, movie) // pour créer une copie de l'objet movie
+
+      var movieDuration = newMovie.duration.match(timeRegex);
+      if (movieDuration[1] != undefined) {
+          var fullHours = parseInt(movieDuration[1], 10);
+          var hoursInMinutes = fullHours * 60;
+      } else { // s'il n'y a pas d'heures
+          var hoursInMinutes = 0;
+      }
+      
+      if (movieDuration[2] != undefined) {
+          var fullMinutes = parseInt(movieDuration[2], 10);
+      } else { // s'il n'y a pas de minutes
+          var fullMinutes = 0;
+      }
+      
+      var hoursPlusMinutes = hoursInMinutes + fullMinutes; // calcul final
+
+      newMovie.duration = hoursPlusMinutes;
+      newMovieList.push(newMovie);
+  });
+  return newMovieList;
+}
 // Get the average of all rates with 2 decimals
 
 function ratesAverage(movies) {
@@ -22,9 +50,24 @@ if (dramaMovies.length > 0) {
      return undefined;
     } 
 }
-// Order by time duration, in growing order
 
- 
+// Order by time duration, in growing order
+function orderByDuration(movies){
+  movies.sort();
+  return movies;
+}
+var moviesDuration = ["duration", "title"] 
+
+function convertHoursInMinutes(movies){
+  var num = n;
+  var hours = (num / 60);
+  var rhours = Math.floor(hours);
+  var minutes = (hours - rhours) * 60;
+  var rminutes = Math.round(minutes);
+    return num + " minutes = " + rhours + " hour(s) and " + rminutes + " minute(s).";
+};
+
+
 // How many movies did STEVEN SPIELBERG
 function howManyMovies(movies) {
   if (movies.length == 0) {

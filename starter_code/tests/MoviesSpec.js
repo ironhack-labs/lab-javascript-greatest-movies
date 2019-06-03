@@ -1,6 +1,6 @@
 /* eslint no-undef: "off" */
 /* eslint jasmine/no-spec-dupes: "off" */
-/*
+
 describe('Turn duration of the movies - turnHoursToMinutes', function () {
   it('Defines turnHoursToMinutes', function () {
     expect(typeof turnHoursToMinutes).toBe('function');
@@ -42,7 +42,7 @@ describe('Turn duration of the movies - turnHoursToMinutes', function () {
     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(54);
   });
 });
-*/
+
 describe('Get the average rate - ratesAverage', function () {
   it('Defines ratesAverage', function () {
     expect(typeof ratesAverage).toBe('function');
@@ -99,7 +99,7 @@ describe('Average rate of Drama Movies - dramaMoviesRate', function () {
   });
 });
 
-describe('Order the movies by duration - orderByDuration', function () {
+ describe('Order the movies by duration - orderByDuration', function () {
   it('Defines orderByDuration', function () {
     expect(typeof orderByDuration).toBe('function');
   });
@@ -119,7 +119,7 @@ describe('Order the movies by duration - orderByDuration', function () {
   it('If two movies have the same length, order them alphabetically by their title', function () {
     expect(orderByDuration([{ title: 'abc', duration: 180 }, { title: 'bac', duration: 90 }, { title: 'aab', duration: 90 }])).toEqual([{ title: 'aab', duration: 90 }, { title: 'bac', duration: 90 }, { title: 'abc', duration: 180 }]);
   });
-});
+}); 
 
 describe('Get how many movies - howManyMovies', function () {
   it('Defines howManyMovies', function () {
