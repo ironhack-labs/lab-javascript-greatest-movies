@@ -1,28 +1,32 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes
-function stringNum(str) {
+function durationToMinutes(str) {
   let numMin = 0;
   let numHora = 0;
-  if (str.indexOf("h") != -1) {
-    let hora = str.substring(0, str.indexOf("h")).trim(" ");
-    //  console.log(hora)
-    numHora = parseInt(hora);
-  }
-  if (str.indexOf("min") != -1) {
-    let min = str.substring(str.indexOf("h") + 1, str.indexOf("min")).trim(" ");
-    //  console.log(min)
-    numMin = parseInt(min);
-  }
-  let minHoras = numHora * 60;
-  let totalMin = minHoras + numMin;
 
-  return totalMin;
+  let indexH = str.indexOf("h");
+  if (indexH > -1) {
+    numHora = parseInt(str.substring(0, indexH).trim(" "));
+    if (isNaN(numHora)) {
+      numHora = 0;
+    }
+  }
+
+  let indexMin = str.indexOf("min");
+  if (indexMin > indexH && indexMin > -1) {
+    numMin = parseInt(str.substring(indexH + 1, indexMin).trim(" "));
+    if (isNaN(numMin)) {
+      numMin = 0;
+    }
+  }
+
+  return minHoras = numHora * 60 + numMin;
 }
 
 const turnHoursToMinutes = movies => {
   return movies.map(e => {
     let newElement = Object.assign({}, e);
-    newElement.duration = stringNum(e.duration);
+    newElement.duration = durationToMinutes(e.duration);
     return newElement;
   });
 };
@@ -91,7 +95,6 @@ function bestYearAvg(movies) {
     movies.forEach(e => {
       if (!years.includes(e.year)) years.push(e.year);
     });
-    console.log(years);
 
     maxRateYear = years.reduce(
       (acc, currentYear) => {
