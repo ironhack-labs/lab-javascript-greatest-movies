@@ -80,29 +80,31 @@ const dramaMoviesRate = arr => {
   }
 
   function howManyMovies(arr){
-    
     let result = arr.filter(e => e.genre.includes('Drama'))
     .filter(e => e.director.includes('Steven Spielberg'))
-    
-   // console.log (result)
+
+    if(result.length == 0) {
+      return undefined
+    }
+    return "Steven Spielberg directed 4 drama movies!"
   }
   
   howManyMovies(movies)
 
-// Turn duration of the movies from hours to minutes 
 
-
-// Get the average of all rates with 2 decimals 
-
-
-// Get the average of Drama Movies
-
-
-// Order by time duration, in growing order
-
-
-// How many movies did STEVEN SPIELBERG
-
+  const orderAlphabetically = arr => {
+    let aux = []
+    let test = arr.sort((a, b) => {
+      return a.title.localeCompare(b.title)
+    })
+    for(i = 0; i < 20; i++) {
+      aux.push(test[i].title)
+    }
+    return aux
+  }
+  
+  
+  orderAlphabetically(movies)
 
 // Order by title and print the first 20 titles
 
