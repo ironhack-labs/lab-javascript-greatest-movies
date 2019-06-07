@@ -3,13 +3,18 @@ function horasF(str){
   let horas = 0
   let minutos = 0
   let total = 0
-  let h = str.split("h")
+  let h = str.split(" ")
   horas = parseInt(h)
+  console.log(h)
   //si el array hora existe y no hay minutos retorna las horas en minutos
   //minutos
-  if(h[1] == null){
+
+  if(!h[1]&&h[0].includes("h")){
     total = horas * 60
-  } 
+  } else if(!h[1]){
+    total=parseInt(h[0])
+  }
+
   //si hay horas y minutos
   else {
     let j = h[1].split("min")
@@ -18,12 +23,19 @@ function horasF(str){
     //console.log("horas: "+ horas)
     total = (horas*60)+minutos
    // console.log(typeOf(total))
+  }
     return (total)
-  } //console.log("total:"+ total)
 }
 
+
 function turnHoursToMinutes (movies){
-  return movies.map((e)=>{horasF(e.duration)})
+  let movmap=  movies.map((e)=>{
+   e.duration=horasF(e.duration)
+   return e
+  })
+
+  console.log(movmap)
+  return movmap
 }
 
 function ratesAverage(arr) {
@@ -63,15 +75,16 @@ const dramaMoviesRate = arr => {
     arr.duration
     let newArray=[]
     newArray= arr.sort((a, b) => a.duration.localeCompare(b.duration))
-    console.log(newArray)
     return newArray.reverse()
   
   }
 
   function howManyMovies(arr){
+    
     let result = arr.filter(e => e.genre.includes('Drama'))
     .filter(e => e.director.includes('Steven Spielberg'))
-    console.log (result)
+    
+   // console.log (result)
   }
   
   howManyMovies(movies)
