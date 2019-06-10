@@ -7,20 +7,15 @@ const turnHoursToMinutes = movies => {
     time = movie.duration.split(" ");
     if (time.length === 2) {
       hour = parseInt(time[0]) * 60;
-      timeMinuteCorrected = parseInt(time[1]);
-      minutes = hour + timeMinuteCorrected;
+      minute = parseInt(time[1]);
+      finalTime = hour + minute;
     } else if (time[0].includes("h")) {
-      minutes = parseInt(time[0]) * 60;
+      finalTime = parseInt(time[0]) * 60;
     } else {
-      minutes = parseInt(time[0]);
+      finalTime = parseInt(time[0]);
     }
     return {
-      title: movie.title,
-      year: movie.year,
-      director: movie.director,
-      duration: minutes,
-      genre: movie.genre,
-      rate: movie.rate
+      duration: finalTime
     };
   });
   return result;
