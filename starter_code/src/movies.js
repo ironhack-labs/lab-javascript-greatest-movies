@@ -56,13 +56,33 @@ function dramaMoviesRate(movies) {
 
 }
 
-dramaMoviesRate(movies)
-
 // Order by time duration, in growing order
+function orderByDuration(movies) {
+    let newListOfMovies = [...movies]
+    var sortedMovies = newListOfMovies.sort((a, b) => {
+        if (a.duration > b.duration) return 1
+        if (a.duration < b.duration) return -1
+        if (a.duration == b.duration) {
+            if (a.title > b.title) return 1
+            if (a.title < b.title) return -1
+        }
 
+    })
+    return (sortedMovies)
+}
 
 // How many movies did STEVEN SPIELBERG
+function howManyMovies(movies) {
+    if (movies.length == 0) {
+        return undefined
+    } else {
+        let FilmsOfSpilberg = movies.filter(film => film.director == 'Steven Spielberg')
+        let dramaFilmsOfSpilbert = FilmsOfSpilberg.filter(filmDrama => filmDrama.genre.indexOf('Drama') >= 0)
+        return (`Steven Spielberg directed ${dramaFilmsOfSpilbert.length} drama movies!`)
+    }
+}
 
+howManyMovies(movies)
 
 // Order by title and print the first 20 titles
 
