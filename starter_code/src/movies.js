@@ -17,20 +17,27 @@ function turnHoursToMinutes(arr) {
   })
   return newArr
 }
-//sconst inMin = turnHoursToMinutes(movies)
 
 
-// Get the average of all rates with 2 decimals 
+// Get the average of all rates with 2 decimals
 ratesAverage = (arr) => {
-  arr.reduce(sum, 0)/ arr.length
-}
-
-function sum(acc, currentValue) {
-  return acc + currentValue.rate
+  let rates = arr.map( e => {
+    return parseFloat(e.rate)
+  })
+  return rates.reduce((accumulator, currentValue) => accumulator + currentValue)/arr.length
 }
 
 // Get the average of Drama Movies
+function dramaMoviesRate (arr) {
+  let dramaMoviesArr = arr.filter(e => e.genre.includes('Drama'))
+  let dramaRates = dramaMoviesArr.map(e => {
+    return parseFloat(e.rate)
+  })
+  const averageRate = (dramaRates.reduce((accum, current) => accum + current)/dramaMoviesArr.length).toFixed(2)
+  console.log(averageRate)
+}
 
+dramaMoviesRate(movies)
 
 // Order by time duration, in growing order
 
