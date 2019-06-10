@@ -95,3 +95,19 @@ function orderAlphabetically(movies) {
 }
 
 // Best yearly rate average∫
+function bestYearAvg(listFilms) {
+    if (listFilms.length == 0) {
+        return undefined
+    } else {
+        let newListOfFilms = listFilms.map(film => {
+            let yearFilm = parseInt(film.year)
+            let rateFilm = parseFloat(film.rate)
+            return { year: yearFilm, rate: rateFilm }
+        }).sort((a, b) => {
+            if (a.year > b.year) return 1
+            if (a.year < b.year) return -1
+        })
+        return newListOfFilms
+    }
+}
+console.log(bestYearAvg(movies))
