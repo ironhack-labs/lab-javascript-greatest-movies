@@ -55,10 +55,9 @@ function orderByDuration (array) {
 
     convertedArray.sort( (movie1, movie2) => {
     if (movie1.duration === movie2.duration) {
-        console.log(typeof movie1.duration, typeof movie1.title);
           return movie1.title > movie2.title;
         } else {  
-        movie1.duration > movie2.duration
+        return movie1.duration - movie2.duration;
         }
     });
     console.log('this is the  ordered array:', convertedArray);
@@ -86,7 +85,8 @@ function orderAlphabetically (array) {
 
     if (array.length > 0) {
         for (let i=0; i < 20; i++) {
-            console.log(array[i], array[i].title);
+        
+
             array20Titles.push(array[i].title);
         }
         array20Titles.sort();
