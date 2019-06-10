@@ -84,7 +84,7 @@ const orderAlphabetically = movies => {
   let title = movies
     .map(movie => movie.title)
     .sort()
-    .slice(0, 20);
+    .splice(0, 20);
   return title;
 };
 
