@@ -55,7 +55,14 @@ function orderByDuration (array) {
 
     convertedArray.sort( (movie1, movie2) => {
     if (movie1.duration === movie2.duration) {
-          return movie1.title > movie2.title;
+
+        if (movie1.title > movie2.title) {
+            return 1;
+        } else {
+            return -1;
+        }
+
+        
         } else {  
         return movie1.duration - movie2.duration;
         }
@@ -81,18 +88,16 @@ function howManyMovies(array) {
 
 // Order by title and print the first 20 titles
 function orderAlphabetically (array) {
-    let array20Titles = [];
-
-    if (array.length > 0) {
-        for (let i=0; i < 20; i++) {
-        
-
-            array20Titles.push(array[i].title);
+    let orderedArray = array.sort((movie1, movie2) => {
+        if (movie1.title > movie2.title) {
+            return 1;
+        } else {
+            return -1;
         }
-        array20Titles.sort();
+    }).slice(0,20);
 
-    }
-    return  array20Titles;
+    return orderedArray.map(movie => movie.title);;
+
 }
 
 
