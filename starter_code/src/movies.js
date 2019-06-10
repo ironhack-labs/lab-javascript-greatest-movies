@@ -4,7 +4,6 @@ function turnHoursToMinutes(movies) {
     totalTime = 0
     let durationFilm = []
     let newListOfFilms = movies.map(film => {
-        console.log(film.duration)
         durationFilm = film.duration.split(" ")
         if (durationFilm.length === 2) {
             totalTime = parseInt(durationFilm[0]) * 60 + parseInt(durationFilm[1])
@@ -15,8 +14,6 @@ function turnHoursToMinutes(movies) {
                 totalTime = parseInt(durationFilm[0])
             }
         }
-
-        console.log(totalTime)
         return {...film, duration: totalTime }
     })
     return newListOfFilms
@@ -24,7 +21,14 @@ function turnHoursToMinutes(movies) {
 turnHoursToMinutes(movies)
 
 // Get the average of all rates with 2 decimals 
-
+function ratesAverage(movies) {
+    let avg = movies.reduce((prev, current) => {
+        return prev + current.rate
+    }, 0) / movies.length
+    return parseFloat(avg.toFixed(2))
+}
+ratesAverage(movies)
+console.log('2' + 3)
 
 // Get the average of Drama Movies
 
@@ -38,4 +42,4 @@ turnHoursToMinutes(movies)
 // Order by title and print the first 20 titles
 
 
-// Best yearly rate average
+// Best yearly rate average∫
