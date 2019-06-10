@@ -2,24 +2,28 @@
 // Turn duration of the movies from hours to minutes
 
 const turnHoursToMinutes = movies => {
-  const time = movies.map(movie => {
-    let minutes = 0;
-    let final = Object.assign({}, movie);
-    let dur = final.duration.split(" ");
-
-    if (dur.length == 1) {
-      if (dur[0].includes("h")) {
-        minutes = parseInt(dur[0]) * 60;
-      } else {
-        minutes = parseInt(final.duration);
-      }
+  let time = "";
+  let result = movies.map(movie => {
+    time = movie.duration.split(" ");
+    if (time.length === 2) {
+      hour = parseInt(time[0]) * 60;
+      timeMinuteCorrected = parseInt(time[1]);
+      minutes = hour + timeMinuteCorrected;
+    } else if (time[0].includes("h")) {
+      minutes = parseInt(time[0]) * 60;
     } else {
-      minutes = parseInt(dur[0]) * 60 + parseInt(dur[1]);
+      minutes = parseInt(time[0]);
     }
-    final.duration = minutes;
-    return final;
+    return {
+      title: movie.title,
+      year: movie.year,
+      director: movie.director,
+      duration: minutes,
+      genre: movie.genre,
+      rate: movie.rate
+    };
   });
-  return time;
+  return result;
 };
 
 // Get the average of all rates with 2 decimals
