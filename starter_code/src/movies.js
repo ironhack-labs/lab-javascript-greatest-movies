@@ -59,7 +59,7 @@ function dramaMoviesRate(movies) {
 // Order by time duration, in growing order
 function orderByDuration(movies) {
     let newListOfMovies = [...movies]
-    var sortedMovies = newListOfMovies.sort((a, b) => {
+    let sortedMovies = newListOfMovies.sort((a, b) => {
         if (a.duration > b.duration) return 1
         if (a.duration < b.duration) return -1
         if (a.duration == b.duration) {
@@ -82,9 +82,16 @@ function howManyMovies(movies) {
     }
 }
 
-howManyMovies(movies)
 
 // Order by title and print the first 20 titles
+function orderAlphabetically(movies) {
+    let sortedListOfMovies = movies.sort((a, b) => {
+        if (a.title > b.title) return 1
+        if (a.title < b.title) return -1
+    })
+    let listOfTitles = sortedListOfMovies.map(film => film.title)
+    return listOfTitles.slice(0, 20);
 
+}
 
 // Best yearly rate average∫
