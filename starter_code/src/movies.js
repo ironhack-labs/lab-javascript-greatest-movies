@@ -27,11 +27,36 @@ function ratesAverage(movies) {
     }, 0) / movies.length
     return parseFloat(avg.toFixed(2))
 }
-ratesAverage(movies)
-console.log('2' + 3)
+
 
 // Get the average of Drama Movies
+function dramaMoviesRate(movies) {
+    let dramaQty = 0
+    let existsOneDramaMovie = false
+    let avg = movies.reduce((prev, current) => {
+        if (current.genre.length > 0) {
+            if (current.genre.indexOf('Drama') >= 0) {
+                dramaQty += 1
+                existsOneDramaMovie = true
+                return prev + current.rate
+            } else {
+                return prev + 0
+            }
+        } else {
+            dramaQty = 1
+            return current.rate
+        }
 
+    }, 0) / dramaQty
+    if (existsOneDramaMovie) {
+        return parseFloat(avg.toFixed(2))
+    } else {
+        return undefined
+    }
+
+}
+
+dramaMoviesRate(movies)
 
 // Order by time duration, in growing order
 
