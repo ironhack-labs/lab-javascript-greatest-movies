@@ -98,22 +98,6 @@ function orderAlphabetically(movies) {
 
 // Best yearly rate average∫
 function bestYearAvg(listFilms) {
-    // if (listFilms.length == 0) {
-    //     return undefined;
-    // } else {
-    //     let newListOfFilms = listFilms
-    //         .map(film => {
-    //             let yearFilm = parseInt(film.year);
-    //             let rateFilm = parseFloat(film.rate);
-    //             return { year: yearFilm, rate: rateFilm };
-    //         })
-    //         .sort((a, b) => {
-    //             if (a.year > b.year) return 1;
-    //             if (a.year < b.year) return -1;
-    //         });
-    //     return newListOfFilms;
-    // }
-    //==================================
     let newListOfFilms;
     if (listFilms.length == 0) {
         return undefined;
@@ -129,7 +113,7 @@ function bestYearAvg(listFilms) {
                 if (a.year > b.year) return 1;
                 if (a.year < b.year) return -1;
             });
-        // return newListOfFilms;
+        // return newListOfFilms
     }
     let groupedFilms = newListOfFilms.reduce(function(acc, obj) {
         let key = obj["year"];
@@ -139,9 +123,8 @@ function bestYearAvg(listFilms) {
         acc[key].push(obj);
         return acc;
     }, {});
-    // return groupedFilms;
+    // return groupedFilms
     let bestYear = "";
-    let tmpAvg = 0;
     let bestAverageRate = 0;
     for (let key in groupedFilms) {
         let tmpAvg = 0;
