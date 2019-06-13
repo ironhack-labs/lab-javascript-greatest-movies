@@ -100,7 +100,22 @@ function bestYearAvg(movieArray){
   let bestRate = 0;
   let currRate = 0;
   let bestYear = "";
-  for(let i = 1921; i <= 2017; i++){
+  if(movieArray.length === 0){
+    return undefined;
+  }
+  movieArray.sort((a,b)=>{
+    if(a.year > b.year){
+      return 1;
+    }
+    if(a.year<b.year){
+      return -1;
+    }
+    return 0;
+  })
+
+  let begin = movieArray[0].year;
+  let end = movieArray[movieArray.length-1].year;
+  for(let i = begin; i <= end; i++){
     let yearArr = movieArray.filter((eachMovie)=>{
       return eachMovie.year === `${i}`;
     })
@@ -112,9 +127,6 @@ function bestYearAvg(movieArray){
       bestRate = currRate
       bestYear = i
     }
-  }
-  if(movieArray.length === 0){
-    return undefined;
   }
   return `The best year was ${bestYear} with an average rate of ${bestRate}`;
 }
