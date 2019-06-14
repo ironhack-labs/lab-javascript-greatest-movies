@@ -89,14 +89,6 @@ function dramaMoviesRate (movies){
 }
 
 
-// function orderByDuration(movies){
-//   if(movies.length===1)
-//     return movies;
-//   else{
-//     movies.sort((a,b)=>a.title > b.title);
-//   return  movies.sort((a,b)=>a.duration - b.duration);
-//   }
-// }
 function orderByDuration(movies){
 
   movies.sort((a,b)=>{
@@ -117,13 +109,83 @@ function orderByDuration(movies){
   });
    return movies;
   }
-function howManyMovies(arrayMovies){
- if(arrayMovies.length === 0){
-   return;
- }
-  return arrayMovies.length.toString(); 
-}
 
+  function howManyMovies(arrayMovies){
+    if(arrayMovies.length === 0){
+      return;
+    }
+     
+    result = arrayMovies.filter(eachMovie => eachMovie.director.includes("Steven Spielberg") && eachMovie.genre.includes("Drama"));
+     
+     return`Steven Spielberg directed ${result.length} drama movies!` ;
+   }
+   
+
+
+   function orderAlphabetically(arrayMovies){
+    let array = [];
+        if(arrayMovies.length < 21){
+          array = arrayMovies.sort((a,b)=>{
+            if(a.title < b.title){
+             return -1;
+            }else if(a.title < b.title){
+              return 0;
+            }else{
+              return 1;
+            }
+          });
+          return array.map(eachMovie=> eachMovie.title)
+        }else{
+          
+          arrayMovies.sort((a,b)=>{
+             if(a.title < b.title){
+              return -1;
+             }else if(a.title < b.title){
+               return 0;
+             }else{
+               return 1;
+             }
+           });
+
+          let array = arrayMovies.filter(function (number,index){
+          return (index <=19) ; 
+          });
+        
+          return array.map(eachMovie=> eachMovie.title)  
+        }
+    }
+
+
+    function bestYearAvg(arrayMovies){
+  
+      if(arrayMovies.length===0){
+        return undefined;
+      }
+    
+      if(arrayMovies.length===1){
+        
+        return`The best year was ${arrayMovies[0].year} with an average rate of ${arrayMovies[0].rate}`;
+      }  
+    
+      arrayMovies.sort((a,b)=>{
+        if(a.rate > b.rate){
+        return -1}
+        else if(a.rate===b.rate){
+            if(a.year < b.year){
+              return -1;
+            }else if(a.year == b.year){
+              return 0;
+            }else{
+              return 1;
+            }
+         return 0;
+        }else{
+          return 1;
+        }
+      });
+    
+      return`The best year was ${arrayMovies[1].year} with an average rate of ${arrayMovies[1].rate}`;
+    }
 
 // Get the average of all rates with 2 decimals 
 
