@@ -50,17 +50,43 @@ function ratesAverage(movieToChange){
     return myNewArray
   });  
 
-  console.log(changeToNewArray)
+  let getMyAverage = changeToNewArray.reduce((a,b)=>{
+    return a + b
+  });
 
+  let almostAverage = getMyAverage / movieToChange.length
+  almostAlmostAverage = almostAverage.toFixed(2);
+  //ummm.....toFixed returns a string....
+  finalAverage = parseFloat(almostAlmostAverage);
+  return finalAverage;
+
+};
+
+
+
+// Get the average of Drama Movies
+
+function dramaMoviesRate(movieToChange){  
+
+
+  let changeToNewArray = movieToChange.map((theMovie, index)=>{
+    
+    let myNewArray = [];
+    if ((theMovie.genre).includes("Drama")){
+    console.log(theMovie.genre);
+    myNewArray = parseFloat(theMovie.rate); //why does this return undefined elements and the console.log doesnt??????
+    return myNewArray
+    }
+    
+  });  
+
+  console.log(changeToNewArray);
 
   let getMyAverage = changeToNewArray.reduce((a,b)=>{
     return a + b
   });
-  console.log(getMyAverage)
 
   let almostAverage = getMyAverage / movieToChange.length
-
-  //ummm.....toFixed returns a string....
 
   almostAlmostAverage = almostAverage.toFixed(2);
 
@@ -69,10 +95,6 @@ function ratesAverage(movieToChange){
   return finalAverage;
 
 };
-
-
-
-// Get the average of Drama Movies
 
 
 // Order by time duration, in growing order
