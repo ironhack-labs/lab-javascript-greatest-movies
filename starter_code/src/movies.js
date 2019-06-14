@@ -21,6 +21,8 @@ function turnHoursToMinutes(arr) {
     if(arrayOfDuration[0].length < 4) 
     {
       //means our first element is amount of hours
+      //also parseInt can take "22min" and will return number 22
+      //without any extra steps
       hours = Number(arrayOfDuration[0].slice(0, -1));
     } else {
       //means our first element is amount of minutes
@@ -67,9 +69,7 @@ function dramaMoviesRate(arr) {
 
 // Order by time duration, in growing order
 //sort
-// if (a > b) return 1;
-// if (a == b) return 0;
-// if (a < b) return -1;
+
 function orderByDuration(arr) {
   let moviesOrderedByDuration = [];
   if(arr.length == 1) {return arr}
@@ -107,7 +107,6 @@ return `Steven Spielberg directed ${numberOfMovies} drama movies!`
 // Order by title and print the first 20 titles
 //
 function orderAlphabetically(arr) {
-  let max20 = arr.length <= 20 ? arr.length : 20;
   let orderedTitlesArray = arr
   //sorting arr titles 
     .sort((a,b) => {
@@ -121,6 +120,7 @@ function orderAlphabetically(arr) {
     })
 
   let orderedTitlesArrayTrimmed = [];
+  //.slice(0, 20) would be a better option to use here
   for(i=0; i<=orderedTitlesArray.length-1; i++) {
     if(i < 20) {
       orderedTitlesArrayTrimmed.push(orderedTitlesArray[i])
@@ -133,12 +133,39 @@ function orderAlphabetically(arr) {
   return orderedTitlesArrayTrimmed
 }
 
+function bestYearAvgAnotherApproach (arrayOfMovies) {
+  if (arrayOfMovies.length === 0) {
+    return
+  }
+  let newObj = {};
+  arrayOfMovies.forEach(eachMovieObject => {
+    if(!newObj[eachMovieObject.year]) {
+      newObj[eachMovieObject.year] = {num: 1, totalRate: Number(eachMovieObject.rate)};
+    } else {
+      newObj[eachMovieObject.year].num += 1;
+      newObj[eachMovieObject.year].totalRate += Number(eachMovieObject.rate);
+    }
+  });
+
+  let greatest = { year: '', num: 0};
+
+  for( let eachKey in newObj) {
+    if(newObj[eachKey].totalRate / newObj[eachKey].num > greatest.num) {
+      greatest.num = newObj[eachKey].totalRate / newObj[eachKey].num;
+      greatest.year = eachKey;
+    }
+    console.log(eachKey, newObj[eachKey]);
+  }
+
+  return `The best year was ${greatest.year} with an average rate of ${greatest.num}`
+} 
+
+
 
 // Best yearly rate average
 //loop through them all, do average for all the years and then figure out the best
 function bestYearAvg(arr) {
   let bestRate = 0;
-  let currRate = 0;
   let bestYear = "";
   if (arr.length === 0) {
     return
@@ -163,14 +190,7 @@ function bestYearAvg(arr) {
       return eachMovie.year === `${i}`;
     });
 
-    // let rateForYearX = ratesAverage(yearArr);
-    // why ^ this doesn't work but the one below does???
-    let rateForYearX = yearArr.reduce((a, b) => {
-      return Number(a) + Number(b.rate);
-    }, 0);
-
-    currAverageRate = rateForYearX / yearArr.length;
-
+    let currAverageRate = ratesAverage(yearArr);
     if (bestRate < currAverageRate) {
       bestRate = currAverageRate;
       bestYear = i;
@@ -178,3 +198,5 @@ function bestYearAvg(arr) {
   }
   return `The best year was ${bestYear} with an average rate of ${bestRate}`;
 }
+
+ 
