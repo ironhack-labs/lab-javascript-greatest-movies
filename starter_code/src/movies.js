@@ -48,6 +48,10 @@ function ratesAverage (arr) {
   return Number((combinedRatingOfAllMovies / arr.length).toFixed(2))
 }
 
+  // let rateForYearX = yearArr.reduce((a, b) => {
+    //   return Number(a) + Number(b.rate);
+    // }, 0);
+
 // Get the average of Drama Movies
 //filter only the drama and then call ratesAverage with new array
 function dramaMoviesRate(arr) {
@@ -132,3 +136,45 @@ function orderAlphabetically(arr) {
 
 // Best yearly rate average
 //loop through them all, do average for all the years and then figure out the best
+function bestYearAvg(arr) {
+  let bestRate = 0;
+  let currRate = 0;
+  let bestYear = "";
+  if (arr.length === 0) {
+    return
+  }
+  arr.sort((a, b) => {
+    if (a.year > b.year) {
+      return 1;
+    }
+    if (a.year < b.year) {
+      return -1;
+    }
+    return 0;
+  });
+
+  let start = arr[0].year;
+  let last = arr[arr.length - 1].year;
+  //for i= 1921 to i = 2017
+  for (let i = start; i <= last; i++) {
+    let yearArr = arr.filter(eachMovie => {
+      //new array with the movies only of a certain year
+      //typoof year = string
+      return eachMovie.year === `${i}`;
+    });
+
+    // let rateForYearX = ratesAverage(yearArr);
+    // why ^ this doesn't work but the one below does???
+    let rateForYearX = yearArr.reduce((a, b) => {
+      return Number(a) + Number(b.rate);
+    }, 0);
+
+    currAverageRate = rateForYearX / yearArr.length;
+
+    if (bestRate < currAverageRate) {
+      bestRate = currAverageRate;
+      bestYear = i;
+    }
+  }
+  return `The best year was ${bestYear} with an average rate of ${bestRate}`;
+}
