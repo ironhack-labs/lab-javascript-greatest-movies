@@ -2074,8 +2074,10 @@ const howManyMovies = (arr) => {
 }
 // Order by title and print the first 20 titles
 const orderAlphabetically = (arr) => {
-  let orderedLis = arr.map(item => movie.title);
-  orderedList = orderedMovies.sort((a,b) => a.localeCompare(b));
+  let orderedList = arr.map((item) => item.title);
+  orderedList = orderedList.sort((a,b) => a.localeCompare(b));
   return orderedList.slice(0, 20);
 };
-// Best yearly rate average
+
+// bonus
+
