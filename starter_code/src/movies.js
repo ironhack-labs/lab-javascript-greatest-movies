@@ -1,47 +1,30 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
 //const turnHoursToMinutes = (arr) => {
-	var movies = [
-		{
-			title: 'The Shawshank Redemption',
-			year: '1994',
-			director: 'Frank Darabont',
-			duration: '2h 22min',
-			genre: ['Crime', 'Drama'],
-			rate: '9.3'
-		},
-		{
-			title: 'The Godfather',
-			year: '1972',
-			director: 'Francis Ford Coppola',
-			duration: '2h 55min',
-			genre: ['Crime', 'Drama'],
-			rate: '9.2'
-		}];
 
-		function turnHoursToMinutes(arr) {
-			let newArray = JSON.parse(JSON.stringify(arr));
-			let duration = newArray.map(movie => {
-				let hour = movie.duration.split('');
-				let newHour = 0;
-				let minutes = 0;
-				if (hour.length <= 2) {
-					newHour = parseInt(hour[0] * 60);
-					movie.duration = newHour;
-					return newArray;
-				} else if (hour.length === 5) {
-					minutes = parseInt(hour[0] * 10 + parseInt(hour[1]));
-					movie.duration = minutes;
-					return newArray;
-				} else {
-					newHour = parseInt(hour [0] * 60);
-					minutes = parseInt(hour [3] * 10) + parseInt(hour[4]);
-					movie.duration = newHour + minutes;
-					return newArray;
-				}
-			}) 
-				return newArray;
-		};
+function turnHoursToMinutes(arr) {
+	let newArray = JSON.parse(JSON.stringify(arr));
+	let duration = newArray.map(movie => {
+	let hour = movie.duration.split('');
+	let newHour = 0;
+	let minutes = 0;
+	if (hour.length <= 2) {
+		newHour = parseInt(hour[0] * 60);
+		movie.duration = newHour;
+		return newArray;
+	} else if (hour.length === 5) {
+		minutes = parseInt(hour[0] * 10 + parseInt(hour[1]));
+		movie.duration = minutes;
+		return newArray;
+	} else {
+		newHour = parseInt(hour [0] * 60);
+		minutes = parseInt(hour [3] * 10) + parseInt(hour[4]);
+		movie.duration = newHour + minutes;
+		return newArray;
+	}
+}) 
+	return newArray;
+};
 
 console.log(turnHoursToMinutes(movies));
 
