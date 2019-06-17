@@ -49,7 +49,7 @@ const dramaMoviesRate = (arr) => {
 const orderByDuration = (arr) => {
   arr.sort((a,b) => {
     if (a.duration === b.duration) {
-      return a.title > b.title ? 1 : -1;
+      return a.title.localeCompare(b.title);
     }
     return a.duration - b.duration;
   });
