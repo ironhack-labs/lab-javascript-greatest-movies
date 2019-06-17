@@ -2001,6 +2001,17 @@ var movies = [
   }
 ];
 
+let fakeObj = [
+  {
+    title: 'Rang De Basanti',
+    year: '2006',
+    director: 'Rakeysh Omprakash Mehra',
+    duration: '2h 37min',
+    genre: ['Comedy', 'Drama', 'History', 'Romance'],
+    rate: '8.3'
+  },
+]
+
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
 const turnHoursToMinutes = (movies) => {
@@ -2039,7 +2050,7 @@ const dramaMoviesRate = (movies) => {
 
 // Order by time duration, in growing order
 const orderByDuration = (movies) => {
-  return turnHoursToMinutes(movies).sort((a, b) => {
+  return movies.sort((a, b) => {
     if (a.duration === b.duration) {
       return a.title.localeCompare(b.title);
     } else {
@@ -2071,4 +2082,21 @@ const orderAlphabetically = (movies) => {
     return a.localeCompare(b);
   }).slice(0, 20);
 }
+
 // Best yearly rate average
+const bestYearAvg = (movies) => {
+  //sort by year
+  let i = 0;
+  let rateByYear = [];
+  let acc = 0;
+  const moviesByYear = movies.sort((a, b) => {
+      if(a.year <= b.year) {
+        acc += a.rate;
+      }
+      return a.year - b.year;
+  })
+
+  //return moviesByYear;
+}
+
+//console.log(bestYearAvg(movies))
