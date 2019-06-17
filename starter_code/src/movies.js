@@ -1,6 +1,6 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
-var movies = [
+const movies = [
   {
     title: 'The Shawshank Redemption',
     year: '1994',
@@ -2127,6 +2127,6 @@ const bestYearAvg = movies => {
 }
 
 
-console.log(bestYearAvg(arr));
+bestYearAvg(arr);
 
 
