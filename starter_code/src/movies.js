@@ -83,17 +83,17 @@ turnHoursToMinutes(mv);
 
 // Get the average of all rates with 2 decimals
 function ratesAverage(movies) {
-  let totalRate = movies.reduce((total, mvs) => parseFloat(total) + parseFloat(mvs.rate), 0);
+  const totalRate = movies.reduce((total, mvs) => parseFloat(total) + parseFloat(mvs.rate), 0);
   return totalRate / movies.length;
 }
 ratesAverage(mv);
 // Get the average of Drama Movies
 function dramaMoviesRate(movies) {
-  let dramaMovies = movies.filter(element => element.genre[0] === 'Drama');
+  const dramaMovies = movies.filter(element => element.genre[0] === 'Drama');
   if (dramaMovies.length === 0) {
     return;
   }
-  let totalRate = dramaMovies.reduce((total, mvs) => {
+  const totalRate = dramaMovies.reduce((total, mvs) => {
     if (mvs.hasOwnProperty('rate') && mvs.rate !== '') {
       return parseFloat(total) + parseFloat(mvs.rate)
     } else {
@@ -128,7 +128,7 @@ function orderByDuration(movies) {
   console.log(timedMovies);
 
   const result = timedMovies.map(element => {
-    if(truth){
+    if (truth) {
       return {
         title: element.title,
         duration: element.duration
