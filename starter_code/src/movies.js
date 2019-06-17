@@ -2016,7 +2016,7 @@ var movies = [{
   }
 ];
 
-movies = [{ year: '2000', rate: 9 }, { year: '2000', rate: 8 }, { year: '1978', rate: 10 }, { year: '1978', rate: 7 }];
+// movies = [{ year: '2000', rate: 9 }, { year: '2000', rate: 8 }, { year: '1978', rate: 10 }, { year: '1978', rate: 7 }];
 
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes
