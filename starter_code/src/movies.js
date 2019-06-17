@@ -154,7 +154,7 @@ howManyMovies(mv);
 
 // Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
-  let moviesSorted = movies.sort((a, b) => {
+  const moviesSorted = movies.sort((a, b) => {
     if (a.title < b.title)
       return -1
     if (a.title > b.title)
