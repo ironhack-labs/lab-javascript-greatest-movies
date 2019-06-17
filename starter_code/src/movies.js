@@ -1,30 +1,5 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
-function turnHoursToMinutes(movie) {
-
-  const newMov = movie.map(stats => {
-    let arr = stats.duration.toString().split('h');
-    if (arr[1]) {
-      stats.duration = parseInt(arr[0]) * 60 + parseInt(arr[1]);
-    }
-    else if (arr[0] && arr[1] === '') {
-      stats.duration = parseInt(arr[0]) * 60;
-    }
-    else {
-      stats.duration = parseInt(arr[0]);
-    }
-    return {
-      title: stats.title,
-      year: stats.year,
-      direction: stats.director,
-      duration: stats.duration,
-      genre: stats.genre,
-      rate: stats.rate
-    }
-  });
-  return newMov;
-}
-
 mv = [{
   title: 'The Shawshank Redemption',
   year: '1994',
@@ -80,6 +55,30 @@ mv = [{
   genre: ['Crime', 'Drama'],
   rate: '8.9'
 }];
+
+function turnHoursToMinutes(movie) {
+  const newMov = movie.map(stats => {
+    let arr = stats.duration.toString().split('h');
+    if (arr[1]) {
+      stats.duration = parseInt(arr[0]) * 60 + parseInt(arr[1]);
+    }
+    else if (arr[0] && arr[1] === '') {
+      stats.duration = parseInt(arr[0]) * 60;
+    }
+    else {
+      stats.duration = parseInt(arr[0]);
+    }
+    return {
+      title: stats.title,
+      year: stats.year,
+      direction: stats.director,
+      duration: stats.duration,
+      genre: stats.genre,
+      rate: stats.rate
+    }
+  });
+  return newMov;
+}
 turnHoursToMinutes(mv);
 
 // Get the average of all rates with 2 decimals
@@ -108,52 +107,51 @@ dramaMoviesRate(mv);
 
 // Order by time duration, in growing order
 function orderByDuration(movies) {
-  timedMovies = turnHoursToMinutes(movies);
-  let sortedArr = timedMovies.map(time => {
+  let truth = false;
+  const timedMovies = turnHoursToMinutes(movies);
+  timedMovies.sort((a, b) => {
+    if (a.duration === b.duration) {
+      truth = true;
+      if (a.title < b.title) {
+        return -1
+      }
+      if (a.title > b.title) {
+        return 1
+      }
+
+    } else if (a.duration < b.duration) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+  console.log(timedMovies);
+
+  const result = timedMovies.map(element => {
+    if(truth){
+      return {
+        title: element.title,
+        duration: element.duration
+      }
+    }
     return {
-      title: time.title,
-      duration: time.duration
+      duration: element.duration
     }
   })
-  let titleOrder = sortedArr.sort((a, b) => { return a.duration - b.duration })
-  return titleOrder.sort((a, b) => {
-    if (a.title < b.title)
-      return -1
-    if (a.title > b.title)
-      return 1
-    return 0
-  }).map(time => {
-    return {
-      duration: time.duration
-    }
-  })
+  return result
 }
 orderByDuration(mv);
 
 // How many movies did STEVEN SPIELBERG
 function howManyMovies(movies) {
-  let dramaMovies = movies.map(element => {
-    element.genre.filter(filtred => filtred === 'Drama')
-    return {
-      title: element.title,
-      year: element.year,
-      direction: element.director,
-      duration: element.duration,
-      genre: element.genre,
-      rate: element.rate
-    }
-  });
-  if (dramaMovies.length === 0) {
+  if (movies.length === 0) {
     return;
   }
-  let stevenMovies = dramaMovies.filter(element => element.direction == 'Steven Spielberg');
-
-  // console.log(stevenMovies.length);
-  // let message = `Steven Spielberg directed ${stevenMovies.length} drama movies!`;
-  // console.log(message);
-  return `Steven Spielberg directed ${stevenMovies.length} drama movies!`;
+  let dramaMovies = movies.filter(element => element.genre.includes('Drama') && element.director === 'Steven Spielberg');
+  return `Steven Spielberg directed ${dramaMovies.length} drama movies!`;
 }
 howManyMovies(mv);
+
 // Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
   let moviesSorted = movies.sort((a, b) => {
@@ -174,10 +172,10 @@ function bestYearAvg(movies) {
   if (movies.length === 0) {
     return;
   }
-  let yearsArr = movies.map(element => element.year.toString());
+  const yearsArr = movies.map(element => element.year.toString());
   let bestSum = 0;
   let bestYear;
-  for(let j = 0; j < movies.length; j++){
+  for (let j = 0; j < movies.length; j++) {
     let sum = 0;
     let counter = 0;
     for (let i = 0; i < movies.length; i++) {
