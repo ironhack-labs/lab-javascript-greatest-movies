@@ -41,10 +41,10 @@ function turnTimeStringToMinutes(movieObject){
 function ratesAverage(movieRatingArray){
 
 let total = movieRatingArray.reduce((accum, eachMovie)=>{
-return accum + eachMovie.rate;
+return accum + Number(eachMovie.rate);
 }, 0)
 
-return total/movieRatingArray.length;
+return Number((total/movieRatingArray.length).toFixed(2));
 }
 
 // Get the average of Drama Movies
@@ -53,11 +53,7 @@ function dramaMoviesRate(dramaMovieArray){
 
 let totalDramaArray = dramaMovieArray.filter((eachMovie)=>{
 
-if(eachMovie['genre'].includes("Drama")){
-  return eachMovie;
-}else{
-    return undefined;
-}
+return eachMovie['genre'].includes("Drama");
 })
 if(totalDramaArray.length === 0){
 return undefined;
@@ -68,10 +64,11 @@ return parseFloat(ratesAverage(totalDramaArray).toFixed(2));
 
 // Order by time duration, in growing order
 function orderByDuration(movieTime){
-if(typeof movieTime.duration === 'string'){
-
-let newMovieArray = turnHoursToMinutes(movieTime);
-let orderedMovies = newMovieArray.sort((a, b)=>{
+if(typeof movieTime[0].duration === 'string'){
+   movieTime = turnHoursToMinutes(movieTime);
+}
+ 
+newMovieArray = movieTime.sort((a, b)=>{
 
   if(a.duration < b.duration){
       return -1;
@@ -82,31 +79,12 @@ let orderedMovies = newMovieArray.sort((a, b)=>{
         return -1;
     }else if(b.title < a.title){
         return 1;
-    }else{
-        return 0;
     }
   }
+        return 0;
  }); 
- return orderedMovies;
-}else{
-let orderedMovies = movieTime.sort((a, b)=>{
+ return newMovieArray;
 
-    if(a.duration < b.duration){
-        return -1;
-    }else if(b.duration < a.duration){
-        return 1;
-    }else{
-        if(a.title < b.title){
-            return -1;
-        }else if(b.title < a.title){
-            return 1;
-        }else{
-            return 0;
-        }
-    }
-   }); 
-   return orderedMovies;
-}
 }
 
 // How many movies did STEVEN SPIELBERG
@@ -150,8 +128,43 @@ newArray.push(alphabeticArray[i].title);
   return newArray;
 }
 
-
 orderAlphabetically(test);
 
 // Best yearly rate average
+function bestYearAvg(movieArray){
+  if(movieArray.length === 0){
+    return undefined;
+  }
+  let newObject = {};
 
+  movieArray.map(eachMovie=>{
+       if(newObject[eachMovie.year]){
+         newObject[eachMovie.year].rate += parseFloat(eachMovie.rate);
+         newObject[eachMovie.year].totalOfMovies++;
+       }
+       else{
+         newObject[eachMovie.year] = {
+             rate: parseFloat(eachMovie.rate),
+             totalOfMovies: 1
+           }
+              
+       }
+
+  })
+let greatYear = {
+  year: " ",
+  totalAverage: 0
+};
+
+for(let i in newObject){
+
+
+let average = newObject[i].rate / newObject[i].totalOfMovies;
+
+   if(average > greatYear.totalAverage){
+     greatYear.year =  i;
+     greatYear.totalAverage = average;
+   }
+}
+return `The best year was ${greatYear.year} with an average rate of ${greatYear.totalAverage}`
+}
