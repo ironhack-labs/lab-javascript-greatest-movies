@@ -124,3 +124,32 @@ function orderAlphabetically(arr) {
 orderAlphabetically(movies);
 
 // Best yearly rate average
+function bestYearAvg(arr) {
+  if (!arr.length) return undefined;
+
+  let newMObj = {};
+  arr.map(movie => {
+    if (newMObj[movie.year]) {
+      newMObj[movie.year].rate += parseFloat(movie.rate);
+      newMObj[movie.year].totalMovies++;
+    } else {
+      newMObj[movie.year] = {
+        rate: parseFloat(movie.rate),
+        totalMovies: 1
+      };
+    }
+  });
+  let bestYear = {
+    year: "",
+    totalAverage: 0
+  };
+  for (i in newMObj) {
+    let average = newMObj[i].rate / newMObj[i].totalMovies;
+    if (average > bestYear.totalAverage) {
+      (bestYear.year = i), (bestYear.totalAverage = average);
+    }
+  }
+  return `The best year was ${bestYear.year} with an average rate of ${
+    bestYear.totalAverage
+  }`;
+}
