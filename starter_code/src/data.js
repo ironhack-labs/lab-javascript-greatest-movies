@@ -1,3 +1,6 @@
+
+
+
 var movies = [
   {
     title: 'The Shawshank Redemption',
@@ -736,7 +739,7 @@ var movies = [
     rate: '8.3'
   },
   {
-    title: 'Singin\' in the Rain',
+    title: 'Singin in the Rain',
     year: '1952',
     director: 'Stanley Donen',
     duration: '1h 43min',
@@ -2000,3 +2003,71 @@ var movies = [
     rate: '8.0'
   }
 ];
+
+  
+// Turn duration of the movies from hours to minutes 
+function turnHourToMinutes (arrayOfMoviesObjects){ 
+
+  let blah = arrayOfMoviesObjects.map((singleMovie)=>{
+   let hours = singleMovie.duration.split("h")[0];
+   hours = parseInt(hours);
+   let min = singleMovie.duration.split("h")[1].split("m")[0];
+   min = parseInt(min);
+   let newSingleMovie = {...singleMovie};
+   newSingleMovie.duration = hours * 60 + min;
+    return newSingleMovie;
+ })
+ return blah;
+ }
+ console.log (turnHourToMinutes (movies))
+
+
+ 
+
+// * 2 Get the average of all rates with 2 decimals 
+//ratesAverage method 
+// reduce" the data to a single value
+
+
+
+
+
+//*3 Get the average of Drama Movies REDUCE
+//dramaMoviesRate
+// that receive an array as a parameter to get the average rate ^Again, rounded to 2 decimals (prior iteration)
+
+
+
+
+
+// *4Order by time duration, in growing order  
+//SORT ascending   orderByDuration
+// receives an array as parameter and return the sorted array. 
+// make copy. if statement return -1 1 0 movie.DURATION (USE HRTO MIN)
+//If two movies have the same duration, order them in alphabeticall order by their title! a.title < b.title retutn -1 b.titile < a retunr 1
+
+
+
+
+
+
+// *5 How many movies did STEVEN SPIELBERG  
+// FILTER   howManyMovies
+//{return} same as return undefined
+
+
+
+
+// *6 Order by title and print the first 20 titles   SORT SLICE MAP  orderAlphabetically
+//Sort modify original array make copy
+// order alphabetically, funtion-let--loop-if retutn-elseifretutn-
+//[...blah].slice .map 
+
+
+
+
+
+
+//* 7 bonus Best yearly rate average
+
+
