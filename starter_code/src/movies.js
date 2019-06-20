@@ -20,6 +20,7 @@ function turnHoursToMinutes (arrayOfMoviesObjects){
    }
    console.log (turnHoursToMinutes (movies))
    
+   
 
 
 
