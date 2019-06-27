@@ -100,18 +100,36 @@ const bestYearForCinema = (data) => {
     
     let yearMovie = movies.filter(item => item.year === year.toString());
 
-    return yearMovie.map(item => {
-      let total = 0;
+    let movieRate = yearMovie.reduce((total, item) => {
+      return total + parseFloat(item.rate);
+    }, 0) / yearMovie.length;
 
-      if (item.year === year) {
-        item.rate += total;
-      }
-    });
+    return [year, parseFloat(movieRate.toFixed(2))];
   }
 
-  // for (let i = 1900; i < 2019; i++) {
-    
-  // }
+  let allYearsAndRate = data.map(item =>{
+
+    for (let i = 1900; i < 2019; i++) {
+      if (item.year === i.toString()) {
+        return yearAvarege(data, i)
+      }
+    }
+  });
+
+  let ordered = allYearsAndRate.sort();
+
+//   ar arr = ['foo', 'bar', 'foo'];
+// var novaArr = arr.filter((este, i) => arr.indexOf(este) === i);
+// console.log(novaArr); //dá ['foo', 'bar']
+
+  return ordered.filter((item, index) => item.year == index);
+
+  // return ordered.filter(item => {
+  //   for (let i = 1900; i < 2019; i++) {
+  //     if (item.year == item.year) return item.year;
+  //   }
+  // });
+
 
   
 
@@ -122,7 +140,7 @@ const bestYearForCinema = (data) => {
   //   }
   // });
 
-  return yearAvarege(data, 2018);
+  // return allYearsAndRate;
 
 }
 
