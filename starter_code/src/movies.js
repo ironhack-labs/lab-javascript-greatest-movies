@@ -134,10 +134,6 @@ function orderAlphabetically (moviesArray){
 orderAlphabetically(originalMoviesArray);
 
 //Best yearly rate average
-
-bestYearAvg(originalMoviesArray);
-
-
 function bestYearAvg (moviesArray) {
     if (moviesArray.length === 0) return undefined;
   
