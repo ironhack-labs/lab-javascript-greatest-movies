@@ -95,6 +95,7 @@ orderByDuration(array);
 
 // How many movies did STEVEN SPIELBERG
 function howManyMovies (moviesArray) {
+if (moviesArray.length === 0) {return undefined};
 
 const onlyDramaMoviesWithSpielberg = moviesArray.filter(function(eachMovie) {
     if (eachMovie.genre.includes('Drama') && eachMovie.director.includes('Steven Spielberg')){  
@@ -102,11 +103,8 @@ const onlyDramaMoviesWithSpielberg = moviesArray.filter(function(eachMovie) {
     } 
   });
 
-    if (onlyDramaMoviesWithSpielberg.length === 0) {
-     return undefined;
-    } else  {
      return (`Steven Spielberg directed ${onlyDramaMoviesWithSpielberg.length} drama movies!`);
-    }
+    
 
 }
 howManyMovies(originalMoviesArray);
@@ -123,6 +121,8 @@ function orderAlphabetically (moviesArray){
             return 0
         }
     })
+
+    
       
     let firstTwenty = getOrder.slice(0,20);
      let titlesOnly = firstTwenty.map((moviesArray) => {
@@ -133,18 +133,38 @@ function orderAlphabetically (moviesArray){
 
 orderAlphabetically(originalMoviesArray);
 
-// Best yearly rate average
-function bestYearAvg (moviesArray) {
-   
-    const yearMoviesArray = moviesArray.reduce(function(acc, eachMovie) {
-        
-        
-        return acc;
-    
-    }, [{}] )
+//Best yearly rate average
 
-    console.log(yearMoviesArray);
-    return yearMoviesArray;
-
-}
 bestYearAvg(originalMoviesArray);
+
+
+function bestYearAvg (moviesArray) {
+    if (moviesArray.length === 0) return undefined;
+  
+    const moviesByYear = moviesArray.reduce((acc,eachMovie) => {
+      if (!acc[eachMovie.year]) {
+        acc[eachMovie.year] = { moviesNumbers: 1, rate: parseFloat(eachMovie.rate) };
+      } else {
+        acc[eachMovie.year].moviesNumbers += 1;
+        acc[eachMovie.year].rate += parseFloat(eachMovie.rate);
+        acc[eachMovie.year].rate = (acc[eachMovie.year].rate) / (acc[eachMovie.year].moviesNumbers);
+      }
+      return acc;
+    }, {});
+  
+    const getYearsInOrder = Object.keys(moviesByYear);
+  
+    let bestAvg = 0; // ?
+    let bestYear = 0; // ?
+  
+    getYearsInOrder.map((year) => {
+      const yearRateAvg = moviesByYear[year].rate;
+      if (yearRateAvg > bestAvg) {
+        bestAvg = yearRateAvg;
+        bestYear = year;
+      }
+    });
+  
+    return `The best year was ${bestYear} with an average rate of ${bestAvg}`;
+  };
+  bestYearAvg(originalMoviesArray)
