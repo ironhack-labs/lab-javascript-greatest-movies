@@ -1,13 +1,13 @@
 /* eslint no-restricted-globals: 'off' */
 
 // import object from data.js
-const movies = require('./data.js');
+//const movies = require('./data.js');
 
 // Turn duration of the movies from hours to minutes 
 // Create a turnHoursToMinutes method that receive an array as parameter, replace the duration info of each of the movies for it equivalent in minutes. 
 // You must return a new array with all the info about the movie, not modify the original array!
 function turnHoursToMinutes (array) {
-  return array.map((element) => {
+  return array.map(element => {
     let hours = 0;
     let minutes = 0;
     const movieDuration = element.duration.match(/(\d+)/g)
@@ -22,7 +22,7 @@ function turnHoursToMinutes (array) {
     if (!hasHours && hasMinutes) {
       minutes = Number(movieDuration[0])
     } 
-    let durationInMinutes = hours * 60 + minutes;
+    const durationInMinutes = hours * 60 + minutes;
     return {
       title: element.title,
       year: element.year,
@@ -76,45 +76,33 @@ function howManyMovies(array) {
 function orderAlphabetically(array) {
   const arrayCopy = JSON.parse(JSON.stringify(array));
   arrayCopy.sort((a, b) => a.title.localeCompare(b.title))
-  const moviesTitle = [];
-  arrayCopy.map((element) => moviesTitle.push(element.title))
+  const moviesTitle = arrayCopy.map(element => element.title)
   const first20 = [];
-  for (let i = 0; i < 20; i++) {
-    first20.push(moviesTitle[i])
-  }
-  if (moviesTitle.length < 20) {
-    return moviesTitle;
-  } else {
-    return first20;
-  }
-  return moviesTitle;
+  for (let i = 0; i < 20; i++) first20.push(moviesTitle[i]);
+  return moviesTitle.length < 20 ? moviesTitle : first20;
 }
 
 // Best yearly rate average
 // Let's complicated a bit this thing. We always listen to classic movies, but we want to know, which year has the best average rate, so we can declare officially the BEST YEAR FOR CINEMA!
 // Go ahead and find which year have the best average rate for the movies that were released on that year!
-// criar uma variavel yearFilter com filtro de ano
-// criar uma variavel moviesYears com um array de cada ano excluindo os repetidos
-// ideias
-// criar uma variavel de array com uma função yearRate que retorna um objeto com o ano e o average rate desse ano que foi passado como argumento
-// ordenar essa função com o maior rate primeiro
-// retornar o primeiro ano do array
 function bestYearAvg(array) {
   if (array.length === 0) return undefined;
-  let bestYear = 0;
-  let bestYearRate = 0;
   const moviesYears = [];
-  array.forEach(element => {
-    if (!moviesYears.includes(Number(element.year))) moviesYears.push(Number(element.year));
+    array.forEach(element => {
+      const year = Number(element.year)
+      const rate = parseFloat(element.rate)
+      const findYear = moviesYears.find(obj => obj.year === year)
+    if (findYear === undefined) {
+      moviesYears.push({year, rate});
+    } else {
+      findYear.rate += rate
+      findYear.rate /= 2
+      }
   });
-  // console.log(moviesYears)
-  const yearFilter = year => array.filter(element => element.year.includes(year));
-  array.map((element) => {
-
-  });
- 
-
-  return `The best year was ${bestYear} with an average rate of ${bestYearRate}`;
+  moviesYears.sort((a, b) => {
+    if (a.rate === b.rate) return a.year - b.year;
+    if (a.rate < b.rate) return 1;
+    if (a.rate > b.rate) return -1;
+  })
+  return `The best year was ${moviesYears[0].year} with an average rate of ${moviesYears[0].rate}`;
 }
-
-console.log(bestYearAvg(movies))
