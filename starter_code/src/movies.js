@@ -1,5 +1,4 @@
 /* eslint no-restricted-globals: 'off' */
-// const movies = require('./data.js');
 
 // Turn duration of the movies from hours to minutes 
 function turnHoursToMinutes (moviesArray) {
@@ -68,9 +67,43 @@ function howManyMovies (moviesArray) {
 
 // Order by title and print the first 20 titles
 function orderAlphabetically (moviesArray) {
+  if (moviesArray.length === 0) return moviesArray;
+  console.log(moviesArray);
   const sortedArray = moviesArray.sort((a, b) => {
     return a.title.localeCompare(b.title);
   })
+  const finalArray = [];
+  for (let i = 0; i < sortedArray.length; i++) {
+    finalArray.push(sortedArray[i].title);
+    if (i === 19) break;
+  }
+  return finalArray;
 }
 
 // Best yearly rate average
+function bestYearAvg (moviesArray) {
+  if (moviesArray.length === 0) return undefined;
+  const newObject = {};
+  for (let i = 0; i < moviesArray.length; i++) {
+    if (newObject[moviesArray[i].year] === undefined) {
+      newObject [moviesArray[i].year] = {
+        count: 1,
+        rateSum: parseFloat(moviesArray[i].rate),
+        rateAvg: parseFloat(moviesArray[i].rate)
+      }
+    } else {
+      newObject [moviesArray[i].year].count += 1;
+      newObject [moviesArray[i].year].rateSum += parseFloat(moviesArray[i].rate);
+      newObject [moviesArray[i].year].rateAvg = parseFloat((newObject[moviesArray[i].year].rateSum / newObject[moviesArray[i].year].count).toFixed(2));
+    }
+  }
+  const keys = Object.keys(newObject).sort((a, b) => {
+    if (newObject[a].rateAvg > newObject[b].rateAvg) return -1;
+    if (newObject[b].rateAvg > newObject[a].rateAvg) return 1;
+    if (newObject[a].rateAvg === newObject[b].rateAvg) {
+      if (+a > +b) return 1;
+      if (+b > +a) return -1;
+    }
+  })
+  return `The best year was ${keys[0]} with an average rate of ${newObject[keys[0]].rateAvg}`;
+}
