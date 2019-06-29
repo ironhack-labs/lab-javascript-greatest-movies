@@ -1,5 +1,5 @@
 /* eslint no-restricted-globals: 'off' */
-const movies = require('./data')
+// const movies = require('./data')
 
 // Turn duration of the movies from hours to minutes 
 
@@ -10,7 +10,7 @@ const movies = require('./data')
 //     director: 'Steven Spielberg',
 //     duration: 220,
 //     genre: ['Crime', 'Drama'],
-//     rate: '9.3'
+//     rate: '9.2'
 //   },
 //   {
 //     title: 'H',
@@ -32,8 +32,8 @@ const movies = require('./data')
 //     title: 'D',
 //     year: '2008',
 //     director: 'Christopher Nolan',
-//     duration: '3h 22min',
-//     genre: ['Action', 'Crime', 'Drama', 'Thriller'],
+//     duration: '3h 23min',
+//     genre: ['Thriller'],
 //     rate: '9.0'
 //   },
 //   {
@@ -41,7 +41,7 @@ const movies = require('./data')
 //     year: '1978',
 //     director: 'Michael Cimino',
 //     duration: '3h 3min',
-//     genre: ['Drama', 'War'],
+//     genre: ['War'],
 //     rate: '8.2'
 //   }
 // ]
@@ -98,6 +98,8 @@ function ratesAverage(array){
   return Math.round(sumReviews/array.length*100)/100; 
 }
 
+console.log("geral", ratesAverage(movies))
+
 //console.log(ratesAverage(movies))
 // Get the average of Drama Movies
 function dramaMoviesRate(array){
@@ -110,11 +112,12 @@ function dramaMoviesRate(array){
   }
 }
 
-
+console.log("drama average", dramaMoviesRate(movies))
 // Order by time duration, in growing order
 
 function orderByDuration(array){
   let order = turnHoursToMinutes(array)
+  let equal = false;
   order.sort((a,b)=> {
     if(a.duration > b.duration){
       return 1;
@@ -123,6 +126,7 @@ function orderByDuration(array){
       return -1;
     }
     if (a.duration===b.duration){
+      equal=true;
       if (a.title > b.title){
         return 1;
       }
@@ -131,17 +135,25 @@ function orderByDuration(array){
       }
     }
   })
+  let orderByDuration=[]
   // console.log(order)
-  let orderByNames=[]
-  order.forEach((element => {
-    orderByNames.push(element.title)
-  })
-
-  )
-  return order
+  if(equal===false){
+    orderByDuration=order.map(element => {
+      return {
+        duration:element.duration
+      }
+    })
+  } else {
+    orderByDuration=order.map(element => {
+      return {
+        title:element.title,
+        duration:element.duration
+      }
+    })
+  }
+  return orderByDuration
 }
-//orderByDuration(movies)
-//console.log(orderByDuration(movies))
+console.log(orderByDuration(movies))
 
 // How many movies did STEVEN SPIELBERG
 
