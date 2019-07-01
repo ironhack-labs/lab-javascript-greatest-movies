@@ -56,18 +56,41 @@ class imdbManager{
     return arrTopNTitlesSorted;
   }
 
-  ratingByKeyValues(arr, key) {
+  ratingByYear(arr) {
 
-    // Create array of key:value pairs, where the "keys" are the values for the key input above...
-    // ... and the "value" is an array of movie objects 
+    // Create object containing keys (years), and their values (an array of movie objects) 
     
-    
-    
+    let moviesByYear = {};
 
+    for(let i=0; i<arr.length; i++) {
+      let year = arr[i].year;
+      let movieObj = arr[i];
+
+      // Check if year already exists in moviesByYear. If it does, just push the extra movie ...
+      // ... if it doesn't, create a new key (the year), with value as an array with first movie in
+      if(moviesByYear[year]) {
+        moviesByYear[year].push(movieObj);
+        } else {
+        moviesByYear[year] = [movieObj];
+      };
     };
 
-    
-  }
+    // Now go through each year, and calculate the average rating
+    let avgRatingsByYear = {};
+    for(let i=0; i<Object.keys(moviesByYear).length; i++) {
+      avgRatingsByYear[Object.keys(moviesByYear)[i]] = this.ratingAvg(moviesByYear[Object.keys(moviesByYear)[i]]);  // Q: Simpler way to do this??
+    }
+
+    // Now find the year with the top rating
+
+    let topYear = Object.keys(avgRatingsByYear).reduce((a, b) => avgRatingsByYear[a] > avgRatingsByYear[b] ? a : b);
+    let topRating = avgRatingsByYear[topYear];
+
+    let answer = [topYear, topRating]; // Better way of outputting here?
+
+    return answer;
+
+  };
 
 };
 
@@ -97,32 +120,5 @@ for(let i=0; i<topNAlphabetically.length; i++) {
   console.log(topNAlphabetically[i]);
 };
 
-var key = "year";
-var ratingByKeyValues = imdbManager.ratingByKeyValues(moviesCleaned, key);
-console.log(ratingByKeyValues);
-
-
-
-
-
-
-// ratingByKeyValues(arr, key) {
-
-//   // Get array of all values for the key
-//   let arrOfValues = arr.map(element => element[key]);
-
-//   // Get just unique values of the key
-//   function onlyUnique(value, index, self) {   // Function returns true only on first instance of element in array
-//     return self.indexOf(value) === index;
-//   }
-//   let arrOfValuesUnique = arrOfValues.filter(onlyUnique).sort((a,b) => a - b);
-
-//   // For each value of the key, get the average rating, and store both
-//   let avgRatingsByValue = [];
-
-//   arrOfValuesUnique.forEach(element => {
-    
-//   });
-
-  
-// }
+var topYearAndRating = imdbManager.ratingByYear(moviesCleaned);
+console.log(`The top year was ${topYearAndRating[0]}, with a rating of ${topYearAndRating[1]}`);
