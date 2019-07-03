@@ -29,14 +29,17 @@ function turnHoursToMinutes(moviesArray) {
 
 // Get the average of all rates with 2 decimals
 
+
 function ratesAverage(moviesArray) {
     let rate = moviesArray.map(movie => {
         return movie.rate
     })
+    if (rate.length == 0) { return undefined }
     let sum = rate.reduce((acc, currValue) => {
         return acc + currValue
     })
     let result = sum / moviesArray.length
+    result = Math.round(result * 1e2) / 1e2;
     return result
 }
 
@@ -44,8 +47,10 @@ function ratesAverage(moviesArray) {
 
 // Get the average of Drama Movies
 function dramaMoviesRate(moviesArray) {
-    console.log(moviesArray.filter(movie => { movie.genre.contains = "drama" }))
+    let result = ratesAverage(moviesArray.filter(movie => movie.genre.includes('Drama')))
 
+    console.log(result)
+    return (result)
 }
 // Order by time duration, in growing order
 
