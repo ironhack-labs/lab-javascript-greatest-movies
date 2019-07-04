@@ -74,5 +74,14 @@ function howManyMovies(moviesArray) {
 
 }
 // Order by title and print the first 20 titles
+function orderAlphabetically(moviesArray) {
 
+    let onlyTheTitleArray = moviesArray.map(movie => {
+        return movie.title
+    })
+    let sortedTitleArray = onlyTheTitleArray.sort()
+    let slicedArray = sortedTitleArray.slice(0, 20)
+    return slicedArray
+
+}
 // Best yearly rate average
