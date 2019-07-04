@@ -1,4 +1,4 @@
-var movies = [
+const movies = [
   {
     title: 'The Shawshank Redemption',
     year: '1994',
@@ -2000,3 +2000,142 @@ var movies = [
     rate: '8.0'
   }
 ];
+
+// 1st Iteration
+
+function stringToMinutes(string) {
+  var arr = string.split('h')
+  if (arr.length < 2) {
+    arr.unshift("0")
+  }
+  var hours = Number(arr[0])
+  var minutes = Number(arr[1].split("min")[0])
+  result = hours * 60 + minutes
+  return result
+}
+
+function turnHoursToMinutes(array) {
+  newArray = array.map(e => {
+    const minutized = stringToMinutes(e.duration)
+    return {
+      title: e.title,
+      year: e.year,
+      director: e.director,
+      duration: minutized,
+      genre: e.genre,
+      rate: e.rate,
+    }
+  })
+  return newArray
+}
+
+
+// 2nd Iteration
+
+let ratesNumbers = function (array) {
+  let numbers = array.map(movie => {
+    if (movie.rate === "") {
+      return 0
+    }
+    return parseFloat(movie.rate)
+  })
+  return numbers
+}
+
+function ratesAverage(array) {
+  let ratesInNumbers = ratesNumbers(array)
+  let addition = ratesInNumbers.reduce((sum, points) => {
+    return (sum + points)
+  })
+  let average = addition / array.length
+  let roundedAverage = Math.round(average * 100) / 100
+  return roundedAverage
+}
+ratesAverage(movies)
+
+// 3rd iteration
+
+function dramaMoviesRate(array) {
+  let dramaMovies = array.filter(element => element.genre.includes("Drama"))
+  if (dramaMovies.length === 0) {
+    return undefined
+  }
+  let dramaAverageRate = ratesAverage(dramaMovies)
+  let roundedDramaRate = Math.round(dramaAverageRate * 100) / 100
+  return roundedDramaRate
+}
+
+dramaMoviesRate(movies)
+
+// 4th iteration
+// not passing
+
+function orderByDuration(array) {
+
+  let result = array.sort((movie1, movie2) => {
+    if (movie1.duration < movie2.duration) {
+      return -1
+    } else if (movie1.duration > movie2.duration) {
+      return 1
+    } else { // movie1.duration === movie2.duration
+      if (movie1.title > movie2.title) {
+        return 1
+      } else {
+        return -1
+      }
+    }
+  })
+
+  return result
+}
+
+//tests pass but it is because their duration is already in numbers 
+
+// function orderByDuration(array) {
+//   let durationsNumbers = turnHoursToMinutes(array)
+
+//   let durationsArray = durationsNumbers.map(e => {
+//     return { duration: e.duration }
+//   })
+
+//   let sortedArray = durationsArray.sort((a, b) => a - b)
+//   return sortedArray
+// }
+
+orderByDuration(movies)
+
+// 5th iteration
+
+function howManyMovies(array) {
+  if (array.length === 0) {
+    return undefined
+  }
+  let spielbergArray = array.filter(element => element.genre.includes("Drama") && element.director.includes("Steven Spielberg"))
+  let spielbergNumber = spielbergArray.length
+  return `Steven Spielberg directed ${spielbergNumber} drama movies!`
+}
+
+
+// 6th iteration 
+
+function orderAlphabetically(array) {
+  let titles = array.map(e => {
+    return e.title
+  })
+  newArray = titles.sort((a, b) => {
+    if (a > b) {
+      return -1;
+    }
+
+    if (a < b) {
+      return 1;
+    }
+
+    return 0;
+  })
+
+  return newArray.reverse().slice(0, 20)
+}
+
+//bonus
+
