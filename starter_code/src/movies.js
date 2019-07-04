@@ -1,10 +1,8 @@
 /* eslint no-restricted-globals: 'off' */
 
 
-// Turn duration of the movies from hours to minutes 
-// [Bana] the function doesn't pass the tests 5-8 according to SpecRunner. However, when I enter the tests in the function, I get the expected result.
-  
-  //[Bana] helper function 
+// Turn duration of the movies from hours to minutes
+  //helper function 
   function stringToMinutes(string) {
     var arr = string.split('h')
     if (arr.length < 2) {
@@ -15,24 +13,22 @@
 
     return hours * 60 + minutes
 }
-  // [Bana] create a new array which shows the duration in minutes
-  const newMoviesWithMinutes = []
-  function turnHoursToMinutes(array){
-      array.map(element => {
-          const movieInMinutes = stringToMinutes(element.duration)
-  
-          newMoviesWithMinutes.push({
-              title: element.title,
-              year: element.year,
-              director: element.director,
-              duration: movieInMinutes,
-              genre: element.genre,
-              rate: element.rate
-            })
-          })
-      return newMoviesWithMinutes
-  }
 
+  // returns the array with adjusted format for duration (from hours to minutes)
+  // [Bana] passes all tests
+  function turnHoursToMinutes(moviesArray) {
+    let result = moviesArray.map((movie) => {
+      console.log("movie.genre : " + movie.genre)
+      return {
+        title: movie.title,
+        duration: stringToMinutes(movie.duration),
+        genre: movie.genre
+      }
+    })
+  
+    return result
+  
+  }
 
 
 // Get the average of all rates with 2 decimals 
@@ -43,7 +39,7 @@ function ratesAverage(array) {
 }
 
 // Get the average of Drama Movies
-// [Bana] the function doesn't pass the 6th test of SpecRunner. However, I do get the expected result when I enter the 6th test in the function
+// [Bana] passes all tests
 function dramaMoviesRate(array) {
   //[Bana] create an array of objects with drama movies only
   const arrayOfDrama = array.filter(element => element.genre.indexOf("Drama") >= 0)
@@ -61,27 +57,41 @@ function dramaMoviesRate(array) {
   }
   else {
     //[Bana] devide the sum of all rates for drama movies by the the number of drama movies to get the average
-    return sumArrayOfDramaWithRates / arrayOfDrama.length
+    return Math.round(sumArrayOfDramaWithRates / arrayOfDrama.length  * 100)/100
   }
 }
 
 
 // Order by time duration, in growing order
-//[Bana] returns undefined. still checking
-function orderByDuration(array){
-  let newArray = turnHoursToMinutes(array)
-  newArray.sort((a,b) => a.duration - b.duration)
+// [Bana] passes all tests
+function orderByDuration(array) {
+
+  let result = array.sort((movie1, movie2) => {
+    if (movie1.duration < movie2.duration) {
+      return -1
+    } else if (movie1.duration > movie2.duration) {
+      return 1
+    } else { // movie1.duration === movie2.duration
+      if (movie1.title > movie2.title) {
+        return 1
+      } else {
+        return -1
+      }
+    }
+  })
+  return result
+
 }
 
 // How many movies did STEVEN SPIELBERG
-// [Bana] doesn't pass all the test
+// [Bana] passes all tests
 function howManyMovies(array) {
   if (array.length === 0) {
     return undefined
   }
   else {
-    const dramaBySpielberg = array.filter(element => element.genre.indexOf('Drama') > 0 && element.director === 'Steven Spielberg')
-    return `Steven Spielberg directed ${dramaBySpielberg.length} drama movies`
+    const dramaBySpielberg = array.filter(element => element.genre.includes('Drama') && element.director === 'Steven Spielberg')
+    return `Steven Spielberg directed ${dramaBySpielberg.length} drama movies!`
   }
 }
 
@@ -100,3 +110,17 @@ function orderAlphabetically(array){
 }
 
 // Best yearly rate average
+// [Bana] work in progress
+  // 1st goal: return the year with the highest average
+  // Idea: 
+  // 1.) get an array of objects with the format {year1: xy, rates: [rate, rate, rate], year2: ...},
+  // 2.) get an array of objects with the format {year1; xy, averageRate: xy..., year2}
+  // 3.) sort the object in descending order & return the average of the first object
+  // 2. goal: in case there is a tie, it should return the oldest year
+
+function bestYearAvg(array){
+  if(array.length === 0){
+    return undefined
+  }
+
+}
