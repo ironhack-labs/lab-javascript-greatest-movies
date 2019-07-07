@@ -2006,57 +2006,132 @@ var movies = [
 
 // Turn duration of the movies from hours to minutes 
 
-function stringToMinutes(string) {
+function stringToMinutes(string) { //helper code - convert hours to minute
   var arr = string.split("h")
   if (arr.length < 2) {
-      arr.unshift("0")
-  } 
+    arr.unshift("0")
+  }
   var hours = Number(arr[0])
   var minutes = Number(arr[1].split("min")[0])
 
   return hours * 60 + minutes
 }
 
-function turnHoursToMinutes(){
-  
-  movies.map((movie)=> {
+function turnHoursToMinutes(moviesArray) {
+
+  let result = moviesArray.map((movie) => {
     return {
       title: movie.title,
-      year:movie.year,
-      duration : stringToMinutes(movies.duration),
+      year: movie.year,
+      director: movie.director,
+      duration: stringToMinutes(movie.duration), //finally it works!!! movie NOT movies
       genre: movie.genre,
-      rate:movie.rate
-    } 
-  })
-
+      rate: movie.rate
+    }
+  });
+  return result
 }
 
 
 // Get the average of all rates with 2 decimals 
 
+let rateArray = movies.map((el) => { //first convert string to Number and generate new array with only rate objects
+  return {
+    rate: parseFloat(el.rate)
+  }
+});
 
-const sum = 
+console.log(rateArray);
 
+function ratesAverage(arr) {
 
-const ratesAverage = movies.rate.map(el => {
-  const sum = movies.rate.reduce((acc, current)=> {
-    return acc + current;
-  }) 
-  return sum/movies.length
-})
-
-console.log(ratesAverage);
+  let average = arr.reduce((acc, current) =>
+    acc + current.rate / arr.length
+    , 0);
+  return average
+}
 
 // Get the average of Drama Movies
 
+function dramaMoviesRate(array) {
+  let dramaElement = array.filter(el => el.genre.includes('Drama'))
+  console.log(dramaElement);
+  if (dramaElement.length === 0) {
+    return undefined
+  }
+  let dramaRateAvg = ratesAverage(dramaElement)
+  console.log(dramaRateAvg)
+  //Average
+
+  return Math.round(dramaRateAvg * 100) * 0.01
+}
 
 // Order by time duration, in growing order
+
+function orderByDuration(array) {
+
+  array.sort((movie1, movie2) => { //sort by duration 
+    if (movie1.duration < movie2.duration) {
+      return -1
+    } else if (movie1.duration > movie2.duration) {
+      return 1
+    } else {
+      if (movie1.title > movie2.title) { //sort by title alphabetically
+        return 1
+      } else {
+        return -1
+      }
+    }
+  })
+
+  return array;
+}
 
 
 // How many movies did STEVEN SPIELBERG
 
+function howManyMovies(array) {
+  if (array.length == 0) {
+    return undefined
+  }
+
+  let dramaArray = movies.filter(el => el.genre.includes('Drama'));
+
+
+  let stevenSpielberg = dramaArray.filter(e => e.director.includes('Steven Spielberg'))
+
+  let spielbergNumber = stevenSpielberg.length
+
+  return `Steven Spielberg directed ${spielbergNumber} drama movies!`
+
+
+}
 
 // Order by title and print the first 20 titles
+
+function orderAlphabetically(array) {
+
+  let titlesArray = array.map(function (movie) {
+    return movie.title
+  });
+
+  let newArray = titlesArray.sort((a, b) => {
+    if (a > b) {
+      return -1;
+    }
+
+    if (a < b) {
+      return 1
+    }
+
+    return 0;
+
+  });
+
+  return newArray.reverse().slice(0, 20)
+
+}
+
 
 
 // Best yearly rate average
