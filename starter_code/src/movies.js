@@ -77,5 +77,4 @@ const orderAlphabetically = movies => {
 // Best yearly rate average
 
 const bestYearAvg = (movies) => {
- console.log('ok')
 }
