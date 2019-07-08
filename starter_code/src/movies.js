@@ -94,20 +94,22 @@ function orderByDuration(array) {
 [{ title: 'abc' }, { title: 'bcd' }]
 // How many movies did STEVEN SPIELBERG
 function howManyMovies(array) {
-  let dramaArr = array.filter(element => {
-    if (element.genre.includes('Drama') && element.director === 'Steven Spielberg')
-  { let dramaArrCounter = dramaArr.length
-    return `Steven Spielberg directed ${dramaArrCounter} drama movies`
-  }
+  {
   
-else {
-  if (element.director === 'Steven Spielberg' && element.genre.includes(!'Drama') ) {
-  return `Steven Spielberg directed ${0 } drama movies`
+  let dramaArr = array.filter(element => 
+     (element.genre.includes('Drama') && element.director === 'Steven Spielberg'));
+     
+  let dramaArrCounter = dramaArr.length;
+    console.log(`Steven Spielberg directed ${dramaArrCounter} drama movies`)}
+ let onlyDramaArr = array.filter(element => 
+     (element.genre === 'Drama') && (element.director === 'Steven Spielberg')
+     );
+     
+     let onlyDramaArrCounter = onlyDramaArr.length;
+    console.log(`Steven Spielberg directed ${onlyDramaArrCounter} pure drama movies`)
+
 }
-}
-})
-return result
-}
+  howManyMovies(array);
 // Order by title and print the first 20 titles
 function orderAlphabetically(array) {
 
