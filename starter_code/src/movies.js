@@ -34,8 +34,8 @@ function ratesAverage(array) {
     return sum + parseFloat(movie.rate);
   }, 0);
 
-
-  return result / array.length
+let avg = result / array.length
+  return avg
 }
 
 // your code:
@@ -94,15 +94,15 @@ function orderByDuration(array) {
 [{ title: 'abc' }, { title: 'bcd' }]
 // How many movies did STEVEN SPIELBERG
 function howManyMovies(array) {
-  let result = array.filter(element => {
+  let dramaArr = array.filter(element => {
     if (element.genre.includes('Drama') && element.director === 'Steven Spielberg')
-  {
-    console.log(`Steven Spielberg directed ${result.length } drama movies`)
+  { let dramaArrCounter = dramaArr.length
+    return `Steven Spielberg directed ${dramaArrCounter} drama movies`
   }
   
 else {
   if (element.director === 'Steven Spielberg' && element.genre.includes(!'Drama') ) {
-  console.log(`Steven Spielberg directed ${0 } drama movies`)
+  return `Steven Spielberg directed ${0 } drama movies`
 }
 }
 })
@@ -111,12 +111,16 @@ return result
 // Order by title and print the first 20 titles
 function orderAlphabetically(array) {
 
-  array.sort(() => {
-  for (let i = 0; i < 20; i++) {
-    console.log(array[i].title)
-   }
-  })
-return array
+  let titleArr = array.map(movie =>  movie.title
+    );
+    
+   let sortArray = titleArr.sort()
+  
+  
+  let twentyTitles = sortArray.slice(0, 20)
+  
+  
+return twentyTitles
 
 }
 
