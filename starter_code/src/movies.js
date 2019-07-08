@@ -2,8 +2,8 @@
 
 // Turn duration of the movies from hours to minutes
 
-function stringToMinutes() {
-  let string = movies.map(e => e.duration);
+function stringToMinutes(string) {
+
   var arr = string.split("h");
   if (arr.length < 2) {
     arr.unshift("0");
@@ -14,34 +14,110 @@ function stringToMinutes() {
   return hours * 60 + minutes;
 }
 
-// Get the average of all rates with 2 decimals
-let ratesNumbers = function(array) {
-    let numbers = array.map(movie => {
-       return parseFloat(movie.rate)
-     })
-     return numbers
+function turnHoursToMinutes(moviesArray) {
+  let result = moviesArray.map((movie) => {
+    return {
+      title: movie.title,
+      duration: stringToMinutes(movie.duration)
     }
-   let ratesInNUmbers = ratesNumbers(movies)
 
-const ratesAverage = ratesInNumbers.reduce((sum, movie) => {
-    return sum + movie /movies.length;
-  });
-  ratesAverage
+  })
+
+  return result
 }
+
+// Get the average of all rates with 2 decimals
+
+function ratesAverage(array) {
+  let result = array.reduce((sum, movie) => {
+    console.log("accumulator is: ", sum, "and current value is: ", movie.rate);
+    return sum + parseFloat(movie.rate);
+  }, 0);
+
+
+  return result / array.length
+}
+
 // your code:
 
 
 
 // Get the average of Drama Movies
-function avgDrama(movies) {
-  let result = movies.filter(element => element.genre === "Drama");
+
+function dramaMoviesRate(array) {
+
+  let count = 0
+
+  let result = array.reduce((sum, movie) => {
+    console.log("sum : " + sum)
+    console.log("movie.rate : " + movie.rate)
+    if (movie.genre.includes('Drama')) {
+      count++
+      console.log("movie.rate for Drama : " + movie.rate)
+      if (!movie.rate) {
+        return sum
+      }
+      return sum + parseFloat(movie.rate)
+    } else {
+      return sum
+    }
+
+  }, 0)/count
+
+  if (count === 0) { return undefined}
+
+  return Math.round(result * 100) / 100
 }
+    
 
-console.log(result);
+
 // Order by time duration, in growing order
+function orderByDuration(array) {
 
+  array.sort((movie1, movie2) => {
+    if (movie1.duration < movie2.duration) {
+      return -1
+    } else if (movie1.duration > movie2.duration) {
+      return 1
+    } else {
+      if (movie1.title > movie2.title) {
+        return 1
+      } else {
+        return -1
+      }
+
+    }
+
+  })
+  return array //sorts original array
+}
+[{ title: 'abc' }, { title: 'bcd' }]
 // How many movies did STEVEN SPIELBERG
-
+function howManyMovies(array) {
+  let result = array.filter(element => {
+    if (element.genre.includes('Drama') && element.director === 'Steven Spielberg')
+  {
+    console.log(`Steven Spielberg directed ${result.length } drama movies`)
+  }
+  
+else {
+  if (element.director === 'Steven Spielberg' && element.genre.includes(!'Drama') ) {
+  console.log(`Steven Spielberg directed ${0 } drama movies`)
+}
+}
+})
+return result
+}
 // Order by title and print the first 20 titles
+function orderAlphabetically(array) {
+
+  array.sort(() => {
+  for (let i = 0; i < 20; i++) {
+    console.log(array[i].title)
+   }
+  })
+return array
+
+}
 
 // Best yearly rate average
