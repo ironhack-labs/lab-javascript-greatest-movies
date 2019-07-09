@@ -53,19 +53,31 @@ const howManyMovies = movies => {
 }
 
 // Order by title and print the first 20 titles
+// const orderAlphabetically = movies => {
+//     let alp = movies.map(elm => elm.title)
+//     let ord = alp.sort((a, b) => {
+//         if (a.title > b.title) {
+//             return 1;
+//         } else if (a.title < b.title) {
+//             return -1;
+//         } else return 0;
+//     });
+
+//     return ord.splice(0, 20)
+
+// }
+
 const orderAlphabetically = movies => {
-    let alp = movies.map(elm => elm.title)
-    let ord = alp.sort((a, b) => {
+    // let alp = movies.map(elm => elm.title)
+    let ord = movies.sort((a, b) => {
         if (a.title > b.title) {
             return 1;
-        }
-        if (a.title < b.title) {
+        } else if (a.title < b.title) {
             return -1;
-        }
-        return 0;
+        } else return 0;
     });
-
-    return ord.splice(0, 20)
+    let alp = ord.map(movie => movie.title)
+    return alp.splice(0, 20)
 
 }
 
