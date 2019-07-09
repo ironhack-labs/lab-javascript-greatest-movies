@@ -6,7 +6,7 @@ let myMovies = {
 // Turn duration of the movies from hours to minutes 
 function turnHoursToMinutes (array) {
 
-    console.log(array)
+    //console.log(array)
     let minutes = []
     let myMovies = {
         ...movies
@@ -16,7 +16,7 @@ function turnHoursToMinutes (array) {
     array.forEach((elm, i) => {
        time= elm.duration.split(" ")
        minutes[i] = {}
-       console.log(time)
+       //console.log(time)
         if (elm.duration.includes("h") && elm.duration.includes("min")) {
             
             minutes[i].duration = parseInt(time[0]) * 60 + parseInt(time[1])
@@ -30,7 +30,7 @@ function turnHoursToMinutes (array) {
             minutes[i].duration = parseInt(time[0])
         }
     }) 
-console.log( minutes)
+//console.log( minutes)
     return minutes
 
 }
@@ -70,7 +70,20 @@ function dramaMoviesRate(array) {
 }
 
 // Order by time duration, in growing order
+function orderByDuration(myArray){
+    
+    let durationSorted =[]
+    
+    console.log(myArray)
+    
+    myArray.forEach((elm, i) =>  durationSorted[i]= parseInt(elm.duration))
 
+    durationSorted.sort((a, b) => a - b)
+    
+    console.log(durationSorted)
+    
+    return durationSorted
+}
 
 // How many movies did STEVEN SPIELBERG
 function howManyMovies(array) {
