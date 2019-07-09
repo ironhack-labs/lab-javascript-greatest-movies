@@ -6,12 +6,16 @@ function turnHoursToMinutes(movies) {
     hClean = 0
     mins = ""
     minsClean = 0
+    totalMins = 0
     const time = movies.map(elm => {
         const timeClean = elm.duration.split(" ")
 
         if (timeClean.length == 2) {
             h = timeClean[0].split("")
             hClean = parseInt(h) * 60
+            mins = timeClean[1].split(" ")
+            minsClean = parseInt(mins)
+            totalMins += (hClean + minsClean)
 
         }
 
