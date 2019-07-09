@@ -72,13 +72,14 @@ function dramaMoviesRate(array) {
 // Order by time duration, in growing order
 function orderByDuration(myArray){
     
-    let durationSorted =[]
+    let durationSorted =[...myArray]
     
-    console.log(myArray)
+    //console.log(myArray)
     
-    myArray.forEach((elm, i) =>  durationSorted[i]= parseInt(elm.duration))
+    //myArray.forEach((elm, i) =>  durationSorted[i]=  parseInt(elm.duration))
 
-    durationSorted.sort((a, b) => a - b)
+    durationSorted.sort((a , b) => a.duration - b.duration)
+    
     
     console.log(durationSorted)
     
