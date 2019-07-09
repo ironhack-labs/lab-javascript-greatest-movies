@@ -2,16 +2,19 @@
 // Turn duration of the movies from hours to minutes 
 
 function turnHoursToMinutes(movies) {
-
+    h = ""
+    hClean = 0
+    mins = ""
+    minsClean = 0
     const time = movies.map(elm => {
-        const timeClean = elm.duration.split("")
+        const timeClean = elm.duration.split(" ")
 
         if (timeClean.length == 2) {
-            (parseInt(timeClean[0]) * 60) + parseInt(timeClean[1])
+            h = timeClean[0].split("")
+            hClean = parseInt(h) * 60
+
         }
-        else {
-            parseInt(timeClean[0] * 60)
-        }
+
     })
 
 
