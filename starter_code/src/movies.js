@@ -14,11 +14,19 @@ turnHoursToMinutes(movies)
 
 
 // Get the average of all rates with 2 decimals 
-let ratesAverage = movies.reduce((total, item) => {
-    let avg = parseFloat(total) + parseFloat(item.rate) / movies.length;
-    return [Math.round(avg * 100) / 100];
-}, 0)
-console.log(ratesAverage);
+function ratesAverage(array) {
+    var total = array.reduce((total, item) => {
+      return total + parseFloat(item.rate)
+    }, 0)
+    return (total / array.length).toFixed(2)
+ }
+ ratesAverage(movies)
+ 
+//  let ratesAverage = movies.reduce((total, item) => {
+//      let avg = parseFloat(total) + parseFloat(item.rate) / movies.length;
+//      return [Math.round(avg * 100) / 100];
+//  }, 0)
+//  console.log(ratesAverage);
 
 
 // Get the average of Drama Movies
