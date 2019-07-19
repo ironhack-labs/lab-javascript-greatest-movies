@@ -49,16 +49,12 @@ function howManyMovies(array) {
 
 
 // Order by title and print the first 20 titles
-let titleList = movies.map((item) => { // create an array with the titles
-    return item.title
+function orderAlphabetically(array) {
+  var onlyTitles = array.map((movie) => {
+    return movie.title
   })
-  console.log(titleList)
-  
-  let orderAlphabetically = titleList.sort(); // sort the titles by alphabetically order
-  console.log(orderAlphabetically);
-
-  titleList.length = 20; // set the maximum lenght for the list 
-  console.log(titleList)
+  return onlyTitles.sort((a, b) => (a > b) ? 1 : -1).splice(0, 20)
+}
 
 
 // Best yearly rate average
