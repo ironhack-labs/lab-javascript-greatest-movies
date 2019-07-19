@@ -1,13 +1,15 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
-let turnHoursToMinutes = movies.map((element) => {
+function turnHoursToMinutes(array) {
+   movies.map((element) => {
     let hours = parseFloat(element.duration.split(' ')[0]);
     let min = parseFloat(element.duration.split(' ')[1]); 
     let total = hours * 60 + min;
     element.duration = total + " min";
     return element;
-  })
-  console.log(turnHoursToMinutes)
+   })
+}
+turnHoursToMinutes(movies)
 
 
 
