@@ -1,5 +1,5 @@
 /* eslint no-restricted-globals: 'off' */
-// Turn duration of the movies from hours to minutes 
+// 1) Turn duration of the movies from hours to minutes 
 function turnHoursToMinutes(array) {
    movies.map((element) => {
     let hours = parseFloat(element.duration.split(' ')[0]);
@@ -13,7 +13,7 @@ turnHoursToMinutes(movies)
 
 
 
-// Get the average of all rates with 2 decimals 
+// 2) Get the average of all rates with 2 decimals 
 function ratesAverage(array) {
     var total = array.reduce((total, item) => {
       return total + parseFloat(item.rate)
@@ -22,11 +22,6 @@ function ratesAverage(array) {
  }
  ratesAverage(movies)
  
-//  let ratesAverage = movies.reduce((total, item) => {
-//      let avg = parseFloat(total) + parseFloat(item.rate) / movies.length;
-//      return [Math.round(avg * 100) / 100];
-//  }, 0)
-//  console.log(ratesAverage);
 
 
 // Get the average of Drama Movies
