@@ -1,4 +1,4 @@
-/* eslint no-restricted-globals: 'off' */
+
 // 1) Turn duration of the movies from hours to minutes 
 function turnHoursToMinutes(array) {
    movies.map((element) => {
@@ -9,8 +9,6 @@ function turnHoursToMinutes(array) {
     return element;
    })
 }
-turnHoursToMinutes(movies)
-
 
 
 // 2) Get the average of all rates with 2 decimals 
@@ -20,8 +18,6 @@ function ratesAverage(array) {
     }, 0)
     return (total / array.length).toFixed(2)
  }
- ratesAverage(movies)
- 
 
 
 // 3 Get the average of Drama Movies
@@ -30,7 +26,6 @@ function dramaMoviesRate(array) {
   const total = ratesAverage(dramaMovies)
   return total
 }
-
 
 
 // 4 Order by time duration, in growing order
@@ -43,13 +38,13 @@ function orderByDuration(array) {
 }
 
 
-
-// How many movies did STEVEN SPIELBERG
-let howManyMovies = movies.filter((element) => {
-    if(element.director == 'Steven Spielberg') {
-       return element 
-    } 
+// 5 How many DRAMA movies did STEVEN SPIELBERG
+function howManyMovies(array) {
+  let stevenDramaMovies = array.filter((movie) => {
+    return movie.director === 'Steven' && movie.genre.includes('Drama')
   })
+  return stevenDramaMovies
+}
   console.log(howManyMovies);
 
 
