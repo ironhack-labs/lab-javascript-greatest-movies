@@ -1,40 +1,40 @@
-![Ironhack Logo](https://i.imgur.com/1QgrNNw.png)
+![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
-# All Times Movies
-
+# Lab | Greatest Movies of All Time
+ 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_1561a196c2e3852533bad64d9b0d4e9f.gif)
 
 
 ## Introduction
 
-We just learned some awesome **javascript** methods, that will help us a lot to manipulate **objects**. So in this exercise, we will focus on practice them, so it is mandatory to implement at least one of them in each iteration.
+We've just learned some super useful methods, that will help us a lot to manipulate **objects and arrays**. In this exercise, we will focus on practicing them, and this being said, it is mandatory to implement at least one of them in each iteration.
 
-Best way to practice is to work with real data and challenges that we will deal in the future. In the **`data.js`** file you will find an array of info about **The best 250 movies of all times** according to [IMDB Ranking](http://www.imdb.com/chart/top?ref_=nv_mv_250_6) and you have to process it to display what each iteration ask! :muscle:
+Best way to practice is to work with real data. In the **`data.js`** file you will find an array of info about **The best 250 movies of all times** according to [IMDB Ranking](http://www.imdb.com/chart/top?ref_=nv_mv_250_6) and you have to process it to display what each iteration ask! :muscle:
 
-### Requirements
+## Requirements
 
-- Practice **Javascript** advance methods
-- Use `map`, `reduce`, `filter` and `sort` to manipulate arrays
+- Fork this repo
+- Clone this repo
+- Practice JavaScript advanced methods (`map`, `reduce`, `filter` and `sort` to manipulate arrays)
 
-### Submission
+## Submission
 
-Upon completion, run the following commands:
+- Upon completion, run the following commands:
 
-```
-$ git add .
-$ git commit -m "done"
-$ git push origin master
-```
+  ```
+  git add .
+  git commit -m "done"
+  git push origin master
+  ```
 
-Navigate to your repo and create a Pull Request -from your master branch to the original repository master branch.
+- Create Pull Request so your TAs can check up your work.
 
-In the Pull request name, add your campus, name and last names separated by a dash "-".
 
-### Starter code
+## Starter code
 
-The `src/data.js` contains an array of 250 movies, each of them with all the info you will need about the movies to finish the iterations. Here you can see an example of how the data is display:
+The `src/data.js` contains an array of 250 movies. We are talking about the array of 250 *objects* containing the info about each movie. Here is one example of how the data is displayed:
 
-```javascript=
+```javascript
 {
   "title":"The Shawshank Redemption",
   "year":"1994",
@@ -45,31 +45,69 @@ The `src/data.js` contains an array of 250 movies, each of them with all the inf
 }
 ```
 
-### Deliverables
+In the next a couple of iterations, you will be using your JS knowledge to manipulate with this data.
 
-All the files that compose the project, including the HTML, and JavaScript.
 
 ## Instructions
 
-Let's start working on the solutions. We recommend to finish each iteration before moving to the next. And be careful to manipulate the `array` **movies**, you will need it for every iteration.
+You will be digging deeper into some "facts" that this set of data has in it. We see all this raw data, but that doesn't tell us a lot. For example, if we want to see which is the most popular movie, what is the average duration of the movie, list of movies by some director, etc. we wouldn't find the answers just by observing this array.
+Well, there comes your challenge. Read each iteration description carefully and let's start working on the solutions.
 
 You have to work on the `src/movies.js` file.
 
 ### Tests
 
-Ohh yes! We have our beloved tests, and you already know how this works. Open the `SpecRunner.html` file on your browser and start coding to pass the test. Remember to focus on one test at a time and read really carefully the instructions to understand what you have to do.
+Ohh yes! We have our beloved tests, and you already know how this works. Open the `SpecRunner.html` file on your browser and start coding to pass the test. Remember to focus on one test at a time and read carefully the instructions to understand what you have to do.
 
-### Iteration 1: Time Format
+### Iteration 1: All rates average
+
+These are the best movies based on their rates, so supposedly all of them have a remarkable rate. In this iteration, we want to know the average rate of all of them and display it on the console. Create a `ratesAverage()` function that receives an array as a parameter and solves the challenge.
+
+The rate must be returned rounded to 2 decimals!
+
+**:bulb: Maybe you want to *"reduce"* the data to a single value. :wink:**
+
+### Iteration 2: Drama movies
+
+Drama is the genre that repeats the most on our `array`. Apparently, people love drama! :eyes: 
+
+Create a `dramaMoviesRate()` function that receives an array as a parameter to get the average rate of all drama movies! Let's see if it is better than the general average.
+
+Again, rounded to 2 decimals!
+
+### Iteration 3: Ordering by duration
+
+We need to sort the movies in ascending order by their duration. This should be easy using one of the **methods** we've just learned. :wink: 
+Create a function `orderByDuration()` that receives an array as parameter and returns a *sorted array*.
+
+![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_3db351079827c0acba42cf1e397dd8a3.gif)
+
+If two movies have the same duration, order them in alphabetical order by their title! :heavy_check_mark: 
+
+### Iteration 4: Steven Spielberg. The best?
+
+One of the most famous directors in cinema is **[Steven Spielberg](https://en.wikipedia.org/wiki/Steven_Spielberg)**, and he has some really awesome drama movies that are on our list, but we want to know how many of them are there.
+
+Go ahead and create a `howManyMovies()` function that receives an array as a parameter and `filter` :eyes:  the array so we can have only the **drama** movies where **Steven Spielberg** is the director. 
+
+
+### Iteration 5: Alphabetic Order
+
+Another popular way to order the movies is to sort them alphabetically using the `title` key. However, in this case, we only need to print the title of the first 20. Easy peasy for an expert like you :wink:
+
+Create a `orderAlphabetically()` function, that receives an array and returns an array of first 20 titles, alphabetically ordered. Return only the title of each movie, and if the array you receive has less than 20 movies, return all of them.
+
+### Iteration 6: Time Format
 
 We get the info from the **IMDB** web page, but the duration info was saved in a format that difficult us a lot to compare movies.
 
 Finding the longest movie is almost impossible using that format, so let's change it!
 
-**:bulb: Remember we have a methods o create a new array from another one!**
+<!-- **:bulb: Remember we have a methods o create a new array from another one!** -->
 
-- Create a `turnHoursToMinutes` method that receive an array as parameter, replace the duration info of each of the movies for it equivalent in minutes. For example:
+- Create a `turnHoursToMinutes()` function that receives an array as parameter, and with some _magic_ implemented by you - replaces the duration info of each of the movies for its equivalent in minutes. For example:
 
-```javascript=
+```javascript
 {
   "title":"The Shawshank Redemption",
   "year":"1994",
@@ -82,7 +120,7 @@ Finding the longest movie is almost impossible using that format, so let's chang
 
 Should be:
 
-```javascript=
+```javascript
 {
   "title":"The Shawshank Redemption",
   "year":"1994",
@@ -93,53 +131,16 @@ Should be:
 }
 ```
  
-You must return a new array with all the info about the movie, not modify the original array!
+**Keep in mind**, you have to return a new array with all the info about movies, meaning, you shouldn't modify the original array. :white_check_mark: 
 
-### Iteration 2: All rates average
-
-These are the best movies based on their rates, so supposedly all of them have an awesome rate. In this iteration, we want to know the average rate of all of them and display it on the console. Create a `ratesAverage` method that receive an array as a parameter and solve the challenge.
-
-The rate must be returned rounded to 2 decimals!
-
-**:bulb: Maybe you want to *"reduce"* the data to a single value :wink:**
-
-### Iteration 3: Drama movies
-
-Drama is the genre that repeats the most on our `array`, apparently, people love drama! :eyes: 
-
-**Create a `dramaMoviesRate` that receive an array as a parameter to get the average rate of all drama movies! Let's see if it is better than the general average.**
-
-Again, rounded to 2 decimals!
-
-**Print on the console the result!**
-
-### Iteration 4: Ordering by the duration
-
-We need to sort the movies in ascending order by their duration. This should be easy using one of the **methods** we just learn. Create a method `orderByDuration` that receives an array as parameter and return the sorted array.
-
-![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_3db351079827c0acba42cf1e397dd8a3.gif)
-
-If two movies have the same duration, order them in alphabeticall order by their title!
-
-### Iteration 5: Steven Spielberg. The best?
-
-One of the most famous directors in cinema is **[Steven Spielberg](https://en.wikipedia.org/wiki/Steven_Spielberg)**, and he has some really awesome drama movies that show up on our list, but we want to know how many!
-
-Go ahead and create a `howManyMovies` method that receives an array as a parameter and `filter` :eyes: the array so we can have only the **drama** movies where **Steven Spielberg** is the director. 
-
-
-### Iteration 6: Alphabetic Order
-
-Another famous way to order the movies is to sort them alphabetically using the `title` key. But in this case we only need to print the title of the first 20. Easy Peasy for an expert like you :wink:
-
-Create a `orderAlphabetically` method, that receive an array and return an array of first 20 titles, alphabetically ordered. Return only the title of each movie, and if the array you receive have less than 20 movies, return all of them order
 
 ### BONUS Iteration: Best yearly rate average 
 
-Let's complicated a bit this thing. We always listen to classic movies, but we want to know, which year has the best average rate, so we can declare officially the **BEST YEAR FOR CINEMA**!
+We always hear so much about classic movies, but we want to know which year has the best average rate, so we can declare the **BEST YEAR FOR CINEMA** officially!
 
 Go ahead and find which year have the best average rate for the movies that were released on that year!
-
-Happy coding!
+Create `bestYearAvg()` function that receives an array of movies and gives us an answer which year was the best year for cinema and what was its average rate.
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_dfc3fe557576abca4dba274e3aabe9a3.gif)
+
+**Happy coding!** :heart: 
