@@ -24,15 +24,13 @@ function ratesAverage(array) {
  
 
 
-// Get the average of Drama Movies
-let dramaMoviesRate = movies.reduce((total, item) => {
-    let dramaAvg;
-    if(item.genre.includes('Drama')) {
-      dramaAvg = parseFloat(total) + parseFloat(item.rate) / movies.length;
-    }
-    return [Math.round(dramaAvg * 100) / 100];
-  }, 0)
-  console.log(dramaMoviesRate);
+// 3 Get the average of Drama Movies
+function dramaMoviesRate(array) {
+  const dramaMovies = movies.filter((movie) => movie.genre.includes('Drama'))
+  const total = ratesAverage(dramaMovies)
+  return total
+}
+
 
 
 // Order by time duration, in growing order
