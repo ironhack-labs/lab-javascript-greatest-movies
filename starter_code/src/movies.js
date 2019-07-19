@@ -38,8 +38,10 @@ function orderByDuration(array) {
   let moviesByDuration = array.sort((a, b) => {
     return parseFloat(a.duration) - parseFloat(b.duration)
   })
-  return moviesByDuration
+  // ordered in alphabeticall order by their title
+   return moviesByDuration.sort((a, b) => (a.title > b.title) ? 1 : -1)
 }
+
 
 
 // How many movies did STEVEN SPIELBERG
