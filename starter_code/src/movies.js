@@ -56,6 +56,12 @@ function orderAlphabetically(array) {
   return onlyTitles.sort((a, b) => (a > b) ? 1 : -1).splice(0, 20)
 }
 
+/* ex: array.sort((a,b) => {
+  if(a < b) return -1
+  else return 1
+}) */
+
+
 
 // Best yearly rate average
 // Only for 2000, 2001 and 2002 
