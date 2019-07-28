@@ -1,5 +1,5 @@
 /* eslint no-restricted-globals: 'off' */
-console.log(movies);
+
 // Iteration 1: All rates average - Get the average of all rates with 2 decimals
 
 function ratesAverage(movies) {
@@ -89,12 +89,115 @@ function orderByDuration(movies) {
   return moviesSorted;
 }
 
-console.log(orderByDuration(movies));
-
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
+
+function howManyMovies(movies) {
+  let dramaMoviesWithSpielberg = movies.filter(movie => {
+    return (
+      movie.genre.indexOf("Drama") !== -1 &&
+      movie.director.indexOf("Steven Spielberg") !== -1
+    );
+  });
+  if (dramaMoviesWithSpielberg == 0) {
+    return 0;
+  } else {
+    return dramaMoviesWithSpielberg.length;
+  }
+}
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
+// orderna ee array de movies por orden alfabetico sin alterar el arreglo original
+function orderByAlphabet(movies) {
+  let newMovies = [];
+  movies.forEach(function(element, index) {
+    newMovies.push(element);
+  });
+
+  newMovies.sort((a, b) => {
+    if (b.title > a.title) {
+      return -1;
+    }
+
+    if (b.title < a.title) {
+      return 1;
+    }
+
+    return 0;
+  });
+  return newMovies; // retorno final de la función
+}
+
+// funcion para seleccionar el top 20 de peliculas por titulo
+function topTwenty(movies) {
+  let topTwentyMovies = [];
+  for (let i = 0; i < movies.length; i++) {
+    // esta condicion funciona para arreglos de peliculas que sean menores a 20 de longitud
+    if (i < 20) {
+      topTwentyMovies[i] = movies[i].title;
+    }
+  }
+  return topTwentyMovies; // retorno final de la función
+}
+
+//esta funcion implementa las dos funciones de arriba, ordenando y seleccionando el top de peliculas por titulo
+function orderAlphabetically(movies) {
+  let newMovies = orderByAlphabet(movies);
+  let topTwentyMovies = topTwenty(newMovies);
+  return topTwentyMovies;
+}
+
+//---------------------------------------------
+
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(movies) {
+  let newMovies = [];
+  movies.forEach(function(element, index) {
+    newMovies.push(element);
+  });
+
+  let durationArr = [];
+  let minutes = [];
+  let hours = [];
+
+  newMovies.forEach((movie, index) => {
+    durationArr[index] = movie.duration;
+    if (
+      durationArr[index].substring(
+        durationArr[index].indexOf("m") - 2,
+        durationArr[index].indexOf("m")
+      ) == 0
+    ) {
+      minutes[index] = 0;
+    } else {
+      minutes[index] = parseInt(
+        durationArr[index].substring(
+          durationArr[index].indexOf("m") - 2,
+          durationArr[index].indexOf("m")
+        )
+      );
+    }
+    hours[index] = parseInt(
+      durationArr[index].substring(
+        durationArr[index].indexOf("h") - 1,
+        durationArr[index].indexOf("h")
+      )
+    );
+  });
+  // horas a minutos
+  let totalMinutes = hours.map(function(element, index) {
+    return element * 60 + minutes[index];
+  });
+
+  totalMinutes.forEach(
+    (element, index) => (newMovies[index].duration = element)
+  );
+  return newMovies;
+}
+
+// let newMovies = turnHoursToMinutes(movies);
+// console.log(newMovies);
+
+// console.log(newMovies);
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
