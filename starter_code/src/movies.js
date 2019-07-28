@@ -32,15 +32,27 @@ function orderByDuration(movies) {
   let durationArr = [];
   let minutes = [];
   let hours = [];
+  let condition = [];
   movies.forEach((movie, index) => {
     durationArr[index] = movie.duration;
 
-    minutes[index] = parseInt(
+    condition;
+    if (
       durationArr[index].substring(
         durationArr[index].indexOf("m") - 2,
         durationArr[index].indexOf("m")
-      )
-    );
+      ) == 0
+    ) {
+      minutes[index] = 0;
+    } else {
+      minutes[index] = parseInt(
+        durationArr[index].substring(
+          durationArr[index].indexOf("m") - 2,
+          durationArr[index].indexOf("m")
+        )
+      );
+    }
+
     hours[index] = parseInt(
       durationArr[index].substring(
         durationArr[index].indexOf("h") - 1,
