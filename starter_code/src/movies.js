@@ -25,18 +25,22 @@ function dramaMoviesRate(movies) {
     return ratesAverage(dramaMovies);
   }
 }
-// console.log(dramaMoviesRate(movies));
+// // console.log(dramaMoviesRate(movies));
 
-// Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
+// // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
 function orderByDuration(movies) {
+  let newMovies = [];
+  movies.forEach(function(element, index) {
+    newMovies.push(element);
+  });
+
   let durationArr = [];
   let minutes = [];
   let hours = [];
-  let condition = [];
-  movies.forEach((movie, index) => {
+
+  newMovies.forEach((movie, index) => {
     durationArr[index] = movie.duration;
 
-    condition;
     if (
       durationArr[index].substring(
         durationArr[index].indexOf("m") - 2,
@@ -84,12 +88,12 @@ function orderByDuration(movies) {
 
   // aplica los indices de ordenamiento a todo movies
   let moviesSorted = indexSorted.map(function(element) {
-    return movies[element];
+    return newMovies[element];
   });
   return moviesSorted;
 }
 
-// Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
+// // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 
 function howManyMovies(movies) {
   let dramaMoviesWithSpielberg = movies.filter(movie => {
@@ -105,9 +109,9 @@ function howManyMovies(movies) {
   }
 }
 
-// Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
+// // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
-// orderna ee array de movies por orden alfabetico sin alterar el arreglo original
+// // orderna ee array de movies por orden alfabetico sin alterar el arreglo original
 function orderByAlphabet(movies) {
   let newMovies = [];
   movies.forEach(function(element, index) {
@@ -147,20 +151,23 @@ function orderAlphabetically(movies) {
   return topTwentyMovies;
 }
 
-//---------------------------------------------
+// //---------------------------------------------
 
-// Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+// // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
-  let newMovies = [];
+  // Realiza la copia del arreglo movies recibido como parametro de funcion, en el arreglo differentArrayMovie
+  let differentArrayMovie = [];
   movies.forEach(function(element, index) {
-    newMovies.push(element);
+    differentArrayMovie.push(element);
   });
 
+  // creacion de variables auxiliares
   let durationArr = [];
   let minutes = [];
   let hours = [];
 
-  newMovies.forEach((movie, index) => {
+  differentArrayMovie.forEach((movie, index) => {
+    // Separa los datos de duracion en el arreglo durationArr
     durationArr[index] = movie.duration;
     if (
       durationArr[index].substring(
@@ -170,6 +177,7 @@ function turnHoursToMinutes(movies) {
     ) {
       minutes[index] = 0;
     } else {
+      // separa los numeros de minutos del string de duration y los agrega al arreglo minutes
       minutes[index] = parseInt(
         durationArr[index].substring(
           durationArr[index].indexOf("m") - 2,
@@ -177,6 +185,7 @@ function turnHoursToMinutes(movies) {
         )
       );
     }
+    // separa los numeros de horas del string de duration y los agrega al arreglo hours
     hours[index] = parseInt(
       durationArr[index].substring(
         durationArr[index].indexOf("h") - 1,
@@ -184,20 +193,17 @@ function turnHoursToMinutes(movies) {
       )
     );
   });
-  // horas a minutos
+
+  // conversion de horas a minutos, los asigna a la variable totalMinutes
   let totalMinutes = hours.map(function(element, index) {
     return element * 60 + minutes[index];
   });
 
-  totalMinutes.forEach(
-    (element, index) => (newMovies[index].duration = element)
-  );
-  return newMovies;
+  //asigna cada valor de totalMinutes en la propiedad de duracion del arreglo differentArrayMovie[
+  for (let i = 0; i < totalMinutes.length; i++) {
+    differentArrayMovie[i].duration = totalMinutes[i];
+  }
+
+  // retorno final de la funcion
+  return differentArrayMovie;
 }
-
-// let newMovies = turnHoursToMinutes(movies);
-// console.log(newMovies);
-
-// console.log(newMovies);
-
-// BONUS Iteration: Best yearly rate average - Best yearly rate average
