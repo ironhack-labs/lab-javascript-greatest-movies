@@ -13,28 +13,18 @@ const dramaMoviesRate = movies => {
     return (dramas.length > 0) ? parseFloat(ratesAverage(dramas).toFixed(2)) : 0;
 };
 
-
-// We need to sort the movies in ascending order by their duration. This should be easy using one of the methods we've just learned.
-// Create a function orderByDuration() that receives an array as parameter and returns a sorted array.
-// If two movies have the same duration, order them in alphabetical order by their title!
-
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
 const orderByDuration = movies => {
-    let arr = [];
-    movies.forEach(movie => {
-        // console.log(movie.duration);
-        let hrsInMinutes = (movie.duration.slice(0, 1) * 60);
-        let minutes = parseInt(movie.duration.slice(3, 5));
-        // console.log(`minutes: ${hrsInMinutes + minutes}`)
-        movie.duration = hrsInMinutes + minutes;
-        arr.push(movie);
-    })
-    arr.sort((a, b) => a - b);
-
-    return arr;
-};
-// console.log(orderByDuration(movies));
-
+  const sortedMoviesDuration = movies.sort((a, b) => {
+    if(a.duration < b.duration) return -1;
+    if(a.duration > b.duration) return 1;
+    if(a.duration == b.duration) {
+      if(a.title < b.title) return -1;
+      return 1;
+    }
+  });
+  return sortedMoviesDuration;
+}
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 const howManyMovies = movies => {
@@ -44,12 +34,45 @@ const howManyMovies = movies => {
 
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
-const orderAlphabetically = movies => {};
+const orderAlphabetically = movies => {
+  let moviesArr = [];
+  const sortedMoviesAlphabetic = movies.sort((a, b) => {
+    if(a.title < b.title) return -1;
+    if(a.title > b.title) return 1;
+    return 0;
+  });
+  sortedMoviesAlphabetic.forEach(movie => {
+    moviesArr.push(movie.title);
+  });
+  return moviesArr.slice(0, 20);
+};
 
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-const turnHoursToMinutes = movies => {};
+const turnHoursToMinutes = movies => {
+  let arr = movies.map(movie => {
+    // Convert duration string to number
+    arrDuration = movie.duration.split('h');
+    if (arrDuration.length < 2) arrDuration.unshift("0");
+    hrs = arrDuration[0] * 60;
+    min = parseInt(arrDuration[1].split('min')[0]);
+    if(isNaN(min)) min = 0;
+    let newDuration = hrs + min;
+
+    return {
+      title: movie.title,
+      year: movie.year,
+      director: movie.director,
+      duration: newDuration,
+      genre: movie.genre,
+      rate: movie.rate
+    }
+  });
+
+  return arr;
+};
 
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
-const bestYearAvg = movies => {};
+const bestYearAvg = movies => {
+};
