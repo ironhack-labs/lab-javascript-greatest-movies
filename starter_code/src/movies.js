@@ -15,19 +15,13 @@
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
 function ratesAverage(arr) {
-  /*
-  let avg = 0;
-  arr.forEach(mov => {
-    avg += mov.rate;
-  });
-
-  return avg / arr.length;
-  */
   let sum = arr.reduce((a, v) => a + parseFloat(v.rate), 0);
   return parseFloat((sum / arr.length).toFixed(2));
 }
+
 function dramaMoviesRate(arr) {
   let dramamvs = arr.filter(mov => mov.genre.indexOf("Drama") > -1);
+  dramamvs = dramamvs.filter(mov => mov.rate !== undefined);
   if (dramamvs.length === 0) return 0;
 
   return ratesAverage(dramamvs);
@@ -43,17 +37,14 @@ function turnHoursToMinutes(arr) {
   return arr.map(function(movie) {
     let dur = movie.duration;
     console.log(dur.search("min"));
-    let hmin=dur.match('\[0,9]+\g')
-    if(hmin.length==1)
-      if(hmin[0].match())
-
+    let hmin = dur.match("[0,9]+g");
+    if (hmin.length == 1) if (hmin[0].match()) 2 + 2;
   });
 }
 
 function htm(pel) {
-  let min=0;
+  let min = 0;
   let dur = pel.duration;
-  let hmin=dur.match(/[0-9]+/g)
-  if(!(dur.match(/h/)===null))
-
+  let hmin = dur.match(/[0-9]+/g);
+  if (!(dur.match(/h/) === null)) return "";
 }
