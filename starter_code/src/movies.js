@@ -29,10 +29,7 @@ function dramaMoviesRate(movies) {
 
 // // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
 function orderByDuration(movies) {
-  let newMovies = [];
-  movies.forEach(function(element, index) {
-    newMovies.push(element);
-  });
+  let newMovies = [...movies];
 
   let durationArr = [];
   let minutes = [];
@@ -156,10 +153,7 @@ function orderAlphabetically(movies) {
 // // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
   // Realiza la copia del arreglo movies recibido como parametro de funcion, en el arreglo differentArrayMovie
-  let differentArrayMovie = [];
-  movies.forEach(function(element, index) {
-    differentArrayMovie.push(element);
-  });
+  let differentArrayMovie = [...movies];
 
   // creacion de variables auxiliares
   let durationArr = [];
@@ -204,6 +198,6 @@ function turnHoursToMinutes(movies) {
     differentArrayMovie[i].duration = totalMinutes[i];
   }
 
-  // retorno final de la funcion
+  // // retorno final de la funcion
   return differentArrayMovie;
 }
