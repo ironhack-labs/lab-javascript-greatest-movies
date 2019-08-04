@@ -154,6 +154,11 @@ function orderAlphabetically(movies) {
 function turnHoursToMinutes(movies) {
   // Realiza la copia del arreglo movies recibido como parametro de funcion, en el arreglo differentArrayMovie
   let differentArrayMovie = [...movies];
+  let neWArr = [];
+
+  // for (i = 0; i<differentArrayMovie.length; i++){
+  //   differentArrayMovie[i] =
+  // }
 
   // creacion de variables auxiliares
   let durationArr = [];
@@ -190,14 +195,30 @@ function turnHoursToMinutes(movies) {
 
   // conversion de horas a minutos, los asigna a la variable totalMinutes
   let totalMinutes = hours.map(function(element, index) {
-    return element * 60 + minutes[index];
+    return {
+      duration: element * 60 + minutes[index]
+    };
   });
 
   //asigna cada valor de totalMinutes en la propiedad de duracion del arreglo differentArrayMovie[
-  for (let i = 0; i < totalMinutes.length; i++) {
-    differentArrayMovie[i].duration = totalMinutes[i];
-  }
+  // for (let i = 0; i < totalMinutes.length; i++) {
+  //   differentArrayMovie[i].duration = totalMinutes[i];
+  // }
 
   // // retorno final de la funcion
-  return differentArrayMovie;
+  neWArr = differentArrayMovie.map(function(element, index) {
+    return {
+      title: element.title,
+      year: element.year,
+      director: element.director,
+      duration: Object.values(totalMinutes[index])[0],
+      genre: element.genre,
+      rate: element.rate
+    };
+  });
+  return neWArr;
 }
+
+console.log(movies);
+let a = turnHoursToMinutes(movies);
+console.log(a);
