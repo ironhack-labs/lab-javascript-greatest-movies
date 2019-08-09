@@ -29,6 +29,16 @@ function ratesAverage(movies) {
 // console.log(ratesAverage(movies));
 
 // Iteration 2: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(movies) {
+  const dramaMovies = movies.filter((f) => f.genre.includes("Drama"))
+  if (dramaMovies.length == 0) {
+    return 0;
+  }
+  if (dramaMovies.rate = "") {
+    dramaMovies.rate = 0;
+  }
+  return ratesAverage(dramaMovies);
+}
 
 // function dramaMoviesRate(movies) {
 
@@ -48,7 +58,6 @@ function dramaMoviesRate(movies) {
 }
 
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
-
 function compare(a,b) {
   if (a.duration - b.duration < 0) {
     return -1;
