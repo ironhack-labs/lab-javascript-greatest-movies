@@ -89,29 +89,18 @@ function turnHoursToMinutes(movies){
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
 function bestYearAvg(movies){
-  const moviesByYear = movies.reduce((acc,curr) => {
-    if(acc.hasOwnProperty(curr.year)){ //hasOwnProperty permet de savoir si cette propriété/key existe
+  let moviesByYear = movies.reduce((acc,curr) => {
+    if(acc.hasOwnProperty(curr.year)){ //hasOwnProperty permet de savoir si cette propriété/key existe 
       acc[curr.year].push(Number(curr.rate)); //obj[key] = obj.key
       return acc;
     }else{
       const newArr = [];
       acc[curr.year]= newArr;
-      newArr.push(Number(curr.rate))
+      newArr.push({ year: curr.year, rate: [curr.rate]})
       return acc;
     }
   }, {}) //inital value is an object
-  //ratesAverage(moviesByYear)
-  console.log(moviesByYear)
-} 
+  return moviesByYear
+  } 
 
-// if (movie1.year === movie2.year){
-//   movieSum =+ 1
-//   let rateSum = Number(movie1.rate) + Number(movie2.rate)
-//   let rateAvg = rateSum / movieSum
-//   return rateAvg
 
-// let moviesRateSum = movies.reduce((accumulator, currMovie) => {
-//   return accumulator = accumulator + Number(currMovie.rate)
-// },0);
-//   let movieRateAverage = (moviesRateSum / movies.length).toFixed(2)
-//   return Number(movieRateAverage)
