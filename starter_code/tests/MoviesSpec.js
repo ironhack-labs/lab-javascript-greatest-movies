@@ -89,6 +89,7 @@ describe("Average rate of Drama Movies - dramaMoviesRate", function() {
       ])
     ).toBe(0);
   });
+
 });
 
 describe("Order the movies by duration - orderByDuration", function() {
@@ -191,6 +192,8 @@ describe("Get how many movies - howManyMovies", function() {
     expect(howManyMovies(movies)).toBe(4);
   });
 });
+
+
 
 describe("Order alphabetically - orderAlphabetically", function() {
   it("Defines orderAlphabetically", function() {
