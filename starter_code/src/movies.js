@@ -138,6 +138,7 @@ function turnHoursToMinutes(arr){
       return newObj
         });
         return nouv_arr;
+      
 }
 
 
@@ -148,33 +149,97 @@ function turnHoursToMinutes(arr){
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
 function bestYearAvg(arr){
-  
-    let all_checks = {};
-  
-    for (let y = 1900 ; y < 2019 ; y++){
-      for (let i = 0 ; i < arr.length ; i++){
-        let check = [];
-        if (arr[i].year == y) {
-        check.push(Number(arr[i].rate));
-        all_checks[y] = ratesAverage(check);
-      }
-    }
-    }
-    
-    return all_checks;
-  }
-  
-  
-  console.log(bestYearAvg(movies));
-  
-  
-  
-  
-  
-  
-  function ratesAverage(arr){
-      let sum = (accumulator,currentValue) => Number(accumulator) + Number(currentValue);  
-      return Number((arr.reduce(sum,0)/arr.length).toFixed(2));
-  }
-  
+  let bestYear = "";
+  let max_score = 0;
+  let years = []
+  let final_arr = []
+  if (arr.length == 0) return null;
+  if (arr.length == 1) bestYear = arr[0].year, max_score = arr[0].rate;
+
+  arr.forEach((a) => {
+    years.push(a.year)
+  });
+
+  years = years.filter((v,i) => years.indexOf(v) === i);
+  years.sort();
+
+
+  let obj = {}
+
+  years.forEach((a) => {
+
+    obj[a] = [];
+
+  })
+
+
+  arr.forEach((a) => {
+
+    let year = a.year;
    
+    obj[year].push(a.rate);
+
+  })
+
+  let finall_array = []
+
+  let splice = [{a:1},{b:2},{c:3},{d:4},{e:5}]
+
+  console.log(splice.splice(2,1))
+  console.log(splice)
+
+
+  for (element in obj){
+
+    sub_obj = {}    
+    let lang = obj[element].length;
+    let redux = obj[element].reduce((a,b) => Number(a)+Number(b),0)
+    let moy = redux/lang
+    sub_obj[element] = moy.toFixed(2);
+    finall_array.push(sub_obj)
+  }
+  
+  console.log(finall_array)
+
+  
+  
+
+  for (let i = 0; i < finall_array.length ; i++){
+
+    console.log(finall_array.length)
+
+    let k = Object.keys(finall_array[i])[0]
+    let v = Number(Object.values(finall_array[i])[0])
+
+    console.log(`-----------`)
+    console.log(k,v,i)
+    console.log(`-----------`)
+
+    console.log(`[Itération numéro ${i}] : [${k}:${v}] \n || Current best rate = ${max_score}, Current best year = ${bestYear}`)
+
+    if (v == max_score){
+      console.log(`***** Note identique : ${v} = ${max_score} \n`)
+      if (k >= bestYear)
+      console.log(`   Date supérieure à la meilleure année ${k} > ${bestYear} \n`) 
+    }
+
+    else if (v > max_score){
+      console.log(`La note est supérieure | ${v} > ${max_score} \n`)
+      
+      bestYear = k;
+      max_score = v;
+    
+    }
+    else {
+      console.log(`la note est inférieure | ${v} < ${max_score} : splice \n !!!!!`)
+    }
+  }
+  
+  console.log()
+  
+  
+
+  return `The best year was ${bestYear} with an average rate of ${max_score}`;
+}
+
+console.log(bestYearAvg(movies)); 
