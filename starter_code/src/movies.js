@@ -200,46 +200,74 @@ function bestYearAvg(arr){
   }
   
   console.log(finall_array)
+}
 
   
   
+// function bestYearAvg(arr){
+//V1 = 94 lines of code
+//V2 : 64 lines of code
 
+function bestYearAvg(arr){
+  let bestYear = "";
+  let max_score = 0;
+  let years = []
+  let finall_array = []
+
+  if (arr.length == 0) return null;
+  if (arr.length == 1) bestYear = arr[0].year, max_score = arr[0].rate;
+
+  // on crée un tableau avec toutes les années
+  arr.forEach((a) => years.push(a.year));
+
+  // on supprime les doublons
+  years = years.filter((v,i) => years.indexOf(v) === i);
+  
+  //on les met dans l'ordre (pas obligatoire)
+  years.sort();
+
+  // on crée un objet 
+  let obj = {}
+
+  // qu'on remplit avec les années qui obtiennent une liste
+  years.forEach((a) => obj[a] = [])
+
+  //on remplit la liste par les notes
+  arr.forEach((a) => {
+
+    let year = a.year;
+   
+    obj[year].push(a.rate);
+
+  })
+
+  for (element in obj){
+
+    // on crée un nouvel objet 
+    let sub_obj = {}
+    let lang = obj[element].length;
+    
+    //on additionne pour chaque année toutes les notes
+    let redux = obj[element].reduce((a,b) => (+a)+(+b),0)
+    
+    // on fait la moyenne
+    let moy = redux/lang
+    sub_obj[element] = moy.toFixed(2);
+    
+    //on ajoute tout dans le dernier tableau
+    finall_array.push(sub_obj)
+  }
+  
+  //on trouve la meilleure note et sa date
   for (let i = 0; i < finall_array.length ; i++){
-
-    console.log(finall_array.length)
 
     let k = Object.keys(finall_array[i])[0]
     let v = Number(Object.values(finall_array[i])[0])
 
-    console.log(`-----------`)
-    console.log(k,v,i)
-    console.log(`-----------`)
+    if (v == max_score) if (k < bestYear) bestYear = k  
+    if (v > max_score) bestYear = k, max_score = v;
 
-    console.log(`[Itération numéro ${i}] : [${k}:${v}] \n || Current best rate = ${max_score}, Current best year = ${bestYear}`)
-
-    if (v == max_score){
-      console.log(`***** Note identique : ${v} = ${max_score} \n`)
-      if (k >= bestYear)
-      console.log(`   Date supérieure à la meilleure année ${k} > ${bestYear} \n`) 
-    }
-
-    else if (v > max_score){
-      console.log(`La note est supérieure | ${v} > ${max_score} \n`)
-      
-      bestYear = k;
-      max_score = v;
-    
-    }
-    else {
-      console.log(`la note est inférieure | ${v} < ${max_score} : splice \n !!!!!`)
-    }
   }
   
-  console.log()
-  
-  
-
   return `The best year was ${bestYear} with an average rate of ${max_score}`;
 }
-
-console.log(bestYearAvg(movies)); 
