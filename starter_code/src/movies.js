@@ -148,5 +148,51 @@ function turnHoursToMinutes(movies) {
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
 
+function bestYearAvg(array) {
+  if (array.length === 0) {
+    return null;
+  }
+  
+  if (array.length === 1) {
+    let loneArray = [];
+    loneArray.push(array[0].year);
+    loneArray.push(array[0].rate);
+    return `The best year was ${loneArray[0]} with an average rate of ${loneArray[1]}`;
+  }
 
+  // ratesByYear will contain years as keys, pointing to arrays containing the rates of the movies issued that year. 
+  var ratesByYear = {}, moviesByYear = {};
+  for (let i=0; i<array.length;i++) {
+    if (ratesByYear[array[i].year]) {
+      ratesByYear[array[i].year].push(array[i].rate);
+      moviesByYear[array[i].year] += 1;
+    }
+    else {
+      ratesByYear[array[i].year] = [array[i].rate]; 
+      moviesByYear[array[i].year] = 1;
+    }
+  }
+  
+  // yearAvg will contain the years and the associated movies average rate.
+  var yearAvg= {}
+  
+  for (var annee in ratesByYear)  {
+    yearAvg[annee] = Math.round(ratesByYear[annee].reduce((acc, rate) => parseFloat(acc)+ parseFloat(rate), 0)*100/ratesByYear[annee].length)/100;
+  }
+  
+  bestYear = "";
+  bestRate = 0;
+  for (var i in yearAvg) {
+    if (yearAvg[i] > bestRate ) {
+      bestRate = yearAvg[i];
+      bestYear = i;
+    }
+    else if (yearAvg[i] === bestRate) {
+      if (i < bestYear) {
+        bestYear = i;
+      }
+    }
+  }
+  return `The best year was ${bestYear} with an average rate of ${bestRate}`;
+}
 
