@@ -81,8 +81,34 @@ function orderAlphabetically(movies) {
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(movies) {
+  const newArr = [];
+  movies.forEach(m => {
+    const newObj = Object.assign({}, m);
+    newArr.push(newObj);
+  });
+
+  newArr.forEach(m => {
+    m.duration = convert(m);
+  });
+  return newArr;
+}
+
+function convert(m) {
+  let hoursToMins = m.duration.split(" ");
+  if(hoursToMins.length === 1 && hoursToMins[0].includes("h")) {
+    return parseFloat(hoursToMins[0]) * 60;
+  }
+  if(hoursToMins === 1 && hoursToMins[0].includes("min")) {
+    return parseFloat(hoursToMins[0]);
+  }
+  return parseFloat(hoursToMins[0]) * 60 + parseFloat(hoursToMins[1]);
+}  
+
+
+
+
 // function turnHoursToMinutes(movies) {
-//   console.log(movies);
 //   const movieMinutes = movies.map((movie) => {
 //     const copyMovie = Object.assign({}, movie)
 //     if(movie.duration.length > 0) {
@@ -105,28 +131,28 @@ function orderAlphabetically(movies) {
 // }
 
 
-function turnHoursToMinutes(movies) {
-  console.log(movies);
-  const movieMinutes = movies.map((movie) => {
-    const copyMovie = Object.assign({}, movie)
-    if(movie.duration.length > 0) {
-      let hours = movie.duration.split('h');
-      let mins = Number(hours[0]) * 60;
-      mins += Number(hours[1].split('min')[0]);
-      copyMovie.duration = mins;
-      console.log(copyMovie);
-      return copyMovie;
-    }
-    else if (movie.duration.length === 5){ // {duration: '54min'}
-      let minOnly = movie.duration.split('min');
-      minOnly += Number(movie.duration[0]);
-      console.log(minOnly);
-      return minOnly;
-    }
-  });
+// function turnHoursToMinutes(movies) {
+//   console.log(movies);
+//   const movieMinutes = movies.map((movie) => {
+//     const copyMovie = Object.assign({}, movie)
+//     if(movie.duration.length > 0) {
+//       let hours = movie.duration.split('h');
+//       let mins = Number(hours[0]) * 60;
+//       mins += Number(hours[1].split('min')[0]);
+//       copyMovie.duration = mins;
+//       console.log(copyMovie);
+//       return copyMovie;
+//     }
+//     else if (movie.duration.length === 5){ // {duration: '54min'}
+//       let minOnly = movie.duration.split('min');
+//       minOnly += Number(movie.duration[0]);
+//       console.log(minOnly);
+//       return minOnly;
+//     }
+//   });
 
-  return movieMinutes;
-}
+//   return movieMinutes;
+// }
 
 
 
