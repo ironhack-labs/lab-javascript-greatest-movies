@@ -59,50 +59,75 @@ function howManyMovies(movies) {
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
-  var orderedArr = movies.sort((a,b) => {
-    if(a.length > b.length) {
+  const movieTitle = movies.map(movie => movie.title);
+
+  const orderedArr = movieTitle.sort((a,b) => {
+    if(a > b) {
       return 1;
     }
-    if(a.length < b.length) {
+    if(a < b) {
       return -1;
     }
     return 0;
   });
-  console.log(orderedArr);
-  return orderedArr.slice(20);
+  if(movies.length >= 20) {
+    return orderedArr.slice(0, 20);
+  }
+  return orderedArr;
 
 }
-
-
-// filter() new []  (or sort() no new [] but the const orderedTitle will
-// create a new array )
-// slice() to cut the first 20 values   array.slice(21)
-// return the title as a string   array.join() title
-// sort() 
 
 
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-// to convert the hours and minutes into one number of minutes, array.slice()
-// array.slice() returns a new array
-// to take out the h and min
-// twice because there are two tyes of values, 2h20min OR 54min
-// and calculate the hours *60 and add the hours * 60 + minutes 
-
-// (movies)[0].duration).toBe("number") e.g. 2h = 120min
-
 // function turnHoursToMinutes(movies) {
-//   //slice() min:
-//   const convertMin = movies.slice(2);
-//   //slice() h and min:
-//   const convertHours = movies.slice(1,2 && 5); // is that valid? -> [2, 20]
-//   console.log(convertHours);
-  
-//   //calculate the minutes:
-//   var calculateHours = convertHours * 60;
+//   console.log(movies);
+//   const movieMinutes = movies.map((movie) => {
+//     const copyMovie = Object.assign({}, movie)
+//     if(movie.duration.length > 0) {
+//       let hours = movie.duration.split('h');
+//       let mins = Number(hours[0]) * 60;
+//       mins += Number(hours[1].split('min')[0]);
+//       copyMovie.duration = mins;
+//       console.log(copyMovie);
+//       return copyMovie;
+//     }
+//     else if (movie.duration.length === 5){ // {duration: '54min'}
+//       let minOnly = movie.duration.split('min');
+//       minOnly += Number(movie.duration[0]);
+//       console.log(minOnly);
+//       return minOnly;
+//     }
+//   });
 
+//   return movieMinutes;
 // }
+
+
+function turnHoursToMinutes(movies) {
+  console.log(movies);
+  const movieMinutes = movies.map((movie) => {
+    const copyMovie = Object.assign({}, movie)
+    if(movie.duration.length > 0) {
+      let hours = movie.duration.split('h');
+      let mins = Number(hours[0]) * 60;
+      mins += Number(hours[1].split('min')[0]);
+      copyMovie.duration = mins;
+      console.log(copyMovie);
+      return copyMovie;
+    }
+    else if (movie.duration.length === 5){ // {duration: '54min'}
+      let minOnly = movie.duration.split('min');
+      minOnly += Number(movie.duration[0]);
+      console.log(minOnly);
+      return minOnly;
+    }
+  });
+
+  return movieMinutes;
+}
+
 
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
