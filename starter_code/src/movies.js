@@ -99,40 +99,48 @@ const turnHoursToMinutes = arr => {
   return newArrWithMin
 }
 
-var movieTry = [{ duration: '2h' }]
-console.log(turnHoursToMinutes(movieTry)[0].duration)
-
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 const bestYearAvg = arr => {
-  const yearOrdered = arr.sort(function(a, b) {
-    if (a.year < b.year) {
-      return -1
+  if (arr.length > 0) {
+    const yearlyAvg = arr => {
+      let sums = {},
+        counts = {},
+        results = [],
+        year
+      for (let i = 0; i < arr.length; i++) {
+        year = arr[i].year
+        if (!(year in sums)) {
+          sums[year] = 0
+          counts[year] = 0
+        }
+        sums[year] += Number(arr[i].rate)
+        counts[year]++
+      }
+      for (year in sums) {
+        results.push({
+          year: year,
+          rate: sums[year] / counts[year]
+        })
+      }
+      return results
     }
-    if (a.year > b.year) {
-      return 1
+    let yearlyAvgArray = yearlyAvg(arr)
+    console.log(yearlyAvgArray)
+    let bestRate = Math.max.apply(
+      Math,
+      yearlyAvgArray.map(function(o) {
+        return o.rate
+      })
+    )
+    let bestYear = 0
+    for (let i = 0; i < yearlyAvgArray.length; i++) {
+      if (yearlyAvgArray[i].rate == bestRate) {
+        bestYear = yearlyAvgArray[i].year
+        break
+      }
     }
-    return 0
-  })
-  let yearMem = 0
-  let yearCounter = 0
-  let avgCounter = 0
-  let yearArr = []
-  let avgArr = []
-
-  for (let i = 0; i < yearOrdered.length; i++) {
-    if (yearOrdered[i].year == yearCounter) {
-      yearCounter++
-      avgCounter = avgCounter + yearOrdered[i].year
-    } else {
-      yearArr.push(yearOrdered[i].year)
-      avgArr.push(yearOrdered[i].year)
-    }
+    return `The best year was ${bestYear} with an average rate of ${bestRate}`
+  } else {
+    return null
   }
-
-  const titles = []
-  for (let i = 0; i < ordered.length; i++) {
-    titles.push(ordered[i].title)
-  }
-
-  return year, yearAvg
 }
