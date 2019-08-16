@@ -48,7 +48,7 @@ const orderAlphabetically = (array) => {
 }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 const turnHoursToMinutes = (array) =>{
-    const newMovies = Array.from(movies);
+    const newMovies = [...array]
     for (movie in newMovies) {
       const duration = newMovies[movie].duration
       const arrayD= duration.split(' ')
