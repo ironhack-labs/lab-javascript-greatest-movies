@@ -1,5 +1,5 @@
 let movies = [
-  {
+  { 
     title: 'The Shawshank Redemption',
     year: '1994',
     director: 'Frank Darabont',
