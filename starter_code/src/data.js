@@ -40,7 +40,7 @@ let movies = [
     rate: '8.9'
   },
   {
-    title: 'Schindler\'s List',
+    title: "Schindler's List",
     year: '1993',
     director: 'Steven Spielberg',
     duration: '3h 15min',
@@ -120,7 +120,7 @@ let movies = [
     rate: '8.7'
   },
   {
-    title: 'One Flew Over the Cuckoo\'s Nest',
+    title: "One Flew Over the Cuckoo's Nest",
     year: '1975',
     director: 'Milos Forman',
     duration: '2h 13min',
@@ -184,7 +184,7 @@ let movies = [
     rate: '8.6'
   },
   {
-    title: 'It\'s a Wonderful Life',
+    title: "It's a Wonderful Life",
     year: '1946',
     director: 'Frank Capra',
     duration: '2h 10min',
@@ -240,7 +240,7 @@ let movies = [
     rate: '8.5'
   },
   {
-    title: 'C\'era una volta il West',
+    title: "C'era una volta il West",
     year: '1968',
     director: 'Sergio Leone',
     duration: '2h 44min',
@@ -632,7 +632,7 @@ let movies = [
     rate: '8.3'
   },
   {
-    title: 'Le fabuleux destin d\'Amélie Poulain',
+    title: "Le fabuleux destin d'Amélie Poulain",
     year: '2001',
     director: 'Jean-Pierre Jeunet',
     duration: '2h 2min',
@@ -736,7 +736,7 @@ let movies = [
     rate: '8.3'
   },
   {
-    title: 'Singin\' in the Rain',
+    title: "Singin' in the Rain",
     year: '1952',
     director: 'Stanley Donen',
     duration: '1h 43min',
@@ -1218,7 +1218,7 @@ let movies = [
   {
     title: 'Warrior',
     year: '2011',
-    director: 'Gavin O\'Connor',
+    director: "Gavin O'Connor",
     duration: '2h 20min',
     genre: ['Drama', 'Sport'],
     rate: '8.2'
@@ -1416,7 +1416,7 @@ let movies = [
     rate: '8.1'
   },
   {
-    title: 'La passion de Jeanne d\'Arc',
+    title: "La passion de Jeanne d'Arc",
     year: '1928',
     director: 'Carl Theodor Dreyer',
     duration: '1h 50min',
@@ -1664,7 +1664,7 @@ let movies = [
     rate: '8.1'
   },
   {
-    title: 'Hachi: A Dog\'s Tale',
+    title: "Hachi: A Dog's Tale",
     year: '1983',
     director: 'Lasse Hallström',
     duration: '1h 33min',
@@ -1999,4 +1999,4 @@ let movies = [
     genre: ['Comedy', 'Drama'],
     rate: '8.0'
   }
-];
+]
