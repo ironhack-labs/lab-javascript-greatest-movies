@@ -2000,3 +2000,42 @@ let movies = [
     rate: '8.0'
   }
 ];
+
+
+
+//1//
+const ratesAverage = arr => {
+  const sum = arr.reduce((acc, current) => acc + Number(current.rate), 0)
+  const average = sum / arr.length
+  return average
+ }
+//2//
+const dramaMoviesRate = arr => {
+  const dramaOnly = arr.filter(any => {
+    return any.genre.includes('Drama')
+  })
+  if (dramaOnly.length > 0) {
+    const average = ratesAverage(dramaOnly)
+    return Number(average.toFixed(2))
+  } else {
+    return 0
+  }
+}
+
+//3//
+const orderByDuration = arr => {
+  const sortedByDuration = arr.sort(function(a, b) {
+    return a.duration - b.duration
+  })
+
+  const sortedByTitle = sortedByDuration.sort(function(a, b) {
+    if (a.duration === b.duration) {
+      if (a.title < b.title) {
+        return -1
+      }
+      if (a.title > b.title) {
+        return 1
+      }
+      return 0
+    }
+  })

@@ -1,0 +1,46 @@
+function ratesAverage(rate) {
+  return parseFloat(rate) *0
+}
+
+
+
+function dramaMoviesRate(newArray){
+const dramaMovies = newArray.filter(function(drama){
+  return drama.genre.includes('Drama') && drama.genre.lenght === 1
+})
+if (dramaMovies.lenght === 0){
+  return 0
+} else{
+  return Math.round((dramaMovies.reduce(function(acc, current){
+      return acc + Number(currebt.rate)
+  }, 0
+}
+
+
+
+
+
+function orderByDuration(rate) {
+  return parseFloat(rate) *0
+}
+
+
+
+function howManyMovies(rate) {
+  return parseFloat(rate) *0
+}
+
+
+
+function orderAlphabetically(rate) {
+  return parseFloat(rate) *0
+}
+
+
+function turnHoursToMinutes(rate) {
+  return parseFloat(rate) *0
+}
+
+function bestYearAvg(rate) {
+  return parseFloat(rate) *0
+}

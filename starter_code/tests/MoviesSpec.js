@@ -1,6 +1,6 @@
 /* eslint no-undef: "off" */
 /* eslint jasmine/no-spec-dupes: "off" */
-
+//calificar pelculas//
 describe("Get the average rate - ratesAverage", function() {
   it("Defines ratesAverage", function() {
     expect(typeof ratesAverage).toBe("function");
@@ -27,7 +27,7 @@ describe("Get the average rate - ratesAverage", function() {
     );
   });
 });
-
+//genero peliculas//
 describe("Average rate of Drama Movies - dramaMoviesRate", function() {
   it("Defines dramaMoviesRate", function() {
     expect(typeof dramaMoviesRate).toBe("function");
@@ -90,7 +90,7 @@ describe("Average rate of Drama Movies - dramaMoviesRate", function() {
     ).toBe(0);
   });
 });
-
+//ordenar por duracion//
 describe("Order the movies by duration - orderByDuration", function() {
   it("Defines orderByDuration", function() {
     expect(typeof orderByDuration).toBe("function");
@@ -124,7 +124,7 @@ describe("Order the movies by duration - orderByDuration", function() {
     ]);
   });
 });
-
+//definir peliculas//
 describe("Get how many movies - howManyMovies", function() {
   it("Defines howManyMovies", function() {
     expect(typeof howManyMovies).toBe("function");
@@ -137,7 +137,7 @@ describe("Get how many movies - howManyMovies", function() {
   it("Should return 0 if the array is empty", function() {
     expect(howManyMovies([])).toBe(0);
   });
-
+//peliculas//
   it("Return 0 if he did not direct none of the movies in the array", function() {
     expect(
       howManyMovies([
@@ -148,7 +148,6 @@ describe("Get how many movies - howManyMovies", function() {
       ])
     ).toBe(0);
   });
-
   it("Only drama movies! Should return 1", function() {
     expect(
       howManyMovies([
@@ -191,7 +190,7 @@ describe("Get how many movies - howManyMovies", function() {
     expect(howManyMovies(movies)).toBe(4);
   });
 });
-
+//orden alfabetico//
 describe("Order alphabetically - orderAlphabetically", function() {
   it("Defines orderAlphabetically", function() {
     expect(typeof orderAlphabetically).toBe("function");
