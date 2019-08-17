@@ -4,12 +4,12 @@
 
 function ratesAverage(arr) {
   let sum = arr.reduce(function(accumulator, value) {
-    if (value !== "") {
+    if (value.rate !== "") {
       accumulator += parseFloat(value.rate);
-      return accumulator;
     } else {
       accumulator += 0;
     }
+    return accumulator;
   }, 0);
   return Math.round((sum / arr.length) * 100) / 100;
 }
