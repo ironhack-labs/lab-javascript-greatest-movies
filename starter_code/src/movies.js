@@ -115,3 +115,19 @@ function turnHoursToMinutes(arr) {
 }
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+// create groups by year
+// find average rate in that year
+// compare years and find year with highest average
+// return year and rate
+
+function bestYearAvg(arr) {
+  const newArr = arr.map(function(movie) {
+    const newMovie = {
+      ...movie
+    };
+    return newMovie;
+  });
+  // const moviesGroupedByYear = ;
+  // console.log(moviesGroupedByYear)
+}
