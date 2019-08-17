@@ -15,11 +15,9 @@ function ratesAverage(arr) {
 }
 
 // Iteration 2: Drama movies - Get the average of Drama Movies
-
-function dramaMoviesRate(arr) {
+function extractDramas(arr) {
   let dramaMovies = arr.filter(function(movie) {
     let containsDrama = false;
-
     for (i = 0; i < movie.genre.length; i++) {
       if (movie.genre[i] === "Drama") {
         containsDrama = true;
@@ -27,6 +25,11 @@ function dramaMoviesRate(arr) {
     }
     if (containsDrama === true) return true;
   });
+  return dramaMovies;
+}
+
+function dramaMoviesRate(arr) {
+  let dramaMovies = extractDramas(arr);
   if (dramaMovies.length !== 0) return ratesAverage(dramaMovies);
   else return 0;
 }
@@ -35,6 +38,7 @@ function dramaMoviesRate(arr) {
 
 function orderByDuration(arr) {
   let moviesByDuration = arr.sort(function(a, b) {
+    if (a.duration === b.duration) return a.title.localeCompare(b.title);
     if (typeof a && typeof b !== "string") {
       return a.duration - b.duration;
     } else {
@@ -43,9 +47,24 @@ function orderByDuration(arr) {
   });
   return moviesByDuration;
 }
-// Note to teachers: the duration data for the moveis is given in strings, but the test Return the new array in ascending order" tests numbers
+// Note to teachers: the duration data for the movies is given in strings, but the test "Return the new array in ascending order" tests numbers.
+// Wouldn't it be better for the test data to be in the same format the given data is in?
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
+function howManyMovies(arr) {
+  if (!arr.length) return 0;
+  let dramaMovies = extractDramas(arr);
+  if (!dramaMovies.length) return 0;
+  let spielbergDramas = dramaMovies.filter(function(movie) {
+    let directedBySpielberg = false;
+    if (movie.director === "Steven Spielberg") {
+      directedBySpielberg = true;
+    }
+    if (directedBySpielberg === true) return true;
+  });
+  if (!spielbergDramas.length) return 0;
+  return spielbergDramas.length;
+}
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
