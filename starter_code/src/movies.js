@@ -68,6 +68,44 @@ function howManyMovies(arr) {
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
-// Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function orderAlphabetically(arr) {
+  let top20 = [];
+  let alphabeticalMovies = arr.sort(function(a, b) {
+    return a.title.localeCompare(b.title);
+  });
+  // console.log(alphabeticalMovies)
+  let alphabeticalTitles = alphabeticalMovies.map(function(movie) {
+    return movie.title;
+  });
+  // console.log(alphabeticalTitles)
+  top20 = alphabeticalTitles.slice(0, 20);
+  return top20;
+}
 
+// Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(arr) {
+  let durationArr = arr.slice().map(function(movie) {
+    return movie.duration;
+  });
+  let runtime = durationArr.slice().map(function(duration) {
+    let timeInMin = 0;
+    let hoursInMin = 0;
+    let minutes = 0;
+    let minutesStr;
+    if (duration.includes("h ")) {
+      hoursInMin += parseFloat(duration) * 60;
+      minutesStr = duration.substring(
+        duration.indexOf(" ") + 1,
+        duration.length
+      );
+      minutes;
+    } else {
+      minutesStr += parseFloat(duration);
+    }
+    minutes += parseFloat(minutesStr);
+    timeInMin = timeInMin + hoursInMin + minutes;
+    return timeInMin;
+  });
+  return runtime;
+}
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
