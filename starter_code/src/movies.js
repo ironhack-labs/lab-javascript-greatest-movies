@@ -61,22 +61,18 @@ function howManyMovies(movieList) {
 
 function orderAlphabetically(movieList) {
   let ordered = movieList.sort(function(a, b) {
-    if (movieList.length < 20) {
-      return a.title.localeCompare(b.title);
-    } else {
-      return a.title.localeCompare(b.title) - b.title;
-    }
+    return a.title.localeCompare(b.title);
   });
-  return ordered;
+  ordered = ordered.map(function(movie) {
+    return movie.title;
+  });
+  return ordered.slice(0, 20);
 }
 
-// function orderAlphabetically(movieList) {
-//   let ordered = movieList.filter(function(movie) {
-//     return movie.title;
-//   });
-//   return ordered;
-// }
-
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
+function turnHoursToMinutes() {
+  let duration = 
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
