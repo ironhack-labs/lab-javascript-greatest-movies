@@ -22,11 +22,11 @@ const howManyMovies = ar => ar.filter(movie => (movie.genre.includes('Drama') &&
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
-const orderAlphabetically = a => a.map(movie => movie.title).sort((a, b) => a.localeCompare(b)).slice(0, 20);  
+const orderAlphabetically = ar => ar.map(movie => movie.title).sort((a, b) => a.localeCompare(b)).slice(0, 20);  
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-const turnHoursToMinutes = a => a.map(movie => {
+const turnHoursToMinutes = ar => ar.map(movie => {
     let convertedDuration = 0;
     if (movie.duration.includes('h')) {
         convertedDuration += Number(movie.duration.slice(0, movie.duration.indexOf('h'))) * 60;
@@ -39,11 +39,11 @@ const turnHoursToMinutes = a => a.map(movie => {
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
-const bestYearAvg = a => {
-    if (!a.length) return null;
-    const yearsWithRatedMovies = [...new Set(a.map(movie => movie.year))];
+const bestYearAvg = ar => {
+    if (!ar.length) return null;
+    const yearsWithRatedMovies = [...new Set(ar.map(movie => movie.year))];
     const averageRatingsPerYear = [];
-    yearsWithRatedMovies.forEach(year => averageRatingsPerYear.push({year,rate: ratesAverage(a.filter(movie => movie.year === year))}));
+    yearsWithRatedMovies.forEach(year => averageRatingsPerYear.push({year,rate: ratesAverage(ar.filter(movie => movie.year === year))}));
     const best = averageRatingsPerYear.sort((a, b) => b.rate - a.rate === 0 ? a.year - b.year : b.rate - a.rate)[0];
     return `The best year was ${best.year} with an average rate of ${best.rate}`;
 }
