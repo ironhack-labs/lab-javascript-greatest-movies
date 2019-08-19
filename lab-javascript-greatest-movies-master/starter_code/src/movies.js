@@ -6,7 +6,7 @@ const roundNumber = (number, digits) => Math.round(number * 10 ** digits) / 10 *
 
 const ratesAverage = movieRate => {
     let rateSum = 0;
-    for (const movie of movieRate) rateSum = rateSum + movie.rate;
+    for (const movie of movieRate) rateSum = rateSum + (!isNaN(parseFloat(movie.rate)) ? parseFloat(movie.rate) : 0);
     return roundNumber(rateSum/movieRate.length, 2);
 };
 
@@ -64,10 +64,10 @@ const bestYearAvg = year => {
     const aux = orderByYear(year);
     if (year[0] === undefined) return null;
     for (let i = aux[0].year; i<= aux[aux.length-1].year; i++) {
-        let temp = ratesAverage(aux.filter(movie => i === movie.year));
-        if (!isNaN(temp)) yearsAverage.push(temp, i);
+        let temp = 0;
+        temp = ratesAverage(year.filter(movie => movie.year.includes(i)));
+        if (!isNaN(temp)) yearsAverage.push([temp, i]);
     }
-    console.log(yearsAverage)
     yearsAverage.sort((a,b) => a[0] < b[0] ? 1 : a[0] > b[0] ? -1 : 0);
     yearsAverage.sort((a,b) => a[0] === b[0] && a[1] > b[1] ? 1 : a[0] === b[0] && a[1] < b[1] ? -1 : 0);
     return "The best year was " + yearsAverage[0][1] + " with an average rate of " + yearsAverage[0][0];
