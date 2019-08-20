@@ -67,7 +67,7 @@ const orderAlphabetically = (arr) => {
 	if(alph.length < 20) {
 	  return alph
 	} else {
-	  return alph.slice(20)
+	  return alph.slice(0, 20)
 	}
  
  }
