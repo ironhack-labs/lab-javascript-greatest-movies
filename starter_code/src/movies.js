@@ -46,5 +46,17 @@ function orderByDuration(arr) {
 }
  orderByDuration(movies)
 
+ // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
+const howManyMovies = arr => {
+  const dramaOnly = arr.filter(element => {
+    return element.genre.includes('Drama')
+  })
+  const spielbergOnly = dramaOnly.filter(element => {
+    return element.director.includes('Steven Spielberg')
+  })
+  return spielbergOnly.length
+}
+
+howManyMovies(arr)
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
