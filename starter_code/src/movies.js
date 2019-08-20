@@ -47,7 +47,7 @@ function orderByDuration(arr) {
  orderByDuration(movies)
 
  // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
-const howManyMovies = arr => {
+const howManyMovies = (arr) => {
   const dramaOnly = arr.filter(element => {
     return element.genre.includes('Drama')
   })
@@ -57,6 +57,49 @@ const howManyMovies = arr => {
   return spielbergOnly.length
 }
 
-howManyMovies(arr)
+howManyMovies(movies)
 
+// Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
+const orderAlphabetically = (arr) => {
+	const titles = arr.map(e => e.title)
+	const alph = titles.sort()
+ 
+	if(alph.length < 20) {
+	  return alph
+	} else {
+	  return alph.slice(20)
+	}
+ 
+ }
+ 
+ orderAlphabetically(movies)
+
+ // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+const turnHoursToMinutes = (arr) => {
+  const getHoursInMin = movie => {
+    if (movie.duration.charAt(1) === 'h') {
+      const hr = Number(movie.duration.charAt(0))
+      const hrInMin = hr * 60
+      return hrInMin
+    } else {
+      return 0
+    }
+  }
+  const getMinutes = (movie) => {
+    let min = 0
+    if (movie.duration.length >= 5 && movie.duration.charAt(1) === 'h') {
+      min = Number(movie.duration.substring(3, movie.duration.length - 3))
+    } else {
+      min = Number(movie.duration.substring(0, movie.duration.length - 3))
+    }
+    return min
+  }
+
+  let newArrWithMin = []
+  arr.forEach(movie => {
+    let singleMovie = { ...movie, duration: getHoursInMin(movie) + getMinutes(movie) }
+    newArrWithMin.push(singleMovie)
+  })
+  return newArrWithMin
+}
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
