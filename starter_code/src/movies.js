@@ -59,13 +59,14 @@ function turnHoursToMinutes(movies) {
       let minutes = splitTime[1].replace("min", "").trim();
       newDuration = +hours * 60 + +minutes;
     } else {
-        newDuration = +(movie.duration).replace("min", "").trim()
+      newDuration = +movie.duration.replace("min", "").trim();
     }
     return { ...movie, duration: newDuration };
   });
 }
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
-// function bestYearAvg() {
-    
-// }
+function bestYearAvg() {
+  let years = new Set(movies.map(movie => movie.year));
+//   movies.filter(movie => movie.year == (years.map(year => console.log(year))))
+}
