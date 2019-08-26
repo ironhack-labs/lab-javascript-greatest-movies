@@ -4,7 +4,7 @@
 function ratesAverage(array){
     return parseFloat((array.reduce((acc, current) => acc + parseFloat(current.rate), 0) / array.length).toFixed(2))
 }
-// console.log(ratesAverage(movies))
+console.log(ratesAverage(movies))
 // Iteration 2: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate(arrayDrama){
     const arrayGenDrama = arrayDrama.filter(arrD => arrD.genre.indexOf('Drama') >= 0)
@@ -15,7 +15,7 @@ function dramaMoviesRate(arrayDrama){
     return parseFloat((arrayGenDrama.reduce((accD, currentD) => accD + parseFloat(currentD.rate), 0) / arrayGenDrama.length).toFixed(2))
 }
 
-// console.log(dramaMoviesRate(movies))
+console.log(dramaMoviesRate(movies))
 
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
 function orderByDuration(arr){
@@ -37,7 +37,7 @@ function orderByDuration(arr){
 return time
 }
 
-// console.log(orderByDuration(movies))
+console.log(orderByDuration(movies))
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 function howManyMovies(arr) {
   const ssmovies = arr.filter(elem => elem.director.includes("Steven Spielberg") && elem.genre.includes("Drama"))
@@ -47,7 +47,7 @@ function howManyMovies(arr) {
     return ssmovies
   }   
 }
-// console.log(howManyMovies(movies))
+console.log(howManyMovies(movies))
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
@@ -67,51 +67,33 @@ function orderAlphabetically(movie) {
     }
     return orderedTitles;
   }
-// console.log(orderAlphabetically(movies))
+console.log(orderAlphabetically(movies))
 
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(array) {
-// This method uses the movies array of objects and with .map function makes another array called
-// durationinLetters.  This array uses the split function to seperate each letter of the array
-// the produced array is either 7 or 8 elements of length depending on if the minutes are 2 digits
-// or not.  ie. ["2", "h", " ", "2", "2", "m", "i", "n"]
 var durationInLetters = movies.map(function(movies){
   return movies.duration.split('');
 });
-console.log(durationInLetters)
-// This method uses the durationinLetters array of strings and with .map function creates a new
-// array called hoursToMinutes.  This array is the result of multiplying the 1st element [0] of the
-// durationInLetters array * 60 to produce a new array of hours. [120, 60, 180, ...].
-var createsHourArray = durationInLetters.map(function(elem, i){
+var horasSinLetras= durationInLetters.map(function(elem, i){
   return (durationInLetters[i][0] * 60);
 });
-// This method uses the durationinLetters array of strings and with .map function creates a new
-// array called createsMinutesArray.  This array is the result of asking if the index m exists then
-// join without spaces the element after the space and the element that is the result of the index 
-// (of the element of the index before m - the element of the index after space) for the empty set it 
-//  returns 0.
-var createsMinutesArray = durationInLetters.map(function(elem,i){
-  if (elem.indexOf("m")!=-1){     //
+var minutosSinLetras= durationInLetters.map(function(elem,i){
+  if (elem.indexOf("m")!=-1){
       return elem.splice(elem.indexOf(' ')+1,elem.indexOf('m')-elem.indexOf(' ')-1).join("");
   } else {
    return 0;
   }
 });
-//console.log(createsMinutesArray);
-// This method uses the createsHoursArray in numeric form and adds the createsMinutesArray after the 
-// parse int has been applied to put it in numeric form.  The result is then renturned from the 
-// turnHoursToMinutes function.
-var tiempoEnMinutos = createsHourArray.map(function(elem, i){
-  return createsHourArray[i] + parseInt(createsMinutesArray[i]);
+var tiempoEnMinutos = horasSinLetras.map(function(elem, i){
+  return horasSinLetras[i] + parseInt(minutosSinLetras[i]);
 });
 var last = movies.map(function(elem,i){
   return elem.duration === tiempoEnMinutos[i];
 });
 return tiempoEnMinutos
 }
-turnHoursToMinutes(movies)
-// console.log(turnHoursToMinutes(movies))
+console.log(turnHoursToMinutes(movies))
 
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
