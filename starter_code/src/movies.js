@@ -49,7 +49,17 @@ let moviesOrdered = orderByDuration(movies);
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 
+const howManyMovies = movies => {
 
+  let SpielbergMovies = movies.filter(movie => movie.director == 'Steven Spielberg' && 
+                                               movie.genre.includes('Drama'));
+
+  let totalMovies = SpielbergMovies.length;
+
+  return totalMovies;
+}
+
+console.log(howManyMovies(movies));
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
