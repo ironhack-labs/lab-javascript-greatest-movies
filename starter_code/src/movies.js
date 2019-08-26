@@ -1,7 +1,4 @@
 /* eslint no-restricted-globals: 'off' */
-
-
-
 // Iteration 1: All rates average - Get the average of all rates with 2 decimals 
 
 const ratesAverage = movies => {
@@ -22,7 +19,6 @@ const dramaMoviesRate = movies => {
   let dramaMovies = movies.filter(movie => movie.genre.includes('Drama'));
 
   return (dramaMovies.length == 0)? 0 : ratesAverage(dramaMovies);
- 
 }
 
 console.log(dramaMoviesRate(movies));
@@ -53,7 +49,6 @@ const howManyMovies = movies => {
 
   let SpielbergMovies = movies.filter(movie => movie.director == 'Steven Spielberg' && 
                                                movie.genre.includes('Drama'));
-
   let totalMovies = SpielbergMovies.length;
 
   return totalMovies;
@@ -62,6 +57,22 @@ const howManyMovies = movies => {
 console.log(howManyMovies(movies));
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
+const orderAlphabetically = movies => {
+
+  let moviesSorted = movies.sort((a, b) =>
+    a.title.localeCompare(b.title, "es", { sensitivity: "base" })
+    );
+
+  return (moviesSorted.length < 20) ?
+              moviesSorted.map(movie => movie.title) :
+              new Array(20).fill().map((arr, idx) => moviesSorted[idx].title);
+  
+}
+
+console.log(orderAlphabetically(movies));
+
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
+
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
