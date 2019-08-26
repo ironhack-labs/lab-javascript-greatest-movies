@@ -19,15 +19,33 @@ console.log(ratesAverage(movies));
 
 const dramaMoviesRate = movies => {
 
-  let dramaMovies = movies.filter(movie => movie.genre.indexOf('Drama') >= 0);
+  let dramaMovies = movies.filter(movie => movie.genre.includes('Drama'));
 
   return (dramaMovies.length == 0)? 0 : ratesAverage(dramaMovies);
-  
+ 
 }
 
 console.log(dramaMoviesRate(movies));
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
 
+const orderByDuration = movies => {
+  
+  let moviesOrdered = movies.sort((a, b) => {
+
+    if (a.duration < b.duration) return -1;
+    if (a.duration > b.duration) return 1;
+  
+    if (a.title < b.title) return -1; 
+    if (a.title > b.title) return 1;
+    
+    return 0;
+    
+  });
+
+  return moviesOrdered;
+}
+
+let moviesOrdered = orderByDuration(movies);
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 
