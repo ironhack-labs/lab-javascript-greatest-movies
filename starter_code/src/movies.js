@@ -2,7 +2,13 @@
 
 // Iteration 1: All rates average - Get the average of all rates with 2 decimals 
 
- 
+function ratesAverage(movies) {
+    let output = 
+      movies.reduce((ac, cu) => ac + +cu.rate, 0) / movies.length;
+      let average =  +output.toFixed(2);
+      return average;
+  }
+
 // Iteration 2: Drama movies - Get the average of Drama Movies
 
 
