@@ -29,9 +29,22 @@ function howManyMovies(movies){
     let spielbergDramaMovies = movies.filter(movie => movie.genre.includes("Drama") &&
     movie.director === "Steven Spielberg");
     return spielbergDramaMovies.length;
+    
 }
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(movies) {
+    let allMoviesSorted = movies.map(movie => movie.title).sort((a, b) =>
+        a.localeCompare(b, "es", { sensitivity: "base" })
+        );
+    console.log(allMoviesSorted)
+    if (movies.length >= 20) {
+        twentyMovies = allMoviesSorted.splice(0, 20);
+        return twentyMovies;
+    }
+    return allMoviesSorted;
+}
+
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
