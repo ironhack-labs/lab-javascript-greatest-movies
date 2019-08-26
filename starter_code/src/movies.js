@@ -7,7 +7,7 @@ function ratesAverage(arr) {
     const sum = arr.reduce((acc, current) => acc + parseInt(current.rate), 0)
     const average = (sum / contador).toFixed(2)
     console.log(average)
-    return average
+    return parseInt(average)
 }
 
  
@@ -20,7 +20,7 @@ function dramaMoviesRate(arr) {
     if(contador > 0){
         const dramaRatesSum = dramaFilter.reduce((acc, current) => acc + parseInt(current.rate), 0)
         const averageDramaRate = dramaRatesSum / contador
-        return averageDramaRate.toFixed(2)
+        return parseInt(averageDramaRate.toFixed(2))
     } else {
         return 0
     }
@@ -43,7 +43,6 @@ function orderByDuration(arr){
     })
 }
 
-
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 function howManyMovies(arr) {
     const moviesBySteven = arr.filter(elem => elem.director.includes('Steven Spielberg'))
@@ -52,6 +51,14 @@ function howManyMovies(arr) {
   }
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
+function orderAlphabetically(arr) {
+    return arr
+}
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-
+function turnHoursToMinutes(arr) {
+    return arr
+}
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(arr) {
+    return null
+}
