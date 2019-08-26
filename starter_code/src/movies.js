@@ -29,12 +29,18 @@ function orderByDuration(movies) {
   let sortedMoviesByDuration = movies.sort((a, b) => {
         if (a.duration > b.duration)  return 1
         if (a.duration < b.duration)  return -1
-        if (a.duration === b.duration) {(a.name < b.name) }return -1})
+        if (a.duration === b.duration) {(a.title < b.title) }return -1})
 
 return sortedMoviesByDuration;
 }
 // // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
-
+function howManyMovies(movies) {
+  const spielbergMovies = movies.filter(
+    el => el.genre.includes("Drama") && el.director.includes("Spielberg")
+  );
+    return spielbergMovies.length;
+  //   ;
+}
 // // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
 // // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
