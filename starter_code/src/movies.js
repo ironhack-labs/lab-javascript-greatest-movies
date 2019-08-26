@@ -1,7 +1,11 @@
 /* eslint no-restricted-globals: 'off' */
 
 // Iteration 1: All rates average - Get the average of all rates with 2 decimals 
-
+function ratesAverage(movies) {
+    const sum = movies.map(movie => movie.rate).reduce((ac, cu) => ac + cu, 0);
+    const average = (sum / movies.length);
+    return +average.toFixed(2);
+}
  
 // Iteration 2: Drama movies - Get the average of Drama Movies
 
