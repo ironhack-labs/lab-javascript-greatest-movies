@@ -73,6 +73,61 @@ console.log(orderAlphabetically(movies));
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
+const turnHoursToMinutes = movies => {
+
+  let mins;
+
+  return movies.map(movie => {
+
+    mins = 0;
+
+    if(movie.duration.indexOf('h') >= 0) {
+      mins += +movie.duration.split('h')[0] * 60;
+
+      if(movie.duration.indexOf(' ') >= 0) {
+        mins += +movie.duration.split(' ')[1].slice(0, -3);
+      }
+    } else {
+      mins += +movie.duration.slice(0, -3);
+    }  
+    return {...movie, duration:mins}    
+ 
+  });
+}
+
+console.log(turnHoursToMinutes(movies));
 
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+const bestYearAvg = movies => {
+
+  let years = movies.map(movie => movie.year);
+  years = [...new Set(years)]; 
+
+  let moviesPerYear;
+  let averagePerYear = new Array();
+
+  years.forEach((year, idx) => {  
+  
+      moviesPerYear = movies.filter(movie => movie.year == year);
+      averagePerYear.push([year, ratesAverage(moviesPerYear)]);  
+  });
+
+  averagePerYear.sort((a, b) => {
+    if(a[1] < b[1]) return 1;
+
+    if(a[1] > b[1]) return -1;
+
+    if(a[0] < b[0]) return -1;
+    
+    if(a[0] > b[0]) return -1;
+    
+    return 0
+  });
+  
+  if(averagePerYear.length == 0) return null;
+  return `The best year was ${averagePerYear[0][0]} with an average rate of ${averagePerYear[0][1]}`;
+}
+
+console.log(bestYearAvg(movies));
