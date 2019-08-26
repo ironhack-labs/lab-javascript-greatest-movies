@@ -3,7 +3,7 @@
 
 describe("Get the average rate - ratesAverage", function() {
   it("Defines ratesAverage", function() {
-    expect(typeof ratesAverage).toBe("function");
+    expect(typeof ratesAverage).toBe('function');
   });
 
   it("You should return a number my friend! Check parseFloat method!", function() {
