@@ -78,7 +78,9 @@ function orderAlphabetically (movies) {
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-
+function turnHoursToMinutes (movies) {
+  
+}
 
 
 
