@@ -42,7 +42,16 @@ function howManyMovies(movies) {
   //   ;
 }
 // // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(movies) {
+  let sortedMoviesAlphabetically = movies.sort((a, b) => {
+    if (a.title > b.title) return 1;
+    if (a.title < b.title) return -1;
+  });
+  let moviesAlphabetically = movies.map(a => a.title);
 
+  firstAlphabetically = moviesAlphabetically.slice(0, 20);
+  return firstAlphabetically;
+}
 // // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 // // BONUS Iteration: Best yearly rate average - Best yearly rate average
