@@ -346,7 +346,7 @@ describe("Turn duration of the movies - turnHoursToMinutes", function() {
     expect(typeof turnHoursToMinutes(movies)).toBe("object");
   });
 
-  it("Should return a new array, not update the original one", function() {
+  it("Should return a new array, not update the original one", function() { //*
     expect(turnHoursToMinutes(movies)).not.toEqual(movies);
   });
 
