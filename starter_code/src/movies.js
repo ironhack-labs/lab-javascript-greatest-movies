@@ -33,8 +33,8 @@ function howManyMovies(movies){
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(movies){
-    const titleMovies = movies.map(function (items){
-        return items.title;
+    const titleMovies = movies.map(function (movie){
+        return movie.title;
     });
     titleMovies.sort().splice(20);
     return titleMovies;
@@ -47,6 +47,6 @@ function turnHoursToMinutes(movies) {
     let newMoviesCopy=[...newMovies, ...movies.duration]
     newMoviesCopy= newMovieCopy.map(newMoviesCopy.duration.split(' ').reduce((t, s) => t += (s.includes('h')) ? parseInt(s.replace(/h/g, '')) * 60 : parseInt(s.replace(/min/g, '')), 0))
          return newMoviesCopy
-        
+
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
