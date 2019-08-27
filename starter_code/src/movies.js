@@ -78,10 +78,22 @@ function orderAlphabetically (movies) {
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-function turnHoursToMinutes (movies) {
-  
-}
+function turnHoursToMinutes(movies) {
+  return movies.map(movieDuration => {   
+      let durationSplit = movieDuration.duration.split(" ");
+      let hours = parseInt(durationSplit[0]);
+      let minutes = parseInt(durationSplit[1]);
 
+      let newDuration;
+      if (movieDuration.duration.length >= 7) {
+          newDuration = +hours * 60 + minutes;
+      } else if (movieDuration.duration.length <= 3) {
+          newDuration = +hours * 60;
+      } else newDuration = +hours;
+
+      return { ...movieDuration, duration: newDuration };
+  });
+}
 
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
