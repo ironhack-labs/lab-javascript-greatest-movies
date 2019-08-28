@@ -82,8 +82,11 @@ function orderAlphabetically(array) {
 //    duration: '3h 22min',
 function turnHoursToMinutes(array) {
   return array.map(movie => {
-
-  if (movie.duration.includes("h") && movie.duration.includes("min")) {
+    if (typeof(movie.duration) === "number") {
+      movie.duration = movie.duration
+      return movie
+    }
+    if (movie.duration.includes("h") && movie.duration.includes("min")) {
 
       let hrs = movie.duration.split("h")[0]
       let mins = movie.duration.split(" ")[1].split("min")[0]
@@ -93,11 +96,11 @@ function turnHoursToMinutes(array) {
       else movie.duration = Number(hrs * 60) + Number(mins)
         return movie
    }
-   if (movie.duration.includes("h")) {
+   else if (movie.duration.includes("h")) {
     movie.duration = Number(movie.duration.split("h")[0] * 60)
     return movie
    }
-   if (movie.duration.includes("min")) {
+   else if (movie.duration.includes("min")) {
     movie.duration = Number(movie.duration.split("min")[0])
     return movie
    }
