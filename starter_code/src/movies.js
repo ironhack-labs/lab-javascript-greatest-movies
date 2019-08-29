@@ -73,7 +73,7 @@ function turnHoursToMinutes(moviesArr) {
         let hour = String(movie.duration).match(/\d+h/g);
         let min = String(movie.duration).match(/\d+min/g);
         hour = hour != null ? Number(hour[0].match(/\d+/g)[0]) : 0;
-        min = min != null ? Number(min[0].match(/\d+/g)[0]) : 0;
+        min = min != null ? Number( min[0].match(/\d+/g)[0]) : 0;
         movie.duration = hour * 60 + min;
         return movie;
     })
