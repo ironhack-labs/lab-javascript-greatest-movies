@@ -1,6 +1,8 @@
 /* eslint no-undef: "off" */
 /* eslint jasmine/no-spec-dupes: "off" */
 
+
+
 describe("Get the average rate - ratesAverage", function() {
   it("Defines ratesAverage", function() {
     expect(typeof ratesAverage).toBe("function");
