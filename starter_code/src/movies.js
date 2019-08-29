@@ -6,7 +6,7 @@
 // Iteration 1: All rates average - Get the average of all rates with 2 decimals 
 function ratesAverage(array) {
   return parseFloat((array.reduce((sum, current) => {
-    return sum += current.rate
+    return sum += Number(current.rate)
   }, 0)/array.length).toFixed(2));
 }
  
@@ -57,57 +57,61 @@ function orderAlphabetically(array) {
   return twenty
 }
 
-
-
-
-// let movies = [
-//   {
-//     title: 'The Shawshank Redemption',
-//     year: '1994',
-//     director: 'Frank Darabont',
-//     duration: '1h 0min',
-//     genre: ['Crime', 'Drama'],
-//     rate: '9.3'
-//   },
-//   {
-//     title: 'The Godfather',
-//     year: '1972',
-//     director: 'Francis Ford Coppola',
-//     duration: '55min',
-//     genre: ['Crime', 'Drama'],
-//     rate: '9.2'
-//   }
-// ]
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 //    duration: '3h 22min',
 function turnHoursToMinutes(array) {
   return array.map(movie => {
     if (typeof(movie.duration) === "number") {
-      movie.duration = movie.duration
-      return movie
+      let movieCopy = Object.assign({}, movie)
+      movieCopy.duration = movie.duration
+      return movieCopy
     }
     if (movie.duration.includes("h") && movie.duration.includes("min")) {
 
       let hrs = movie.duration.split("h")[0]
       let mins = movie.duration.split(" ")[1].split("min")[0]
-  
-      if (hrs == 0) movie.duration = Number(mins)
-      if (mins == 0) movie.duration = Number(hrs * 60)
-      else movie.duration = Number(hrs * 60) + Number(mins)
-        return movie
+      
+      let movieCopy = Object.assign({}, movie)
+      if (hrs == 0) movieCopy.duration = Number(mins)
+      if (mins == 0) movieCopy.duration = Number(hrs * 60)
+      else movieCopy.duration = Number(hrs * 60) + Number(mins)
+        return movieCopy
    }
    else if (movie.duration.includes("h")) {
-    movie.duration = Number(movie.duration.split("h")[0] * 60)
-    return movie
+     let movieCopy = Object.assign({}, movie)
+      movieCopy.duration = Number(movie.duration.split("h")[0] * 60)
+      return movieCopy
    }
    else if (movie.duration.includes("min")) {
-    movie.duration = Number(movie.duration.split("min")[0])
-    return movie
+     let movieCopy = Object.assign({}, movie)
+      movieCopy.duration = Number(movie.duration.split("min")[0])
+      return movieCopy
    }
   })
 }
 
-
-// console.log(turnHoursToMinutes(movies)[1])
-
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(array) {
+  array.sort((a,b) => {
+    return Number(a.year) - Number(b.year)
+  })
+
+  let years = []
+
+  array.forEach(movie => {
+    if(!years.includes(movie.year)) years.push(movie.year)
+  })
+
+  if (years.length > 0) {
+    let ratings = years.map(year => {
+      return ratesAverage(array.filter(movie => movie.year === year))
+    })
+  
+    let highest = Math.max(...ratings)
+    let index = ratings.indexOf(highest)
+  
+    return `The best year was ${years[index]} with an average rate of ${highest}`
+  }
+
+  return null
+}
