@@ -58,7 +58,7 @@ function orderByDuration(movies) {
     let newMoviesArray = turnHoursToMinutes(movies);
 
     let sorted = newMoviesArray.sort(function (a, b) {
-
+        
         if(a.duration != b.duration){
             return a.duration - b.duration;
         }
@@ -69,8 +69,7 @@ function orderByDuration(movies) {
             return 1;
         else 
             return 0;
-        // else
-        //     return a.title - b.title;
+
     });
 
     
@@ -93,9 +92,11 @@ function howManyMovies(movies) {
         return movie.genre.includes('Drama');
     });
 
-    dramaMovies.filter(function (movie) {
+    let stevenSpielbergMovies = dramaMovies.filter(function (movie) {
         return movie.director == 'Steven Spielberg';
     });
+
+    return stevenSpielbergMovies.length;
 }
 
 
@@ -107,7 +108,12 @@ function howManyMovies(movies) {
 
 
 function orderAlphabetically(movies) {
-
+    
+        const movieTitles = movies.map(movie => movie.title);
+        
+        const sortedTitles = movieTitles.sort().splice(0,20);
+        return sortedTitles;
+    
 }
 
 
@@ -120,50 +126,45 @@ function orderAlphabetically(movies) {
 
 
 function turnHoursToMinutes(movies) {
-    console.log('hi', movies);
-    let newMoviesArray = movies.map(function (movie) {
-        console.log('here');
-        console.log('duration:' + movie.duration)
+
+    let newMoviesArray = movies.map(function (m) {
+    
+        let movie = { ...m }
         if (isNaN(movie.duration)) {
             let durationSplit = movie.duration.split(' ');
+            let onlyMin = false;
+            let onlyHr = false;
             let durationArray = [];
             let minutes;
-
-            for (let i = 0; i < durationSplit.length; i++) {
-                durationArray[i] = parseFloat(durationSplit[i]);
-                // durationArray.push(parseFloat(durationSplit[i]));
+            
+            for(let i = 0; i < durationSplit.length; i++) {
+                if(durationSplit[i].includes('h') && onlyHr === false){
+                    onlyHr = true;
+                } 
+                if(durationSplit[i].includes('min') && onlyMin === false) {
+                    onlyMin = true;
+                }
             }
 
-            minutes = Number(durationArray[0] * 60) + Number(durationArray[1]);
+            for (let i = 0; i < durationSplit.length; i++) {
+                durationArray.push(parseFloat(durationSplit[i]));
+            }
+           
+            
+            if(onlyHr && onlyMin) {
+                minutes = Number(durationArray[0] * 60) + Number(durationArray[1]);
+            } else if(onlyHr) {
+                minutes = Number(durationArray[0] * 60);
+            } else if(onlyMin){
+                minutes = Number(durationArray[0]);
+            }
+           
             movie.duration = minutes;
         }
-
+      
         return movie;
-
-
-
-
-        // console.log(movie);
-        //return movie.title
-        // let minutes = [];
-
-        // for(let i=0; i<newMoviesArray.length; i++){
-
-        //     let durationSplit = newMoviesArray[i].duration.split(' ');
-        //     console.log(durationSplit.length);
-        //     let durationArray = [];
-
-        //     for(let j=0; j<durationSplit.length; j++){
-
-        //         durationArray[j] = parseFloat(durationSplit[j]);
-        //         console.log(durationArray);
-        //     }
-        //      minutes[i] = (Number(durationArray[0]*60))+Number(durationArray[1]);
-        //      newMoviesArray[i].duration = minutes[i]
-        // }    
     })
-    //console.log(newMoviesArray)
-
+ 
     return newMoviesArray;
 
 }
@@ -176,3 +177,52 @@ function turnHoursToMinutes(movies) {
 
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+
+function bestYearAvg(movies){
+
+    if(movies.length == 0){
+        return null;
+    }
+
+    let movieYears = [...new Set(movies.map(movie => movie.year))];
+    let arrayByYear = [];
+    let averages = [];
+    let currentBestAverage = 0;
+    let currentBestYear = null;
+
+    for(let i=0; i<movieYears.length; i++){
+        arrayByYear[i] = movies.filter(function(movie){
+            return movie.year == movieYears[i];
+        })
+        averages[i] = ratesAverage(arrayByYear[i]);
+
+        if(averages[i]<currentBestAverage){
+            continue;
+        }
+        else if(averages[i]>currentBestAverage){
+            
+            currentBestAverage = averages[i];
+            currentBestYear = movieYears[i];
+        }
+        else if(averages[i] == currentBestAverage){
+            if(movieYears[i] < currentBestYear){
+                currentBestAverage = averages[i];
+                currentBestYear = movieYears[i];
+            }
+        }
+    }
+
+    console.log('bestAverage: ', currentBestAverage);
+    console.log('best year: ', currentBestYear);
+
+
+    return `The best year was ${currentBestYear} with an average rate of ${currentBestAverage}`;
+
+
+
+    
+
+
+    
+}
