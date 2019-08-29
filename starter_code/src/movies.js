@@ -53,7 +53,7 @@ function turnHoursToMinutes(movies) {
         let totalMinutes = hour * 60 + min;    //alles außer + wird auch Strings mit Zahlen implizit umwandeln 
         element.duration = totalMinutes;
 
-        return;
+        return array;
     })
 
     /*
