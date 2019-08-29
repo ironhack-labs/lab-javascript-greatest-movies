@@ -49,12 +49,31 @@ function howManyMovies(movies) {
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
+    let newMovies = movies.map(movies => movies.title)
+    let newOrder = newMovies.sort((m1, m2) => m1 - m2 || m1.localeCompare(m2))
 
-
-
+    return newOrder.splice(0, 20)
 }
 
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
+let turnHoursToMinutes = (movieArr) => {
+    let finalArr = []
+    let movieDuration = movieArr.map((movie) => movie.duration)
+    movieDuration.map((time) => {
+        if (time.includes('h')) {
+            let arrSplit = time.split('')
+            let hours = (parseFloat(arrSplit[0]) * 60)
+            let minutes = parseFloat(arrSplit[1]) || 0
+            result = hours + minutes
+            finalArr.push({ duration: result })
+        } else {
+            console.log(parseFloat(time))
+        }
+    })
+    console.log(finalArr)
+    return finalArr
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
