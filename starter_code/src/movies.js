@@ -41,24 +41,25 @@ function dramaMoviesRate(array) {
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-function turnHoursToMinutes(movies) {
+function turnHoursToMinutes(array2) {
 
-// indexOf liefert -1 zurück, wenn Leerstring => muss noch abgefangen werden, falls 0 minuten. 
-
- let array = Array.from(movies);
+  let array = Array.from(array2);
 
     array.forEach((element) => {
+
         let hour = parseFloat(element.duration.slice(0, element.duration.indexOf("h")));
-        let min = parseFloat(element.duration.slice(element.duration.indexOf("h") + 2, element.duration.indexOf("m")));  
-        let totalMinutes = hour * 60 + min;    //alles außer + wird auch Strings mit Zahlen implizit umwandeln 
+
+        let min = parseFloat(element.duration.slice(element.duration.indexOf("h") + 2, element.duration.indexOf("m")));
+        
+        let totalMinutes = hour * 60 + min;
+
         element.duration = totalMinutes;
 
-        return array;
+        return;
     })
 
-    /*
-array.map(movie => )
-    */
+    return array;
+
 }
 
 turnHoursToMinutes(movies);
@@ -68,7 +69,7 @@ turnHoursToMinutes(movies);
 
 function orderByDuration(array) {
 
-    return array.sort((a, b)=> {
+    return array.sort(function (a, b) {
 
         if (a.duration === b.duration) {
 
@@ -103,15 +104,18 @@ howManyMovies(movies);
 
 function orderAlphabetically(array) {
 
+
     let onlyTitles = array.map((element) => {
         return element.title;
     });
 
     let sortedArray = onlyTitles.sort(function (a, b) {
+
         return a.localeCompare(b);
+
     })
 
-    if (sortedArray.length > 20) sortedArray = sortedArray.splice(0, 20);  //if braucht's nicht unbedingt, weniger werden trotzdem behalten.
+    if (sortedArray.length > 20) sortedArray = sortedArray.splice(0, 20);
 
     return sortedArray;
 }
@@ -144,15 +148,15 @@ function bestYearAvg(array) {
     }
 
 
-    //finish iterating through years ... filter and get ratesAverage(listOfMovies) 
+
+    //ratesAverage(listOfMovies) 
 
 }
 
 bestYearAvg(movies);
 
 
-/* movie variable example...
-
+/* movie variable ...
 let movies = [
   {
     title: 'The Shawshank Redemption',
