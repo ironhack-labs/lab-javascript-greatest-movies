@@ -26,51 +26,34 @@ function dramaMoviesRate(movies) {
     return Number((dramaaverages / dramaFilter.length).toFixed(2))
 }
 
-
-
-
-
 // }
 
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
 function orderByDuration(movies) {
-    // const durationHour = []
-    // const durationMinute = []
-
-
-    // for (i = 0; i < movies.length; i++) {
-    //     if (movies[i].duration.includes('h') && !movies[i].duration.includes('min')) {
-    //         // console.log(Number(movies[i].duration.split('')[0]))
-    //         let hours = Number(movies[i].duration.split('')[0]);
-    //         durationHour.push(hours);
-    //         // console.log(durationHour);
-    //         // console.log(hours)
-    //     } else if (movies[i].duration.includes('h') && movies[i].duration.includes('min')) {
-    //         // console.log(Number(movies[i].duration.split('')[0]))
-    //         let hourAndMinute = Number(movies[i].duration.split('')[0])
-    //         durationMinute.push(hourAndMinute);
-    //         // console.log(durationMinute)
-    //         console.log(hourAndMinute)
-    //     }
-    //     const array = []
-    //     array.push(durationHour);
-    //     array.push(durationMinute);
-
-    // }
+    let fullDuration = movies.sort((m1, m2) => m1.duration - m2.duration || m1.title.localeCompare(m2.title))
+    return fullDuration
+}
 
 
 
-    // conts fullDuration =
-    //     array.sort(function(a, b) {
-    //         return a.duration - b.duration
-    //     })
+
+// Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
+function howManyMovies(movies) {
+    const stevenMovies = movies.filter(themovies => themovies.director.includes("Steven Spielberg"))
+        // console.log(stevenMovies)
+    const stevenDramas = stevenMovies.filter(themovies => themovies.genre.includes("Drama"))
+    return stevenDramas.length;
 
 }
 
-// Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
-
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(movies) {
+
+
+
+}
+
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
