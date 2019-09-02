@@ -6,9 +6,11 @@ describe("Get the average rate - ratesAverage", function() {
     expect(typeof ratesAverage).toBe("function");
   });
 
+  
   it("You should return a number my friend! Check parseFloat method!", function() {
     expect(typeof ratesAverage(movies)).toBe("number");
   });
+  
 
   it("You should return the average rate of 2 movies with rate 8 each!", function() {
     expect(ratesAverage([{ rate: 8 }, { rate: 8 }])).toBe(8);
@@ -26,7 +28,11 @@ describe("Get the average rate - ratesAverage", function() {
       2
     );
   });
+  
+  
 });
+
+
 
 describe("Average rate of Drama Movies - dramaMoviesRate", function() {
   it("Defines dramaMoviesRate", function() {
@@ -40,6 +46,8 @@ describe("Average rate of Drama Movies - dramaMoviesRate", function() {
   it("Return the rate of a single element array!", function() {
     expect(dramaMoviesRate([{ genre: ["Drama"], rate: 8 }])).toBe(8);
   });
+  
+
 
   it("Return average even if one of the movies does not have rate!", function() {
     expect(
@@ -49,7 +57,7 @@ describe("Average rate of Drama Movies - dramaMoviesRate", function() {
       ])
     ).toBe(4);
   });
-
+ 
   it("It should return the average of the array!", function() {
     expect(
       dramaMoviesRate([
@@ -59,6 +67,7 @@ describe("Average rate of Drama Movies - dramaMoviesRate", function() {
       ])
     ).toBe(8);
   });
+  
 
   it("It should return the average of the array, float!", function() {
     expect(
@@ -79,6 +88,8 @@ describe("Average rate of Drama Movies - dramaMoviesRate", function() {
       ])
     ).toBe(7.5);
   });
+  
+  
 
   it("Should return 0 if there is no Drama movie!", function() {
     expect(
@@ -88,9 +99,13 @@ describe("Average rate of Drama Movies - dramaMoviesRate", function() {
         { genre: ["Sci-Fi"], rate: 7 }
       ])
     ).toBe(0);
+	
+	
   });
+  
 });
 
+/*
 describe("Order the movies by duration - orderByDuration", function() {
   it("Defines orderByDuration", function() {
     expect(typeof orderByDuration).toBe("function");
@@ -413,3 +428,4 @@ describe("Best year average - bestYearAvg", function() {
     );
   });
 });
+*/
