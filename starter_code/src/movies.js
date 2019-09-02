@@ -138,3 +138,135 @@ function turnHoursToMinutes(movies){
 
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movies){
+	
+  if (movies.length==0) return null;
+  if (movies.length==1) return "The best year was "+movies[0].year+" with an average rate of "+movies[0].rate;
+  
+  //order by year
+  
+  var orderedMovies=movies.sort
+  ((a,b)=>
+	{
+	 if (a.year < b.year){
+        return -1;
+    }
+
+    if (a.year > b.year){
+        return 1;
+    }
+    return 0;
+	  }
+	
+	);
+	
+	
+	// group rates by year {year:2000,rates[9,2,3]);
+	
+	var prevYear=movies[0].year;
+	var acum=0;
+	let rates=[];
+	var cnt=1;
+	var newMap=[];
+	orderedMovies.forEach(movie=>{
+		
+	    if (prevYear!=movie.year){
+		    var obj= {
+			  year:prevYear,
+			  rates:rates
+			 }
+			 rates=[];
+			 newMap.push(obj);
+		 }
+		 rates.push(movie.rate);
+		 prevYear=movie.year;
+		
+	});
+	
+	console.log(orderedMovies);
+     
+	var obj= {
+			  year:prevYear,
+			  rates:rates
+			 }
+   newMap.push(obj);
+   
+   console.log(newMap);
+   
+   // reduce rates by year {year:2000,avg:9.2);
+  
+   var newMap2=newMap.map(movie=>
+   {
+	   var rateacum=movie.rates.reduce( (acum,rate)=>acum+parseFloat(rate),0);
+	   
+	   var avg=rateacum/movie.rates.length;
+	   return {
+	    year:movie.year,
+		avg:avg
+	   }
+	  
+   });
+   
+   console.log(newMap2);
+    // order by avg;
+	var newMap3=newMap2.sort
+	((a,b)=>
+	{
+	 if (a.avg > b.avg){
+        return -1;
+    }
+
+    if (a.avg < b.avg){
+        return 1;
+    }
+    return 0;
+	  }
+	
+	);
+	 // the winner is first; 
+	
+	 var winner=newMap3[0].avg;
+	 
+	 // filter by  winner and sort by year; 
+	 var newMap4=newMap3.filter(movie=>movie.avg===winner).sort
+	 ((a,b)=>
+	{
+	 if (a.year < b.year){
+        return -1;
+    }
+
+    if (a.year > b.year){
+        return 1;
+    }
+    return 0;
+	  }
+	
+	);
+	 
+	 //take the first
+	 
+	 return "The best year was "+newMap4[0].year+" with an average rate of "+newMap4[0].avg;
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

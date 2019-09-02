@@ -366,7 +366,7 @@ describe("Order alphabetically - orderAlphabetically", function() {
   });
 });
 
-/*
+
 describe("Turn duration of the movies - turnHoursToMinutes", function() {
   it("Defines turnHoursToMinutes", function() {
     expect(typeof turnHoursToMinutes).toBe("function");
@@ -409,6 +409,8 @@ describe("Turn duration of the movies - turnHoursToMinutes", function() {
   });
 });
 
+
+
 describe("Best year average - bestYearAvg", function() {
   it("Defines bestYearAvg", function() {
     expect(typeof bestYearAvg).toBe("function");
@@ -440,7 +442,7 @@ describe("Best year average - bestYearAvg", function() {
 
     expect(bestYearAvg(newMoviesArr)).toEqual(
       "The best year was 1978 with an average rate of 8.5"
-    );
+   );
   });
 });
-*/
+
