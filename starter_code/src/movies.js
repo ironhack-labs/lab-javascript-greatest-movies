@@ -129,18 +129,29 @@ function turnHoursToMinutes(movies){
     return newFormatDurationMovies;
 }
 
+
+
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 function bestYearAvg(movies){
+	
+	let yearRates = [];
 
-    let years = movies.map(function(movie){
-        return [movie.year][movie.rate];
-    });
+    movies.forEach(function(movie){
+		
+		if(yearRates.length === 0){
+			yearRates.push([movie.year, movie.rate]);
+		}else{
+		
+		for(let i = 0; i < yearRates; i++){
+			if(yearRates[i].indexOf(movie.year) !== -1){
+				yearRates[i].push(movie.rate);
+			}else{
+				yearRates.push([movie.year, movie.rate]);
+			}
+		}
+		}
+	});
+	
 
-    return years;
-}
-
-let zanos = {
-    2014 : [3.4, 5.4, 6.4],
-    2018 : [2.3, 5.4, 7.8],
-    2012 : [2.3, 5.4, 7.8]
+    return yearRates;
 }
