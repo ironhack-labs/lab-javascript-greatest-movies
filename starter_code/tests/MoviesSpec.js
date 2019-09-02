@@ -105,7 +105,7 @@ describe("Average rate of Drama Movies - dramaMoviesRate", function() {
   
 });
 
-/*
+
 describe("Order the movies by duration - orderByDuration", function() {
   it("Defines orderByDuration", function() {
     expect(typeof orderByDuration).toBe("function");
@@ -118,13 +118,15 @@ describe("Order the movies by duration - orderByDuration", function() {
   it("Should return the element in a single element array", function() {
     expect(orderByDuration([{ duration: 100 }])).toEqual([{ duration: 100 }]);
   });
-
+  
+ 
   it("Return the new array in ascending order", function() {
     expect(
       orderByDuration([{ duration: 100 }, { duration: 180 }, { duration: 90 }])
     ).toEqual([{ duration: 90 }, { duration: 100 }, { duration: 180 }]);
   });
 
+ 
   it("If two movies have the same length, order them alphabetically by their title", function() {
     expect(
       orderByDuration([
@@ -138,7 +140,11 @@ describe("Order the movies by duration - orderByDuration", function() {
       { title: "abc", duration: 180 }
     ]);
   });
+  
+ 
 });
+
+
 
 describe("Get how many movies - howManyMovies", function() {
   it("Defines howManyMovies", function() {
@@ -153,6 +159,7 @@ describe("Get how many movies - howManyMovies", function() {
     expect(howManyMovies([])).toBe(0);
   });
 
+  
   it("Return 0 if he did not direct none of the movies in the array", function() {
     expect(
       howManyMovies([
@@ -178,6 +185,7 @@ describe("Get how many movies - howManyMovies", function() {
       ])
     ).toBe(1);
   });
+  
 
   it("Only Steven Spielberg movies! Should return 2", function() {
     expect(
@@ -202,10 +210,16 @@ describe("Get how many movies - howManyMovies", function() {
     ).toBe(2);
   });
 
+  
+  
   it("Should return 4", function() {
     expect(howManyMovies(movies)).toBe(4);
   });
+  
+  
+  
 });
+
 
 describe("Order alphabetically - orderAlphabetically", function() {
   it("Defines orderAlphabetically", function() {
@@ -270,10 +284,10 @@ describe("Order alphabetically - orderAlphabetically", function() {
   });
 
   it("You should order them alphabetically.", function() {
-    var moviesArr = [
-      { title: "aab" },
+   var moviesArr = [
+     { title: "aab" },
       { title: "aaa" },
-      { title: "abc" },
+     { title: "abc" },
       { title: "acb" },
       { title: "abb" }
     ];
@@ -352,6 +366,7 @@ describe("Order alphabetically - orderAlphabetically", function() {
   });
 });
 
+/*
 describe("Turn duration of the movies - turnHoursToMinutes", function() {
   it("Defines turnHoursToMinutes", function() {
     expect(typeof turnHoursToMinutes).toBe("function");
