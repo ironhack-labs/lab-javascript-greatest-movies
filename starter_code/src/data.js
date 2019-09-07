@@ -2000,3 +2000,82 @@ let movies = [
     rate: '8.0'
   }
 ];
+
+function turnHoursToMinutes(arrayHour) {
+  return newTime = arrayHour.map(times => {
+    let time;
+    let minute;
+    let hour;
+    let newDuration;
+    time = times.duration;
+    time = time + "";
+    if (time.indexOf("h") !== -1 && time.indexOf("min") !== -1) {
+      hour = time.slice(0, 2);
+      hour = hour.replace("h", "");
+      hour *= 60;
+      minute = time.split(" ");
+      minute = minute[1].replace("min", "");
+      minute *= 1;
+      newDuration = hour + minute;
+      times.duration = newDuration;
+
+    } else if (time.indexOf("h") !== -1) {
+      hour = time.slice(0, 2);
+      hour = hour.replace("h", "");
+      hour *= 60;
+      times.duration = hour;
+    } else {
+      minute = time.replace("min", "");
+      minute *= 1;
+      times.duration = minute;
+    }
+    return times;
+
+  });
+}
+
+//console.log(turnHoursToMinutes(movies));
+
+function bestYearAvg(moviess) {
+  if(moviess.length == 0 ){
+    return null;
+  }
+  let year = moviess.map(years => {
+    let yea = years.year;
+    return yea;
+  });
+
+  var filteredArrayYear = year.filter(function (item, pos) {
+    return year.indexOf(item) == pos;
+  })
+
+  let listMovies = [];
+  for(let i = 0; i < filteredArrayYear.length; i++){
+    let moviesYear = moviess.filter(function (movi) {return movi.year === filteredArrayYear[i]});
+    var arrayRates = 0;  
+    moviesYear.forEach(movie => {
+      arrayRates += parseFloat(movie.rate);
+      
+    })
+    
+    let newAverage = parseFloat(arrayRates/moviesYear.length);
+    console.log(filteredArrayYear[i],newAverage);
+
+
+
+
+  }
+
+  
+  
+
+  //console.log(filteredArray);
+   
+  filteredArrayYear.forEach(movie => {
+    arrayRates += parseFloat(movie.rate)
+
+  });
+
+}
+bestYearAvg(movies);
+
