@@ -143,7 +143,6 @@ const bestYearAvg = (date) => {
     let win_rate = 0
     let win_year = ""
     let actual_rate = 0
-    let tie = []
     for(let j = 0; j < years.length; j++){
         let actual_year = years[j]
         actual_rate = 0
