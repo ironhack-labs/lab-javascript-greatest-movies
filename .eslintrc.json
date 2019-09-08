@@ -1,9 +1,9 @@
-{  
-    "plugins": [ "jasmine" ],
+{
+    "plugins": ["jasmine"],
     "env": {
         "jasmine": true
     },
-    "extends" : ["airbnb-base/legacy", "plugin:jasmine/recommended"],
+    "extends": [],
     "rules": {
         "func-names": "off",
         "no-alert": "off",
