@@ -111,3 +111,8 @@ function turnHoursToMinutes(arr) {
 console.log(turnHoursToMinutes(movies))
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+
+function bestYearAvg() {
+    
+}
