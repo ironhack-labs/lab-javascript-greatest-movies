@@ -83,20 +83,31 @@ console.log(orderAlphabetically(movies))
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arr) {
     let durationMin = [];
-    let durMinutesS = [];
     let movieTime = 0;
-    let newArr = [];
-    newArr = arr.map(function (item) {
-        let durationOriginal = item.duration;
-        durationMin = durationOriginal.split('h ');
-        movieTime = parseInt(durationMin[0]) * 60;
-        durMinutesS = durationMin[1].split('min');
-        movieTime += parseInt(durMinutesS[0]);
+    //forma de fazer a cópia criando um novo array sem referenciar
+    const newArr = JSON.parse(JSON.stringify(arr));
+    durationMin = newArr.map(function (item, index) {
+        //verificar se existe parâmetro de horas.
+        //Se tiver, o indexOf vai retornar um valor acima de -1.
+        //Se tiver o h, pegar o valor do inicio até o indice do h, que são as horas, e multiplica por 0.
+        if (item.duration.indexOf('h') >= 0) {
+            movieTime += item.duration.slice(0, item.duration.indexOf('h')) * 60;
+            //se tiver minutos, pega o valor entre o espaço e o m e converte em numero, com a multiplicação por 1
+            if (item.duration.indexOf('m') >= 0) {
+                movieTime += 1 * item.duration.slice(item.duration.indexOf(' '), item.duration.indexOf('m'));
+            }
+        } else {
+            // se nao tiver h, o valor do inicio até o indice de m será os minutos.
+            // o 1* é pra converter rapidamente a string em numero.
+            movieTime += 1 * item.duration.slice(0, item.duration.indexOf('m'));
+        }
+        //atribui o valor calculado para a duraçao de cada objeto
         item.duration = movieTime;
+        //retorna o objeto, ou seja, o item.
         return item;
     });
-    return newArr;
-}
+    return durationMin;
+ }
 console.log(turnHoursToMinutes(movies))
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
