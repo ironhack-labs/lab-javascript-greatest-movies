@@ -1,9 +1,18 @@
-/* eslint no-restricted-globals: 'off' */
-
 // Iteration 1: All rates average - Get the average of all rates with 2 decimals 
-
+function ratesAverage(array){
+  return parseFloat((array.reduce((sum, element) => sum + parseFloat(element.rate), 0) / array.length).toFixed(2))
+}
  
 // Iteration 2: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(movies) {
+  const dramaGenre = movies.filter(movie => {
+    movie.genre.inludes("Drama")
+  });
+  
+
+
+  console.log(dramaGenre);
+}
 
 
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)

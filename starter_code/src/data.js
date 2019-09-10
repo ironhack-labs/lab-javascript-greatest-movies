@@ -9,7 +9,7 @@ let movies = [
   },
   {
     title: 'The Godfather',
-    year: '1972',
+    year: '1972', 
     director: 'Francis Ford Coppola',
     duration: '2h 55min',
     genre: ['Crime', 'Drama'],
