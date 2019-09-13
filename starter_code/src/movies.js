@@ -12,7 +12,6 @@ function ratesAverage(arr){
 
 function dramaMoviesRate(arr){
     const dramaMovies = arr.filter(movie => movie.genre.find(gen => gen === 'Drama'))
-    console.log(dramaMovies[45])
     const avg = ratesAverage(dramaMovies)
     return avg
 }
@@ -22,7 +21,7 @@ function dramaMoviesRate(arr){
 function orderByDuration(arr){
    const result =  arr.sort((movie1, movie2) => {
      if (movie1.duration === movie2.duration){
-       return movie1.title - movie2.title
+       return movie1.title < movie2.title ? -1 : 1;
      }else{
       return movie1.duration - movie2.duration
      }     
@@ -52,45 +51,70 @@ function orderAlphabetically(arr){
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-function hourInMinutes(duration){
-  let hour = duration.slice(0,1)
-  let min = duration.slice(3, -3)
-  let result = Number(hour)*60 + Number(min)
-  return result
-}
 
 
 function turnHoursToMinutes(arr){
-  const movies = [...arr]
+  const copyArr = []
 
   arr.map(movie => {
-    movie.duration = hourInMinutes(movie.duration)
+    movie.duration = minutesFromDurationString(movie.duration)
+    copyArr.push(movie)
   }) 
   
-  return movies
+  return copyArr
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
+function bestYearAvg(arr){
+  let result = null
 
+  let years = [...new Set(arr.map(movie => movie.year))]
+
+  if (arr.length === 0) return result
+
+  let avg = years.map(year => {
+    arr.reduce((acc, rates) =>{
+      if (arr.year === year) return acc + rates
+    })
+  })
+
+  let number = years.map(year =>{
+    arr.filter(movie => movie.year === year)
+  }).length
+
+  let media = 0
+
+  (number > 0)? avg/number : avg
+
+  return `The best year was ${arr.year} with an average rate of ${media}`
+
+  
+}
 
 
 // function with minutes
 
-/*const minsDuration = arr.map(movie => {
-        let hourString = ''
-        let minsString = ''
-        let mins = 0;
-       let duration =  movie.duration.split('')
-      
-       //concatenar horas y convetirlas en minutos
-       for(i=0; i < duration.indexOf('h');i++){
-         hourString += duration[i]
-       }
-       for(i=duration.indexOf(' '); i < duration.indexOf('m');i++){
-         minsString += duration[i]
-       }
-       mins += (Number(hourString * 60) + Number(minsString))
-       movie.durationMins = mins
 
-       return movie
-      })*/
+
+function minutesFromHString(hString) {
+  return Number(hString.replace(/h/, '')) * 60
+}
+
+function minutesFromMinString(minString) {
+  return Number(minString.replace(/min/, ''))
+}
+
+function minutesFromDurationString(duration) {
+  const durationArr = duration.toString().split(' ')
+
+  if (durationArr.length === 2) {
+    return minutesFromHString(durationArr[0])
+      + minutesFromMinString(durationArr[1])
+  }
+
+  if (durationArr[0].includes('h')) {
+    return minutesFromHString(durationArr[0])
+  }
+  
+  return minutesFromMinString(durationArr[0])
+}
