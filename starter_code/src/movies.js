@@ -94,23 +94,23 @@ function turnHoursToMinutes(array) {
 - The rate of that year
 */
 function bestYearAvg(array) {
-  if (array.length === 0){return null};
+  // if (array.length === 0){return null};
 
-  const years = array.map(movie => {
-    //return Number(movie.year);
-    return {
-      year: movie.year,
-      rate: Number(movie.rate)
-    }
-  })
+  // const years = array.map(movie => {
+  //   //return Number(movie.year);
+  //   return {
+  //     year: movie.year,
+  //     rate: Number(movie.rate)
+  //   }
+  // })
 
-  years.reduce((sum, element) => {
-    if(movie.year === movie.year){
-      return sum + movie.rate;
-    }
-  });
+  // years.reduce((sum, element) => {
+  //   if(movie.year === movie.year){
+  //     return sum + movie.rate;
+  //   }
+  // });
   
-  console.log(years)
+  // console.log(years)
 }
 
 //return Number((array.reduce((sum, element) => sum + Number(element.rate), 0) / array.length).toFixed(2))
