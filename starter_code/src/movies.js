@@ -80,5 +80,18 @@ function turnHoursToMinutes(filmArray){
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
 function bestYearAvg(filmArray){
+    if (filmArray.length === 0) return null;
+    const years = filmArray.map(film => film.year);
+    let best = 0;
+    let result= 0;
+    
+    years.forEach(element => {
+        const avg = ratesAverage(filmArray.filter(e=>e.year == element));
+        if(avg >= best){
+            best = avg;
+            result = element;
+        }
+    });
 
+    return "The best year was " + result + " with an average rate of " + best;
 }
