@@ -54,14 +54,14 @@ function orderAlphabetically(arr){
 
 
 function turnHoursToMinutes(arr){
-  const copyArr = []
+  const copyArr = arr.map(movie => Object.assign({}, movie))
 
-  arr.map(movie => {
+  const result = copyArr.map(movie => {
     movie.duration = minutesFromDurationString(movie.duration)
-    copyArr.push(movie)
+    return movie
   }) 
   
-  return copyArr
+  return result
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
