@@ -22,19 +22,7 @@ const ratesAverage = movies => {
 
 // Iteration 2: Drama movies - Get the average of Drama Movies
 const dramaMoviesRate = movies => {
-    const arrDramaMovies = []
-    const dramaMovies = movies.filter(movie => {
-        if (movie.genre.includes('Drama')) {
-            arrDramaMovies.push(movie)
-        }
-    })
-
-    //  Por si no hay del género Drama
-    if (arrDramaMovies.length === 0) {
-        return 0
-    }
-
-    return ratesAverage(arrDramaMovies)
+    return ratesAverage(movies.filter(movie => movie.genre.includes('Drama')))
 }
 
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
@@ -70,8 +58,71 @@ function orderAlphabetically(movies) {
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-// haciendo un map, devolver el tiempo en minutos. Puede venir de una de esas 3 formas
-// '1h 33min'
-// '3h'
-// '45min'
+function turnHoursToMinutes(movies) {
+    let cloneMovies = movies.map(movie => Object.assign({}, movie)) // Deep copy of movies
+    const newMovies = cloneMovies.map(movie => {
+        movie.duration = durationInMinutes(movie.duration.toString().split(' ')) // Update movie duration
+        return movie
+    })
+    return newMovies
+}
+
+function durationInMinutes(durationArray) {
+    let totalDuration = 0
+    if (durationArray.length === 2) {
+        // Duration like => '1h 33min'
+        const hoursInMinutes = durationArray[0].replace('h', '') * 60
+        const minutes = durationArray[1].replace('min', '')
+        totalDuration = Number(hoursInMinutes) + Number(minutes);
+    } else {
+        if (durationArray[0].includes('h')) {
+            // Duration like => '1h'
+            totalDuration = durationArray[0].replace('h', '') * 60
+        } else {
+            // Duration like => '33min'
+            totalDuration = durationArray[0].replace('min', '')
+        }
+    }
+
+    return Number(totalDuration)
+}
+
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movies) {
+    if (movies.length === 0) {
+        return null
+    }
+
+    const years = getYears(movies) // array
+
+    // Se separan las películas por años
+    const yearMovies = years.map(year => {
+        return movies.filter(movie => movie.year === year) // [[{},{}], [{},{}]....]
+    })
+
+    // Se coge la media de todos los años
+    const finalArrayMovies = []
+    const yearMoviesAverage = yearMovies.forEach(yearMoviesArray => {
+        finalArrayMovies.push(ratesAverage(yearMoviesArray))
+    })
+
+    // Se saca el máximo de todos los años
+    const maxRateMovie = Math.max(...finalArrayMovies)
+    const maxYearsAverageIndex = finalArrayMovies.indexOf(maxRateMovie)
+    const bestYear = years[maxYearsAverageIndex]
+    const bestYearMsg = `The best year was ${bestYear} with an average rate of ${maxRateMovie}`
+    return bestYearMsg
+        
+}
+
+function getYears(movies) {
+    let years = []
+    movies.forEach(movie => {
+        // Si no encuentra el elemento en el array, le hace push
+        if (years.find(el => el === movie.year) === undefined) {
+            years.push(movie.year)
+        }
+    })
+    return years
+}
