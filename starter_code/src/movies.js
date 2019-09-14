@@ -3,7 +3,16 @@
 // Iteration 1: All rates average - Get the average of all rates with 2 decimals 
 const ratesAverage = arr => {
   return arr.reduce((acc, arrActual) => {
-    let result = acc + parseFloat(arrActual.rate) / arr.length
+    let rate;
+    if (arrActual.rate) {
+      rate = parseFloat(arrActual.rate)
+    } else {
+      rate = 0
+    } 
+
+    // const rate = arrActual.rate ? parseFloat(arrActual.rate) : 0
+
+    let result = acc + rate / arr.length
     return Number(result.toFixed(2))
   }, 0)
 } 
@@ -13,7 +22,15 @@ const dramaMoviesRate = arr => ratesAverage(arr.filter(el => el.genre.includes('
 
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
 const orderByDuration = arr => {
-  return turnHoursToMinutes(arr)
+  return arr.sort((f1,f2) => {
+    if (f1.duration < f2.duration) {
+      return -1;
+    }
+    if (f1.duration === f2.duration && f1.title < f2.title ) {
+      return -1;
+    }
+    return 1;
+  })
 }
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
@@ -63,13 +80,20 @@ const turnHoursToMinutes = arr => {
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 const bestYearAvg = arr => {
-  if (arr.length === 0) {
-    return null
-  }
-  if (arr.length === 1) {
-    return `The best year was ${arr[0].year} with an average rate of ${arr[0].rate}`
-  }
+  if (arr.length === 0) return null;
 
+  const years = arr.map(film => film.year);
   
+  let best = 0;
+  let bestYear = 0;
 
+  years.forEach(element => {
+      const avg = ratesAverage(arr.filter(e => e.year == element));
+      if(avg >= best){
+          best = avg;
+          bestYear = element;
+      }
+  });
+
+  return "The best year was " + bestYear + " with an average rate of " + best;
 }
