@@ -2000,3 +2000,64 @@ let movies = [
     rate: '8.0'
   }
 ];
+
+const ratesAverage = (movies) => {
+  if (movies.length === 0) return 0;
+  let totalSum = movies.reduce((sum, movie) => //reduce will get the sum of the array
+    sum + Number(movie.rate), 0);
+  let avg = totalSum / movies.length;
+  return Number(avg.toFixed(2));
+  // Number() transforms a string into an array. toFixed rounds the decimal houses of numbers
+};
+
+
+const dramaMoviesRate = (movies) => {
+  let dramaMovies =
+    movies.filter(movie => movie.genre.includes('Drama')); // .includes will return true or false if it finds a match 
+  return ratesAverage(dramaMovies);
+};
+
+
+
+const turnHoursToMinutes = (movies)=>  {
+  return movies.map(movie => {
+    let strDuration = movie.duration
+    let duration
+
+    // When strDuration === "Xh XXmin"
+    if (strDuration.length === "Xh XXmin".length)
+      duration = strDuration[0]*60 + strDuration[3]*10 + strDuration[4]*1
+    // When strDuration === "Xh Xmin"
+    if (strDuration.length === "Xh Xmin".length)
+      duration = strDuration[0]*60 + strDuration[3]*1
+    // When strDuration === "XXmin"
+    if (strDuration.length === "XXmin".length)
+      duration = strDuration[0]*10 + strDuration[1]*1
+    // When strDuration === "Xh"
+    if (strDuration.length === "Xh".length)
+      duration = strDuration[0]*60
+
+    return {
+      title: movie.title,
+      year: movie.year,
+      director: movie.director,
+      duration: duration,
+      genre: movie.genre,
+      rate: movie.rate
+    }
+  })
+}
+
+let orderByDuration = (array) => {
+  let convertedArray= array;
+  
+  let order = movies.sort((a,b) => {
+      return a.turnHoursToMinutes(movies) - b.turnHoursToMinutes(movies);
+  })
+};
+
+
+
+
+
+orderByDuration(movie);
