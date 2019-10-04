@@ -75,14 +75,14 @@ Create a `dramaMoviesRate()` function that receives an array as a parameter to g
 
 Again, rounded to 2 decimals!
 
-### Iteration 3: Ordering by duration
+### Iteration 3: Ordering by year
 
-We need to sort the movies in ascending order by their duration. This should be easy using one of the **methods** we've just learned. :wink: 
-Create a function `orderByDuration()` that receives an array as parameter and returns a *sorted array*.
+We need to sort the movies in ascending order by their release year. This should be easy using one of the **methods** we've just learned. :wink: 
+Create a function `orderByYear()` that receives an array as parameter and returns a *sorted array*.
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_3db351079827c0acba42cf1e397dd8a3.gif)
 
-If two movies have the same duration, order them in alphabetical order by their title! :heavy_check_mark: 
+If two movies have the same year, order them in alphabetical order by their title! :heavy_check_mark: 
 
 ### Iteration 4: Steven Spielberg. The best?
 

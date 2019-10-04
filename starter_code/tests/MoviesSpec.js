@@ -91,36 +91,36 @@ describe("Average rate of Drama Movies - dramaMoviesRate", function() {
   });
 });
 
-describe("Order the movies by duration - orderByDuration", function() {
-  it("Defines orderByDuration", function() {
-    expect(typeof orderByDuration).toBe("function");
+describe("Order the movies by year - orderByYear", function() {
+  it("Defines orderByYear", function() {
+    expect(typeof orderByYear).toBe("function");
   });
 
   it("Should return an array", function() {
-    expect(typeof orderByDuration(movies)).toBe("object");
+    expect(typeof orderByYear(movies)).toBe("object");
   });
 
   it("Should return the element in a single element array", function() {
-    expect(orderByDuration([{ duration: 100 }])).toEqual([{ duration: 100 }]);
+    expect(orderByYear([{ year: '1982' }])).toEqual([{ year: '1982' }]);
   });
 
   it("Return the new array in ascending order", function() {
     expect(
-      orderByDuration([{ duration: 100 }, { duration: 180 }, { duration: 90 }])
-    ).toEqual([{ duration: 90 }, { duration: 100 }, { duration: 180 }]);
+      orderByYear([{ year: '2002' }, { year: '1982' }, { year: '1995' }])
+    ).toEqual([{ year: '1982' }, { year: '1995' }, { year: '2002' }]);
   });
 
-  it("If two movies have the same length, order them alphabetically by their title", function() {
+  it("If two movies have the same year, order them alphabetically by their title", function() {
     expect(
-      orderByDuration([
-        { title: "abc", duration: 180 },
-        { title: "bac", duration: 90 },
-        { title: "aab", duration: 90 }
+      orderByYear([
+        { title: "abc", year: '2002' },
+        { title: "bac", year: '1982' },
+        { title: "aab", year: '1982' }
       ])
     ).toEqual([
-      { title: "aab", duration: 90 },
-      { title: "bac", duration: 90 },
-      { title: "abc", duration: 180 }
+      { title: "aab", year: '1982' },
+      { title: "bac", year: '1982' },
+      { title: "abc", year: '2002' }
     ]);
   });
 });
