@@ -2000,3 +2000,144 @@ let movies = [
     rate: '8.0'
   }
 ];
+
+
+// Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
+let turnHoursToMinutes = (movies)=>  {
+  return movies.map(movie => {
+    strDuration = movie.duration;
+    let duration
+
+          // When strDuration === "Xh XXmin"
+        if (strDuration.length === "Xh XXmin".length) {
+          duration = strDuration[0]*60 + strDuration[3]*10 + strDuration[4]*1
+        }
+        // When strDuration === "Xh Xmin"
+        if (strDuration.length === "Xh Xmin".length) {
+          duration = strDuration[0]*60 + strDuration[3]*1
+        }
+        // When strDuration === "XXmin"
+        if (strDuration.length === 'XXmin'.length)
+          duration = strDuration[0]*10 + strDuration[1]*1
+        // When strDuration === "Xh"
+        if (strDuration.length === "Xh".length)
+          duration = strDuration[0]*60
+
+          let convertedArray = {
+            title: movie.title,
+            year: movie.year,
+            director: movie.director,
+            duration: duration,
+            genre: movie.genre,
+            rate: movie.rate
+          }
+          return convertedArray;
+  })
+}
+
+const convertedMovies = turnHoursToMinutes(movies);
+
+
+  // Iteration 1: All rates average - Get the average of all rates with 2 decimals 
+  //  let ratesAverage = (movies) =>{
+  //    let sum = 0;
+    
+  //    movies.forEach(movie =>{
+  //      sum += Number(movie.rate);
+  //    })
+  //    return sum /movies.length; // convert to 2 decimals
+  //  }
+
+  //  let testAvg = ratesAverage(movies);
+  //  console.log (testAvg)
+
+ let ratesAverage = (movies) => {
+   let sum = movies.reduce((accumulator, current) =>  accumulator + Number(current.rate) ,0)/movies.length;
+    return sum/movies.length;
+ }
+
+// Iteration 2: Drama movies - Get the average of Drama Movies
+
+  // let DramaRatesAverage = (movies) =>{
+  //   let sum = 0;
+  //   let countDramas = 0;
+  //   movies.forEach(movie =>{
+  //     if (movie.genre.includes(`Drama`)){
+  //     sum += Number(movie.rate);}
+  //     countDramas += 1
+  //   })
+  //   return sum /countDramas; // convert to 2 decimals
+  // }
+
+let dramaMoviesRate = (movies) => {
+  let dramaMovies = movies.filter(movie => movie.genre.includes("Drama"));
+  let avg = ratesAverage(dramaMovies)
+  return(avg)
+}
+dramaMoviesRate(movies)
+
+// Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
+
+let orderByDuration = (array) => array.sort((a,b) => {
+  return a.duration-b.duration;
+});
+
+let orderedByDuration = orderByDuration(convertedMovies)
+
+
+// Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
+
+let StevenSpilbergCount = (movies) => {
+  let stevenSpilber = movies.filter(movie => movie.director === "Steven Spielberg")
+  let stevenCounter = stevenSpilber.length
+  return stevenCounter
+}
+
+StevenSpilbergCount(movies)
+
+// Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
+
+let orderByTitle = (array) => array.sort((a,b) =>{
+  let nameA = a.title.toUpperCase(); // ignore upper and lowercase
+  let nameB = b.title.toUpperCase(); // ignore upper and lowercase
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+  // names must be equal
+  return 0;
+});
+let alphabeticOrder = orderByTitle(movies)
+
+let orderAlphabeticTop20 = (array) => {
+let orderAlphabeticTop20 = [ ]
+for (i=0; i<20; i++){
+  orderAlphabeticTop20.push(array[i])
+  }
+return orderAlphabeticTop20
+}
+
+let Top20Alphabetic = orderAlphabeticTop20(alphabeticOrder)
+
+
+
+
+// BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+let bestYearlyRateAverage = (array) => {
+  let avgRateFilteredPerYear
+  for (i=1900; i<2020; i++){
+  avgRateFilteredPerYear = array.filter(item => item.year === i)}
+  
+  avgRateFilteredPerYear.reduce((accumulator, current) =>{
+    return accumulator + current.rate
+},0)/avgRateFilteredPerYear.length}
+
+
+let test = bestYearlyRateAverage(movies)
+console.log(test)
+
+//forEach (if year = 1 sum) - create array of object with all the year and then sum value on in correct year
