@@ -12,7 +12,7 @@ let movies = [
     year: '1972',
     director: 'Francis Ford Coppola',
     duration: '2h 55min',
-    genre: ['Crime', 'Drama'],
+    genre: ['Crime', 'Drama'],  
     rate: '9.2'
   },
   {
