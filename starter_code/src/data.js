@@ -1,5 +1,4 @@
-let movies = [
-  {
+let movies = [{
     title: 'The Shawshank Redemption',
     year: '1994',
     director: 'Frank Darabont',
@@ -2000,3 +1999,16 @@ let movies = [
     rate: '8.0'
   }
 ];
+
+// var rates = movies.filter(elem => elem.rate)
+// console.log(rates)
+
+
+
+var arrayRate = [];
+var filterbyrate = movies.filter(movie => movie.rate)
+console.log(filterbyrate)
+
+var totalRate = arrayRate.reduce((a, b) => a + b, 0);
+
+console.log(totalRate)
