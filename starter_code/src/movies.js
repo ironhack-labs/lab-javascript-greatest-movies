@@ -52,8 +52,6 @@ function howManyMovies(movies) {
   }).length;
 }
 
-console.log(howManyMovies(movies))
-
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(movies) {
@@ -93,11 +91,11 @@ function bestYearAvg(movies) {
     yearAvgs[movie.year] /= 2;
     return yearAvgs;
   }, {});
-  const sortedByYear = Object.entries(averageByYear).sort((a, b) => {
+  const sortedByRating = Object.entries(averageByYear).sort((a, b) => {
     return b[1] - a[1];
   });
-  const topRating = sortedByYear[0][1];
-  const topYears = sortedByYear.filter((movie) => {
+  const topRating = sortedByRating[0][1];
+  const topYears = sortedByRating.filter((movie) => {
     return movie[1] === topRating;
   });
   topYears.sort((a, b) => b[0][1] - a[0][1]);
