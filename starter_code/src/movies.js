@@ -28,10 +28,24 @@ function dramaMoviesRate(arr) {
     console.log(parseFloat(averageReduceDrama))
     return parseFloat(averageReduceDrama);
 }
-dramaMoviesRate(movies)
+dramaMoviesRate(movies);
 
-// Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
+// Iteration 3: Ordering by year - Order by time duration, ascending (in growing order)
 
+function orderByYear(arr) {
+    arr.sort(function (a, b) {
+
+        if (a.year > b.year) return 1;
+        if (a.year < b.year) return -1;
+        if (a.year === b.year) {
+            if (b.title > a.title) return -1
+            else return 1
+        };
+    })
+    return arr;
+}
+
+console.log(orderByYear(movies))
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 
