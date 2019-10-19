@@ -49,8 +49,11 @@ function orderAlphabetically(movies) {
 }
 // console.log(movies);
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+// Create a turnHoursToMinutes() function that receives an array as parameter, and with some magic implemented by you -
+// replaces the duration info of each of the movies for its equivalent in minutes.
+
 function turnHoursToMinutes(movies) {
   var newArray = [];
-  let convert = movie.duration(movies).asMinutes();
+  let convert = movies.duration().asMinutes();
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
