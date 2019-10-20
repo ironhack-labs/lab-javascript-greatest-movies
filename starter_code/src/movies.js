@@ -178,16 +178,20 @@ function turnHoursToMinutes(array) {
 
     // console.log(numbers);
 
-    let hoursAlmmostGone = numbers.replace(/h/g, " 60");
+    let hoursAlmmostGone = numbers.replace(/h/g, "*60");
     let byeByeMins = hoursAlmmostGone.replace(/min/g, "");
-    // let equation = byeByeMins.replace(/ /g, "+");
-    let newArray = byeByeMins.split(",");
+    let equation = byeByeMins.replace(/ /g, "+");
+    let newArray = equation.split(",");
     // let times = newArray.forEach(function (string) {
     //     return eval(string);
     // })
-    let numArray = newArray.map(eval(Number));
+    // let numArray = newArray.map(eval(Number));
 
+    // let moreArrays = newArray.forEach(function (string) {
+    //     return string.split(",");
+    // })
 
+    // let moreArrays = [...newArray];
 
 
     console.log(newArray);
