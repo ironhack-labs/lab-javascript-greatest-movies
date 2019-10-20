@@ -54,6 +54,21 @@ function orderAlphabetically(movies) {
 
 function turnHoursToMinutes(movies) {
   var newArray = [];
-  let convert = movies.duration().asMinutes();
+  console.log(movies);
+  movies.forEach(function(movie) {
+    let duration = movie.duration;
+    let hour = Number(duration.slice(0, 1) * 60);
+    let minutes = Number(duration.slice(-5, -3));
+    let newDuration = 0;
+
+    if (movie.duration.indexOf("h", 1) != -1) {
+      newDuration = hour + minutes;
+    } else {
+      newDuration = minutes;
+    }
+
+    newArray.push({ duration: newDuration });
+  });
+  return newArray;
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
