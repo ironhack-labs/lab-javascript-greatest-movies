@@ -260,11 +260,13 @@ const bestYearAvg = (movies) => {
     };
 
 
+
     // assigning the best year and the best rate to variables
-    const maxBestRate = Math.max(...collectedAverageRates);
-    const oldestBestYear = singleYears[collectedAverageRates.indexOf(maxBestRate)];
+    let maxBestRate = Math.max(...collectedAverageRates);
+    let oldestBestYear = sortedYears[collectedAverageRates.indexOf(maxBestRate)];
 
 
     //final return-statement
+
     return `The best year was ${oldestBestYear} with an average rate of ${maxBestRate}`
 }
