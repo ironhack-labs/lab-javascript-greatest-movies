@@ -136,3 +136,48 @@ function turnHoursToMinutes (movies) {
 }
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(movies) {
+    //create an array with all movie years
+    let yearsArray = movies.map(function(movie) {
+        let year = parseInt(movie.year);
+        return year;
+    })
+
+    //remove duplicates
+    yearsArray = Array.from(new Set(yearsArray));
+
+    console.log(yearsArray);
+
+    
+    //get oldest movie and youngest movie
+    let oldestMovie = Math.min(...yearsArray);
+    let youngestMovie = Math.max(...yearsArray);
+    console.log(oldestMovie, youngestMovie);
+
+    //iterate over each year and calculate the avg
+
+    
+    averagesArray = yearsArray.map(function(year) {
+        
+        //create an array of movies of the same year
+        let moviesOfAYear = movies.filter(function(movie) {
+            return (parseInt(movie.year) == parseInt(year))
+        })
+
+        //calculate average of these movies
+        return ratesAverage(moviesOfAYear);
+    })
+
+    console.log(averagesArray);
+    
+    let bestAverage = Math.max(...averagesArray);
+
+    console.log(bestAverage);
+
+    let indexOfBest = averagesArray.indexOf(bestAverage);
+    
+    let bestYear = yearsArray[indexOfBest];
+
+    return bestAverage, bestYear
+
+}
