@@ -3,9 +3,9 @@
 // Iteration 1: All rates average - Get the average of all rates with 2 decimals 
 function ratesAverage(movies) {
 
-    let container = movies.reduce(function(initial, film) {
+    let container = movies.reduce(function(accumulator, value) {
 
-        return parseFloat(initial + film.rate)
+        return parseFloat(accumulator + value.rate)
 
     }, 0);
     return +((container/movies.length).toFixed(2))
@@ -114,19 +114,14 @@ function turnHoursToMinutes (movies) {
         let minutes = 0;
         
         //validation: check for each duration if it contains h AND min or just one of both
-        for (let i = 0; i < duration.length; i++) {
-            
-            if (duration[i].includes('h')) {
-                
-                hours = duration[i].replace(/\D/g,'');
-                console.log("hours: " + hours);
+        duration.forEach(function(timeUnit) {
+            if (timeUnit.includes('h')) {
+                hours = timeUnit.replace(/\D/g,'');
             }
             else {
-                minutes = duration[i].replace(/\D/g,'');
-                console.log("minutes: " + minutes);
+                minutes = timeUnit.replace(/\D/g,'');
             }
-            
-        }
+        })
 
         //create storage for converted duration
         let durationMinutes = (Number(hours) * 60) + Number(minutes)
