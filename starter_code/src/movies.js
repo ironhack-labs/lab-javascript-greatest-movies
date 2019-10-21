@@ -2,13 +2,14 @@
 
 // Iteration 1: All rates average - Get the average of all rates with 2 decimals 
 function ratesAverage(movies) {
-
-    let container = movies.reduce(function(accumulator, value) {
-
-        return parseFloat(accumulator + value.rate)
-
+    // check if array is not empty
+    if (!movies.length) return 0;
+    // calculate sum of rates
+    const sum = movies.reduce(function (accumulator, currentValue) {
+        return accumulator + parseFloat(currentValue.rate || 0);
     }, 0);
-    return +((container/movies.length).toFixed(2))
+    // return average with 2 decimals
+    return parseFloat((sum / movies.length).toFixed(2));
 }
  
 // Iteration 2: Drama movies - Get the average of Drama Movies
@@ -137,6 +138,10 @@ function turnHoursToMinutes (movies) {
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 function bestYearAvg(movies) {
+    if (movies.length == 0) {
+        return null;
+    }
+    
     //create an array with all movie years
     let yearsArray = movies.map(function(movie) {
         let year = parseInt(movie.year);
@@ -163,8 +168,9 @@ function bestYearAvg(movies) {
         let moviesOfAYear = movies.filter(function(movie) {
             return (parseInt(movie.year) == parseInt(year))
         })
-
-        //calculate average of these movies
+        
+        console.log(moviesOfAYear);
+        console.log(ratesAverage(moviesOfAYear));
         return ratesAverage(moviesOfAYear);
     })
 
@@ -178,6 +184,5 @@ function bestYearAvg(movies) {
     
     let bestYear = yearsArray[indexOfBest];
 
-    return bestAverage, bestYear
-
+    return `The best year was ${bestYear} with an average rate of ${bestAverage}`
 }
