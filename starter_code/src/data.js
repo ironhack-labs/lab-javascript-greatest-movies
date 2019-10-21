@@ -1,5 +1,4 @@
-let movies = [
-  {
+let movies = [{
     title: 'The Shawshank Redemption',
     year: '1994',
     director: 'Frank Darabont',
@@ -2000,3 +1999,16 @@ let movies = [
     rate: '8.0'
   }
 ];
+
+function turnHoursToMinutes(arr) {
+  let newArr = arr.map(item => {
+    let durationSplitted = item.duration.split(" ");
+    let hours = parseFloat(durationSplitted[0]) * 60;
+    let minutes = parseFloat(durationSplitted[1]);
+    item.duration = hours + minutes;
+    return item;
+  });
+  return newArr;
+}
+
+console.log(turnHoursToMinutes(movies));
