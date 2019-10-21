@@ -6,7 +6,7 @@ describe("Get the average rate - ratesAverage", function() {
     expect(typeof ratesAverage).toBe("function");
   });
 
-  it("You should return a number my friend! Check parseFloat method!", function() {
+  it("You should return a number!", function() {
     expect(typeof ratesAverage(movies)).toBe("number");
   });
 
@@ -15,16 +15,11 @@ describe("Get the average rate - ratesAverage", function() {
   });
 
   it("It should be rounded to 2 decimals digits", function() {
-    expect(
-      ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }, { rate: 7 }])
-    ).toBeCloseTo(8.25, 2);
+    expect(ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }])).toBe(8.67);
   });
 
-  it("It should be rounded to nearest hundredths ", function() {
-    expect(ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }])).toBeCloseTo(
-      8.67,
-      2
-    );
+  it("It should return 0 if there is no movie", function() {
+    expect(ratesAverage([])).toBe(0);
   });
 });
 
@@ -101,26 +96,26 @@ describe("Order the movies by year - orderByYear", function() {
   });
 
   it("Should return the element in a single element array", function() {
-    expect(orderByYear([{ year: '1982' }])).toEqual([{ year: '1982' }]);
+    expect(orderByYear([{ year: "1982" }])).toEqual([{ year: "1982" }]);
   });
 
   it("Return the new array in ascending order", function() {
     expect(
-      orderByYear([{ year: '2002' }, { year: '1982' }, { year: '1995' }])
-    ).toEqual([{ year: '1982' }, { year: '1995' }, { year: '2002' }]);
+      orderByYear([{ year: "2002" }, { year: "1982" }, { year: "1995" }])
+    ).toEqual([{ year: "1982" }, { year: "1995" }, { year: "2002" }]);
   });
 
   it("If two movies have the same year, order them alphabetically by their title", function() {
     expect(
       orderByYear([
-        { title: "abc", year: '2002' },
-        { title: "bac", year: '1982' },
-        { title: "aab", year: '1982' }
+        { title: "abc", year: "2002" },
+        { title: "bac", year: "1982" },
+        { title: "aab", year: "1982" }
       ])
     ).toEqual([
-      { title: "aab", year: '1982' },
-      { title: "bac", year: '1982' },
-      { title: "abc", year: '2002' }
+      { title: "aab", year: "1982" },
+      { title: "bac", year: "1982" },
+      { title: "abc", year: "2002" }
     ]);
   });
 });
