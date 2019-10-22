@@ -74,14 +74,14 @@ function orderAlphabetically(arr) {
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes(arr) {
-    let newArr = arr.map(item => {
-        let durationSplitted = item.duration.split(" ");
+    return arr.map(item => {
+        const movieCopy = Object.assign({}, item);
+        let durationSplitted = movieCopy.duration.split(" ");
         let hours = parseFloat(durationSplitted[0]) * 60;
         let minutes = parseFloat(durationSplitted[1]);
-        item.duration = hours + minutes;
-        return item;
-    });
-    return newArr;
+        movieCopy.duration = hours + minutes;
+        return movieCopy;
+    })
 }
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
