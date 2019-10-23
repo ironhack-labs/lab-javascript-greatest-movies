@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
-const rewire = require("rewire");
-const helperList = rewire("./../src/movies.js");
+const rewire = require('rewire');
+const helperList = rewire('./../src/movies.js');
 
 const helperNames = [
-  "ratesAverage",
-  "dramaMoviesRate",
-  "orderByYear",
-  "howManyMovies",
-  "turnHoursToMinutes",
-  "bestYearAvg",
-  "orderAlphabetically"
+  'calculateAverageMovieRate',
+  'calculateAverageDramaRate',
+  'orderByYear',
+  'countSpielbergDramaMovies',
+  'turnHoursToMinutes',
+  'bestYearAvg',
+  'orderAlphabetically'
 ];
 
 for (let name of helperNames) {
