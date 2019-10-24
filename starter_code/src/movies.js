@@ -102,6 +102,19 @@ function orderByYear(arr) {
   return ascendingByYear;
 }
 
+// iteration 3: fancy function
+function orderByYearFancy(arr) {
+  return arr.sort(function(a, b) {
+    if (a.year > b.year) return 1;
+    else if (a.year < b.year) return -1;
+    else {
+      if (a.title > b.title) return 1;
+      else if (a.title < b.title) return -1;
+      else return 0;
+    } 
+  });
+}
+
 
 console.log(orderByYear(movies2));
 
