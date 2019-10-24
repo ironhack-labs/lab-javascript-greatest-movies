@@ -3,19 +3,38 @@
 // Iteration 1: All rates average - Get the average of all rates with 2 decimals 
 function ratesAverage(arr) {
   let sumOfRating = arr.reduce((sum, curr) => {
-    let ratingAsFloat = parseFloat(curr.rate);
+    let ratingAsFloat = Number(curr.rate);
     return sum + ratingAsFloat;
-  }, 0)
+  }, 0);
 
   let averageRating = sumOfRating/arr.length;
-  let avgRounded = parseFloat(averageRating.toFixed(2));
+  let avgRounded = Number(averageRating.toFixed(2));
 
-  return avgRounded;
+  return avgRounded || 0;
 }
 
 // iteration 1: fancy function
 function ratesAverageFancy(arr) {
-  return parseFloat((arr.reduce((sum, curr) => sum + parseFloat(curr.rate), 0)/arr.length).toFixed(2));;
+  return Number((arr.reduce((sum, curr) => sum + Number(curr.rate), 0)/arr.length).toFixed(2)) || 0;
+}
+
+
+
+// Iteration 2: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(arr) {
+  // if Drama is found in the genre array then return elements into array
+  let dramaOnly = arr.filter(curr => {
+    return curr.genre.indexOf("Drama") >= 0;
+  });
+
+  let dramaAvgRating = ratesAverage(dramaOnly);
+
+  return dramaAvgRating;
+}
+
+// iteration 2: fancy function
+function dramaMoviesRateFancy(arr) {
+  return ratesAverageFancy(arr.filter(curr => curr.genre.indexOf("Drama") >= 0)) || 0;
 }
 
 let movies2 = [
@@ -60,26 +79,6 @@ let movies2 = [
     rate: '8.9'
   },
 ]
-
-// Iteration 2: Drama movies - Get the average of Drama Movies
-
-function dramaMoviesRate(arr) {
-  // if Drama is found in the genre array then return elements into array
-  let dramaOnly = arr.filter(curr => {
-    return curr.genre.indexOf("Drama") >= 0;
-  })
-
-  let dramaAvgRating = ratesAverage(dramaOnly)
-
-  if(dramaAvgRating >= 0)
-  return dramaAvgRating;
-  else
-  return 0/arr.length;
-}
-
-
-
-console.log(dramaMoviesRate(movies2));
 
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
 
