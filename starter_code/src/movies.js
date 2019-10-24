@@ -63,19 +63,27 @@ const turnHoursToMinutes = movies => {
   return newArr;
 };
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
-// const bestYearAvg = movies => {
-//   let bestMovies = [];
-//   let orderedMovies = orderByYear(movies);
-//   let currentYear = 0;
-//   let highestAvg = 0;
-//   let highestYearAvg = 0;
-//   orderedMovies.forEach(movie => {
-//     if (movie.year !== currentYear) {
-//       let average = ratesAverage(bestMovies);
-//       if (average > highestAvg) {
-//         highestAvg = average;
-//         highestYearAvg = currentYear;
-//       }
-//     }
-//   });
-// };
+function bestYearAvg(movies) {
+  let bestMoviesOfThatYear = [];
+  let orderedMovies = orderByYear(movies);
+  let currentYear = 0;
+  let highestAverage = 0;
+  let highestYearAverage = 0;
+  orderedMovies.forEach(movie => {
+    if (movie.year != currentYear) {
+      //we have changed years
+      let average = ratesAverage(bestMoviesOfThatYear);
+      if (average > highestAverage) {
+        highestAverage = average;
+        highestYearAverage = currentYear;
+      }
+      currentYear = movie.year;
+    } else {
+      //where in the same year so we keep collecting movies
+      bestMoviesOfThatYear.push(movie);
+    }
+  });
+  console.log(highestAverage, highestYearAverage);
+  return `The best year was ${highestYearAverage} with an average rate of ${highestAverage}`;
+}
+console.log("bestYearAvg", bestYearAvg(movies));
