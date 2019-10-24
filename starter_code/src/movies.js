@@ -1,7 +1,7 @@
 // Iteration 1: All rates average - Get the average of all rates with 2 decimals 
 function ratesAverage(movies) {
-    const averageRate = movies.reduce((sum, object) => 
-        sum + parseFloat(object.rate), 0) / movies.length
+    const averageRate = movies.reduce((sum, eachMovie) =>
+    sum + Number(eachMovie.rate), 0) / movies.length
 
     return Math.round(averageRate * 100) / 100
 }
