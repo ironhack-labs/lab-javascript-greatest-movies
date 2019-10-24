@@ -79,6 +79,53 @@ howManyMovies = function(rate){
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
+orderAlphabetically = function(movie) {
+    let sortedArray = movie.sort((a,b) => {
+      if(a.title > b.title) {return 1}
+      if(a.title > b.title) {return -1}
+      return 0
+    })
+  return sortedArray.slice(0,20).map(movie=>movie.title)
+  }
+  
+
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
+function turnHoursToMinutes(someArray) {
+    let newMappedArr = someArray.map((arr) => {
+        return {
+            title: arr.title,
+            year: arr.year,
+            director: arr.director,
+            duration: convertDuration(arr.duration),
+            genre: arr.genre,
+            rate: arr.rate
+        }
+    });
+    return newMappedArr;
+ }
+ function convertDuration(strToConvert) {
+    let sepArr = strToConvert.split(' ');
+    let hour = 0;
+    let min = 0;
+    if (sepArr.length > 1) {
+        hour = sepArr[0].slice(0, sepArr[0].indexOf('h'));
+        min = sepArr[1].slice(0, sepArr[1].indexOf('m'));
+    } else if (sepArr.length === 1) {
+        if (sepArr[0].search('m') !== -1) {
+            hour = 0;
+            min = sepArr[0].slice(0, sepArr[0].indexOf('m'));
+        } else {
+            hour = sepArr[0].slice(0, sepArr[0].indexOf('h'));
+            min = 0;
+        }
+    } else {
+        hour = 0;
+        min = 0;
+    }
+    let convertedDuration = Number(hour) * 60 + Number(min);
+    return convertedDuration;
+ }
+
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
