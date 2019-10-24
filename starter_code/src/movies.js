@@ -79,8 +79,30 @@ function orderAlphabetically(array) {
       return count < 20 === true ? movie : 0;
     });
 }
-let testResult = orderAlphabetically(movies);
-console.log(testResult);
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(array) {
+  let convertedMovies = {};
+  convertedMovies = array.map(movie => {
+    let convertedTime = movie,
+      h = 0,
+      m = 0,
+      divider = convertedTime.duration.indexOf('h');
+    if (convertedTime.duration.includes('h') === true) {
+      h = 60 * convertedTime.duration[divider - 1];
+    }
+    if (convertedTime.duration.includes('min') === true) {
+      m = Number(convertedTime.duration.slice(divider + 1).replace('min', ''));
+      //   console.log(m);
+    }
+    convertedTime.duration = h + m;
+    return convertedTime;
+  });
+  console.log(convertedMovies);
+  return convertedMovies;
+}
 
+// The previous function has gotten a lot bigger as I've been tweaking to try and get it to pass Jasmine
+
+let testResult = turnHoursToMinutes(movies);
+// console.log(testResult);
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
