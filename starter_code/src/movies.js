@@ -52,13 +52,13 @@ function dramaMoviesRate(array) {
       return movie;
     }
   });
-  return ratesAverage(dramaMovies);
+  return isNaN(dramaMovies) === true ? ratesAverage(dramaMovies) : 0;
 }
+
+// Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
 
 let testResult = dramaMoviesRate(movies);
 console.log(testResult);
-// Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
-
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
