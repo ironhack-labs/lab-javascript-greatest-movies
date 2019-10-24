@@ -2,17 +2,20 @@
 
 // Iteration 1: All rates average - Get the average of all rates with 2 decimals 
 function ratesAverage(movies) {
-    let averageRate = movies.reduce((accum, current) => accum + parseFloat(current.rate), 0) / movies.length
+    const averageRate = movies.reduce((sum, object) => 
+        sum + parseFloat(object.rate), 0) / movies.length
+
     return Math.round(averageRate * 100) / 100
 }
 
 // Iteration 2: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate(movies){
-    const drama = movies.filter(movie => movie.genre.includes('Drama') && movie.rate !== null)
+    const drama = movies.filter(movie => movie.genre.includes('Drama') && movie.rate !== '')
     if(drama.length > 0){
-        let averageRate = drama.reduce((accum, current) => accum + parseFloat(current.rate), 0) / drama.length
-        return Math.round(averageRate*100)/100
+        // let averageRate = drama.reduce((sum, current) => sum + parseFloat(current.rate), 0) / drama.length
+        // return Math.round(averageRate*100)/100
+        return ratesAverage(drama)
     }else{
         return 0
     }
@@ -21,6 +24,9 @@ function dramaMoviesRate(movies){
 // Iteration 3: Ordering by year, ascending (in growing order)
 function orderByYear(movies) {
     movies.sort((a, b) => {
+        // if (a.year > b.year) {
+        //     return 1;
+        // }
         if (a.year - b.year) {
             return a.year - b.year;
         }
@@ -30,58 +36,56 @@ function orderByYear(movies) {
         if (a.title < b.title) {
             return -1;
         }
-        // else{
-        //     return 0;
-        // }
     });
     return movies;
 }
+
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 function howManyMovies(movies){
-    let director = "Steven Spielberg"
+    let theDirector = "Steven Spielberg"
     let dramaByTheDirector = movies.filter((movie) => 
-        movie.director === director && movie.genre.includes('Drama'))
+        movie.director === theDirector && movie.genre.includes('Drama'))
     return dramaByTheDirector.length
 }
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
-    movies.sort((a,b) => {
-        if(a.title > b.title){
+    movies.sort((a, b) => {
+        if (a.title > b.title) {
             return 1
         }
-        if(a.title < b.title){
+        if (a.title < b.title) {
             return -1
-        }
-        else{
+        } else {
             return 0
         }
     });
+
     //Return only the title of each movie
-    let titleArr = [];
-    movies.map((movie) => {
-        titleArr.push(movie.title);
-    })
+    let titleArr = movies.map(movie => movie.title)
     return titleArr.slice(0, 20);
 }
 
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(a){
-    var out = a.map(function (e) {
-        var newElement = Object.assign({}, e)
+function turnHoursToMinutes(movies){
+    let newArr = movies.map(function (movie) {
+        let newElement = Object.assign({}, movie)
 
-        if (e.duration.length < 3) {
-            newElement.duration = parseInt(e.duration[0] * 60);
-        } else if (e.duration.length < 6) {
-            newElement.duration = parseInt(e.duration.split("min")[0]);
+        // only hr
+        if (movie.duration.length < 3) {
+            newElement.duration = parseInt(movie.duration[0] * 60);
+        // only min
+        } else if (movie.duration.length < 6) {
+            newElement.duration = parseInt(movie.duration.split("min")[0]);
+        // hr and min
         } else {
-            newElement.duration = e.duration[0] * 60 + parseInt(e.duration.split(" ")[1].split("min")[0]);
+            newElement.duration = movie.duration[0] * 60 + parseInt(movie.duration.split(" ")[1].split("min")[0]);
         }
         return newElement;
     });
-    console.log(out)
-    return out;
+    console.log(newArr)
+    return newArr;
 }
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
