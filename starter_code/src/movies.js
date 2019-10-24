@@ -32,23 +32,23 @@ ratesAverage = function(rates) {
 
 // Iteration 2: Drama movies - Get the average of Drama Movies
 
-let dramaMovies = newRate.filter(function(number){
-    return number.genre.includes('Drama')
-  })
-  
+
   dramaMoviesRate = function(rates) {
-    if(rates.genre.includes('Drama')) {
-        let sumOfRates = rates.reduce(function(a,b){
-            let sum = a + b.rate;
-            return sum
-          },0);
-          average = (sumOfRates / rates.length).toFixed(2);
-          return Number(average)
-        }
-  }
+    let dramaMoviesFilter = rates.filter(function(number){return number.genre.includes('Drama')})
+          let sumOfRates = dramaMoviesFilter.reduce(function(a,b){
+              let sum = a + b.rate;
+              return sum
+            },0);
+          if (sumOfRates > 0) {
+            let average = (sumOfRates / dramaMoviesFilter.length).toFixed(2);
+              return Number(average)
+          }
+          else {
+            return 0
+          }
+    }
   
-  
-  console.log(dramaMoviesRate(dramaMovies))
+  dramaMoviesRate(newRate)
   
 
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
