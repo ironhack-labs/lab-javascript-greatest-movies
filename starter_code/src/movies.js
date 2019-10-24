@@ -135,8 +135,28 @@ function howManyMovies(arr) {
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(arr) {
+  let alphabeticallyOrdered = arr.sort(function(a, b) {
+    if (a.title > b.title) 
+    return 1;
+    else if (a.title < b.title) 
+    return -1;
+    else
+    return 0;
+  });
+
+  let orderedTitlesOnly = alphabeticallyOrdered.map((curr) => {
+    return curr.title;
+  })
   
+  let top20 = orderedTitlesOnly.filter((curr, index) => {
+    if(index < 20)
+    return curr;
+  });
+
+  return top20;
 }
+
+console.log(orderAlphabetically(movies2))
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
