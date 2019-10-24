@@ -81,7 +81,29 @@ let movies2 = [
 ]
 
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
+function orderByYear(arr) {
+  let ascendingByYear = arr.sort(function(a, b) {
+    // first sort by movie year
+    if (a.year > b.year) 
+    return 1;
+    else if (a.year < b.year) 
+    return -1;
+    else {
+      // if the year is the same then sort by title
+      if (a.title > b.title) 
+      return 1;
+      else if (a.title < b.title) 
+      return -1;
+      else
+      return 0;
+    } 
+  });
 
+  return ascendingByYear;
+}
+
+
+console.log(orderByYear(movies2));
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 
