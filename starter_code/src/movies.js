@@ -115,11 +115,10 @@ function orderByYearFancy(arr) {
   });
 }
 
-
-console.log(orderByYear(movies2));
-
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
-
+function howManyMovies(arr) {
+  
+}
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
