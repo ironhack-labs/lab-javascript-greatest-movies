@@ -41,7 +41,7 @@ let movies2 = [
   {
     title: 'The Shawshank Redemption',
     year: '1994',
-    director: 'Frank Darabont',
+    director: 'Steven Spielberg',
     duration: '2h 22min',
     genre: ['Crime', 'Drama'],
     rate: '5'
@@ -49,7 +49,7 @@ let movies2 = [
   {
     title: 'The Godfather',
     year: '1972',
-    director: 'Francis Ford Coppola',
+    director: 'Steven Spielberg',
     duration: '2h 55min',
     genre: ['Crime', 'Drama'],
     rate: '9.2'
@@ -117,8 +117,20 @@ function orderByYearFancy(arr) {
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 function howManyMovies(arr) {
+  let dramaOnly = arr.filter(curr => {
+    return curr.genre.indexOf("Drama") >= 0;
+  });
   
+  let spielbergDramasOnly = dramaOnly.filter(curr => {
+    return curr.director === "Steven Spielberg";
+  });
+
+  return spielbergDramasOnly.length;
 }
+
+
+
+console.log(howManyMovies(movies2));
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
