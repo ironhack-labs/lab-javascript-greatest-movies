@@ -1,5 +1,3 @@
-/* eslint no-restricted-globals: 'off' */
-
 // Iteration 1: All rates average - Get the average of all rates with 2 decimals 
 function ratesAverage(movies) {
     const averageRate = movies.reduce((sum, object) => 
@@ -9,14 +7,11 @@ function ratesAverage(movies) {
 }
 
 // Iteration 2: Drama movies - Get the average of Drama Movies
-
-function dramaMoviesRate(movies){
-    const drama = movies.filter(movie => movie.genre.includes('Drama') && movie.rate !== '')
-    if(drama.length > 0){
-        // let averageRate = drama.reduce((sum, current) => sum + parseFloat(current.rate), 0) / drama.length
-        // return Math.round(averageRate*100)/100
+function dramaMoviesRate(movies) {
+    const drama = movies.filter(movie => movie.genre.includes('Drama') && ('rate' in movie))
+    if (drama.length > 0) {
         return ratesAverage(drama)
-    }else{
+    } else {
         return 0
     }
 }
@@ -24,26 +19,23 @@ function dramaMoviesRate(movies){
 // Iteration 3: Ordering by year, ascending (in growing order)
 function orderByYear(movies) {
     movies.sort((a, b) => {
-        // if (a.year > b.year) {
-        //     return 1;
-        // }
         if (a.year - b.year) {
-            return a.year - b.year;
+            return a.year -b.year
         }
         if (a.title > b.title) {
             return 1;
         }
-        if (a.title < b.title) {
+        else if (a.title < b.title) {
             return -1;
         }
-    });
-    return movies;
+    })
+    return movies
 }
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 function howManyMovies(movies){
-    let theDirector = "Steven Spielberg"
-    let dramaByTheDirector = movies.filter((movie) => 
+    const theDirector = "Steven Spielberg"
+    const dramaByTheDirector = movies.filter(movie =>
         movie.director === theDirector && movie.genre.includes('Drama'))
     return dramaByTheDirector.length
 }
@@ -53,57 +45,58 @@ function orderAlphabetically(movies) {
     movies.sort((a, b) => {
         if (a.title > b.title) {
             return 1
-        }
-        if (a.title < b.title) {
+        } else if (a.title < b.title) {
             return -1
         } else {
             return 0
         }
-    });
+    })
 
     //Return only the title of each movie
-    let titleArr = movies.map(movie => movie.title)
-    return titleArr.slice(0, 20);
+    const titles = movies.map(movie => movie.title)
+    return titles.slice(0, 20);
 }
 
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(movies){
-    let newArr = movies.map(function (movie) {
-        let newElement = Object.assign({}, movie)
+function turnHoursToMinutes(movies) {
+    const newArr = movies.map(movie => {
+        // clone each movie object to newObject
+        const newObject = Object.assign({}, movie)
 
-        // only hr
+        // turn 'Xhr' to min
         if (movie.duration.length < 3) {
-            newElement.duration = parseInt(movie.duration[0] * 60);
-        // only min
-        } else if (movie.duration.length < 6) {
-            newElement.duration = parseInt(movie.duration.split("min")[0]);
-        // hr and min
+            newObject.duration = parseInt(movie.duration[0] * 60);
+        // turn 'X min' to min
+        } else if (movie.duration.length < 7) {
+            newObject.duration = parseInt(movie.duration.split('min')[0]);
+        // turn 'Xhr Xmin' to min
         } else {
-            newElement.duration = movie.duration[0] * 60 + parseInt(movie.duration.split(" ")[1].split("min")[0]);
+            newObject.duration = movie.duration[0] * 60 + parseInt(movie.duration.split(' ')[1].split('min')[0]);
         }
-        return newElement;
+        return newObject;
     });
-    console.log(newArr)
     return newArr;
 }
+turnHoursToMinutes(movies)
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 // Go ahead and find which year have the best average rate
 // for the movies that were released on that year! Create bestYearAvg()
 // function that receives an array of movies and gives us an answer which year was the best year
 // for cinema and what was its average rate.
+
 function bestYearAvg(movies) {
     if(movies.length > 0){
-
+        
         // order movies by year
         let moviesYear = {};
-        movies.forEach(function (element) {
-            if (moviesYear[element.year]) {
-                moviesYear[element.year].push(element);
+        movies.forEach(eachMovie => {
+            if (moviesYear[eachMovie.year]) {
+                moviesYear[eachMovie.year].push(eachMovie);
             } else {
-                moviesYear[element.year] = [];
-                moviesYear[element.year].push(element);
+                moviesYear[eachMovie.year] = [];
+                moviesYear[eachMovie.year].push(eachMovie);
             }
         });
     
@@ -127,7 +120,7 @@ function bestYearAvg(movies) {
         }
     
         // get best average
-        let yearBestAvg = Object.keys(avgYear).reduce(function (a, b) {
+        let yearBestAvg = Object.keys(avgYear).reduce((a, b)=>{
             if (avgYear[a] === avgYear[b]) {
                 if (b < a) {
                     return b;
