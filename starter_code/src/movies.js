@@ -53,8 +53,28 @@ ratesAverage = function(rates) {
 
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
 
+orderByYear = function(object) {
+    let yearSort = object.sort(function(a,b) {
+      return a.year-b.year;
+    })
+    return {
+      yearSort
+    }
+    }
+    
+orderByYear(newRate)
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
+
+
+howManyMovies = function(rate){
+    let spielbergFilter = rate.filter(function(name){
+    return name.director.includes("Spielberg") && name.genre.includes("Drama")
+  })
+  if (spielbergFilter.length) {return spielbergFilter.length}
+  else 0
+  }
+  howManyMovies(newRate)
 
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
