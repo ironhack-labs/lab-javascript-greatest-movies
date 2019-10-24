@@ -80,7 +80,5 @@ function bestYearAvg(arreglo){
     arrayOfAverage.sort((a, b) => {
         return a[1] > b[1] ? -1 : a[1] < b[1] ? 1 : +a[0] < +b[0] ? -1 : 0
     })
-
-    console.log(`The best year was ${arrayOfAverage[0][0]} with an average rate of ${arrayOfAverage[0][1]}`)
     return `The best year was ${arrayOfAverage[0][0]} with an average rate of ${arrayOfAverage[0][1]}`
 }
