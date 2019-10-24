@@ -1,6 +1,17 @@
 /* eslint no-restricted-globals: 'off' */
 
 // Iteration 1: All rates average - Get the average of all rates with 2 decimals 
+function ratesAverage(arr) {
+  let sumOfRating = arr.reduce((sum, curr) => {
+    let ratingAsFloat = parseFloat(curr.rate);
+    return sum += ratingAsFloat;
+  }, 0)
+
+  let averageRating = sumOfRating/arr.length;
+  let avgRounded = parseFloat(averageRating.toFixed(2));
+
+  return avgRounded;
+}
 
  
 // Iteration 2: Drama movies - Get the average of Drama Movies
