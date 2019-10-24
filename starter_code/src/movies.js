@@ -12,6 +12,55 @@ function ratesAverage(array) {
     ) / 100
   );
 }
+
+// Iteration 2: Drama movies - Get the average of Drama Movies
+function dramaMovies(array) {
+  let list = array.filter(movie => {
+    let validResult = false;
+    movie.genre.forEach(gen => {
+      if (gen === 'Drama') {
+        validResult = true;
+      }
+    });
+    if (validResult === true) {
+      return movie;
+    }
+  });
+  return list;
+}
+function dramaMoviesRate(array) {
+  let list = dramaMovies(array);
+  return isNaN(list) === true ? ratesAverage(list) : 0;
+}
+
+// Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
+function orderByYear(array) {
+  let sortedList = [];
+  sortedList = array.sort((a, b) => {
+    if (a.year > b.year) {
+      return 1;
+    } else if (a.year < b.year) {
+      return -1;
+    } else {
+      if (a.title > b.title) {
+        return 1;
+      } else if (a.title < b.title) {
+        return -1;
+      } else {
+        return 0;
+      }
+    }
+  });
+  return sortedList;
+}
+// Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
+function howManyMovies(array) {
+  let dramas = dramaMovies(array);
+  let dramasBySpiel = dramas.filter(movie => {
+    return (movie.director === 'Steven Spielberg') === true ? movie : 0;
+  });
+  return dramasBySpiel.length;
+}
 let testMovies = [
   {
     title: 'The Shawshank Redemption',
@@ -38,47 +87,8 @@ let testMovies = [
     rate: '9.0',
   },
 ];
-
-// Iteration 2: Drama movies - Get the average of Drama Movies
-function dramaMoviesRate(array) {
-  let dramaMovies = array.filter(movie => {
-    let validResult = false;
-    movie.genre.forEach(gen => {
-      if (gen === 'Drama') {
-        validResult = true;
-      }
-    });
-    if (validResult === true) {
-      return movie;
-    }
-  });
-  return isNaN(dramaMovies) === true ? ratesAverage(dramaMovies) : 0;
-}
-
-// Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
-function orderByYear(array) {
-  let sortedList = [];
-  sortedList = array.sort((a, b) => {
-    if (a.year > b.year) {
-      return 1;
-    } else if (a.year < b.year) {
-      return -1;
-    } else {
-      if (a.title > b.title) {
-        return 1;
-      } else if (a.title < b.title) {
-        return -1;
-      } else {
-        return 0;
-      }
-    }
-  });
-  return sortedList;
-}
-let testResult = orderByYear(testMovies);
+let testResult = howManyMovies(movies);
 console.log(testResult);
-// Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
-
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
