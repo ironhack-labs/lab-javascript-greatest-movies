@@ -130,7 +130,7 @@ function howManyMovies(arr) {
 
 // iteration 4: fancy version
 function howManyMovies(arr) {
-  
+  return arr.filter(curr => curr.genre.indexOf("Drama") >= 0).filter(curr => curr.director === "Steven Spielberg").length;
 }
 
 
