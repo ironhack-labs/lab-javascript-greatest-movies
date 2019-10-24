@@ -128,6 +128,10 @@ function howManyMovies(arr) {
   return spielbergDramasOnly.length;
 }
 
+// iteration 4: fancy version
+function howManyMovies(arr) {
+  
+}
 
 
 console.log(howManyMovies(movies2));
