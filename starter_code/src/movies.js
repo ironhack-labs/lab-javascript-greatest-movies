@@ -38,11 +38,25 @@ let testMovies = [
     rate: '9.0',
   },
 ];
-let testResult = ratesAverage(testMovies);
-console.log(testResult);
 
 // Iteration 2: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(array) {
+  let dramaMovies = array.filter(movie => {
+    let validResult = false;
+    movie.genre.forEach(gen => {
+      if (gen === 'Drama') {
+        validResult = true;
+      }
+    });
+    if (validResult === true) {
+      return movie;
+    }
+  });
+  return ratesAverage(dramaMovies);
+}
 
+let testResult = dramaMoviesRate(movies);
+console.log(testResult);
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
