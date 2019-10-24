@@ -61,6 +61,8 @@ function turnHoursToMinutes(arreglo){
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 function bestYearAvg(arreglo){
+    if(arreglo.length == 0)
+        return null
     let groupedByYear = {}
     arreglo.forEach(element => {
         if(element.year in groupedByYear == false)
@@ -71,11 +73,14 @@ function bestYearAvg(arreglo){
     for(let key in groupedByYear){
         arrayOfAverage.push([key, 
             + (groupedByYear[key].reduce((accumulator, currentValue) => {
-                return accumulator + currentValue
-            }, 0)/groupedByYear[key].length).toFixed(2)])
+            return accumulator + currentValue
+        }, 0)/groupedByYear[key].length).toFixed(2)])
             
     }
-    console.table(arrayOfAverage)
+    arrayOfAverage.sort((a, b) => {
+        return a[1] > b[1] ? -1 : a[1] < b[1] ? 1 : +a[0] < +b[0] ? -1 : 0
+    })
 
-    // return 'The best year was 2007 with an average rate of 8'
+    console.log(`The best year was ${arrayOfAverage[0][0]} with an average rate of ${arrayOfAverage[0][1]}`)
+    return `The best year was ${arrayOfAverage[0][0]} with an average rate of ${arrayOfAverage[0][1]}`
 }
