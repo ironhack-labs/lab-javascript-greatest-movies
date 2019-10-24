@@ -37,49 +37,6 @@ function dramaMoviesRateFancy(arr) {
   return ratesAverageFancy(arr.filter(curr => curr.genre.indexOf("Drama") >= 0)) || 0;
 }
 
-let movies2 = [
-  {
-    title: 'The Shawshank Redemption',
-    year: '1994',
-    director: 'Steven Spielberg',
-    duration: '2h 22min',
-    genre: ['Crime', 'Drama'],
-    rate: '5'
-  },
-  {
-    title: 'The Godfather',
-    year: '1972',
-    director: 'Steven Spielberg',
-    duration: '2h 55min',
-    genre: ['Crime', 'Drama'],
-    rate: '9.2'
-  },
-  {
-    title: 'The Godfather: Part II',
-    year: '1974',
-    director: 'Francis Ford Coppola',
-    duration: '3h 22min',
-    genre: ['Crime', 'Drama'],
-    rate: '9.0'
-  },
-  {
-    title: 'The Lord of the Rings: The Return of the King',
-    year: '2003',
-    director: 'Peter Jackson',
-    duration: '3h 21min',
-    genre: ['Adventure', 'Drama', 'Fantasy'],
-    rate: ''
-  },
-  {
-    title: 'Il buono, il brutto, il cattivo',
-    year: '1966',
-    director: 'Sergio Leone',
-    duration: '3h 2min',
-    genre: ['Western'],
-    rate: '8.9'
-  },
-]
-
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
 function orderByYear(arr) {
   let ascendingByYear = arr.sort(function(a, b) {
@@ -134,27 +91,27 @@ function howManyMovies(arr) {
 }
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
-// function orderAlphabetically(arr) {
-//   let alphabeticallyOrdered = arr.sort(function(a, b) {
-//     if (a.title > b.title) 
-//     return 1;
-//     else if (a.title < b.title) 
-//     return -1;
-//     else
-//     return 0;
-//   });
+function orderAlphabetically(arr) {
+  let alphabeticallyOrdered = arr.sort(function(a, b) {
+    if (a.title > b.title) 
+    return 1;
+    else if (a.title < b.title) 
+    return -1;
+    else
+    return 0;
+  });
 
-//   let orderedTitlesOnly = alphabeticallyOrdered.map((curr) => {
-//     return curr.title;
-//   })
+  let orderedTitlesOnly = alphabeticallyOrdered.map((curr) => {
+    return curr.title;
+  })
   
-//   let top20 = orderedTitlesOnly.filter((curr, index) => {
-//     if(index < 20)
-//     return curr;
-//   });
+  let top20 = orderedTitlesOnly.filter((curr, index) => {
+    if(index < 20)
+    return curr;
+  });
 
-//   return top20;
-// }
+  return top20;
+}
 
 // iteration 5: fancy version
 function orderAlphabeticallyFancy(arr) {
@@ -167,8 +124,54 @@ function orderAlphabeticallyFancy(arr) {
   });
 }
 
-console.log(orderAlphabetically(movies2))
+let movies2 = [
+  {
+    title: 'The Shawshank Redemption',
+    year: '1994',
+    director: 'Steven Spielberg',
+    duration: '2h 22min',
+    genre: ['Crime', 'Drama'],
+    rate: '5'
+  },
+  {
+    title: 'The Godfather',
+    year: '1972',
+    director: 'Steven Spielberg',
+    duration: '2h 55min',
+    genre: ['Crime', 'Drama'],
+    rate: '9.2'
+  },
+  {
+    title: 'The Godfather: Part II',
+    year: '1974',
+    director: 'Francis Ford Coppola',
+    duration: '3h 22min',
+    genre: ['Crime', 'Drama'],
+    rate: '9.0'
+  },
+  {
+    title: 'The Lord of the Rings: The Return of the King',
+    year: '2003',
+    director: 'Peter Jackson',
+    duration: '3h 21min',
+    genre: ['Adventure', 'Drama', 'Fantasy'],
+    rate: ''
+  },
+  {
+    title: 'Il buono, il brutto, il cattivo',
+    year: '1966',
+    director: 'Sergio Leone',
+    duration: '3h 2min',
+    genre: ['Western'],
+    rate: '8.9'
+  },
+]
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(arr) {
+  
+}
+
+
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
