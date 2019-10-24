@@ -13,6 +13,11 @@ function ratesAverage(arr) {
   return avgRounded;
 }
 
+// iteration 1: fancy function
+function ratesAverageFancy(arr) {
+  return parseFloat((arr.reduce((sum, curr) => sum += parseFloat(curr.rate), 0)/arr.length).toFixed(2));;
+}
+
  
 // Iteration 2: Drama movies - Get the average of Drama Movies
 
