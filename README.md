@@ -99,7 +99,7 @@ Another popular way to order movies would be by `title`, alphabetically.
 
 However, this time around, we're only interested in getting the **the titles for the first 20 films after they've been ordered alphabetically**. This might sound confusing, but the unit tests should be particularly helpful in this situation.
 
-Declare a function named `orderAlphabetically` that receives as the single argument an array of movie objects and returns an array of titles. Remember: we're only looking for the title of each movie, not the movie object. You might need to combine at least two array _methods_ to solve this one.
+Declare a function named `orderAlphabetically` that receives as the single argument an array of movie objects and returns an array of ordered titles. Remember: we're only looking for the title of each movie, not the movie object. You might need to combine at least two array _methods_ to solve this one.
 
 ### Iteration 6: Time Format
 

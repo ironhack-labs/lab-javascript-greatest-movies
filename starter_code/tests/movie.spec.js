@@ -2,49 +2,49 @@
 /* eslint jasmine/no-spec-dupes: "off" */
 
 describe('Get the average rate - calculateAverageMovieRate', () => {
-  it('Defines calculateAverageMovieRate', () => {
+  it('should define calculateAverageMovieRate', () => {
     expect(typeof calculateAverageMovieRate).toBe('function');
   });
 
-  it('You should return a number my friend! Check parseFloat method!', () => {
-    expect(typeof calculateAverageMovieRate(movies)).toBe('number');
+  it('should return a number my friend! Check parseFloat method!', () => {
+    expect(typeof calculateAverageMovieRate(MOVIES)).toBe('number');
   });
 
-  it('You should return the average rate of 2 movies with rate 8 each!', () => {
+  it('should return the average rate of 2 movies with rate 8 each!', () => {
     expect(calculateAverageMovieRate([{ rate: 8 }, { rate: 8 }])).toBe(8);
   });
 
-  it('It should be rounded to 2 decimals digits', () => {
+  it('should be rounded to 2 decimals digits', () => {
     expect(
       calculateAverageMovieRate([{ rate: 8 }, { rate: 9 }, { rate: 9 }, { rate: 7 }])
     ).toBeCloseTo(8.25, 2);
   });
 
-  it('It should be rounded to nearest hundredths ', () => {
+  it('should be rounded to nearest hundredths ', () => {
     expect(calculateAverageMovieRate([{ rate: 8 }, { rate: 9 }, { rate: 9 }])).toBeCloseTo(8.67, 2);
   });
 });
 
 describe('Average rate of Drama Movies - calculateAverageDramaRate', () => {
-  it('Defines calculateAverageDramaRate', () => {
+  it('should define calculateAverageDramaRate', () => {
     expect(typeof calculateAverageDramaRate).toBe('function');
   });
 
-  it('You should return a number!', () => {
-    expect(typeof calculateAverageDramaRate(movies)).toBe('number');
+  it('should return a number!', () => {
+    expect(typeof calculateAverageDramaRate(MOVIES)).toBe('number');
   });
 
-  it('Return the rate of a single element array!', () => {
+  it('should return the rate of a single element array!', () => {
     expect(calculateAverageDramaRate([{ genre: ['Drama'], rate: 8 }])).toBe(8);
   });
 
-  it('Return average even if one of the movies does not have rate!', () => {
+  it('should return average even if one of the movies does not have rate!', () => {
     expect(
       calculateAverageDramaRate([{ genre: ['Drama'], rate: 8 }, { genre: ['Drama'], rate: '' }])
     ).toBe(4);
   });
 
-  it('It should return the average of the array!', () => {
+  it('should return the average of the array!', () => {
     expect(
       calculateAverageDramaRate([
         { genre: ['Drama'], rate: 8 },
@@ -54,17 +54,17 @@ describe('Average rate of Drama Movies - calculateAverageDramaRate', () => {
     ).toBe(8);
   });
 
-  it('It should return the average of the array, float!', () => {
+  it('should return the average of the array, float!', () => {
     expect(
       calculateAverageDramaRate([
         { genre: ['Drama'], rate: 9 },
         { genre: ['Drama'], rate: 9 },
         { genre: ['Drama'], rate: 7 }
       ])
-    ).toBe(8.33);
+    ).toBe((9 + 9 + 7) / 3);
   });
 
-  it('Only Drama Movies! You should return the average of Drama movies only!', () => {
+  it('should return the average of only drama movies', () => {
     expect(
       calculateAverageDramaRate([
         { genre: ['Drama'], rate: 8 },
@@ -74,7 +74,7 @@ describe('Average rate of Drama Movies - calculateAverageDramaRate', () => {
     ).toBe(7.5);
   });
 
-  it('Should return 0 if there is no Drama movie!', () => {
+  it('should  return 0 if there is no Drama movie!', () => {
     expect(
       calculateAverageDramaRate([
         { genre: ['Action'], rate: 8 },
@@ -86,19 +86,19 @@ describe('Average rate of Drama Movies - calculateAverageDramaRate', () => {
 });
 
 describe('Order the movies by year - orderByYear', () => {
-  it('Defines orderByYear', () => {
+  it('should define orderByYear', () => {
     expect(typeof orderByYear).toBe('function');
   });
 
-  it('Should return an array', () => {
-    expect(typeof orderByYear(movies)).toBe('object');
+  it('should  return an array', () => {
+    expect(typeof orderByYear(MOVIES)).toBe('object');
   });
 
-  it('Should return the element in a single element array', () => {
+  it('should  return the element in a single element array', () => {
     expect(orderByYear([{ year: '1982' }])).toEqual([{ year: '1982' }]);
   });
 
-  it('Return the new array in ascending order', () => {
+  it('should return the new array in ascending order', () => {
     expect(orderByYear([{ year: '2002' }, { year: '1982' }, { year: '1995' }])).toEqual([
       { year: '1982' },
       { year: '1995' },
@@ -106,7 +106,7 @@ describe('Order the movies by year - orderByYear', () => {
     ]);
   });
 
-  it('If two movies have the same year, order them alphabetically by their title', () => {
+  it('if two movies have the same year, order them alphabetically by their title', () => {
     expect(
       orderByYear([
         { title: 'abc', year: '2002' },
@@ -122,19 +122,19 @@ describe('Order the movies by year - orderByYear', () => {
 });
 
 describe('Get how many movies - countSpielbergDramaMovies', () => {
-  it('Defines countSpielbergDramaMovies', () => {
+  it('should define countSpielbergDramaMovies', () => {
     expect(typeof countSpielbergDramaMovies).toBe('function');
   });
 
-  it('Should return a number', () => {
-    expect(typeof countSpielbergDramaMovies(movies)).toBe('number');
+  it('should  return a number', () => {
+    expect(typeof countSpielbergDramaMovies(MOVIES)).toBe('number');
   });
 
-  it('Should return 0 if the array is empty', () => {
+  it('should  return 0 if the array is empty', () => {
     expect(countSpielbergDramaMovies([])).toBe(0);
   });
 
-  it('Return 0 if he did not direct none of the movies in the array', () => {
+  it('should return 0 if he did not direct none of the movies in the array', () => {
     expect(
       countSpielbergDramaMovies([
         {
@@ -145,7 +145,7 @@ describe('Get how many movies - countSpielbergDramaMovies', () => {
     ).toBe(0);
   });
 
-  it('Only drama movies! Should return 1', () => {
+  it('should only return drama movies', () => {
     expect(
       countSpielbergDramaMovies([
         {
@@ -160,7 +160,7 @@ describe('Get how many movies - countSpielbergDramaMovies', () => {
     ).toBe(1);
   });
 
-  it('Only Steven Spielberg movies! Should return 2', () => {
+  it('should only return Steven Spielberg movies', () => {
     expect(
       countSpielbergDramaMovies([
         {
@@ -183,32 +183,31 @@ describe('Get how many movies - countSpielbergDramaMovies', () => {
     ).toBe(2);
   });
 
-  it('Should return 4', () => {
-    expect(countSpielbergDramaMovies(movies)).toBe(4);
+  it('should  return 4', () => {
+    expect(countSpielbergDramaMovies(MOVIES)).toBe(4);
   });
 });
 
 describe('Order alphabetically - orderAlphabetically', () => {
-  it('Defines orderAlphabetically', () => {
+  it('should define orderAlphabetically', () => {
     expect(typeof orderAlphabetically).toBe('function');
   });
 
-  it('You should return an array', () => {
+  it('should return an array', () => {
     expect(typeof orderAlphabetically([])).toBe('object');
   });
 
-  it('Only return the title of the movies! Each element should be a string', () => {
+  it('should only return the title of the movies (each element should be a string)', () => {
     expect(typeof orderAlphabetically([{ title: 'aab' }])[0]).toBe('string');
   });
 
-  it('If there are less than 20 elements, return all of them.', () => {
-    let moviesArr = [{ title: 'aab' }, { title: 'bab' }, { title: 'acb' }];
-
+  it('should return every movie if there are less than 20', () => {
+    const moviesArr = [{ title: 'aab' }, { title: 'bab' }, { title: 'acb' }];
     expect(orderAlphabetically(moviesArr).length).toEqual(3);
   });
 
-  it('If there are more than 20 elements, return only 20 of them.', () => {
-    let moviesArr = [
+  it('should return only 20 movies if there are more than 20', () => {
+    const moviesArr = [
       { title: 'aab' },
       { title: 'bab' },
       { title: 'acb' },
@@ -250,8 +249,8 @@ describe('Order alphabetically - orderAlphabetically', () => {
     expect(orderAlphabetically(moviesArr).length).toEqual(20);
   });
 
-  it('You should order them alphabetically.', () => {
-    let moviesArr = [
+  it('should order them alphabetically.', () => {
+    const moviesArr = [
       { title: 'aab' },
       { title: 'aaa' },
       { title: 'abc' },
@@ -262,8 +261,8 @@ describe('Order alphabetically - orderAlphabetically', () => {
     expect(orderAlphabetically(moviesArr)).toEqual(['aaa', 'aab', 'abb', 'abc', 'acb']);
   });
 
-  it('You should return the top20 after ordering them alphabetically.', () => {
-    let moviesArr = [
+  it('should return the top20 after ordering them alphabetically.', () => {
+    const moviesArr = [
       { title: 'aab' },
       { title: 'bab' },
       { title: 'acb' },
@@ -328,68 +327,68 @@ describe('Order alphabetically - orderAlphabetically', () => {
 });
 
 describe('Turn duration of the movies - turnHoursToMinutes', () => {
-  it('Defines turnHoursToMinutes', () => {
+  it('should define turnHoursToMinutes', () => {
     expect(typeof turnHoursToMinutes).toBe('function');
   });
 
-  it('Should return an array', () => {
-    expect(typeof turnHoursToMinutes(movies)).toBe('object');
+  it('should  return an array', () => {
+    expect(typeof turnHoursToMinutes(MOVIES)).toBe('object');
   });
 
-  it('Should return a new array, not update the original one', () => {
-    expect(turnHoursToMinutes(movies)).not.toEqual(movies);
+  it('should  return a new array, not update the original one', () => {
+    expect(turnHoursToMinutes(MOVIES)).not.toEqual(MOVIES);
   });
 
-  it('The duration of the movie should be a number', () => {
-    expect(typeof turnHoursToMinutes(movies)[0].duration).toBe('number');
+  it('should return the duration of the movie as a number', () => {
+    expect(typeof turnHoursToMinutes(MOVIES)[0].duration).toBe('number');
   });
 
-  it('The duration of the movie should return the correct number to a short movie - 31 minutes', () => {
-    let movieTry = [{ duration: '0h 31min' }];
+  it('should return the duration of the movie as the correct number to a short movie - 31 minutes', () => {
+    const movieTry = [{ duration: '0h 31min' }];
 
     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(31);
   });
 
-  it('The duration of the movie should return the correct number for really long movie - 341 minutes', () => {
-    let movieTry = [{ duration: '5h 41min' }];
+  it('should return the duration of the movie as the correct number for really long movie - 341 minutes', () => {
+    const movieTry = [{ duration: '5h 41min' }];
 
     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(341);
   });
 
-  it('It should return the correct number when the duration is only in hours', () => {
-    let movieTry = [{ duration: '2h' }];
+  it('should return the correct number when the duration is only in hours', () => {
+    const movieTry = [{ duration: '2h' }];
 
     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(120);
   });
 
-  it('It should return the correct number when the duration is only in minutes', () => {
-    let movieTry = [{ duration: '54min' }];
+  it('should return the correct number when the duration is only in minutes', () => {
+    const movieTry = [{ duration: '54min' }];
 
     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(54);
   });
 });
 
 describe('Best year average - bestYearAvg', () => {
-  it('Defines bestYearAvg', () => {
+  it('should define bestYearAvg', () => {
     expect(typeof bestYearAvg).toBe('function');
   });
 
-  it('Should return null if the array is empty', () => {
+  it('should  return null if the array is empty', () => {
     expect(bestYearAvg([])).toBe(null);
   });
 
-  it('Should return the correct answer to a single element array', () => {
+  it('should  return the correct answer to a single element array', () => {
     expect(bestYearAvg([{ year: '2007', rate: 8 }])).toEqual(
       'The best year was 2007 with an average rate of 8'
     );
   });
 
-  it('Should return the correct answer to a multiple elements array', () => {
-    expect(bestYearAvg(movies)).toEqual('The best year was 1972 with an average rate of 9.2');
+  it('should  return the correct answer to a multiple elements array', () => {
+    expect(bestYearAvg(MOVIES)).toEqual('The best year was 1972 with an average rate of 9.2');
   });
 
-  it('Should return the oldest year when there is a tie', () => {
-    let newMoviesArr = [
+  it('should  return the oldest year when there is a tie', () => {
+    const newMoviesArr = [
       { year: '2000', rate: 9 },
       { year: '2000', rate: 8 },
       { year: '1978', rate: 10 },
