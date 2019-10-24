@@ -156,6 +156,11 @@ function orderAlphabetically(arr) {
   return top20;
 }
 
+// iteration 5: fancy version
+function orderAlphabetically(arr) {
+
+}
+
 console.log(orderAlphabetically(movies2))
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
