@@ -61,36 +61,26 @@ function howManyMovies(array) {
   });
   return dramasBySpiel.length;
 }
-let testMovies = [
-  {
-    title: 'The Shawshank Redemption',
-    year: '1994',
-    director: 'Frank Darabont',
-    duration: '2h 22min',
-    genre: ['Crime', 'Drama'],
-    rate: '9.3',
-  },
-  {
-    title: 'The Godfather',
-    year: '1972',
-    director: 'Francis Ford Coppola',
-    duration: '2h 55min',
-    genre: ['Crime', 'Drama'],
-    rate: '9.2',
-  },
-  {
-    title: 'The Godfather: Part II',
-    year: '1974',
-    director: 'Francis Ford Coppola',
-    duration: '3h 22min',
-    genre: ['Crime', 'Drama'],
-    rate: '9.0',
-  },
-];
-let testResult = howManyMovies(movies);
-console.log(testResult);
-// Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
+// Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(array) {
+  return array
+    .sort((a, b) => {
+      if (a.title > b.title) {
+        return 1;
+      } else if (a.title < b.title) {
+        return -1;
+      } else {
+        return 0;
+      }
+    })
+    .map(movie => movie.title)
+    .filter((movie, count) => {
+      return count < 20 === true ? movie : 0;
+    });
+}
+let testResult = orderAlphabetically(movies);
+console.log(testResult);
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
