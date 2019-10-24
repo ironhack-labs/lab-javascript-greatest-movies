@@ -133,10 +133,10 @@ function howManyMovies(arr) {
   return arr.filter(curr => curr.genre.indexOf("Drama") >= 0).filter(curr => curr.director === "Steven Spielberg").length;
 }
 
-
-console.log(howManyMovies(movies2));
-
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(arr) {
+  
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
