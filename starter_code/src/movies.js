@@ -88,7 +88,6 @@ const orderAlphabetically = (movies) => {
 
 const turnHoursToMinutes = (arr) => {
   const array = [...arr];
-  const tranferMinutes = (array) => {
   const filter = array.filter((item) => item.duration.includes('h') && item.duration.includes('m'));
 
   const mapped = filter.map((item) => item.duration);
@@ -109,10 +108,7 @@ const turnHoursToMinutes = (arr) => {
     array[key].duration = totalMinutes;
     console.log(totalMinutes);
   }
-  tranferMinutes(array)
-}
   return array;
-  
 };
 
 
