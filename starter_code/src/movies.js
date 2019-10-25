@@ -80,10 +80,57 @@ function orderAlphabetically(arr){
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-function turnHoursToMinutes(){
-
-}
-// BONUS Iteration: Best yearly rate average - Best yearly rate average
-function bestYearAvg() {
+function turnHoursToMinutes(arr){
+    let conversion = arr.map((movie) => { 
+      let newMovie = {...movie};
+      if(movie.duration){
+        const cadenaPrueba = movie.duration;
+        let mins;
+    
+        if(movie.duration.indexOf("h") === -1){
+            let tempMin = cadenaPrueba.split("min");
+            newMovie.duration = parseInt(tempMin[0]);
+        } else {
+            let temp = cadenaPrueba.split("h ");
+            let tempMin = "0";
+            if(temp[1]){
+            tempMin = temp[1].split("min");
+            }
+            mins = parseInt(temp[0]) * 60 + parseInt(tempMin[0]);
+            newMovie.duration = mins;
+        }
+      }
+      return newMovie;
+    });
+    return conversion; 
+  }
   
-}
+  turnHoursToMinutes(movies);
+// BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(arr) {
+    let newArr = [];
+    if(arr.length === 0){
+        return null;
+    }
+    for( let i = 0; i < arr.length; i++){
+      if (arr[i].rate){
+        const idx = newArr.findIndex(el => el.year === arr[i].year);
+      if(idx === -1){
+        newArr.push({
+          year: arr[i].year,
+          sumRate: parseFloat(arr[i].rate),
+          totalMovies: 1,
+        })
+      }else{
+        newArr[idx].totalMovies++;
+        newArr[idx].sumRate += parseFloat(arr[i].rate);
+      }
+      }
+    }
+    let yearlyRates = newArr.map( (yearMovies) => { 
+      return { year: yearMovies.year,
+       avgRate: yearMovies.sumRate / yearMovies.totalMovies }
+     });
+     yearlyRates.sort((rate1, rate2) => rate2.avgRate - rate1.avgRate  || rate1.year - rate2.year);
+     return `The best year was ${yearlyRates[0].year} with an average rate of ${yearlyRates[0].avgRate}`
+   };
