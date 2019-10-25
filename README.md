@@ -56,7 +56,7 @@ You have to work on the `src/movies.js` file.
 
 Ohh yes! We have our beloved tests, and you already know how this works. Open the `SpecRunner.html` file on your browser and start coding to pass the test. Remember to focus on one test at a time and read carefully the instructions to understand what you have to do.
 
-### Iteration 1: Ordering by year
+### Iteration 1: Order by year
 
 We need to sort the movies in ascending order by their release year. This should be easy using one of the __methods__ we've just learned. :wink:
 Create a function `orderByYear()` that receives an array as parameter and returns a _sorted array_.
@@ -73,7 +73,7 @@ One of the most famous directors in cinema is __[Steven Spielberg](https://en.wi
 
 Go ahead and create a `howManyMovies()` function that receives an array as a parameter and `filter` :eyes: the array so we can have only the __drama__ movies where __Steven Spielberg__ is the director.
 
-### Iteration 3: Alphabetic Order
+### Iteration 3: Alphabetic order
 
 Another popular way to order the movies is to sort them alphabetically using the `title` key. However, in this case, we only need to print the title of the first 20. Easy peasy for an expert like you. :wink:
 
@@ -95,7 +95,7 @@ Create a `dramaMoviesRate()` function that receives an array as a parameter to g
 
 Again, rounded to 2 decimals!
 
-### Iteration 6: Time Format
+### Iteration 6: Time format
 
 We get the info from the __IMDB__ web page, but the duration info was saved in a format that difficult us a lot to compare movies.
 
