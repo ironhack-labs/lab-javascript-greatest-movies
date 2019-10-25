@@ -88,7 +88,7 @@ function orderByYear(array){
 
         let orderedStringArray = orderedArray.map((movies)=>{
 
-            return movies.title;
+            return movies.title;0
         });
 
         return orderedStringArray.splice(0,20);
@@ -118,8 +118,33 @@ function orderByYear(array){
         return finalArray;
     }
 
-      
-       
-     
-      
+
+    function bestYearAvg(array){
+        if(array.length === 0){
+            return null;
+        }
+        let bestMoviesOfThatYear = [];
+        let orderedMovies = orderByYear(array);
+        bestMoviesOfThatYear.push(orderedMovies[0]);
+        let currentYear = 0; 
+        let highestAverage = 0;
+        let highestYearAverage = 0;  
+        orderedMovies.forEach((movie)=> {
+            if(movie.year !== currentYear){
+                let average = ratesAverage(array);
+                if(average > highestAverage){
+                    highestAverage = average;
+                    currentYear = movie.year;
+                    highestYearAverage = currentYear;
+                }
+                
+            } else { 
+                bestMoviesOfThatYear.push(movie);
+            }
+        })
+        
+        return `The best year was ${highestYearAverage} with an average rate of ${highestAverage}`;
     
+    }
+
+    bestYearAvg(movies);
