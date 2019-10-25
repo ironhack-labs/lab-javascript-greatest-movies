@@ -8,7 +8,7 @@
 
 We've just learned some super useful methods, that will help us a lot to manipulate __objects and arrays__. In this exercise, we will focus on practicing them, and this being said, it is mandatory to implement at least one of them in each iteration.
 
-Best way to practice is to work with real data. In the __`data.js`__ file you will find an array of info about __the best 250 movies of all times__ according to [IMDB Ranking](http://www.imdb.com/chart/top?ref_=nv_mv_250_6) and you have to process it to display what each iteration ask! :muscle:
+Best way to practice is to work with real data. In the __`src/data.js`__ file you will find an array of info about __the best 250 movies of all times__ according to [IMDB Ranking](http://www.imdb.com/chart/top?ref_=nv_mv_250_6) and you have to process it to display what each iteration ask! :muscle:
 
 ## Requirements
 
