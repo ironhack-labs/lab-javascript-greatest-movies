@@ -89,10 +89,11 @@ function orderAlphabetically(movie){
  }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
+
 function turnHoursToMinutes(arr){
 var newMovieSet = movies.map(function(num){
-if(num.duration.includes(" ")){
-   var splitTime = num.duration.split(" ");
+if(num.duration.includes("h") && num.duration.includes("min")){
+  var splitTime = num.duration.split(" ");
   var convertedNum = parseInt(splitTime[0]) * 60 + parseInt(splitTime[1]);
    return {
       title: num.title,
@@ -103,8 +104,20 @@ if(num.duration.includes(" ")){
       rate: num.rate
     }
     //console.log(splitTime)
-} else {
-    return {
+} else if(num.duration.includes("h")){
+     var splitTime = num.duration.split("h");
+     var convertedNum = parseInt(splitTime[0]) * 60;
+   return {
+      title: num.title,
+      year: num.year,
+      director: num.director,
+      duration: convertedNum,
+      genre: num.genre,
+      rate: num.rate
+    }
+
+}else {
+   return {
       title: num.title,
       year: num.year,
       director: num.director,
@@ -116,6 +129,9 @@ if(num.duration.includes(" ")){
 })
   return newMovieSet;
 }
+
+
+//turnHoursToMinutes()
 
 
 
