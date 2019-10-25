@@ -97,7 +97,7 @@ function bestYearAvg(someArray) {
     const yearAndAverageArray = [];
     for (let eachYr in yearObject) {
         let avgYearRate = ratesAverage(yearObject[eachYr]);
-     yearAndAverageArray.push({
+        yearAndAverageArray.push({
             'year': eachYr,
             'avg': avgYearRate
         });
@@ -106,8 +106,8 @@ function bestYearAvg(someArray) {
         return a > b.avg ? a : b.avg;
     }, 0);
     const winnerArrays = yearAndAverageArray.filter(av => av.avg === winnerYearAvg);
-        winnerArrays.sort((a, b) => {
-            return a.year.localeCompare(b.year);
-        });
-        return (winnerArrays.length>0) ? `The best year was ${winnerArrays[0].year} with an average rate of ${winnerArrays[0].avg}`: null;
+    winnerArrays.sort((a, b) => {
+        return a.year.localeCompare(b.year);
+    });
+    return (winnerArrays.length > 0) ? `The best year was ${winnerArrays[0].year} with an average rate of ${winnerArrays[0].avg}` : null;
 }
