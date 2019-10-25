@@ -27,13 +27,13 @@ const dramaMoviesRate = (array) => {
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
 
 const orderByYear = (array) => {
-    return array.sort((a, b)=> {
-        if(a.year == b.year) {
-
-        }
-      return a.year - b.year
+     return array.sort((a, b)=> {
+       if (a.year - b.year) {return a.year - b.year} 
+       if (a.title > b.title) {return 1;} 
+       if (a.title < b.title) {return -1;}
     })
   } 
+  
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 
@@ -48,26 +48,102 @@ const howManyMovies = (array) => {
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
-const orderAlphabetically = (array) => {
-    const alphabetSort = array.sort((a, b) => {
-      textA = a.title;
-      textB = b.title;
-      return textA.localeCompare(textB);
-    });
+
+const orderAlphabetically = (movies) => {
+  let sortedMovies = movies.sort((a, b)=> {
+       if (a.title > b.title) {return 1;} 
+       if (a.title < b.title) {return -1;}
+    })
+  let last20Movies = sortedMovies.slice(0, 20).map((item) => item.title)
+
+  return last20Movies
+}
+
+
+
+    // const alphabetSort = array.sort((a, b) => {
+    //   textA = a.title;
+    //   textB = b.title;
+    //   return textA.localeCompare(textB);
+    // });
   
   
-    const filteredArray = [];
+    // const filteredArray = [];
   
-    for (let i = 0; i < 20; i++) {
-      filteredArray.push(alphabetSort[i]);
-    }
+    // for (let i = 0; i < 20; i++) {
+    //   filteredArray.push(alphabetSort[i]);
+    // }
   
   
-    return filteredArray;
-  };
+    // return filteredArray;
+
+
+ 
   
 
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
+
+
+const turnHoursToMinutes = (arr) => {
+  const array = [...arr];
+  const tranferMinutes = (array) => {
+  const filter = array.filter((item) => item.duration.includes('h') && item.duration.includes('m'));
+
+  const mapped = filter.map((item) => item.duration);
+  let hoursToMin = 0;
+  let slicedMins = '';
+  let minutesConverted = 0;
+  let totalMinutes = 0;
+
+  const filterNew = array.map((item) => item.duration);
+
+  //  console.log(filterNew)
+  for (const key in mapped) {
+    hoursToMin = Number(mapped[key].slice(0, 1)) * 60;
+    slicedMins = mapped[key].substr(mapped[key].indexOf(' ') + 1);
+    minutesConverted = Number(slicedMins.match(/\d+/g)
+      .map(Number));
+      totalMinutes = hoursToMin + minutesConverted;
+    array[key].duration = totalMinutes;
+    console.log(totalMinutes);
+  }
+  tranferMinutes(array)
+}
+  return array;
+  
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const turnHoursToMinutes(movies) {
+//     let copyOfMovies = [...movies]
+//     let mappedMovies = movies.map(eachMovie => {
+//         eachMovie.duration = convertDuration(String(eachMovie))
+//         let hours = 0;
+//         let minures = 0;
+//     })
+// }
+
+
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+// const bestYearAvg (movies) {
+//     let orderedMovies
+// }
