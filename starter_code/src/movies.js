@@ -118,7 +118,6 @@ function orderByYear(array){
         return finalArray;
     }
 
-
     function bestYearAvg(array){
         if(array.length === 0){
             return null;
@@ -146,5 +145,6 @@ function orderByYear(array){
         return `The best year was ${highestYearAverage} with an average rate of ${highestAverage}`;
     
     }
+    
 
     bestYearAvg(movies);
