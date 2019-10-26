@@ -22,12 +22,11 @@ function howManyMovies(array){
         return object.director === "Steven Spielberg" && object.genre.indexOf("Drama") !== -1
     })
     // count elements
-    console.log(newArray);
     return newArray.length;
 }
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
-
+orderAlphabetically()
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
