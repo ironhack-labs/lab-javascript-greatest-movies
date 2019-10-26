@@ -26,7 +26,18 @@ function howManyMovies(array){
 }
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
-orderAlphabetically()
+function orderAlphabetically(array){
+    let newArray = array.slice();
+    newArray.sort((a,b) => {
+        if(a.title > b.title) return 1;
+        if(a.title == b.title) return 0;
+        if(a.title < b.title) return -1;
+    }) 
+     newArray = newArray.map(object => object.title);
+     return newArray.slice(0,20);
+}
+
+
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
