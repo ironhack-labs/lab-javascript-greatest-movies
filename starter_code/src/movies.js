@@ -19,7 +19,7 @@ function orderByYear (array){
 function howManyMovies(array){
     // select elements
     let newArray = array.filter(object => {
-        return object.director == "Steven Spielberg" && object.genre.indexOf("Drama") != -1
+        return object.director === "Steven Spielberg" && object.genre.indexOf("Drama") !== -1
     })
     // count elements
     console.log(newArray);
