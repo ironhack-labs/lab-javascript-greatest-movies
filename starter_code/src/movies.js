@@ -19,7 +19,7 @@ function orderByYear (array){
 function howManyMovies(array){
     // select elements
     let newArray = array.filter(object => {
-        return object.director === "Steven Spielberg" && object.genre.indexOf("Drama") !== -1
+        return object.director === "Steven Spielberg" && object.genre.indexOf("Drama") !== -1;
     })
     // count elements
     return newArray.length;
@@ -56,17 +56,16 @@ function ratesAverage(array){
 
     return averageRate;
 }
+
 // Iteration 5: Drama movies - Get the average of Drama Movies
 const dramaMoviesRate = (movies) => {
     let dramaGenre = movies.filter((movie) => {
-        return movie.genre="Drama"
+        return movie.genre.indexOf("Drama") !== -1
     });
 
-    let totalSum = movies.reduce((sum, movie) => //reduce hace la suma
-      sum + Number(movie.rate), 0);
-    let avg = totalSum / movies.length;
-    return Number(avg.toFixed(2));
+    return ratesAverage(dramaGenre);
 }
+
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 const turnHoursToMinutes = (movies)=>  {
     return movies.map(movie => {
@@ -95,6 +94,7 @@ const turnHoursToMinutes = (movies)=>  {
       }
     })
   }
+
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 function bestYearAvg (arr) {
     if (arr.length === 0) return null
