@@ -43,11 +43,17 @@ function ratesAverage(array){
     if (array.length === 0){
         return 0;
     }
+
     let suma = array.reduce((acumulador, object) => {
-        return acumulador + object.rate;
-    }, 0)
+        if (object.rate == undefined){
+            return acumulador + 0;
+        } 
+        return acumulador + Number(object.rate); // No me queda claro el por qué
+    }, 0)                                        // de usar Number
+
     let averageRate = Math.round((suma / array.length) * 100) / 100;
     console.log(averageRate);
+
     return averageRate;
 }
 // Iteration 5: Drama movies - Get the average of Drama Movies
