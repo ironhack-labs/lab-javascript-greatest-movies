@@ -111,4 +111,4 @@ function bestYearAvg (arr) {
       return b[0] - a[0]
     })
     return `The best year was ${moviesYearAvg[0][1]} with an average rate of ${moviesYearAvg[0][0]}`
-  }
+  } //prueba
