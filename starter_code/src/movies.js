@@ -48,7 +48,7 @@ function ratesAverage(array){
         if (object.rate == undefined){
             return acumulador + 0;
         } 
-        return acumulador + Number(object.rate); // No me queda claro el por qué
+        return acumulador + Number(object.rate); // No me queda claro el porqué
     }, 0)                                        // de usar Number
 
     let averageRate = Math.round((suma / array.length) * 100) / 100;
