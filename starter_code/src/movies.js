@@ -4,13 +4,13 @@
 function orderByYear (array){
     let newArray = array.slice ();
     return newArray.sort((a,b)=> { 
-        if (a.year > b.year) return 1
+        if (a.year > b.year) return 1;
         if (a.year == b.year){
-            if (a.title > b.title)return 1
-            if (a.title == b.title) return 0
-            if (a.title < b.title) return -1
+            if (a.title > b.title)  return 1;
+            if (a.title == b.title) return 0;
+            if (a.title < b.title)  return -1;
         } 
-        if (a.year < b.year) return -1
+        if (a.year < b.year) return -1;
     })
 
 }
@@ -60,7 +60,7 @@ function ratesAverage(array){
 // Iteration 5: Drama movies - Get the average of Drama Movies
 const dramaMoviesRate = (movies) => {
     let dramaGenre = movies.filter((movie) => {
-        return movie.genre.indexOf("Drama") !== -1
+        return movie.genre.indexOf("Drama") !== -1;
     });
 
     return ratesAverage(dramaGenre);
