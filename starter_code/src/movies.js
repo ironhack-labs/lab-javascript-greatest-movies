@@ -10,6 +10,11 @@ function howManyMovies(arr){
     return arr.filter(movie=> movie.director === `Steven Spielberg` && movie.genre.indexOf(`Drama`) !== -1).length;
 }
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(arr){
+    let arrCpy = [...arr];
+    return arrCpy.sort((movie1, movie2) => movie1.title.localeCompare(movie2.title) === 1 ? 1 : -1).map((movie,idx) => idx < 20? movie.title : null).filter(movie => movie !== null);
+
+}
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
