@@ -55,3 +55,32 @@ function turnHoursToMinutes(arr) {
 
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(arr) {
+    let arrCpy = JSON.parse(JSON.stringify(arr));
+    if (arrCpy.length > 0) {
+        if (arrCpy.length === 1) {
+            return `The best year was ${arrCpy[0].year} with an average rate of ${arrCpy[0].rate}`;
+        } else {
+
+            arrCpy.sort((movie1, movie2) => movie1.year < movie2.year ? -1 : 1);
+            let firstYear = arrCpy[0].year;
+            let yearsArray = Array(arrCpy[arrCpy.length - 1].year - firstYear).fill().map(() => firstYear++);
+
+            let moviesByYear = yearsArray.map(year => {
+                let cinemaYear = arrCpy.filter(movie => movie.year === year);
+                let yearAverage = ratesAverage(cinemaYear);
+                return {
+                    year: year,
+                    average: yearAverage
+                };
+            }).filter(year => year.average > 0);
+
+            moviesByYear.sort((year1, year2) => year1.average < year2.average ? 1 : -1);
+            return `The best year was ${moviesByYear[0].year} with an average rate of ${moviesByYear[0].average}`;
+        }
+    } else {
+        return null;
+    }
+
+}
