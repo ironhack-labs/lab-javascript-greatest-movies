@@ -65,30 +65,31 @@ function orderAlphabetically(orderArr) {
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(minutesArr) {
   let durationArr = minutesArr.map(currentItem => {
-    let stringtime = currentItem.duration;
-    if (typeof stringtime === "string" && stringtime !== null && stringtime !== "" && stringtime !== undefined) {
+    let newMovieObject = {...currentItem};
+    let stringtime = newMovieObject.duration;
+    
     let strnumbers = stringtime.match(/\d+/g);
-    let numbers = strnumbers.map(Number);
-    let minutes = 0;
     if (stringtime.includes("h") && stringtime.includes("min")) {
-      minutes = (numbers[0] * 60) + numbers[1];
+      let numberOfHours = parseInt(strnumbers[0]);
+      let numberOfMinutes = parseInt(strnumbers[1]);
+      newMovieObject.duration  = numberOfHours*60 + numberOfMinutes;
     } else if (stringtime.includes("h")) {
-      minutes = numbers[0] * 60;
-    } else if (stringtime.includes("min")) {
-      minutes = numbers[0];
+      let numberOfHours = parseInt(strnumbers[0]);
+      newMovieObject.duration  = numberOfHours*60;
+    } else {
+      newMovieObject.duration = parseInt(strnumbers);
     } 
-    currentItem.duration = minutes;
-    return {...currentItem};
-    } else if (typeof stringtime === "number") {
-      return currentItem.duration;
-    } else if (typeof stringtime === "undefined") {
-      return currentItem.duration = Number(stringtime);
-    }
+    return newMovieObject;
   });
   
   return durationArr;
 
 }
+
 console.log(turnHoursToMinutes(movies));
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(){
+
+}
+console.log(bestYearAvg(movies));
