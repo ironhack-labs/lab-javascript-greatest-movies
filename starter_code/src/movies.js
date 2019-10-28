@@ -7,7 +7,7 @@ function orderByYear(moviesArray) {
     let newMoviesArray = [...moviesArray];
 
     newMoviesArray.sort((movie1, movie2) => {
-        if(movie1.year > movie2.year) return 1;
+        if (movie1.year > movie2.year) return 1;
         return -1;
     })
 
@@ -30,11 +30,21 @@ function orderAlphabetically(moviesArray) {
     newMoviesArray = newMoviesArray.map((cFilm) => {
         return cFilm.title;
     }).sort().splice(0, 20);
- 
+
     return newMoviesArray;
 };
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+
+function ratesAverage(moviesArray) {
+
+    if(moviesArray.length === 0) return 0;
+
+    return parseFloat((moviesArray.reduce((ac, film) => {
+        if(typeof(film.rate) != "number") film.rate = 0;
+        return ac + film.rate;
+    }, 0)/moviesArray.length).toFixed(2));
+};
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
