@@ -52,3 +52,6 @@ const turnHoursToMinutes = movies =>
     return movie;
   });
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+const bestYearAvg = movies => {
+    
+}
