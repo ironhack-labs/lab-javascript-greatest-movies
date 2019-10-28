@@ -75,14 +75,18 @@ function turnHoursToMinutes(arr) {
         } else {
             minutes = parseFloat(times[0]) * 60 + parseFloat(times[1])
         }
-    console.log(minutes);
-        movie.duration= minutes;
+        //console.log(minutes);
+        movie.duration = minutes;
 
-    }); 
-    
-console.log(newArr)
+    });
+
+    //console.log(newArr)
     return newArr;
 }
 
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(arr) {
+    if (arr.length === 0) return null;
+}
