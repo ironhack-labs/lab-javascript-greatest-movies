@@ -34,8 +34,6 @@ function orderAlphabetically(arr) {
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(arr) {
     if (arr.length === 0) return 0;
-    // let rated = arr.filter(movie => movie.rate !== "");
-    // console.log(rated);
 
     let average = arr.reduce((ac, curr) => {
         if (typeof (curr.rate) !== "number") curr.rate = 0;
@@ -46,6 +44,17 @@ function ratesAverage(arr) {
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+
+function dramaMoviesRate(arr) {
+    let dramaArr= arr.filter(movie => movie.genre.includes("Drama"));
+    if (dramaArr.length === 0) return 0;
+    let dramaAvg = dramaArr.reduce((ac, curr) => {
+        if (typeof (curr.rate) !== "number") curr.rate = 0;
+        return ac + curr.rate}, 0) / dramaArr.length;
+    console.log(dramaAvg);
+    return +(dramaAvg.toFixed(2))
+
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
