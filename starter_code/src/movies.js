@@ -44,8 +44,8 @@ function orderAlphabetically(moviesArray) {
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(moviesArray) {
-    let sum = moviesArray.reduce((acc, value) => {
-        return acc + Number(value.rate)
+    let sum = moviesArray.reduce((elm, value) => {
+        return elm + (value.rate)
     }, 0)
     let average = sum / moviesArray.length
 
@@ -57,23 +57,26 @@ function ratesAverage(moviesArray) {
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate(moviesArray) {
-    let dramaFilter = moviesArray.filter(movie => {
-        return movie.genre.includes("Drama")
+    let dramaFilter = moviesArray.filter(elm => {
+        return elm.genre.includes("Drama")
     })
     if (isNaN(ratesAverage(dramaFilter))) {
         return 0
     }
-    let average = ratesAverage(dramaFilter).toFixed(2)
-    return Number(average)
+    let average = ratesAverage(dramaFilter)
+    return average
 }
 
 
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {
+function turnHoursToMinutes(movies) {
     let hours = [...movies]
     let hoursArray = []
     hours.filter(elm => elm.duration)
     return hoursArray
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(moviesArray) {
+
+}
