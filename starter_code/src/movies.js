@@ -3,86 +3,51 @@
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arr) {
 
-    arr.sort(function (film1, film2) { // Two given objects inside the array
+    arr.sort(function (film1, film2) { 
         if (film1.year > film2.year) return 1;
         return -1;
     })
 
-    return arr.flat(); // ¿por qué?
+    return [...arr];
 }
-
-orderByYear(movies);
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 function howManyMovies(arr) {
 
-    arr = arr.filter(film => film.director === "Steven Spielberg" && film.genre.includes('Drama'));
-    return arr.length;
+    return arr.filter(film => film.director === "Steven Spielberg" && film.genre.includes('Drama')).length;
 }
-
-howManyMovies(movies);
-
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(arr) {
+    let newArr = [...arr];
 
-    let newArr = [];
-
-    arr.forEach(film => {
-        newArr.push(film.title)
-    })
-
-    newArr.sort((title1, title2) => {
+    return newArr.map(film => film.title).sort((title1, title2) => {
         return title1.localeCompare(title2);
-    })
-
-    newArr = [...newArr.slice(0, 20)];
-
-    return newArr;
+    }).slice(0, 20);
 }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
-// Create a ratesAverage() function that receives an array as a parameter and solves the challenge and return the average rate of all movies
-
-// The rate must be returned rounded to 2 decimals!
-// 💡 Maybe you want to "reduce" the data to a single value. 😉
-
 function ratesAverage(arr) {
-
-    let ratesArr = [];
-
-    arr.forEach(film => {
-        if(typeof film.rate === 'number'){
-            ratesArr.push(film.rate);
-
-        } else{
-            ratesArr.push(0);
-
-        }
-    })
-
+    let ratesArr = [...arr];
     if (ratesArr.length === 0) {
         return 0;
     }
 
+    ratesArr = arr.map(film => {
+        return typeof film.rate === 'number' ?  film.rate : 0;
+    })
+  
     let avg = ratesArr.reduce((ac, rate) => ac + rate) / ratesArr.length;
-    avg = parseFloat(avg.toFixed(2));
-
-    console.log(avg)
-    return avg;
+    return avg = parseFloat(avg.toFixed(2));
 }
 
 ratesAverage(movies);
 
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
-// Drama is the genre that repeats the most on our array. Apparently, people love drama! 
-// Create a dramaMoviesRate() function that receives an array as a parameter to get the average rate of all drama movies! Let's see if it is better than the general average.
-// Again, rounded to 2 decimals!
 
 function dramaMoviesRate(arr) {
-
     let dramaRates = [];
 
     let dramaFilms = arr.filter(film => film.genre.includes('Drama'))
@@ -91,22 +56,14 @@ function dramaMoviesRate(arr) {
         return 0;
     }
 
-    dramaFilms.forEach(dramaFilm => {
-        dramaRates.push(dramaFilm.rate);
-    })
+    dramaRates = dramaFilms.map(dramaFilm => dramaFilm.rate);
 
     let avg = dramaRates.reduce((ac, cu) => ac + cu) / dramaFilms.length;
-    avg = parseFloat(avg.toFixed(2));
-
-    console.log(avg);
-    return avg;
+    return avg = parseFloat(avg.toFixed(2));
 }
-
-dramaMoviesRate(movies);
 
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-// Create a turnHoursToMinutes() function that receives an array as parameter, and with some magic implemented by you - replaces the duration info of each of the movies for its equivalent in minutes. For example:
 
 function turnHoursToMinutes(arr) {
     let newArr = JSON.parse(JSON.stringify(arr));
@@ -158,8 +115,8 @@ turnHoursToMinutes(arr);
 // Create bestYearAvg() function that receives an array of movies and gives us an answer which year was the best year for cinema and what was its average rate.
 
 function bestYearAvg(arr) {
+    
     let newArr = JSON.parse(JSON.stringify(arr));
-
     if (newArr.length === 0){
         return null;
     }
@@ -168,7 +125,6 @@ function bestYearAvg(arr) {
 
     let avgEveryYear = years.map(year => {
         let moviesByYear = newArr.filter(film => film.year === year);
-        ratesAverage(moviesByYear);
 
         return{
             year : year,
@@ -177,10 +133,9 @@ function bestYearAvg(arr) {
     })
 
     let avgEveryYearSorted = avgEveryYear.sort((year1,year2) => {
-        if(year1.avg > year2.avg ) {
+        if ((year1.avg > year2.avg ) || (year1.year < year2.year)){
             return -1;
         }
-    
         return 1;
     })
 
