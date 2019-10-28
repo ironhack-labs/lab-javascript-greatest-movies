@@ -6,7 +6,7 @@ function ratesAverage(movieArr) {
   
   return Number((ratesAve / movieArr.length).toFixed(2)) || 0;
 }
-console.log(ratesAverage(movies));
+//console.log(ratesAverage(movies));
 
  
 // Iteration 2: Drama movies - Get the average of Drama Movies
@@ -19,7 +19,7 @@ function dramaMoviesRate(dramaArr) {
   //return ratesAverage(dramaFilterArr) || 0;
   return Number((dramaReduce / dramaFilterArr.length).toFixed(2)) || 0;
 }
-console.log(dramaMoviesRate(movies));
+//console.log(dramaMoviesRate(movies));
 
 
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
@@ -40,7 +40,7 @@ function orderByYear(yearsOrder) {
   });
   return sorting;
 }
-console.log(orderByYear(movies));
+//console.log(orderByYear(movies));
 
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
@@ -52,7 +52,7 @@ function howManyMovies(spielbergArr) {
   
   return HowManySpielberg.length;
 }
-console.log(howManyMovies(movies));
+//console.log(howManyMovies(movies));
 
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
@@ -60,7 +60,7 @@ function orderAlphabetically(orderArr) {
   let alphabetically = orderArr.sort((a, b) => (a.title > b.title) ? 1 : -1).map(k => k.title).slice(0, 20);
   return alphabetically;
 }
-console.log(orderAlphabetically(movies));
+//console.log(orderAlphabetically(movies));
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(minutesArr) {
@@ -81,6 +81,8 @@ function turnHoursToMinutes(minutesArr) {
     return {...currentItem};
     } else if (typeof stringtime === "number") {
       return currentItem.duration;
+    } else if (typeof stringtime === "undefined") {
+      return currentItem.duration = Number(stringtime);
     }
   });
   
