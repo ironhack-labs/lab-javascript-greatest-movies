@@ -38,12 +38,12 @@ function orderAlphabetically(moviesArray) {
 
 function ratesAverage(moviesArray) {
 
-    if(moviesArray.length === 0) return 0;
+    if (moviesArray.length === 0) return 0;
 
     return parseFloat((moviesArray.reduce((ac, film) => {
-        if(typeof(film.rate) != "number") film.rate = 0;
+        if (typeof (film.rate) != "number") film.rate = 0;
         return ac + film.rate;
-    }, 0)/moviesArray.length).toFixed(2));
+    }, 0) / moviesArray.length).toFixed(2));
 };
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
@@ -54,15 +54,33 @@ function dramaMoviesRate(moviesArray) {
         return cFilm.genre.includes('Drama');
     });
 
-    if(newMoviesArray.length === 0) return 0;
+    if (newMoviesArray.length === 0) return 0;
 
     return parseFloat((newMoviesArray.reduce((ac, film) => {
-        if(typeof(film.rate) != "number") film.rate = 0;
+        if (typeof (film.rate) != "number") film.rate = 0;
         return ac + film.rate;
-    }, 0)/newMoviesArray.length).toFixed(2));
+    }, 0) / newMoviesArray.length).toFixed(2));
 
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
+function turnHoursToMinutes(moviesArray) {
+
+    let newMoviesArray = JSON.parse(JSON.stringify(moviesArray)); 
+
+    newMoviesArray = newMoviesArray.map((cFilm) => {
+        if (cFilm.duration.includes('h') && cFilm.duration.includes('min')) {
+            cFilm.duration = cFilm.duration.split(" ");
+            cFilm.duration = parseInt(cFilm.duration[0]) * 60 + parseInt(cFilm.duration[1]);
+        } else if (cFilm.duration.includes('h')) {
+            cFilm.duration = parseInt(cFilm.duration) * 60;
+        } else {
+            cFilm.duration = parseInt(cFilm.duration);
+        }
+        return cFilm;
+    })
+    return newMoviesArray;
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
