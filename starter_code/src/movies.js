@@ -69,29 +69,29 @@ const dramaMoviesRate = (movies) => {
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 const turnHoursToMinutes = (movies)=>  {
     return movies.map(movie => {
-      let strDuration = movie.duration
-      let duration
+        let timesArray = movie.duration.split(" ");
+        let duration, hours, minutes;
+        
+        if (timesArray.length === 2){
+            hours = Number(timesArray[0].slice(0,-1));
+            minutes = Number(timesArray[1].slice(0,-3));
+            duration = hours * 60 + minutes;
+        } else if (timesArray.length === 1 && timesArray[0].includes("h")) {
+            hours = Number(timesArray[0].slice(0,-1));
+            duration = hours * 60;
+        } else if (timesArray.length === 1 && timesArray[0].includes("min")) {
+            minutes = Number(timesArray[0].slice(0,-3));
+            duration = minutes;
+        }
   
-      if (strDuration.length === "Xh XXmin".length)
-        duration = strDuration[0]*60 + strDuration[3]*10 + strDuration[4]*1
-      
-      if (strDuration.length === "Xh Xmin".length)
-        duration = strDuration[0]*60 + strDuration[3]*1
-      
-      if (strDuration.length === "XXmin".length)
-        duration = strDuration[0]*10 + strDuration[1]*1
-      
-      if (strDuration.length === "Xh".length)
-        duration = strDuration[0]*60
-  
-      return {
-        title: movie.title,
-        year: movie.year,
-        director: movie.director,
-        duration: duration,
-        genre: movie.genre,
-        rate: movie.rate
-      }
+        return {
+            title: movie.title,
+            year: movie.year,
+            director: movie.director,
+            duration: duration,
+            genre: movie.genre,
+            rate: movie.rate
+        }
     })
   }
 
