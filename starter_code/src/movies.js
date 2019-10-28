@@ -18,7 +18,7 @@ function orderByYear(moviesArray) {
 
 function howManyMovies(moviesArray) {
 
-    return moviesArray.filter(cfilm => cfilm.genre.includes('Drama') && cfilm.director.includes('Steven Spielberg')).length;
+    return moviesArray.filter(cFilm => cFilm.genre.includes('Drama') && cFilm.director.includes('Steven Spielberg')).length;
 };
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
@@ -47,6 +47,21 @@ function ratesAverage(moviesArray) {
 };
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+
+function dramaMoviesRate(moviesArray) {
+
+    let newMoviesArray = moviesArray.filter(cFilm => {
+        return cFilm.genre.includes('Drama');
+    });
+
+    if(newMoviesArray.length === 0) return 0;
+
+    return parseFloat((newMoviesArray.reduce((ac, film) => {
+        if(typeof(film.rate) != "number") film.rate = 0;
+        return ac + film.rate;
+    }, 0)/newMoviesArray.length).toFixed(2));
+
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
