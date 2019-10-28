@@ -24,13 +24,26 @@ function howManyMovies(arr) {
 function orderAlphabetically(arr) {
     let moreMovies = [...arr];
     moreMovies = moreMovies.sort(function (movie1, movie2) {
-        return movie1.title.localeCompare(movie2.title)}).map(function (movie) {
+        return movie1.title.localeCompare(movie2.title)
+    }).map(function (movie) {
         return movie.title;
     });
-    return moreMovies.splice(0,20);
+    return moreMovies.splice(0, 20);
 }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(arr) {
+    if (arr.length === 0) return 0;
+    // let rated = arr.filter(movie => movie.rate !== "");
+    // console.log(rated);
+
+    let average = arr.reduce((ac, curr) => {
+        if (typeof (curr.rate) !== "number") curr.rate = 0;
+        return ac + curr.rate
+    }, 0) / arr.length;
+    console.log(average);
+    return +(average.toFixed(2))
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
