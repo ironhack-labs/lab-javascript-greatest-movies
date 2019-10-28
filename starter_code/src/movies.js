@@ -39,7 +39,6 @@ function orderAlphabetically(arr) {
 
     newArr = [...newArr.slice(0, 20)];
 
-    console.log(newArr)
     return newArr;
 }
 
@@ -156,3 +155,39 @@ turnHoursToMinutes(arr);
 
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+// Create bestYearAvg() function that receives an array of movies and gives us an answer which year was the best year for cinema and what was its average rate.
+
+function bestYearAvg(arr) {
+    let newArr = JSON.parse(JSON.stringify(arr));
+
+    if (newArr.length === 0){
+        return null;
+    }
+
+    let years = newArr.map(film => film.year);
+
+    let avgEveryYear = years.map(year => {
+        let moviesByYear = newArr.filter(film => film.year === year);
+        ratesAverage(moviesByYear);
+
+        return{
+            year : year,
+            avg : ratesAverage(moviesByYear)
+        }
+    })
+
+    let avgEveryYearSorted = avgEveryYear.sort((year1,year2) => {
+        if(year1.avg > year2.avg ) {
+            return -1;
+        }
+    
+        return 1;
+    })
+
+    let bestYear =  avgEveryYearSorted[0].year;
+    let highestAvg = avgEveryYearSorted[0].avg;
+
+    return `The best year was ${bestYear} with an average rate of ${highestAvg}`;
+}
+
+bestYearAvg(movies);
