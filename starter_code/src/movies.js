@@ -6,9 +6,10 @@ function orderByYear(moviesArray) {
     let byYear = [...moviesArray.sort(function (movie1, movie2) {
         if (movie1.year > movie2.year) return 1
         if (movie1.year < movie2.year) return -1
-        // if (movie1.year === movie2.year) {
-        //     movie1.title.localeCompare(movie2.title)
-        // }
+        if (movie1.year === movie2.year) {
+                if(movie1.title > movie2.title)return 1
+                else return -1
+        }
     })]
     return byYear
 
@@ -95,13 +96,149 @@ function bestYearAvg(moviesArray){
     let orderedByYear = orderByYear(moviesArray);
     let minYear = orderedByYear[0].year;
     let maxYear = orderedByYear[orderedByYear.length-1].year;
+    let movie = new Array();
     for (i = minYear ; i<=maxYear ; i++){
-        let movie;
+        let nombre = i;
+        let yearRow =  orderedByYear.filter(e => e.year == i)
+        movie.push(yearRow);
     }
+    let arrByYears = movie.filter(e => e.length !==0);
+    // console.log(arrByYears[0][0].rate)
+    arrByYears.forEach(function(e){
+        console.log(e)
+    })
+    
+    
+    
 
 
+    // arrByYears.forEach(function(d){
+    //     console.log(d)
+    //         // let sum=0
+    //         // for(i=0; d.length; d++){
+    //         //     sum = sum + d[i].rate;
+    //         // }
+    //         //  sumas.push(sum)
+    //     })
+    
+    // console.log(sumas)
+    // }
 
+//    arrByYears.forEach(function(d){
+//        if(d.isArray()){
+//            d.forEach(function(e){
+//                console.log(e)
+//            })
+//         }
+//     })
+    
+
+
+        //    d.forEach(function(e) {
+        //       console.log(e)
+        //    });
+        // }
+    //  });
 
 }
+    // for(i=0; i < arrByYears.length; i++){
+    //     let target = arrByYears[i];
+    //     console.log(target)
+    //     }
+
+
+    //     // target.forEach(function(d){
+    //     //     console.log(d)
+    //     // })
+    //     // console.log(target[]);
+
+    //     // arrByYears[i].forEach(function(d){
+    //     //     console.log(d)
+    //     // })
+    //     // console.log(sumados);
+    //     // }
+        
+    //     }
+    
+
+
+
+
+        // for(j=0 ; j < arrByYears[i].length; j++){
+        // // console.log(arrByYears[i][j])
+        // sum = sum + arrByYears[i][j].rate
+        //  console.log ("vuelta:" + i + ", " + j + "SUMA= "+ sum)   
+        // }
+    
+
+    // let sumOfAllRatesByYear = arrByYears.map(function (d) {
+    //     console.log(d.rate);
+    // })
+
+    // console.log(sumOfAllRatesByYear)
+
+    // for(i=0; i<onlyRates.length ; i++){
+    //     // let sum = 0
+    //     // let sum = onlyRates[i].reduce((ac,cu) => ac + cu)
+    //     // for(j=0; j=)
+    //     console.log(onlyRates[i])
+    // }
+    
+
+
+
 
 bestYearAvg(movies)
+
+
+
+
+// function bestYearAvg(moviesArray){
+//     let orderedByYear = orderByYear(moviesArray);
+//     let minYear = orderedByYear[0].year;
+//     let maxYear = orderedByYear[orderedByYear.length-1].year;
+//     let movie = []
+//     for (i = minYear ; i<=maxYear ; i++){
+//         let yearRow =  orderedByYear.filter(e => e.year == i)
+//         movie.push(yearRow);
+//     }
+//     let arrByYears = movie.filter(e => e.length !==0);
+//     // console.log(arrByYears[0][0].rate)
+//     for(i=0; i < arrByYears.length; i++){
+//         let sum=0;
+//         for(j=0 ; j < arrByYears[i].length; j++){
+//         // console.log(arrByYears[i][j])
+//         sum = sum + arrByYears[i][j].rate
+//          console.log ("vuelta:" + i + ", " + j + "SUMA= "+ sum)   
+//         }
+//     }
+
+//     // let sumOfAllRatesByYear = arrByYears.map(function (d) {
+//     //     console.log(d.rate);
+//     // })
+
+//     // console.log(sumOfAllRatesByYear)
+
+//     // for(i=0; i<onlyRates.length ; i++){
+//     //     // let sum = 0
+//     //     // let sum = onlyRates[i].reduce((ac,cu) => ac + cu)
+//     //     // for(j=0; j=)
+//     //     console.log(onlyRates[i])
+//     // }
+    
+
+
+// }
+
+
+
+// arrByYears.forEach(function(d){
+//     let sum = 0
+//     for(i=0; d.length; d++){
+//         sum = sum + d[i].rate;
+//     }sumas.push(sum);
+//     console.log(sum)
+//     // d.map(function(j){
+//     //     console.log(j)
+//     // })
+// })
