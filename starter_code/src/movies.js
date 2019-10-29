@@ -6,21 +6,21 @@ let ratesAverage = arr => {
   return average
  }
 // Iteration 2: Drama movies - Get the average of Drama Movies
-function dramaMoviesRate(arr){
-  let dramaMovies = arr.filter(drama => {
-      return drama.genre.find(element => {
-          //return element == 'Drama';
-          if(element == 'Drama')
-              return element;
-          else
-              return 0;
-      })
-  });
-  let sumAver = dramaMovies.reduce((sum, movie)=> sum + parseFloat(movie.rate),0);
-let average = sumAver / dramaMovies.length;
-return average;
-}
+ let dramaMoviesRate = arr => {
+   const dramaOnly = arr.filter(any =>{
+     return any.genre.includes(`Drama`)
+   })
+   if (dramaOnly.length > 0){
+     const average = ratesAverage(dramaOnly)
+     return Number(average.toFixed(2))
+   }else{
+     return 0
+   }
+ }
+
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
+
+
 function orderByYear(arr){
   var filterValue = 'year' // using a dummy one for now
   arr.sort(function(a, b){
@@ -33,65 +33,65 @@ function orderByYear(arr){
       return 0;
   });
   return arr;
+  
  }
+
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
-function howManyMovies(arr){
-  let dramaSpielbergMovies = arr.filter(drama => {
-      if(drama.director == 'Steven Spielberg'){
-   return drama.genre.find(element => {
-          if(element == 'Drama')
-              return element;
-          else
-              return 0;
-      });
- } else {
-   return 0;
+let howManyMovies = arr => {
+  const dramaOnly = arr.filter(element => {
+    return element.genre.includes(`Drama`)
+  })
+  const spielbergOnly = dramaOnly.filter(element => {
+    return element.director.includes(`Steven Spielberg`)
+  })
+  return spielbergOnly.length
  }
-  });
-  return dramaSpielbergMovies;
-}
-// Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(arr){
-  let newArrayTitles=[];
-  if (arr.length > 20){
-    for(let i = 0; i<20; i++){
-    newArrayTitles.push(arr[i].title);
+ 
+ // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
+ const orderAlphabetically = arr => {
+  const ordered = arr.sort(function(a, b) {
+    if (a.title < b.title) {
+      return -1
+    }
+    if (a.title > b.title) {
+      return 1
+    }
+    return 0
+  })
+  const titles = []
+  for (let i = 0; i < ordered.length; i++) {
+    titles.push(ordered[i].title)
   }
-    newArrayTitles.sort(function(a, b){
-      if (a > b) return 1;
-      if (a < b) return -1;
-      return 0;
-    });
-  return newArrayTitles;
-  } else {
-    var filterValue = 'title';
-    for(let i = 0; i<arr.length; i++){
-    newArrayTitles.push(arr[i].title);
-  }
-  newArrayTitles.sort(function(a, b){
-      if (a > b) return 1;
-      if (a < b) return -1;
-      return 0;
-  });
-  return newArrayTitles;
-  }
+  return titles.slice(0, 20)
  }
+
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(arr){
-let horas="";
-let minutos="";
-let duration;
-let newArray = arr;
-for(let i = 0; i<arr.length; i++){
-    if (arr[i].duration[1] == 'h') {
-        horas = (parseInt(arr[i].duration[0]))*60;
+const turnHoursToMinutes = arr => {
+  const getHoursInMin = movie => {
+    if (movie.duration.charAt(1) === `h`) {
+      const hr = Number(movie.duration.charAt(0))
+      const hrInMin = hr * 60
+      return hrInMin
+    } else {
+      return 0
     }
-    if (arr[i].duration[5] == 'm') {
-        minutos = parseInt(arr[i].duration[3] + arr[i].duration[4]);
+  }
+  const getMinutes = movie => {
+    let min = 0
+    if (movie.duration.length >= 5 && movie.duration.charAt(1) === `h`) {
+      min = Number(movie.duration.substring(3, movie.duration.length - 3))
+    } else {
+      min = Number(movie.duration.substring(0, movie.duration.length - 3))
     }
-duration = horas + minutos;
-newArray[i].duration = duration;
-}
-return newArray;
-}
+    return min
+  }
+  let newArrWithMin = []
+  arr.forEach(movie => {
+    let singleMovie = { ...movie, duration: getHoursInMin(movie) + getMinutes(movie) }
+    newArrWithMin.push(singleMovie)
+  })
+  return newArrWithMin
+ }
+ var movieTry = [{ duration: `2h` }]
+ console.log(turnHoursToMinutes(movieTry)[0].duration)
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
