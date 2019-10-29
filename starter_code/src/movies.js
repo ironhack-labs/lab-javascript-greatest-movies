@@ -51,15 +51,26 @@ function ratesAverage(avgRate) {
     let ratesArray = avgRate.reduce((acc, elm) => {
         return acc + elm.rate
     }, 0);
-    return number(ratesArray / ratesArray.length.toFixed(2))
+    return number(ratesArray / avgRate.length.toFixed(2))
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
+function dramaMoviesRate(dMovies) {
+    let dramaMov = dMovies.filter(function (dMovie) {
+        return dMovie.genre.includes("Drama")
+    })
+    if (dramaMov.length == 0) {
+        return 0;
+    } else {
+        let totalDramaRates = dramaMov.reduce(function (acc, dramaMov) {
+            return acc + dramaMov.rate;
+        }, 0);
+        return number(totalDramaRates / dramaMov.length.toFixed(2))
+    }
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes;
 
-// function turnHoursToMinutes(duration) {
-//     let hours =
-
+function turnHoursToMinutes(duration) {}
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
