@@ -1,10 +1,10 @@
 let movies = [
     {
-      genre"title": "The Shawshank Redemption",
+      "title": "The Shawshank Redemption",
       "year": 1994,
       "director": "Frank Darabont",
       "duration": "2h 22min",
-      "": [
+      "genre": [
         "Crime",
         "Drama"
       ],
@@ -2966,4 +2966,4 @@ let movies = [
       ],
       "rate": 8
     }
-  ];
+  ]
