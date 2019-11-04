@@ -1,23 +1,48 @@
 /* eslint no-restricted-globals: 'off' */
 
-// Callback function to sorted by title
-function orderByTitle ( title1, title2 ) {
-    let title1Upper = title1.toUpperCase();
-    let title2Upper = title2.toUpperCase();
+/**********************************************************************/
+// General Sorting Function
+function sorting( arr ) {
+    // temporary array of objects with position and value
+    let mapped = arr.map(function(el, idx) {
+        return { index: idx, value: el };
+        })
 
-    if( title1Upper < title2Upper ) return -1
-    else if( title1Upper > title2Upper ) return 1
-    else return 0
+    // sorting the mapped array containing the objects
+    mapped.sort(function(a, b) {
+        //Numeric values
+        if ( typeof a.value === 'number' && typeof b.value === 'number') {
+            return a.value - b.value; 
+        }        
+        //Non-numeric values
+        else {
+            return a.value.localeCompare(b.value);
+        }
+    });
+
+    // container for the resulting order
+    let result = mapped.map( el => arr[el.index] );
+    return result;
+}
+/**********************************************************************/
+
+// Callback function to sorted by title
+function ordered ( val1, val2 ) {
+    //let title1Upper = title1.toUpperCase();
+    //let title2Upper = title2.toUpperCase();
+    //if( title1Upper < title2Upper ) return -1
+    //else if( title1Upper > title2Upper ) return 1
+    //else return 0
+    return typeof val1 == 'number' && typeof val2 == 'number' ? val1 - val2 : val1.localeCompare(val2);
 }
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear( moviesArr) {
-
     let orderedArray = [...moviesArr];
     
     orderedArray.sort( (elm1, elm2) => { 
-        if ( elm1.year - elm2.year == 0 ) return orderByTitle(elm1.title, elm2.title)
-        return elm1.year - elm2.year;
+        if ( elm1.year - elm2.year == 0 ) return ordered (elm1.title, elm2.title)
+        return ordered( elm1.year, elm2.year);
     });
 
     return orderedArray;
@@ -33,7 +58,7 @@ function orderAlphabetically( moviesArr ) {
     let orderedArray = [...moviesArr];
 
     let onlyFirst20Titles = orderedArray
-            .sort( ( elm1, elm2 ) => orderByTitle( elm1.title, elm2.title))
+            .sort( ( elm1, elm2 ) => ordered( elm1.title, elm2.title))
             .map( elm => elm.title)
             .filter( (elm, idx) => idx < 20 );
             
