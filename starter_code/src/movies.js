@@ -1,7 +1,7 @@
 /* eslint no-restricted-globals: 'off' */
 
 /**********************************************************************/
-// General Sorting Function
+// General Sorting Function ( just for studying purposes )
 function sorting( arr ) {
     // temporary array of objects with position and value
     let mapped = arr.map(function(el, idx) {
@@ -28,11 +28,6 @@ function sorting( arr ) {
 
 // Callback function to sorted by title
 function ordered ( val1, val2 ) {
-    //let title1Upper = title1.toUpperCase();
-    //let title2Upper = title2.toUpperCase();
-    //if( title1Upper < title2Upper ) return -1
-    //else if( title1Upper > title2Upper ) return 1
-    //else return 0
     return typeof val1 == 'number' && typeof val2 == 'number' ? val1 - val2 : val1.localeCompare(val2);
 }
 
@@ -67,6 +62,18 @@ function orderAlphabetically( moviesArr ) {
 
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage( moviesArr ) {
+    let countEmptyRate = 0;
+    if ( moviesArr.length == 0 ) return 0;
+    // Sum of all movie's rate
+    let ratesSum = moviesArr.reduce( function(acc, cur) {
+        if ( !cur.rate ) cur.rate = 0;
+        return acc + cur.rate;
+    }, 0);
+    // Average
+    let avg = Math.round( (ratesSum / moviesArr.length) * 100) / 100  ;
+    return avg;    
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
