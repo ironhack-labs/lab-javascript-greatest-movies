@@ -63,20 +63,24 @@ function orderAlphabetically( moviesArr ) {
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage( moviesArr ) {
-    let countEmptyRate = 0;
     if ( moviesArr.length == 0 ) return 0;
-    // Sum of all movie's rate
+    
+    // Sum of all movies' rate
     let ratesSum = moviesArr.reduce( function(acc, cur) {
         if ( !cur.rate ) cur.rate = 0;
         return acc + cur.rate;
     }, 0);
+    
     // Average
     let avg = Math.round( (ratesSum / moviesArr.length) * 100) / 100  ;
     return avg;    
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
-
+function dramaMoviesRate( moviesArr ) {
+    let dramaMovies = moviesArr.filter( el => el.genre.includes("Drama"));
+    return ratesAverage(dramaMovies);
+}
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
