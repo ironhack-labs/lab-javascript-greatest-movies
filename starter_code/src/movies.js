@@ -65,18 +65,26 @@ function dramaMoviesRate( moviesArr ) {
     let dramaMovies = moviesArr.filter( el => el.genre.includes("Drama"));
     return ratesAverage(dramaMovies);
 }
+
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes( moviesArr ) {
-   let moviesArrFormatted = moviesArr
-                .map( elm => {
-                    elm.duration = elm.duration
-                                    .split(' ')
-                                    .reduce( timeFormat, 0)
-                    return elm;
-                });
-    
+    // creating a shadow copy of an array of objects
+    let localArr = moviesArr.map( obj => {
+        const newObj = {...obj};
+        return newObj;
+    })
+    // changing the movies' duration format
+    let moviesArrFormatted = localArr
+                                .map( elm => {
+                                    elm.duration = elm.duration
+                                                    .split(' ')
+                                                    .reduce( timeFormat, 0)
+                                    return elm;
+                                });
+
     return moviesArrFormatted;
 }
+
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 function bestYearAvg( moviesArr ) {
     if ( moviesArr.length == 0 ) return null;
