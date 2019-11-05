@@ -1,7 +1,7 @@
 /* eslint no-restricted-globals: 'off' */
 
 /************** TOOLS ****************/
-// Utility function to sorted by title
+// Utility function to sorted an array
 function ordered ( val1, val2 ) {
     return typeof val1 == 'number' && typeof val2 == 'number' ? val1 - val2 : val1.localeCompare(val2);
 }
@@ -79,5 +79,35 @@ function turnHoursToMinutes( moviesArr ) {
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 function bestYearAvg( moviesArr ) {
+    if ( moviesArr.length == 0 ) return null;
+
+    let arrYearAvgRate = [];
+    
+    // finding unique values of years
+    let uniqueYears = moviesArr
+                        .map( el => el.year )
+                        .filter( (el, idx, arr) => arr.indexOf(el) == idx);
+
+    
+    // calculating average rate per year
+    for ( let i = 0; i < uniqueYears.length; i++ ) {
+        let moviesPerYear = [];
+        let avg = 0;
+
+        for ( let j = 0; j < moviesArr.length; j++) {
+            if ( uniqueYears[i] === moviesArr[j].year  ) {
+                moviesPerYear.push( moviesArr[j] )
+            }
+        }
+        
+        avg = ratesAverage( moviesPerYear );
+        arrYearAvgRate.push( {
+            year: uniqueYears[i],
+            avg
+        })
+    }
+    // sorting the array by rate average value
+    arrYearAvgRate.sort( ( elm1, elm2 ) => ordered( elm1.avg, elm2.avg ))
+    return `The best year was ${arrYearAvgRate[arrYearAvgRate.length - 1].year} with an average rate of ${arrYearAvgRate[arrYearAvgRate.length - 1].avg}`;
     
 }
