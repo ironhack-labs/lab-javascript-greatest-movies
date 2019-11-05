@@ -1,35 +1,19 @@
 /* eslint no-restricted-globals: 'off' */
 
-/**********************************************************************/
-// General Sorting Function ( just for studying purposes )
-function sorting( arr ) {
-    // temporary array of objects with position and value
-    let mapped = arr.map(function(el, idx) {
-        return { index: idx, value: el };
-        })
-
-    // sorting the mapped array containing the objects
-    mapped.sort(function(a, b) {
-        //Numeric values
-        if ( typeof a.value === 'number' && typeof b.value === 'number') {
-            return a.value - b.value; 
-        }        
-        //Non-numeric values
-        else {
-            return a.value.localeCompare(b.value);
-        }
-    });
-
-    // container for the resulting order
-    let result = mapped.map( el => arr[el.index] );
-    return result;
-}
-/**********************************************************************/
-
-// Callback function to sorted by title
+/************** TOOLS ****************/
+// Utility function to sorted by title
 function ordered ( val1, val2 ) {
     return typeof val1 == 'number' && typeof val2 == 'number' ? val1 - val2 : val1.localeCompare(val2);
 }
+
+// Utility function to format time
+function timeFormat( acc, cur ) {
+    if ( cur.includes('min')) cur = parseInt( cur )
+    else if ( cur.includes('h')) { cur = parseInt( cur ) * 60 }
+    return acc + cur;
+}
+/************************************/
+
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear( moviesArr) {
@@ -83,25 +67,17 @@ function dramaMoviesRate( moviesArr ) {
 }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes( moviesArr ) {
-
-    function duration ( timeStr ) {
-        console.log( timeStr );
-        let newTimeFormat = 0 ;
-        let timeArr = timeStr.split(' ');
-        if ( timeArr.length === 1 ) {
-            if ( timeArr[0].includes('h') ) newTimeFormat = parseInt(timeArr[0]) * 60;
-            if ( timeArr[0].includes('min') ) newTimeFormat = parseInt(timeArr[0]);
-        }
-        else if ( timeArr.length > 1 ) newTimeFormat = parseInt(timeArr[0]) * 60 + parseInt(timeArr[1]);
-        
-        return newTimeFormat;
-    }
-
-    let result = moviesArr.map( elm => {
-        elm.duration = duration(elm.duration);
-        return elm;
-    })
-
-    return result;
+   let moviesArrFormatted = moviesArr
+                .map( elm => {
+                    elm.duration = elm.duration
+                                    .split(' ')
+                                    .reduce( timeFormat, 0)
+                    return elm;
+                });
+    
+    return moviesArrFormatted;
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg( moviesArr ) {
+    
+}
