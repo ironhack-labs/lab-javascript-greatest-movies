@@ -1,32 +1,6 @@
 /* eslint no-restricted-globals: 'off' */
 
-/**********************************************************************/
-// General Sorting Function ( just for studying purposes )
-function sorting( arr ) {
-    // temporary array of objects with position and value
-    let mapped = arr.map(function(el, idx) {
-        return { index: idx, value: el };
-        })
-
-    // sorting the mapped array containing the objects
-    mapped.sort(function(a, b) {
-        //Numeric values
-        if ( typeof a.value === 'number' && typeof b.value === 'number') {
-            return a.value - b.value; 
-        }        
-        //Non-numeric values
-        else {
-            return a.value.localeCompare(b.value);
-        }
-    });
-
-    // container for the resulting order
-    let result = mapped.map( el => arr[el.index] );
-    return result;
-}
-/**********************************************************************/
-
-// Callback function to sorted by title
+// Utility function to sorted by title
 function ordered ( val1, val2 ) {
     return typeof val1 == 'number' && typeof val2 == 'number' ? val1 - val2 : val1.localeCompare(val2);
 }
@@ -83,25 +57,21 @@ function dramaMoviesRate( moviesArr ) {
 }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes( moviesArr ) {
-    
-    let newMovieArr = [...moviesArr];
 
-    function duration ( timeStr ) {
-        let newTimeFormat ;
-        let timeArr = timeStr.split(' ');
-        if ( timeArr.length === 1 ) {
-            if ( timeArr[0].includes('h') ) newTimeFormat = parseInt(timeArr[0]) * 60;
-            if ( timeArr[0].includes('min') ) newTimeFormat = parseInt(timeArr[0]);
-        }
-        else if ( timeArr.length > 1 )newTimeFormat = parseInt(timeArr[0]) * 60 + parseInt(timeArr[1]);
-        else newTimeFormat = 0;
+    let localArr = moviesArr.slice();
         
-        return newTimeFormat;
+    function timeFormat( acc, cur ) {
+        if ( cur.includes('min')) cur = parseInt( cur )
+        else if ( cur.includes('h')) { cur = parseInt( cur ) * 60 }
+        return acc + cur;
     }
 
-    return newMovieArr.map( elm => {
-        elm.duration = duration(elm.duration);
-        return elm;
-    })
+    return localArr
+                .map( elm => {
+                    elm.duration = elm.duration
+                                    .split(' ')
+                                    .reduce( timeFormat, 0)
+                    return elm;
+                });
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
