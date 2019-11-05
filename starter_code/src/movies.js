@@ -1,9 +1,19 @@
 /* eslint no-restricted-globals: 'off' */
 
+/************** TOOLS ****************/
 // Utility function to sorted by title
 function ordered ( val1, val2 ) {
     return typeof val1 == 'number' && typeof val2 == 'number' ? val1 - val2 : val1.localeCompare(val2);
 }
+
+// Utility function to format time
+function timeFormat( acc, cur ) {
+    if ( cur.includes('min')) cur = parseInt( cur )
+    else if ( cur.includes('h')) { cur = parseInt( cur ) * 60 }
+    return acc + cur;
+}
+/************************************/
+
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear( moviesArr) {
@@ -57,21 +67,18 @@ function dramaMoviesRate( moviesArr ) {
 }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes( moviesArr ) {
-
-    let localArr = moviesArr.slice();
-        
-    function timeFormat( acc, cur ) {
-        if ( cur.includes('min')) cur = parseInt( cur )
-        else if ( cur.includes('h')) { cur = parseInt( cur ) * 60 }
-        return acc + cur;
-    }
-
-    return localArr
+    
+    let moviesArrFormatted = moviesArr
                 .map( elm => {
                     elm.duration = elm.duration
                                     .split(' ')
                                     .reduce( timeFormat, 0)
                     return elm;
                 });
+    
+    return moviesArrFormatted;            
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg( moviesArr ) {
+    
+}
