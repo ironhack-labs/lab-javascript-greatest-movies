@@ -90,8 +90,34 @@ dramaMoviesRate(movies);
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes(arr){
-    let newDuration = arr.map(movie => {
-        
+    let newArr = JSON.parse(JSON.stringify(arr));
+
+    let newDuration = newArr.map(movie => {
+        let splittedDuration = movie.duration.toString().split(" ");
+    
+        if(splittedDuration.length === 1){
+            if(splittedDuration[0].includes("h")){
+                let total = parseFloat(splittedDuration[0]) * 60;
+                movie.duration = total;
+            } else{
+                let total = parseFloat(splittedDuration[0]);
+                movie.duration = total;
+            }
+        }
+        else if(splittedDuration.length === 2){
+            let hours = parseFloat(splittedDuration[0]) * 60;
+            let mins = parseFloat(splittedDuration[1]);
+            let total = hours + mins;
+            movie.duration = total;
+        }
+        return{
+            title: movie.title,
+            year: movie.year,
+            director: movie.director,
+            duration: movie.duration,
+            genre: movie.genre,
+            rate: movie.rate
+        }
     });
     return newDuration;
 }
