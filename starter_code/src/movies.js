@@ -121,9 +121,9 @@ function bestYearAvg(arr){
   const newArr = JSON.parse(JSON.stringify(arr));
   
   if(newArr.length === 0) return null;
-  let rateArr = [];
-  let val;
+  const rateArr = [];
   for(let i=0;i < newArr.length;i++){
+          let val;
          val = filtered(newArr, newArr[i].year);
      rateArr.push(val);
   }
