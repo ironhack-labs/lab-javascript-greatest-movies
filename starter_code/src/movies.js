@@ -10,12 +10,16 @@ function orderByYear(sortedArray) {
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
-function howManyMovies(array) {
+function dramaMovies(array) {
     let dramaMovies = array.filter(movie => movie.genre.includes("Drama"))
-    let stevenDramaMovies = dramaMovies.filter(steven => steven.director.includes("Steven Spielberg"))
+    return dramaMovies
+}
+
+function howManyMovies(array) {
+    let drama = dramaMovies(array)    
+    let stevenDramaMovies = drama.filter(steven => steven.director.includes("Steven Spielberg"))
     return stevenDramaMovies.length
   }
-
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(array) {
@@ -42,6 +46,11 @@ function ratesAverage(array) {
     }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+
+function dramaMoviesRate(array) {
+    let rateDrama = dramaMovies(array)
+    return ratesAverage(rateDrama)
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
