@@ -16,20 +16,20 @@ function dramaMovies(array) {
 }
 
 function howManyMovies(array) {
-    let drama = dramaMovies(array)    
+    let drama = dramaMovies(array)
     let stevenDramaMovies = drama.filter(steven => steven.director.includes("Steven Spielberg"))
     return stevenDramaMovies.length
-  }
+}
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(array) {
-    
+
     let movieByTitle = array.map(movie => movie.title)
     let topTwenty = movieByTitle.sort((a, b) => (a > b) ? 1 : -1)
-       topTwenty.length > 20 ? topTwenty.splice(20) : topTwenty;
- 
+    topTwenty.length > 20 ? topTwenty.splice(20) : topTwenty;
+
     return topTwenty
- }
+}
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
@@ -37,13 +37,13 @@ function ratesAverage(array) {
     let avgRate = 0;
     if (!array.length) return 0;
     else {
-    let rateMovies = array.reduce((acc, currVal) => {
-      return acc + currVal.rate;
-      }, 0)
-      avgRate = Math.round((rateMovies/array.length) * 100)/100
-      return avgRate
+        let rateMovies = array.reduce((acc, currVal) => {
+            return acc + currVal.rate;
+        }, 0)
+        avgRate = Math.round((rateMovies / array.length) * 100) / 100
+        return avgRate
     }
-    }
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
@@ -55,34 +55,22 @@ function dramaMoviesRate(array) {
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes(array) {
-    let totalMinutes = []
-    let onlyNumbers = /\d+/g
-    let timeInNumbers;
-  
-    let movieTime = array.map(movie => movie.duration)
-    // console.log(movieTime)
-    for (let time of movieTime) {
-      totalMinutes.push(time.match(onlyNumbers));
-    timeInNumbers = makeANumber(totalMinutes)
-    }
-    return timeInNumbers
-    }
-  
-  turnHoursToMinutes(movies)
-  
-  
-  function makeANumber(array) {
-    let toMinutes = []
-    let hoursAndMinutes = array.map((number) => {
-      let strHour = number[0];
-      let strMinutes = number[1];
-      let numHour = Number(strHour)
-      let numMinutes = Number(strMinutes)
-      toMinutes.push((numHour * 60) + numMinutes)
-    })
-      // console.log(totalMinutes)
-  
-  return toMinutes
-  }
+    let totalTime = []
+    let hoursAndMinutes = turnInNumbers(array)
 
+    for (let number of hoursAndMinutes) {
+        totalTime.push((Number(number[0]) * 60) + (Number(number[1])))
+    }
+    array.map((movie, index) => {
+        movie.duration = totalTime[index]
+    })
+    return array
+}
+
+function turnInNumbers(array) {
+    let onlyNumbers = /\d+/g;
+
+    newArr = array.map(movie => movie.duration.match(onlyNumbers))
+    return newArr
+}
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
