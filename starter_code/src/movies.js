@@ -23,7 +23,7 @@ function orderByYear(arrayOfMovies) { // create function to order, receiving the
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
-function howManyMovies(arrayOfMovies){
+function howManyMovies(arrayOfMovies) {
     const filteredArrayofMovies = arrayOfMovies.filter(movie => {
         let movieCategory = movie.genre.includes('Drama');
          if(movie.director === "Steven Spielberg" && movieCategory) {
@@ -31,15 +31,35 @@ function howManyMovies(arrayOfMovies){
          }
      });
      return filteredArrayofMovies.length;
- }
+ };
 
- howManyMovies(movies);
+// // howManyMovies(movies);
 
-// howManyMovies(movies);
+// // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
-// Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
+const orderAlphabetically = (arrayOfMovies) => {
+    const movieTitles = [];
+    const alphabeticallyOrderedArray = arrayOfMovies.sort(function (a, b) {
+        if (a.title[0] > b.title[0]) {
+            return -1;
+        }
+        if (a.title[0] < b.title[0]) {
+            return 1;
+        }
+        if (a.title[0] === b.title[0]) {
+            return 0;
+        }
+    })
+    return alphabeticallyOrderedArray;
+}; // couldn't figure out how to return the array element (title) and only 20;
 
-// Iteration 4: All rates average - Get the average of all rates with 2 decimals
+// // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+
+function ratesAverage(arrayOfMovies) {
+    arrayOfMovies.rate.reduce((acc, val) => {
+        return acc + val / arrayOfMovies.length
+      }, 0)
+}; // still getting erros but I believe this should work
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
