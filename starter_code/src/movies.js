@@ -2,7 +2,40 @@
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
+function orderByYear(arrayOfMovies) { // create function to order, receiving the unordered array as an argument
+    const copyOfArray = [...arrayOfMovies]; // declare a variable to store the copy of the original array
+    copyOfArray.sort(function(a, b) { // used .sort method to order the array by year, taking in a function with 1-2, 2-3, 3-4
+        if (a.year - b.year == 0) { // if year is the same (==0) sort by name
+            if (a.title < b.title) { // when the title of A starts with an earlier letter 
+                return -1;
+            }
+            if (a.title < b.title) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        }
+        return a.year - b.year; // returns 0, 1, or -1, which determines the order in the new array
+    })
+    return copyOfArray; // returns the newly-created array
+};
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
+
+function howManyMovies(arrayOfMovies){
+    const filteredArrayofMovies = arrayOfMovies.filter(movie => {
+        let movieCategory = movie.genre.includes('Drama');
+         if(movie.director === "Steven Spielberg" && movieCategory) {
+             return movie;
+         }
+     });
+     return filteredArrayofMovies.length;
+ }
+
+ howManyMovies(movies);
+
+// howManyMovies(movies);
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
