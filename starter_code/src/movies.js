@@ -145,14 +145,16 @@ function bestYearAvg(bunchaMovies) {
 
   bunchaMovies.forEach(eachMovie => {
     if (!masterObject[eachMovie.year]) {
+      // // this block of code will only ran if the property with eachMovie.year does not exist in the masterObject!
       masterObject[eachMovie.year] = [eachMovie];
       // //this is what we're doing above. >>
       // // 1.Creating a property in the masterObject{} if there's no similar property yet!
+      // // the property is a 'year' from the movies.year.
       // masterObject[eachMovie.year] = [];
       // //2.Then 'pushing' it or assigning it(initialize)directly with the first similar year object.
       // masterObject[eachMovie.year].push(eachMovie);
     } else {
-      //else if that property exists, then just push all the similar year Objects(in our case movies) to that property.
+      //else if that property exists, then just push all the similar year Objects(in our case movies) to that(year) property in masterObject.
       masterObject[eachMovie.year].push(eachMovie);
     }
   });
@@ -161,8 +163,8 @@ function bestYearAvg(bunchaMovies) {
   let theActualYear;
   for (let theYear in masterObject) {
     if (ratesAverage(masterObject[theYear]) > highest) {
-      //calling ratesAverage()for each year object in masterObject{}.
-      highest = ratesAverage(masterObject[theYear]); //if thats greater then highest then undate highest with that value.
+      //calling ratesAverage()for each year property(in our case each property is a "year") in masterObject{}.
+      highest = ratesAverage(masterObject[theYear]); //if thats greater then highest then update highest with that value.
       // so next time if the average rate is no greater than highest, highest will not be updated.
       // so if condition will skip all averages below highest.
       theActualYear = theYear; //here the year will also get reassigned every time when condition is true.
