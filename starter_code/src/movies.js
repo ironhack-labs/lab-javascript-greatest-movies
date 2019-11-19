@@ -22,7 +22,7 @@ function orderByYear(arrayFilm){
     return 0;
   });
   
-  console.log('arrayFilmNew' ,arrayFilmNew)
+  //console.log('arrayFilmNew' ,arrayFilmNew)
   return arrayFilmNew;
 
 }
@@ -69,7 +69,7 @@ function ratesAverage(object){
 
   if(object.length){
     
-    var averageResult = object.reduce(function(acc, e){
+    let averageResult = object.reduce(function(acc, e){
 
       if(!e.rate || e.rate == "") return acc;
 
@@ -81,9 +81,9 @@ function ratesAverage(object){
   
     averageResult = parseFloat(averageResult)
   
-    console.log('object', object)
+    //console.log('object', object)
   
-    console.log('averageResult',averageResult)
+    //console.log('averageResult',averageResult)
   
     return averageResult
 
@@ -94,6 +94,39 @@ function ratesAverage(object){
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+
+function dramaMoviesRate(object){
+
+  let objectDrama = object.filter(function(e){
+
+    return e.genre.includes('Drama')
+
+  })
+
+  console.log(objectDrama)
+
+  if(objectDrama.length){
+    
+    let averageDramaResult = objectDrama.reduce(function(acc, e){
+
+      if(!e.rate || e.rate == "") return acc;
+
+      return acc + e.rate;
+  
+    },0)/objectDrama.length
+  
+    averageDramaResult = averageDramaResult.toFixed(2)
+  
+    averageDramaResult = parseFloat(averageDramaResult)
+  
+
+    return averageDramaResult;
+
+  }
+
+  return 0;
+
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
