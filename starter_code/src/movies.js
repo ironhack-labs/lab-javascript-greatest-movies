@@ -86,7 +86,7 @@ function turnHoursToMinutes(movies){
 
   return moviesArr.map( movie => {
     let time = movie.duration.split(' ');
-    
+
     let minutes = time.reduce( (acc, current) => {
       if (current.indexOf('h') != -1) {
         return parseInt(current.replace('h', '')) * 60;
@@ -101,3 +101,30 @@ function turnHoursToMinutes(movies){
 }
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movies){
+  let yearsAverage = {};
+  let yearsAverageArr = [];
+
+  movies.forEach(movie => {
+    if (movie.year in yearsAverage){
+      yearsAverage[movie.year].push(movie.rate);
+    } else {
+      yearsAverage[movie.year] = [movie.rate];
+    }
+  })
+
+  let yearsAverageKeys = Object.keys(yearsAverage);
+  yearsAverageKeys.forEach(year => {
+    let average = yearsAverage[year].reduce( (acc, current) => {
+      return acc + current / yearsAverage[year].length;
+    }, 0);
+    yearsAverageArr.push({ 'year' : year, 'average' : parseFloat(average.toFixed(2)) });
+  })
+
+  yearsAverageArr.sort( (a, b) => {
+    return b.average - a.average;
+  })
+
+  return yearsAverageArr.length > 0 ? `The best year was ${yearsAverageArr[0].year} with an average rate of ${yearsAverageArr[0].average}` : null
+}
