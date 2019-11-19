@@ -14,6 +14,16 @@ function howManyMovies(list_movies) {
   }).length;
 }
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(list_movies) {
+  return list_movies
+    .map(e => {
+      return e.title;
+    })
+    .sort((a, b) => {
+      return a > b ? 1 : a < b ? -1 : 0;
+    })
+    .splice(0, 20);
+}
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
