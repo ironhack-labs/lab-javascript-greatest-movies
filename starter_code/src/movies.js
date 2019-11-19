@@ -2,6 +2,31 @@
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
+function orderByYear(arrayFilm){
+
+  let arrayFilmNew = [...arrayFilm]
+  
+  arrayFilmNew.sort(function(a,b){
+    return a.year-b.year;
+  })
+
+  arrayFilmNew.sort(function(a,b){
+    if(a.year == b.year){
+      if (a.title > b.title) {
+        return 1;
+      }
+      if (a.title < b.title) {
+        return -1;
+      }
+    }  
+    return 0;
+  });
+  
+  console.log('arrayFilmNew' ,arrayFilmNew)
+  return arrayFilmNew;
+
+}
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
