@@ -21,8 +21,22 @@ function orderAlphabetically(arr) {
 		.slice(0, 20)
 		.map(movie => movie.title);
 }
-console.log(orderAlphabetically(movies));
+
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(arr) {
+	return arr.length === 0
+		? 0
+		: Number(
+				(arr
+					.filter(movie => {
+						return 'rate' in movie && movie.rate !== '';
+					})
+					.reduce((acc, el) => {
+						return acc + el.rate;
+					}, 0) / arr.length).toFixed(2)
+			);
+}
+//console.log(ratesAverage(movies));
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
