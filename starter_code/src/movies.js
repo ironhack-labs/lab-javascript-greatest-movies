@@ -33,11 +33,10 @@ function orderAlphabetically(movies) {
   let order = movies.map(element => {
     return element.title;
   });
-
-  movies.sort((a, b) => {
+  order.sort((a, b) => {
     if (a > b) return 1;
     if (a < b) return -1;
-    if (a === b) return 0;
+    if (a == b) return 0;
   });
   return order.splice(0, 20);
 }
