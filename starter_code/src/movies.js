@@ -103,7 +103,7 @@ function dramaMoviesRate(object){
 
   })
 
-  console.log(objectDrama)
+  //console.log(objectDrama)
 
   if(objectDrama.length){
     
@@ -116,10 +116,8 @@ function dramaMoviesRate(object){
     },0)/objectDrama.length
   
     averageDramaResult = averageDramaResult.toFixed(2)
-  
     averageDramaResult = parseFloat(averageDramaResult)
   
-
     return averageDramaResult;
 
   }
@@ -129,5 +127,50 @@ function dramaMoviesRate(object){
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
+function turnHoursToMinutes(object){
+
+  let newObject = JSON.parse(JSON.stringify(object))
+
+  //console.log(newObject)
+
+  newObject.forEach(function(film){
+
+    if(film.duration.includes('h') && film.duration.includes('m')){
+  
+      film.duration.split(' ').reduce(function(hour, min){
+
+      let hours = parseInt(hour)
+      //console.log(hours)
+      let mins = parseInt(min)
+      //console.log(mins)
+
+      film.duration = hours*60+mins
+
+      })
+
+      //console.log('TIPO1', film.duration)
+
+    } else if(film.duration.includes('h')){
+
+      film.duration = parseInt(film.duration)*60
+
+      //console.log('TIPO2', film.duration)
+
+    } else if(film.duration.includes('m')){
+
+      film.duration = parseInt(film.duration)
+      //console.log('TIPO3', film.duration)
+
+    }
+ 
+   //console.log(film.duration)
+
+  })
+
+  //console.log(newObject)
+  return newObject;
+
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
