@@ -44,5 +44,16 @@ function dramaMoviesRate(arr) {
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-
+function turnHoursToMinutes(arr) {
+	return arr.map(movie => {
+		let hour = movie.duration.match(/[0-9]+(?=h)/);
+		let min = movie.duration.match(/[0-9]+(?=m)/);
+		hour !== null ? (hour = parseFloat(hour[0])) : (hour = 0);
+		min !== null ? (min = parseFloat(min[0])) : (min = 0);
+		let timeFormatted = hour * 60 + min;
+		let newMovie = Object.assign({}, movie);
+		newMovie.duration = timeFormatted;
+		return newMovie;
+	});
+}
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
