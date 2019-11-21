@@ -48,12 +48,32 @@ function turnHoursToMinutes(arr) {
 	return arr.map(movie => {
 		let hour = movie.duration.match(/[0-9]+(?=h)/);
 		let min = movie.duration.match(/[0-9]+(?=m)/);
-		hour !== null ? (hour = parseFloat(hour[0])) : (hour = 0);
-		min !== null ? (min = parseFloat(min[0])) : (min = 0);
+		hour === null ? (hour = 0) : (hour = parseFloat(hour[0]));
+		min === null ? (min = 0) : (min = parseFloat(min[0]));
 		let timeFormatted = hour * 60 + min;
 		let newMovie = Object.assign({}, movie);
 		newMovie.duration = timeFormatted;
 		return newMovie;
 	});
 }
+
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(arr) {
+	if (arr.length === 0) return null;
+	let greatestAvg = 0;
+	let bestYear;
+	let sortedObj = arr.reduce((acc, obj) => {
+		if (!acc[obj.year]) {
+			acc[obj.year] = [];
+		}
+		acc[obj.year].push(obj);
+		return acc;
+	}, {});
+	for (let key in sortedObj) {
+		let currentAvg = ratesAverage(sortedObj[key]);
+		currentAvg > greatestAvg
+			? ((greatestAvg = currentAvg), (bestYear = key))
+			: ((greatestAvg = greatestAvg), (bestYear = bestYear));
+	}
+	return `The best year was ${bestYear} with an average rate of ${greatestAvg}`;
+}
