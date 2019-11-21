@@ -33,17 +33,15 @@ function orderAlphabetically(list_movies) {
 function ratesAverage(list_movies) {
   return list_movies.length === 0
     ? 0
-    : Number(
+    : parseFloat(
         (
-          Math.round(
-            list_movies
-              .map(e => {
-                return e.rate || 0;
-              })
-              .reduce((acc, value) => {
-                return acc + value;
-              })
-          ) / list_movies.length
+          list_movies
+            .map(e => {
+              return e.rate || 0;
+            })
+            .reduce((acc, value) => {
+              return acc + value;
+            }) / list_movies.length
         ).toFixed(2)
       );
 }
@@ -58,15 +56,14 @@ function dramaMoviesRate(list_movies) {
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-
 function turnHoursToMinutes(list_movies) {
   let list_movies_copy = JSON.parse(JSON.stringify(list_movies));
 
   return list_movies_copy.map(e => {
     e.duration = e.duration.split(" ").reduce((acc, elem) => {
       return (acc += elem.includes("h")
-        ? Number(elem.replace("h", "")) * 60
-        : Number(elem.replace("min", "")));
+        ? parseInt(elem.replace("h", "")) * 60
+        : parseInt(elem.replace("min", "")));
     }, 0);
 
     return e;
@@ -75,6 +72,34 @@ function turnHoursToMinutes(list_movies) {
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 function bestYearAvg(list_movies) {
-  return list_movies.length === 0 ? null :
-  null;
+  if (list_movies.length === 0) return null;
+
+  let map_years = new Map();
+
+  list_movies.forEach(e => {
+    map_years.has(e.year)
+      ? map_years.get(e.year).push(e.rate)
+      : map_years.set(e.year, [e.rate]);
+  });
+
+  let best_year;
+  let best_rate = 0;
+
+  map_years.forEach((value, key) => {
+    let size_value = value.length;
+
+    value =
+      value.reduce((acc, e) => {
+        return (acc += e);
+      }) / size_value;
+
+    if (value >= best_rate) {
+      best_rate = value;
+      best_year = key;
+    }
+  });
+
+  return `The best year was ${best_year} with an average rate of ${parseFloat(
+    best_rate.toFixed(2)
+  )}`;
 }
