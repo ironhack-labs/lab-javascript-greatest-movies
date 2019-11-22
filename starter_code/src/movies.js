@@ -53,6 +53,23 @@ function orderAlphabetically(movies) {
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
+function ratesAverage(movies) {
+  var rates = Object.assign([], movies);
+  rates = rates.map(function(e) {
+    if (e.rate == "" || e.rate == undefined) {
+      return 0;
+    } else {
+      return e.rate;
+    }
+  });
+  var ratesAvg = rates.reduce(function(a, c) {
+    return a + c / rates.length;
+  }, 0);
+  ratesAvg = parseFloat(ratesAvg.toFixed(2));
+  console.log(ratesAvg);
+  return ratesAvg;
+}
+
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
