@@ -174,3 +174,107 @@ function turnHoursToMinutes(object){
 }
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+
+function bestYearAvg(object){
+
+  let myObject = JSON.parse(JSON.stringify(object))
+
+  if(myObject.length){
+
+    myObject.sort(function(a,b){
+      return a.year-b.year;
+    })
+    
+    let arrayYear = [];
+    
+    myObject.forEach(function(film){
+    
+      //console.log(film.year)
+      if(!arrayYear.includes(film.year)) arrayYear.push(film.year);
+    
+    })
+
+    //console.log(arrayYear)
+    
+    let averageRateAllYears = arrayYear.map(function(filmYear){
+      
+      var objectfilterYears = myObject.filter(function(film){
+    
+        //console.log(film.year)
+    
+        if(film.year == filmYear) return film
+    
+      })
+
+      //console.log(objectfilterYears)
+    
+      let averageRateYear = objectfilterYears.reduce(function(acc, e){
+    
+        return  acc + e.rate;
+    
+      },0)/objectfilterYears.length
+
+      //console.log(averageRateYear)
+      
+      averageRateYear = parseFloat(averageRateYear.toFixed(2))
+      
+      
+      //console.log('averageRateYear', averageRateYear)
+      //console.log('objectfilterYears', objectfilterYears)
+    
+      return {year: filmYear, rate: averageRateYear};
+    
+    })
+
+    //console.log('averageRateAllYears', averageRateAllYears)
+    
+    averageRateAllYears.sort(function(a,b){
+  
+      return a.rate - b.rate
+    }).reverse()
+  
+    let bigRate = 0;
+    averageRateAllYears.forEach(function(e){
+      
+      if(e.rate == bigRate){}
+  
+      if(e.rate > bigRate) bigRate = e.rate;
+  
+    })
+  
+  
+    //console.log(averageRateAllYears[0])
+    
+    
+    if(averageRateAllYears.length === 1){
+    
+      return `The best year was ${averageRateAllYears[0].year} with an average rate of ${averageRateAllYears[0].rate}`;
+
+    } else if(averageRateAllYears[0].rate === averageRateAllYears[1].rate) {
+
+      var averageRateAllYearsEqual = averageRateAllYears.filter(function(resultObject){
+
+        //console.log(averageRateAllYears[0].rate)
+
+        if(resultObject.rate === averageRateAllYears[0].rate) return resultObject;
+
+      });
+
+      //console.log(averageRateAllYearsEqual.length-1)
+
+      return `The best year was ${averageRateAllYearsEqual[averageRateAllYearsEqual.length-1].year} with an average rate of ${averageRateAllYearsEqual[averageRateAllYearsEqual.length-1].rate}`;
+
+    }
+  
+  
+    //console.log(averageRateAllYears[0])
+    return `The best year was ${averageRateAllYears[0].year} with an average rate of ${averageRateAllYears[0].rate}`;
+  
+  
+
+  }
+    
+  return null;
+  
+}
