@@ -36,10 +36,44 @@ function ratesAverage(arr) {
 					}, 0) / arr.length).toFixed(2)
 			);
 }
-//console.log(ratesAverage(movies));
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(arr) {
+	let movieDramas = arr.filter(movie => movie.genre.includes('Drama'));
+	return ratesAverage(movieDramas);
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(arr) {
+	return arr.map(movie => {
+		let hour = movie.duration.match(/[0-9]+(?=h)/);
+		let min = movie.duration.match(/[0-9]+(?=m)/);
+		hour === null ? (hour = 0) : (hour = parseFloat(hour[0]));
+		min === null ? (min = 0) : (min = parseFloat(min[0]));
+		let timeFormatted = hour * 60 + min;
+		let newMovie = Object.assign({}, movie);
+		newMovie.duration = timeFormatted;
+		return newMovie;
+	});
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(arr) {
+	if (arr.length === 0) return null;
+	let greatestAvg = 0;
+	let bestYear;
+	let sortedObj = arr.reduce((acc, obj) => {
+		if (!acc[obj.year]) {
+			acc[obj.year] = [];
+		}
+		acc[obj.year].push(obj);
+		return acc;
+	}, {});
+	for (let key in sortedObj) {
+		let currentAvg = ratesAverage(sortedObj[key]);
+		currentAvg > greatestAvg
+			? ((greatestAvg = currentAvg), (bestYear = key))
+			: ((greatestAvg = greatestAvg), (bestYear = bestYear));
+	}
+	return `The best year was ${bestYear} with an average rate of ${greatestAvg}`;
+}
