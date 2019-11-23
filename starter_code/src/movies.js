@@ -34,30 +34,15 @@ function howManyMovies(m){
   
   howManyMovies(movies)
 
-/*
-
-  function howManyMovies(m){
-    m.forEach(function(e){
-    console.log(e)
-      e.forEach(function(g){
-      if(g === "Drama"){
-        console.log("hola")
-      }
-    })
-    })
-      return m.filter(function(d){
-      return d.director === "Steven Spielberg";
-    })
-    }
-    
-    howManyMovies(movies)
-    */
-  
-
-
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+
+function ratesAver(m){
+  return m.reduce(function(acc, movie){
+
+  },0)
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
