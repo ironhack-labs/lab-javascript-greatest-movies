@@ -27,11 +27,10 @@ function ratesAverage(movies) {
         return 0;
     }
 
-    return parseFloat((movies
-        .reduce((acc, m) => {
-            return acc + (m.rate || 0)
-        }, 0) / movies.length)
-        .toFixed(2));
+    let moviesAvg = movies
+        .reduce((acc, m) => { return acc + (m.rate || 0) }, 0) / movies.length;
+
+    return parseFloat((moviesAvg).toFixed(2));
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
@@ -41,9 +40,12 @@ function dramaMoviesRate(movies) {
         return 0;
     }
 
-    let dramaMoviesAvg = movies
+    let dramaMovies = movies
+        .filter((movie) => movie.genre.includes('Drama'));
+
+    let dramaMoviesAvg = dramaMovies
         .filter((movie) => movie.genre.includes('Drama'))
-        .reduce((acc, m) => { return acc + (m.rate || 0) }, 0) / movies.length;
+        .reduce((acc, m) => { return acc + (m.rate || 0) }, 0) / dramaMovies.length;
 
     return parseFloat((dramaMoviesAvg).toFixed(2));
 }
