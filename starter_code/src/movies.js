@@ -71,15 +71,40 @@ function ratesAverage(movies) {
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
-function dramaMoviesRate(movies){
-    var dramas = Object.assign([], movies);
-    dramas = dramas.filter(function(e){
-        return e.genre.includes("Drama");
-    })
-    return ratesAverage(dramas);
+function dramaMoviesRate(movies) {
+  var dramas = Object.assign([], movies);
+  dramas = dramas.filter(function(e) {
+    return e.genre.includes("Drama");
+  });
+  return ratesAverage(dramas);
 }
 
-
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(movies) {
+  var moviesSec = Object.assign([], JSON.parse(JSON.stringify(movies)));
+  moviesSec.forEach(function(e) {
+    // get hours and minutes from duration value string
+    let hours = e.duration.match(/\d+h/);
+    if (hours != null){
+    hours = parseInt(hours[0].match(/\d+/)[0]);
+    } else {hours =0;}
+    let minutes = e.duration.match(/\d+min/);
+    if (minutes != null){
+    minutes = parseInt(minutes[0].match(/\d+/)[0]);
+    } else {minutes =0;}
+    // convert to minutes
+    let result = 0;
+    if (hours.length != 0) {
+      result = hours * 60;
+    }
+    if (minutes.length != 0) {
+      result = result + minutes;
+    }
+    //save in duration
+    e.duration = result;
+  });
+  return moviesSec;
+}
+
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
