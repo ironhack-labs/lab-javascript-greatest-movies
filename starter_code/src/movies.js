@@ -103,9 +103,7 @@ function bestYearAvg(movies){
     yearsAverageArr.push({ 'year' : year, 'average' : parseFloat(average.toFixed(2)) });
   }
 
-  yearsAverageArr.sort((a, b) => {
-    return b.average - a.average;
-  })
+  yearsAverageArr.sort( (a, b) => b.average - a.average );
 
   return yearsAverageArr.length > 0 ? `The best year was ${yearsAverageArr[0].year} with an average rate of ${yearsAverageArr[0].average}` : null
 }
