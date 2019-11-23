@@ -49,12 +49,24 @@ function orderAlphabetically(m){
     return m.title
   }).slice(0,20)
 }
+
+orderAlphabetically(movies)
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
-function ratesAver(m){
-  return m.reduce(function(acc, movie){
+function ratesAverage(m){
 
-  },0)
+  if(m.length === 0){
+    return 0;
+  }
+
+  return parseFloat((m.reduce(function(acc, movie){
+    if(movie.rate === ""){
+        movie.rate = 0
+    }
+
+    console.log(movie.rate + acc)    
+    return movie.rate + acc
+  },0) / m.length).toFixed(2))
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
