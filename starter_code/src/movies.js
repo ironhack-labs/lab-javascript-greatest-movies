@@ -37,10 +37,26 @@ function orderAlphabetically(arr) {
   
   return movies.map( e => e.title).filter( (e,i) => i < 20)
 }
-
-
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(arr){
+  let movieRates = arr.map( a => a.rate)
 
+
+  if (movieRates.length === 0) {
+    return 0
+  }
+
+  //I used toFix() for the 2 decimal points and then parseFloat() to make it a number again
+  return parseFloat((movieRates.reduce( (acc, e) => {
+    if (typeof(e) === 'number') {
+      return acc + e;
+    } else {
+      return acc;
+    }
+    
+  })/(movieRates.length)).toFixed(2))
+  
+}
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
