@@ -8,8 +8,18 @@ function orderByYear(m){
     return [];
   }
     return m.sort(function(a, b){
+      if(a.year === b.year){
+
+        if(a.title > b.title){
+          return 1;
+        }
+        else if (a.title < b.title){
+          return -1;
+        }
+          return 0;
+      } 
       return a.year - b.year;
-    })
+      })
 }
 
 orderByYear(movies)
@@ -18,8 +28,8 @@ orderByYear(movies)
 
 function howManyMovies(m){
     return m.filter(function(d){
-    return d.director === "Steven Spielberg";
-  })
+    return d.director === "Steven Spielberg" && d.genre.includes("Drama");
+  }).length
   }
   
   howManyMovies(movies)
