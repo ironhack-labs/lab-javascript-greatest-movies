@@ -2,8 +2,13 @@
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
-function orderByYear(x){
-    return x.sort(function(a){
+function orderByYear(m){
+
+  if(m.length === 0){
+    return [];
+  }
+    return m.sort(function(a, b){
+      return a.year - b.year;
     })
 }
 
@@ -18,6 +23,25 @@ function howManyMovies(m){
   }
   
   howManyMovies(movies)
+
+/*
+
+  function howManyMovies(m){
+    m.forEach(function(e){
+    console.log(e)
+      e.forEach(function(g){
+      if(g === "Drama"){
+        console.log("hola")
+      }
+    })
+    })
+      return m.filter(function(d){
+      return d.director === "Steven Spielberg";
+    })
+    }
+    
+    howManyMovies(movies)
+    */
   
 
 
