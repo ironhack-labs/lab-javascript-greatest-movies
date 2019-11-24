@@ -72,15 +72,35 @@ if (a.genre.includes("Drama"))
         return 0;
     }
 
-  // llamo al metodo de la iteracion 4 para no generar mas codigo pero ahora le paso el includes retornando true.  
+  // llamo al metodo de la iteracion 4 para no generar mas codigo pero ahora le paso el includes de la variable moviesDrama retornando true.  
  var avarage = ratesAverage(moviesDrama);
- 
  return avarage;
+}
+// Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function changeDurationMovies(arr){
+var horasIndex  = arr.indexOf("h");
 
+var horas = 0;
+if (horasIndex >= 0){
+    horas = parseInt(arr.slice(0,horasIndex));
+}
+var minutos = 0
+if (arr.includes("min"))
+{
+    minutos = parseInt(arr.split(" ").pop());
+}
+
+return horas * 60 + minutos;
 }
 
 
-
-// Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-
+function turnHoursToMinutes(movies){
+return movies.map(function(a){
+var nuevaHora = changeDurationMovies(a.duration);
+var duracionNuevaPelicula =  {
+    duration: nuevaHora
+};
+return duracionNuevaPelicula;
+});
+}
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
