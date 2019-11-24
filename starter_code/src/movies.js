@@ -81,3 +81,35 @@ function turnHoursToMinutes(movies) {
 }
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(movies) {
+
+    if (!movies.length) {
+        return null;
+    }
+
+    // Getting an array of unique years
+    let movieYears = new Set(movies.map(movie => movie.year));
+        movieYears = [...movieYears];
+
+    // Looping over the years to filter a list of movies for that particular year, and returning an object comprised
+    //  of 'year' and 'rate' of all the movies of that year. Then, sorting the movies by rate, if there's a tie, put
+    //  the oldest year first, so the the 1st position of the returning array will be the oldest year with the best average.
+    let AvgsByYear = movieYears.map(year => {
+
+        let moviesOfAYear = movies.filter(movie => movie.year === year);
+
+        return {
+            "year": moviesOfAYear[0].year,
+            "rate": moviesOfAYear.reduce((acc, movie) => { return acc + movie.rate }, 0) / moviesOfAYear.length
+        }
+    }).sort((movieA, movieB) => {
+
+        if (movieA.rate === movieB.rate) {
+            return movieA.year > movieB.year ? 1 : movieA.year < movieB.year ? -1 : 0;
+        }
+
+        return movieB.rate - movieA.rate
+    })[0];
+
+    return `The best year was ${AvgsByYear.year} with an average rate of ${AvgsByYear.rate}`
+}
