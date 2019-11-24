@@ -20,7 +20,9 @@ function howManyMovies(movies) {
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
 
-    return movies
+    let moviesArr = [...movies];
+
+    return moviesArr
         .sort((movieA, movieB) => movieA.title.localeCompare(movieB.title))
         .map(movie => movie.title)
         .slice(0, 20)
@@ -62,7 +64,7 @@ function dramaMoviesRate(movies) {
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
 
-    return movies.map(function (movie) {
+    return movies.map(movie => {
 
         movie = Object.assign({}, movie);
 
