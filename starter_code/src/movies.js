@@ -68,14 +68,16 @@ function dramaMoviesRate(arr) {
 }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arr) {
-  //cloning the array of objects 
-  let newArr = arr.map( e => {
-    return {...e}
+  //cloning the array of objects
+  let newArr = arr.map(e => {
+    return { ...e };
   });
 
   newArr.map(e => {
-    
-    let minutes = e.duration.split("").map(b => parseInt(b)).filter(c => {
+    let minutes = e.duration
+      .split("")
+      .map(b => parseInt(b))
+      .filter(c => {
         return !isNaN(c);
       });
     let time = 0;
@@ -99,16 +101,15 @@ function simpleOrder(arr) {
   let orderArr = arr.map(a => a);
 
   return orderArr.sort((a, b) => {
-     return a.year - b.year;
-  })
+    return a.year - b.year;
+  });
 }
-
 
 function bestYearAvg(arr) {
   if (arr.length == 0) {
-    return null
-  } else if (arr.length === 1 ){
-    return `The best year was ${arr[0].year} with an average rate of ${arr[0].rate}`
+    return null;
+  } else if (arr.length === 1) {
+    return `The best year was ${arr[0].year} with an average rate of ${arr[0].rate}`;
   }
 
   let orderArr = simpleOrder(arr);
@@ -116,31 +117,30 @@ function bestYearAvg(arr) {
   let group = [];
   let yearlyMovies = [];
   let year = orderArr[0].year;
-  orderArr.forEach( (e,i) => {
+  orderArr.forEach((e, i) => {
     if (year === e.year) {
       yearlyMovies.push(e);
     } else {
       year = e.year;
       group.push(yearlyMovies);
       yearlyMovies = [];
-      yearlyMovies.push(e)
+      yearlyMovies.push(e);
     }
-  })
-  
+  });
+
   //temporary fix for length == 1 array
   //if (group.length === 0) {
   //  group.push([orderArr[0]])
   //}
 
   group = group.map(a => {
-    
-    return {rate: ratesAverage(a), year: a[0].year};
-  })
-  
-  console.log(group)
+    return { rate: ratesAverage(a), year: a[0].year };
+  });
 
-  let result = group.sort( (a,b) => b.rate-a.rate)[0];
+  console.log(group);
 
-  console.log(result)
-  return `The best year was ${result.year} with an average rate of ${result.rate}`
+  let result = group.sort((a, b) => b.rate - a.rate)[0];
+
+  console.log(result);
+  return `The best year was ${result.year} with an average rate of ${result.rate}`;
 }
