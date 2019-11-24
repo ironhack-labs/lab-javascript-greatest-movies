@@ -57,12 +57,13 @@ function ratesAverage(matrix) {
     if (matrix.length) {
 
         let resutl = matrix.reduce(function (acc, e) {
-            if (!e.rate || e.rate == ""){
+            if (!e.rate || e.rate == "") {
                 return acc;
             }
             return acc + e.rate;
         }, 0) / matrix.length;
 
+        //rounded to 2 decimals
         resutl = resutl.toFixed(2);
         resutl = parseFloat(resutl);
 
@@ -72,6 +73,32 @@ function ratesAverage(matrix) {
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(matrix) {
+
+    //drama movies
+    let matrixDrama = matrix.filter(function (e) {
+        return e.genre.includes('Drama')
+    })
+
+    //drama average
+    if (matrixDrama.length) {
+
+        let resultDrama = matrixDrama.reduce(function (acc, e) {
+
+            if (!e.rate || e.rate == ""){
+                return acc;
+            }
+            return acc + e.rate;
+        }, 0) / matrixDrama.length
+
+        //rounded to 2 decimals
+        resultDrama = resultDrama.toFixed(2)
+        resultDrama = parseFloat(resultDrama)
+
+        return resultDrama;
+    }
+    return 0;
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
