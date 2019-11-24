@@ -119,156 +119,156 @@ describe("Get how many movies - howManyMovies", function() {
  * orderAlphabetically
  */
 
-// describe("Order alphabetically - orderAlphabetically", function() {
-//   it("Defines orderAlphabetically", function() {
-//     expect(typeof orderAlphabetically).toBe("function");
-//   });
+describe("Order alphabetically - orderAlphabetically", function() {
+  it("Defines orderAlphabetically", function() {
+    expect(typeof orderAlphabetically).toBe("function");
+  });
 
-//   it("You should return an array", function() {
-//     expect(typeof orderAlphabetically([])).toBe("object");
-//   });
+  it("You should return an array", function() {
+    expect(typeof orderAlphabetically([])).toBe("object");
+  });
 
-//   it("You should not mutate the original array", function() {
-//     var arr = [{ title: "xyz" }, { title: "abc" }];
-//     orderAlphabetically(arr);
-//     expect(arr[0].title).toEqual("xyz");
-//   });
+  it("You should not mutate the original array", function() {
+    var arr = [{ title: "xyz" }, { title: "abc" }];
+    orderAlphabetically(arr);
+    expect(arr[0].title).toEqual("xyz");
+  });
 
-//   it("Only return the title of the movies! Each element should be a string", function() {
-//     expect(typeof orderAlphabetically([{ title: "aab" }])[0]).toBe("string");
-//   });
+  it("Only return the title of the movies! Each element should be a string", function() {
+    expect(typeof orderAlphabetically([{ title: "aab" }])[0]).toBe("string");
+  });
 
-//   it("If there are less than 20 elements, return all of them.", function() {
-//     var moviesArr = [{ title: "aab" }, { title: "bab" }, { title: "acb" }];
+  it("If there are less than 20 elements, return all of them.", function() {
+    var moviesArr = [{ title: "aab" }, { title: "bab" }, { title: "acb" }];
 
-//     expect(orderAlphabetically(moviesArr).length).toEqual(3);
-//   });
+    expect(orderAlphabetically(moviesArr).length).toEqual(3);
+  });
 
-//   it("If there are more than 20 elements, return only 20 of them.", function() {
-//     var moviesArr = [
-//       { title: "aab" },
-//       { title: "bab" },
-//       { title: "acb" },
-//       { title: "aab" },
-//       { title: "bab" },
-//       { title: "acb" },
-//       { title: "aab" },
-//       { title: "bab" },
-//       { title: "acb" },
-//       { title: "aab" },
-//       { title: "bab" },
-//       { title: "acb" },
-//       { title: "aab" },
-//       { title: "bab" },
-//       { title: "acb" },
-//       { title: "aab" },
-//       { title: "bab" },
-//       { title: "acb" },
-//       { title: "aab" },
-//       { title: "bab" },
-//       { title: "acb" },
-//       { title: "aab" },
-//       { title: "bab" },
-//       { title: "acb" },
-//       { title: "aab" },
-//       { title: "bab" },
-//       { title: "acb" },
-//       { title: "aab" },
-//       { title: "bab" },
-//       { title: "acb" },
-//       { title: "aab" },
-//       { title: "bab" },
-//       { title: "acb" },
-//       { title: "aab" },
-//       { title: "bab" },
-//       { title: "acb" }
-//     ];
+  it("If there are more than 20 elements, return only 20 of them.", function() {
+    var moviesArr = [
+      { title: "aab" },
+      { title: "bab" },
+      { title: "acb" },
+      { title: "aab" },
+      { title: "bab" },
+      { title: "acb" },
+      { title: "aab" },
+      { title: "bab" },
+      { title: "acb" },
+      { title: "aab" },
+      { title: "bab" },
+      { title: "acb" },
+      { title: "aab" },
+      { title: "bab" },
+      { title: "acb" },
+      { title: "aab" },
+      { title: "bab" },
+      { title: "acb" },
+      { title: "aab" },
+      { title: "bab" },
+      { title: "acb" },
+      { title: "aab" },
+      { title: "bab" },
+      { title: "acb" },
+      { title: "aab" },
+      { title: "bab" },
+      { title: "acb" },
+      { title: "aab" },
+      { title: "bab" },
+      { title: "acb" },
+      { title: "aab" },
+      { title: "bab" },
+      { title: "acb" },
+      { title: "aab" },
+      { title: "bab" },
+      { title: "acb" }
+    ];
 
-//     expect(orderAlphabetically(moviesArr).length).toEqual(20);
-//   });
+    expect(orderAlphabetically(moviesArr).length).toEqual(20);
+  });
 
-//   it("You should order them alphabetically.", function() {
-//     var moviesArr = [
-//       { title: "aab" },
-//       { title: "aaa" },
-//       { title: "abc" },
-//       { title: "acb" },
-//       { title: "abb" }
-//     ];
+  it("You should order them alphabetically.", function() {
+    var moviesArr = [
+      { title: "aab" },
+      { title: "aaa" },
+      { title: "abc" },
+      { title: "acb" },
+      { title: "abb" }
+    ];
 
-//     expect(orderAlphabetically(moviesArr)).toEqual([
-//       "aaa",
-//       "aab",
-//       "abb",
-//       "abc",
-//       "acb"
-//     ]);
-//   });
+    expect(orderAlphabetically(moviesArr)).toEqual([
+      "aaa",
+      "aab",
+      "abb",
+      "abc",
+      "acb"
+    ]);
+  });
 
-//   it("You should return the top20 after ordering them alphabetically.", function() {
-//     var moviesArr = [
-//       { title: "aab" },
-//       { title: "bab" },
-//       { title: "acb" },
-//       { title: "aaa" },
-//       { title: "bbb" },
-//       { title: "anc" },
-//       { title: "kns" },
-//       { title: "zds" },
-//       { title: "pow" },
-//       { title: "gda" },
-//       { title: "res" },
-//       { title: "ter" },
-//       { title: "bca" },
-//       { title: "ccc" },
-//       { title: "bbt" },
-//       { title: "qas" },
-//       { title: "kmn" },
-//       { title: "frt" },
-//       { title: "afb" },
-//       { title: "agb" },
-//       { title: "apo" },
-//       { title: "poa" },
-//       { title: "cdf" },
-//       { title: "sea" },
-//       { title: "lom" },
-//       { title: "acs" },
-//       { title: "qas" },
-//       { title: "mns" },
-//       { title: "bvc" },
-//       { title: "gha" },
-//       { title: "lkj" },
-//       { title: "era" },
-//       { title: "ert" },
-//       { title: "tex" },
-//       { title: "zas" },
-//       { title: "pol" }
-//     ];
+  it("You should return the top20 after ordering them alphabetically.", function() {
+    var moviesArr = [
+      { title: "aab" },
+      { title: "bab" },
+      { title: "acb" },
+      { title: "aaa" },
+      { title: "bbb" },
+      { title: "anc" },
+      { title: "kns" },
+      { title: "zds" },
+      { title: "pow" },
+      { title: "gda" },
+      { title: "res" },
+      { title: "ter" },
+      { title: "bca" },
+      { title: "ccc" },
+      { title: "bbt" },
+      { title: "qas" },
+      { title: "kmn" },
+      { title: "frt" },
+      { title: "afb" },
+      { title: "agb" },
+      { title: "apo" },
+      { title: "poa" },
+      { title: "cdf" },
+      { title: "sea" },
+      { title: "lom" },
+      { title: "acs" },
+      { title: "qas" },
+      { title: "mns" },
+      { title: "bvc" },
+      { title: "gha" },
+      { title: "lkj" },
+      { title: "era" },
+      { title: "ert" },
+      { title: "tex" },
+      { title: "zas" },
+      { title: "pol" }
+    ];
 
-//     expect(orderAlphabetically(moviesArr)).toEqual([
-//       "aaa",
-//       "aab",
-//       "acb",
-//       "acs",
-//       "afb",
-//       "agb",
-//       "anc",
-//       "apo",
-//       "bab",
-//       "bbb",
-//       "bbt",
-//       "bca",
-//       "bvc",
-//       "ccc",
-//       "cdf",
-//       "era",
-//       "ert",
-//       "frt",
-//       "gda",
-//       "gha"
-//     ]);
-//   });
-// });
+    expect(orderAlphabetically(moviesArr)).toEqual([
+      "aaa",
+      "aab",
+      "acb",
+      "acs",
+      "afb",
+      "agb",
+      "anc",
+      "apo",
+      "bab",
+      "bbb",
+      "bbt",
+      "bca",
+      "bvc",
+      "ccc",
+      "cdf",
+      "era",
+      "ert",
+      "frt",
+      "gda",
+      "gha"
+    ]);
+  });
+});
 
 /*
  * ratesAverage
@@ -304,37 +304,37 @@ describe("Get the average rate - ratesAverage", function() {
  */
 
 describe("Average rate of Drama Movies - dramaMoviesRate", function() {
-//   it("Defines dramaMoviesRate", function() {
-//     expect(typeof dramaMoviesRate).toBe("function");
-//   });
+  it("Defines dramaMoviesRate", function() {
+    expect(typeof dramaMoviesRate).toBe("function");
+  });
 
-//   it("You should return a number!", function() {
-//     expect(typeof dramaMoviesRate(movies)).toBe("number");
-//   });
+  it("You should return a number!", function() {
+    expect(typeof dramaMoviesRate(movies)).toBe("number");
+  });
 
-//   it("Return the rate of a single element array!", function() {
-//     expect(dramaMoviesRate([{ genre: ["Drama"], rate: 8 }])).toBe(8);
-//   });
+  it("Return the rate of a single element array!", function() {
+    expect(dramaMoviesRate([{ genre: ["Drama"], rate: 8 }])).toBe(8);
+  });
 
-//   it("It should return the average of the array!", function() {
-//     expect(
-//       dramaMoviesRate([
-//         { genre: ["Drama"], rate: 8 },
-//         { genre: ["Drama"], rate: 9 },
-//         { genre: ["Drama"], rate: 7 }
-//       ])
-//     ).toBe(8);
-//   });
+  it("It should return the average of the array!", function() {
+    expect(
+      dramaMoviesRate([
+        { genre: ["Drama"], rate: 8 },
+        { genre: ["Drama"], rate: 9 },
+        { genre: ["Drama"], rate: 7 }
+      ])
+    ).toBe(8);
+  });
 
-//   it("It should return the average of the array, float!", function() {
-//     expect(
-//       dramaMoviesRate([
-//         { genre: ["Drama"], rate: 9 },
-//         { genre: ["Drama"], rate: 9 },
-//         { genre: ["Drama"], rate: 7 }
-//       ])
-//     ).toBe(8.33);
-//   });
+  it("It should return the average of the array, float!", function() {
+    expect(
+      dramaMoviesRate([
+        { genre: ["Drama"], rate: 9 },
+        { genre: ["Drama"], rate: 9 },
+        { genre: ["Drama"], rate: 7 }
+      ])
+    ).toBe(8.33);
+  });
 
   it("Only Drama Movies! You should return the average of Drama movies only!", function() {
     expect(
@@ -346,15 +346,15 @@ describe("Average rate of Drama Movies - dramaMoviesRate", function() {
     ).toBe(7.5);
   });
 
-//   it("Should return 0 if there is no Drama movie!", function() {
-//     expect(
-//       dramaMoviesRate([
-//         { genre: ["Action"], rate: 8 },
-//         { genre: ["Romance"], rate: 9 },
-//         { genre: ["Sci-Fi"], rate: 7 }
-//       ])
-//     ).toBe(0);
-//   });
+  it("Should return 0 if there is no Drama movie!", function() {
+    expect(
+      dramaMoviesRate([
+        { genre: ["Action"], rate: 8 },
+        { genre: ["Romance"], rate: 9 },
+        { genre: ["Sci-Fi"], rate: 7 }
+      ])
+    ).toBe(0);
+  });
 });
 
 describe("Turn duration of the movies - turnHoursToMinutes", function() {
