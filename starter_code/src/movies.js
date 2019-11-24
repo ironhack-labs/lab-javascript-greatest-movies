@@ -77,6 +77,7 @@ if (a.genre.includes("Drama"))
  return avarage;
 }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+//creamos una funcion secundaria para cambiar la duracion de las peliculas buscando el index de horas y los minutos
 function changeDurationMovies(arr){
 var horasIndex  = arr.indexOf("h");
 
@@ -93,14 +94,43 @@ if (arr.includes("min"))
 return horas * 60 + minutos;
 }
 
-
+// funcion principal
 function turnHoursToMinutes(movies){
 return movies.map(function(a){
+// creamos una variable que llame al metodo anterior para crear la duracion nueva de la pelicula    
 var nuevaHora = changeDurationMovies(a.duration);
-var duracionNuevaPelicula =  {
+//creamos el objeto con la nueva duracion y se lo retornamos
+var duracionNuevaPelicula =  
+{
     duration: nuevaHora
 };
+
 return duracionNuevaPelicula;
 });
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(movies){
+if (!movies.length)
+{return null
+}
+
+//juntamos todos los años de las peliculas 
+var años = movies.map(function(a){
+    return a.year;
+})
+
+//hacemos un filtro de todo este map y lo ordenadomos 
+
+var mejorAño = años.filter(function(a,b){
+if (años.indexOf(a) === b)
+{
+    return true;
+}
+}).sort(function(a,b){
+    return a - b;
+})
+
+//calculamos la mejor pelicula
+
+
+}
