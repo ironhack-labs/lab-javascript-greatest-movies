@@ -30,6 +30,16 @@ function howManyMovies(array){
 }
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(array){
+  var movies = Object.assign([], array)
+  return movies.map(function(movie){
+    return movie.title
+  }).sort(function(a, b){
+    return a.localeCompare(b)
+  }).filter(function(movie, index){
+    return index < 20;
+  })
+}
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
