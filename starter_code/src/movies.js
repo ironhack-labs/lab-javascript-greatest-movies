@@ -28,7 +28,7 @@ function orderByYear(arr) {
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 function howManyMovies(matrix) {
 
-    //Filter to: Steven Spielberg director and drama movies
+    //filter to: Steven Spielberg director and drama movies
     let movieSpielberg = matrix.filter(function (movie) {
         if (movie.director == "Steven Spielberg" && movie.genre.includes("Drama")) {
             return movie;
@@ -36,9 +36,23 @@ function howManyMovies(matrix) {
     })
     return movieSpielberg.length;
 }
+
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(matrix){
+
+    //first 20 titles, alphabetically ordered
+    let arrOrderMovie = matrix.map(function(movie){
+      return movie.title;
+    }).sort().filter(function(movie, index){
+        
+        //if the array you receive has less than 20 movies, return all of them
+        if(index < 20) return movie;
+    })
+    return arrOrderMovie;
+}
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
