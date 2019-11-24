@@ -67,5 +67,19 @@ function dramaMoviesRate(array){
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(array){
+  let movies = JSON.parse(JSON.stringify(array));
+  movies.forEach(function(movie){
+    movie.duration = movie.duration.split(" ").reduce(function(total, duration){
+      let durationNumber = Number(duration.match(/\d+/g))
+      if(duration.match(/h/g)){
+        return total + durationNumber*60
+      } else {
+        return total + durationNumber
+      }
+    },0)
+  })
+  return movies
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
