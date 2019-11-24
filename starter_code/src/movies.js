@@ -54,6 +54,17 @@ function ratesAverage(array){
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(array){
+  let drama = [];
+  array.forEach(function(movie){
+    movie.genre.forEach(function(genre){
+      if(genre == "Drama"){
+        drama.push(movie)
+      }
+    })
+  })
+  return ratesAverage(drama)
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
