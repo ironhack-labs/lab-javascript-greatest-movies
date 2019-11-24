@@ -40,8 +40,11 @@ function dramaMoviesRate(movies) {
         return 0;
     }
 
-    let dramaMovies = movies
-        .filter((movie) => movie.genre.includes('Drama'));
+    let dramaMovies = movies.filter((movie) => movie.genre.includes('Drama'));
+
+    if (!dramaMovies.length) {
+        return 0;
+    }
 
     let dramaMoviesAvg = dramaMovies
         .filter((movie) => movie.genre.includes('Drama'))
@@ -50,7 +53,23 @@ function dramaMoviesRate(movies) {
     return parseFloat((dramaMoviesAvg).toFixed(2));
 }
 
-
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(movies) {
+
+    return movies.map(function (movie) {
+
+        movie = Object.assign({}, movie);
+
+        if (typeof movie.duration !== 'number') {
+
+            let hoursToMinutes = parseInt( (movie.duration.match(/\d+h/g) || [0])[0] ) * 60;
+            let minutes = parseInt( (movie.duration.match(/\d+min/g) || [0])[0] );
+
+            movie.duration = hoursToMinutes + minutes;
+        }
+
+        return movie;
+    });
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
