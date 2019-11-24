@@ -38,21 +38,38 @@ function howManyMovies(matrix) {
 }
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(matrix){
+function orderAlphabetically(matrix) {
 
     //first 20 titles, alphabetically ordered
-    let arrOrderMovie = matrix.map(function(movie){
-      return movie.title;
-    }).sort().filter(function(movie, index){
-        
+    let arrOrderMovie = matrix.map(function (movie) {
+        return movie.title;
+    }).sort().filter(function (movie, index) {
+
         //if the array you receive has less than 20 movies, return all of them
-        if(index < 20) return movie;
+        if (index < 20) return movie;
     })
     return arrOrderMovie;
 }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(matrix) {
 
+    if (matrix.length) {
+
+        let resutl = matrix.reduce(function (acc, e) {
+            if (!e.rate || e.rate == ""){
+                return acc;
+            }
+            return acc + e.rate;
+        }, 0) / matrix.length;
+
+        resutl = resutl.toFixed(2);
+        resutl = parseFloat(resutl);
+
+        return resutl;
+    }
+    return 0;
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
