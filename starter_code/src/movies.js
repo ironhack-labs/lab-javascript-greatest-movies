@@ -30,10 +30,40 @@ return acc;
 }, 0);
 }
 
-
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
+function orderAlphabetically(movies){
+var order = movies.map(function(a){
+return a.title;
+}).sort(function(a,b){
+    return a.localeCompare(b);
+}).splice(0,20);
+return order;
+}
+
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(movies){
+    // var sum = 0;
+
+    // for (let i = 0; i < number.lenght ; i++)
+    // {
+    //     sum += parseFloat(number[i].rate)
+    // }
+    // return sum;
+    if (!movies.length)
+    return 0;
+
+var sum = movies.reduce(function(acc, val){
+return acc += parseFloat(val.rate || 0);
+}, 0);
+ 
+var average = sum / movies.length;
+
+return Number.parseFloat(average.toFixed(2));
+
+
+
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
