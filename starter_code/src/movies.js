@@ -1,26 +1,29 @@
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
-
 function orderByYear(array){
-let movieYear=[...array];
- return movieYear.sort(function(movie1, movie2){
-    if(movie1.year < movie2.year) {
-        return -1}
-        else if (movie1.year > movie2.year){
-            return 1
-        }else if(movie1.title < movie2.title){
-            return -1
-        }else{
-            return 1
-        }
+    let newArr = [...array]
 
-})
+    return newArr.sort(function(a,b){
+       
+        if(a.year > b.year){
+          return 1;
+        }
+        if(a.year < b.year){
+          return -1;
+        }else if(a.year==b.year){
+            if(a.title > b.title){
+                return 1
+            }
+            return -1
+          
+        }
+      });    
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
-function howManyMovies(array){
-    return array.filter((movies) => movies.genre.includes('Drama') && movies.director==='Steven Spielberg').length;
-    }
+function howManyMovies (array){
+     return array.filter(movie => movie.director === 'Steven Spielberg' &&  movie.genre.includes('Drama')).length    
+  }
     
 
 
@@ -31,11 +34,12 @@ function orderAlphabetically (array){
        return movie.title
     }).sort().slice(0,20)
     
-}
+
 
 //let students = schoolSystem.schools[0].classRooms[0].students
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+
 
 
 
