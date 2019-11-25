@@ -38,6 +38,21 @@ function orderAlphabetically([...movies]){
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
+function ratesAverage(movies){
+  let rates = movies.reduce( (acc, current) => {
+    if (typeof current.rate == 'number'){
+      return acc + current.rate;
+    } else {
+      return acc;
+    }
+  }, 0 );
+
+  if (rates > 0){
+    return parseFloat( (rates / movies.length).toFixed(2) );
+  }  else {
+    return 0;
+  }
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
