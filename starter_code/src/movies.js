@@ -25,15 +25,11 @@ function howManyMovies(array){
 
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(array){
- let newArray=[...array];
- return newArray.sort(function(movie1, movie2){
-    if(movie1.title > movie2.title){
-        return 1
-    }else if(movie1.title < movie2.title){
-        return -1
-    }
-}).map(movie=> movie.title).splice(0, 20)
+function orderAlphabetically (array){
+    //newArray = [...array]
+     return newArray=array.map(function(movie){
+        return movie.title
+      })
 }
 
 //let students = schoolSystem.schools[0].classRooms[0].students
@@ -41,28 +37,10 @@ function orderAlphabetically(array){
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
 
-function ratesAverage(array) {
-    if (array.length === 0) {
-        return 0;
-    }
-    let rates = array.reduce((ac, rate) => {
-        if (typeof(rate.rate) != "number") {
-            rate.rate = 0
-        } return rate.rate + ac
-    }, 0)
-      return parseFloat((rates/array.length).toFixed(2));
-}
 
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
-function dramaMoviesRate(array){
-    array =[...array]
-      return array= array.filter((movies) => movies.genre.includes('Drama')).reduce((ac, rate) => {
-        if (typeof(rate.rate) != "number") {
-            rate.rate = 0
-        } return rate.rate + ac
-    }, 0)/array.length
-    }
+
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
