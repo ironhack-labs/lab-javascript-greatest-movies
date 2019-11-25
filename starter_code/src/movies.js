@@ -56,8 +56,9 @@ function howManyMovies(m) {
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
-function orderAlphabetically(o) {
+function orderAlphabetically(arr) {
 
+    let o = Object.assign([], arr)
     let alphabeticObj = []
     let alphabeticArr = []
 
@@ -112,6 +113,7 @@ function ratesAverage(r) {
 
 
     return average
+
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
@@ -119,14 +121,20 @@ function ratesAverage(r) {
 function dramaMoviesRate(m) {
 
     let dramaFilms = []
+    let dramaNo;
+
 
     m.filter(function (movie) {
         movie.genre.forEach(function (drama) {
-            if (drama === "Drama")
+            if (drama === "Drama") {
                 return dramaFilms.push(movie)
+            } else { return dramaNo = 0 }
         })
 
     })
+
+    if (dramaNo == 0 && dramaFilms.length == 0) return 0
+
 
     let rates = dramaFilms.map(function (rate) {
         return rate.rate
@@ -147,8 +155,10 @@ function dramaMoviesRate(m) {
 
 
 
-function turnHoursToMinutes(m) {
+function turnHoursToMinutes(arr) {
     let newArr = []
+
+    let m = JSON.parse(JSON.stringify(arr))
 
     m.filter(function (movie) {
         if (movie.duration)
@@ -160,11 +170,29 @@ function turnHoursToMinutes(m) {
 
 
     function changeTime(time) {
-        let timeNumber = time.replace("h", "").replace("min", "")
-        let timeArr = timeNumber.split(" ").map(Number)
-        let timeMin = (timeArr[0] * 60 + timeArr[1])
 
-        return timeMin
+        if (time.length <= 2) {
+            let timeNumber = time.replace("h", "")
+            let timeArr = timeNumber.split(" ").map(Number)
+            let timeMin = (timeArr[0] * 60)
+
+            return timeMin
+
+        } else if (time.length <= 5) {
+            let timeNumber = time.replace("min", "")
+            let timeArr = timeNumber.split(" ").map(Number)
+            let timeMin = timeArr[0]
+
+            return timeMin
+
+        } else {
+
+            let timeNumber = time.replace("h", "").replace("min", "")
+            let timeArr = timeNumber.split(" ").map(Number)
+            let timeMin = (timeArr[0] * 60 + timeArr[1])
+
+            return timeMin
+        }
     }
 
     return newArr
