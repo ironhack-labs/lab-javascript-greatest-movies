@@ -50,18 +50,19 @@ return spielbergMovies
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(movieArray){
+    //kürzere Schreibweise
     /*const titleSortedArray = movieArray.slice().sort(function(a,b){
         return a.title.localeCompare(b.title)
     }).slice(0,20).map(
         function(movie){
             return movie.title;            
         }        
-    )*/ //kürzere Schreibweise
+    )*/
     const titleSortedArray = movieArray.slice().sort(function(a,b){
         return a.title.localeCompare(b.title)
     }).slice(0,20);
-    console.log(titleSortedArray)
-    //return titleSortedArray
+    //console.log(titleSortedArray)
+    //return titleSortedArray //two function return statement not possible
 
     const onlyTitle= titleSortedArray.map(
         function(movie){
@@ -88,11 +89,37 @@ function ratesAverage(movieArray){
         const rateAverage = rateSum / movieArray.length
         parseFloat(rateAverage.toFixed(2))
         return parseFloat(rateAverage.toFixed(2))
-    }else{return 0}
-
-    
+    }else{
+        return 0;
+    }    
 }
 // Iteration 5: Drama movies - Get the average of Drama Movies
+
+function dramaMoviesRate(movieArray){
+    const dramaRateSum = movieArray.reduce(       
+        function(accumulator, movie){
+            if(movie.genre.includes("Drama")){
+                return accumulator + movie.rate;                                
+            }else{
+                return accumulator + 0;
+            }                     
+        },
+        0)
+    const dramaNumber = movieArray.reduce(
+        function(accumulator, movie){
+            if(movie.genre.includes("Drama")){
+                accumulator +=1;                
+            }
+            return accumulator;                                                
+        },
+        0)
+    
+    if (dramaRateSum !== 0){
+        return parseFloat((dramaRateSum / dramaNumber).toFixed(2))
+    }else{
+        return 0;
+    }    
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
