@@ -28,10 +28,13 @@ function howManyMovies (array){
 
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(array){
+function orderAlphabetically (array){
+    newArray = [...array]
+     return newArray=array.map(function(movie){
+       return movie.title
+    }).sort().slice(0,20)
+    
 
-
-}
 
 //let students = schoolSystem.schools[0].classRooms[0].students
 
