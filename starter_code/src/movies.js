@@ -1,8 +1,8 @@
 /* eslint no-restricted-globals: 'off' */
 
-// const movies = require("./data.js");
+//const movies = require("./data.js");
 
-/* // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
+// Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(arr) {
   const sorted = arr.slice().sort(function(a, b) {
@@ -24,12 +24,12 @@ function howManyMovies(arr) {
   }, 0);
   return stevenSpielbergMovies;
 }
-console.log(howManyMovies(movies)); */
+console.log(howManyMovies(movies));
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
-//Solution with "For loop" not working - Tests failing --> don´t know why
-/* 
+/*Solution with "For loop" not working - Tests failing --> don´t know why
+ 
 function orderAlphabetically(arr) {
     if (arr.length === 0) return [];
     let firstTwenty = [];
@@ -55,9 +55,19 @@ function orderAlphabetically(movies) {
   });
 }
 
-console.log(orderAlphabetically(movies));
+console.log(orderAlphabetically(movies)); 
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+
+function ratesAverage(movies) {
+  const sumOfRates = movies.reduce(function(acc, movie) {
+    return acc + movie.rate;
+  }, 0);
+  let avg = (sumOfRates / movies.length).toFixed(2);
+  return parseInt(avg);
+}
+
+console.log(ratesAverage(movies));
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
