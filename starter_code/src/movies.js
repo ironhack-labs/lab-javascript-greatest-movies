@@ -2,7 +2,7 @@
 
 // const movies = require("./data.js");
 
-// Iteration 1: Ordering by year - Order by year, ascending (in growing order)
+/* // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(arr) {
   const sorted = arr.slice().sort(function(a, b) {
@@ -24,25 +24,38 @@ function howManyMovies(arr) {
   }, 0);
   return stevenSpielbergMovies;
 }
-console.log(howManyMovies(movies));
+console.log(howManyMovies(movies)); */
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
+//Solution with "For loop" not working - Tests failing --> don´t know why
+/* 
 function orderAlphabetically(arr) {
-  if (arr.length === 0) return [];
-  let firstTwenty = [];
-  const sorted = arr.slice().sort(function(a, b) {
+    if (arr.length === 0) return [];
+    let firstTwenty = [];
+    const sorted = arr.slice().sort(function(a, b) {
+      return a.title.localeCompare(b.title);
+    });
+    for (let i = 0; i < 20; i++) {
+      firstTwenty.push({ title: `${sorted[i].title}` });
+    }
+    console.log(typeof firstTwenty);
+    return firstTwenty;
+  } */
+
+// Solution with map function
+
+function orderAlphabetically(movies) {
+  if (movies.length === 0) return [];
+  const sortedMovies = movies.slice().sort(function(a, b) {
     return a.title.localeCompare(b.title);
   });
-  for (let i = 0; i < 20; i++) {
-    firstTwenty.push({ title: `${sorted[i].title}` });
-  }
-  console.log(typeof firstTwenty);
-  return firstTwenty;
+  return sortedMovies.slice(0, 20).map(function(movie) {
+    return movie.title;
+  });
 }
 
 console.log(orderAlphabetically(movies));
-console.log(movies[0]);
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
