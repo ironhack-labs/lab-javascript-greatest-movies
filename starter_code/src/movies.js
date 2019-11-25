@@ -78,5 +78,21 @@ function dramaMoviesRate(moviesArr) {
 console.log(dramaMoviesRate(movies));
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(moviesArr) {
+    return newArr = moviesArr.map(function(movie) {
+      let h_dur = movie.duration.indexOf("h");
+      let m_dur = movie.duration.indexOf("m");
+      let result = 0;
+      if (movie.duration.indexOf("h") > 0){
+        //console.log(movie.duration.substr(0, movie.duration.indexOf("h"))*60);
+        result = Number(movie.duration.substr(0, movie.duration.indexOf("h"))*60);
+      }
+      if (movie.duration.indexOf("m") > 0) {
+        result += Number(movie.duration.substr(movie.duration.indexOf(" ")+1, (movie.duration.indexOf("m"))-(movie.duration.indexOf(" ")+1)));
+      }
+      return {...movie, duration: result };
+    })
+}
+console.log(turnHoursToMinutes(movies));
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
