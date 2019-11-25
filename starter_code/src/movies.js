@@ -56,7 +56,6 @@ function ratesAverage(array) {
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate(array){
-    array =[...array]
       return array= array.filter((movies) => movies.genre.includes('Drama')).reduce((ac, rate) => {
         if (typeof(rate.rate) != "number") {
             rate.rate = 0
@@ -64,5 +63,9 @@ function dramaMoviesRate(array){
     }, 0)/array.length
     }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-
+    function turnHoursToMinutes(array){
+      array = [...array]
+  
+      return array = parseInt( movies.map(movie => movie.duration))
+    }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
