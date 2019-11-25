@@ -2945,7 +2945,7 @@ let movies = [
     {
       "title": "Dog Day Afternoon",
       "year": 1975,
-      "director": "Sidney Lumet",
+      "director": "Si dney Lumet",
       "duration": "2h 5min",
       "genre": [
         "Biography",

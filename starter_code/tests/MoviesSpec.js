@@ -31,11 +31,11 @@ describe("Order the movies by year - orderByYear", function() {
 
   it("If two movies have the same year, order them alphabetically by their title", function() {
     expect(
-      orderByYear([
-        { title: "abc", year: 2002 },
-        { title: "bac", year: 1982 },
-        { title: "aab", year: 1982 }
-      ])
+        orderByYear([
+          { title: "abc", year: 2002 },
+          { title: "bac", year: 1982 },
+          { title: "aab", year: 1982 }
+        ])
     ).toEqual([
       { title: "aab", year: 1982 },
       { title: "bac", year: 1982 },
