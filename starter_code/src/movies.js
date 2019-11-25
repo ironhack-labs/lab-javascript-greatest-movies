@@ -50,49 +50,61 @@ function ratesAverage(moviesArr) {
     }
   }, 0);*/
 
-  return +(sumOfRates/moviesArr.length).toFixed(2)
+  return +(sumOfRates / moviesArr.length).toFixed(2);
 }
-
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
-function dramaMoviesRate(moviesArr){
-    if (moviesArr.length === 0) return 0;
-    let sumOfRates = moviesArr.reduce(function(total, movie) {
-      if (typeof movie.rate == "number" && movie.genre.includes("Drama")) {
-        return total + movie.rate;
-      } else {
-        return total;
-      }
-    }, 0);
-    let numberOfDramas = moviesArr.reduce(function(total, movie) {
-      if (movie.genre.includes("Drama")) {
-        return total + 1;
-      } else {
-        return total;
-      }
-    }, 0);
-    if (numberOfDramas === 0) return 0
+function dramaMoviesRate(moviesArr) {
+  if (moviesArr.length === 0) return 0;
+  let sumOfRates = moviesArr.reduce(function(total, movie) {
+    if (typeof movie.rate == "number" && movie.genre.includes("Drama")) {
+      return total + movie.rate;
+    } else {
+      return total;
+    }
+  }, 0);
+  let numberOfDramas = moviesArr.reduce(function(total, movie) {
+    if (movie.genre.includes("Drama")) {
+      return total + 1;
+    } else {
+      return total;
+    }
+  }, 0);
+  if (numberOfDramas === 0) return 0;
 
-  
-    return +(sumOfRates/numberOfDramas).toFixed(2)
-  }
+  return +(sumOfRates / numberOfDramas).toFixed(2);
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArr){
-
-    return moviesArr.map(function(movie){
-        console.log(" duration " +  movie.duration);
-        let hours = (movie.duration.includes("h")) ? 
+function turnHoursToMinutes(moviesArr) {
+  return (transformedTimeMoviesArr = moviesArr.map(function(movie) {
+    let transformedDuration = 0;
+    if (movie.duration.includes("h") && movie.duration.includes("min")) {
+      let hours = Number(movie.duration.split("h")[0]);
+      let minutes = Number(movie.duration.split("min")[0].split(" ")[1]);
+      transformedDuration = hours * 60 + minutes;
+    } else if (
+      movie.duration.includes("h") &&
+      !movie.duration.includes("min")
+    ) {
+      transformedDuration = Number(movie.duration.split("h")[0]) * 60;
+    } else if (
+      movie.duration.includes("min") &&
+      !movie.duration.includes("h")
+    ) {
+      transformedDuration = Number(movie.duration.split("min")[0]);
+    }
+    return { ...movie, duration: transformedDuration };
+    /*let hours = (movie.duration.includes("h")) ? 
                          movie.duration.split("h")[0] : 0;
-        let minutes = (movie.duration.includes("min")) ? 
-                         movie.duration.split("min")[0].split(" ")[1] :0;
+        let minutes = (movie.duration.includes("min") && movie.duration.includes("h")) ? 
+                         movie.duration.split("min")[0].split(" ")[1] : movie.duration.split("min")[0];
         
-        movie.duration = hours*60 + minutes;
-       
-        console.log(" hours " + hours + "minutes " + minutes );
+        movie.duration = hours*60 + minutes;*/
 
-        return movie
-    })
+    //console.log(" hours " + hours + "minutes " + minutes );
+    //console.log(movie.duration);
+  }));
 }
-turnHoursToMinutes(movies);
+
 // BONUS Iteration: Best yearly rate average - Best yearly rate average

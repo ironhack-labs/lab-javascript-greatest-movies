@@ -19,7 +19,7 @@ let movies = [
         "Crime",
         "Drama"
       ],
-      "rate": 9.2
+      
     },
     {
       "title": "The Godfather: Part II",
