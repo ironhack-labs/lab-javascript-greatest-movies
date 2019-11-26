@@ -6,6 +6,7 @@ function orderByYear(movies) {
   let newArray = movies.map(function(e) {
     return e;
   });
+
   newArray.sort(function(a, b) {
     if (a.year > b.year) {
       if (a.title > b.title) {
@@ -29,17 +30,14 @@ function orderByYear(movies) {
 }*/
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
-/*
-howManyMovies(){
-  
-  const stevenFilter = movies.filter(function(pelis){
-  if(pelis.director === "Steven Spielberg"){
-    return true;
-  }
-  return false;
-})
+function howManyMovies() {
+  const stevenFilter = movies.filter(function(pelis) {
+    if (pelis.director === "Steven Spielberg") {
+      return true;
+    }
+    return false;
+  });
 }
-*/
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
