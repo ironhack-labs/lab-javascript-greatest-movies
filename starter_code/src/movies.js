@@ -41,7 +41,23 @@ function orderAlphabetically(arr) {
   });
   return newArray.sort().slice(0, 20);
 }
+
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+
+function ratesAverage(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+  let totalRates = arr.map(function(movie) {
+    return movie.rate;
+  });
+  const sumRates = totalRates.reduce(function(acc, val) {
+    return (acc += val);
+  }, 0);
+  let totalAverange = sumRates / totalRates.length;
+  let totalAverangeRounded = Math.round(totalAverange * 100) / 100;
+  return totalAverangeRounded;
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
