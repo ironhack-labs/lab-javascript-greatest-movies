@@ -54,17 +54,18 @@ function orderAlphabetically(movies) {
   return newArray.filter(function(e, index) {
     return index < 20;
   });
-
-  /*
-  return newArray.map(function() {
-    return newArray.filter(function(z, index) {
-      return index < 20;
-    });
-  });
-  */
 }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(movies) {
+  let newArray = movies.map(function(e) {
+    return e;
+  });
+
+  newArray.reduce(function(acc, cc) {
+    return acc;
+  });
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
