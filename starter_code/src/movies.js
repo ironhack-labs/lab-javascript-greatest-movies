@@ -41,10 +41,46 @@ function orderAlphabetically(arr) {
   });
   return newArray.sort().slice(0, 20);
 }
+
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+
+function ratesAverage(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+  let totalRates = arr.map(function(movie) {
+    return movie.rate;
+  });
+  const sumRates = totalRates.reduce(function(acc, val) {
+    return (acc += val);
+  }, 0);
+  let totalAverange = sumRates / totalRates.length;
+  let totalAverangeRounded = Math.round(totalAverange * 100) / 100;
+  return totalAverangeRounded;
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
+function dramaMoviesRate(arr) {
+  let movieDramas = arr.filter(function(movie) {
+    return movie.genre.includes("Drama");
+  });
+  return ratesAverage(movieDramas);
+}
+
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
+function turnHoursToMinutes(arr){
+  var newArray = arr.map(function(movie){
+     return movie.duration.split(" ");
+  });
+  var arrTimeFormated = []; 
+  for (var i = 0; i < newArray.length; i++){
+    var horas = Number(newArray[i][0].slice(0,1));
+    var min = Number(newArray[i][1].slice(0,2));
+    arrTimeFormated.push(horas*60 + min);
+   }
+ return arrTimeFormated;
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
