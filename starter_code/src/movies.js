@@ -70,4 +70,17 @@ function dramaMoviesRate(arr) {
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(arr){
+  var newArray = arr.map(function(movie){
+     return movie.duration.split(" ");
+  });
+  var arrTimeFormated = []; 
+  for (var i = 0; i < newArray.length; i++){
+    var horas = Number(newArray[i][0].slice(0,1));
+    var min = Number(newArray[i][1].slice(0,2));
+    arrTimeFormated.push(horas*60 + min);
+   }
+ return arrTimeFormated;
+}
+
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
