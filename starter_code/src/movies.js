@@ -2,7 +2,28 @@
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
+const orderByYear = (array) => {
+    let newArray = array.map(number => number)
+    newArray.sort((a,b) => {
+        if (a.year === b.year) {
+            return a.title.localeCompare(b.title)
+        }else {
+           return a.year - b.year
+        }
+    });
+    return newArray
+}
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
+
+
+const howManyMovies = (array) => {
+
+  const newArray = array.filter(element => element.genre.includes('Drama') === true && element.director === 'Steven Spielberg')
+  return newArray.length
+} 
+
+
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
@@ -13,3 +34,5 @@
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+
