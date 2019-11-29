@@ -2967,3 +2967,40 @@ let movies = [
       "rate": 8
     }
   ]
+
+const orderByYear = (arrAllMoveis) => {
+  let newArr = [...arrAllMoveis]
+    newArr
+    .sort((a , b) => {
+      if (a.year === b.year) {
+        return a.title.localeCompare(b.title);
+      } else {
+        return a.year - b.year;
+      }
+    });
+  return newArr;
+}
+
+const howManyMovies = (dramaMovies) => {
+  let hManyMovies = []
+  hManyMovies = dramaMovies
+  .filter(e => e.director === 'Steven Spielberg' && e.genre.includes('Drama'));
+  return hManyMovies.length;
+}
+
+const orderAlphabetically = (arrOfAllMovies) => {
+  let arr20Movies = [...arrOfAllMovies]
+  arr20Movies = arr20Movies
+  .sort((a , b) => a.title.localeCompare(b.title))
+  .splice(0, 20)
+  .map(e => e.title)
+  return arr20Movies;
+  // if (arr20Movies.length >= 20) {
+    // arr20Movies
+  }
+
+
+// Iteration 3: Alphabetic order
+// Another popular way to order the movies is to sort them alphabetically using the title key. However, in this case, we only need to print the title of the first 20. Easy peasy for an expert like you. wink
+
+// Create a orderAlphabetically() function, that receives an array and returns an array of first 20 titles, alphabetically ordered. Return only the title of each movie, and if the array you receive has less than 20 movies, return all of them.
