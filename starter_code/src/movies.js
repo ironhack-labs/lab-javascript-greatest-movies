@@ -77,17 +77,21 @@ const dramaMoviesRate = (arr) => {
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 const turnHoursToMinutes = (arr) => {
+
   const parseTime = (string) => {
-  const hours = parseInt(string.split(' ')[0].split('')[0])
-  const min = parseInt(string.split(' ')[1])
-  return hours * 60 + min
-  }
+    const hours = parseInt(string.split('').shift())
+    console.log(hours)
+    const min = parseInt(string.split(' ')[1]) || 0
+    return hours * 60 + min
+    }
 
   const newArr = arr.map(e => {
-    e.duration = parseTime(e.duration)
-    return e
+    console.log(e); 
+    const {...eCopy} = e;
+     console.log(eCopy);
+     eCopy.duration = parseTime(eCopy.duration)
+    return eCopy;
   })
-  console.log(newArr)
   return newArr
 }
 

@@ -2968,19 +2968,17 @@ let movies = [
     }
   ]
 
-
-
-  const turnHoursToMinutes = (arr) => {
-    const parseTime = (string) => {
-    const hours = parseInt(string.split(' ')[0].split('')[0])
-    const min = parseInt(string.split(' ')[1])
-    return hours * 60 + min
+  
+  const parseTime = (string) => {
+    const splitStringToArr = string.split('');
+    const hours = parseInt(string.split('').shift())
+    
+    let min = 0;
+    if (typeof splitStringToArr[2] === 'number') {
+      min = parseInt(splitStringToArr[2].concat(splitStringToArr[2]))
     }
-
-    const newArr = arr.map(e => {
-      e.duration = parseTime(e.duration)
-      return e
-    })
-    console.log(newArr)
-    return newArr
+    console.log(min)
+    return hours * 60 + min
   }
+  
+  parseTime("2h 30min")
