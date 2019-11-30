@@ -130,21 +130,70 @@ const dramaMoviesRate = arr => {
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 const turnHoursToMinutes = arr => {
-  let durationAdjusted = [...arr];
+  let durationAdjusted = arr.map(movie => JSON.parse(JSON.stringify(movie)));
+  // console.log(durationAdjusted);
 
   durationAdjusted = durationAdjusted.map((movie) => {
-    // break string of duration into array
-    let durationArray = [];
-    durationArray = movie.duration.split('');
-    // console.log(durationArray);
-    durationArray = durationArray.map()
-    movie.duration = durationArray;
-  });
+    let durationHours = 0;
+    let durationMinutes = 0;
+    let totalDuration = 0;
+    
+    // considering when a movie's duration is only about some minutes
+    // console.log(movie.duration.search('h'));
+    if (movie.duration.includes('h')) {
+      durationHours = movie.duration.slice(0, movie.duration.indexOf('h'));
+    } else {
+      durationHours = 0;
+    }
+    // console.log(durationHours);
+    
+    // just to make sure that all follow the same formatting with a space between hour and minutes
+    let hasSpace = movie.duration.includes(' ');
+    
+    // console.log(hasSpace);
 
+    if (hasSpace) {
+      durationMinutes = movie.duration.slice(movie.duration.indexOf('h') + 2, movie.duration.indexOf('m'));
+    } else {
+      durationMinutes = movie.duration.slice(movie.duration.indexOf('h') + 1, movie.duration.indexOf('m'));
+    }
+
+    // console.log(durationMinutes);
+
+    // calculating the total duration of the movie in minutes
+    totalDuration = Number(durationHours) * 60 + Number(durationMinutes);
+    // console.log(totalDuration);
+
+    // manipulating the new array to show the info the way we want them to be
+    movie.duration = totalDuration;
+
+    return movie;
+  });
   return durationAdjusted;
 }
 
-console.log(turnHoursToMinutes(myMovies));
+// turnHoursToMinutes(myMovies);
+
+// console.log(turnHoursToMinutes(myMovies));
+// console.log(typeof turnHoursToMinutes(myMovies)[0].duration);
+
+
+// const turnHoursToMinutes = arr => {
+//   let durationAdjusted = [...arr];
+
+//   durationAdjusted = durationAdjusted.map((movie) => {
+//     // break string of duration into array
+//     let durationArray = [];
+//     durationArray = movie.duration.split('');
+//     // console.log(durationArray);
+//     durationArray = durationArray.map()
+//     movie.duration = durationArray;
+//   });
+
+//   return durationAdjusted;
+// }
+
+// console.log(turnHoursToMinutes(myMovies));
 
   // returns an array with the duration in minutes
   // without modifying the original
@@ -196,3 +245,13 @@ console.log(turnHoursToMinutes(myMovies));
 // console.log(turnHoursToMinutes(myMovies));
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+const bestYearAvg = arr => {
+  let averageRate = 0;
+
+  avgRateYear = arr.
+
+  averageRate = ratesAverage(arr.filter(movies => movies.year === 1995));
+
+  // return `The best year was ${} with an average rate of ${averageRate}`;
+}
