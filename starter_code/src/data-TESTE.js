@@ -2968,17 +2968,25 @@ let movies = [
     }
   ]
 
+  /*
+  encontrar o indice de h
+  encontrar o indice de min
+
+  cortar a string de 0 ate h exclusive
+  cortar a string de h+1 ate m exclusive
+  */
   
-  const parseTime = (string) => {
-    const splitStringToArr = string.split('');
-    const hours = parseInt(string.split('').shift())
-    
-    let min = 0;
-    if (typeof splitStringToArr[2] === 'number') {
-      min = parseInt(splitStringToArr[2].concat(splitStringToArr[2]))
+  const parseTimeString = (string) => {
+    if (typeof parseInt(string) === 'number') {
+      return parseInt(string)
     }
-    console.log(min)
-    return hours * 60 + min
+    console.log(string)
+    // const splittedString = string.split('');
+    const hStringIndex = string.indexOf('h')
+    const mStringIndex = string.indexOf('min')
+    const hour = parseInt(string.slice(0, hStringIndex)) || 0
+    const min = parseInt(string.slice(hStringIndex+2, mStringIndex)) || 0
+    return hour * 60 + min
   }
   
-  parseTime("2h 30min")
+  console.log(parseTimeString('h 43min'))

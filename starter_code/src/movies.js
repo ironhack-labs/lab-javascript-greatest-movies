@@ -78,18 +78,22 @@ const dramaMoviesRate = (arr) => {
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 const turnHoursToMinutes = (arr) => {
 
-  const parseTime = (string) => {
-    const hours = parseInt(string.split('').shift())
-    console.log(hours)
-    const min = parseInt(string.split(' ')[1]) || 0
-    return hours * 60 + min
+  const parseTimeString = (string) => {
+    // condition to parse string with minutes only and without "min".
+    if (typeof parseInt(string) === 'number' && string.indexOf('h') === -1) {
+      return parseInt(string)
     }
 
+    const hStringIndex = string.indexOf('h')
+    const mStringIndex = string.indexOf('min')
+    const hour = parseInt(string.slice(0, hStringIndex)) || 0
+    const min = parseInt(string.slice(hStringIndex+2, mStringIndex)) || 0
+    return hour * 60 + min
+  }
+
   const newArr = arr.map(e => {
-    console.log(e); 
-    const {...eCopy} = e;
-     console.log(eCopy);
-     eCopy.duration = parseTime(eCopy.duration)
+    const {...eCopy} = e; // crie um novo objeto e salve cada propriedade do element objeto nele.
+     eCopy.duration = parseTimeString(eCopy.duration)
     return eCopy;
   })
   return newArr
