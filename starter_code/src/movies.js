@@ -129,4 +129,70 @@ const dramaMoviesRate = arr => {
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
+const turnHoursToMinutes = arr => {
+  let durationAdjusted = [...arr];
+
+  durationAdjusted = durationAdjusted.map((movie) => {
+    // break string of duration into array
+    let durationArray = [];
+    durationArray = movie.duration.split('');
+    // console.log(durationArray);
+    durationArray = durationArray.map()
+    movie.duration = durationArray;
+  });
+
+  return durationAdjusted;
+}
+
+console.log(turnHoursToMinutes(myMovies));
+
+  // returns an array with the duration in minutes
+  // without modifying the original
+
+//   let arrHours = [];
+//   let arrMinutes = [];
+//   let durationHours, durationMinutes;
+//   let indexHours, indexMinutes;
+  
+//   newArr.map((movie) => {
+//     indexHours = movie.duration.indexOf('h');
+//     indexMinutes = movie.duration.indexOf('m');
+//     arrHours.push
+    
+//   });
+
+//   newArr.map((movie) => {
+
+//     let durationHours, durationMinutes;
+//     let indexHours, indexMinutes;
+
+//     indexHours = movie.duration.indexOf('h');
+//     if (typeof movie.duration.slice(0, indexHours) === Number) {
+//       durationHours = movie.duration.slice(0, indexHours);
+//     }
+
+//     // console.log(indexHours);
+//     console.log(durationHours);
+
+//     indexMinutes = movie.duration.indexOf('m');
+//     if (typeof movie.duration.slice(indexHours + 2, indexMinutes) === Number) {
+//       durationMinutes = movie.duration.slice(indexHours + 2, indexMinutes);
+//     }
+
+//     // console.log(indexMinutes);
+//     console.log(durationMinutes);
+    
+//     movie.duration = durationHours * 60 + durationMinutes;
+//     // console.log(indexHours);
+
+//     // if (typeof movie.duration.slice(0,1) === number) {
+//     //   duration
+//     // }
+//     // movie.duration
+//   })
+//   return newArr;
+// }
+
+// console.log(turnHoursToMinutes(myMovies));
+
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
