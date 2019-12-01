@@ -42,7 +42,7 @@ let myMovies = [
           "Crime",
           "Thriller"
         ],
-        rate: ''
+        rate: 9
       },
       {
         title: "Angry Men",
@@ -58,24 +58,24 @@ let myMovies = [
 ]
 
 const orderByYear = arr => {
-    let newArr = [...arr];
-    newArr.sort((a,b) => {
-        if (a.year - b.year === 0) {
-            return a.title.localeCompare(b.title);
-            console.log("entrei!");
-         }
-         return a.year - b.year;
-    });
-    return newArr;
+  let newArr = [...arr];
+  newArr.sort((a,b) => {
+    if (a.year - b.year === 0) {
+      return a.title.localeCompare(b.title);
+      console.log("entrei!");
+    }
+    return a.year - b.year;
+  });
+  return newArr;
 }
 // console.log(orderByYear(myMovies));
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
 const howManyMovies = arr => {
-    let newArr = arr.filter(movie => movie.director === "Steven Spielberg")
-    .filter(movie => movie.genre.indexOf("Drama") >= 0);
-    return newArr.length;
+  let newArr = arr.filter(movie => movie.director === "Steven Spielberg")
+  .filter(movie => movie.genre.indexOf("Drama") >= 0);
+  return newArr.length;
 }
 
 // console.log(howManyMovies(myMovies));
@@ -83,13 +83,13 @@ const howManyMovies = arr => {
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
 const orderAlphabetically = arr => {
-    let newArr = [...arr];
-    newArr.sort((a,b) => a.title.localeCompare(b.title));
-    let titlesArray = newArr.map(movie => movie.title);
-    if (titlesArray.length > 20) {
-        titlesArray.splice(20);
-    }
-    return titlesArray;
+  let newArr = [...arr];
+  newArr.sort((a,b) => a.title.localeCompare(b.title));
+  let titlesArray = newArr.map(movie => movie.title);
+  if (titlesArray.length > 20) {
+      titlesArray.splice(20);
+  }
+  return titlesArray;
 }
 
 // console.log(orderAlphabetically(myMovies));
@@ -97,21 +97,21 @@ const orderAlphabetically = arr => {
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
 const ratesAverage = arr => {
-    let averageRating = 0;
+  let averageRating = 0;
 
-    if (arr.length === 0) {
-        return 0;
-    } else {
-        averageRating = arr.reduce((rateSum, movie) => {
-            console.log(movie.rate);
-            if (typeof movie.rate === 'number' && movie.hasOwnProperty('rate')) {
-                rateSum += movie.rate;
-            }
-            return rateSum;
-        }, 0);
-        averageRating /= arr.length;
-        return Math.round(averageRating*100)/100;
-    }
+  if (arr.length === 0) {
+    return 0;
+  } else {
+    averageRating = arr.reduce((rateSum, movie) => {
+      console.log(movie.rate);
+      if (typeof movie.rate === 'number' && movie.hasOwnProperty('rate')) {
+        rateSum += movie.rate;
+      }
+      return rateSum;
+    }, 0);
+    averageRating /= arr.length;
+    return Math.round(averageRating*100)/100;
+  }
 }
 
 // console.log(ratesAverage(myMovies));
@@ -120,9 +120,9 @@ const ratesAverage = arr => {
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
 const dramaMoviesRate = arr => {
-    let filterDramas = arr.filter((movie) => movie.genre.indexOf('Drama') >= 0);
+  let filterDramas = arr.filter((movie) => movie.genre.indexOf('Drama') >= 0);
 
-    return ratesAverage(filterDramas);
+  return ratesAverage(filterDramas);
 }
 
 // console.log(dramaMoviesRate(myMovies));
@@ -246,12 +246,70 @@ const turnHoursToMinutes = arr => {
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
+
+// OK - deixar em ordem crescente de anos
+// OK - criar array com os anos possiveis
+// rodar um loop que caso o ano seja igual joga em um array de um objeto o valor do rate
+// teremos um array de objetos com um array de rating
+// ou seja array = yearlyrates, obj = anos, dentro do objeto anos teremos year e rate, year eh o mesmo pra todos
+// e rate sera um array de rates
+
+// para calcular melhor ano => calcular o averageRate do ano e inserir no obj -> loop no obj
+// depois retornar essa opcao do objeto com o rate
+
 const bestYearAvg = arr => {
-  let averageRate = 0;
 
-  avgRateYear = arr.
-
-  averageRate = ratesAverage(arr.filter(movies => movies.year === 1995));
-
-  // return `The best year was ${} with an average rate of ${averageRate}`;
+  if (arr.length === 0) {
+    return null;
+  } else {
+    let yearlyRating = [];
+  
+    // create an array with all the years from the movies available in the array and remove duplicated years
+    let years = arr.map(movie => movie.year);
+    years = years.filter((year, idx) => years.indexOf(year) === idx);
+    // console.log(years);
+  
+    // sort the array by ascending order
+    years.sort((a,b) => a - b);
+    // console.log(years);
+  
+    let orderedArr = orderByYear(arr);
+    // console.log(orderedArr);
+  
+    years.forEach(year => {
+      let ratings = [];
+  
+      let avgRating = orderedArr.filter(movie => movie.year === year).reduce((rateSum, movie) => {
+        if (typeof movie.rate === 'number' && movie.hasOwnProperty('rate')) {
+          rateSum += movie.rate;
+        }
+        return rateSum;
+      }, 0) / orderedArr.filter(movie => movie.year === year).length;
+      // console.log(avgRating);
+  
+      yearlyRating.push({year: year, rating: avgRating});
+    });
+  
+    console.log(yearlyRating);
+  
+    let maxRate = 0;
+  
+    maxRate = yearlyRating.reduce((previous, current) => previous.rating < current.rating ? current : previous.rating < current.rating
+    previous);
+    console.log(maxRate);
+  
+    return `The best year was ${maxRate.year} with an average rate of ${maxRate.rating}`;
+  }
 }
+
+console.log(bestYearAvg(myMovies));
+
+    // const bestYearAvg = arr => {
+    //   let averageRate = 0;
+    
+    //   avgRateYear = arr.
+    
+    //   averageRate = ratesAverage(arr.filter(movies => movies.year === 1995));
+    
+    //   // return `The best year was ${} with an average rate of ${averageRate}`;
+    // }
