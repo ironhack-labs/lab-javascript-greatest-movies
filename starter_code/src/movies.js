@@ -94,5 +94,16 @@ function dramaMoviesRate() {
   );
 }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-
+function turnHoursToMinutes(movies) {
+  let newArray = movies.map(function(e) {
+    if (e.duration.length > 2) {
+      return (
+        parseFloat(e.duration.slice(0, 1)) * 60 +
+        parseFloat(e.duration.slice(3, 5))
+      );
+    }
+    return parseFloat(e.duration.slice(0, 1) * 60);
+  });
+  return newArray;
+}
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
