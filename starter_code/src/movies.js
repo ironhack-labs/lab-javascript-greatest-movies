@@ -62,13 +62,37 @@ function ratesAverage(movies) {
     return e;
   });
 
-  newArray.reduce(function(acc, cc) {
-    return acc;
-  });
+  if (newArray.length === 0) {
+    return 0;
+  }
+  return parseFloat(
+    (
+      newArray.reduce(function(acc, red) {
+        return acc + red.rate;
+      }, 0) / newArray.length
+    ).toFixed(2)
+  );
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate() {
+  let newArray = movies.map(function(e) {
+    return e;
+  });
 
+  let dramaArray = newArray.filter(function(dramaMovie) {
+    return dramaMovie.genre.indexOf("Drama") >= 0;
+  });
+
+  //Average rate of all drama movies rounded to 2 decimal points
+  return parseFloat(
+    (
+      dramaArray.reduce(function(acc, red) {
+        return acc + red.rate;
+      }, 0) / dramaArray.length
+    ).toFixed(2)
+  );
+}
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
