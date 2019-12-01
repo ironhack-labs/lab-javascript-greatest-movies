@@ -1,5 +1,6 @@
 /* eslint no-restricted-globals: 'off' */
 
+
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
 const orderByYear = (array) => {
@@ -46,6 +47,24 @@ const ratesAverage = (arr) => {
 };
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+const dramaMoviesRate = (array) => {
+      let dramaMovies = array.filter(i => i.genre.includes("Drama"))
+      if (dramaMovies.length) {
+      let sumDrama;
+      let totalDramaMovies;
+      // Sum of all Drama rates
+      sumDrama = array
+      .filter(i => i.genre.includes("Drama")).length
+      // Sum of all rating Drama movies
+      totalDramaMovies = array.filter(i => i.genre.includes("Drama"))
+      .map(i => i.rate)
+      .reduce((a,b) => {
+        return a + b
+      })
+      return parseFloat((totalDramaMovies / sumDrama).toFixed(2));
+    }
+    return 0;
+  }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
