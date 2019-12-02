@@ -4,9 +4,9 @@
 function orderByYear(list_movies) {
   if (list_movies.length === 0) return [];
   return list_movies.sort((a, b) => {
-      if (a.year !== b.year) return a.year - b.year;
-      else return a.title > b.title ? 1 : a.title < b.title ? -1 : 0;
-    });
+    if (a.year !== b.year) return a.year - b.year;
+    else return a.title > b.title ? 1 : a.title < b.title ? -1 : 0;
+  });
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
@@ -69,6 +69,7 @@ function turnHoursToMinutes(list_movies) {
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 function bestYearAvg(list_movies) {
+
   if (list_movies.length === 0) return null;
 
   let map_years = new Map();
