@@ -57,6 +57,13 @@ let myMovies = [
       }
 ]
 
+var newMoviesArr = [
+  { year: 2000, rate: 9 },
+  { year: 2000, rate: 8 },
+  { year: 1978, rate: 10 },
+  { year: 1978, rate: 7 }
+]
+
 const orderByYear = arr => {
   let newArr = [...arr];
   newArr.sort((a,b) => {
@@ -165,6 +172,7 @@ const bestYearAvg = arr => {
   
     // create an array with all the years from the movies available in the array and remove duplicated years
     let years = arr.map(movie => movie.year);
+    // console.log(years);
     years = years.filter((year, idx) => years.indexOf(year) === idx);
     // console.log(years);
   
@@ -172,43 +180,42 @@ const bestYearAvg = arr => {
     years.sort((a,b) => a - b);
     // console.log(years);
   
+    const orderByYear = arr => {
+      let newArr = [...arr];
+      newArr.sort((a,b) => a.year - b.year);
+      return newArr;
+    }
+
     let orderedArr = orderByYear(arr);
     // console.log(orderedArr);
   
     years.forEach(year => {
       let ratings = [];
+      let numberOfMoviesBYYear = orderedArr.filter(movie => movie.year === year).length;
   
       let avgRating = orderedArr.filter(movie => movie.year === year).reduce((rateSum, movie) => {
         if (typeof movie.rate === 'number' && movie.hasOwnProperty('rate')) {
           rateSum += movie.rate;
         }
         return rateSum;
-      }, 0) / orderedArr.filter(movie => movie.year === year).length;
+      }, 0) / numberOfMoviesBYYear;
       // console.log(avgRating);
   
       yearlyRating.push({year: year, rating: avgRating});
     });
   
-    console.log(yearlyRating);
+    // console.log(yearlyRating);
   
     let maxRate = 0;
+
+    yearlyRating = yearlyRating.reverse();
   
-    maxRate = yearlyRating.reduce((previous, current) => previous.rating < current.rating ? current : previous.rating < current.rating
-    previous);
+    maxRate = yearlyRating.reduce((previous, current) => previous.rating < current.rating ? current : previous);
     console.log(maxRate);
   
     return `The best year was ${maxRate.year} with an average rate of ${maxRate.rating}`;
   }
 }
 
-console.log(bestYearAvg(myMovies));
-
-    // const bestYearAvg = arr => {
-    //   let averageRate = 0;
-    
-    //   avgRateYear = arr.
-    
-    //   averageRate = ratesAverage(arr.filter(movies => movies.year === 1995));
-    
-    //   // return `The best year was ${} with an average rate of ${averageRate}`;
-    // }
+console.log(bestYearAvg(newMoviesArr));
+// console.log(bestYearAvg(myMovies));
