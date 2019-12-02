@@ -23,9 +23,7 @@ function orderAlphabetically(list_movies) {
     .map(e => {
       return e.title;
     })
-    .sort((a, b) => {
-      return a > b ? 1 : a < b ? -1 : 0;
-    })
+    .sort()
     .splice(0, 20);
 }
 
