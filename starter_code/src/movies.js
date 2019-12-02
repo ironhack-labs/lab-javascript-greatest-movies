@@ -10,17 +10,10 @@
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
-const dramaMoviesRate = (arr) => {
-  if(arr.length === 0) {
-  return 0}
-  const dramaRate = arr.filter(e => {
-  return e.genre.includes("Drama");
-  }) 
-  if (dramaRate === 0)
-  return 0;
+const dramaMoviesRate = (movies) => {
+  const dramaMovies = movies.filter(movie => movie.genre.includes('Drama'));
+  return ratesAverage(dramaMovies);
 }
-
-const resultRate = dramaRate
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
