@@ -64,70 +64,91 @@ var newMoviesArr = [
   { year: 1978, rate: 7 }
 ]
 
-const orderByYear = arr => {
-  let newArr = [...arr];
-  newArr.sort((a,b) => {
-    if (a.year - b.year === 0) {
-      return a.title.localeCompare(b.title);
-      console.log("entrei!");
+const orderByYear = movies => {
+  let moviesCopy = [...movies];
+  moviesCopy.sort((movieA, movieB) => {
+    // do not forget to check if the title does exist
+    if (movieA.year - movieB.year === 0 && movieA.title && movieB.title) {
+      return movieA.title.localeCompare(movieB.title);
     }
-    return a.year - b.year;
+    return movieA.year - movieB.year;
   });
-  return newArr;
+  return moviesCopy;
 };
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
-const howManyMovies = arr => {
-  let newArr = arr.filter(movie => movie.director === "Steven Spielberg")
+const howManyMovies = movies => {
+  let dramaMovies = movies.filter(movie => movie.director === 'Steven Spielberg')
   .filter(movie => movie.genre.indexOf("Drama") >= 0);
-  return newArr.length;
+  return dramaMovies.length;
 };
+
+// there is another way of doing with just one filter:
+// movie.directior === 'Steven Spielberg' && movie.genre.includes('Drama')
+// another way faster:
+// movies.filter((movie) => movie.director = 'Steven Spielberg' && drama).length -> return this length
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
-const orderAlphabetically = arr => {
-  let newArr = [...arr];
-  newArr.sort((a,b) => a.title.localeCompare(b.title));
-  let titlesArray = newArr.map(movie => movie.title);
+const orderAlphabetically = movies => {
+  let orderedMovies = [...movies];
+  orderedMovies.sort((movieA, movieB) => movieA.title.localeCompare(movieB.title));
+  let titlesArray = orderedMovies.map(movie => movie.title);
   if (titlesArray.length > 20) {
       titlesArray.splice(20);
   }
   return titlesArray;
 };
 
+// another way using slice:
+// sortedMovies.sort((movieA, movieB) => movieA.title.localeCompare(movieB.title));
+// return sortedMovies.slice(0,20).map(el => el.title);
+
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
-const ratesAverage = arr => {
+const ratesAverage = movies => {
   let averageRating = 0;
 
-  if (arr.length === 0) {
+  if (movies.length === 0) {
     return 0;
   } else {
-    averageRating = arr.reduce((rateSum, movie) => {
-      console.log(movie.rate);
+    averageRating = movies.reduce((rateSum, movie) => {
+      // instead of checking if it is a number and if it does exist => just check if (movie.rate);
+      // retorna undefined => truthy value (is not 0, empty string, ...)
       if (typeof movie.rate === 'number' && movie.hasOwnProperty('rate')) {
         rateSum += movie.rate;
       }
       return rateSum;
     }, 0);
-    averageRating /= arr.length;
+    averageRating /= movies.length;
     return Math.round(averageRating*100)/100;
+    // you could do return parseFloat((totalRate / movies.length).toFixed(2));
+    // movies.reduce((total, movie) => (movie.rate) ? total + movie.rate : total, 0);
+    // or +(totalRate / movies.length).toFixed(2);
   }
 };
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
-const dramaMoviesRate = arr => {
-  let filterDramas = arr.filter((movie) => movie.genre.indexOf('Drama') >= 0);
+const dramaMoviesRate = movies => {
+  let filterDramas = movies.filter((movie) => movie.genre.indexOf('Drama') >= 0);
+  // we could also use includes instead of indexOf
 
   return ratesAverage(filterDramas);
 };
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-const turnHoursToMinutes = arr => {
-  let durationAdjusted = arr.map(movie => JSON.parse(JSON.stringify(movie)));
+const turnHoursToMinutes = movies => {
+  let durationAdjusted = movies.map(movie => JSON.parse(JSON.stringify(movie)));
+  // could be done const moviesClone = JSON.parse(JSON.stringify(movies));
+  // you don't need to go through the array to do the deep clone
+
+  // destructuring object
+  // const { duration } = movie; -> as there is a property with this name
+  // it will receive the value of the property
+  // that way you can just call duration everytime you need to refer to it (instead of movie.duration)
 
   durationAdjusted = durationAdjusted.map((movie) => {
     let durationHours = 0;
@@ -135,6 +156,35 @@ const turnHoursToMinutes = arr => {
     let totalDuration = 0;
     
     // considering when a movie's duration is only about some minutes
+    // should too consider using .toLowerCase()
+    // should consider too the existance of minutes, not just hours...
+    // Heitor's solution:
+    // Getting all Indexes that we need
+    // const hIndex = duration.toLowerCase().indexOf('h');
+    // const minIndex = duration.toLowerCase().indexOf('min');
+    // cont spaceIndex = duration.indexOf(' ');
+    // time manipulation if duration has Hour and Minutes
+    // if (hIndex >= 0 && minIndex >=0) {
+    //  const hour = duration.slice(0, hIndex) * 60;
+    // const minutes = duration.slice(spaceIndex + 1, minIndex);
+    // time = hour + parseInt(minutes);
+    // if duration has only Hours
+    // } else if (minIndex < 0) {
+    //  time = duration.slice(0, hIndex) * 60;
+    // if duration has only minutes
+    //} else if(hIndex < 0) {
+    // time = parseInt(duration.slice(spaceIndex + 1, minIndex)); 
+    //}
+    // reassigning duration value inside the object
+    // movie.duration = time;
+    // if applied in the desconstructed object -> would not work, it had to be in movie.duration
+    // return of Map Loop: returning entire object modified. Not just the duration
+    // return movie;
+    // });
+    // return of function: returning the clone with the object modified
+    // return moviesInMinutes;
+    // };
+
     if (movie.duration.includes('h')) {
       durationHours = movie.duration.slice(0, movie.duration.indexOf('h'));
     } else {
@@ -163,30 +213,24 @@ const turnHoursToMinutes = arr => {
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
-const bestYearAvg = arr => {
+const bestYearAvg = movies => {
 
-  if (arr.length === 0) {
+  if (movies.length === 0) {
     return null;
   } else {
     let yearlyRating = [];
   
     // create an array with all the years from the movies available in the array and remove duplicated years
-    let years = arr.map(movie => movie.year);
+    let years = movies.map(movie => movie.year);
     // console.log(years);
     years = years.filter((year, idx) => years.indexOf(year) === idx);
     // console.log(years);
   
     // sort the array by ascending order
-    years.sort((a,b) => a - b);
+    years.sort((movieA, movieB) => movieA - movieB);
     // console.log(years);
-  
-    const orderByYear = arr => {
-      let newArr = [...arr];
-      newArr.sort((a,b) => a.year - b.year);
-      return newArr;
-    }
 
-    let orderedArr = orderByYear(arr);
+    let orderedArr = orderByYear(movies);
     // console.log(orderedArr);
   
     years.forEach(year => {
@@ -207,8 +251,6 @@ const bestYearAvg = arr => {
     // console.log(yearlyRating);
   
     let maxRate = 0;
-
-    yearlyRating = yearlyRating.reverse();
   
     maxRate = yearlyRating.reduce((previous, current) => previous.rating < current.rating ? current : previous);
     console.log(maxRate);
@@ -219,3 +261,40 @@ const bestYearAvg = arr => {
 
 console.log(bestYearAvg(newMoviesArr));
 // console.log(bestYearAvg(myMovies));
+
+
+//heitor's solution:
+// const bestYearAvg = (movies) => {
+// if(movies.length === 0) {
+  // return null;
+  // const sortedMovies = [...movies];
+  // const byTheYear = {};
+  // sortedMovies.forEach((movie) => {
+  //   const { year } = movie;
+  //   if(year in byTheYear) {
+  //     byTheYear[year].push(movie);
+  //   } else {
+  //     byTheYear[year] = [movie];
+  //   }
+  // });
+//   let maxAvg = 0;
+//   let year = 0;
+//   for (key in byTheYear) {
+//     let average = ratesAverage(byTheYear[key]);
+//     if (maxAvg < average) {
+//       maxAvg = average;
+//       year = key;
+//     }
+//   }
+// return `text...`
+// }
+
+
+
+
+
+
+// um dos testes da jasmine mandava sem titulo para odernar
+
+// ajustar nomes utilizados
+// chegar no tie
