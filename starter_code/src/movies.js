@@ -36,50 +36,38 @@ function orderAlphabetically (array){
        return movie.title
     }).sort().slice(0,20)
     
-
+  }
 
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
-function ratesAverage(array){
-  if(array.length===0){
-  return 0
-  }
-  return avg= array.map(movie => movie.rate).reduce((acc, cu)=>acc + cu)/array.length
-  
+function ratesAverage(movArr) {
+  const sumRates = movArr.reduce((acc, mov) => {
+    if (!mov.rate) mov.rate = 0
+    return acc + parseFloat(mov.rate)
+  }, 0)
+  return Number((sumRates / movArr.length).toFixed(2))
 }
 
 
 
+
 // Iteration 5: Drama movies - Get the average of Drama Movies
-function dramaMoviesRate (array){
-  array =[...array]
-  return array= parseFloat(array.filter((movies) => movies.genre.includes('Drama')).reduce((ac, rate) => {
-    if (typeof(rate.rate) != "number") {
-        rate.rate = 0
-    } return rate.rate + ac
-}, 0)/array.length).toFixed(2)
+
+function dramaMoviesRate(movArr) {
+  const dramaMovies = movArr.filter(mov =>
+    mov.genre.find(genre => genre === "Drama")
+  )
+  if (!dramaMovies.length) return (0)
+  return ratesAverage(dramaMovies)
 }
-
-
-// Iteration 5: Drama movies - Get the average of Drama Movies
-
-function dramaMoviesRate(array){
-      return array= array.filter((movies) => movies.genre.includes('Drama')).reduce((ac, rate) => {
-        if (typeof(rate.rate) != "number") {
-            rate.rate = 0
-        } return rate.rate + ac
-    }, 0)/array.length
-    }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-    function turnHoursToMinutes(array){
-      array = [...array]
+  //  function turnHoursToMinutes(array){
+    //  array = [...array]
   
-      return array = parseInt( movies.map(movie => movie.duration))
-    }
+    //  return array = parseInt( movies.map(movie => movie.duration))
+   // }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
 
-// Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-// BONUS Iteration: Best yearly rate average - Best yearly rate averag
