@@ -76,7 +76,25 @@ const hourToMin = hString => {
 const min = minString => {
   return Number(minString.replace(/min/, ''))
 }
+const minutesFromDurationString = duration => {
+  const durationArr = duration.split(' ');
+  if(durationArr.length === 2) {
+    return hourToMin(durationArr[0]) + min(durationArr[1])
+  }
+  else if (durationArr[0].includes('h')) {
+    return hourToMin(durationArr[0])
+  }
+  return min(durationArr[0])
+};
 
+const turnHoursToMinutes = array => {
+  return array.map(obj => {
+    const newArray = {};
+    newArray.duration = minutesFromDurationString(obj.duration);
+    return newArray;
+  })
+
+  }
 
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
