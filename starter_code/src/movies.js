@@ -106,4 +106,17 @@ function bestYearAvg(movArr) {
     if (!arrYears.find(movOrd => movOrd === Number(mov.year)))
       arrYears.push(Number(mov.year))
   })
+  let bestYear = arrYears
+    .map(year => {
+      return {
+        year: year,
+        rate: ratesAverage(movArr.filter(mov => Number(mov.year) === year))        
+      }
+    })
+    .sort((a, b) => {
+      if (a.rate === b.rate && a.year > b.year) return 1      
+      if (a.rate < b.rate) return 1
+      return -1
+    })[0]
+  return `The best year was ${bestYear.year} with an average rate of ${bestYear.rate}`
 }
