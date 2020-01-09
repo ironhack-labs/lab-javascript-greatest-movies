@@ -12,4 +12,4 @@
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-// BONUS Iteration: Best yearly rate average - Best yearly rate average
+// BONUS Iteration: Best yearly rate average - Best yearly rate averag
