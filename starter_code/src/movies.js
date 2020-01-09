@@ -3,8 +3,8 @@
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(movies) {
-  const moviesByYear = [];
-   movies.sort(function comparar(a, b) {
+  const moviesByYear = movies.map(x => x);
+   moviesByYear.sort(function comparar(a, b) {
     if (a.year > b.year) {
       return 1;
     }
@@ -20,7 +20,8 @@ function orderByYear(movies) {
       }
     }
   });
-  return movies;
+
+  return moviesByYear;
 }
 
 
@@ -30,8 +31,8 @@ function howManyMovies(movies){
   if(!movies){
     return 0;
   }
-  let dramaMovies = movies.filter(element => {element.genre == 'drama'});
-  let dramaMoviesSpielberg = dramaMovies.filter(element => {element.director == 'Spielberg'});
+  let dramaMovies = movies.filter(element => element.genre == 'drama');
+  let dramaMoviesSpielberg = dramaMovies.filter(element => element.director == 'Spielberg');
   return dramaMoviesSpielberg.length;
 
 }
