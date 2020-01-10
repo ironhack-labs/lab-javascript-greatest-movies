@@ -109,25 +109,28 @@ function dramaMoviesRate(movies){
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes(movies) {
-
-  let newMovies = movies.map((x) => {
-    let timeToSplit = x.duration
-    let time = timeToSplit.split("h");
-    console.log(time);
-    let newTime = 0;
+  let newMovies = movies.map(function (x) {
+    let minutes = 0;
+    let time = x.duration.split(" ");
     if (time.length === 2) {
-      newTime = time[0] * 60 + parseInt(time[1]);
-    } else if (time.length === 1 && time.includes("h")) {
-      newTime = time[0] * 60;
+      let hours = parseInt(time[0].slice(0, -1));
+      minutes = parseInt(time[1].slice(0, -3));
+      minutes += hours * 60;
     } else if (time.length === 1) {
-      newTime = parseInt(time);
+      if (time[0].indexOf("h") > -1) {
+        minutes = parseInt(time[0].slice(0, -1) * 60);
+      } else if (time[0].indexOf("min") > -1) {
+        minutes = parseInt(time[0].slice(0, -3));
+      }
     }
-    x.duration = newTime;
-    return x;
+    let copyMovies = {
+      ...x
+    };
+    copyMovies.duration = minutes;
+    return copyMovies;
   });
   return newMovies;
 }
-turnHoursToMinutes(movies);
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
