@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 let movies = [
     {
       "title": "The Shawshank Redemption",
@@ -2966,4 +2968,6 @@ let movies = [
       ],
       "rate": 8
     }
-  ]
+  ];
+
+  exports.movies = movies;
