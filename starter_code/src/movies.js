@@ -71,21 +71,6 @@ let movies = [
 	  }
 ]
 
-
-function howManyMovies(x) {
-	let numOfMovies = 0;
-	if (x.director === "Steven Spielberg" && x.genre.includes("Drama")) {
-		numOfMovies = numOfMovies +1;
-		return true;
-	}
-	else {
-		return false;
-	};
-}
-let onlyStevenDrama = movies.filter(howManyMovies);
-console.log(onlyStevenDrama.length);
-
-
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(x) {
 	return x.sort(function(a, b) {
