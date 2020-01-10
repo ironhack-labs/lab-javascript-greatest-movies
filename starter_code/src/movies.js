@@ -32,19 +32,22 @@ function howManyMovies(arr) {
 }
 
 
-// function howManyMovies(arr) {
-//   let spielbergMovies = arr.filter(function(movies) {
-//     return movies.director === "Steven Spielberg";
-//   });
-//   return spielbergMovies.length;
-// }
-
-// howManyMovies(movies);
-
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(arr) {
-
+  const sorted = arr.concat().sort((a, b) => {
+    if (a.title > b.title) {
+      return 1;
+    } else {
+      return -1;
+    } 
+  });
+  const extracted = [];
+  sorted.forEach(element => {
+    extracted.push(element.title);
+  });
+  const first20 = extracted.slice(0, 20);
+  return first20;
 }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
