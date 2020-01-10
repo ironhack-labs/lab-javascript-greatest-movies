@@ -4,7 +4,7 @@
 
 function orderByYear(moviesArray) {
   let sorted = moviesArray.slice().sort(function(movieA, movieB) {
-    if (movieA.year === movieB.year) {
+    if (movieA.title && movieB.title && movieA.year === movieB.year) {
       return movieA.title.localeCompare(movieB.title);
     } else {
       return movieA.year - movieB.year;
