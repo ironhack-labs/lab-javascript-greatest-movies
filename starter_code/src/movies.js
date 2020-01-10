@@ -24,6 +24,16 @@ function orderByYear(array){
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
+function howManyMovies(array){
+    if (array.length==0){ //no entiendo Return 0 if he did not direct none of the movies in the array. Quiere decir que no ha dirigido ninguna pelicula? Una peli siempre va a tener un director ergo no tiene sentido la condición.
+        return 0
+    }
+    const topicFilter = "Drama";
+    const result = array.movies[0].year.filter(kindOfFilm => kindOfFilm === topicFilter);
+    
+}
+
+
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
