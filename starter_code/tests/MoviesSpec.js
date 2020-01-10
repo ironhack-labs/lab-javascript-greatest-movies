@@ -371,7 +371,7 @@ describe("Turn duration of the movies - turnHoursToMinutes", function() {
   });
 
   it("The duration of the movie should be a number", function() {
-    expect(typeof turnHoursToMinutes(movies)[0].duration).toBe("number");
+    expect(typeof turnHoursToMinutes(movies)[0].duration).toBe('number');
   });
 
   it("The duration of the movie should return the correct number to a short movie - 31 minutes", function() {
