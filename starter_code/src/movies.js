@@ -1,124 +1,86 @@
-function newExercice(text) {
-      var ladate = new Date();
-      ladate.toGMTString()
-      console.log(`\n\n${ladate.toGMTString()}
-    \n\u26a1 | ------------------- | \u2615 | Iteration ${numeroExercice()} | \u2615 |-----------------| \u26a1\nGoal : ${text}`)
-    }
-    var counter = 0
-    function numeroExercice(){ return counter ++ }
-
-
-
 /* eslint no-restricted-globals: 'off' */
 
+// Iteration 1: All rates average - Get the average of all rates with 2 decimals
 
-// Iteration 1: All rates average - Get the average of all rates with 2 decimals 
-newExercice("Iteration 1: All rates average - Get the average of all rates with 2 decimals")
-
-function ratesAverage(arr) {
-
-    let sum = arr.reduce((accumulator, currentValue) => accumulator + parseFloat(currentValue.rate), 0);
-    let average = sum / arr.length;
-    let averageReduce = average.toFixed(2);
-    return parseFloat(averageReduce);
-}
+const ratesAverage = arr =>
+  +(arr.reduce((a, b) => a + +b.rate, 0) / arr.length).toFixed(2);
 
 // Iteration 2: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate(arr) {
-    // if (arr.length === 1 ) {return arr.rate}
-    const dramaMovies = arr.filter(film => film.genre.includes("Drama"))
-    console.log(dramaMovies)
-    if (!dramaMovies.length) return 0;
-    const sumRateDrama = dramaMovies.reduce((accumulator, currentValue) => { return accumulator += Number(currentValue.rate) }, 0);
-
-    let averageDrama = sumRateDrama / dramaMovies.length;
-    let averageReduceDrama = averageDrama.toFixed(2);
-    console.log(parseFloat(averageReduceDrama))
-    return parseFloat(averageReduceDrama);
+  const dramaMovies = arr.filter(a => a.genre.includes("Drama"));
+  return !dramaMovies.length
+    ? 0
+    : +(
+        dramaMovies.reduce((a, b) => (a += Number(b.rate)), 0) /
+        dramaMovies.length
+      ).toFixed(2);
 }
-
-dramaMoviesRate(movies)
-
-
-
 
 // Iteration 3: Ordering by year - Order by time duration, ascending (in growing order)
 
-
-function orderByYear(arr) {
-    arr.sort(function (a, b) {
-      
-      if(a.year > b.year) return 1
-      if(a.year < b.year) return -1
-      if(a.year === b.year) {
-        if(b.title > a.title) return -1
-        else return 1
-      };
-      
-      //return a.year - b.year;
-    })
-    console.log(arr)
-    return arr
-    }
-
-
+const orderByYear = arr =>
+  arr.sort((a, b) =>
+    a.year - b.year ? a.year - b.year : b.title < a.title ? 1 : -1
+  );
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 
-function howManyMovies(arr) {
-    const spDramas = arr.filter((film, genre) => film.director.includes("Steven Spielberg") && film.genre.includes("Drama"))
-    return spDramas.length
-  }
+const howManyMovies = arr =>
+  arr.filter(
+    a => a.director.includes("Steven Spielberg") && a.genre.includes("Drama")
+  ).length;
 
 // Iteration 5: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(arr) {
-    arr.sort(function (a, b) {
-      if(a.title >= b.title) return 1
-      if(a.title < b.title) return -1
-      })
-      top20 = arr.slice(0,20)
-      return top20.reduce((accumulator, currentValue) => [...accumulator, currentValue.title], [])
-    }
-
+  return arr
+    .sort((a, b) => (a.title >= b.title ? 1 : -1))
+    .slice(0, 20)
+    .reduce((a, b) => [...a, b.title], []);
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-function transformHM (t) {
-    if(t.length > 5){
-    let formatSansMin = t.substr(0, t.length -3);
-    let indexH = formatSansMin.search("h ");
-    let heure = formatSansMin.substr(0,indexH)*60;
-    let minutes = 1*(formatSansMin.substr((formatSansMin.length -3)*-1));
-    let durationMinute = heure + minutes
-    return durationMinute}
-    if(t.search("h") > 0){
-    let indexH = t.search("h");
-    let durationMinute = t.substr(0,indexH)*60;
-    return durationMinute};
-    return t.substr(0, t.length-3);
-  }
-  
-  function turnHoursToMinutes(arr){
-    arr.map(currentTime => {
-      var newDuration = parseFloat(transformHM(currentTime.duration));
-      currentTime.duration = newDuration;
-      return newDuration;
-    })
-    return arr
-  }
+function formatTime(duration) {
+  let time = 0;
+  if (!duration.length) return 0;
+  if (/h/.test(duration)) time = +duration[0] * 60;
+  if (/min/.test(duration))
+    time += +duration.substring(duration.length - 5, duration.length - 3);
+  return time;
+}
 
-
+function turnHoursToMinutes(arr) {
+  let arr2 = arr.map(a => {
+    const newObj = { ...a };
+    newObj.duration = formatTime(newObj.duration);
+    return newObj;
+  });
+  return arr2;
+  //
+}
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
+function bestYearAvg(arr) {
+  if (!arr.length) return null;
+  let averageMovies = arr
+    .map(a => a.year)
+    .filter((value, index, self) => self.indexOf(value) === index)
+    .sort()
+    .map(a => (a = { year: a, scores: [] }));
 
+  for (let i = 0; i < averageMovies.length; i++) {
+    let filmdecetteanne = arr.filter(a => a.year === averageMovies[i].year);
 
+    averageMovies[i].scores.push(
+      filmdecetteanne.map(a => a.rate).reduce((a, b) => +a + +b) /
+        filmdecetteanne.length
+    );
+  }
+  let winner = averageMovies.sort((a, b) =>
+    b.scores - a.scores ? b.scores - a.scores : a.year - b.year
+  )[0];
 
-var perYear = movies.reduce((acc, movie) => {
-    var year = movie.year
-    if (acc[year]) acc[year].push(movie.rate)
-    else acc[year] = [movie.rate];
-    return acc
-  }, {})
-  
+  return `The best year was ${winner.year} with an average rate of ${winner.scores}`;
+}
