@@ -123,9 +123,7 @@ function turnHoursToMinutes(movies) {
         minutes = parseInt(time[0].slice(0, -3));
       }
     }
-    let copyMovies = {
-      ...x
-    };
+    let copyMovies = {x};
     copyMovies.duration = minutes;
     return copyMovies;
   });
@@ -134,3 +132,36 @@ function turnHoursToMinutes(movies) {
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
+function bestYearAvg(movies){
+   if (movies.length === 0) {
+     return null;
+   }
+   if (movies.length === 1) {
+     result = `The best year was ${movies[0].year} with an average rate of ${movies[0].rate}`;
+     return result;
+   }
+
+   let sortedByYear = orderByYear(movies);
+   let averages = [];
+   let year = sortedByYear[0].year;
+   let prevIndex = 0;
+   sortedByYear.forEach(function (movie, index, array) {
+     if (year !== movie.year) {
+       averages.push({
+         year: year,
+         averageRate: ratesAverage(array.slice(prevIndex, index))
+       });
+
+       year = movie.year;
+       prevIndex = index;
+     }
+   });
+   averages.sort(function (a, b) {
+     if (a.averageRate === b.averageRate) {
+       return b.year - a.year;
+     }
+     return a.averageRate - b.averageRate;
+   });
+   result = `The best year was ${averages[averages.length - 1].year} with an average rate of ${averages[averages.length - 1].averageRate}`;
+   return result;
+}
