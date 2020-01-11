@@ -426,8 +426,7 @@ let movies2 = [
     rate: 8.5
   },
   {
-    title:
-      "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
+    title: "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
     year: 1964,
     director: "Stanley Kubrick",
     duration: "1h 35min",
@@ -2020,28 +2019,33 @@ let movies2 = [
 
 function orderByYear(array) {
   const newArray = [...array];
-  return newArray.sort((a, b) =>
-    a.year === b.year ? (a.title < b.title ? -1 : 1) : a.year - b.year
-  );
+  return newArray.sort((a, b) => (a.year === b.year ? (a.title < b.title ? -1 : 1) : a.year - b.year));
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
-function howManyMovies(array, director, type) {
-  return array.filter(
-    el => el.director === "Steven Spielberg" && el.genre.includes("Drama")
-  ).length;
+function howManyMovies(array) {
+  return array.filter(el => el.director === "Steven Spielberg" && el.genre.includes("Drama")).length;
 }
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
+// function orderAlphabetically(array) {
+//   const $array = [...array];
+//   let arr = [];
+//   $array.sort((a, b) => a.title.localeCompare(b.title));
+//   $array.forEach(el => arr.push(el.title));
+//   arr.splice(20);
+//   return arr;
+// }
 function orderAlphabetically(array) {
-  const newArray = [...array];
-  let arr = [];
-  newArray.sort((a, b) => a.title.localeCompare(b.title));
-  newArray.forEach(el => arr.push(el.title));
-  arr.splice(20);
-  return arr;
+  const result = array.reduce((acc, currentValue) => {
+    acc.push(currentValue.title);
+    return acc;
+  }, []);
+  result.sort((a, b) => a.localeCompare(b));
+  result.splice(20);
+  return result;
 }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
@@ -2049,7 +2053,7 @@ function orderAlphabetically(array) {
 function ratesAverage(array) {
   return !array.length
     ? 0
-    : parseFloat(
+    : Number(
         (
           array.reduce((acc, currentValue) => {
             if (!currentValue.rate) currentValue.rate = 0;
@@ -2089,34 +2093,38 @@ function dramaMoviesRate(array) {
 
 function turnHoursToMinutes(array) {
   return array.map(current => {
-    const copy = { ...current };
-    let minute1 = 0,
-      minute2 = 0;
-    let arrayMinutes = current.duration.split(" ");
-    if (arrayMinutes.length === 1) {
-      if (arrayMinutes[0].includes("h")) {
-        minute1 = arrayMinutes[0]
-          ? Number(arrayMinutes[0].replace("h", "")) * 60
-          : 0;
-      } else {
-        minute1 = arrayMinutes[0]
-          ? Number(arrayMinutes[0].replace("min", ""))
-          : 0;
-      }
-    } else {
-      minute1 = arrayMinutes[0]
-        ? Number(arrayMinutes[0].replace("h", "")) * 60
-        : 0;
-      minute2 = arrayMinutes[1]
-        ? Number(arrayMinutes[1].replace("min", ""))
-        : 0;
+    const $current = { ...current };
+    let duration = $current.duration;
+    if (!duration.includes("min")) duration = Number(duration.slice(0, -1) * 60);
+    else if (!duration.includes("h")) duration = Number(duration.slice(0, -3));
+    else {
+      durationArr = duration.split(" ");
+      duration = Number(durationArr[0].slice(0, -1)) * 60 + Number(durationArr[1].slice(0, -3));
     }
-
-    copy.duration = minute1 + minute2;
-    return copy;
+    $current.duration = duration;
+    return $current;
   });
 }
 
-console.log(turnHoursToMinutes(movies2));
-
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(array) {
+    const moviesGroupedByYear = array.reduce((acc, value) => {
+      acc[value.year] = acc[value.year] || [];
+      acc[value.year].push(value);
+      return acc;
+      }, []);
+      const averageRateByYear = moviesGroupedByYear.reduce((acc, value) => {
+        let year = {};
+        year['year'] = value[0].year;
+        year['rate'] = ratesAverage(value);
+        acc.push(year);
+        return acc;
+      }, []);
+      const sortedDescAverageRateByYear = averageRateByYear.sort((a,b) => {
+        return b.rate - a.rate;
+      });
+      return !array.length ? null : `The best year was ${sortedDescAverageRateByYear[0]['year']} with an average rate of ${sortedDescAverageRateByYear[0]['rate']}`;
+  }
+
+console.log(bestYearAvg(movies2));
