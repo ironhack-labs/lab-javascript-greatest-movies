@@ -334,23 +334,18 @@ function turnHoursToMinutes(movies) {
 
   let movieDurations = moviesInMinutes.map(function(movie) {
     let timeValues = movie.duration.split(" ");
-    let movieDuration = [
-      parseInt(timeValues[0].replace("h", "")) * 60,
-      parseInt(timeValues[1].replace("min", ""))
-    ];
-    // moviesInMinutes.push("Nora");
-    console.log(movieDuration);
+    // console.log(movie.title);
+    let movieDurationinMinutes = 0;
+    for (value of timeValues) {
+      if (value.includes("h")) {
+        movieDurationinMinutes += parseInt(value.replace("h", "")) * 60;
+      } else if (value.includes("min")) {
+        movieDurationinMinutes += parseInt(value.replace("min", ""));
+      }
+    }
 
-    let movieDurationInMinutes = movieDuration.reduce(function(
-      accumulator,
-      movieDuration
-    ) {
-      return accumulator + movieDuration;
-    },
-    0);
-
-    console.log(movieDurationInMinutes);
-    return movieDurationInMinutes;
+    console.log(movieDurationinMinutes);
+    return movieDurationinMinutes;
   });
 
   //   let moviesInMinutes = [...movies];
@@ -361,16 +356,45 @@ function turnHoursToMinutes(movies) {
   return moviesInMinutes;
 }
 
-let twoMovies = [
-  {
-    title: "Saving Private Ryan",
-    year: 1998,
-    director: "Steven Spielberg",
-    duration: "2h 49min",
-    genre: ["Drama", "War"]
-  }
-];
-
-console.log(turnHoursToMinutes(twoMovies));
-
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movies) {
+  let movieYears = movies.map(function(movie, index) {
+    return movie.year;
+  });
+
+  let individualMovieYears = movieYears.filter(function(year, index, years) {
+    return years.indexOf(year) === index;
+  });
+
+  console.log(individualMovieYears);
+
+  let moviesGroupedByYearWithAvg = [];
+  for (year of individualMovieYears) {
+    let moviesOfOneYear = movies.filter(function(movie) {
+      if (movie.year === year) {
+        return true;
+      }
+    });
+    moviesGroupedByYearWithAvg.push({
+      year: year,
+      movies: moviesOfOneYear,
+      averageRate: ratesAverage(moviesOfOneYear)
+    });
+  }
+
+  moviesGroupedByYearWithAvg.sort(function(a, b) {
+    if (a.averageRate === b.averageRate) {
+      return a.year - b.year;
+    }
+    return b.averageRate - a.averageRate;
+  });
+
+  if (moviesGroupedByYearWithAvg.length === 0) {
+    return null;
+  }
+  let answer = `The best year was ${moviesGroupedByYearWithAvg[0].year} with an average rate of ${moviesGroupedByYearWithAvg[0].averageRate}`;
+  return answer;
+}
+
+bestYearAvg(movies);
