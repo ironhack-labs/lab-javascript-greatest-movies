@@ -2111,7 +2111,7 @@ function turnHoursToMinutes(array) {
 function bestYearAvg(array) {
     const moviesGroupedByYear = array.reduce((acc, value) => {
       acc[value.year] = acc[value.year] || [];
-      acc[value.year].push(value);
+      acc[value.year].push(value);           
       return acc;
       }, []);
       const averageRateByYear = moviesGroupedByYear.reduce((acc, value) => {
