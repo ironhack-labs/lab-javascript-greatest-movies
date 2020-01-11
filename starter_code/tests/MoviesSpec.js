@@ -6,29 +6,35 @@
  */
 
 describe("Order the movies by year - orderByYear", function() {
+  //1
   it("Defines orderByYear", function() {
     expect(typeof orderByYear).toBe("function");
   });
 
+  //2
   it("Should return an array", function() {
     expect(typeof orderByYear(movies)).toBe("object");
   });
 
+  //3
   it("Should return a new array", function() {
     var arr = [];
     expect(orderByYear(arr)).not.toBe(arr);
   });
 
+  //4
   it("Should return the element in a single element array", function() {
     expect(orderByYear([{ year: 1982 }])).toEqual([{ year: 1982 }]);
   });
 
+  //5
   it("Return the new array in ascending order", function() {
     expect(
       orderByYear([{ year: 2002 }, { year: 1982 }, { year: 1995 }])
     ).toEqual([{ year: 1982 }, { year: 1995 }, { year: 2002 }]);
   });
 
+  //6
   it("If two movies have the same year, order them alphabetically by their title", function() {
     expect(
       orderByYear([
@@ -42,6 +48,7 @@ describe("Order the movies by year - orderByYear", function() {
       { title: "abc", year: 2002 }
     ]);
   });
+  
 });
 
 /*
