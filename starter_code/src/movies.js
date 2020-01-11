@@ -64,7 +64,7 @@ function orderByYear(movies) {
                 return accumulator ;
             }
         }, 0);
-        //console.log(movieNumber, total)
+        
         return Math.round((total / movies.length)*100)/100 ;
     }
 
