@@ -433,3 +433,4 @@ describe("Best year average - bestYearAvg", function() {
     );
   });
 });
+
