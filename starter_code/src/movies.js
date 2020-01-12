@@ -15,41 +15,42 @@ function orderByYear(arr) {
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
-function howManyMovies(movies) {
-  const spielbergDramaMovies = movies.filter(movie => (movie.director === 'Steven Spielberg') && (movie.genre.includes('Drama')));
+function howManyMovies(arr) {
+  const spielbergDramaMovies = arr.filter(movie => (movie.director === 'Steven Spielberg') && (movie.genre.includes('Drama')));
   return spielbergDramaMovies.length;
 }
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
+// I don't understand the error in yasmine "You should not mutate the original array"
 
-let title = "";
-let orderedArray = []
-
-
-function orderAlphabetically(movies){
-  for (let i = 0; i < movies.length; i++){
-    if (movies.length = 20){
-    title = movies[i].title;
-    orderedArray.push(title);
-    orderedArray.sort();
-    } 
+function orderAlphabetically(arr){
+  const sortedMovies = arr.sort(function(title1, title2) {
+      return title1.title.localeCompare(title2.title);
+    })
+    .map(function(object){
+      return object.title;
+    })
+    .slice(0,20);
+    return sortedMovies;
   }
-  return orderedArray;
-}
+
+
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+// // I don't understand the error in yasmine "Return average even if one of the movies does not have rate!"
 
-function ratesAverage(movies) {
-  // Entender bien los condicionales!!!
-  const sumRates = movies.reduce((accumulator, movie) => accumulator + (movie.rate ? movie.rate : 0), 0);
-  const average = Math.round((sumRates / movies.length) * 100) / 100;
-
-  if (movies.length === 0) {
-  return 0;
+function ratesAverage(arr) {
+  if (arr.length === 0) {
+    return 0;
   }
 
+  let sumRates = arr.reduce(function(accumulator, movieRate) {
+    return accumulator + movieRate.rate;
+  },0);
+  const average = Math.round((sumRates / arr.length) * 100) / 100;
   return average;
-}
+}  
+
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
