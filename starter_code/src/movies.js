@@ -2,26 +2,21 @@
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
-function orderByYear(arr) {
+const orderByYear = (arr) => {
   return arr.concat().sort((a, b) => {
     if (a.year === b.year) {
       if (a.title > b.title) {
         return 1;
-      } else {
-        return -1;
-      } 
+      } return -1;
     }
     return a.year - b.year;
   });
 }
 
-// Intentar refactorizar?
-
-
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
-function howManyMovies(arr) {
-  function spielberg(arr) {
+const howManyMovies = (arr) => {
+  const spielberg = (arr) => {
     return arr.director === "Steven Spielberg";
   }
   const spielbergMovies = arr.filter(spielberg);
@@ -31,16 +26,13 @@ function howManyMovies(arr) {
   return filteredResult.length;
 }
 
-
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
-function orderAlphabetically(arr) {
+const orderAlphabetically = (arr) => {
   const sorted = arr.concat().sort((a, b) => {
     if (a.title > b.title) {
       return 1;
-    } else {
-      return -1;
-    } 
+    } return -1;
   });
   const extracted = [];
   sorted.forEach(element => {
@@ -52,13 +44,11 @@ function orderAlphabetically(arr) {
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
-function ratesAverage(arr) {
-  if (arr.length === 0 ) {
+const ratesAverage = (arr) => {
+  if (arr.length === 0) {
     return 0;
   }
-  const totalSum = arr.reduce(function(sum, movie){
-    return sum + movie.rate;
-  }, 0);
+  const totalSum = arr.reduce((sum, movie) =>  sum + movie.rate, 0);
   const avg = totalSum / arr.length;
   const avgRounded = Math.round(avg * 100) / 100;
   return avgRounded;
@@ -83,10 +73,44 @@ function dramaMoviesRate(arr) {
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-function turnHoursToMinutes(arr) {
+const turnHoursToMinutes = (arr) => {
+  const turnHours = arr.map(movie => {
+    const hoursMinSplit = movie.duration.split(' ');
+    
+    const hoursNum = hoursMinSplit[0].replace('h', '');
+    const hoursToMin = parseInt(hoursNum, 10) * 60;
 
+    const minNum = hoursMinSplit[1].replace('min', '');
+    const minInt = parseInt(minNum, 10);
+
+    movie.duration = hoursToMin + minInt;
+    return movie;
+  });
+  return turnHours;
 }
 
-turnHoursToMinutes();
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+
+const bestYearAvg = (arr) => {
+  if (arr.length === 0) {
+    return null;
+  }
+  result = arr.reduce(function (acc, value) {
+    acc[value.year] = acc[value.year] || [];
+    acc[value.year].push(value);
+    return acc;
+  }, Object.create(null));
+  return result;
+}
+
+bestYearAvg(movies);
+
+
+
+// 1. group movies by year
+// 2. calculate rate average of year
+// 3. compare all rates of years
+
+
