@@ -107,3 +107,51 @@ function turnHoursToMinutes(array) {
 }
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(array) {
+  //returns null when empty array
+  if (array.length === 0) {
+    return null;
+  }
+
+  //iterating through the array to get all possible year values
+  //saving the values in a neew array - yearArr
+  let yearArr = [];
+
+  for (let i = 0; i < array.length; i++) {
+    if (yearArr.indexOf(array[i].year) === -1) {
+      yearArr.push(array[i].year);
+    }
+  }
+
+  //filter by each year value - make one array of each year
+  //push all filtered yearArrays to one array arrFilteredByYears
+  let arrFilteredByYears = [];
+
+  for (let yearValue of yearArr) {
+    let currentYear = array.filter(function(movie) {
+      if (movie.year === yearValue) {
+        return true;
+      }
+    });
+    arrFilteredByYears.push(currentYear);
+  }
+
+  //sort arrFilteredByYears by ratesAverage
+
+  let arraySortedByRatesAverage = arrFilteredByYears.sort(function(a, b) {
+    if (ratesAverage(a) === ratesAverage(b)) {
+      return b[0].year - a[0].year;
+    } else {
+      return ratesAverage(a) - ratesAverage(b);
+    }
+  });
+
+  //return the last index of the array sorted by ratesAverage - biggest average
+
+  return `The best year was ${
+    arraySortedByRatesAverage[arraySortedByRatesAverage.length - 1][0].year
+  } with an average rate of ${ratesAverage(
+    arraySortedByRatesAverage[arraySortedByRatesAverage.length - 1]
+  )}`;
+}
