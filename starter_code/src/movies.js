@@ -2,41 +2,57 @@
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
-//para ordenar alfabeticamente hacer uso del metodo array.sort()
-
 function orderByYear(array){
-    const newArray = []
-
-    array.sort((num1, num2) => num1 - num2);
-    console.log(array)
-    /*
-    for (let i=0; i<array.length; i++){
-        if(array[i].movies<newArray[i]){
-            newArray.push(array[i])
-        } else{
-
-        }
-    }
-    */
-    return newArray
+    let newArray = [];
+    newArray = array.sort(function(num1, num2) { 
+                          if(num1.year===num2.year){
+                            if(num1.title < num2.title){ //esto no se esta aplicando y no se porque...
+                              return num1;
+                            } else {
+                              return num2;
+                            }
+                          }else{
+                            return (num1.year - num2.year);
+                          };                       
+                          });
+    return newArray //no se porque no lo detecta como nuevo array
 }
-
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
 function howManyMovies(array){
-    if (array.length==0){ //no entiendo Return 0 if he did not direct none of the movies in the array. Quiere decir que no ha dirigido ninguna pelicula? Una peli siempre va a tener un director ergo no tiene sentido la condición.
+    
+    const dramaMovies = array.filter(function(element, index){    
+      return element.genre[index] === "Drama" //porque no lo printea?
+      //return array[index].genre[index] === "Drama"})
+    })
+      
+    const spielbergDramaMovies = array.filter((element, index) => array[index].director === "Steven Spielberg")
+    
+    /* si pongo este codigo siempre devuelve el return 0
+    if (array.length===0 || typeof array.movies === 'undefined'){
         return 0
     }
-    const topicFilter = "Drama";
-    const result = array.movies[0].year.filter(kindOfFilm => kindOfFilm === topicFilter);
-    
+    */
+    return dramaMovies
 }
-
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
+function orderAlphabetically(array){
+    const newArray = []
+    array.sort((num1, num2) => num1 - num2);
+    return newArray
+}
+
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+
+function ratesAverage(array){
+    if(movies){
+
+    }
+    return Number
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
