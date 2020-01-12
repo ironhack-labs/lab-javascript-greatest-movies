@@ -48,6 +48,17 @@ function orderAlphabetically(movies){
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
+function ratesAverage(movies) {
+  const sumRates = movies.reduce((accumulator, movie) => accumulator + (movie.rate ? movie.rate : 0), 0);
+  const average = Math.round((sumRates / movies.length) * 100) / 100;
+
+  if (movies.length === 0) {
+  return 0;
+  }
+
+  return average;
+}
+
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
