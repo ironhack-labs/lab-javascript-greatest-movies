@@ -2967,3 +2967,5 @@ let movies = [
       "rate": 8
     }
   ]
+
+  console.log(movies.filter(el => typeof el.duration === "string" )[0])
