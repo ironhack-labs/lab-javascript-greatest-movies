@@ -79,6 +79,7 @@ function turnHoursToMinutes(movies) {
     const valueMins = { ...value };
     valueMins.duration = mins;
     return valueMins;
+    // return {...value, duration: mins};
   });
   return newMovies;
 }
@@ -89,7 +90,7 @@ function bestYearAvg(movies) {
     return null;
   }
   if (movies.length === 1) {
-    return `The best year was 2007 with an average rate of ${movies[0].rate}`;
+    return `The best year was ${movies[0].year} with an average rate of ${movies[0].rate}`;
   }
   //const moviesOrdered = orderByYear(movies);
   let maxAvg = 0;
