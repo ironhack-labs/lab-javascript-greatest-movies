@@ -118,11 +118,15 @@ function orderByYear(movies) {
         }      
         
         //faire une liste de toutes les années
-        let years = [];
-        for (i = 1900; i < 2020; i++) { 
-            years.push(i);
-        }
+        //let years = [];
+        //for (i = 1900; i < 2020; i++) { 
+        //    years.push(i);
+        //}
         let totaux = [];   
+
+        
+        let years = [...new Set(movies.map(item => item.year))];
+        years.sort();
         
         years.forEach((year) => {
           let moviesYear = movies.filter(movie => movie.year == year );
