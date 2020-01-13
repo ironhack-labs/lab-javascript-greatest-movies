@@ -58,8 +58,76 @@ function orderAlphabetically(movies) {
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
+function ratesAverage(array) {
+  
+  if (array.length === 0) {
+    return 0;
+  }
+
+  let movieRates = 0;
+  movieRates = array.map(array => array.rate);  
+
+  function getSum(a, b) { 
+    if (isNaN(a)) {
+      a = 0;
+    }
+
+    return a + b;
+  }
+
+  let average = (movieRates.reduce(getSum) / movieRates.length);
+  average = +average.toFixed(2);
+
+  return average;
+}
+
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
+function dramaMoviesRate(array) {
+  let dramaRates = array.filter(array => array.genre.includes("Drama"));
+
+  let dramaAverage = ratesAverage(dramaRates);
+  dramaAverage = +dramaAverage.toFixed(2);
+
+  return dramaAverage;
+}
+
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
+function turnHoursToMinutes(array) {
+
+  let movieDuration = [...array];
+  
+  function convertTime(string) {
+
+    let durationInMinutes = 0;
+    let hoursDigits = 0;
+    let minutesDigits = 0;
+    let numberOfHours = 0;      
+    let numberOfMinutes = 0;
+
+    for (let i = 0 ; i < string.length ; i++) {
+
+      if (string[i] === 'h') {
+        hoursDigits = i;
+        numberOfHours = string.substring(i-hoursDigits, i);
+      }
+
+      if (string[i] === 'm') {
+        minutesDigits = i;
+        numberOfMinutes = string.substring(i-minutesDigits, i);
+        break;
+      }
+    }
+    
+    durationInMinutes = (numberOfHours * 60) + numberOfMinutes;
+
+    return durationInMinutes;
+  }
+
+  movieDuration = movieDuration.map(convertTime(movieDuration.duration));
+
+  return movieDuration;
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
