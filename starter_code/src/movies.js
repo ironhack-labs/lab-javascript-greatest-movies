@@ -11,7 +11,7 @@ const orderAlphabetically = (movies) => movies.map(movie => movie.title).sort().
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 const ratesAverage =  (movies) => {
-    const average =  movies.length === 0 ? 0 : movies.map(movie => movie.rate).reduce((a, b) => a + b) / movies.length; 
+    const average =  movies.length === 0 ? 0 : movies.map(movie => (movie.rate && typeof movie.rate==='number') ? movie.rate : 0).reduce((a, b) => a + b) / movies.length; 
     return Number(Math.round(average+'e2')+'e-2');
 }
 
@@ -20,3 +20,4 @@ const ratesAverage =  (movies) => {
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
