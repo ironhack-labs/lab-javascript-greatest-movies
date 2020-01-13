@@ -10,6 +10,7 @@ function orderByYear(arr) {
     }
     return movie1.year - movie2.year;
   });
+  
   return sortedMovies;
 }
 
@@ -61,4 +62,22 @@ function dramaMoviesRate(movies){
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(arr) {
+  function hoursToMinutes(time) {
+      if (!time.includes("h")) {
+          return parseInt(time);
+      }
+      let hoursAndMinutes = time.split (" ");
+      return  (parseInt(hoursAndMinutes[0])*60+parseInt(hoursAndMinutes[1] || 0));
+}
+
+const newTime = arr.map(function(movie) {
+  const newMovies = Object.assign({}, movie);
+  newMovies.duration = hoursToMinutes(movie.duration);
+  return newMovies;
+});
+return newTime;
+}
+
+console.log(turnHoursToMinutes(movies));
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
