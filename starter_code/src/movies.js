@@ -80,5 +80,30 @@ function dramaMoviesRate(arr) {
   return ratesAverage(arr.filter(m => m.genre.includes("Drama")));
 }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(arr){
+  const nArr = arr.map(m => {
+    let mHrs = 0;
+    let mMin = 0;
 
+    if (m.duration.includes('h') && m.duration.includes('m')){
+      let movieTime = m.duration.split('h');
+      mHrs= parseInt(movieTime[0] * 60);
+      mMin = parseInt(movieTime[1].split('min')[0].trim());
+    } else if(m.duration.includes('h')){
+      mHrs = parseInt(m.duration.split('h')[0].trim()) * 60;
+    } else{
+       mMin = parseInt(m.duration.split('min')[0].trim());
+     }            
+   
+    return { duration:parseInt(mHrs + mMin)};
+  });
+
+  return nArr;
+}
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(arr){
+  if(!arr.length){
+    return null;
+  }
+  return arr;
+}
