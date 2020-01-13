@@ -9,15 +9,12 @@
   return a.year - b.year;
 });*/
 function orderByYear(allMovies) {
-  const orderByYear = allMovies.sort(function(a, b) {
+  const orderByYear = allMovies.slice().sort(function(a, b) {
     if (a.year === b.year) {
       return a.title.localeCompare(b.title);
     }
     return a.year - b.year;
   });
-  if (allMovies.length < 1) {
-    return [];
-  }
   return orderByYear;
 }
 
@@ -26,18 +23,14 @@ console.log(orderByYear(movies));
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
 function howManyMovies(movie) {
-  const howManyMovies = movie
-    .filter(function(movie) {
-      if (
-        movie.director === "Steven Spielberg" &&
-        movie.genre.includes("Drama")
-      ) {
-        return true;
-      }
-    })
-    .map(function(movie) {
-      return movie.title;
-    });
+  const howManyMovies = movie.filter(function(movie) {
+    if (
+      movie.director === "Steven Spielberg" &&
+      movie.genre.includes("Drama")
+    ) {
+      return true;
+    }
+  });
   return howManyMovies.length;
 }
 
@@ -94,9 +87,62 @@ function dramaMoviesRate(movie) {
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function convertStrToMinutes(str) {
+  // input str can be in these formats:
+  // "2h 22min" | "2h" | "45min"
+  const splitted = str.split(" ");
+
+  let minConversion;
+
+  if (splitted.length === 2) {
+    // "2h 22min"
+    let hours = parseInt(splitted[0]);
+    let minutes = parseInt(splitted[1]);
+    minConversion = hours * 60 + minutes;
+  } else if (splitted[0].indexOf("h") !== -1) {
+    // "2h"
+    let hours = parseInt(splitted[0]);
+    minConversion = hours * 60;
+  } else if (splitted[0].indexOf("min") !== -1) {
+    // "45min"
+    let minutes = parseInt(splitted[0]);
+    minConversion = minutes;
+  }
+
+  return minConversion;
+}
+
+function turnHoursToMinutes(movies) {
+  return movies.map(function(movie) {
+    const durationInMinutes = convertStrToMinutes(movie.duration);
+
+    // return Object.assign({}, movie, { duration: durationInMinutes });
+
+    // return { ...movie, duration: durationInMinutes };
+
+    const newObj = {
+      title: movie.title,
+      year: movie.year,
+      director: movie.director,
+      genre: movie.genre,
+      rate: movie.rate,
+      duration: durationInMinutes // ✅
+    };
+
+    return newObj;
+
+    // movie.duration = durationInMinutes; // ❌
+    // return movie;
+  });
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
-function bestYearAvg(movies) {
+
+// 1- group the movies by year
+// 2- for each year, calculate the avg rate
+// 3- sort the years by their avg rate
+
+/*function bestYearAvg(movies) {
   // I order the movies by years.
   const moviesOrdered = orderByYear(movies);
   let maxAverage = 0;
@@ -130,4 +176,51 @@ function bestYearAvg(movies) {
 
     return `The best year was ${bestYear} with an average rate of ${maxAverage}`;
   }
+}*/
+
+function bestYearAvg(movies) {
+  // 1- group the movies by year
+  // 2- for each year, calculate the avg rate
+  // 3- sort the years by their avg rate
+  //
+
+  if (movies.length === 0) {
+    return null;
+  }
+
+  const movieYears = movies.map(function(movie) {
+    return movie.year;
+  });
+
+  const uniqueMovieYears = movieYears.filter(function(year, index) {
+    if (movieYears.indexOf(year) === index) {
+      // this condition will only be true ONCE for every year in the array
+      return true;
+    }
+  });
+
+  uniqueMovieYears.sort(function(yearA, yearB) {
+    const moviesA = getMoviesForYear(movies, yearA);
+    const moviesB = getMoviesForYear(movies, yearB);
+
+    const avgA = ratesAverage(moviesA);
+    const avgB = ratesAverage(moviesB);
+
+    if (avgA === avgB) {
+      return yearA - yearB;
+    }
+    return avgB - avgA;
+  });
+
+  function getMoviesForYear(movies, year) {
+    return movies.filter(function(movie) {
+      return movie.year === year;
+    });
+  }
+
+  const topYear = uniqueMovieYears[0];
+  const topYearMovies = getMoviesForYear(movies, topYear);
+  const topRate = ratesAverage(topYearMovies);
+
+  return "The best year was " + topYear + " with an average rate of " + topRate;
 }
