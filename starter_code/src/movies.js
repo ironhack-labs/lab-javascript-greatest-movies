@@ -182,7 +182,12 @@ function bestYearAvg(movies) {
   // 1- group the movies by year
   // 2- for each year, calculate the avg rate
   // 3- sort the years by their avg rate
-  //
+
+  function getMoviesForYear(movies, year) {
+    return movies.filter(function(movie) {
+      return movie.year === year;
+    });
+  }
 
   if (movies.length === 0) {
     return null;
@@ -199,28 +204,51 @@ function bestYearAvg(movies) {
     }
   });
 
-  uniqueMovieYears.sort(function(yearA, yearB) {
-    const moviesA = getMoviesForYear(movies, yearA);
-    const moviesB = getMoviesForYear(movies, yearB);
+  const top = uniqueMovieYears.reduce(
+    function(accumulator, currentYear) {
+      const moviesForYear = getMoviesForYear(movies, currentYear); // retrieves an array with all the movies for the current year
+      const rate = ratesAverage(moviesForYear); // calculates average rate for the movies for the current year
 
-    const avgA = ratesAverage(moviesA);
-    const avgB = ratesAverage(moviesB);
+      if (rate === null || rate > accumulator.rate) {
+        //   if the computed rate is greater than the rate that was previously stored: reassign accumulator.rate & accumulator.year
 
-    if (avgA === avgB) {
-      return yearA - yearB;
+        accumulator.rate = rate;
+        accumulator.year = currentYear;
+      } else if (rate === accumulator.rate) {
+        //   if the computed rate is equal to the rate that was previously stored: compare the year
+        if (currentYear < accumulator.year) {
+          accumulator.year = currentYear;
+        }
+      }
+
+      return accumulator;
+    },
+    {
+      year: null,
+      rate: null
     }
-    return avgB - avgA;
-  });
+  );
 
-  function getMoviesForYear(movies, year) {
-    return movies.filter(function(movie) {
-      return movie.year === year;
-    });
-  }
+  return (
+    "The best year was " + top.year + " with an average rate of " + top.rate
+  );
 
-  const topYear = uniqueMovieYears[0];
-  const topYearMovies = getMoviesForYear(movies, topYear);
-  const topRate = ratesAverage(topYearMovies);
+  //   uniqueMovieYears.sort(function(yearA, yearB) {
+  //     const moviesA = getMoviesForYear(movies, yearA);
+  //     const moviesB = getMoviesForYear(movies, yearB);
 
-  return "The best year was " + topYear + " with an average rate of " + topRate;
+  //     const avgA = ratesAverage(moviesA);
+  //     const avgB = ratesAverage(moviesB);
+
+  //     if (avgA === avgB) {
+  //       return yearA - yearB;
+  //     }
+  //     return avgB - avgA;
+  //   });
+
+  //   const topYear = uniqueMovieYears[0];
+  //   const topYearMovies = getMoviesForYear(movies, topYear);
+  //   const topRate = ratesAverage(topYearMovies);
+
+  //   return "The best year was " + topYear + " with an average rate of " + topRate;
 }
