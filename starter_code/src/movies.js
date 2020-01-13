@@ -12,13 +12,29 @@ function orderByYear(movies) {
 }
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 function howManyMovies(movies) {
-  const spielbergMovies = movies.filter(function(value) {
+  /* const spielbergMovies = movies.filter(function(value) {
     return value.director === "Steven Spielberg";
   });
   const spielbergDramaMovies = spielbergMovies.filter(function(value) {
     return value.genre.includes("Drama");
+  });*/
+  /*const spielbergDramaMovies = movies
+    .filter(function(value) {
+      return value.director === "Steven Spielberg";
+    })
+    .filter(function(value) {
+      return value.genre.includes("Drama");
+    });
+  return spielbergDramaMovies.length;*/
+  const filtered = movies.filter(function(value) {
+    if (
+      value.director === "Steven Spielberg" &&
+      value.genre.includes("Drama")
+    ) {
+      return true;
+    }
   });
-  return spielbergDramaMovies.length;
+  return filtered.length;
 }
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
@@ -75,15 +91,15 @@ function bestYearAvg(movies) {
   if (movies.length === 1) {
     return `The best year was 2007 with an average rate of ${movies[0].rate}`;
   }
-  const moviesOrdered = orderByYear(movies);
+  //const moviesOrdered = orderByYear(movies);
   let maxAvg = 0;
   let bestYear;
-  moviesOrdered.forEach(function(value) {
+  movies.forEach(function(value) {
     let year = value.year;
     let avgPerYear = 0;
     let previousYear = 0;
-    if (year > previousYear) {
-      const numOfMovies = moviesOrdered.filter(function(value) {
+    if (year !== previousYear) {
+      const numOfMovies = movies.filter(function(value) {
         return value.year === year;
       });
 
@@ -91,6 +107,9 @@ function bestYearAvg(movies) {
 
       if (avgPerYear > maxAvg) {
         maxAvg = avgPerYear;
+        bestYear = year;
+      }
+      if (avgPerYear === maxAvg) {
         bestYear = year;
       }
     }
