@@ -10,6 +10,10 @@ const howManyMovies = (movies) => movies.filter(movie => movie.director === 'Ste
 const orderAlphabetically = (movies) => movies.map(movie => movie.title).sort().slice(0,20);
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+const ratesAverage =  (movies) => {
+    const average =  movies.length === 0 ? 0 : movies.map(movie => movie.rate).reduce((a, b) => a + b) / movies.length; 
+    return Number(Math.round(average+'e2')+'e-2');
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
