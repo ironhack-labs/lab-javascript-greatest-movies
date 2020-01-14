@@ -3,20 +3,15 @@
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arr) {
   let nArr = [];
-  let mapped = arr.map(function(el, i) {
-    return { index: i, value: el };
+  let mapped = arr.map(function(valElement, idx) {
+    return { index: idx, value: valElement };
   });
 
   nArr = mapped.sort(function(a, b) {
-    if (a.year > b.year) {
-      return 1;
-    }
-    if (a.year < b.year) {
-      return -1;
-    }
-    if (a.year === b.year && a.title > b.title) {
-      return 1;
-    }
+    if (a.value.year < b.value.year) {return -1;}
+    if (a.value.year > b.value.year) {return 1;}    
+    if (a.value.year === b.value.year) {return -1;}
+     return 0;
   });
 
   return nArr.map(function(el) {
@@ -26,7 +21,7 @@ function orderByYear(arr) {
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 function howManyMovies(arr) {
-  let count = 0;
+  let count;
   count = arr.filter(
     m => m.director === "Steven Spielberg" && m.genre.includes("Drama")
   );
@@ -36,26 +31,27 @@ function howManyMovies(arr) {
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(arr) {
-  const orderedByTitle = arr.slice();
+  let sliceArray = arr.slice();
   let topTwentyTitles = [];
-  let nArr = [];
+  let moviesArr = [];
 
-  nArr = orderedByTitle.sort((a, b) => {
-    if (a.title > b.title) {
-      return 1;
-    }
-    if (a.title < b.title) {
-      return -1;
-    }
+  moviesArr = sliceArray.sort((a, b) => {
+    if (a.title < b.title) {return -1;}
+    if (a.title > b.title) {return 1;}
     return 0;
   });
 
-  for (let i = 0; i < 20; i++) {
-    topTwentyTitles.push(nArr[i].title);
+  if(sliceArray.length > 20){
+    for (let i = 0; i < 20; i++) {    
+      topTwentyTitles.push(sliceArray[i].title.toString());  
+      }
+  } else {    
+    topTwentyTitles = moviesArr;
   }
 
   return topTwentyTitles;
 }
+
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(arr) {
   let nArr = [];
@@ -75,10 +71,12 @@ function ratesAverage(arr) {
 
   return avg;
 }
+
 // Iteration 5: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate(arr) {
   return ratesAverage(arr.filter(m => m.genre.includes("Drama")));
 }
+
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arr){
   const nArr = arr.map(m => {
@@ -102,8 +100,15 @@ function turnHoursToMinutes(arr){
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 function bestYearAvg(arr){
+  let nArr = [];
   if(!arr.length){
     return null;
+  } else {
+
+    arr.forEach(element => {
+      nArr.push(`The best year was ${element.year} with an average rate of ${element.rate}`);
+    });
+     
   }
-  return arr;
+  return nArr;
 }
