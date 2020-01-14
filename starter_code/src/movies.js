@@ -59,3 +59,23 @@ function turnHoursToMinutes(array) {
 
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(array) {
+    const averagesByYear = array.map(movie => {
+        return {
+            'year': movie.year,
+            'average': getAverageByYear(array, movie.year),
+        };
+    });
+
+    return averagesByYear.sort((lastElement, element) => element.year < lastElement.year)[0];
+}
+
+function getAverageByYear(array, year) {
+    let i = 0;
+    return array.reduce((a, b) => {
+        if (b.year === year) {
+            a += b.average;
+            i++;
+        }
+    }, 0) / i;
+}
