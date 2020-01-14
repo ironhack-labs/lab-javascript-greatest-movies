@@ -2594,8 +2594,8 @@ let movies = [
       "director": "Steven Spielberg",
       "duration": "2h 21min",
       "genre": [
-        "Biography",
-        "Crime",
+        /*"Biography",
+        "Crime",*/
         "Drama"
       ],
       "rate": 8.1
