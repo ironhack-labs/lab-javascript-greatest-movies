@@ -25,7 +25,9 @@ function howManyMovies(arr) {
 // I don't understand the error in yasmine "You should not mutate the original array"
 
 function orderAlphabetically(arr){
-  const sortedMovies = arr.sort(function(title1, title2) {
+
+  let newArr = arr.slice(0)
+  const sortedMovies = newArr.sort(function(title1, title2) {
       return title1.title.localeCompare(title2.title);
     })
     .map(function(object){
@@ -46,7 +48,11 @@ function ratesAverage(arr) {
   }
 
   let sumRates = arr.reduce(function(accumulator, movieRate) {
-    return accumulator + movieRate.rate;
+    if (movieRate.rate){
+      return accumulator + movieRate.rate;
+    } else {
+      return accumulator;
+    }
   },0);
   const average = Math.round((sumRates / arr.length) * 100) / 100;
   return average;
