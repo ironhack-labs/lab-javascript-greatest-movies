@@ -48,7 +48,13 @@ const ratesAverage = (arr) => {
   if (arr.length === 0) {
     return 0;
   }
-  const totalSum = arr.reduce((sum, movie) =>  sum + movie.rate, 0);
+  const totalSum = arr.reduce((sum, movie) => { 
+    if (movie.rate) {
+      return sum + movie.rate
+    } else {
+      return sum;
+    }
+  }, 0);
   const avg = totalSum / arr.length;
   const avgRounded = Math.round(avg * 100) / 100;
   return avgRounded;
