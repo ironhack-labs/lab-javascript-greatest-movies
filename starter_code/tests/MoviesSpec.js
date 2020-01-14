@@ -357,6 +357,10 @@ describe("Average rate of Drama Movies - dramaMoviesRate", function() {
   });
 });
 
+/*
+ * turnHoursToMinutes
+ */
+
 describe("Turn duration of the movies - turnHoursToMinutes", function() {
   it("Defines turnHoursToMinutes", function() {
     expect(typeof turnHoursToMinutes).toBe("function");
