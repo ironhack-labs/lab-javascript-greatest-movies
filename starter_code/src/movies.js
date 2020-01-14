@@ -67,8 +67,7 @@ function dramaMoviesRate(arr) {
     return sum + movie.rate;
   }, 0);
   const avg = totalSum / dramaMovies.length;
-  const avgRounded = Math.round(avg * 100) / 100;
-  return avgRounded;
+  return parseFloat(avg.toFixed(2));
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
@@ -77,6 +76,7 @@ const turnHoursToMinutes = (arr) => {
   const newArray = JSON.parse(JSON.stringify(arr));
   
   const turnHours = newArray.map(movie => {
+    
     const hoursMinSplit = movie.duration.split(' ');
     
     const hoursNum = hoursMinSplit[0].replace('h', '');
@@ -88,6 +88,7 @@ const turnHoursToMinutes = (arr) => {
     movie.duration = hoursToMin + minInt;
     return movie;
   });
+
   return turnHours;
 }
 
