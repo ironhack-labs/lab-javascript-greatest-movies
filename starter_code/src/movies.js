@@ -17,7 +17,10 @@ const ratesAverage =  (movies) => {
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 const dramaMoviesRate = (movies) => {
-    const average =  movies.length === 0 ? 0 : movies.filter(movie => movie.genre.includes('Drama')).map(movie => (movie.rate && typeof movie.rate==='number') ? movie.rate : 0).reduce((a, b) => a + b) / movies.length;
+    const moviesFiltered = movies.filter(movie => {
+        return movies.length === 0 ? 0 : movie.genre.includes('Drama');
+    });
+    const average =  moviesFiltered.length === 0 ? 0 : moviesFiltered.map(movie => (movie.rate && typeof movie.rate==='number') ? movie.rate : 0).reduce((a, b) => a + b) / movies.length;
     return Number(Math.round(average+'e2')+'e-2');
 }
 
