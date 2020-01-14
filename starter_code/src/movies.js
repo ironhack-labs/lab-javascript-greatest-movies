@@ -23,26 +23,26 @@ function orderByYear(movies) {
 
 function howManyMovies(movies) {
 
-    let filteredMovies = movies.filter((movie,i) => {
+    let dramaMovies = movies.filter((movie,i) => {
         return movie.director === "Steven Spielberg" && movie.genre.includes("Drama");
     });
 
-    return filteredMovies.length;
+    return dramaMovies.length;
 }
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(movies) {
 
-    let moviesList = movies.map( (movie, i) => {
+    let moviesByTitle = movies.map( (movie, i) => {
       return movie.title;
     });
   
-    moviesList.sort( (a,b) => {
+    moviesByTitle.sort( (a,b) => {
       return a === b ? 0 : a > b ? 1 : -1;
     });
   
-    return moviesList.slice(0,20);
+    return moviesByTitle.slice(0,20);
   }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
@@ -51,12 +51,12 @@ function ratesAverage(movies) {
 
     if (movies.length === 0) return 0;
   
-    let totalofRates = movies.reduce((sum, movie) => {
-      if (!movie.rate) { movie.rate = 0; } // set default rating = 0 when there was no rate
+    let AllRatesAverage = movies.reduce((sum, movie) => {
+      if (!movie.rate) { movie.rate = 0; }
       return sum + movie.rate;
     },0);
   
-    return parseFloat( (totalofRates / movies.length).toFixed(2) );
+    return parseFloat( (AllRatesAverage / movies.length).toFixed(2) );
   
   }
 
@@ -80,21 +80,21 @@ function turnHoursToMinutes(movies) {
   
       if (movie.hasOwnProperty('duration') && movie.duration.length > 0) {
   
-        let totalTime = 0;
+        let totalDuration = 0;
         let timeArr = movie.duration.split(" ");
         timeArr.forEach((elem) => {
   
           if ( elem.includes("h") ) {
-            totalTime += parseInt(elem.replace('h',''), 10) * 60;
+            totalDuration += parseInt(elem.replace('h',''), 10) * 60;
           }
   
           if ( elem.includes("min") ) {
-            totalTime += parseInt(elem.replace('min',''), 10);
+            totalDuration += parseInt(elem.replace('min',''), 10);
           }
   
         });
   
-        if ( totalTime > 0 ) { newMovie.duration = totalTime; }
+        if ( totalDuration > 0 ) { newMovie.duration = totalDuration; }
   
       }
   
@@ -110,19 +110,19 @@ function turnHoursToMinutes(movies) {
 function bestYearAvg(movies) {
 
     if ( movies.length === 0 ) { return null; }
-    let averageRatingByYear = {};
+    let AvgRatingByYear = {};
     let bestAvg = { year : 0, rate : 0 };
   
     movies.forEach((movie,i) => {
-      if ( averageRatingByYear[movie.year] ) {
-        averageRatingByYear[movie.year].push(movie.rate);
+      if ( AvgRatingByYear[movie.year] ) {
+        AvgRatingByYear[movie.year].push(movie.rate);
       } else {
-        averageRatingByYear[movie.year] = [movie.rate];
+        AvgRatingByYear[movie.year] = [movie.rate];
       }
     });
   
-    for (year in averageRatingByYear) {
-      let ratings = averageRatingByYear[year];
+    for (year in AvgRatingByYear) {
+      let ratings = AvgRatingByYear[year];
       let ratingAvg = ( ratings.reduce((sum, rate) => { return sum + rate }, 0) ) / ratings.length;
       if ( ratingAvg > bestAvg.rate ) { bestAvg.year = year; bestAvg.rate = ratingAvg; }
     }
