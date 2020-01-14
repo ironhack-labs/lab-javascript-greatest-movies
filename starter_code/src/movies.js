@@ -20,8 +20,7 @@ const dramaMoviesRate = (movies) => {
     const moviesFiltered = movies.filter(movie => {
         return movies.length === 0 ? 0 : movie.genre.includes('Drama');
     });
-    const average =  moviesFiltered.length === 0 ? 0 : moviesFiltered.map(movie => (movie.rate && typeof movie.rate==='number') ? movie.rate : 0).reduce((a, b) => a + b) / movies.length;
-    return Number(Math.round(average+'e2')+'e-2');
+    return ratesAverage(moviesFiltered);
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
