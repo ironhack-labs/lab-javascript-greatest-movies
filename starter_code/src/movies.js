@@ -34,21 +34,31 @@ function howManyMovies(movies) {
 
 function orderAlphabetically(movies) {
 
-    // Shallow copy - create an Array of movie titles
     let moviesList = movies.map( (movie, i) => {
       return movie.title;
     });
   
-    // Order the list alphabetically
     moviesList.sort( (a,b) => {
       return a === b ? 0 : a > b ? 1 : -1;
     });
   
-    // Return first 20 elements
     return moviesList.slice(0,20);
   }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+
+function ratesAverage(movies) {
+
+    if (movies.length === 0) return 0;
+  
+    let totalofRates = movies.reduce((sum, movie) => {
+      if (!movie.rate) { movie.rate = 0; } // set default rating = 0 when there was no rate
+      return sum + movie.rate;
+    },0);
+  
+    return parseFloat( (totalofRates / movies.length).toFixed(2) );
+  
+  }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
