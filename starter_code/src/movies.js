@@ -371,6 +371,7 @@ let movies = [
     }
 ]
 
+
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
   const newArrayMovies = movies.slice();
@@ -389,7 +390,6 @@ orderByYear(movies);
 
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
-
 function howManyMovies(arr) {
 	let numOfMovies = 0;
 	if (arr.director === "Steven Spielberg" && arr.genre.includes("Drama")) {
@@ -403,6 +403,7 @@ function howManyMovies(arr) {
 
 let onlyStevenDrama = movies.filter(howManyMovies);
 console.log(onlyStevenDrama.length);
+
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(arr) {
@@ -425,6 +426,16 @@ function orderAlphabetically(arr) {
 
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(movies) {
+  let sumRate = movies.reduce(function (acc,movieRate) {
+    return acc +movieRate.rate;
+  }, 0);
+
+  const totalAverage = (sumRate / movies.length).toFixed(2);
+  return totalAverage;
+}
+ratesAverage(movies);
+
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate(arr) {
