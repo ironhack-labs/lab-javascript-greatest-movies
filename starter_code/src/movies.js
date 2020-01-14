@@ -78,10 +78,14 @@ function dramaMoviesRate(array){
 
 function turnHoursToMinutes(array){
     const hoursOfMovies = array.map(function(element){
-        console.log(element.duration)
+        //console.log(element.duration)
         return element.duration
     })
-
+    const hoursToMinutes= []
+    for (let i=0; i<hoursOfMovies.length; i++){
+      hoursToMinutes[i]=hoursOfMovies[i]/60
+    }
+    return hoursToMinutes
 
 }
 
