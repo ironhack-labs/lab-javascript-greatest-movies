@@ -371,7 +371,6 @@ let movies = [
     }
 ]
 
-
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
   const newArrayMovies = movies.slice();
@@ -410,10 +409,10 @@ function orderAlphabetically(arr) {
   let newOrder = arr.slice(0);
   let sorted = newOrder.sort(function (a, b) {
         if (a.title > b.title){
-          return -1;
+          return 1;
         }
         else {
-          return 1;
+          return -1;
         }
       }
   );
@@ -427,8 +426,8 @@ function orderAlphabetically(arr) {
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(movies) {
-  let sumRate = movies.reduce(function (acc,movieRate) {
-    return acc +movieRate.rate;
+  let sumRate = movies.reduce(function (acc, movieRate) {
+    return acc + movieRate.rate;
   }, 0);
 
   const totalAverage = (sumRate / movies.length).toFixed(2);
@@ -438,19 +437,14 @@ ratesAverage(movies);
 
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
-function dramaMoviesRate(arr) {
-  let numOfMovies = 0;
-	if (arr.genre.includes("Drama")) {
-		numOfMovies = numOfMovies +1;
-		return true;
-	}
-	else {
-		return false;
-	};
-}
-
-let onlyDrama = movies.filter(dramaMoviesRate);
-console.log(onlyDrama.length);
+  function dramaMoviesRate(arr) {
+    let dramaMovies = arr.filter(function(movie) {
+      if (movie.genre.includes("Drama")) {
+        return true;
+      }
+    });
+    return ratesAverage(dramaMovies);
+  }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
