@@ -24,7 +24,7 @@ function orderByYear(array) {
 
 function howManyMovies(array) {
     var newArray= [...array];
-        newArray = array.filter(function(movie,i) {
+        newArray = newArray.filter(function(movie,i) {
             return movie.director === "Steven Spielberg" && movie.genre.includes("Drama");
          })
          return newArray.length;
@@ -74,7 +74,22 @@ function dramaMoviesRate (array) {
      return parseFloat((moyenne).toFixed(2));
     }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-
+function bestYearAvg(movies) {
+  if (!movies.length) return null;
+  const yeardObj = movies.reduce((acc, movie) => {
+    if (acc[movie.year]) acc[movie.year].push({ rate: movie.rate });
+    else acc[movie.year] = [{ rate: movie.rate }];
+    return acc;
+  }, {});
+​
+  let best =  {bestYear: 0, avg: 0}
+  for(let key in yeardObj ){
+      let avg = ratesAverage(yeardObj[key]);
+      if(avg > best.avg) best = {bestYear: key, avg: avg}
+  }
+  return `The best year was ${best.bestYear} with an average rate of ${best.avg}`
+​
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
