@@ -93,6 +93,8 @@ function dramaMoviesRate(movies){
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
+// I did this code with Louis
+
 function turnHoursToMinutes(movies) {
     
     let movieDuration = movies.map(movie => movie.duration.split(' '));
