@@ -152,7 +152,7 @@ let movies = [
       "title": "Inception",
       "year": 2010,
       "director": "Christopher Nolan",
-      "duration": "2h 28min",
+      "duration": "2hxmin",
       "genre": [
         "Action",
         "Adventure",
