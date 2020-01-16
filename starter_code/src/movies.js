@@ -93,25 +93,28 @@ ratesAverage(movies);
 
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+//Can't solve more. Getting errors. Can't figure out.
+function dramaMoviesRate(arr) {
+  const sortDrama = arr.filter(function(e) {
+    return e.genre.includes("Drama");
+  });
 
-function getDramaMovies(arr) {
+	const dramaRatesArr = [];
 	
-	const sortDrama = arr.filter(function(e){
-		return e.genre.includes('Drama'); 
-		});
-		
-		if (rate => 8) {
+  for (let i = 0; i < sortDrama.length; i++) {
+    dramaRatesArr.push(sortDrama[i].rate);
+  }
 
-		};
-
+  const rateSum = dramaRatesArr.reduce((acc, num) => {
+    return acc + num;
+	}, 0);
 	
-
-		// return sortDrama.length;
+	return Number((rateSum / dramaRatesArr.length).toFixed(2));
 }
 
-getDramaMovies(movies);
-
+dramaMoviesRate(movies);
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
