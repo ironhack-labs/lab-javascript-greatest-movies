@@ -14,6 +14,11 @@ function orderByYear(arr) {
     } else if (a.year > b.year) {
       return 1;
     } else {
+      if (a.title < b.title) {
+        return -1;
+      } else if (a.title > b.title) {
+        return 1;
+      }
       return 0;
     }
   });
@@ -76,6 +81,18 @@ function ratesAverage(arr) {
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(arr) {
+  const arrDram = arr.filter(e => {
+    return e.genre.includes("Drama");
+  });
 
-function dramaMoviesRate(arr) {}
+  let rateTotal = arrDram.reduce((sum, movie) => {
+    return sum + movie.rate;
+  }, 0);
+
+  return rateTotal / arrDram.length;
+}
+
+dramaMoviesRate(movies);
+
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
