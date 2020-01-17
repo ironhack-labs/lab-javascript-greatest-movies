@@ -22,28 +22,24 @@ function orderByYear(arr) {
     return sortedMovies
 };
 
-//console.log(orderByYear(movies));
-
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
-function howManyMovies(movieArray, director, type) {
+function howManyMovies(movieArray) {
     const filterResults = movieArray.filter(function(movie) {
-        return movie.director === director && movie.genre.indexOf(type) >= 0 // optional: .includes
+        return movie.director === "Steven Spielberg" && movie.genre.includes("Drama")
     });
-    //console.log(filterResults);
     return filterResults.length
 }
 
-//console.log(howManyMovies(movies, "Steven Spielberg", "Drama"));
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(movieArray) {
     let sortedMovies = [...movieArray];
     sortedMovies.sort(function (a, b) {
-            if (a.title > b.title) {
+            if (a.title < b.title) {
                 return -1
-            } else if (a.title < b.title) {
+            } else if (a.title > b.title) {
                 return 1
             } else {
                 return 0
@@ -60,8 +56,6 @@ function orderAlphabetically(movieArray) {
     return mappedArray
     
 } 
-
-//console.log(orderAlphabetically(movies))
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
@@ -96,7 +90,8 @@ function dramaMoviesRate(arr){
 
 function turnHoursToMinutes(arr) {
     const moviesMinDuration = arr.map(function(movie){
-        let durationSplit = movie.duration.split(" ");
+        const movie2 = {...movie};
+        let durationSplit = movie2.duration.split(" ");
         //console.log(durationSplit);
         let hours = durationSplit[0].replace("h","");
         let newDuration;
@@ -110,12 +105,10 @@ function turnHoursToMinutes(arr) {
             newDuration = parseInt(hours)*60
         }
         
-        movie.duration = newDuration;
-        console.log((typeof newDuration) + newDuration);
-        return movie
+        movie2.duration = newDuration;
+        return movie2
     })
     return moviesMinDuration
 }
 
-//console.log(turnHoursToMinutes(movies));
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
