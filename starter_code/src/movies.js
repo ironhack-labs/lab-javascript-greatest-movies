@@ -33,7 +33,33 @@ function ratesAverage (movies){
     } return 0
 }
 // Iteration 5: Drama movies - Get the average of Drama Movies
-
+function dramaMoviesRate(movies){
+    let dramaMovies = [...movies].filter(movie => movie.genre.indexOf(`Drama`) !== -1)
+    if (dramaMovies.length > 0) {
+    let dramaMoviesRate = dramaMovies.reduce ((ac,cu) => ac += cu.rate, 0) / dramaMovies.length
+    return +dramaMoviesRate.toFixed(2)
+    } return 0
+}
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(movies){
+    let movieDuration = 0
+    
+    let splittedDuration = movies.map(movie => movie.duration.split(" "))
+    
+    if (splittedDuration.duration.indexOf((`h`) !== -1) && splittedDuration.duration.indexOf(('min') !== -1)) {
+        movieDuration += parseFloat(splittedDuration.duration[0]) * 60 + parseFloat(splittedDuration.duration[1])
+
+    } else if (splittedDuration.duration.indexOf((`h`) !== -1) && splittedDuration.duration.indexOf(('min') === -1)) {
+    movieDuration += parseFloat(splittedDuration.duration[0]) * 60
+
+    } else {
+        movieDuration += parseFloat(splittedDuration.duration[0])
+
+    } return movieDuration
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(movies) {
+    if (movies.length === 0) return null
+
+}
