@@ -1,5 +1,26 @@
 /* eslint no-restricted-globals: 'off' */
+function getMinutes(str_) {
+    const str = str_
+    let minutes
+    let hours
+    if (str.includes("h") && str.includes("min")) {
 
+        let arr = str.split(" ")
+        hours = parseInt(arr[0].replace("h", ""))
+        minutes = parseInt(arr[1].replace("min", ""))
+        return hours * 60 + minutes
+
+    } else if (str.includes("h")) {
+
+        hours = parseInt(str.replace("h", ""))
+        return hours * 60
+
+    } else if (str.includes("min")) {
+        minutes = parseInt(str.replace("min", ""))
+        return minutes
+    }
+
+}
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
@@ -61,19 +82,31 @@ function ratesAverage(arr) {
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
-function dramaMoviesRate(arr){
-let count = 0
-    let result= arr.filter(elm=>elm.genre.includes("Drama")).reduce((acc, elm)=>{
-        if(elm.rate){
+function dramaMoviesRate(arr) {
+    let count = 0
+    let result = arr.filter(elm => elm.genre.includes("Drama")).reduce((acc, elm) => {
+        if (elm.rate) {
             count++
             return acc + elm.rate
-        }else return acc
-    },0)
+        } else return acc
+    }, 0)
 
-    if(result) return parseFloat((result/count).toFixed(2))
+    if (result) return parseFloat((result / count).toFixed(2))
     else return 0
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(arr) {
+
+    let result = arr.map(elm => {
+        const copyElm = {
+            ...elm
+        }
+        console.log(elm.duration)
+        copyElm.duration = getMinutes(elm.duration)
+        return copyElm
+    })
+    return result
+}
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
