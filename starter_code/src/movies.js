@@ -42,17 +42,20 @@ function orderAlphabetically(movies) {
   }
   // Iteration 4: All rates average - Get the average of all rates with 2decimals
 
-  ratesAverage(movies){
-      if(movies.length === 0) 
-      return;
-
-   let moviesCopy = Object.assign([], movies);
-      
-  }
-
-
+  
+  
 // Iteration 5: Drama allMovies - Get the average of Drama allMovies
+function getMoviesByGenre(movies, genre) {
+  return movies.filter(function(movie) {
+    return movie.genre.includes(genre); 
+  });
+}
 
+function dramaMoviesRate(movies) {
+  if (movies.length === 0) return;
+
+  return ratesAverage(getMoviesByGenre(movies, "Drama"));
+}
 // Iteration 6: Time Format - Turn duration of the allMovies from hours to minutes
-
+  
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
