@@ -67,20 +67,26 @@ function orderAlphabetically(movies) {
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
-// function dramaMovies(movies) {
 
 
-//     if (movies.length === 0) {
-//       return 0;
-//     }
-  
-//     let rates = movies.map(movie => movie.rate);
-//     let sum = rates.reduce((a, b) => a + b, 0);
-//     let average = parseFloat((sum / movies.length).toFixed(2));
-  
-//     return average;
-//   }
+    function dramaMoviesRate(movies) {
+
+        
+        let moviesArray = [...movies].filter(movie => movie.genre.includes("Drama"));
+
+        if(moviesArray.length === 0){
+            return 0;
+        }
+       let rate = moviesArray.reduce((acumulator, value) => acumulator + value.rate, 0);
+       let media = rate/moviesArray.length;
+       
+       return +media.toFixed(2);
+ 
+    }
+
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
+
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
