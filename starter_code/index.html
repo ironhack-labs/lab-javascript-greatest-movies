@@ -7,6 +7,21 @@
     <title>Movies</title>
     <script src="./javascripts/data.js"></script>
     <script src="./javascripts/movies.js"></script>
+    <script>
+        let hora = "1h 23min"
+        let min = "23min"
+        let res = hora.split(" ")
+        let resmin = min.split(" ")
+        
+        if(res.length==2){
+        let mintots = 0;
+        let hours = parseInt(res[0].replace("h",""))
+        let mins =  parseInt(res[1].replace("min",""))
+        console.log(mintots)
+        }else{
+            let creoquemin = resmin[0].replace("min","")
+        }
+    </script>
 </head>
 <body>
     
