@@ -42,20 +42,62 @@ function orderAlphabetically(arr) {
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
 
-// function ratesAverage(arr) {
-//     let AverageRate = [...arr].map((movie) => movie.rate).reduce((ac,rate) => )
+    function ratesAverage(arr) {
+        if (arr.length===0) {
+            return 0
+        }
 
-
-// }
-
-// These are the best movies based on their rates, so supposedly all of them have a remarkable rate. In this iteration, we want to know the average rate of all of them and display it on the console. Create a ratesAverage() function that receives an array as a parameter and solves the challenge.
-
-// The rate must be returned rounded to 2 decimals!
-
-// 💡 Maybe you want to "reduce" the data to a single value. 😉
+        let averag = [...arr].reduce((ac,cu) => {
+            if (typeof cu.rate!==`number`) {
+            cu.rate=0
+            }
+            return ac+cu.rate
+            
+        },0 )
+        let averageRate = averag/arr.length
+   
+        return +averageRate.toFixed(2)
+    }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
+function dramaMoviesRate(arr) {
+    let dramaRateArr =[...arr].filter((movie) => (movie.genre.includes(`Drama`)))
+    if (dramaRateArr.length===0) {
+        return 0
+    }
+    let dramaRate = dramaRateArr.reduce((ac,cu) => {
+        return ac+cu.rate
+    },0)
+    dramaRate = dramaRate/dramaRateArr.length
+
+    return +dramaRate.toFixed(2)
+}
+
+
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(arr) {
+    let moviesInMinutes = [...arr].map((movie)  => {
+        let durationInMin = movie.duration.split(` `);
+        if (durationInMin.length===2) {
+            durationInMin = parseInt(durationInMin[0])*60 + parseInt(durationInMin[1]);
+    
+        } else if (durationInMin[0].includes(`h`)) {
+            durationInMin =parseInt(durationInMin[0])*60;
+        }
+        else {
+            durationInMin=parseInt(durationInMin[0])
+        }
+    
+    //Problems here ??
+    return movie.duration= durationInMin;
+    
+      
+    }) 
+    return moviesInMinutes;
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movies){
+}
