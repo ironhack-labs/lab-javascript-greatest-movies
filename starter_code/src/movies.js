@@ -2,11 +2,55 @@
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
+
+function orderByYear(movies) {
+
+    let moviesArr = [...movies];
+
+    moviesArr.sort((a, b) => {
+        if (a.year === b.year) {
+          return a.title.localeCompare(b.title)
+        } else { 
+          return a.year - b.year}
+    });
+    
+    return moviesArr
+}
+
+
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
+
+function howManyMovies(movies) {
+    let moviesArr = [... movies];
+
+   moviesArr = moviesArr.filter(movie => movie.director === "Steven Spielberg" && movie.genre.includes('Drama'));
+    
+    return moviesArr.length;
+}
+
+
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
+function orderAlphabetically(movie) {
+    let moviesArr = [... movies];
+
+    let alphabetArr = moviesArr.sort((a, b) => {a.title - b.title});
+
+    let twentyFirsts = alphabetArr.splice(0, 20).map(element => element.title);
+
+    return twentyFirsts;
+}
+
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+
+function ratesAverage(movie) {
+    let moviesArr = [... movies];
+
+
+
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
