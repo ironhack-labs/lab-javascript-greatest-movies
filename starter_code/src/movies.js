@@ -136,6 +136,7 @@ function bestYearAvg(movies) {
         return null
     }
 
+    // Ponemos en un objeto todos los años con un array de valoraciones
     let object = movies.reduce((acc, b) => {
         if (acc[b.year]) {
             acc[b.year].push(b.rate)
@@ -145,21 +146,30 @@ function bestYearAvg(movies) {
         return acc
     }, {})
 
-    object.forEach(elem => {
-        console.log(elem)
-    });
+    // Creamos un array de objetos en el que se va a guardar el año con su respectiva media
+    let yearArr = []
+    Object.keys(object).forEach(year => {
+        let sumPerYear = object[year].reduce((acum, rate) => {
+            return acum + rate
+        }, 0)
+        let average = parseFloat((sumPerYear / object[year].length).toFixed(2))
+        yearArr.push({
+            'year': year,
+            'average': average
+        })
+    })
 
-    //console.log(object)
+    // Ordenamos el objeto descendientemente en relacion a la media de valoraciones
+    yearArr.sort((a, b) => {
+        if (a.average < b.average) {
+            return 1
+        } else if (a.average > b.average) {
+            return -1
+        } else {
+            return 0
+        }
+    })
 
+    // Al estar ordenado elegimos el primer objeto y mostramos sus datos
+    return `The best year was ${yearArr[0].year} with an average rate of ${yearArr[0].average}`
 }
-// {
-//     "title": "The Shawshank Redemption",
-//     "year": 1994,
-//     "director": "Frank Darabont",
-//     "duration": "2h 22min",
-//     "genre": [
-//         "Crime",
-//         "Drama"
-//     ],
-//     "rate": 9.3
-// }
