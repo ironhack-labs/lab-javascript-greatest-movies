@@ -36,18 +36,43 @@ function howManyMovies(arr) {
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(arr) {
-    
-    let arrTitles= arr.map(elm => elm.title)
+
+    let arrTitles = arr.map(elm => elm.title)
 
     arrTitles.sort()
-    
-    if(arrTitles.length<=20)  return arrTitles
-    else if(arrTitles.length>20) return arrTitles.splice(0,20)
+
+    if (arrTitles.length <= 20) return arrTitles
+    else if (arrTitles.length > 20) return arrTitles.splice(0, 20)
 }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
+function ratesAverage(arr) {
+
+    let result = (arr.reduce((acc, elm) => {
+        if (elm.rate) return acc + elm.rate
+        else return acc
+
+    }, 0) / arr.length)
+
+    if (result) return parseFloat(result.toFixed(2))
+    else return 0
+}
+
 // Iteration 5: Drama movies - Get the average of Drama Movies
+
+function dramaMoviesRate(arr){
+let count = 0
+    let result= arr.filter(elm=>elm.genre.includes("Drama")).reduce((acc, elm)=>{
+        if(elm.rate){
+            count++
+            return acc + elm.rate
+        }else return acc
+    },0)
+
+    if(result) return parseFloat((result/count).toFixed(2))
+    else return 0
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
