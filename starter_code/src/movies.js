@@ -48,12 +48,13 @@ function ratesAverage(movies) {
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate(movies) {
-    let moviesArray = [...movies];
-    let dramaMovies = moviesArray.filter(movie => movie.genre.includes("Drama"));
-    let rate = dramaMovies.reduce((acumulator, value) => acumulator + value.rate, 0);
-    let moviesLength = movies.length;
-    let rateAverage = rate/moviesLength;
-    return +(rateAverage.toFixed(2));
+    let moviesArray = [...movies].filter(movie => movie.genre.includes("Drama"));
+    if(moviesArray.length === 0){
+        return 0;
+        }
+    let rate = moviesArray.reduce((acumulator, value) => acumulator + value.rate, 0);
+    let media = rate/moviesArray.length;
+    return +media.toFixed(2);
 }
 
 
@@ -61,13 +62,14 @@ function dramaMoviesRate(movies) {
 
 
 function turnHoursToMinutes(movies) {
-    [...movies].forEach(element =>  {
-    let arrayduration = element.duration.split("");
+    let arrayHoursToMinutes = [...movies]
+    movies.forEach(element =>  {
+    let arrayduration = element.duration.split("")
     hours = +(arrayduration[0])*60;
-    minutes = Number(arrayduration[4]) + Number(arrayduration[5]);
-    element.duration = hours + minutes;  
+    minutes = Number(arrayduration[3] + arrayduration[4]);
+    element.duration = hours + minutes;
     });
-    return [...movies];
+    return arrayHoursToMinutes;
     }
 
 
