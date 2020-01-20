@@ -22,6 +22,14 @@ function getMinutes(str_) {
 
 }
 
+function onlyOne(arr) {
+
+    for (let i = 0; i < arr.length; i++) {
+
+        if (arr.lastIndexOf(arr[i]) != arr.indexOf(arr[i])) arr.splice(arr.lastIndexOf(arr[i]) - 1, 1)
+    }
+}
+
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(arr_) {
@@ -110,3 +118,56 @@ function turnHoursToMinutes(arr) {
     return result
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(data) {
+    if (data.length == 0) return null
+    console.log("=========================================================================")
+    console.log(data, "data")
+
+    let years = data.map(elm => elm.year)
+    onlyOne(years)
+
+
+
+    let filttered = []
+
+    years.forEach(elm => {
+        filttered.push({
+            "year": elm,
+            "ratings": []
+        })
+    })
+
+    filttered.forEach(elm => {
+        data.forEach(elm2 => {
+            if (elm2.year == elm.year) elm.ratings.push(elm2.rate)
+        })
+    })
+
+    console.log(filttered, "filtered")
+
+    let averages = filttered.map(elm => {
+        return {
+            rating: elm.ratings.reduce((acc, elm2) => acc + elm2) / elm.ratings.length,
+            year: elm.year
+        }
+    })
+
+    console.log(averages, "o.o")
+
+    averages.sort((a, b) => {
+        if (a.rating > b.rating) return -1
+        else if (a.rating < b.rating) return 1
+        else {
+            if (a.year > b.year) return 1
+            else if (a.year < b.year) return -1
+        }
+    })
+
+    console.log(averages, "averages")
+
+    console.log(averages[0].year, ":D", averages[0].rating)
+
+    return `The best year was ${averages[0].year} with an average rate of ${averages[0].rating}`
+
+}
