@@ -55,31 +55,29 @@ function dramaMoviesRate(arr) {
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes(arr) {
-
-
+    let newArray = 0
     let duration = arr.map(movies => movies.duration)
-    duration = duration.map(movies => movies.split(' '))
-    let onlyHoursString = duration.map(arr => arr[0])
-    let onlyHoursNumber = onlyHoursString.map(map => parseFloat(map))
-    let hoursToMinutes = onlyHoursNumber.map(map => map * 60)
-    let onlyMinutesString = duration.map(arr => arr[1])
-    let onlyMinutes = onlyMinutesString.map(arr => parseFloat(arr))
-
-    for (i = 0; i < hoursToMinutes.length; i++) {
-        hoursToMinutes[i] += onlyMinutes[i]
+    let pelisPorMinutos = []
+    for (let i = 0; i < duration.length; i++) {
+        let hours = duration[i].split(" ");
+        if (hours[0].indexOf('h') === -1) {
+            hours[0] = '0h'
+        }
+        let hour = (hours[0]) ? parseInt(hours[0]) : 0; // if ternario
+        let minutes = (hours[1]) ? parseInt(hours[1]) : 0;
+        let totalMinutes = (hour * 60) + minutes;
+        pelisPorMinutos.push(totalMinutes)
+    };
+    for (i = 0; i < arr.length; i++) {
+        arr[i].duration = null
     }
-    let newArray = arr.map(arr => arr.duration = '')
-
-    for (i = 0; i < arr.hoursToMinutes; i++) {
-        newArray.duration[i] = hoursToMinutes[i]
+    for (j = 0; j < pelisPorMinutos.length; j++) {
+        arr[j].duration += pelisPorMinutos[j]
 
     }
-
-
-    // hoursToMinutes = hoursToMinutes.map(arr => arr += onlyMinutes)
-
-    return arr
+    return newArray = arr
 
 }
+
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
