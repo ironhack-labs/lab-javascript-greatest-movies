@@ -31,9 +31,27 @@ function orderAlphabetically(movies){
 }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(movie){
+    let average = movie.reduce((ac, cu) => (ac + cu.rate), 0);
+    if (average > 0){
+    let finalAverage = average/movie.length
+    return +finalAverage.toFixed(2)
+    } return 0;
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(movies) {
+    let dramaMovies = [...movies].filter(movie => movie.genre.indexOf(`Drama`) !== -1)
+    if (dramaMovies.length > 0){
+    let average = dramaMovies.reduce((ac,cu) => ac += cu.rate, 0)
+    let finalAverage = average / dramaMovies.length
+    return +finalAverage.toFixed(2)
+    } return 0;
+}
+
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
+//Imposible, hoy no es mi dia :(
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
