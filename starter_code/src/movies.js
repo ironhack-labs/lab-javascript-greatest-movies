@@ -1,4 +1,23 @@
 /* eslint no-restricted-globals: 'off' */
+function orderByYear(arr_) {
+    let arr = [...arr_]
+    let result = []
+
+    arr = arr.sort((a, b) => {
+
+        if (a.year > b.year) return 1
+        else if (b.year < a.year) return -1
+        else {
+
+            if (a.name > b.name) return 1
+            else return -1
+        }
+    })
+
+    arr.forEach(elm => result.push(elm))
+
+    return result
+}
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
