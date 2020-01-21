@@ -119,23 +119,48 @@ function dramaMoviesRate(movies) {
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes(movies) {
-    let moviesCopy = [...movies]
+    let hoursToMinutes
+    let moviesMinutes
+    let sumMinutes
+    const movieTime = movies.map(elm => {
 
-    const movieTime = moviesCopy.map(elm => {
-        let hoursToMinutes = elm.duration[0] * 60
-        // console.log(hoursToMinutes)
-        let moviesMinutes = elm.duration.slice(-5, -3)
-        if (moviesMinutes) {
-            moviesMinutes = parseInt(moviesMinutes)
+        if (typeof elm.duration == 'number') {
+            elm.duration = elm.duration + ""
         }
-        // console.log(moviesMinutes)
+        if (elm.duration.includes("h") && elm.duration.includes("min")) {
+            hoursToMinutes = elm.duration[0] * 60
+            moviesMinutes = elm.duration.slice(-5, -3)
+            moviesMinutes = parseInt(moviesMinutes)
+            sumMinutes = hoursToMinutes + moviesMinutes
+            // console.log(sumMinutes)
+            return {
+                duration: sumMinutes
+            }
 
-        let sumMinutes = hoursToMinutes + moviesMinutes
-        return parseInt(sumMinutes)
+        } else if (elm.duration.includes("min")) {
+            moviesMinutes = elm.duration.slice(-5, -3)
+            moviesMinutes = parseInt(moviesMinutes)
+
+            // console.log(moviesMinutes)
+            return {
+                duration: moviesMinutes
+            }
+        } else if (elm.duration.includes("h")) {
+            hoursToMinutes = elm.duration[0] * 60
+            console.log(hoursToMinutes)
+
+
+
+
+            return {
+                duration: hoursToMinutes
+            }
+        }
+
 
     })
-    console.log(movieTime)
     return movieTime
+
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
