@@ -35,9 +35,9 @@ function howManyMovies(arr) {
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(arr) {
-    const ordereredByName = [...arr].sort((a, b) => a.title.localeCompare(b.title))
-    const onlyThetitle = arr.title
-    console.log(onlyThetitle)
+    const ordereredByName = [...arr].sort((a, b) => a.title.localeCompare(b.title)).map(elm => elm.title)
+
+
     return ordereredByName.slice(0, 20)
 
 
@@ -45,7 +45,7 @@ function orderAlphabetically(arr) {
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(arr) {
     const Avg = arr.reduce((acc, media) => acc + media.rate, 0)
-
+    console.log(Number((Avg / arr.length).toFixed(2)))
     if (arr.length === 0) {
         return 0
     } else {
@@ -66,7 +66,7 @@ function dramaMoviesRate(arr) {
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arr) {
     const changeTime = arr.map(hours => Number(hours.duration) * 60)
-
+    console.log(changeTime)
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 function bestYearAvg() {
