@@ -3,28 +3,25 @@
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
-// function orderByYear(movies) {
-
-// const moviesCopy = [...movies]
-//     const sortedMovies = moviesCopy.sort(() => {
-//         if (a.year == b.year) {
-//             a.title - a.title
-//         }
-
-
-//         console.log(a.title, b.title)
-//         console.log("----")
-//         console.log(a.year, b.year)
-//         console.log("2----2")
-//         return [a.year - b.year]
-//     })
-// }
-
-// orderByYear(movies)
-
-
-
-
+function orderByYear(movies) {
+    const moviesCopy = [...movies]
+    const order = moviesCopy.sort(function (a, b) {
+        if (a.year > b.year) {
+            return 1;
+        } else if (a.year < b.year) {
+            return -1;
+        } else {
+            if (a.title > b.title) {
+                return 1;
+            } else if (a.title < b.title) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    })
+    return order;
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
@@ -70,7 +67,13 @@ orderAlphabetically(movies)
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(arrMovies) {
-    const arrMoviesRate = arrMovies.map(elm => elm.rate)
+
+    const arrMoviesRate = arrMovies.map(elm => {
+        if (!elm.rate) {
+            elm.rate = 0
+        }
+        return elm.rate
+    })
     let arr2 = arrMoviesRate.reduce((acc, elm) => acc + elm, 0)
     const average = arr2 / arrMoviesRate.length
 
@@ -78,7 +81,6 @@ function ratesAverage(arrMovies) {
     if (arrMoviesRate.length === 0) {
         return 0
     }
-
     return parseFloat(average.toFixed(2))
 }
 
@@ -94,7 +96,6 @@ function dramaMoviesRate(arrMovies) {
         return 0
     }
     return parseFloat(averageDrama.toFixed(2))
-
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
