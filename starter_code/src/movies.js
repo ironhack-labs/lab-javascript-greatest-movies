@@ -53,13 +53,22 @@ const dramaMoviesRate = arr => {
 dramaMoviesRate(movies)
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 const turnHoursToMinutes = arr => {
-    const durationFilms = arr.map(eachFilm => {
-        let time = 0
-        let duration = eachFilm.duration.split(" ")
-        console.log(duration)
+    const durationFilms = [...arr].map(eachFilm => {
+        let durationFilm = eachFilm.duration.split(" ")
+        let hours = parseFloat(durationFilm[0])
+        let minutes = 0
+        if (durationFilm[1]) {
+            minutes = parseFloat(durationFilm[1])
+        }
+        let allTime = (hours * 60) + minutes
+        durationFilm.duration = allTime
     })
+    return durationFilms
 }
+console.log(movies)
+
 turnHoursToMinutes(movies)
+
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 const bestYearAvg = arr => {
     if (arr.length === 0)
