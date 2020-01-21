@@ -61,38 +61,68 @@ function dramaMoviesRate(arr){
 }
 
 function turnHoursToMinutes(arr){
-    let arrDurations = arr.map(elm=> elm.duration)
-    let arrResult = []
+        let falseArr = arr
+    let arrDurations = falseArr.map(elm=>{
 
-    arrDurations.forEach(element => {
-        // console.log(`Soy el elemento original: ${element}`)
-        let elmSpl = element.split(" ")
-        // console.log(`Soy el elemento partido ${elmSpl}`)
+        let elmSpl = elm.duration.split(" ")
+        console.log(`Soy el elm original ${elm}`)
 
         if(elmSpl.length==2){
-            let hours = parseInt(elmSpl[0].replace("h","*60"))
+            let hours = parseInt(elmSpl[0].replace("h",""))
             let mins =  parseInt(elmSpl[1].replace("min",""))
-            let num= parseInt(hours*60+mins)
-            console.log(`Soy el tipo de num ${typeof num}`)
-            arrResult.push(num)
+            let num= hours*60+mins
+            return elm={
+                duration:num
+            }
         }else{
             if(elmSpl[0].includes("h")){
                 let hour = parseInt(elmSpl[0].replace("h",""))
                 let num = parseInt(hour*60)
-                console.log(`Soy el tipo de num ${typeof num}`)
-                arrResult.push(num)
+                return elm = {
+                    duration:num
+                }
             }else{
-                let min = parseInt(resmin[0].replace("min",""))
-                console.log(typeof min)
-                arrResult.push(parseInt(min))
+                let min = parseInt(elmSpl[0].replace("min",""))
+                return elm = {
+                    duration:min
+                }
                 // console.log(`Soy el tipo de num ${typeof num}`)
                 // console.log(typeof arrResult[0])
             }
         }
-    });
-    console.log(arrResult)
+        
+    })
+
+    // arrDurations.forEach(element => {
+    //     // console.log(`Soy el elemento original: ${element}`)
+    //     let elmSpl = element.split(" ")
+    //     // console.log(`Soy el elemento partido ${elmSpl}`)
+
+        // if(elmSpl.length==2){
+        //     let hours = parseInt(elmSpl[0].replace("h",""))
+        //     let mins =  parseInt(elmSpl[1].replace("min",""))
+        //     let num= parseInt(hours*60+mins)
+        //     console.log(`Soy el tipo de num ${typeof num}`)
+        //     element.duration=num;
+        // }else{
+        //     if(elmSpl[0].includes("h")){
+        //         let hour = parseInt(elmSpl[0].replace("h",""))
+        //         let num = parseInt(hour*60)
+        //         console.log(`Soy el tipo de num ${typeof num}`)
+        //         element.duration=num;
+
+        //     }else{
+        //         let min = parseInt(resmin[0].replace("min",""))
+        //         console.log(typeof min)
+        //         element.duration=num;
+        //         // console.log(`Soy el tipo de num ${typeof num}`)
+        //         // console.log(typeof arrResult[0])
+        //     }
+        // }
+    // });
+    console.log(arrDurations)
     console.log("---------------------------------------")
-    return arrResult
+    return arrDurations
 
 }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
