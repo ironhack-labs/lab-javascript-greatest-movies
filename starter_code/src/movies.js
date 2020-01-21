@@ -2,7 +2,13 @@
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arr){
-    let newarr=arr.sort()
+    let falseArr = [...arr];
+    let newarr=falseArr.sort((a,b)=>{
+        console.log('----- nueva iteración ------') 
+        console.log('Primer valor:', a.year, 'Segundo valor:', b.year)
+        let result= a.year - b.year
+        return result
+    })
     return newarr
 }
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
@@ -65,7 +71,6 @@ function turnHoursToMinutes(arr){
     let arrDurations = falseArr.map(elm=>{
 
         let elmSpl = elm.duration.split(" ")
-        console.log(`Soy el elm original ${elm}`)
 
         if(elmSpl.length==2){
             let hours = parseInt(elmSpl[0].replace("h",""))
@@ -86,42 +91,11 @@ function turnHoursToMinutes(arr){
                 return elm = {
                     duration:min
                 }
-                // console.log(`Soy el tipo de num ${typeof num}`)
-                // console.log(typeof arrResult[0])
             }
         }
         
     })
 
-    // arrDurations.forEach(element => {
-    //     // console.log(`Soy el elemento original: ${element}`)
-    //     let elmSpl = element.split(" ")
-    //     // console.log(`Soy el elemento partido ${elmSpl}`)
-
-        // if(elmSpl.length==2){
-        //     let hours = parseInt(elmSpl[0].replace("h",""))
-        //     let mins =  parseInt(elmSpl[1].replace("min",""))
-        //     let num= parseInt(hours*60+mins)
-        //     console.log(`Soy el tipo de num ${typeof num}`)
-        //     element.duration=num;
-        // }else{
-        //     if(elmSpl[0].includes("h")){
-        //         let hour = parseInt(elmSpl[0].replace("h",""))
-        //         let num = parseInt(hour*60)
-        //         console.log(`Soy el tipo de num ${typeof num}`)
-        //         element.duration=num;
-
-        //     }else{
-        //         let min = parseInt(resmin[0].replace("min",""))
-        //         console.log(typeof min)
-        //         element.duration=num;
-        //         // console.log(`Soy el tipo de num ${typeof num}`)
-        //         // console.log(typeof arrResult[0])
-        //     }
-        // }
-    // });
-    console.log(arrDurations)
-    console.log("---------------------------------------")
     return arrDurations
 
 }
