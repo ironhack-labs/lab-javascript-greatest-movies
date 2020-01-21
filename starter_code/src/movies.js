@@ -66,14 +66,14 @@ function turnHoursToMinutes(array) {
             ...elm
         }
 
-        if (elm.duration.includes("h" && "min")) {
+        if (elm.duration.includes("h") && elm.duration.includes("min")) {
             copyElm.duration = parseInt(elm.duration.substr(0, 1)) * 60 + parseInt(elm.duration.substr(3, 5))
             return copyElm
         } else if (elm.duration.includes("h")) {
             copyElm.duration = parseInt(elm.duration.substr(0, 1)) * 60
             return copyElm
         } else if (elm.duration.includes("min")) {
-            copyElm.duration = parseInt(elm.duration.substr(3, 5))
+            copyElm.duration = parseInt(elm.duration.substr(-5, 2))
             return copyElm
 
         }
@@ -128,27 +128,51 @@ function bestYearAvg(array) {
 
     let copyArray = [...array]
 
-    if (copyArray == 0) {
-        return null
-    } else if (copyArray.length == 1) {
-        return `The best year was ${copyArray[0].year} with an average rate of ${copyArray[0].rate}`
-    }
+    // if (copyArray == 0) {
+    //     return null
+    // } else if (copyArray.length == 1) {
+    //     return `The best year was ${copyArray[0].year} with an average rate of ${copyArray[0].rate}`
+    // }
 
-    let moreRate = 0
-    let year
+    // let moreRate = 0
+    // let year
 
-    array.forEach(elm => {
-        if (elm.rate > moreRate) {
-            moreRate = elm.rate
-            year = elm.year
-            if (elm.rate = moreRate) {
-                if (elm.year < year) {
-                    year = elm.year
-                }
-            }
+    // array.forEach(elm => {
+    //     if (elm.rate > moreRate) {
+    //         moreRate = elm.rate
+    //         year = elm.year
+    //         if (elm.rate = moreRate) {
+    //             if (elm.year < year) {
+    //                 year = elm.year
+    //             }
+    //         }
+    //     }
+    // })
+
+    // return console.log(`The best year was ${year} with an average rate of ${moreRate}`)
+
+
+    //TERCER INTENTO 
+
+    let object = copyArray.map(elm => {
+        return {
+            year: elm.year,
+            rate: elm.rate
         }
     })
 
-    return console.log(`The best year was ${year} with an average rate of ${moreRate}`)
+    let repetidos = []
+    repetidos = object.filter(elm => elm.year.indexOf(elm))
+
+    console.log(repetidos)
+
+    let noRepetive = []
+    noRepetive = object.filter(elm => !noRepetive.includes(elm.year))
+
+    let rateYear = copyArray.map(elm => {
+
+
+    })
+
 
 }
