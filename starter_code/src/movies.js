@@ -111,6 +111,7 @@ function turnHoursToMinutes(a) {
 }
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
 // need to find out average for all the movies in each year
 // get all movies in each year
 // then get the rates and find average
@@ -118,11 +119,9 @@ function turnHoursToMinutes(a) {
 
 let bestYearAvg = a => {
   let newNum = a.map(b => {
-    if (b.year) {
-      return true;
-    } else {
-      return false;
-    }
+    let movie = b.movie;
+    let year = b.year;
+    let rate = b.rate;
   });
   return newNum;
 };
