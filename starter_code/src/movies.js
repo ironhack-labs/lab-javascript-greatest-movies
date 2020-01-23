@@ -51,7 +51,11 @@ function orderAlphabetically(arr) {
 function ratesAverage(arr) {
   if (arr.length > 0) {
     let average = arr.reduce(function(total, movie) {
-      return total + movie.rate;
+      if (!movie.rate) {
+        return total + 0;
+      } else {
+        return total + movie.rate;
+      }
     }, 0);
     return Number((average / arr.length).toFixed(2));
   } else {
@@ -63,12 +67,8 @@ function ratesAverage(arr) {
 
 function dramaMoviesRate(arr) {
   if (arr.length > 0) {
-    let averageOfDrama = arr
-      .filter(movie => movie.genre.includes('Drama'))
-      .reduce(function(total, movie) {
-        return total + movie.rate;
-      }, 0);
-    return Number((averageOfDrama / arr.length).toFixed(2));
+    let averageOfDrama = [...arr].filter(movie => movie.genre.includes('Drama'));
+    return ratesAverage(averageOfDrama);
   } else {
     return 0;
   }
