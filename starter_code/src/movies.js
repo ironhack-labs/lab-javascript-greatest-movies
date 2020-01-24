@@ -23,13 +23,12 @@ function howManyMovies(movies){
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(movies){
-    let result = [], newArray = [...movies];
-    newArray.sort((a,b) => {
-            if (a.title > b.title) return 1;
-            else if(a.title < b.title) return -1;
-            else return 0;
-    }).slice(0, 20).map((value) => result.push(value.title));
-    return result;
+    return [...movies.map((value) => {return value.title}).
+            sort((a,b) => {
+                if (a > b) return 1;
+                else if(a < b) return -1;
+                else return 0;
+            }).slice(0, 20)];
 }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
@@ -59,15 +58,12 @@ function hoursToMinutes(value){
 }
 
 function turnHoursToMinutes(movies){
-    const newArray =  [...movies].
-    map((value) => {
-      return {
-        ...value,
-        duration:hoursToMinutes(value.duration)
-      }
-    }
-    );
-    return newArray;
+    return [...movies.map((value) => {
+                return {
+                    ...value,
+                    duration:hoursToMinutes(value.duration)
+                }
+            })];
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
@@ -76,6 +72,7 @@ function hash(value){
     return parseInt(s.charAt(2)) + parseInt(s.charAt(3));
 }
 
+// TODO : Rewrite with better logic and code
 function bestYearAvg(movies){
     if(movies.length === 0) return null;
     let yearsMovies = [], ratesMovies = [], countMovies = [];
@@ -94,7 +91,6 @@ function bestYearAvg(movies){
         }
     }
     );
-
 
     let maxAverage = ratesMovies.map((rate, nMovies) => { return rate/countMovies[nMovies]; });
     let maxA = Math.max(...maxAverage);
