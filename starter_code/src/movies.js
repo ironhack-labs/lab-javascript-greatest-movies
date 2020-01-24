@@ -9,18 +9,17 @@ function orderByYear(arr) {
       return 1;
     } else if (a.year < b.year) {
       return -1;
-    } else if (a.year == b.year && a.title > b.title) {
+    } else if (a.year == b.year && a.title.toLowerCase() > b.title.toLowerCase()) {
       return 1;
-    } else if (a.year == b.year && a.title < b.title) {
+    } else if (a.year == b.year && a.title.toLowerCase() < b.title.toLowerCase()) {
       return -1;
     }
     return 0;
   });
-
+  //order the movies by title
   const orderByYearArr = moviesOrdered.map(function(value) {
     return value;
   });
-
   return orderByYearArr;
 }
 
@@ -76,34 +75,71 @@ function ratesAverage(arr) {
       });
 
     //sum all the rates
-    const sumOfAllRates = moviesRate.reduce(function(acc, movie) {
-      return acc + movie;
+    const sumOfAllRates = moviesRate.reduce(function(acc, rate) {
+      return acc + rate;
     }, 0);
     //calculate the average
     let avgRates = sumOfAllRates / moviesRate.length;
     //to round to 2 decimals
     return Math.round(avgRates * 100) / 100;
+
+    /*return Number(avgRates.toFixed(2));*/
   } else {
     return 0;
   }
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
-
-// function dramaMoviesRate(arr) {
-//   let dramaAvgRate = 0;
-//   let allDramasMovies = arr
-
-//   .filter(movie => movie.genre
-
-//   .includes('Drama'))
-//   .reduce((accumulator, value) => accumulator + value.rate, 0)),
-//     (lengthDrama = allDramasMovies.length);
-//   if (lengthDrama === 0) return 0;
-//   dramaAvgRate = (avgRateDrama / lengthDrama).toFixed(2);
-//   return dramaAvgRate;
-// }
+function dramaMoviesRate(arr) {
+  //new array
+  const newArray = [...arr];
+  // if there is no movie
+  if (newArray.length != 0) {
+    // all drama movies
+    let allDramaMovies = newArray.filter(movie => movie.genre.includes('Drama'));
+    // only drama movies rates
+    const onlyDramaMoviesRates = allDramaMovies.map(function(movie) {
+      return movie.rate;
+    });
+    //sum all the rates
+    const sumOfAllDramaRates = onlyDramaMoviesRates.reduce(function(acc, movie) {
+      return acc + movie;
+    }, 0);
+    //calculate the average of all dramas movies
+    let dramaAvgRate = sumOfAllDramaRates / onlyDramaMoviesRates.length;
+    return Math.round(dramaAvgRate * 100) / 100;
+  } else {
+    return 0;
+  }
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
+const turnHoursToMinutes = arr => {
+  return arr.map(movie => {
+    const durationAsString = movie.duration;
+
+    let duration = 0;
+
+    for (let value of durationAsString.split(' ')) {
+      const number = parseInt(value);
+      if (value.includes('h')) {
+        duration += number * 60;
+      } else if (value.includes('min')) {
+        duration += number;
+      }
+    }
+
+    return {
+      ...movie,
+      duration
+    };
+  });
+};
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+const bestYearAvg = arr => {
+
+
+  
+};
