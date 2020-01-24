@@ -48,10 +48,10 @@ function ratesAverage(arr) {
       return y.rate;
     })
     .reduce((acc, z) => {
-      return acc + z;
+      return acc + z / arr.length;
     }, 0);
   if (!arr[0]) return 0;
-  else return Number((sum / arr.length).toFixed(2));
+  else return Number(sum.toFixed(2));
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
