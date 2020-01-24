@@ -145,3 +145,40 @@ const turnHoursToMinutes = array => {
   });
 };
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+const bestYearAvg = array => {
+  const movieAverageRateByYear = array.reduce((accumulator, movie) => {
+    const yearOfMovie = movie.year;
+    const rateOfMovie = movie.rate;
+
+    if (typeof accumulator[yearOfMovie] === 'undefined') {
+      accumulator[yearOfMovie] = [rateOfMovie];
+    } else {
+      accumulator[yearOfMovie].push(rateOfMovie);
+    }
+
+    return accumulator;
+  }, {});
+
+  for (let year in movieAverageRateByYear) {
+    const movieAverageRateByYear = movieAverageRateByYear[year].reduce(
+      (accumulator, rate, index, originalArray => accumulator + rate / originalArray.length, 0)
+    );
+    movieAverageRateByYear[year] = movieAverageRateByYear;
+  }
+
+  const auxiliaryArray = Object.entries(movieAverageRateByYear);
+
+  auxiliaryArray.sort((a, b) => {
+    const rateOfYearA = a[1];
+    const rateOfYearB = b[1];
+    if (rateOfYearA > rateOfYearB) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+  const year = auxiliaryArray[0][0];
+  const rate = auxiliaryArray[0][1];
+
+  return `The best year was ${year} with an average rate of ${rate}`;
+};
