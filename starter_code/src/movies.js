@@ -7,16 +7,15 @@
 // Make sure not to mutate the original array
 
 function orderByYear(a) {
-  let sorted = a.sort((b, c) => {
+  const arrayMovies = [...a];
+  arrayMovies.sort((b, c) => {
     if (b.year === c.year) {
       return b.title.localeCompare(c.title);
     }
     return b.year - c.year;
   });
-  return sorted;
+  return arrayMovies;
 }
-
-orderByYear();
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 //  function that receives an array as a parameter and filter, the array so we can have only the drama movies where Steven Spielberg is the director
@@ -33,7 +32,6 @@ function howManyMovies(a) {
 }
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
-// map(); and filter();
 
 function orderAlphabetically(a) {
   let titles = a
@@ -117,11 +115,31 @@ function turnHoursToMinutes(a) {
 // then get the rates and find average
 // then compare the all the years averages
 
-let bestYearAvg = a => {
-  let newNum = a.map(b => {
-    let movie = b.movie;
-    let year = b.year;
-    let rate = b.rate;
+function bestYearAvg(a) {
+  let bestAverage = null;
+  let bestAverageYear = null;
+
+  if (!a.length) {
+    return null;
+  }
+
+  a.forEach(b => {
+    let bestYear = a.filter(m => {
+      return m.year == b.year;
+    });
+
+    average = ratesAverage(bestYear);
+
+    if (average > bestAverage) {
+      bestAverage = average;
+      bestAverageYear = bestYear[0].year;
+    } else if (average == bestAverage) {
+      bestAverage = average;
+
+      parseInt(bestAverageYear) > parseInt(bestYear[0].year)
+        ? (bestAverageYear = bestYear[0].year)
+        : (bestAverageYear = bestAverageYear);
+    }
   });
-  return newNum;
-};
+  return `The best year was ${bestAverageYear} with an average rate of ${bestAverage}`;
+}
