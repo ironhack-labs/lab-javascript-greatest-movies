@@ -1,4 +1,4 @@
-/* eslint no-restricted-globals: 'off' */
+/*  eslint no-restricted-globals: 'off'  */
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
