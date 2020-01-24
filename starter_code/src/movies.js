@@ -20,6 +20,8 @@ function orderByYear(arr) {
     }
   });
 
+  
+
   return orderMovies;
 }
 
@@ -133,6 +135,7 @@ const dramaMoviesRate = (arr) => {
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
+/*
 const turnHoursToMinutes = (arr) =>{
 
   const newArray = [...arr];
@@ -147,6 +150,36 @@ const turnHoursToMinutes = (arr) =>{
     },0);
     
     return movie.duration = sumOfNumbers;
+  });
+
+  
+  return moviesDuration;
+
+}*/
+
+const turnHoursToMinutes = (arr) =>{
+
+  const newArray = [...arr];
+
+  const moviesDuration = newArray.filter(function(movie,index,originalArray){
+    if(movie.duration.length >= 8){
+      movie.duration = movie.duration.split(' ');
+      movie.duration[0]= parseFloat(movie.duration[0])*60;
+      movie.duration[1] =parseFloat(movie.duration[1]);
+
+      const sumOfNumbers = movie.duration[1] + movie.duration[0];
+
+      return movie.duration = sumOfNumbers;
+    } else if(movie.duration.length > 3 && movie.duration.length < 8){
+      movie.duration = movie.duration.split('min');
+      
+      return movie.duration = parseInt(movie.duration[0]);
+    }else if(movie.duration.length < 3){
+      movie.duration = movie.duration.split('h');
+      
+      return movie.duration = parseFloat(movie.duration[0])*60;
+    }
+   
   });
 
   
