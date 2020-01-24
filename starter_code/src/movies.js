@@ -2,8 +2,9 @@
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arrData) {
-  const final = [];
-  arrData.map(x => final.push(x));
+  const final = [...arrData]; //clone the array
+  //arrData.map(x => final.push(x)); //clone the array
+
   return final.sort((a, b) => {
     if (a.year > b.year) {
       return 1;
@@ -11,6 +12,7 @@ function orderByYear(arrData) {
       return -1;
     } else {
       if (a.title > b.title) {
+        //like this we don't check the capital letters, we should use local compare because it does it auto
         return 1;
       } else if (a.title < b.title) {
         return -1;
@@ -29,14 +31,14 @@ function howManyMovies(stevenArr) {
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(arr) {
-  const final = arr
+  return arr
     .map(x => x.title)
-    .sort()
+    .sort((a, b) => a.localeCompare(b)) // capital letters, that's why we cannot use only sort()
     .slice(0, 20);
-  return final;
 }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+
 function ratesAverage(arr) {
   let sum = arr
     .filter(x => {
@@ -74,12 +76,26 @@ function dramaMoviesRate(arr) {
     ) / 100;
   if (arr.length === 1) return arr[0].rate;
   else if (s[0] === undefined) return 0;
-  else return r;
+  //else return r;
+  else return ratesAverage(s); //usinig the funciton above
 }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arr) {
-  arr.forEach(element => {
-    element.time;
-  });
+  var s = arr
+    .map((x, i) => {
+      if (arr[i].duration === undefined) {
+        return null;
+      } else return arr[i].duration.split(' ');
+    })
+    .map(z => z.map((y, i) => Number(parseInt(y))))
+    .map(m => {
+      return m.reduce((a, b) => a * 60 + b);
+    });
+  const t = [...arr];
+  for (let i = 0; i < t.length; i++) {
+    t[i].duration = s[i];
+  }
+  return t;
 }
+
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
