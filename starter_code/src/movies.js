@@ -54,28 +54,33 @@ function ratesAverage(array) {
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate(array) {
-  let dramaAverage = array.reduce(function(accumulator, value) {
-    if (value.genre.includes('Drama')) {
-      return accumulator + value.rate / array.length;
-    }
-  }, 0);
-  return Math.round(dramaAverage * 100) / 100;
+  let dramaMovies = array.filter(function(value) {
+    return value.genre.includes('Drama');
+  });
+  let dramaMoviesAverage = ratesAverage(dramaMovies);
+  return dramaMoviesAverage;
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes(array) {
-  let newArray = array.map(function(value) {
-    if (!value.duration.includes('h')) {
-      return parseInt(value.duration.slice(0, -3));
-    } else if (!value.duration.includes('min')) {
-      return parseInt(value.duration.slice(0, -1)) * 60;
-    } else {
-      let a = value.duration.split(' ');
-      return parseInt(a[0].slice(0, -1)) * 60 + parseInt(a[1].slice(0, -3));
+  let newArray = array.map(function(movie) {
+    let duration = 0;
+    let durationString = movie.duration;
+    for (let value of durationString.split(' ')) {
+      let number = parseInt(value);
+      if (value.includes('h')) {
+        duration += number * 60;
+      }
+      if (value.includes('min')) {
+        duration += number;
+      }
     }
+    return { ...movie, duration };
   });
   return newArray;
 }
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(array) {}
