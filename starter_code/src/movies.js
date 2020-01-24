@@ -38,7 +38,6 @@ function orderAlphabetically(a) {
     .map(b => {
       return b.title;
     })
-    .slice()
     .sort()
     .filter((b, c) => {
       if (c < 20) {
@@ -51,6 +50,9 @@ function orderAlphabetically(a) {
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
 function ratesAverage(a) {
+  if (a.length === 0) {
+    return 0;
+  }
   let average = a
     .filter(b => {
       if (b.rate) {
