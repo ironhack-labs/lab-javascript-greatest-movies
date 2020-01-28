@@ -2967,3 +2967,9 @@ let movies = [
       "rate": 8
     }
   ]
+  const orderByYear = (movies) =>{
+    let local = [...movies]
+    let result = local.sort((movie1,movie2)=> compareMovies(movie1.year, movie2.year))
+    return result
+    
+  }
