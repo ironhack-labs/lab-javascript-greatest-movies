@@ -2967,3 +2967,31 @@ let movies = [
       "rate": 8
     }
   ]
+
+
+  function bestYearAvg(array) {
+
+    const newObj = {};
+
+    for(let i = 0; i < array.length; i++){
+        if(newObj[array[i].year] === undefined){
+            newObj[array[i].year] = {
+                count : 1,
+                rateSum : parseFloat(array[i].rate),
+                average : parseFloat(array[i].rate)
+            }
+            } else {
+                newObj[array[i].year].count += 1;
+                newObj[array[i].year].rateSum += parseFloat(array[i].rate);
+                newObj[array[i].year].average = parseFloat((newObj[array[i].year].rateSum / newObj[array[i].year].count).toFixed(2));
+            }
+        }
+    
+    newArrayObj = Object.entries(newObj);
+
+    newArrayObj.sort(function(a, b) {
+      return b[1].average - a[1].average;
+    })
+
+        return `The best year was ${newArrayObj[0][0]} with an average rate of ${newArrayObj[0][1].average}`;
+};
