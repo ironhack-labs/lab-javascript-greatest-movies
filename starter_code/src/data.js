@@ -2965,6 +2965,29 @@ let movies = [
         "Drama"
       ],
       "rate": 8
+    },
+    {
+      "title": "Dead Poets Society",
+      "year": 1989,
+      "director": "Peter Weir",
+      "duration": "38min",
+      "genre": [
+        "Comedy",
+        "Drama"
+      ],
+      "rate": 8
+    }
+    ,
+    {
+      "title": "Dead Poets Society",
+      "year": 1989,
+      "director": "Peter Weir",
+      "duration": "8min",
+      "genre": [
+        "Comedy",
+        "Drama"
+      ],
+      "rate": 8
     }
   ]
 
