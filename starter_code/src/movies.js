@@ -61,8 +61,9 @@ function ratesAverage(moviesArray) {
   console.log(mappedArray)
   let sumAverage = mappedArray.reduce(function (sum, n) {return sum + n}, 0)
   console.log(sumAverage)
-  return sumAverage
-  //return (sumAverage / moviesArray.length).toFixed(2)
+  //return sumAverage
+  //toFixed returns a string, so Number() is necessary
+  return Number((sumAverage / moviesArray.length).toFixed(2))
 }
 
 /* cheating starts here - option for the rounding thing
@@ -93,13 +94,15 @@ average rate of all drama movies! Let's see if it is better than the general ave
 Again, rounded to 2 decimals!*/
 
 function dramaMoviesRate(moviesArray) {
-  let mappedGenreArray = moviesArray.map(movie => {return movie.genre})
-  let mappedDramaArray = mappedGenreArray.map(movie => {return movie.includes("Drama")})
+  //let mappedGenreArray = moviesArray.map(movie => {return movie.genre})
+  //console.log("mappedGenreArray", mappedGenreArray)
+  let mappedDramaArray = moviesArray.filter(movie => {return movie.genre.includes("Drama")})
+  console.log("mappedDramaArray", mappedDramaArray)
   let mappedArray = mappedDramaArray.map(movie => { return movie.rate })
   console.log(mappedArray)
   let sumAverage = mappedArray.reduce(function (sum, n) {return sum + n}, 0)
   console.log(sumAverage)
-  return sumAverage
+  return Number((sumAverage / moviesArray.length).toFixed(2))
 
 }
 
