@@ -14,7 +14,6 @@ function orderByYear(array) {
 }
 
 
-// do it again
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 function howManyMovies(array) {
     let dramaMovies = array.filter(movie => movie.genre.includes('Drama'))
