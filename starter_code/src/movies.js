@@ -74,7 +74,34 @@ dramaMoviesRate(movies)
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes(arr){
+    //new array with duration only
+    let durationArr = arr.map(val => val.duration)
+    
+    //turning hours into minutes
+    let hours = durationArr.map(val => val.split("h"))
+    let hoursInMin = hours.map(val => Number(val[0])*60)
+    
+    //getting the number of minutes only
+    let minutes = durationArr.map(val => val.split("min"))
+    let separate = durationArr.map(val2 => val2.split(" "))
+    let min = separate.map(val => val[1].split("min"))
+    let minToNum = min.map(val => Number(val[0]))
+    
+    //adding the hours in minutes and minutes together
+    let newDuration = []
+    for (i=0; i<minToNum.length; i++){
+    newDuration.push(hoursInMin[i] + minToNum[i])
+    }
+    
+    //new array with duration in minutes
+    let moviesDurationInMinutes = movies
+    for (let i=0; i<movies.length; i++){
+      moviesDurationInMinutes[i].duration = newDuration[i]
+    }
+    return moviesDurationInMinutes
+    }
+    
+    turnHoursToMinutes(movies)
 
-}
-
+    // It doesn't pass the test on SpecRunner but I tested in in Repl where it seems ok? --> https://repl.it/@camilleory/movies
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
