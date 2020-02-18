@@ -1,7 +1,6 @@
 /* eslint no-restricted-globals: 'off' */
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
-let moviesCopy = JSON.parse(JSON.stringify(movies));
 
 const orderByYear = arr => {
   return JSON.parse(
@@ -52,7 +51,8 @@ const dramaMoviesRate = arr => {
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 const turnHoursToMinutes = arr => {
-  const newArr = arr.map(x => {
+  let copy = JSON.parse(JSON.stringify(arr));
+  const newArr = copy.map(x => {
     const timeArr = x.duration.split(" ");
     if (timeArr.length > 1) {
       x.duration =
@@ -71,5 +71,6 @@ const turnHoursToMinutes = arr => {
 };
 
 console.log(turnHoursToMinutes(movies));
+console.log(movies);
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
