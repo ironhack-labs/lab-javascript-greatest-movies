@@ -149,3 +149,17 @@ function calculateMinutes(minutesString){
 
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average*/
+
+
+function bestYearAvg(array){
+  if (array.length === 0){return null}
+  let yearsArray=[]
+  array.map(function(original){
+    if(yearsArray.indexOf(original.year) !=1)
+      {yearsArray = yearsArray[yearsArray.indexOf(original.year)].push(rate)}
+    else {
+      yearsArray.push(original.year)
+    }
+  }
+)
+  return years}
