@@ -28,7 +28,6 @@ describe("Order the movies by year - orderByYear", function() {
       orderByYear([{ year: 2002 }, { year: 1982 }, { year: 1995 }])
     ).toEqual([{ year: 1982 }, { year: 1995 }, { year: 2002 }]);
   });
-
   it("If two movies have the same year, order them alphabetically by their title", function() {
     expect(
       orderByYear([
