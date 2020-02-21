@@ -126,7 +126,7 @@ return correctArray
 
 function updateArrayWithCorrectData(arrayToCorrect, correctDurations){
   for (let i=0; i< arrayToCorrect.length; i++){
-  arrayToCorrect[i].duration = parseInt(correctDurations[i])
+  arrayToCorrect[i].duration = correctDurations[i]
   }
     return arrayToCorrect
 }
