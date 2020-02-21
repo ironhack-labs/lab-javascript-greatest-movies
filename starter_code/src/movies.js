@@ -71,14 +71,15 @@ const ratesAverage = movie =>{
 
 const dramaMoviesRate = movie => {
 
-    if (movie.genre.includes("Drama") == false) {
+    if (movie.filter(a => a.genre.includes("Drama")).length == 0) {
         return 0;
     }
     let copyArr = JSON.parse(JSON.stringify(movie));
 
-    let dramaArr = copyArr.filter(a => a.genre == "Drama");
-    let dramaAvg = dramaArr.reduce((acc, item) => acc + item.rate) / dramaArr.length;  
-
+    let dramaArr = copyArr.filter(a => a.genre.includes("Drama"));
+    console.log(dramaArr);
+    let dramaAvg = dramaArr.reduce((acc, item) => acc + item.rate); // dramaArr.length;  
+    console.log(dramaAvg);
     return +(dramaAvg).toFixed(2);
 }
 
