@@ -43,7 +43,7 @@ var movies2 =
         "Crime",
         "Drama"
       ],
-      "rate": 23
+      "rate": 2.3
     }
   ]
 /* eslint no-restricted-globals: 'off' */
@@ -116,78 +116,60 @@ function turnHoursToMinutes(array) {
   var minutos = []
   for (let index = 0; index < array.length; index++) {
     const element = array[index].duration;
-    if (element.includes("h")&&element.includes("min")) {
+    if (element.includes("h") && element.includes("min")) {
 
       minutos = parseInt(element.slice(0, element.indexOf("h"))) * 60
         + parseInt(element.slice(element.indexOf("h") + 2, element.indexOf("min")))
     } else if (element.includes("h")) {
       minutos = parseInt(element.slice(0, element.indexOf("h"))) * 60
     } else {
-      minutos = parseInt(element.slice(0,2))
+      minutos = parseInt(element.slice(0, 2))
 
     }
 
     console.log(minutos)
-    let temp ={"title": array[index].title,
-    "year": array[index].year,
-    "director": array[index].director,
-    "duration": minutos,
-    "genre": array[index].genre,
-    "rate":array[index].rate
-  }
-  arraynou.push(temp)
+    let temp = {
+      "title": array[index].title,
+      "year": array[index].year,
+      "director": array[index].director,
+      "duration": minutos,
+      "genre": array[index].genre,
+      "rate": array[index].rate
+    }
+    arraynou.push(temp)
   }
   return arraynou
 
 }
 
 //bonus
-function bestYearAvg(inputArray){
-  if(inputArray.length === 0){return null}
-  let temporal ={
-    year:0,
-    'puntuacion':0,
-    'contador':0
-  }
-  let arrayCalculos=[]
-  console.log("fora")
+function bestYearAvg(inputArray) {
+  if (inputArray.length === 0) { return null }
+  var arrayYearRate = []
+  var ordenado = orderByYear(inputArray)
+  let ordenadolength = ordenado.length - 1
+  let primerAño = ordenado[0].year
+  let ultimoaño = ordenado[ordenadolength].year
+  for (let index = primerAño; index < ultimoaño; index++) {
+    const element = ordenado[index];
+    let añoActual = ordenado.filter(x => {
+      return x.year === index
+    })
+    if (ratesAverage(añoActual)) {
+      arrayYearRate.push({
 
-  for (let index = 0; index < inputArray.length; index++) {
-    console.log("loop1")
-    if(arrayCalculos.length===0){
-      omplirtemporal(inputArray)
-      arrayCalculos.push(temporal)
+        year: añoActual[0].year,
+        rate: ratesAverage(añoActual),
+
+      })
     }
-    const element = inputArray[index];
-    for (let a = 0; a < arrayCalculos.length; a++) {
-      console.log("loop2")
 
-      const element = arrayCalculos[a];
-      if(arrayCalculos[a].year.indexOf(inputArray[index].year)){
-        console.log("existe")
-      }else{
-        console.log("notexiste")
-      }
-    }
-    
-  }
-  temporal.year=
- temporal.puntuacion=
-  temporal.contador++
-
-
- 
-
-
-return //`The best year was ${year} with an average rate of ${rate}`
-}
-console.log(bestYearAvg(movies2))
-/*
-function omplirtemporal(objecte){
-  temporal{
-    year:objecte.year,
-    rate:objecte.rate,
 
   }
+  arrayYearRate.sort()
+  //console.log(arrayYearRate)
+
+
+  //console.log(Math.max(arrayYearRate))
+  return `The best year was ${arrayYearRate[0].year} with an average rate of ${arrayYearRate[0].rate}`
 }
-*/
