@@ -59,17 +59,16 @@ const orderByYear = array => {
     })
 }
 
-
-
 console.log(orderByYear(movies))
  orderByYear(movies)
-
-
 
 // --- criar uma nova array a partir do map
 // ---  ordenar o array por ordem alfabetica do title
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
+
+let howManyMovies = array => array.filter(item => item.genre.includes("Drama") && item.director === "Steven Spielberg" ).length;
+
 
 // ----  criar uma função filtrando os filmes de drama do steven spilberg usando filter
 
