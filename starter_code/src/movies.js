@@ -152,18 +152,13 @@ function calculateMinutes(minutesString){
 
 function bestYearAvg(array){
   let arrayByYears = JSON.parse(JSON.stringify(array))
-  let arrayTotal
-  arrayTotal= yearlySubarray(arrayByYears)
+  let arrayTotal = yearlySubarray(arrayByYears)
   let greatestRate = 0;
   let greatestYear=0;
   let provisionalRate = 0;
   if (array.length === 0){
     return null
-  } else if (array.length ===1){
-    greatestRate = array[0].rate;
-    greatestYear = array[0].year;
-  }
-  else{
+  } else {
     for (let i=0; i<arrayTotal.length; i++){
       provisionalRate = ratesAverage(arrayTotal[i]);
       if (provisionalRate > greatestRate){
