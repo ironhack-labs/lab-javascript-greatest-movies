@@ -79,11 +79,51 @@ function dramaMoviesRate(array) {
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes(array) {
+
+  const newArray = array.slice().map(function(element){
+    const newElement = {...element};
+    if (newElement.duration.indexOf('min') >= 0 && newElement.duration.indexOf('h') >= 0) {
+      newElement.duration = Number((newElement.duration.split('h')[0] * 60)) + Number((newElement.duration.split(' ')[1].split('min')[0]));
+    } else if (newElement.duration.indexOf('h') >= 0 && newElement.duration.indexOf('min') < 0){
+      newElement.duration = Number((newElement.duration.split('h')[0] * 60));
+    } else {
+      newElement.duration = Number((newElement.duration.split('min')[0]));
+    }
+    return newElement
+  });
+
+  return newArray;
 }
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
 function bestYearAvg(array) {
-  if (array.length === 0) 
-    return null;
-}
+
+  if (array.length === 0) {
+      return null;
+  }
+
+  const newObj = {};
+
+  for(let i = 0; i < array.length; i++){
+      if(newObj[array[i].year] === undefined){
+          newObj[array[i].year] = {
+              count : 1,
+              rateSum : parseFloat(array[i].rate),
+              average : parseFloat(array[i].rate)
+          }
+          } else {
+              newObj[array[i].year].count += 1;
+              newObj[array[i].year].rateSum += parseFloat(array[i].rate);
+              newObj[array[i].year].average = parseFloat((newObj[array[i].year].rateSum / newObj[array[i].year].count).toFixed(2));
+          }
+      }
+
+  newArrayObj = Object.entries(newObj);
+
+  newArrayObj.sort(function(a, b) {
+    return b[1].average - a[1].average;
+  })
+
+      return `The best year was ${newArrayObj[0][0]} with an average rate of ${newArrayObj[0][1].average}`;
+}; 
