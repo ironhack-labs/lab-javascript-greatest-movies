@@ -169,11 +169,10 @@ function bestYearAvg(array){
       if (provisionalRate > greatestRate){
         greatestRate= provisionalRate;
         greatestYear = arrayTotal[i][0].year;
-      } else if (provisionalRate === greatestRate){
-        greatestYear = arrayTotal[i][0].year;
+      }
     }
-  }}
-return console.log(`The best year was ${greatestYear} with an average rate of ${greatestRate}`)
+  }
+return `The best year was ${greatestYear} with an average rate of ${greatestRate}`
 }
 
 
