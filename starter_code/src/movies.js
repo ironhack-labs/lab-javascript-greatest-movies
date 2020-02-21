@@ -151,6 +151,7 @@ function bestYearAvg(inputArray) {
   let primerAño = ordenado[0].year
   let ultimoaño = ordenado[ordenadolength].year
   for (let index = primerAño; index < ultimoaño; index++) {
+    console.log(element)
     const element = ordenado[index];
     let añoActual = ordenado.filter(x => {
       return x.year === index
@@ -173,3 +174,12 @@ function bestYearAvg(inputArray) {
   //console.log(Math.max(arrayYearRate))
   return `The best year was ${arrayYearRate[0].year} with an average rate of ${arrayYearRate[0].rate}`
 }
+
+let movies3 = [
+  { year: 2000, rate: 9 },
+  { year: 2000, rate: 8 },
+  { year: 1978, rate: 10 },
+  { year: 1978, rate: 7 }
+]
+
+console.log(bestYearAvg(movies2))
