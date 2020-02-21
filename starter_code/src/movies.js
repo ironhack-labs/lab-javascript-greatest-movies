@@ -145,17 +145,18 @@ function turnHoursToMinutes(array) {
 //bonus
 function bestYearAvg(inputArray) {
   if (inputArray.length === 0) { return null }
+  if (inputArray.length ===1){  return `The best year was ${inputArray[0].year} with an average rate of ${inputArray[0].rate}`
+}
   var arrayYearRate = []
   var ordenado = orderByYear(inputArray)
   let ordenadolength = ordenado.length - 1
   let primerAño = ordenado[0].year
   let ultimoaño = ordenado[ordenadolength].year
   for (let index = primerAño; index < ultimoaño; index++) {
-    console.log(element)
-    const element = ordenado[index];
     let añoActual = ordenado.filter(x => {
       return x.year === index
     })
+    console.log(añoActual)
     if (ratesAverage(añoActual)) {
       arrayYearRate.push({
 
@@ -179,7 +180,6 @@ let movies3 = [
   { year: 2000, rate: 9 },
   { year: 2000, rate: 8 },
   { year: 1978, rate: 10 },
-  { year: 1978, rate: 7 }
-]
+  { year: 1978, rate: 7 }]
 
-console.log(bestYearAvg(movies2))
+console.log(bestYearAvg(movies3))
