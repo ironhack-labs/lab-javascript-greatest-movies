@@ -150,16 +150,48 @@ function calculateMinutes(minutesString){
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average*/
 
-
 function bestYearAvg(array){
-  if (array.length === 0){return null}
-  let yearsArray=[]
-  array.map(function(original){
-    if(yearsArray.indexOf(original.year) !=1)
-      {yearsArray = yearsArray[yearsArray.indexOf(original.year)].push(rate)}
-    else {
-      yearsArray.push(original.year)
-    }
+  let arrayByYears = JSON.parse(JSON.stringify(array))
+  let arrayTotal
+  arrayTotal= yearlySubarray(arrayByYears)
+  let greatestRate = 0;
+  let greatestYear=0;
+  let provisionalRate = 0;
+  if (array.length === 0){
+    return null
+  } else if (array.length ===1){
+    greatestRate = array[0].rate;
+    greatestYear = array[0].year;
   }
-)
-  return years}
+  else{
+    for (let i=0; i<arrayTotal.length; i++){
+      provisionalRate = ratesAverage(arrayTotal[i]);
+      if (provisionalRate > greatestRate){
+        greatestRate= provisionalRate;
+        greatestYear = arrayTotal[i][0].year;
+      } else if (provisionalRate === greatestRate){
+        greatestYear = arrayTotal[i][0].year;
+    }
+  }}
+return console.log(`The best year was ${greatestYear} with an average rate of ${greatestRate}`)
+}
+
+
+
+//Me crea un array de 2d con todas las peliculas donde el indice del array padre es cada año
+function yearlySubarray(array){
+  let arrayWithSubarray = []
+  array.map(function(eachMovie){
+    let indexYear = eachMovie.year;
+    if (arrayWithSubarray[indexYear] === undefined) {
+      //console.log("Ha visto que no existe el índice del año")
+    return arrayWithSubarray[indexYear] = [eachMovie]
+    } else {
+      //console.log("Else funciona")
+      arrayWithSubarray[indexYear].push(eachMovie)
+    };
+  return arrayWithSubarray;})
+  //limpia el array de undefineds:
+  arrayWithSubarray = arrayWithSubarray.filter(function(movie) {return (movie !== undefined)})
+  return arrayWithSubarray
+}
