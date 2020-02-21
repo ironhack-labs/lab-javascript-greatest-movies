@@ -2,27 +2,68 @@
 
 // --- Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
-let movies = [{
-    "title": "The Shawshank Redemption",
-    "year": 1994,
-    "director": "Frank Darabont",
-    "duration": "2h 22min",
-}, 
-{
-    "title": "A Godfather",
-    "year": 1972,
-    "director": "Francis Ford Coppola",
-    "duration": "2h 55min",
-  }
-];
-
-const orderByYear = (...args) => {
-   return console.log(args.sort((a, b) => a.year - b.year))
-
- };
+// let movies = [{
+//     "title": "The Shawshank Redemption",
+//     "year": 1994,
+//     "director": "Frank Darabont",
+//     "duration": "2h 22min",
+// }, 
+// {
+//     "title": "A Godfather",
+//     "year": 1972,
+//     "director": "Francis Ford Coppola",
+//     "duration": "2h 55min",
+//   }
+// ];
 
 
-orderByYear(movies)
+// const orderByYear = orderByYear.map(theMovie => theMovie);
+// // const newArr = numArr.map((num, index, originalArray) => {
+// //     console.log(num, index, originalArray);
+// //     return num * 2;
+// // });
+
+
+
+// const orderByYear = (...args) => {
+//     console.log(args)
+//    return console.log(args.sort((a, b) => a.year - b.year))
+//  };
+
+//  orderByYear(args)
+
+
+// const orderByYear = array => {
+//     let newArr = array.slice();
+
+//    return newArr.sort((a, b) => {
+//        a.year - b.year;)
+        
+//        if (a.year === b.year) {
+//         newArr.a.locale;
+//     } 
+
+// }};
+
+const orderByYear = array => {
+    let newArr = array.slice();
+
+   return newArr.sort((a, b) => {
+    if (a.year > b.year) {
+        return 1;
+      }
+      if (a.year < b.year) {
+        return -1;
+      }
+      return a.title.localeCompare(b.title)
+    })
+}
+
+
+
+console.log(orderByYear(movies))
+ orderByYear(movies)
+
 
 
 // --- criar uma nova array a partir do map
