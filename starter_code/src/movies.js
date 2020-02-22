@@ -47,9 +47,35 @@ function orderAlphabetically(array){
 
     let a=newArray.sort()
     return a.slice(0,20);  
+
+    // Paula's Solution
+    // return titles
+    // .sort()
+    // .slice(0,20);
 }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+
+function ratesAverage(array){
+    if(!array.length){
+        return 0
+        }
+    
+
+        let rateArray = array.map((movie) => {
+            return movie.rate
+        }); 
+        
+        let reducedrateArray = rateArray.reduce((accumulator,number) => {
+            return accumulator + number}, 0);
+        let rateAverage = reducedrateArray / rateArray.length;
+        let avg=Math.round(rateAverage * 10 ** 2) / 10 ** 2
+        return avg
+
+        
+        
+}
+
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
