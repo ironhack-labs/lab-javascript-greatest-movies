@@ -167,28 +167,28 @@ function dramaMoviesRate(array){
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-// function turnHoursToMinutes(array){
-//     let duration = array.map(movie => movie.duration);
+function turnHoursToMinutes(array){
+    let duration = array.map(movie => movie.duration);
 
-//     const reHours = /[hmin]\s*/
+    const reHours = /[hmin]\s*/
     
-//     let durationNumbers = duration.map(duration => duration.split(reHours));
+    let durationNumbers = duration.map(duration => duration.split(reHours));
     
-//     let filteredDurationNumbers = durationNumbers.filter(duration => {return duration.splice(2)});
+    let filteredDurationNumbers = durationNumbers.filter(duration => {return duration.splice(2)});
 
-//     let toNumber = filteredDurationNumbers[0].map(Number);
+    let toNumber = filteredDurationNumbers[0].map(Number);
 
-//     let hoursToMinutes = toNumber[0]*60;
+    let hoursToMinutes = toNumber[0]*60;
 
-//     let newTime = [hoursToMinutes, toNumber[1]]
+    let newTime = [hoursToMinutes, toNumber[1]]
 
-//     let reduceToMinutes = newTime.reduce((accumulator, number) => {return accumulator + number}, 0 )
+    let reduceToMinutes = newTime.reduce((accumulator, number) => {return accumulator + number}, 0 )
 
-//     console.log(reduceToMinutes);
-//     return reduceToMinutes;
-// }
+    console.log(reduceToMinutes);
+    return reduceToMinutes;
+}
 
-// turnHoursToMinutes(movies);
+turnHoursToMinutes(movies);
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
