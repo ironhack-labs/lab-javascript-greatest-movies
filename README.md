@@ -139,7 +139,7 @@ Go ahead and find which year have the best average rate for the movies that were
 Create `bestYearAvg()` function that receives an array of movies and gives us an answer which year was the best year for cinema and what was its average rate. The `bestYearAvg()` should return a **string** with the following structure:
 <br>
 
-**The best year was <YEAR> with an average rate of <RATE>**
+**The best year was \<YEAR\> with an average rate of \<RATE\>**
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_dfc3fe557576abca4dba274e3aabe9a3.gif)
 
