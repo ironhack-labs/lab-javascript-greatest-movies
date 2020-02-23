@@ -136,7 +136,10 @@ Should be:
 We always hear so much about classic movies, but we want to know which year has the best average rate, so we can declare the **BEST YEAR FOR CINEMA** officially!
 
 Go ahead and find which year have the best average rate for the movies that were released on that year!
-Create `bestYearAvg()` function that receives an array of movies and gives us an answer which year was the best year for cinema and what was its average rate.
+Create `bestYearAvg()` function that receives an array of movies and gives us an answer which year was the best year for cinema and what was its average rate. The `bestYearAvg()` should return a **string** with the following structure:
+<br>
+
+**The best year was <YEAR> with an average rate of <RATE>**
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_dfc3fe557576abca4dba274e3aabe9a3.gif)
 
