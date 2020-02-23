@@ -31,3 +31,8 @@ const ratesAverage = dt =>
     .map( obj => obj.rate)
     .reduce((a, b) => a + b)/dt.length)
     .toFixed(2));
+
+// Iteration 5: Drama movies - Get the average of Drama Movies
+const dramaMoviesRate = (obj) => 
+ratesAverage(obj.filter(a => a.genre.includes("Drama")));
+
