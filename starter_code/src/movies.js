@@ -78,7 +78,7 @@ const bestYearAvg = arr => {
     }
   }//for
 
-
+  moviesContainer.push(copiedData[copiedData.length - 1]);
 
   moviesContainer = moviesContainer.sort((a,b) => a.rate - b.rate).reduce((a,b)=>{
     a[0].rate < b.rate ?
