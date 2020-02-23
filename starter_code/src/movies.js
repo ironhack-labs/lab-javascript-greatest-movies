@@ -77,23 +77,23 @@ function dramaMoviesRate(movieArray){
 function turnHoursToMinutes(movieArray){
     let myHours=0;
     let myMinutes=0;
-    const arrayDurationInMinutes=movieArray.map(movie => {
+    const arrayDurationInMinutes=movieArray.map(myMovie => {
 
-        if(movie.duration.includes("h") && movie.duration.includes("m")){ console.log("Case where there are hours and minutes");
-            myHours= parseInt(movie.duration.slice(0,movie.duration.indexOf("h")));
-            myMinutes=parseInt(movie.duration.slice(movie.duration.indexOf("h")+2,movie.duration.indexOf("m")));
+        if(myMovie.duration.includes("h") && myMovie.duration.includes("m")){
+            myHours= parseInt(myMovie.duration.slice(0,myMovie.duration.indexOf("h")));
+            myMinutes=parseInt(myMovie.duration.slice(myMovie.duration.indexOf("h")+2,myMovie.duration.indexOf("m")));
         }
-        else if(movie.duration.includes("h")){                                     console.log("includes hours only");
-            myHours=parseInt(movie.duration.slice(0,movie.duration.indexOf("h")));
+        else if(myMovie.duration.includes("h")){
+            myHours=parseInt(myMovie.duration.slice(0,myMovie.duration.indexOf("h")));
         }
-        else if (movie.duration.includes("m")){                                    console.log("includes only minutes");
-            myMinutes=parseInt(movie.duration.slice(0,movie.duration.indexOf("m")));
+        else if (myMovie.duration.includes("m")){
+            myMinutes=parseInt(myMovie.duration.slice(0,myMovie.duration.indexOf("m")));
     } 
-    movie.duration=60*myHours+myMinutes
-    return movie;
-         
+    myMovie.duration=(60*myHours+myMinutes);
+    return {...myMovie};   
         
 });
+
     return arrayDurationInMinutes;
 
 }
