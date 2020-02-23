@@ -6,7 +6,7 @@
 
 ## Introduction
 
-We've just learned some super useful methods, that will help us a lot to manipulate **objects and arrays**. In this exercise, we will focus on practicing them, and this being said, it is mandatory to implement at least one of them in each iteration.
+We have just learned some super useful methods, that will help us a lot to manipulate **objects and arrays**. In this exercise, we will focus on practicing them, and this being said, it is mandatory to implement at least one of them in each iteration.
 
 Best way to practice is to work with real data. In the **`src/data.js`** file you will find an array of info about **the best 250 movies of all times** according to [IMDB Ranking](http://www.imdb.com/chart/top?ref_=nv_mv_250_6) and you have to process it to display what each iteration ask! :muscle:
 
@@ -28,7 +28,7 @@ Best way to practice is to work with real data. In the **`src/data.js`** file yo
 
 - Create Pull Request so your TAs can check up your work.
 
-## Starter code
+## Introduction
 
 The `src/data.js` contains an array of 250 movies. We are talking about the array of 250 _objects_ containing the info about each movie. Here is one example of how the data is displayed:
 
@@ -45,6 +45,10 @@ The `src/data.js` contains an array of 250 movies. We are talking about the arra
 
 In the next a couple of iterations, you will be using your JS knowledge to manipulate with this data.
 
+## Tests!
+
+Ohh yes! We have our beloved tests, and you already know how this works. Open the `SpecRunner.html` file on your browser and start coding to pass the test. Remember to focus on one test at a time and read carefully the instructions to understand what you have to do.
+
 ## Instructions
 
 You will be digging deeper into some "facts" that this set of data has in it. We see all this raw data, but that doesn't tell us a lot. For example, if we want to see which is the most popular movie, what is the average duration of the movie, list of movies by some director, etc. we wouldn't find the answers just by observing this array.
@@ -52,13 +56,9 @@ Well, there comes your challenge. Read each iteration description carefully and 
 
 You have to work on the `src/movies.js` file.
 
-### Tests
-
-Ohh yes! We have our beloved tests, and you already know how this works. Open the `SpecRunner.html` file on your browser and start coding to pass the test. Remember to focus on one test at a time and read carefully the instructions to understand what you have to do.
-
 ### Iteration 1: Order by year
 
-We need to sort the movies in ascending order by their release year. This should be easy using one of the **methods** we've just learned. :wink:
+We need to sort the movies in ascending order by their release year. This should be easy using one of the **methods** we have just learned. :wink:
 Create a function `orderByYear()` that receives an array as parameter and returns a _new sorted array_.
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_3db351079827c0acba42cf1e397dd8a3.gif)
@@ -101,8 +101,6 @@ We get the info from the **IMDB** web page, but the duration info was saved in a
 
 Finding the longest movie is almost impossible using that format, so let's change it!
 
-<!-- **:bulb: Remember we have a methods o create a new array from another one!** -->
-
 - Create a `turnHoursToMinutes()` function that receives an array as parameter, and with some _magic_ implemented by you - replaces the duration info of each of the movies for its equivalent in minutes. For example:
 
 ```javascript
@@ -143,4 +141,5 @@ Create `bestYearAvg()` function that receives an array of movies and gives us an
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_dfc3fe557576abca4dba274e3aabe9a3.gif)
 
+<br>
 **Happy coding!** :heart:
