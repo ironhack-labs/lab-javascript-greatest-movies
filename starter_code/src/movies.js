@@ -167,28 +167,43 @@ function dramaMoviesRate(array){
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
+// function turnHoursToMinutes(array){
+//     let duration = array.map(movie => movie.duration);
+
+//     const reHours = /[hmin]\s*/
+    
+//     let durationNumbers = duration.map(duration => duration.split(reHours));
+    
+//     let filteredDurationNumbers = durationNumbers.filter(duration => {return duration.splice(2)});
+
+//     let toNumber = filteredDurationNumbers[0].map(Number);
+
+//     let hoursToMinutes = toNumber[0]*60;
+
+//     let newTime = [hoursToMinutes, toNumber[1]]
+
+//     let reduceToMinutes = newTime.reduce((accumulator, number) => {return accumulator + number}, 0 )
+
+//     console.log(reduceToMinutes);
+//     return reduceToMinutes;
+// }
+
+// turnHoursToMinutes(movies);
+
+
 function turnHoursToMinutes(array){
     let duration = array.map(movie => movie.duration);
 
-    const reHours = /[hmin]\s*/
-    
-    let durationNumbers = duration.map(duration => duration.split(reHours));
-    
-    let filteredDurationNumbers = durationNumbers.filter(duration => {return duration.splice(2)});
+    let durationStrNumber = duration.map(duration => [duration.substring (0,1), duration.substring (duration.length-3, 3)]);
 
-    let toNumber = filteredDurationNumbers[0].map(Number);
+    let strToNumber = durationStrNumber.map(string => Number(string));
 
-    let hoursToMinutes = toNumber[0]*60;
-
-    let newTime = [hoursToMinutes, toNumber[1]]
-
-    let reduceToMinutes = newTime.reduce((accumulator, number) => {return accumulator + number}, 0 )
-
-    console.log(reduceToMinutes);
-    return reduceToMinutes;
+    return strToNumber;
 }
 
-turnHoursToMinutes(movies);
+console.log(turnHoursToMinutes(movies));
+
+
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
