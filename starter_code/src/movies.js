@@ -97,10 +97,21 @@ function dramaMoviesRate(array) {
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes (array) {
-    const mapArray = array.map (array => {
-        return array.duration
-    })
-    let minutesArray = mapArray
+    return array.map(movie => {
+        let duration = 0;
+        for (let value of durationAsString.split ("")) {
+            const number = parseInt(value);
+            if (value.includes("h")) {
+                duration += number * 60;
+            } else if (value.includes("min")) {
+                duration += number;
+            }
+        }
+        return {
+          ...movie,
+          duration
+      };
+    });
 }
 
 
