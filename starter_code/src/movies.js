@@ -84,22 +84,71 @@ function dramaMoviesRate(array) {
 }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(array) {
-    let time = array.map(movie => movie.duration);
-
-    let minutes =[];
-    
-    for(let i = 0; i < time.length; i++) {
-        if (time[i].indexOf("min") === false) {
-            minutes.push(parseInt(time[i]) * 60);
-        } else {
-            minutes.push(parseInt(time[i].split(" ")[0]) * 60 + parseInt(time[i].split(" ")[1]));
+    //====================CORRECTION===================
+    return array.map(movie => {
+      const durationAsString = movie.duration;
+      let duration = 0;
+      for (let value of durationAsString.split(" ")) {
+        const number = parseInt(value);
+        if (value.includes("h")) {
+          duration += number * 60;
+        } else if (value.includes("min")) {
+          duration += number;
         }
-        
+      }
+      return {
+        ...movie,
+        duration
+      };
+    });
 
-        console.log('duration:', minutes[i], 'minutes');
-    }
-
-    
-    return minutes
-}
+    // const newDurationFormat = array.map(movie => {
+    //   //console.log(movie.duration);
+    //   if (movie.duration.includes('h') && movie.duration.includes('min')){
+    //     //console.log(parseInt(...movie.duration.split(' ')[0]) * 60 , parseInt((movie.duration.split(' '))[1]));
+    //     return Number (parseInt(...movie.duration.split(' ')[0]) * 60 + parseInt((movie.duration.split(' '))[1]));
+    //   } else if (movie.duration.includes('h') && !movie.duration.includes('min')) {
+    //     //console.log((parseInt(...movie.duration)) * 60);
+    //     return Number (parseInt(...movie.duration) * 60);
+    //   } else if (!movie.duration.includes('h') && movie.duration.includes('min')) {
+    //     //console.log(parseInt(movie.duration));
+    //     return Number (parseInt(movie.duration));
+    //   }
+    // });
+    // console.log(newDurationFormat)
+    // return newDurationFormat
+  }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+  function bestYearAvg(array) {
+    if (!array.length){
+       return null;
+    }
+    let bestAverageMovie = {}
+    let averageRate = 0;
+    array.forEach(movie => {  //The forEach loop let us go movie by movie and compare they're values 
+  
+        let counter = 0;
+        rateOfTheYear = array.reduce((totalRateOfTheYear, yearOfTheMovie) => {
+        if(movie.year === yearOfTheMovie.year) {
+          totalRateOfTheYear += yearOfTheMovie.rate;  //sums all the movie ratings of the same year
+          counter++;  //counts the number os sums per year
+        } 
+        return totalRateOfTheYear   //returns the sum
+      }, 0);
+  
+        averageRateOfTheYear = rateOfTheYear / counter;   //Calculates the average rating of the year
+  
+        if (averageRate === averageRateOfTheYear) {   //set of conditions to break the tie of the ratings between years
+          if (bestAverageMovie.year > movie.year) {
+          bestAverageMovie = movie;
+          averageRate = averageRateOfTheYear;
+          }} else if (averageRate < averageRateOfTheYear) {
+          bestAverageMovie = movie;
+          averageRate = averageRateOfTheYear;
+          }
+        })
+
+     return `The best year was ${bestAverageMovie.year} with an average rate of ${averageRate}`
+     // The best year was <YEAR> with an average rate of <RATE>
+   }
