@@ -120,3 +120,63 @@ const turnHoursToMinutes = movie => {
     return turntoMinutesArr;
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+const bestYearAvg = movie =>{
+
+    let bestYearArr = JSON.parse(JSON.stringify(movie));
+    
+    let count = 0;
+    let count2 = 0;
+    let tempYear = 0;
+    let tempYear2 = 0;
+    let tempAvg = 0;
+    let tempTotal = 0;
+
+    let bestYearAvg = {
+        bestYear: 0,
+        bestAvg: 0
+    }
+
+    if(bestYearArr.length === 0)
+    {
+        return null;
+    }
+
+    let orderYear = orderByYear(bestYearArr);
+    let size = orderYear.length;
+
+    for(let i = 0; i < size; i++)
+    { 
+        if(count === 0)
+        {
+            tempYear = orderYear[i].year;
+            count = 1;
+            //bestYearAvg.bestYear = tempYear;
+        }
+        else if( count === 2)
+        {
+            tempYear = tempYear2;
+            //bestYearAvg.bestYear = tempYear;
+        }
+
+        if(tempYear === orderYear[i].year)
+        {
+            tempAvg +=  orderYear[i].rate;
+            count2 += 1;
+            tempTotal = (tempAvg / count2).toFixed(0);
+
+            if(tempTotal > bestYearAvg.bestAvg)
+            {
+                bestYearAvg.bestAvg = tempTotal;
+                bestYearAvg.bestYear = tempYear;
+            }
+        }
+        else
+        {   
+           tempYear2 = orderYear[i].year;
+           count = 2;
+        } 
+    }    
+
+    return `The best year was ${bestYearAvg.bestYear} with an average rate of ${bestYearAvg.bestAvg}`;
+}
