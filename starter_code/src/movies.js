@@ -71,18 +71,52 @@ const ratesAverage = movie =>{
 
 const dramaMoviesRate = movie => {
 
-    if (movie.filter(a => a.genre.includes("Drama")).length == 0) {
+    let copyArr = JSON.parse(JSON.stringify(movie));
+    if (copyArr.filter(a => a.genre.includes("Drama")).length == 0) {
         return 0;
     }
-    let copyArr = JSON.parse(JSON.stringify(movie));
 
     let dramaArr = copyArr.filter(a => a.genre.includes("Drama"));
-    console.log(dramaArr);
-    let dramaAvg = dramaArr.reduce((acc, item) => acc + item.rate); // dramaArr.length;  
-    console.log(dramaAvg);
-    return +(dramaAvg).toFixed(2);
+    
+    return ratesAverage(dramaArr);
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
+const turnHoursToMinutes = movie => {
+    let turntoMinutesArr = JSON.parse(JSON.stringify(movie));
+    let calculation = 0;
+    let calculationTotal = 0;
+
+    if(movie.length === 0)
+    {
+        return 0;
+    }
+
+    turntoMinutesArr.map(x => {
+
+        if(x.duration.includes('h') && x.duration.includes('min'))
+        {
+            let eliminateSpace = x.duration.split(' ');
+            let transformToMinutes = eliminateSpace[0].split('h');
+            calculation = +transformToMinutes[0] * 60;
+            let sumMinutes = eliminateSpace[1].split('min');
+            calculationTotal = calculation + (+sumMinutes[0]);
+        }
+        else if(x.duration.includes('h'))
+        {
+            let transformToMinutes = x.duration.split('h');
+            calculationTotal = +transformToMinutes[0] * 60;
+        }
+        else{
+            
+            let sumMinutes = x.duration.split('min');
+            calculationTotal = +sumMinutes[0];
+        }
+        
+        x.duration = +calculationTotal;
+    });
+
+    return turntoMinutesArr;
+}
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
