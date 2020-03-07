@@ -101,22 +101,6 @@ function turnHoursToMinutes(array) {
         duration
       };
     });
-
-    // const newDurationFormat = array.map(movie => {
-    //   //console.log(movie.duration);
-    //   if (movie.duration.includes('h') && movie.duration.includes('min')){
-    //     //console.log(parseInt(...movie.duration.split(' ')[0]) * 60 , parseInt((movie.duration.split(' '))[1]));
-    //     return Number (parseInt(...movie.duration.split(' ')[0]) * 60 + parseInt((movie.duration.split(' '))[1]));
-    //   } else if (movie.duration.includes('h') && !movie.duration.includes('min')) {
-    //     //console.log((parseInt(...movie.duration)) * 60);
-    //     return Number (parseInt(...movie.duration) * 60);
-    //   } else if (!movie.duration.includes('h') && movie.duration.includes('min')) {
-    //     //console.log(parseInt(movie.duration));
-    //     return Number (parseInt(movie.duration));
-    //   }
-    // });
-    // console.log(newDurationFormat)
-    // return newDurationFormat
   }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
