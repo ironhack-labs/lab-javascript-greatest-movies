@@ -3075,8 +3075,47 @@ function turnHoursToMinutes(arr){
   return updatedMovieDuration;
 }
 
-turnHoursToMinutes(movies);
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(arr){
+  // edge cases
+  if(arr.length == 0){
+    return null;
+
+  } else if(arr.length == 1){
+    return `The best year was ${arr[0].year} with an average rate of ${arr[0].rate}`;
+  }
+
+  let bestYear = [];
+
+  // create unique, sorted array to loop through
+  const years = arr.map(movie => movie.year);
+  const uniqueYears = [...new Set(years)];
+  const sortedUniqueYears = uniqueYears.sort((a, b) => a - b);
+
+  const sortedByYear = arr.sort((a, b) => a.year - b.year);
+
+  for(i = 0; i < sortedUniqueYears.length; i++){
+    let avgRateByYear = 0;
+
+    let filteredByYear = sortedByYear.filter(movie => movie.year == sortedUniqueYears[i]);
+    console.log(filteredByYear);
+    console.log(filteredByYear.length);
+
+    if(filteredByYear.length > 1){
+      let sumRateByYear = filteredByYear.reduce((acc, val) => acc.rate + val.rate);
+      avgRateByYear = sumRateByYear/filteredByYear.length;
+
+    } else if(filteredByYear.length == 1){
+      avgRateByYear = filteredByYear[0].rate;
+    }
+    
+    bestYear.push([sortedUniqueYears[i], avgRateByYear]);
+  }
+
+  const ranked = bestYear.sort((a, b) => b[1] - a[1]);
+
+  return `The best year was ${ranked[0][0]} with an average rate of ${ranked[0][1]}`;
+}
 
 
 
