@@ -2966,4 +2966,9 @@ let movies = [
       ],
       "rate": 8
     }
-  ]
+  ];
+
+// console.log(movies[0].duration);
+
+
+
