@@ -2,7 +2,7 @@
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies){
-    movies = movies.slice()
+    movies = JSON.parse((JSON.stringify(movies)))
      return movies.sort((a, b)=>{
       if(a['title'] < b['title']){
         return -1;
@@ -25,7 +25,7 @@ function howManyMovies(movies){
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies){
-    movies = movies.slice()
+    movies = JSON.parse((JSON.stringify(movies)))
    let sortedMovies = movies.sort((a, b)=>{
      if (a['title'] < b['title']){
        return -1;
@@ -46,7 +46,7 @@ function orderAlphabetically(movies){
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(movies){
-    movies = movies.slice()
+    movies = JSON.parse((JSON.stringify(movies)))
     let moviesWithRating = movies.filter(movie => movie.hasOwnProperty('rate'));
     let sumOfRating = moviesWithRating.reduce((rating, movie)=>{
       return rating + movie['rate']; 
@@ -56,7 +56,7 @@ function ratesAverage(movies){
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate(movies){
-    movies = movies.slice()
+    movies = JSON.parse((JSON.stringify(movies)))
     let moviesWithRating = movies.filter(movie => movie['genre'].includes('Drama') && movie.hasOwnProperty('rate'));
     let sumOfRating = moviesWithRating.reduce((rating, movie)=>{
       return rating + movie['rate']; 
