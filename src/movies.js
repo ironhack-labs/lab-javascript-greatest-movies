@@ -3041,36 +3041,38 @@ function dramaMoviesRate(arr){
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes(arr){
-    const editedDatabase = [...arr];
+    
+    const updatedMovieDuration = arr.map(movie => {
+      let newDuration = 0;
+      let durationType = movie.duration;
+      const checkH = durationType.includes("h"); //returns true or false
+      const checkMin = durationType.includes("min"); //returns true or false
+    
+        if(checkH && checkMin){
+          let hMin = durationType.split(" ");
+          let newH = hMin[0].replace("h","");
+          let newMin = hMin[1].replace("min","");
+          newDuration = (Number(newH)*60) + (Number(newMin));
+      
+        } else if(checkH && !checkMin){
+          let newH = durationType.replace("h","");
+          newDuration = (Number(newH)*60);
+      
+        } else if(checkMin && !checkH){
+          let newMin = durationType.replace("min","");
+          newDuration = Number(newMin);
+      
+        } else {
+          return null;
+        }
 
-    for (i = 0; i < editedDatabase.length; i++){
-      editedDatabase[i].duration = convertDur(editedDatabase[i].duration);
-    }  
-  
-    //console.log(editedDatabase);
-    return editedDatabase;
-  }
+      return {
+        "name": movie.name,
+        "duration": newDuration
+      };
+    });
 
-//helper function
-function convertDur(helperStr){
-    if(helperStr.includes("h") && helperStr.includes("min")){
-        const strCleanedHoursMin = helperStr.replace("h","").replace   ("min","").split(" ");
-        const numCleanedHoursMin = strCleanedHoursMin.map(Number);
-        const newDurationHoursMin = numCleanedHoursMin[0]*60 + numCleanedHoursMin[1];
-
-        return newDurationHoursMin;
-
-    } else if(helperStr.includes("h")){
-        const strCleanedHours = helperStr.replace("h","");
-        const numCleanedHours = Number(strCleanedHours);
-
-        return numCleanedHours*60;
-
-    } else {
-        const numCleanedMin = Number(helperStr.replace("min",""));
-
-        return numCleanedMin;
-    }        
+  return updatedMovieDuration;
 }
 
 turnHoursToMinutes(movies);
