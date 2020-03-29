@@ -82,9 +82,7 @@ function orderAlphabetically(arr) {
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
 function ratesAverage(arr) {
-    if (arr.length === 0) {
-        return 0
-    }
+
     const averageRate = arr.reduce(function (acc, movie) {
         if (movie.rate) {
             acc += movie.rate / arr.length
@@ -94,8 +92,70 @@ function ratesAverage(arr) {
 
     return Math.round(averageRate * 100) / 100;
 }
+
+
+
 // Iteration 5: Drama movies - Get the average of Drama Movies
+
+function dramaMoviesRate(arr) {
+    const dramaMoviesArray = arr.filter(function (movie) {
+        if (movie.genre.includes("Drama")) {
+            return true
+        } else {
+            return false
+        }
+    })
+
+    return ratesAverage(dramaMoviesArray);
+}
+
+
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
+
+
+function turnHoursToMinutes(arr) {
+    newArray = JSON.parse(JSON.stringify(arr))
+    newArray.forEach(element => {
+        if (!element.duration.includes("h")) {
+            element.duration = Number(element.duration.substring(0, element.duration.length - 3))
+        } else if (!element.duration.includes("min")) {
+            element.duration = Number(element.duration.substring(0, 1)) * 60
+        } else {
+            element.duration = Number(element.duration.substring(0, 1)) * 60 + Number(element.duration.substring(3, element.duration.length - 3))
+        }
+    });
+    return newArray
+}
+
+
+
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(arr) {
+    let newArray = orderByYear(arr);
+    let rateSum = 0
+    let count = 0
+    let ratesAverage = 0
+    let bestYear = 0
+    let bestYearAverageRate = 0
+    for (let i = 0; i < arr.length; i++) {
+        do {
+            rateSum += arr[i].rate
+            count++
+        }
+        while (arr[i].year === arr[i + 1].year)
+        ratesAverage = rateSum / count
+        if (ratesAverage >= bestYearAverageRate) {
+            bestYearAverageRate = ratesAverage
+            bestYear = arr[i].year
+        }
+        rateSum = 0
+        count = 0
+    }
+    return `The best year was ${bestYear} with an average rate of ${bestYearAverageRate}`
+    
+
+
+}
