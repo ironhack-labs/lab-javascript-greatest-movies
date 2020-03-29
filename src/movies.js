@@ -2973,6 +2973,7 @@ let movies = [
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(arr){
+  
     const sortedByYearArr = [...arr].sort(function (firstItem, secondItem) {
         if (firstItem.year == secondItem.year){
             return firstItem.title.localeCompare(secondItem.title);
@@ -2981,7 +2982,6 @@ function orderByYear(arr){
         return firstItem.year - secondItem.year;
     });
 
-    //console.log(sortedByYearArr);
     return sortedByYearArr;
 }
 
@@ -2989,8 +2989,8 @@ function orderByYear(arr){
 
 
 function howManyMovies(arr){
+
     let counter = 0;
-  
     const spielbergsFinest = arr.filter(function (movie){
         if(movie.director == "Steven Spielberg" && movie.genre.includes("Drama")){
             return counter++;
@@ -3005,26 +3005,27 @@ function howManyMovies(arr){
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(arr){   
+
     const titlesOnly = arr.map(movie => movie.title);
     const titlesRanked = [...titlesOnly].sort(function (firstItem, secondItem) {           
         return firstItem.localeCompare(secondItem);
     });
     const shortArr = titlesRanked.slice(0, 20);
+
     return shortArr;
 }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
 function ratesAverage(arr){
-    if(arr.length == 0){
-        return 0;
-    }
+
+      // edge cases
+      if(arr.length == 0){
+          return 0;
+      }
 
     const rateArr = arr.map(movie => movie.rate);
-    console.log(rateArr);
-    
     const filterArr = rateArr.filter(rate => typeof rate == "number");
-
     const sumRate = filterArr.reduce((acc, val) => acc + val);
 
     return parseFloat((sumRate/arr.length).toFixed(2));
@@ -3033,6 +3034,7 @@ function ratesAverage(arr){
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate(arr){
+
     const dramas = arr.filter(movie => movie.genre.includes("Drama"));
 
     return ratesAverage(dramas);
@@ -3077,13 +3079,14 @@ function turnHoursToMinutes(arr){
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 function bestYearAvg(arr){
-  // edge cases
-  if(arr.length == 0){
-    return null;
 
-  } else if(arr.length == 1){
-    return `The best year was ${arr[0].year} with an average rate of ${arr[0].rate}`;
-  }
+    // edge cases
+    if(arr.length == 0){
+      return null;
+
+    } else if(arr.length == 1){
+      return `The best year was ${arr[0].year} with an average rate of ${arr[0].rate}`;
+    }
 
   let bestYear = [];
 
@@ -3098,8 +3101,6 @@ function bestYearAvg(arr){
     let avgRateByYear = 0;
 
     let filteredByYear = sortedByYear.filter(movie => movie.year == sortedUniqueYears[i]);
-    console.log(filteredByYear);
-    console.log(filteredByYear.length);
 
     if(filteredByYear.length > 1){
       let sumRateByYear = filteredByYear.reduce((acc, val) => acc.rate + val.rate);
