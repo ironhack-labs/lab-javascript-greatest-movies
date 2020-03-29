@@ -1,29 +1,5 @@
 /* eslint no-restricted-globals: 'off' */
 
-const moviesDemo = [
-    {
-        "title": "The Shawshank Redemption",
-        "year": 1994,
-        "director": "Frank Darabont",
-        "duration": "2h 22min",
-        "genre": [
-            "Drama",
-            "Crime"
-        ],
-        "rate": 9.3
-        },
-    {
-        "title": "The Godfather",
-        "year": 1972,
-        "director": "Francis Ford Coppola",
-        "duration": "2h 55min",
-        "genre": [
-            "Crime",
-            "Drama"
-        ],
-        "rate": 9.2
-    }
-];
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear (movies){
@@ -90,7 +66,12 @@ function dramaMoviesRate(movies){
     return ratesAverage(dramaMovies);
 }
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(movies){ 
+    // let hoursArr = movies[0].duration.split(" ");   
+  let newArr=movies[0].duration.split(" ");
+  console.log (newArr);
+      
+
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
-
 

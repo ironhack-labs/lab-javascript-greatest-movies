@@ -3,7 +3,10 @@ let movies = [
       "title": "The Shawshank Redemption",
       "year": 1994,
       "director": "Frank Darabont",
-      "duration": "2h 22min",
+      "duratiofunction turnHoursToMinutes(movies){ 
+        // let hoursArr = movies[0].duration.split(" ");   
+      let newArr=movies[0].duration.split(" ");
+      console.log (newArr);n": "2h 22min",
       "genre": [
         "Crime",
         "Drama"
