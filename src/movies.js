@@ -63,3 +63,41 @@ const turnHoursToMinutes = arr => {
   return result;
 };
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+const bestYearAvg = arr => {
+  if (arr.length === 0) return null;
+
+  // making an array of unique years
+  const arrOfYears = arr.map(movie => movie.year);
+  const uniqueYears = arrOfYears.reduce((acc, curval) => {
+    if (!acc.includes(curval)) {
+      return [...acc, curval];
+    } else return acc;
+  }, []);
+
+  // dealing with the case if the 'Should return the oldest year when there is a tie'
+  const sortedUniqueYears = uniqueYears.sort((a, b) => a - b);
+
+  // making separate arrays of movies with the same year
+  let groupedByYear = [];
+  for (let specificYear of sortedUniqueYears) {
+    const moviesWithTheSameYear = arr.filter(
+      movie => movie.year === specificYear
+    );
+    groupedByYear.push(moviesWithTheSameYear);
+  }
+
+  // making arrays with only year and average rate
+  const averages = [];
+  const yearAveragePairs = [];
+  for (let i = 0; i < groupedByYear.length; i++) {
+    averages.push(ratesAverage(groupedByYear[i]));
+    const result = groupedByYear[i].reduce((acc, curval) => {
+      return { ...acc, average: averages[i], year: curval.year };
+    }, {});
+    yearAveragePairs.push(result);
+  }
+
+  const theBestYear = yearAveragePairs.sort((a, b) => b.average - a.average)[0];
+  return `The best year was ${theBestYear.year} with an average rate of ${theBestYear.average}`;
+};
