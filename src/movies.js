@@ -2,6 +2,27 @@
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
+function compare(a, b) {
+  if (a.year < b.year) {
+    return -1
+  } else if (a.year > b.year) {
+    return 1
+  } else {
+    if (a.title < b.title) {
+      return -1
+    } else if (a.title > b.title) {
+      return 1
+    }
+  }
+}
+
+function orderByYear(array) {
+  const orderedArray = [...array].sort(compare)
+  console.log(`OG ARRAY: ${array}`)
+  console.log(`ordered array: ${orderedArray}`)
+  return orderedArray
+}
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 
 function howManyMovies(movieArray) {
