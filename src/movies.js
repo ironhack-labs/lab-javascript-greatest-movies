@@ -36,8 +36,8 @@ function howManyMovies(movieArray) {
 function orderAlphabetically(array) {
   const orderedArray = [...array].sort((a, b) => a.title.localeCompare(b.title))
   let titleArray = []
-  
-  orderedArray.forEach(elm => titleArray.push(elm.title));
+
+  orderedArray.forEach(elm => titleArray.push(elm.title))
 
   if (titleArray.length <= 20) {
     return titleArray
@@ -81,36 +81,38 @@ function dramaMoviesRate(array) {
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-  //We're gonna use this very janky method because no film is longer than 9 hours, but it's
-  //extremely hacky. Not my proudest function.
+//We're gonna use this very janky method because no film is longer than 9 hours, but it's
+//extremely hacky. Not my proudest function.
 
 function parseHours(film) {
   let hoursToMinutes
   let minutes
 
-  if (film.duration.includes ("h")) {
-    hoursToMinutes = parseInt(film.duration[0])*60;
-  } else {hoursToMinutes = 0}
-  
-  if (film.duration.includes ("min")) {
+  if (film.duration.includes('h')) {
+    hoursToMinutes = parseInt(film.duration[0]) * 60
+  } else {
+    hoursToMinutes = 0
+  }
+
+  if (film.duration.includes('min')) {
     minutes = parseInt(film.duration.slice(-5, -3))
-  } else {minutes = 0}
-  
+  } else {
+    minutes = 0
+  }
+
   return hoursToMinutes + minutes
 }
 
-const test = parseHours({duration: "1h 5min"})
+const test = parseHours({ duration: '1h 5min' })
 console.log(test)
-console.log("---------------")
-
+console.log('---------------')
 
 function turnHoursToMinutes(array) {
   const newArray = array.map(elm => {
-    const objResult = {...elm, duration: parseHours(elm)}
+    const objResult = { ...elm, duration: parseHours(elm) }
     return objResult
   })
-  console.log(newArray)
-  return newArray;
+  return newArray
 }
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
