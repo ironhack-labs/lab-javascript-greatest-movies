@@ -34,6 +34,21 @@ function ratesAverage(array) {
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
+function dramaMoviesRate(array) {
+  if (array.length == 0) {
+    return 0;
+  }
+  const areDramas = array.filter(elm => elm.genre == 'Drama');
+  if (areDramas.length == 0) {
+    return 0;
+  }
+  console.log(areDramas);
+  const sum = ratesSummation(areDramas);
+
+  const average = sum / areDramas.length;
+  return parseFloat(average.toFixed(2));
+}
+
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
