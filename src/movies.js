@@ -53,7 +53,7 @@ function orderAlphabetically (arr) {
 
 function ratesAverage(arr) {
 
-    let newArr = [...arr]; //trying to not mutuate the original array, but unsucessful. 
+    let newArr = JSON.parse(JSON.stringify(arr));
 
     if (newArr.length === 0) return 0;
 
@@ -62,12 +62,6 @@ function ratesAverage(arr) {
     return movie;
     });
     
-    /*Question: Why does the functoin on line 60 seem to mutate the original array, even though I created
-    a new array at the beginning with spread?
-    1. I thought spread could copy the array (I also tried .slice())
-    2. I thought map did not mutate the array
-    */
-
     const sumRating = newArr.reduce(function(sum, movie){
         return sum + movie.rate;
     }, 0)
@@ -106,7 +100,7 @@ function dramaMoviesRate(arr){
 
 function turnHoursToMinutes(arr) {
 
-    let newArr = arr.slice();
+    let newArr = JSON.parse(JSON.stringify(arr));;
     newArr = newArr.map(function(movie){
         let newDuration = 0;
         let splitDur = movie.duration.split(" ");
@@ -123,8 +117,6 @@ function turnHoursToMinutes(arr) {
    return newArr;
 }
 
-/* Still having trouble not changing the initial array. 
-For some reason Jasmine says that my duration is not a number. I am not sure why. */
 
 
 
