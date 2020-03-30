@@ -7,33 +7,9 @@ function orderByYear(firstArray) {
 
   let orderedByYearArray = copiedArray.sort((a, b) => a.year - b.year);
 
-  /* for (let=i; i < orderedByYearArray.length; i++){
-
-        if (orderedByYearArray[i].year = orderedByYearArray[i + 1].year{
-            
-            orderedByYearArray.sort()
-        }
-    }
-    */
-
-  /* function compare(a, b) {
-      
-      let comparisonValue = 0;
-
-        if (a.title.toUpperCase() > b.title.toUpperCase()) {
-            comparisonValue = 1;
-        } else if (a.title.toUpperCase() < b.title.toUpperCase()) {
-            comparisonValue = -1;
-        } 
-
-        return comparisonValue
-
-    }
-    
-    
-    let alphabeticOrder = orderedByYearArray.sort(compare)*/
-
   return orderedByYearArray;
+
+  // FALTA ORDENAR ALFABETICAMENTE EN CASO DE COINCIDIR
 }
 
 orderByYear(movies);
