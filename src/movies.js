@@ -36,7 +36,7 @@ function howManyMovies(movies) {
 
 function orderAlphabetically(movies) {
 
-    const alphabeticallMovies = movies.splice(0, 20)
+    const alphabeticallMovies = movies.splice(0, 20) //.sort((a,b) => a.title.localeCompare(b.title) ) NO SÉ SI ES ASÍ PERO BUENO
     return alphabeticallMovies
 
 
@@ -88,5 +88,10 @@ function dramaMoviesRate(movies) {
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
+function turnHoursToMinutes(movies) {
+
+
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
