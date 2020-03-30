@@ -277,7 +277,7 @@ describe('Get the average rate - ratesAverage', () => {
   });
 
   it('It should be rounded to 2 decimals digits', () => {
-    expect(ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }])).toBe(8.67);
+    expect(ratesAverage([{ title: "aa", rate: 8 }, { title: "bbb", rate: 9 }, { rate: 9 }])).toBe(8.67);
   });
 
   it('It should return 0 if there is no movie', () => {
