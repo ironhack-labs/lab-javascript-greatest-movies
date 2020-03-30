@@ -103,13 +103,20 @@ function dramaMoviesRate(movies) {
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 // THIS IS NOT WORKING IN JASMIN; BUT CONSOLING IT MAKES IT GOOD I WOULD REALLY FIND THE PROBLEM ON IT
 function turnHoursToMinutes(array) {
+  console.log(array);
   let newArr = JSON.parse(JSON.stringify(array));
   newArr = newArr.map(function(time) {
-    time.duration = eval(
-      time.duration.replace("h", "*60 +" || 0).replace("min", "")
-    );
+    console.log("medium");
+    if (time.duration.includes("min")) {
+      console.log("markis");
+      time.duration = eval(
+        time.duration.replace("h", "*60 +" || 0).replace("min", "")
+      );
+    } else {
+      time.duration = eval(time.duration.replace("h", "*60"));
+    }
     // console.log(movies);
-
+    console.log("after");
     console.log(newArr);
     return time;
   });
