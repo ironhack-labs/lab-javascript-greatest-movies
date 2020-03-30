@@ -85,20 +85,19 @@ function dramaMoviesRate(array) {
     
 function turnHoursToMinutes(array) {
     //Pick duration to modify
-   let splitDuration = array.map(function(movie){
+   let splitDuration = JSON.parse(JSON.stringify(array)).map(function(movie){
      //Split with H and check if it is an hour or min
      if (!movie.duration.split('h')[0].includes('min')) {
        // If it is an hour, multiply by 60 and add minutes if needed
-       return parseInt(movie.duration.split('h')[0])*60 + 
-         parseInt(movie.duration.split('h')[1]) || parseInt(movie.duration.split('h')[0])*60;
+     movie.duration =  parseInt(movie.duration.split('h')[0])*60 + parseInt(movie.duration.split('h')[1]) || parseInt(movie.duration.split('h')[0])*60;
      } else {
        // Else just return the minutes
-       return parseInt(movie.duration.split('h')[0])
+       movie.duration = parseInt(movie.duration.split('h')[0])
      }
+     return movie
    })
-   //create new object from each new duration and update the movie list.
-   
-  }      
+   return splitDuration;
+  }
     
 
 
