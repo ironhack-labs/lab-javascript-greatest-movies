@@ -20,10 +20,11 @@ function ratesAverage(array) {
   if (array.length == 0) {
     return 0;
   }
-  const hasRate = array.filter(elm => elm.rate);
-  const ratesSummation = hasRate.reduce((acc, movie) => {
-    return acc + movie.rate;
-  }, 0);
+  const ratesSummation = array
+    .filter(elm => elm.rate)
+    .reduce((acc, movie) => {
+      return acc + movie.rate;
+    }, 0);
   const average = ratesSummation / array.length;
   return parseFloat(average.toFixed(2));
 }
