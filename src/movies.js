@@ -38,7 +38,10 @@ function orderAlphabetically(arr){
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(arr){
     if(arr.length == 0){return 0 } 
-  let avg = arr.map(function(avgMovieRate){  
+  let avg = arr.map(function(avgMovieRate){
+    if(!avgMovieRate.rate){
+      return 0
+    }  
     return avgMovieRate.rate 
     }).reduce(function (acc, cur){    
   return  (acc + cur)
@@ -47,7 +50,52 @@ function ratesAverage(arr){
  return val
 }
 // Iteration 5: Drama movies - Get the average of Drama Movies
-
+function dramaMoviesRate(arr){
+    if(arr.length == 0){return 0 } 
+  let avg = arr.map(function(avgMovieRate){
+    if(!avgMovieRate.rate){
+      return 0
+    }  
+    return avgMovieRate.rate 
+    }).reduce(function (acc, cur){    
+  return  (acc + cur)
+ })
+ let val = parseFloat((avg/arr.length).toFixed(2));
+ return val
+}
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function dramaMoviesRate(arr){
+    if(arr.length == 0){return 0 } 
+    let avg = arr.map(function(avgMovieRate){
+    if(avgMovieRate.genre == 'Drama'){
+      console.log(avgMovieRate.rate)
+      return avgMovieRate.rate
+    }
+  }).reduce(function (acc, cur){    
+  return  (acc + cur)
+  })
+   let val = parseFloat((avg/arr.length).toFixed(2));
+return val
+}
+
+dramaMoviesRate([
+        { genre: ['Drama'], rate: 8 },
+        { genre: ['Romance'], rate: 9 },
+        { genre: ['Drama'], rate: 7 }
+      ])
+      //expected 7.5
+      /* 
+        let avg = arr.map(function(avgMovieRate){
+    if(!avgMovieRate.rate){
+      return 0
+    }
+    console.log(avgMovieRate.genre)  
+    return avgMovieRate.rate 
+    }).reduce(function (acc, cur){    
+  return  (acc + cur)
+ })
+ let val = parseFloat((avg/arr.length).toFixed(2));
+ return val
+      */
