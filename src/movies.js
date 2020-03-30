@@ -8,8 +8,8 @@ function howManyMovies(movieArray) {
   const movieList = movieArray.filter(
     movie =>
       movie.genre.includes('Drama') && movie.director == 'Steven Spielberg'
-  );
-  return movieList.length;
+  )
+  return movieList.length
 }
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
@@ -18,35 +18,35 @@ function howManyMovies(movieArray) {
 
 function ratesSummation(array) {
   return array.reduce((acc, movie) => {
-    return acc + movie.rate;
-  }, 0);
+    return acc + movie.rate
+  }, 0)
 }
 
 function ratesAverage(array) {
   if (array.length == 0) {
-    return 0;
+    return 0
   }
-  const hasRate = array.filter(elm => elm.rate);
-  const sum = ratesSummation(hasRate);
-  const average = sum / array.length;
-  return parseFloat(average.toFixed(2));
+  const hasRate = array.filter(elm => elm.rate)
+  const sum = ratesSummation(hasRate)
+  const average = sum / array.length
+  return parseFloat(average.toFixed(2))
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate(array) {
   if (array.length == 0) {
-    return 0;
+    return 0
   }
-  const areDramas = array.filter(elm => elm.genre == 'Drama');
+  const areDramas = array.filter(elm => elm.genre == 'Drama')
   if (areDramas.length == 0) {
-    return 0;
+    return 0
   }
-  console.log(areDramas);
-  const sum = ratesSummation(areDramas);
+  console.log(areDramas)
+  const sum = ratesSummation(areDramas)
 
-  const average = sum / areDramas.length;
-  return parseFloat(average.toFixed(2));
+  const average = sum / areDramas.length
+  return parseFloat(average.toFixed(2))
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
