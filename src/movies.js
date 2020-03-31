@@ -90,21 +90,28 @@ function dramaMoviesRate(arr) {
 function turnHoursToMinutes(arr){
     
     const newArr = arr.map(elm => {
-        let num1 = 0;
-        let num2 = 0;
+        let hours = 0;
+        let minutes = 0;
         let newDuration = {...elm}
-        if(elm.duration.split(' ').length === 1){
-            num1 = parseInt((elm.duration.split(' '))[0])*60
-            newDuration.duration = num1
-        } else if(elm.duration.split(' ').includes('min')){
-            num2 = parseInt((elm.duration.split(' '))[1])
-            newDuration.duration = num2
-        } else {
-            num1 = parseInt((elm.duration.split(' '))[0])*60
-            num2 = parseInt((elm.duration.split(' '))[1])
-            newDuration.duration = num1 + num2
+        
+        if (elm.duration.includes('h') && elm.duration.includes('min')){
+            hours = parseInt((elm.duration.split(' ')[0]))*60
+            minutes = parseInt((elm.duration.split(' ')[1]))
+            newDuration.duration = hours + minutes
         }
+        else if (elm.duration.includes('h')){
+            hours = parseInt((elm.duration.split(' ')[0]))*60
+            minutes = 0
+            newDuration.duration = hours + minutes
+        }
+        else if (elm.duration.includes('min')){
+            minutes = parseInt((elm.duration.split(' ')[0]))
+            hours = 0
+            newDuration.duration = minutes + hours
+        }
+
         return newDuration
+
     })
 
     return newArr
