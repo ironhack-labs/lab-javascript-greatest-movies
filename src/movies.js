@@ -103,10 +103,6 @@ function parseHours(film) {
   return hoursToMinutes + minutes
 }
 
-const test = parseHours({ duration: '1h 5min' })
-console.log(test)
-console.log('---------------')
-
 function turnHoursToMinutes(array) {
   const newArray = array.map(elm => {
     const objResult = { ...elm, duration: parseHours(elm) }
@@ -116,3 +112,51 @@ function turnHoursToMinutes(array) {
 }
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(array) {
+  const yearAverageContainer = {}
+
+  //This produces an object which contains every year represented as keys, with the
+  //IMDB ratings of that year's movies in an array as values, plus creates a new object
+  //to store the averages
+  const yearArrayContainer = array.reduce((acc, obj) => {
+    const key = obj.year
+    if (!acc[key]) {
+      acc[key] = []
+      yearAverageContainer[key] = 0
+    }
+    acc[key].push(obj.rate)
+    return acc
+  }, {})
+
+  //calculates averages for every year and stores them in that new object
+  for (const year in yearArrayContainer) {
+    let value = yearArrayContainer[year]
+    const yearAvg = value.reduce((acc, n) => acc + n) / value.length
+    yearAverageContainer[year] = yearAvg
+  }
+
+  //non-iterable???
+  const bestestYear = [...yearAverageContainer].sort((a, b) => {
+    valueA = yearAverageContainer[a]
+    console.log(a, " - ", valueA)
+    valueB = yearAverageContainer[b]
+    console.log(b, " - ", valueB)
+
+    if (valueA < valueB) {
+      return -1
+    } else if (valueA > valueB) {
+      return 1
+    } else {
+      if (a < b) {
+        return -1
+      } else {
+        return 1
+      }
+    }
+  })
+
+  console.log(bestestYear)
+  console.log(yearAverageContainer)
+  console.log('..............')
+}
