@@ -1,8 +1,23 @@
 /* eslint no-restricted-globals: 'off' */
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
+function orderByYear(moviesParam) {
+    let copiaMovies = Array.from(moviesParam);
+    let ordenar = (a, b) => {
+        return a.year - b.year;
+    };
+    return copiaMovies.sort(ordenar);
+}
+
+
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
+function howManyMovies(copiaMovies) {
+    return copiaMovies.filter(
+      ({ director, genre }) =>
+        genre.includes("Drama") && director == "Steven Spielberg"
+    ).length;
+  }
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
