@@ -67,8 +67,6 @@ let movies = [
     }
             ];
 
-//console.log(movies);
-
 
 function orderByYear(filmArr) {
     const copyFilms = [...filmArr];
@@ -80,16 +78,13 @@ function orderByYear(filmArr) {
             return 1;
         }
         // and if the year is same:
-        // else block would start here but i dont wanna use it if 4 if statements work fine :D
+        // else block would start here but i dont wanna use it if 4 if-statements work fine :D
         if ( filmA.title.toLowerCase() > filmB.title.toLowerCase() ) { // yes??? yes.
             return 1; // 
         }
         else if ( filmA.title.toLowerCase() < filmB.title.toLowerCase() ) {
             return -1;
         }
-                                    //return filmA.title > filmB.title;
-                                    //const alphSorted = sorted.sort(); can't make tihs work?? ???? 
-                                    //return 0; // actually sort them alphab..
 
     } );
     return sorted; //
@@ -116,7 +111,7 @@ function howManyMovies(filmArr)
 
 function orderAlphabetically(filmArr) {
 
-    const mutableFilms = [...filmArr];
+    const mutableFilms = [...filmArr]; // making a copy of films list that i'm allowed to mutate
     const titles = [];
     mutableFilms.forEach( (film) => titles.push(film.title) )
     orderedTitles = titles.sort();
@@ -133,7 +128,7 @@ function ratesAverage(filmArr) {
     const ratings = [];
     filmArr.forEach( (film) => ratings.push(film.rate) ) // rip out all the ratings and put them in 1 array
     //console.log(ratings);
-    avg = (ratings.reduce( (totalRatings, nextRating) => totalRatings + nextRating )) / (ratings.length);
+    avg = (ratings.reduce( (totalRatings, nextRating) => totalRatings + nextRating )) / (ratings.length); // sum all ratings with reduce() to calculate average
     //console.log(avg); 
     return avg;
     //return ratings;
