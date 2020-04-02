@@ -6,7 +6,7 @@
 //Create a function orderByYear() that receives an array as parameter and returns a new sorted array.
 //If two movies have the same year, order them in alphabetical order by their title! 
 
-
+/*
 list = ["lion king", "jumanji", "husbandStopMakingNoise"];
 let movies = [
     {
@@ -65,7 +65,7 @@ let movies = [
       ],
       "rate": 8.9
     }
-            ];
+            ]; */
 
 
 function orderByYear(filmArr) {
