@@ -6,7 +6,7 @@
 //Create a function orderByYear() that receives an array as parameter and returns a new sorted array.
 //If two movies have the same year, order them in alphabetical order by their title! 
 
-/*
+
 list = ["lion king", "jumanji", "husbandStopMakingNoise"];
 let movies = [
     {
@@ -37,8 +37,7 @@ let movies = [
       "director": "Francis Ford Coppola",
       "duration": "3h 22min",
       "genre": [
-        "Crime",
-        "Drama"
+        "Crime"
       ],
       "rate": 9
     },
@@ -67,7 +66,7 @@ let movies = [
       "rate": 8.9
     }
             ];
-*/
+
 //console.log(movies);
 
 
@@ -77,15 +76,15 @@ function orderByYear(filmArr) {
         if (filmA.year < filmB.year) {
             return -1;
         }
-        if (filmA.year > filmB.year) {
+        else if (filmA.year > filmB.year) {
             return 1;
         }
-
-        // if the year is same:
+        // and if the year is same:
+        // else block would start here but i dont wanna use it if 4 if statements work fine :D
         if ( filmA.title.toLowerCase() > filmB.title.toLowerCase() ) { // yes??? yes.
             return 1; // 
         }
-        if ( filmA.title.toLowerCase() < filmB.title.toLowerCase() ) {
+        else if ( filmA.title.toLowerCase() < filmB.title.toLowerCase() ) {
             return -1;
         }
                                     //return filmA.title > filmB.title;
@@ -110,12 +109,48 @@ function howManyMovies(filmArr)
 }
 
 
-
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
+//Create a orderAlphabetically() function, that receives an array and returns an array of first 20 titles, alphabetically ordered. 
+//Return only the title of each movie, and 
+//if the array you receive has less than 20 movies, return all of them.
+
+function orderAlphabetically(filmArr) {
+
+    const mutableFilms = [...filmArr];
+    const titles = [];
+    mutableFilms.forEach( (film) => titles.push(film.title) )
+    orderedTitles = titles.sort();
+    return orderedTitles.splice(0,20);
+}
+
+console.log(orderAlphabetically(movies));
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+//Create a ratesAverage() function that receives an array as a parameter and solves the challenge.
+//display it on the console. The rate must be returned rounded to 2 decimals!
+
+function ratesAverage(filmArr) {
+    const ratings = [];
+    filmArr.forEach( (film) => ratings.push(film.rate) ) // rip out all the ratings and put them in 1 array
+    //console.log(ratings);
+    avg = (ratings.reduce( (totalRatings, nextRating) => totalRatings + nextRating )) / (ratings.length);
+    //console.log(avg); 
+    return avg;
+    //return ratings;
+}
+ratesAverage(movies);
+
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(filmArr) {
+    // filter together drama films
+    const dramas = filmArr.filter( film => film.genre.includes("Drama")  ) // if film genre is drama, add it to dramas array
+    //console.log(dramas);
+    dramaAvg = ratesAverage(dramas);
+    //console.log("dramaAvg", dramaAvg); UNCOMMENT THIS TO GET AVERAGE CONSOLE LOGGED!
+    return dramaAvg;
+}
+dramaMoviesRate(movies);
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
