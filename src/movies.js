@@ -48,5 +48,33 @@ function dramaMoviesRate(films){
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(films){
+    let newArray = JSON.parse(JSON.stringify(films));
 
+    newArray.forEach(film => film.duration = convertToMinutes(film.duration));
+
+    return newArray;
+}
+function convertToMinutes(timeStr){
+    let minutes = 0;
+    let times = timeStr.split(' ');
+
+    for (let t=0;t<times.length;t++){
+        if (times[t].indexOf('h')>=0){
+            minutes += parseInt(times[t].substring(0,times[t].indexOf('h')))*60;
+        }
+        else if (times[t].indexOf('m')>=0){
+            minutes += parseInt(times[t].substring(0,times[t].indexOf('m')));
+        }
+    }
+
+    return minutes;
+}
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(films){
+    if (films.length===0) return null;
+
+    films.sort((film1,film2) => film2.rate-film1.rate).sort((film1,film2) => film1.year-film2.year);
+
+    return `The best year was ${films[0].year} with an average rate of ${films[0].rate}`;
+}
