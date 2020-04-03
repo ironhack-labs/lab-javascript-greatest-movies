@@ -55,12 +55,12 @@ const ratesAverage = (arr) => {
 
 const dramaMoviesRate = (arr, genre) => {
     let arrDrama = []
-    let copyOfArray = [...arr]
+    let copyOfArray = [...arr] // copies original array 
     const count = copyOfArray.map((eachMovie) => {
         return eachMovie.genre.includes(genre)
-    })
-    for (let i = 0; i < count.length; i++) {
-      if(count[i] === true) {
+    }) // creates a new array containing only 'true' values
+    for (let i = 0; i < count.length; i++) { // establishes the indexes of true and then applies them as an index to arrDrama
+      if(count[i] === true) { // if count[i] = true, then copyOfArray[i] is pushed into the rates average
         arrDrama.push(copyOfArray[i])
       }
     }
@@ -68,5 +68,29 @@ const dramaMoviesRate = (arr, genre) => {
 }
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
+// function timeConverter(duration) {
+//     let minutes = 0;
+//     let array = duration.split("h");
+//     if (array.length === 1) {
+//       minutes += parseInt(array[0]);
+//     } else if (array[1] === "") {
+//       minutes += array[0] * 60;
+//     } else {
+//       minutes += array[0] * 60 + parseInt(array[1]);
+//     }
+//     return minutes;
+//   }
+  
+//   function turnHoursToMinutes(movies) {
+//     return movies.map(function (movie) {
+//       let copyOfMovie = { ...movie };
+//       copyOfMovie.duration = timeConverter(movie.duration);
+//       return copyOfMovie;
+//     });
+//   }
+
+// REVIEW CODE AND FIND A SOLUTION 
+  
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
