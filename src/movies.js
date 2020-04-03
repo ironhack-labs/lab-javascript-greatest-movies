@@ -4,13 +4,13 @@
 function orderByYear(movieArr) {
     // create a copy
     let copyMovies = Array.from(movieArr);
-    // sort by year
+    // sort by year, if same year sort alphabetically
     return copyMovies.sort((mov1, mov2) => (mov1.year !== mov2.year ? mov1.year - mov2.year : mov1.title.toUpperCase() > mov2.title.toUpperCase() ? 1 : mov1.title.toUpperCase() < mov2.title.toUpperCase() ? -1 : 0));
 }
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 function howManyMovies(movieArr) {
-    const spielbergMovies = movieArr.filter(movie => movie["director"] === "Steven Spielberg" && movie["genre"].includes("Drama"));
-    return spielbergMovies.length;
+    // filter by genre drama and Spielberg director
+    return movieArr.filter(movie => movie.director === "Steven Spielberg" && movie.genre.includes("Drama")).length;
 }
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movieArr) {
@@ -29,9 +29,24 @@ function orderAlphabetically(movieArr) {
     return first20Alph;
 }
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
-
+function ratesAverage(movieArr) {
+    // test 0 length
+    if (movieArr.length === 0) {
+        return 0;
+    } 
+    // calculate the sum of the rates (taking 0 if there's an empty film or wrong type value) & calculate the average rounded to 2 decimals
+    let sum = movieArr.reduce((sumRates, mov) => sumRates + (typeof mov.rate !== "number" ? 0 : mov.rate), 0);
+    return parseFloat((sum/movieArr.length).toFixed(2));
+}
 // Iteration 5: Drama movies - Get the average of Drama Movies
-
+function dramaMoviesRate(movieArr) {
+    // create the filtered drama array and use of a previous function to calculate the average
+    const dramaArrray = movieArr.filter(movie => movie.genre.includes("Drama"));
+    return ratesAverage(dramaArrray);
+}
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
-
+function turnHoursToMinutes(movieArr) {
+    // create a copy using JSON
+    let copyMovies = JSON.parse(JSON.stringify(movieArr));
+}
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
