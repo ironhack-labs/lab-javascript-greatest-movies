@@ -18,16 +18,22 @@ function orderByYear(films) {
 
 function howManyMovies(films) {
 
-    return films.filter(film => film.director === "Steven Spielberg"  && filmGenre(film, 'Drama')).length;
+    return films.filter(film => film.director === "Steven Spielberg" && filmGenre(film, 'Drama')).length;
 
 }
 
 function filmGenre(movie, genreToFilter) {
-    
+
     return movie.genre.filter(filmGenre => filmGenre === genreToFilter).length > 0;
 }
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
+
+function orderAlphabetically(films) {
+
+    return films.map(film => film.title).sort().filter((film, first) => first < 20);
+}
+
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
