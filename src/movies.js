@@ -48,5 +48,16 @@ function dramaMoviesRate(movieArr) {
 function turnHoursToMinutes(movieArr) {
     // create a copy using JSON
     let copyMovies = JSON.parse(JSON.stringify(movieArr));
+    // create a minutes array with conversion h-min format to min
+    let minutesArray = movieArr.map(movie => {
+        let hourIndex = movie.duration.indexOf("h");
+        let minIndex = movie.duration.indexOf("min");
+        return (hourIndex === -1 ? 0 : parseInt(movie.duration[hourIndex - 1])*60) + (minIndex === -1 ? 0 : parseInt(movie.duration.slice(minIndex-2, minIndex)));
+    });
+    // change the duration format to a new min format    
+    for (let i=0; i<copyMovies.length; i++) {
+        copyMovies[i].duration = minutesArray[i];
+    }
+    return copyMovies;
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
