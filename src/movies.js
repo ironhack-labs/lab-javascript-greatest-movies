@@ -4,7 +4,7 @@
 
 function orderByYear(yearOfMovie) {
 
-    let copiaMovies = Array.from(yearOfMovie);
+    let copiaMovies = [...yearOfMovie];
     function ordenar(a,b) {
         if (a.year !== b.year){
             return a.year - b.year;
@@ -30,12 +30,7 @@ function howManyMovies(genreOfMovie) {
     }
     copiaMovies = genreOfMovie.filter(filterMovies);
 
-    function sumaDrama(acc,elem) {
-      return acc + 1;
-    };
-    copiaMovies = copiaMovies.reduce(sumaDrama,0)
-
-    return copiaMovies;
+    return copiaMovies.length;
   }
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
@@ -44,11 +39,7 @@ function orderAlphabetically(alphabetOrderedArr) {
     let copiaMovies = Array.from(alphabetOrderedArr);
 
     function ordenarAZ(a,b) {
-        if (a.title.toUpperCase() > b.title.toUpperCase()) {
-            return 1;
-        } else {
-            return -1;
-        }
+        return a.title.localeCompare(b.title);
     }
 
     copiaMovies.sort(ordenarAZ);
@@ -62,6 +53,17 @@ function orderAlphabetically(alphabetOrderedArr) {
 }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+
+function ratesAverage(allRates) {
+
+    if (allRates.length === 0) {
+        return 0;
+    }
+
+    meanRates = allRates.reduce( (acc, elem) => elem.rate ? acc + elem.rate : acc + 0, 0)/allRates.length;
+  
+    return Math.round(meanRates * 100) / 100;
+  }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
