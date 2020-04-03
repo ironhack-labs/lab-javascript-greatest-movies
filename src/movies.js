@@ -34,8 +34,23 @@ function orderAlphabetically(films) {
     return films.map(film => film.title).sort().filter((film, first) => first < 20);
 }
 
+// Iteration 4: All rates average - Get the average of all rates with 2 decimals;
 
-// Iteration 4: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(films) {
+    
+    if (films.length === 0) return 0;
+    
+    return parseFloat((films.filter(film => "rate" in film).reduce((sum, film) => sum + film.rate, 0) / films.length).toFixed(2));
+}
+
+/*function ratesAverage(films){
+    if (films.length===0) return 0;
+
+    let rateAvg = films.filter(film=> 'rate' in film).reduce((sum,film) => sum + film.rate, 0);
+
+    return parseFloat((rateAvg/films.length).toFixed(2));
+}*/
+
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
