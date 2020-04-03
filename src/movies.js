@@ -9,11 +9,7 @@ function orderByYear(yearOfMovie) {
         if (a.year !== b.year){
             return a.year - b.year;
         } else {
-            if (a.title.toUpperCase() > b.title.toUpperCase()) {
-                return 1;
-            } else {
-                return -1;
-            }
+            return a.title.localeCompare(b.title);
         }
     }
 
@@ -93,19 +89,36 @@ function turnHoursToMinutes(arrInHours) {
         }
     })
 
-    return arrInMinutes;
+    return arrInMinutes; 
 }
-
-/*
-for (i in movies) {
-  if (movies[i].duration.length === 2) {
-    console.log(movies[i].duration[0]*60)
-  } else if (movies[i].duration.length === 8) {
-    console.log(movies[i].duration[0]*60 + parseInt(movies[i].duration[3]+movies[i].duration[4]))
-  } else if (movies[i].duration.length === 7) {
-    console.log(movies[i].duration[0]*60 + parseInt(movies[i].duration[3]))
-  }
-}
-*/
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(yearlyArray) {
+    if (yearlyArray.length === 0) {
+        return null;
+    }
+
+    let bestYear = [...yearlyArray];
+    const reduced = bestYear.reduce(function(m, d){
+        if(!m[d.year]){
+          m[d.year] = {...d, count: 1};
+          return m;
+        }
+        m[d.year].rate += d.rate;
+        m[d.year].count += 1;
+        return m;
+     },{});
+
+     const result = Object.keys(reduced).map(function(k){
+        const item  = reduced[k];
+        return {
+            year: item.year,
+            rate: Math.round((item.rate/item.count) * 100) / 100
+        }
+    })
+
+    const greatestYear = result.sort((a,b) => (a.rate !== b.rate) ? b.rate - a.rate : a.year - b.year)
+
+    return `The best year was ${greatestYear[0].year} with an average rate of ${greatestYear[0].rate}`;
+}
