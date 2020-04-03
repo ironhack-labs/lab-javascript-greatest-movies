@@ -73,8 +73,25 @@ function convertToMinutes(timeStr){
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 function bestYearAvg(films){
     if (films.length===0) return null;
+    let sortedYears = consolidateYears(films.sort((film1,film2)=>film1.year-film2.year)).sort((film1,film2)=>film2.rate-film1.rate);
+    
+    return `The best year was ${sortedYears[0].year} with an average rate of ${sortedYears[0].rate}`;
+}
+function consolidateYears(arrYears){
+  let lastYear = 0;
+  let arrYearsCons = [];
+  let sumRates = 0;
+  let countRates = 0;
+  console.log(arrYears);
+  for (let y=0;y<arrYears.length;y++){
+    if (arrYears[y]!=lastYear){
+      sumRates = arrYears.filter(film=>film.year===arrYears[y].year).reduce((acc,film)=>acc+film.rate,0);
+      countRates = arrYears.filter(film=>film.year===arrYears[y].year).length;
 
-    films.sort((film1,film2) => film2.rate-film1.rate).sort((film1,film2) => film1.year-film2.year);
-
-    return `The best year was ${films[0].year} with an average rate of ${films[0].rate}`;
+      arrYearsCons.push({year:arrYears[y].year, rate: (sumRates/countRates)});
+      lastYear=arrYears[y];
+    }
+  }
+  console.log(arrYearsCons);
+  return arrYearsCons;
 }
