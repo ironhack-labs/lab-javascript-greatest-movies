@@ -77,6 +77,35 @@ function dramaMoviesRate(dramArray) {
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-//let newArray = JSON.parse(JSON.stringify(movies));
+function turnHoursToMinutes(arrInHours) {
+    let arrInMinutes = JSON.parse(JSON.stringify(arrInHours));
+    arrInMinutes = arrInMinutes.map(fromHours => {
+        if (fromHours.duration.length === 2) {
+          return {duration: fromHours.duration[0]*60};
+        } else if (fromHours.duration.length === 8) {
+          return {duration: fromHours.duration[0]*60 + parseInt(fromHours.duration[3]+fromHours.duration[4])};
+        } else if (fromHours.duration.length === 7){
+          return {duration: fromHours.duration[0]*60 + parseInt(fromHours.duration[3])}
+        } else if (fromHours.duration.length === 5) {
+          return {duration: parseInt(fromHours.duration[0]+fromHours.duration[1])};
+        } else {
+          return {duration: parseInt(fromHours.duration[0])}
+        }
+    })
+
+    return arrInMinutes;
+}
+
+/*
+for (i in movies) {
+  if (movies[i].duration.length === 2) {
+    console.log(movies[i].duration[0]*60)
+  } else if (movies[i].duration.length === 8) {
+    console.log(movies[i].duration[0]*60 + parseInt(movies[i].duration[3]+movies[i].duration[4]))
+  } else if (movies[i].duration.length === 7) {
+    console.log(movies[i].duration[0]*60 + parseInt(movies[i].duration[3]))
+  }
+}
+*/
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
