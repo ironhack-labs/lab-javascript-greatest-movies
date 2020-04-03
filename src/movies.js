@@ -59,8 +59,6 @@ const turnHoursToMinutes = (arr) => {
 const bestYearAvg = (arr) => {
     if (arr.length === 0) { return null};
  
-    let bestYear = 2007;
-    let bestYearRate = 8;
     let avgRateObject = {};
 
     // Create an array of objects with key = year, value = array of ratings
