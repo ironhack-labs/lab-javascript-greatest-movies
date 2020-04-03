@@ -67,6 +67,16 @@ function ratesAverage(allRates) {
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
+function dramaMoviesRate(dramArray) {
+    
+    dramaMoviesReview = [...dramArray];
+    dramaMoviesReview = dramaMoviesReview.filter(movieGenre => movieGenre.genre.includes("Drama"));
+
+    return ratesAverage(dramaMoviesReview);
+}
+
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+
+//let newArray = JSON.parse(JSON.stringify(movies));
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
