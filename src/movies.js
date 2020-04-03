@@ -25,6 +25,7 @@ function howManyMovies(films){
 function hasGenre(movie,genreToFilter){
     return movie.genre.filter(gen => gen === genreToFilter).length > 0;
 }
+
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(films){
     let orderedArray = films.map(film=>film.title);
@@ -33,8 +34,18 @@ function orderAlphabetically(films){
 }
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(films){
+    if (films.length===0) return 0;
+
+    let rateAvg = films.filter(film=> 'rate' in film).reduce((sum,film) => sum + film.rate, 0);
+
+    return parseFloat((rateAvg/films.length).toFixed(2));
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(films){
+    return ratesAverage(films.filter(film=>hasGenre(film,'Drama')));
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
