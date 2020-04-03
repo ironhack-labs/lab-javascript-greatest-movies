@@ -1,3 +1,7 @@
+/* Practice JavaScript advanced methods (map, reduce, filter 
+  and sort to manipulate arrays)
+  */
+ 
 let movies = [
     {
       "title": "The Shawshank Redemption",
