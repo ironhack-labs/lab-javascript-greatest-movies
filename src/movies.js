@@ -76,11 +76,9 @@ function turnHoursToMinutes(films) {
           duration: filmHour.duration[0] * 60
         };
         break;
-      case 8:
+      case 5:
         return {
-          duration:
-            filmHour.duration[0] * 60 +
-            parseInt(filmHour.duration[3] + filmHour.duration[4])
+          duration: parseInt(filmHour.duration[0] + filmHour.duration[1])
         };
         break;
       case 7:
@@ -88,12 +86,13 @@ function turnHoursToMinutes(films) {
           duration: filmHour.duration[0] * 60 + parseInt(filmHour.duration[3])
         };
         break;
-      case 5:
+      case 8:
         return {
-          duration: parseInt(filmHour.duration[0] + filmHour.duration[1])
+          duration:
+            filmHour.duration[0] * 60 +
+            parseInt(filmHour.duration[3] + filmHour.duration[4])
         };
         break;
-
       default:
         return {
           duration: parseInt(filmHour.duration[0])
