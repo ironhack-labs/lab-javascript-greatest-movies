@@ -38,15 +38,14 @@ function orderAlphabetically(films) {
 
 function ratesAverage(films) {
 
-    /*films.length === 0 ? 0 :
-    parseFloat((films.filter(film => "rate" in film).reduce((sum, film) => sum + film.rate, 0) / films.length).toFixed(2));*/
-    
-    if (films.length === 0) return 0;
-    
-    return parseFloat((films.filter(film => "rate" in film).reduce((sum, film) => sum + film.rate, 0) / films.length).toFixed(2));
+    let rates = films.length === 0 ? 0 :
+    parseFloat((films.filter(film => "rate" in film).reduce((sum, film) => sum + film.rate, 0) / films.length).toFixed(2));
+
+    return rates;
 }
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
+
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
