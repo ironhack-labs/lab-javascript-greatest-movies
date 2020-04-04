@@ -55,7 +55,7 @@ function turnHoursToMinutes(pelis) {
         let hourIndex = peli.duration.indexOf("h");
         let minIndex = peli.duration.indexOf("m");
         peli.duration = parseInt(hourIndex != -1 ? peli.duration.substring(0, hourIndex) * 60 : 0) +
-            parseInt(minIndex != -1 ? peli.duration.substring(hourIndex+ 1, minIndex) : 0);
+            parseInt(minIndex != -1 ? peli.duration.substring(hourIndex + 1, minIndex) : 0);
         return {
             duration: peli.duration
         };
@@ -64,3 +64,41 @@ function turnHoursToMinutes(pelis) {
 
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+//Reutilizo la función para encontrar el average total, esta vez por año
+
+function YearMoviesRate(pelis, year) {
+    let pelisYear = pelis.filter((peliA => peliA.year === year));
+    if (pelisYear.length === 0) {
+        return 0;
+    }
+    let total = pelisYear.reduce((acc, peli) => peli.hasOwnProperty('rate') && peli.rate != undefined ? acc + peli.rate : acc, 0);
+    let rate = parseFloat((total / pelisYear.length).toFixed(2));
+    return {
+        greatYear: year,
+        rate: rate
+    }
+}
+
+//Reutilizo la función para ordenar, esta vez por rate
+
+function orderByRate(years) {
+    console.log(years);
+    return years.sort((yearA, yearB) => yearA.rate > yearB.rate ? 1 : yearA.rate < yearB.rate ? -1 : yearA.rate === yearB.rate ? yearA.greatYear > yearB.greatYear ? -1 : 0 : 0);
+
+}
+
+function bestYearAvg(pelis) {
+    let pelisAllYears = cloneArray(pelis);
+    if (pelisAllYears.length === 0) {
+        return null;
+    }
+    const years = pelisAllYears.map(peli => peli.year);
+    //Array de años únicos de las películas
+    let uniqueYears = [...new Set(years)];
+    //Calculo el average por año único
+    uniqueYears = uniqueYears.map(year => YearMoviesRate(pelisAllYears, year));
+    //ordeno por rate los años
+    let orderRates = orderByRate(uniqueYears);
+    return `The best year was ${orderRates[orderRates.length - 1].greatYear} with an average rate of ${orderRates[orderRates.length - 1].rate}`;
+}
