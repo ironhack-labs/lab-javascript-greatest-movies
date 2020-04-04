@@ -1,5 +1,4 @@
 /* eslint no-restricted-globals: 'off' */
-"use strict"
 
 // Iteration 1: Ordering by year - Order by year, ascending (in growing order)
 
@@ -80,8 +79,8 @@ function convertToMinutes(stringTime) {
 
   for (let i = 0; i < times.length; i++) {
 
-    (times[i].indexOf('h') >= 0) ? minutes += (parseInt(times[i].substring(0, times[i].indexOf('h')))) * 60:
-      (times[i].indexOf('m') >= 0) ? minutes += parseInt(times[i].substring(0, times[i].indexOf('m')));
+    (times[i].indexOf('h') >= 0) ? minutes += ((parseInt(times[i].substring(0, times[i].indexOf('h')))) * 60) :
+      (times[i].indexOf('m') >= 0) ? minutes += (parseInt(times[i].substring(0, times[i].indexOf('m'))));
 
   }
   return minutes;
