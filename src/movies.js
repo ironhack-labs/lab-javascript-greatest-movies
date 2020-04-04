@@ -80,8 +80,8 @@ function convertToMinutes(stringTime) {
 
   for (let i = 0; i < times.length; i++) {
 
-    (times[i].indexOf('h') >= 0) ? minutes += parseInt(times[i].substring(0, times[i].indexOf('h'))) * 60:
-      (times[i].indexOf('m') >= 0) ? minutes += parseInt(times[i].substring(0, times[i].indexOf('m')))
+    (times[i].indexOf('h') >= 0) ? minutes += (parseInt(times[i].substring(0, times[i].indexOf('h')))) * 60:
+      (times[i].indexOf('m') >= 0) ? minutes += parseInt(times[i].substring(0, times[i].indexOf('m')));
 
   }
   return minutes;
