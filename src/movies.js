@@ -35,6 +35,22 @@ function howManyMovies(array) {
     return Spielberg.length;
   }
 
+// Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
+
+   const orderAlphabetically = (arr) => {
+	const newArr2 = [...arr];
+	newArr2.sort((a, b) => {
+		if (a.title < b.title) {
+			return -1;
+		}
+		if (a.title > b.title) {
+			return 1;
+		} else {
+			return 0;
+		}
+	});
+	return newArr2.slice(0, 20);
+};
 
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
