@@ -13,7 +13,7 @@ const orderByYear = arrToOrder => {
     if (a.title > b.title) return 1;
     if (a.title < b.title) return -1;
   });
-  return moviesCopy
+  return moviesCopy;
 }
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct
 //Devolvemos las movies en una sola linea con arrow function y .filter()
@@ -42,7 +42,7 @@ const ratesAverage = moviesArr => {
   //arrayReduced contiene la media de todos los rates del array reducido en un unico valor con dos decimales
   let arrayReduced = Math.round(newArr.reduce((acc, elem) => acc + elem, 0) / moviesArr.length * 100) / 100;
   //return solo si el array introducido no esta vacio
-  return !arrayReduced ? 0 : arrayReduced
+  return !arrayReduced ? 0 : arrayReduced;
 }
 //Solucion en una linea para mayor rendimiento
 //const ratesAverage = moviesArr => !moviesArr.length ? 0 : Math.round(moviesArr.map(a => a.rate).filter(ratio => ratio > 0).reduce((acc, elem) => acc + elem, 0) / moviesArr.length * 100) / 100;
@@ -88,6 +88,6 @@ const bestYearAvg = moviesArr => {
     { rate: movie.rate }]
   })
 
-  return newArr ? null : newArr
+  return newArr ? null : newArr;
 }
 
