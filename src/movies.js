@@ -83,12 +83,45 @@ function transformtToMinutes(stringTime) {
 
   for (let i = 0; i < newTime.length; i++) {
     newTime[i].indexOf("h") >= 0
-      ? (minutes += parseInt(newTime[i].substring(0, newTime[i].indexOf("h"))) * 60)
+      ? (minutes +=
+          parseInt(newTime[i].substring(0, newTime[i].indexOf("h"))) * 60)
       : (minutes += parseInt(newTime[i].substring(0, newTime[i].indexOf("m"))));
   }
 
   return minutes;
 }
 
-// BONUS Iteration: Best yearly rate average - Best yearly rate average
+// BONUS Iteration: Best yearly rate average
 
+function bestYearAvg(films) {
+  if (films.length === 0) return null;
+  let orderYear = setYear(
+    films.sort((film1, film2) => film1.year - film2.year)
+  ).sort((film1, film2) => film2.rate - film1.rate);
+
+  return `The best year was ${orderYear[0].year} with an average rate of ${orderYear[0].rate}`;
+}
+
+function setYear(arrayYear) {
+  let setYearArray = [];
+  let lastYear = 0;
+  let addRates = 0;
+  let counterRates = 0;
+
+  for (let i = 0; i < arrayYear.length; i++) {
+    if (arrayYear[i] != lastYear) {
+      addRates = arrayYear
+        .filter(film => film.year === arrayYear[i].year)
+        .reduce((acc, film) => acc + film.rate, 0);
+      counterRates = arrayYear.filter(film => film.year === arrayYear[i].year)
+        .length;
+
+      setYearArray.push({
+        year: arrayYear[i].year,
+        rate: addRates / counterRates
+      });
+      lastYear = arrayYear[i];
+    }
+  }
+  return setYearArray;
+}
