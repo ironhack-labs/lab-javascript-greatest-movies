@@ -108,3 +108,12 @@ function turnHoursToMinutes(arrMovies){
     return timeFormat;
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+function bestYearAvg(movieArr) {
+    if (movieArr.length === 0) {
+        return null;
+    } else if (movieArr.length === 1) {
+        return `The best year was ${movieArr[0].year} with an average rate of ${movieArr[0].rate}`;
+    };
+
+    // I no tengo ni idea de como continuar -.-
+}; 
