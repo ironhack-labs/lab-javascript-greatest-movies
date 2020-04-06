@@ -71,13 +71,13 @@ function turnHoursToMinutes(films) {
   let newFilmsArray = JSON.parse(JSON.stringify(films));
 
   newFilmsArray.forEach(
-    film => (film.duration = convertToMinutes(film.duration))
+    film => (film.duration = transformtToMinutes(film.duration))
   );
 
   return newFilmsArray;
 }
 
-function convertToMinutes(stringTime) {
+function transformtToMinutes(stringTime) {
   let minutes = 0;
   let newTime = stringTime.split(" ");
 
