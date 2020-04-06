@@ -69,28 +69,70 @@ const dramaMoviesRate = (arr, genre) => {
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-// function timeConverter(duration) {
-//     let minutes = 0;
-//     let array = duration.split("h");
-//     if (array.length === 1) {
-//       minutes += parseInt(array[0]);
-//     } else if (array[1] === "") {
-//       minutes += array[0] * 60;
-//     } else {
-//       minutes += array[0] * 60 + parseInt(array[1]);
-//     }
-//     return minutes;
-//   }
+function timeConverter(duration) {
+    let minutes = 0;
+    let array = duration.split("h");
+    if (array.length === 1) {
+      minutes += parseInt(array[0]);
+    } else if (array[1] === "") {
+      minutes += array[0] * 60;
+    } else {
+      minutes += array[0] * 60 + parseInt(array[1]);
+    }
+    return minutes;
+  }
   
-//   function turnHoursToMinutes(movies) {
-//     return movies.map(function (movie) {
-//       let copyOfMovie = { ...movie };
-//       copyOfMovie.duration = timeConverter(movie.duration);
-//       return copyOfMovie;
-//     });
-//   }
+  function turnHoursToMinutes(movies) {
+    return movies.map(function (movie) {
+      let copyOfMovie = { ...movie };
+      copyOfMovie.duration = timeConverter(movie.duration);
+      return copyOfMovie;
+    });
+  }
 
-// REVIEW CODE AND FIND A SOLUTION 
+// REVIEW CODE AND FIND A SOLUTION CODE GETS RIGHT ANSWER, DOESNT PASS BY JASMINE
   
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
+
+const bestYearAvg = (movies) => {
+    if(movies.length === 0){
+      return null
+    }
+    let orderedMovies = orderByYear(movies)
+    console.log(orderedMovies)
+  
+    let bestYear = orderedMovies[0].year
+    let bestRate = 0
+    let year = orderedMovies[0].year
+    let total = 0
+    let howMany = 0; 
+  
+  
+    console.log(orderedMovies, ' ordered in here')
+  
+    for(let i=0; i<orderedMovies.length; i++){
+      if(year != orderedMovies[i].year){ //We have a change in year, so we want to calculate the average 
+        console.log(howMany, ' movies in this year : ',year, ' and the total rating is', total, ' and the average is ', total/howMany)
+  
+        if( (total/howMany) > bestRate ){
+          bestRate = total/howMany
+          bestYear = year
+        }
+  
+        year = orderedMovies[i].year;
+        howMany = 1; 
+        total = orderedMovies[i].rate; 
+  
+      } else { //We are not changing years so we dont' want to calucalate average yet.  
+        howMany++
+        total += orderedMovies[i].rate
+      }
+  
+    }
+    console.log(`The best year was ${bestYear} with an average rate of ${bestRate}`)
+  
+    return `The best year was ${bestYear} with an average rate of ${bestRate}`
+  }
+
+  // REVIEW CODE AND FIND A SOLUTION 
