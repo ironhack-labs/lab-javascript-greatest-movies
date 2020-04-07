@@ -108,12 +108,41 @@ function turnHoursToMinutes(arrMovies){
     return timeFormat;
 }
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
-function bestYearAvg(movieArr) {
-    if (movieArr.length === 0) {
+function bestYearAvg(arrMovies) {
+    if (arrMovies.length === 0) {
         return null;
-    } else if (movieArr.length === 1) {
-        return `The best year was ${movieArr[0].year} with an average rate of ${movieArr[0].rate}`;
+    } else if (arrMovies.length === 1) {
+        return `The best year was ${arrMovies[0].year} with an average rate of ${arrMovies[0].rate}`;
     };
 
-    // I no tengo ni idea de como continuar -.-
+    let copyMovies = JSON.parse(JSON.stringify(arrMovies));
+
+    copyMovies.sort((a,b) => a.year - b.year);
+    
+    let arrSummatory = [];
+    let resultYearAvg = [];
+    
+    arrSummatory.push(copyMovies[0])
+
+    for (let i = 1; i < copyMovies.length; i++){
+        if(copyMovies[i].year === arrSummatory[0].year){
+            arrSummatory.push(copyMovies[i]);
+        } else {
+            let rating = arrSummatory.reduce((sum, arrYear) =>{
+                return (sum + arrYear.rate);
+            }, 0);
+
+            resultYearAvg.push({
+                    year: arrSummatory[0].year,
+                    rate: Math.round(rating/arrSummatory.length*10)/10
+                });
+            
+            arrSummatory = [];
+            arrSummatory.push(copyMovies[i]);
+            i--;
+        }
+    };
+
+    resultYearAvg.sort((a,b) => b.rate - a.rate);
+    return `The best year was ${resultYearAvg[0].year} with an average rate of ${resultYearAvg[0].rate}`;
 }; 
