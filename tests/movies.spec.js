@@ -2,52 +2,48 @@
 /* eslint jasmine/no-spec-dupes: "off" */
 
 /*
- * orderByYear
+ * 1. getAllDirectors
  */
-
-describe('Order the movies by year - orderByYear', () => {
-  it('Defines orderByYear', () => {
-    expect(typeof orderByYear).toBe('function');
+describe(' All directors - getAllDirectors', () => {
+  it('Defines getAllDirectors', () => {
+    expect(typeof getAllDirectors).toBe('function');
   });
-
   it('Should return an array', () => {
-    expect(typeof orderByYear(movies)).toBe('object');
+    expect(typeof getAllDirectors(movies)).toBe('object');
   });
 
-  it('Should return a new array', () => {
-    const arr = [];
-    expect(orderByYear(arr)).not.toBe(arr);
+  it('Should return a new array, not update the original one', () => {
+    expect(getAllDirectors(movies)).not.toEqual(movies);
   });
 
-  it('Should return the element in a single element array', () => {
-    expect(orderByYear([{ year: 1982 }])).toEqual([{ year: 1982 }]);
-  });
-
-  it('Return the new array in ascending order', () => {
-    expect(orderByYear([{ year: 2002 }, { year: 1982 }, { year: 1995 }])).toEqual([
-      { year: 1982 },
-      { year: 1995 },
-      { year: 2002 }
-    ]);
-  });
-
-  it('If two movies have the same year, order them alphabetically by their title', () => {
-    expect(
-      orderByYear([
-        { title: 'abc', year: 2002 },
-        { title: 'bac', year: 1982 },
-        { title: 'aab', year: 1982 }
-      ])
-    ).toEqual([
-      { title: 'aab', year: 1982 },
-      { title: 'bac', year: 1982 },
-      { title: 'abc', year: 2002 }
+  it('Should return a new array with the same length as the original one', () => {
+    const testArr = [
+      {
+        title: 'Paths of Glory',
+        year: 1957,
+        director: 'Stanley Kubrick',
+        duration: '1h 28min',
+        genre: ['Drama', 'War'],
+        rate: 8.4
+      },
+      {
+        title: 'Django Unchained',
+        year: 2012,
+        director: 'Quentin Tarantino',
+        duration: '2h 45min',
+        genre: ['Drama', 'Western'],
+        rate: 8.4
+      }
+    ];
+    expect(getAllDirectors(testArr)).toEqual([
+      'Stanley Kubrick',
+      'Quentin Tarantino'
     ]);
   });
 });
 
 /*
- * howManyMovies
+ * 2. howManyMovies
  */
 
 describe('Get how many movies - howManyMovies', () => {
@@ -118,7 +114,137 @@ describe('Get how many movies - howManyMovies', () => {
 });
 
 /*
- * orderAlphabetically
+ * 3. ratesAverage
+ */
+describe('Get the average rate - ratesAverage', () => {
+  it('Defines ratesAverage', () => {
+    expect(typeof ratesAverage).toBe('function');
+  });
+
+  it('You should return a number!', () => {
+    expect(typeof ratesAverage(movies)).toBe('number');
+  });
+
+  it('You should return the average rate of 2 movies with rate 8 each!', () => {
+    expect(ratesAverage([{ rate: 8 }, { rate: 8 }])).toBe(8);
+  });
+
+  it('It should be rounded to 2 decimals digits', () => {
+    expect(ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }])).toBe(8.67);
+  });
+
+  it('It should return 0 if there is no movie', () => {
+    expect(ratesAverage([])).toBe(0);
+  });
+
+  it('Return average even if one of the movies does not have rate!', () => {
+    expect(ratesAverage([{ rate: 6 }, { rate: '' }, {}])).toBe(2);
+  });
+});
+
+/*
+ * 4. dramaMoviesRate
+ */
+
+describe('Average rate of Drama Movies - dramaMoviesRate', () => {
+  it('Defines dramaMoviesRate', () => {
+    expect(typeof dramaMoviesRate).toBe('function');
+  });
+
+  it('You should return a number!', () => {
+    expect(typeof dramaMoviesRate(movies)).toBe('number');
+  });
+
+  it('Return the rate of a single element array!', () => {
+    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }])).toBe(8);
+  });
+
+  it('It should return the average of the array!', () => {
+    expect(
+      dramaMoviesRate([
+        { genre: ['Drama'], rate: 8 },
+        { genre: ['Drama'], rate: 9 },
+        { genre: ['Drama'], rate: 7 }
+      ])
+    ).toBe(8);
+  });
+
+  it('It should return the average of the array, float!', () => {
+    expect(
+      dramaMoviesRate([
+        { genre: ['Drama'], rate: 9 },
+        { genre: ['Drama'], rate: 9 },
+        { genre: ['Drama'], rate: 7 }
+      ])
+    ).toBe(8.33);
+  });
+
+  it('Only Drama Movies! You should return the average of Drama movies only!', () => {
+    expect(
+      dramaMoviesRate([
+        { genre: ['Drama'], rate: 8 },
+        { genre: ['Romance'], rate: 9 },
+        { genre: ['Drama'], rate: 7 }
+      ])
+    ).toBe(7.5);
+  });
+
+  it('Should return 0 if there is no Drama movie!', () => {
+    expect(
+      dramaMoviesRate([
+        { genre: ['Action'], rate: 8 },
+        { genre: ['Romance'], rate: 9 },
+        { genre: ['Sci-Fi'], rate: 7 }
+      ])
+    ).toBe(0);
+  });
+});
+
+/*
+ * 5. orderByYear
+ */
+
+describe('Order the movies by year - orderByYear', () => {
+  it('Defines orderByYear', () => {
+    expect(typeof orderByYear).toBe('function');
+  });
+
+  it('Should return an array', () => {
+    expect(typeof orderByYear(movies)).toBe('object');
+  });
+
+  it('Should return a new array', () => {
+    const arr = [];
+    expect(orderByYear(arr)).not.toBe(arr);
+  });
+
+  it('Should return the element in a single element array', () => {
+    expect(orderByYear([{ year: 1982 }])).toEqual([{ year: 1982 }]);
+  });
+
+  it('Return the new array in ascending order', () => {
+    expect(
+      orderByYear([{ year: 2002 }, { year: 1982 }, { year: 1995 }])
+    ).toEqual([{ year: 1982 }, { year: 1995 }, { year: 2002 }]);
+  });
+
+  it('If two movies have the same year, order them alphabetically by their title', () => {
+    expect(
+      orderByYear([
+        { title: 'abc', year: 2002 },
+        { title: 'bac', year: 1982 },
+        { title: 'aab', year: 1982 }
+      ])
+    ).toEqual([
+      { title: 'aab', year: 1982 },
+      { title: 'bac', year: 1982 },
+      { title: 'abc', year: 2002 }
+    ]);
+  });
+});
+
+/*
+ * 6. orderAlphabetically
  */
 
 describe('Order alphabetically - orderAlphabetically', () => {
@@ -190,9 +316,21 @@ describe('Order alphabetically - orderAlphabetically', () => {
   });
 
   it('You should order them alphabetically.', () => {
-    const moviesArr = [{ title: 'aab' }, { title: 'aaa' }, { title: 'abc' }, { title: 'acb' }, { title: 'abb' }];
+    const moviesArr = [
+      { title: 'aab' },
+      { title: 'aaa' },
+      { title: 'abc' },
+      { title: 'acb' },
+      { title: 'abb' }
+    ];
 
-    expect(orderAlphabetically(moviesArr)).toEqual(['aaa', 'aab', 'abb', 'abc', 'acb']);
+    expect(orderAlphabetically(moviesArr)).toEqual([
+      'aaa',
+      'aab',
+      'abb',
+      'abc',
+      'acb'
+    ]);
   });
 
   it('You should return the top20 after ordering them alphabetically.', () => {
@@ -260,93 +398,13 @@ describe('Order alphabetically - orderAlphabetically', () => {
   });
 });
 
-/*
- * ratesAverage
- */
-describe('Get the average rate - ratesAverage', () => {
-  it('Defines ratesAverage', () => {
-    expect(typeof ratesAverage).toBe('function');
-  });
-
-  it('You should return a number!', () => {
-    expect(typeof ratesAverage(movies)).toBe('number');
-  });
-
-  it('You should return the average rate of 2 movies with rate 8 each!', () => {
-    expect(ratesAverage([{ rate: 8 }, { rate: 8 }])).toBe(8);
-  });
-
-  it('It should be rounded to 2 decimals digits', () => {
-    expect(ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }])).toBe(8.67);
-  });
-
-  it('It should return 0 if there is no movie', () => {
-    expect(ratesAverage([])).toBe(0);
-  });
-
-  it('Return average even if one of the movies does not have rate!', () => {
-    expect(ratesAverage([{ rate: 6 }, { rate: '' }, {}])).toBe(2);
-  });
-});
+// ******************************************************************************************
+// *************************************** BONUS ********************************************
+// ******************************************************************************************
 
 /*
- * dramaMoviesRate
+ * 7. turnHoursToMinutes
  */
-
-describe('Average rate of Drama Movies - dramaMoviesRate', () => {
-  it('Defines dramaMoviesRate', () => {
-    expect(typeof dramaMoviesRate).toBe('function');
-  });
-
-  it('You should return a number!', () => {
-    expect(typeof dramaMoviesRate(movies)).toBe('number');
-  });
-
-  it('Return the rate of a single element array!', () => {
-    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }])).toBe(8);
-  });
-
-  it('It should return the average of the array!', () => {
-    expect(
-      dramaMoviesRate([
-        { genre: ['Drama'], rate: 8 },
-        { genre: ['Drama'], rate: 9 },
-        { genre: ['Drama'], rate: 7 }
-      ])
-    ).toBe(8);
-  });
-
-  it('It should return the average of the array, float!', () => {
-    expect(
-      dramaMoviesRate([
-        { genre: ['Drama'], rate: 9 },
-        { genre: ['Drama'], rate: 9 },
-        { genre: ['Drama'], rate: 7 }
-      ])
-    ).toBe(8.33);
-  });
-
-  it('Only Drama Movies! You should return the average of Drama movies only!', () => {
-    expect(
-      dramaMoviesRate([
-        { genre: ['Drama'], rate: 8 },
-        { genre: ['Romance'], rate: 9 },
-        { genre: ['Drama'], rate: 7 }
-      ])
-    ).toBe(7.5);
-  });
-
-  it('Should return 0 if there is no Drama movie!', () => {
-    expect(
-      dramaMoviesRate([
-        { genre: ['Action'], rate: 8 },
-        { genre: ['Romance'], rate: 9 },
-        { genre: ['Sci-Fi'], rate: 7 }
-      ])
-    ).toBe(0);
-  });
-});
-
 describe('Turn duration of the movies - turnHoursToMinutes', () => {
   it('Defines turnHoursToMinutes', () => {
     expect(typeof turnHoursToMinutes).toBe('function');
@@ -389,6 +447,10 @@ describe('Turn duration of the movies - turnHoursToMinutes', () => {
   });
 });
 
+/*
+ * 8. bestYearAvg
+ */
+
 describe('Best year average - bestYearAvg', () => {
   it('Defines bestYearAvg', () => {
     expect(typeof bestYearAvg).toBe('function');
@@ -399,11 +461,15 @@ describe('Best year average - bestYearAvg', () => {
   });
 
   it('Should return the correct answer to a single element array', () => {
-    expect(bestYearAvg([{ year: 2007, rate: 8 }])).toEqual('The best year was 2007 with an average rate of 8');
+    expect(bestYearAvg([{ year: 2007, rate: 8 }])).toEqual(
+      'The best year was 2007 with an average rate of 8'
+    );
   });
 
   it('Should return the correct answer to a multiple elements array', () => {
-    expect(bestYearAvg(movies)).toEqual('The best year was 1972 with an average rate of 9.2');
+    expect(bestYearAvg(movies)).toEqual(
+      'The best year was 1972 with an average rate of 9.2'
+    );
   });
 
   it('Should return the oldest year when there is a tie', () => {
@@ -414,6 +480,8 @@ describe('Best year average - bestYearAvg', () => {
       { year: 1978, rate: 7 }
     ];
 
-    expect(bestYearAvg(newMoviesArr)).toEqual('The best year was 1978 with an average rate of 8.5');
+    expect(bestYearAvg(newMoviesArr)).toEqual(
+      'The best year was 1978 with an average rate of 8.5'
+    );
   });
 });
