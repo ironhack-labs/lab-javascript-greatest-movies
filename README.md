@@ -135,7 +135,7 @@ Should be:
 }
 ```
 
-**Keep in mind**, you have to return a new array with all the info about movies, meaning, you shouldn't modify the original array. :white_check_mark:
+**Keep in mind**, you have to return a new array with all the info about movies, meaning, you shouldn't modify the original array.
 
 ### BONUS - Iteration 8: Best yearly rate average
 
@@ -150,4 +150,5 @@ Create `bestYearAvg()` function that receives an array of movies and gives us an
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_dfc3fe557576abca4dba274e3aabe9a3.gif)
 
 <br>
+
 **Happy coding!** :heart:
