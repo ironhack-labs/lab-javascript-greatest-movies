@@ -36,18 +36,22 @@ function orderAlphabetically(copiaMovies) {
 
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
-//function ratesAverage(copiaMovies) {
- // if (copiaMovies.length == 0) {
-   // return 0;
+function ratesAverage(copiaMovies) {
+  if (copiaMovies.length == 0) {
+    return 0;
+
+  }
+  let sumRates = copiaMovies.reduce((acc, val) => acc + Number(val.rate), 0); {
+    return Number(Number(sumRates / copiaMovies).toFixed(2));
+
+  }
 
 
-//  }
-  //let copiaMovies 
-//}
-
+}
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes HAY  Q USAR EL JSON
+turnHoursToMinutes
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
