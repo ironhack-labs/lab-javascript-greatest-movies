@@ -21,10 +21,20 @@ function howManyMovies(copiaMovies) {
 
 // Iteration 3: Alphabetic Order - Order by title and print the first 20 titles
 
+
+function orderAlphabetically(copiaMovies) {
+  let arrayTitle = [];
+  for (let i = 0; i < copiaMovies.length; i++) {
+      arrayTitle.push(copiaMovies[i].title);
+  }
+  arrayTitle.sort();
+  return arrayTitle.slice(0, 20);
+}
+
 // Iteration 4: All rates average - Get the average of all rates with 2 decimals
 
 // Iteration 5: Drama movies - Get the average of Drama Movies
 
-// Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+// Iteration 6: Time Format - Turn duration of the movies from hours to minutes HAY  Q USAR EL JSON
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
