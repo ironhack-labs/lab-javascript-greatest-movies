@@ -131,42 +131,48 @@ function turnHoursToMinutes(arrayMovies) {
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
-/*
-function yearsMovieRate(movie, year) {
-  let moviesYear = movie.filter((peli) => peli.year === year);
-  if (!moviesYear.length) {
-    return 0;
-  }
-  let total = moviesYear.reduce(function (acc, elem) {
-    if (elem.hasOwnProperty("rate") && elem.rate != undefined) {
-      acc + elem.rate;
-    } else {
-      acc;
-    }
-  }, 0);
-  const rate = parseFloat((total / moviesYear.length).toFixed(2));
-
-  return {
-    rateYear: year,
-    rate: rate,
-  };
-}
-
 function bestYearAvg(arrayMovies) {
-  let newArray = JSON.parse(JSON.stringify(arrayMovies));
-  if (!newArray.length) {
+  if (!arrayMovies.length) {
     return null;
   }
 
-  const years = newArray.map((film) => film.years);
-  let uniqueYears = [...new Set(years)];
+  let newArray = JSON.parse(JSON.stringify(arrayMovies));
+  let arrayYears = [];
 
-  uniqueYears = uniqueYears.map(yearsMovieRate(newArray, years));
+  //crear un array con objetos que tienen el año. También los rates de las películas de ese año (todavía vacío)
+  newArray.forEach((element) => {
+    if (arrayYears.indexOf(element.year) < 0) {
+      arrayYears.push({ year: element.year, arrayRates: [] });
+    }
+  });
 
-  uniqueYears
-    .sort((year1, year2) => year2.rate - year1.rate)
-    .sort((year1, year2) => year1.rateYear - year2.rateYear);
+  //añadir al objeto del año que le toca los rates de las películas de ese año
+  arrayYears.forEach((object) => {
+    newArray.forEach((movie) => {
+      if (movie.year === object.year) {
+        object.arrayRates.push(movie.rate);
+      }
+    });
+  });
 
-  return uniqueYears;
+  //función para calcular la media de la puntuación de la peli
+  function averageResult(array) {
+    return array.reduce((acc, elem) => acc + elem) / array.length;
+  }
+
+  arrayYears.forEach((element) => {
+    element.arrayRates = averageResult(element.arrayRates);
+  });
+
+  //ordenar los objetos por la media más alta con sort()
+
+  arrayYears.sort((a, b) => {
+    if (b.arrayRates === a.arrayRates) {
+      return a.year - b.year;
+    }
+    return b.arrayRates - a.arrayRates;
+  });
+
+  //return arrayYears;
+  return `The best year was ${arrayYears[0].year} with an average rate of ${arrayYears[0].arrayRates}`;
 }
-*/
