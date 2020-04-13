@@ -34,7 +34,7 @@ function orderAlphabetically(copiaMovies) {
   return arrayTitle.slice(0, 20);
 }
 
-// Iteration 4: All rates average - Get the average of all rates with 2 decimals
+// Iteration 4: All rates average - Get the average of all rates with 2 decimals. 
 
 function ratesAverage(copiaMovies) {
   if (copiaMovies.length == 0) {
@@ -42,14 +42,35 @@ function ratesAverage(copiaMovies) {
 
   }
   let sumRates = copiaMovies.reduce((acc, val) => acc + Number(val.rate), 0); {
-    return Number(Number(sumRates / copiaMovies).toFixed(2));
+    return parseFloat(sumRates / copiaMovies).toFixed(2);
 
   }
 
 
 }
 
+
+
 // Iteration 5: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(copiaMovies) {
+  let {
+    sumRates,
+    dramaLength
+  } = copiaMovies.reduce(
+    (acc, movie) => {
+      if (movie.genre.includes("Drama")) {
+        acc.sumRates += movie.rate;
+        acc.dramaLength++;
+      }
+      return acc;
+    }, {
+      sumRates: 0,
+      dramaLength: 0
+    }
+  );
+  if (sumRates.length === 0) return 0;
+  return parseFloat((sumRates / dramaLength).toFixed(2));
+}
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes HAY  Q USAR EL JSON
 turnHoursToMinutes
