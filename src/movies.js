@@ -69,3 +69,32 @@ function turnHoursToMinutes(array) {
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+function bestYearAvg(array) {
+
+    if(array.length > 0) {
+        let sortedYears = orderByYear(array);
+        possibleYears = [...new Set( sortedYears.map((obj) => {return obj.year;}) )];
+
+        let collectedYearsArray = []
+        for (index in possibleYears) {
+            collectedYearsArray[index] = sortedYears.filter((obj) => {
+                return (obj.year == possibleYears[index]);
+            });
+        }
+
+        let topRatedYear = {rate: 0, year:  0};
+
+        for (yearCollection of collectedYearsArray) {
+            yearAvg = ratesAverage(yearCollection);
+            if(topRatedYear.rate < yearAvg) {
+                topRatedYear.rate = yearAvg;
+                topRatedYear.year = yearCollection[0].year;
+            }
+        }
+
+        return `The best year was ${topRatedYear.year} with an average rate of ${topRatedYear.rate}`;
+    }
+
+    return null;
+
+}
