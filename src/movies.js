@@ -94,4 +94,29 @@ console.log(orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(arr) {
+    
+  let getNewTime = (JSON.parse(JSON.stringify(arr)));
+
+   getNewTime = arr.map(function(el){
+      let sum = 0;
+      let duration = el.duration;
+    
+        
+      if(duration.includes('h')) {
+        sum += (parseInt(duration[0]) * 60);
+        if(duration.includes('min')) {
+            sum += (parseInt(duration.slice(duration.indexOf(' '), duration.indexOf('min'))));
+        }
+    } else {
+        sum += parseInt(duration.slice(0, duration.indexOf('min')));
+    }
+         el.duration = sum + ' minutes';
+         return el;
+  
+})
+  return getNewTime;
+  
+}
+console.log(turnHoursToMinutes(movies))
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
