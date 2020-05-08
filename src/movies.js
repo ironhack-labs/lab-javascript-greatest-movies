@@ -90,12 +90,12 @@ function turnHoursToMinutes(movies){
         let totalMinutes = 0;
         let time = element['duration'];
         if(time.includes('h')){
-            totalMinutes = totalMinutes + parseInst(time[0]*60);
+            totalMinutes = totalMinutes + parseInt(time[0]*60);
             if(time.includes('min')){
                 totalMinutes = totalMinutes+ parseInt(time.slice(time.indexOf(' '),time.indexOf('min')));
             }
         }else{
-            totalMinutes = totalMinutes + parseInt(time.slice(0,time.indexOf('min')))
+            totalMinutes = totalMinutes + parseInt(time.slice(0,time.indexOf('min')));
         }
         element['duration'] = totalMinutes;
         return element;
