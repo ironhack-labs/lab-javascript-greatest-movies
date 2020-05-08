@@ -3,7 +3,10 @@ function getAllDirectors(arr){
     let directors = arr.map(function(el){
         return el.director;
     })
-    return directors;
+    var noDups = directors.filter(function(elem, index, self) {
+        return index === self.indexOf(elem);
+    })
+    return noDups;
 }
 
 console.log(getAllDirectors(movies))
@@ -119,4 +122,24 @@ function turnHoursToMinutes(arr) {
   
 }
 console.log(turnHoursToMinutes(movies))
+
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+
+function bestYearAvg(arr){
+    let getRates = arr.map(function(el){
+        return el.rate; //get all rates
+    })
+    let rated = getRates.reduce(function(sum, el){
+        return Math.max(sum, el) //best rate
+
+    })
+
+    let bestRates = arr.filter(function(el){
+        return el.rate === 9.3;
+    })
+    //return `The best year was ${bestYear} with an average rate of ${bestRate}` 
+    return bestRates;
+}
+console.log(bestYearAvg(movies))
