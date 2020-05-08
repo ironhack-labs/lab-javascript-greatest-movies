@@ -52,17 +52,22 @@ function dramaMoviesRate(movies){
 
 
 function orderByYear(movies){
-    let orderYears = movies.sort(function(num1,num2){
+    let orderYears = JSON.parse(JSON.stringify(movies));
+    orderYears.sort(function(num1,num2){
+        if(num1.year!=num2.year){
             return num1.year-num2.year;
+        }else{
+            return (num1.title >= num2.title) ? 1 : -1;
+        }
     });
     return orderYears;
 }
 
-
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(movies){
-    let orderLetters = movies.sort(function(word1,word2){
+    let orderLetters = JSON.parse(JSON.stringify(movies));
+    orderLetters.sort(function(word1,word2){
         if (word1.title < word2.title) {
             return -1;
         }
@@ -78,5 +83,24 @@ function orderAlphabetically(movies){
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+function turnHoursToMinutes(movies){
+    let newArray = JSON.parse(JSON.stringify(movies));
+    newArray = newArray.map((element) => {
+        let totalMinutes = 0;
+        let time = element['duration'];
+        if(time.includes('h')){
+            totalMinutes = totalMinutes + parseInst(time[0]*60);
+            if(time.includes('min')){
+                totalMinutes = totalMinutes+ parseInt(time.slice(time.indexOf(' '),time.indexOf('min')));
+            }
+        }else{
+            totalMinutes = totalMinutes + parseInt(time.slice(0,time.indexOf('min')))
+        }
+        element['duration'] = totalMinutes;
+        return element;
+    });
+    return newArray;
+}
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
