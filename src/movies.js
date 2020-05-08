@@ -137,7 +137,7 @@ function bestYearAvg(arr) {
   }
   let bestYear = 0;
   let bestAverageScore = 0;
-  for (j = 1900; j < 2021; j++) {
+  for (j = 1900; j < 2021; j++) { //1900 as I don't think movies were made before that.
     let yearCount = 0;
     let yearTotal = 0;
     let yearAverage = 0;
@@ -155,5 +155,3 @@ function bestYearAvg(arr) {
   }
   return `The best year was ${bestYear} with an average rate of ${bestAverageScore}`;
 }
-
-bestYearAvg(movies);
