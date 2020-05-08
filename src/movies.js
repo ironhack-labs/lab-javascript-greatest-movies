@@ -99,33 +99,49 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
-    let newList = JSON.parse(JSON.stringify(movies));
-    newList.forEach(function (elem) {
+    let newList = JSON.parse(JSON.stringify(movies))
+    newList.map(function (elem) {
         let time = elem.duration.split(" ");
-        let hours = Number((time[0].split('h'))[0])
-        let minutes = Number((time[1].split('min'))[0])
-        let totalNumber = (hours * 60) + minutes
-        elem.duration = totalNumber;
+        if (elem.duration.includes('h') && elem.duration.includes('min')) {
+            let hours = Number((time[0].split('h'))[0])
+            let minutes = Number((time[1].split('min'))[0])
+            let totalNumber = (hours * 60) + minutes
+            elem.duration = totalNumber;
+        } else if (elem.duration.includes('min')) {
+            elem.duration = Number((time[0].split('min'))[0]);
+        } else if (elem.duration.includes('h')) {
+            elem.duration = Number((time[0].split('h'))[0]) * 60
+        } 
+        return elem
+        
     })
     return newList
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
-// function bestYearAvg(movies) {
-//     if (movies.length === 0) return null;
-//     let arrayOfYearAndRates = movies.map(function (elem) {
-//         return elem.year, elem.rate;
-//     })
-//     let sameYearMovies = [];
-//     movies.filter(function (elem) {
-//         return elem.year ===
-//     })
-
-    // let averageNumber = movies.reduce(function (sum, elem) {
-    //     return sum + (elem.rate || 0);
-    // }, 0) / movies.length;
-    // return Number(averageNumber.toFixed(2));
-    // return `The best year was ${year} with an average rate of ${rate}.`
-
-
-
+function bestYearAvg(movies) {
+    if (movies.length === 0) return null;
+    let listOfYears = {};
+    movies.map(function (elem) {
+        let movieYear = elem.year;
+        if (!listOfYears.hasOwnProperty(movieYear)) {
+            listOfYears[movieYear] = [];
+        }
+        listOfYears[movieYear].push(elem.rate);
+    })
+    for (let year in listOfYears) {
+        const currentYear = [...listOfYears[`${year}`]];
+        listOfYears[year] = currentYear.reduce(function (acc, elem) {
+            return acc + elem;
+        }, 0) / currentYear.length;
+    }
+    let greatestAverage = 0;
+    let greatestAverageYear = 0;
+    for (let year in listOfYears) {
+        if (listOfYears[year] > greatestAverage) {
+            greatestAverage = listOfYears[year];
+            greatestAverageYear = year;
+        }
+    }
+    return `The best year was ${greatestAverageYear} with an average rate of ${greatestAverage}`
+}
