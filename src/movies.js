@@ -25,7 +25,7 @@ function ratesAverage (array) {
     }
     
     let totalSum = array.reduce((accum, current) => {
-        if (current["rate"] === undefined) {
+        if (!current["rate"]) {
             return accum + 0
         }
         return accum + current["rate"]
@@ -35,6 +35,23 @@ function ratesAverage (array) {
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
+
+function dramaMoviesRate (array) {
+    let dramaFilms = array.filter(movie => movie["genre"].includes("Drama"))
+    let totalSumDrama = dramaFilms.reduce((accum, current) => {
+        if (!current["rate"]) {
+            return accum + 0
+        }
+        return accum + current["rate"]
+    }, 0)
+
+    if (dramaFilms.length === 0) {
+        return 0
+    }
+
+    return  Math.round(totalSumDrama / dramaFilms.length * 100) / 100
+}
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
