@@ -1,11 +1,14 @@
 // Iteration 1: All directors? - Get the array of all directors.
 
 function getAllDirectors (array) {
-    return array.map((movie) => movie["director"])
+    let arrayOfDirectors = array.map((movie) => movie["director"])
+    return arrayOfDirectors.filter((a, index) => arrayOfDirectors.indexOf(a) === index)
 }
 
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+
+//Solved in Iteration 1
 
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
