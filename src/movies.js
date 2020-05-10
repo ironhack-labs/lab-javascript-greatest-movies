@@ -98,4 +98,33 @@ function orderAlphabetically (array) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes (arr) {
+    let copiedArray = arr.slice()
+  
+    let moviesDurationSplitted = copiedArray.map (movie => {
+        movie["duration"] = movie["duration"].split("")
+        return movie 
+    })
+    
+    let moviesMinutes = moviesDurationSplitted.map ((movie) => {
+      let durationMinutes = 0
+      movie["duration"].map((element, index) => {
+        if (element ==="h") {
+          return durationMinutes = Number(movie["duration"][index - 1]) * 60
+        } else if (element === "m") {
+          if (movie["duration"][index - 2] === "") {
+            return durationMinutes += Number(movie["duration"][index - 1])
+          } else {
+            return durationMinutes += Number(movie["duration"][index - 1]) + Number(movie["duration"][index - 2] * 10)
+          }
+        }
+      })
+      movie["duration"] = durationMinutes
+      return movie
+    })
+  
+    return moviesMinutes 
+  }
+
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
