@@ -17,13 +17,23 @@ function howManyMovies(movies) {
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(movies) {
+    if (!movies.length) {
+        return 0
+    }
+    let moviesFiltered = movies.filter((movie) => movie.rate)
+    console.log(moviesFiltered);
 
-    let bestMovies = movies.filter((movie) => movie.rate >= 8)
+    const sumMovies = moviesFiltered.reduce(function(acumulartor, current) {
+        return acumulartor + (!current.rate || current.rate === null || current.rate === '' || current.rate === '' ? 0 : current.rate)
+    }, 0)
 
-    console.log(bestMovies.reduce((acumulartor, currentValue) => acumulartor + currentValue))
+    console.log(sumMovies);
 
-    // return
 
+    const average = (sumMovies / movies.length).toFixed(2)
+
+
+    return Number(average)
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
