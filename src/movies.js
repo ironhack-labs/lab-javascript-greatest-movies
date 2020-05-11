@@ -85,22 +85,30 @@ function orderAlphabetically(array) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-
 function turnHoursToMinutes(array) {
-  const newObject = [...array]
-  const replaceLetters = newObject.map(movie => {
-  movie.duration = movie.duration.replace('h', '').replace('min', '').split(' ')
-  console.log(movie)
-  return movie
+
+  const newTimeInMinutes = array.map( movie => {
+      const mappedMovie = {
+          title: movie.title,
+          year: movie.year,
+          director: movie.director,
+          duration: movie.duration,
+          genre: movie.genre,
+          rate: movie.rate
+      }
+     
+      if (mappedMovie.duration.includes("h") && mappedMovie.duration.includes("min")) {
+          mappedMovie.duration = mappedMovie.duration.slice(0, -3).split("h");
+          mappedMovie.duration = 
+          (mappedMovie.duration[0])*60 + Number(mappedMovie.duration[1])
+      } else if (mappedMovie.duration.includes("h") && (mappedMovie.duration.includes("min") === false)) {
+          mappedMovie.duration = Number(mappedMovie.duration.slice(0, -1))*60
+      } else if (mappedMovie.duration.includes("h")=== false && (mappedMovie.duration.includes("min") === true)){
+          mappedMovie.duration = Number(mappedMovie.duration.slice(0, -3))
+      }
+      return mappedMovie
   })
-  const correctTime = replaceLetters.map((element) =>{
-    if (!element.duration[0]) {
-      return Number(element.duration[1])
-      } else {
-    element.duration = (element.duration[0] *60) + Number(element.duration[1])}
-    return element
-  })
-  return correctTime
+  return newTimeInMinutes;
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
