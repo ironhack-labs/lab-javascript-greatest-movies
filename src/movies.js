@@ -10,7 +10,7 @@ function howManyMovies(movies) {
     return movies.filter((movie) => movie.director === 'Steven Spielberg' && movie.genre.indexOf('Drama') !== -1).length
 }
 
-// Iteracion 2: For multiples genres and directors
+// Iteracion 2: Other solution for multiples genres and directors
 // function howManyMovies(movies, nameDirector, genre) {
 // return movies.filter((movie) => movie.director === nameDirector && movie.genre.indexOf(genre) !== -1).length
 // }
@@ -20,20 +20,9 @@ function ratesAverage(movies) {
     if (!movies.length) {
         return 0
     }
-    let moviesFiltered = movies.filter((movie) => movie.rate)
-    console.log(moviesFiltered);
-
-    const sumMovies = moviesFiltered.reduce(function(acumulartor, current) {
-        return acumulartor + (!current.rate || current.rate === null || current.rate === '' || current.rate === '' ? 0 : current.rate)
-    }, 0)
-
-    console.log(sumMovies);
-
-
-    const average = (sumMovies / movies.length).toFixed(2)
-
-
-    return Number(average)
+    return Number((movies.filter((movie) => movie.rate).reduce(function(acumulartor, current) {
+        return acumulartor + (!current.rate ? 0 : current.rate)
+    }, 0) / movies.length).toFixed(2))
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
