@@ -98,8 +98,18 @@ function orderAlphabetically (array) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
-function turnHoursToMinutes (arr) {
-    let copiedArray = arr.slice()
+function turnHoursToMinutes (array) {
+    let copiedArray = array.map (movie => {
+        const newMovie = {
+            "title": movie["title"],
+            "year": movie["year"],
+            "director": movie["director"],
+            "duration": movie["duration"],
+            "genre": movie["genre"],
+            "rate": movie["rate"]
+        }
+        return newMovie
+    }) 
   
     let moviesDurationSplitted = copiedArray.map (movie => {
         movie["duration"] = movie["duration"].split("")
@@ -128,3 +138,26 @@ function turnHoursToMinutes (arr) {
 
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+/*function bestYearAvg (array) {
+    if (array.length === 0) {
+        return null
+    }
+    const eachYear = []
+    
+    array.map (movie => {
+        return eachYear.map(element => {
+            if (element["year"] === movie["year"]) {
+                eachYear["movies"]++
+                eachYear["totalRate"] += movie["rate"]
+                return element
+            } else {
+                return eachYear.push({"year": movie["year"], "movies": 1, "totalRate": movie["rate"], "average": totalRate / movies})
+            }
+
+        })
+        return eachYear
+    })
+
+    console.log(eachYear)
+}*/
