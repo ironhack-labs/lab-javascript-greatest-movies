@@ -8,7 +8,7 @@ function getAllDirectors(arrayOfMovies) {
 function getAllDirectors(arrayOfMovies) {
   const arrayOfDirectors = arrayOfMovies.map((names) => names.director);
   const directors = arrayOfDirectors.filter(
-    (v, i) => arrayOfDirectors.indexOf(v) === i
+    (item, index) => arrayOfDirectors.indexOf(item) === index
   );
   return directors;
 }
@@ -113,7 +113,7 @@ function orderAlphabetically(arrayOfMovies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arrayOfMovies) {
-  const hoursToMinutes = arrayOfMovies.slice(0, 1);
+  let hoursToMinutes = arrayOfMovies.slice();
   return hoursToMinutes.map(function (movie) {
     if (movie.duration.includes("h")) {
       movie.duration =
@@ -128,3 +128,52 @@ function turnHoursToMinutes(arrayOfMovies) {
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+function bestYearAvg(arrayOfMovies) {
+  if (arrayOfMovies.length === 0) return null;
+  const newArrayByYear = arrayOfMovies.slice().map((movie) => movie.year);
+  const equalYears = newArrayByYear.filter(
+    (item, index) => newArrayByYear.indexOf(item) === index
+  );
+  let yearAverageArray = [];
+  let arraybyYear = [];
+  let moviesByYearArray = [];
+  let compareRating = [];
+  let sameRateArray = [];
+  let highestAverage;
+
+  for (let i = 0; i < equalYears.length; i++) {
+    arraybyYear = arrayOfMovies.filter((movie) => movie.year === equalYears[i]);
+
+    moviesByYearArray.push(arraybyYear);
+
+    let yearAverage =
+      Math.round(
+        (arrayOfMovies
+          .filter((movie) => movie.year === equalYears[i])
+          .reduce((sum, movie) => sum + movie.rate, 0) /
+          arraybyYear.length) *
+          100
+      ) / 100;
+
+    yearAverageArray.push(yearAverage);
+
+    highestAverage = Math.max(...yearAverageArray);
+
+    indexOfHighRatedYear = yearAverageArray.indexOf(
+      Math.max(...yearAverageArray)
+    );
+  }
+
+  for (let i = 0; i < yearAverageArray.length; i++) {
+    if (yearAverageArray[i] === highestAverage) {
+      compareRating.push(i);
+    }
+  }
+
+  for (let i = 0; i < compareRating.length; i++) {
+    sameRateArray.push(moviesByYearArray[compareRating[i]][0]);
+    sameRateArray.reverse();
+  }
+
+  return `The best year was ${sameRateArray[0].year} with an average rate of ${highestAverage}`;
+}
