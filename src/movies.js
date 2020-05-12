@@ -112,3 +112,24 @@ function turnHoursToMinutes(array) {
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+
+function bestYearAvg(array) {
+  if (array. length === 0) {
+    return null
+  } else {
+    let flimsByYear = array.reduce((acc, el) =>{
+      acc[el.year] = (acc[el.year] || [])
+      acc[el.year].push(el)
+      return acc
+    }, {})
+    
+    let yearRate = Object.keys(flimsByYear).reduce((acc, el) => {
+      acc[el] = flimsByYear[el].reduce((acc, el) => acc += el.rate, 0) / flimsByYear[el].length
+        return acc
+    }, {})
+    let sortedByRate = Object.keys(flimsByYear).sort((a, b) => yearRate[b] - yearRate[a])
+    
+    return `The best year was ${sortedByRate[0]} with an average rate of ${yearRate[sortedByRate[0]]}`
+  }
+}
