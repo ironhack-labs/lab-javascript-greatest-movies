@@ -114,4 +114,32 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+
+function turnHoursToMinutes(movies) {
+    let normalizedMovies = JSON.parse(JSON.stringify(movies))
+
+    normalizedMovies.map(movie => {
+        const hEnd = movie.duration.indexOf('h')
+        const mEnd = movie.duration.indexOf('m')
+        let mStart = hEnd + 2 
+
+        let hours = 0
+        let minutes = 0
+
+        if (hEnd != -1)  {
+            hours = parseInt(movie.duration.slice(0, hEnd),10)
+        } else {mStart = 0}
+
+        if (mEnd != -1)  {
+            minutes = parseInt(movie.duration.slice(mStart, mEnd),10)
+        }
+
+        movie.duration = hours*60 + minutes 
+
+        return movie
+    })
+
+    return normalizedMovies
+}
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
