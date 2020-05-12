@@ -62,12 +62,12 @@ function orderByYear(array) {
     let copiedToSort= array.slice(0)
     copiedToSort.sort((a, b) => {
         if (a["year"] === b["year"]) {
-            if (a["title"] > b["title"]){
-                return 1;
-            } else if (a["title"] < b["title"]){
-                return -1;
+            if (a["title"] > b["title"]) {
+                return 1
+            } else if (a["title"] < b["title"]) {
+                return -1
             }
-            return 0;
+            return 0
         }
         return a["year"] - b["year"]
     })
@@ -78,17 +78,17 @@ function orderByYear(array) {
 function orderAlphabetically (array) {
     let copiedToSort= array.slice(0)
     copiedToSort.sort((a, b) => {
-        if (a["title"] > b["title"]){
-            return 1;
-        } else if (a["title"] < b["title"]){
-            return -1;
+        if (a["title"] > b["title"]) {
+            return 1
+        } else if (a["title"] < b["title"]) {
+            return -1
         }
-        return 0;
+        return 0
     })
 
     let listOfNames = copiedToSort.map((movie) => movie["title"])
     
-    if (listOfNames.length > 20){
+    if (listOfNames.length > 20) {
         let listOfTwenty = listOfNames.slice(0,20)
         return listOfTwenty
     }
@@ -139,25 +139,45 @@ function turnHoursToMinutes (array) {
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
-/*function bestYearAvg (array) {
+function bestYearAvg (array) {
     if (array.length === 0) {
-        return null
+      return null
     }
-    const eachYear = []
+    const eachYear = {}
     
     array.map (movie => {
-        return eachYear.map(element => {
-            if (element["year"] === movie["year"]) {
-                eachYear["movies"]++
-                eachYear["totalRate"] += movie["rate"]
-                return element
-            } else {
-                return eachYear.push({"year": movie["year"], "movies": 1, "totalRate": movie["rate"], "average": totalRate / movies})
-            }
+        
+      let count = 0
+      for (let yr in eachYear) {
+        if (eachYear) {
+          if (eachYear[yr]["year"] === movie["year"]) {
+              eachYear[yr]["moviesN"]++
+              eachYear[yr]["totalRate"] += movie["rate"]
+              eachYear[yr]["average"] = Math.floor(eachYear[yr]["totalRate"] / eachYear[yr]["moviesN"] * 100) / 100
+              count++
+          }
+        }
+      }
 
-        })
-        return eachYear
-    })
+      if (count === 0) {
+        eachYear[movie["year"]] = {
+          "year": movie["year"], 
+          "moviesN": 1, 
+          "totalRate": movie["rate"], 
+          "average": movie["rate"]
+        }
+      }
+  })
 
-    console.log(eachYear)
-}*/
+  let maxAverage = {}
+  
+  for (yr in eachYear) {
+    if (!maxAverage["year"]) {
+      maxAverage = eachYear[yr]
+    } else if (eachYear[yr]["average"] > maxAverage["average"]) {
+      maxAverage = eachYear[yr]
+    } //else if (eachYear[yr]["average"] > maxAverage["average"]) {    }
+  } 
+  
+  return `The best year was ${maxAverage.year} with an average rate of ${maxAverage.average}`
+}
