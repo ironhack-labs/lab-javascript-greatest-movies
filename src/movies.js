@@ -27,14 +27,13 @@ function howManyMovies (moviesArr) {
 function ratesAverage (moviesArr) {
 
     if (moviesArr.length === 0) {
-        return 0
-  }
+        return 0;
+    }
 
-    const allRates = moviesArr.map(theMovie => theMovie.rate)
+    const averageRates = moviesArr.filter(theMovie => theMovie.rate).reduce ((acc, movie) => acc + movie.rate, 0) / moviesArr.length;
 
-    const allRatesAverage = allRates.reduce((ac, cur) => ac + cur)
+    return averageRates.toFixed(2);  
 
-    return (allRatesAverage / allRates.length).toFixed(2)
 }
 
 
