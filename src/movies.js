@@ -102,10 +102,10 @@ function orderAlphabetically(movies) {
     let twentyMovies = []
 
     if (orderedMovies.length < 20) {
-        twentyMovies = orderedMovies
+        twentyMovies = orderedMovies.map(movie => movie.title)
     } else {
         for (let i = 0; i < 20; i++){
-            twentyMovies.push(orderedMovies)
+            twentyMovies.push(orderedMovies[i].title)
         }
     }
 
