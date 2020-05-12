@@ -24,7 +24,7 @@ function howManyMovies(arrayOfMovies) {
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(arrayOfMovies) {
-  if (arrayOfMovies.length === 0) return 0;
+  if (!arrayOfMovies.length) return 0;
   const noRatedMovies = arrayOfMovies.map(function (movie) {
     if (!movie.rate) {
       movie.rate = 0;
@@ -50,7 +50,7 @@ function dramaMoviesRate(arrayOfMovies) {
       onlyDrama.genre.length === 1 && onlyDrama.genre.indexOf("Drama") >= 0
   ).length;
 
-  if (dramaMoviesLength === 0) return 0;
+  if (!dramaMoviesLength) return 0;
 
   const dramaMovies =
     Math.round(
@@ -132,7 +132,7 @@ function turnHoursToMinutes(arrayOfMovies) {
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 function bestYearAvg(arrayOfMovies) {
-  if (arrayOfMovies.length === 0) return null;
+  if (!arrayOfMovies.length) return null;
   const newArrayByYear = arrayOfMovies.slice().map((movie) => movie.year);
   const equalYears = newArrayByYear.filter(
     (item, index) => newArrayByYear.indexOf(item) === index
