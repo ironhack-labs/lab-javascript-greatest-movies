@@ -63,5 +63,21 @@ function orderAlphabetically(myArray) {
 	return titleArray.slice(0,20)
 }
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-
+//Had a lot of trouble with copying the array. Jasmine kept telling me I was modifying the original array property.
+//Had to use JSON.parse(JSON.stringify(...))
+function turnHoursToMinutes(myArray) {
+    const newArray = JSON.parse(JSON.stringify(myArray))
+    return newArray.map(movie => {
+			const time = movie.duration.split(/[\s\D]+/)
+			if (movie.duration.indexOf("h")>0)
+			{
+				movie.duration =  Number(time[0]*60) + Number(time[1])
+			}
+			else
+			{
+				movie.duration = Number(time[0])
+			}
+			return movie
+		})
+}
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
