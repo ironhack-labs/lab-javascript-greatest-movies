@@ -31,9 +31,9 @@ const dramaMoviesRate = function(movies) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-const compare = (a, b) => a.year === b.year ? [a, b].sort((a, b) => a.title > b.title ? -1 : 1) : a.year > b.year ? -1 : 1
+const compareByYearOrTitle = (a, b) => a.year === b.year ? [a, b].sort((a, b) => a.title > b.title ? -1 : 1) : a.year > b.year ? -1 : 1
 
-const orderByYear = movies => movies.length === 1 ? movies : movies.sort(compare).reverse().slice()
+const orderByYear = movies => movies.length === 1 ? movies : movies.sort(compareByYearOrTitle).reverse().slice()
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 const orderAlphabetically = movies => console.log(movies.title);
