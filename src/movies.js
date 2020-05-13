@@ -26,8 +26,9 @@ function dramaMoviesRate(movies) {
     const reduceDramaFilms = dramaFilms.reduce(
         function(acumulartor, current) {
             return acumulartor + (!current.rate ? 0 : current.rate)
-        }, 0) / dramaFilms.length
-    return Number(reduceDramaFilms.toFixed(2))
+        }, 0)
+
+    return Number((reduceDramaFilms / dramaFilms.length).toFixed(2))
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
