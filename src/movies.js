@@ -18,7 +18,7 @@ const ratesAverage = movies => !movies.length ? 0 : Number((movies.filter(movie 
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesRate(movies) {
+const dramaMoviesRate = function(movies) {
     const dramaFilms = movies.filter(movie => movie.genre.indexOf('Drama') !== -1 && movie.genre.length === 1)
     if (!dramaFilms.length) {
         return 0
@@ -31,15 +31,12 @@ function dramaMoviesRate(movies) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(movies) {
-    if (movies.length === 1) {
-        return movies
-    }
-    const compare = (a, b) => a.year === b.year ? [a, b].sort((a, b) => a.title > b.title ? -1 : 1) : a.year > b.year ? -1 : 1
-    return movies.sort(compare).reverse().slice()
+const compare = (a, b) => a.year === b.year ? [a, b].sort((a, b) => a.title > b.title ? -1 : 1) : a.year > b.year ? -1 : 1
 
-}
+const orderByYear = movies => movies.length === 1 ? movies : movies.sort(compare).reverse().slice()
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+const orderAlphabetically = movies => console.log(movies.title);
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
