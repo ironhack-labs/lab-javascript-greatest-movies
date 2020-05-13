@@ -1,5 +1,6 @@
 let allDirectors = []
 
+
 // Iteration 1: All directors? - Get the array of all directors.
 function getAllDirectors(moviesArray) {
 
@@ -22,8 +23,6 @@ function getAllDirectors(moviesArray) {
 
 function howManyMovies(moviesArray) {
 
-    moviesArray.length === 0 ? 0 : null
-
     const steveMovies = moviesArray.filter(num => num.director === 'Steven Spielberg')
     const steveDramaMovies = []
 
@@ -33,7 +32,7 @@ function howManyMovies(moviesArray) {
         })
     })
 
-    return steveDramaMovies.length
+    return steveDramaMovies ? steveDramaMovies.length : 0
 }
 
 
@@ -50,7 +49,38 @@ function ratesAverage(moviesArray) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
+function dramaMoviesRate(moviesArray) {
+
+    const dramaMovies = []
+    let totalRate = 0;
+
+    moviesArray.filter(function (drama) {
+        drama.genre.map(function (d) {
+            d === 'Drama' ? dramaMovies.push(drama.rate) : null
+        })
+    })
+
+    dramaMovies.forEach(e => totalRate += e)
+
+    return (totalRate / dramaMovies.length) ? Math.round((totalRate / dramaMovies.length) * 100) / 100 : 0
+
+}
+
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+
+function orderByYear(moviesArray) {
+
+    const orderByYear = moviesArray.map(e => e.year).sort()
+    const objectOrderByYear = {}
+    const arrayOrderByYear = []
+
+    orderByYear.forEach(function (e, idx) {
+        objectOrderByYear.year = e
+        arrayOrderByYear.push({ year: objectOrderByYear.year })
+    })
+
+    return arrayOrderByYear
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
