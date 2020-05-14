@@ -1,11 +1,10 @@
-
 // Iteration 1: All directors? - Get the array of all directors.
 function getAllDirectors(movies){
     const directors = movies.map(movie => movie.director)
     return directors
 }
-// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
+// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(movies){  
     const films = movies.filter(function(movie){
@@ -18,25 +17,20 @@ function howManyMovies(movies){
 function ratesAverage(movies){
     if (movies.length == 0) return 0
    const rate = movies.reduce(function(sum, movie){
-       if (!movie.rate) return sum;
-       else return sum + movie.rate;
+       if (!movie.rate) return sum
+       else return sum + movie.rate
   }, 0);
 
   return (parseFloat((rate/movies.length).toFixed(2)))
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-
 function dramaMoviesRate(movies){
     if (movies.length == 0) return 0
-    /*const rate = movies.filter(movie => movie.genre.includes('Drama')).reduce(function(sum, movie){
-        return sum + movie.rate;
-    }, 0);
-    */
     const dramaFilms = movies.filter(movie => movie.genre.includes('Drama'))
     if (dramaFilms.length ==0) return 0
     const dramF= dramaFilms.reduce(function(sum, dramaFilm){
-        return sum + dramaFilm.rate;
+        return sum + dramaFilm.rate
     }, 0);
       return (parseFloat((dramF/dramaFilms.length).toFixed(2)))
     }
@@ -44,10 +38,12 @@ function dramaMoviesRate(movies){
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies){
     if (movies.length == 0) return 0
-    let orderedYear = movies.slice().sort(function(a,b){return a.year > b.year})
+    let orderedYear = movies.slice().sort(function(a,b){
+        if (a.year > b.year) return -1
+        if (a.year < b.year) return 1
+        return 0})
     return orderedYear.reverse()
 }
-
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies){
@@ -70,17 +66,17 @@ function turnHoursToMinutesM(movies){
         time = movie.duration.split(' ')
         let h, min
         if(time.length==2){
-             h= time[0].match(/\d+/g);
-             mins = time[1].match(/\d+/g);
+             h= time[0].match(/\d+/g)
+             mins = time[1].match(/\d+/g)
              movie.duration = (parseInt(h[0])*60 + parseInt(mins))
         }
         
         else if (time[0].includes('min')){
-            min = time[0].match(/\d+/g);
+            min = time[0].match(/\d+/g)
             movie.duration = (parseInt(min))
         }
         else if (time[0].includes('h')){
-            h = time[0].match(/\d+/g);
+            h = time[0].match(/\d+/g)
             movie.duration = (parseInt(h[0])*60)
         }
         return newArray.push(movie);
@@ -94,31 +90,51 @@ function turnHoursToMinutes(movies){
     let time, h, min;
     let durationIntoMin = movies.map(function(m){
         let movie = Object.assign({}, m)
-        time = movie.duration.split(' ');
+        time = movie.duration.split(' ')
         if(time.length===2){
-             h= time[0].match(/\d+/g);
-             mins = time[1].match(/\d+/g);
+             h= time[0].match(/\d+/g)
+             mins = time[1].match(/\d+/g)
             movie.duration = (parseInt(h[0])*60 + parseInt(mins))
         }
         else if (time[0].includes('min')){
-            min = time[0].match(/\d+/g);
+            min = time[0].match(/\d+/g)
             movie.duration = (parseInt(min))
         }
         else if (time[0].includes('h')){
-            h = time[0].match(/\d+/g);
+            h = time[0].match(/\d+/g)
             movie.duration = (parseInt(h[0])*60)
         }
-        return movie;          
+        return movie         
     });
     return durationIntoMin
 }
 
-
-
-
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 function bestYearAvg (movies){
     if (movies.length==0) return null
-    let year = movies.filter(function(movie){return movie.year})
-
-}
+    y=[]
+    movies.filter(function(movie){ 
+        if (!y.includes(movie.year)) 
+            y.push(movie.year)})
+    fullAr =[]
+    for (i in y){
+        val = [y[i], 0, 0] //year, filmCounter, total
+        for (j of movies){
+            if (j.year === y[i]){
+                val[1]++;
+                val[2]+=j.rate
+            }
+        }
+        fullAr.push(val)
+    }
+    for (k of fullAr){ k[2] = k[2]/k[1]  }
+    maxRate = fullAr[0][2]
+    bestYear = fullAr[0][0]
+    for (i of fullAr){
+        if(i[2] >= maxRate){
+            bestYear =i[0]
+            maxRate = i[2]
+        }    
+    }
+    return `The best year was ${bestYear} with an average rate of ${maxRate}`
+    }
