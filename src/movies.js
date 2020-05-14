@@ -3,10 +3,17 @@
 function getAllDirectors (moviesArr) {
 
     const allDirectors = moviesArr.map(movie => movie.director)
-    return allDirectors
-}
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+
+    const noRepeatDirectors = allDirectors.filter((director, index) => allDirectors.indexOf(director) === index)
+
+    return noRepeatDirectors
+
+}
+
+
+
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
@@ -94,10 +101,12 @@ function orderAlphabetically (moviesArr) {
     
     const sortedArrTitle = moviesArr.map(movie => movie.title).sort()
   
-    return onlyTwenty = sortedArrTitle.slice(0, 20)
+    return sortedArrTitle.slice(0, 20)
   
   }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
