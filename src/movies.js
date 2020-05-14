@@ -32,7 +32,7 @@ function ratesAverage (moviesArr) {
 
     const averageRates = moviesArr.filter(theMovie => theMovie.rate).reduce ((acc, movie) => acc + movie.rate, 0) / moviesArr.length;
 
-    return averageRates.toFixed(2);  
+    return Number(averageRates.toFixed(2));  
 
 }
 
@@ -40,6 +40,19 @@ function ratesAverage (moviesArr) {
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate (moviesArr) {
+
+    
+    const onlyDrama = moviesArr.filter(movie => movie.genre.includes('Drama'))
+
+    const dramaRates = onlyDrama.map(movie => movie.rate)
+    
+    const averageDramaRates = dramaRates.reduce((acc, rate) => acc + rate, 0) / onlyDrama.length
+
+    if (onlyDrama.length === 0) {
+        return 0
+    }
+
+    return Number(averageDramaRates.toFixed(2))
 
 }
 
