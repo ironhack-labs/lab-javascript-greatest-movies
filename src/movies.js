@@ -11,6 +11,9 @@ function getAllDirectors(moviesArray) {
 
 }
 
+
+//TODO: Hacer Bonus
+
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 // let unique = []
 
@@ -70,20 +73,104 @@ function dramaMoviesRate(moviesArray) {
 
 function orderByYear(moviesArray) {
 
-    const orderByYear = moviesArray.map(e => e.year).sort()
+
+    const orderByYear = moviesArray.map(function (e) {
+        return { title: e.title, year: e.year }
+    })
+
+    orderByYear.sort((a, b) => (a.year > b.year) ? 1 : -1)
+
     const objectOrderByYear = {}
     const arrayOrderByYear = []
 
     orderByYear.forEach(function (e, idx) {
-        objectOrderByYear.year = e
+        objectOrderByYear.year = e.year
         arrayOrderByYear.push({ year: objectOrderByYear.year })
     })
+
+    // console.log(arrayOrderByYear);
 
     return arrayOrderByYear
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
+function orderAlphabetically(movieArray) {
+
+    const titleAlpha = []
+    const top20titleAlpha = []
+
+    const first20Titles = movieArray.filter(e => e.title.toString())
+
+    first20Titles.forEach(e => titleAlpha.push(e.title))
+    titleAlpha.sort()
+
+    titleAlpha.forEach(function (e, idx) {
+        idx < 20 ? top20titleAlpha.push(e) : null
+    })
+
+    return top20titleAlpha
+}
+
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(movieArray) {
+
+    const durationMovie = movieArray.map(e => e.duration)
+    let minutesPerHour = 0
+    let minutes = 0
+    const totalMinutes = []
+
+    durationMovie.forEach(function (m, idx) {
+        for (i = 0; i < m.length; i++) {
+            if (m[i] === 'h') {
+                minutesPerHour = parseInt(m[i - 1] * 60)
+            } else if (m[i] === 'm') {
+                minutes = parseInt(m[i - 2] + m[i - 1])
+            }
+        }
+        totalMinutes.push({ duration: minutesPerHour + minutes })
+    })
+
+    return totalMinutes
+}
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movieArray) {
+    if (movieArray.length === 0) {
+        return null
+    }
+
+    const moviesYearsRate = movieArray.map(function (e) {
+        return { year: e.year, rate: e.rate }
+    })
+
+    moviesYearsRate.sort((a, b) => a.year > b.year ? 1 : -1)
+
+    const years = moviesYearsRate.map(e => e.year)
+
+    // Guardar en un Array los elementos repetidos
+
+    const object = {};
+    const result = [];
+
+    years.forEach(item => {
+        if (!object[item])
+            object[item] = 0;
+        object[item] += 1;
+    })
+
+    console.log(object);
+
+    for (const prop in object) {
+        if (object[prop] >= 2) {
+            result.push(parseInt(prop));
+        }
+    }
+
+    console.log(result);
+
+    // FIN Guardar en un Array los elementos repetidos
+
+}
