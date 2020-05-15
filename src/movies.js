@@ -30,6 +30,17 @@ function ratesAverage(movies) {
 }
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
+function getDramaMovies(movies) {
+  return movies.filter(function (movie) {
+    return movie.genre.includes('Drama');
+  });
+}
+
+function dramaMoviesRate(movies) {
+  const dramaMovies = getDramaMovies(movies);
+  return ratesAverage(dramaMovies);
+}
+
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
