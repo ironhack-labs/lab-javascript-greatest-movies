@@ -247,156 +247,156 @@ describe('Order the movies by year - orderByYear', () => {
  * 6. orderAlphabetically
  */
 
-// describe('Order alphabetically - orderAlphabetically', () => {
-//   it('Defines orderAlphabetically', () => {
-//     expect(typeof orderAlphabetically).toBe('function');
-//   });
+describe('Order alphabetically - orderAlphabetically', () => {
+  it('Defines orderAlphabetically', () => {
+    expect(typeof orderAlphabetically).toBe('function');
+  });
 
-//   it('You should return an array', () => {
-//     expect(typeof orderAlphabetically([])).toBe('object');
-//   });
+  it('You should return an array', () => {
+    expect(typeof orderAlphabetically([])).toBe('object');
+  });
 
-//   it('You should not mutate the original array', () => {
-//     const arr = [{ title: 'xyz' }, { title: 'abc' }];
-//     orderAlphabetically(arr);
-//     expect(arr[0].title).toEqual('xyz');
-//   });
+  it('You should not mutate the original array', () => {
+    const arr = [{ title: 'xyz' }, { title: 'abc' }];
+    orderAlphabetically(arr);
+    expect(arr[0].title).toEqual('xyz');
+  });
 
-//   it('Only return the title of the movies! Each element should be a string', () => {
-//     expect(typeof orderAlphabetically([{ title: 'aab' }])[0]).toBe('string');
-//   });
+  it('Only return the title of the movies! Each element should be a string', () => {
+    expect(typeof orderAlphabetically([{ title: 'aab' }])[0]).toBe('string');
+  });
 
-//   it('If there are less than 20 elements, return all of them.', () => {
-//     const moviesArr = [{ title: 'aab' }, { title: 'bab' }, { title: 'acb' }];
+  it('If there are less than 20 elements, return all of them.', () => {
+    const moviesArr = [{ title: 'aab' }, { title: 'bab' }, { title: 'acb' }];
 
-//     expect(orderAlphabetically(moviesArr).length).toEqual(3);
-//   });
+    expect(orderAlphabetically(moviesArr).length).toEqual(3);
+  });
 
-//   it('If there are more than 20 elements, return only 20 of them.', () => {
-//     const moviesArr = [
-//       { title: 'aab' },
-//       { title: 'bab' },
-//       { title: 'acb' },
-//       { title: 'aab' },
-//       { title: 'bab' },
-//       { title: 'acb' },
-//       { title: 'aab' },
-//       { title: 'bab' },
-//       { title: 'acb' },
-//       { title: 'aab' },
-//       { title: 'bab' },
-//       { title: 'acb' },
-//       { title: 'aab' },
-//       { title: 'bab' },
-//       { title: 'acb' },
-//       { title: 'aab' },
-//       { title: 'bab' },
-//       { title: 'acb' },
-//       { title: 'aab' },
-//       { title: 'bab' },
-//       { title: 'acb' },
-//       { title: 'aab' },
-//       { title: 'bab' },
-//       { title: 'acb' },
-//       { title: 'aab' },
-//       { title: 'bab' },
-//       { title: 'acb' },
-//       { title: 'aab' },
-//       { title: 'bab' },
-//       { title: 'acb' },
-//       { title: 'aab' },
-//       { title: 'bab' },
-//       { title: 'acb' },
-//       { title: 'aab' },
-//       { title: 'bab' },
-//       { title: 'acb' }
-//     ];
+  it('If there are more than 20 elements, return only 20 of them.', () => {
+    const moviesArr = [
+      { title: 'aab' },
+      { title: 'bab' },
+      { title: 'acb' },
+      { title: 'aab' },
+      { title: 'bab' },
+      { title: 'acb' },
+      { title: 'aab' },
+      { title: 'bab' },
+      { title: 'acb' },
+      { title: 'aab' },
+      { title: 'bab' },
+      { title: 'acb' },
+      { title: 'aab' },
+      { title: 'bab' },
+      { title: 'acb' },
+      { title: 'aab' },
+      { title: 'bab' },
+      { title: 'acb' },
+      { title: 'aab' },
+      { title: 'bab' },
+      { title: 'acb' },
+      { title: 'aab' },
+      { title: 'bab' },
+      { title: 'acb' },
+      { title: 'aab' },
+      { title: 'bab' },
+      { title: 'acb' },
+      { title: 'aab' },
+      { title: 'bab' },
+      { title: 'acb' },
+      { title: 'aab' },
+      { title: 'bab' },
+      { title: 'acb' },
+      { title: 'aab' },
+      { title: 'bab' },
+      { title: 'acb' }
+    ];
 
-//     expect(orderAlphabetically(moviesArr).length).toEqual(20);
-//   });
+    expect(orderAlphabetically(moviesArr).length).toEqual(20);
+  });
 
-//   it('You should order them alphabetically.', () => {
-//     const moviesArr = [
-//       { title: 'aab' },
-//       { title: 'aaa' },
-//       { title: 'abc' },
-//       { title: 'acb' },
-//       { title: 'abb' }
-//     ];
+  it('You should order them alphabetically.', () => {
+    const moviesArr = [
+      { title: 'aab' },
+      { title: 'aaa' },
+      { title: 'abc' },
+      { title: 'acb' },
+      { title: 'abb' }
+    ];
 
-//     expect(orderAlphabetically(moviesArr)).toEqual([
-//       'aaa',
-//       'aab',
-//       'abb',
-//       'abc',
-//       'acb'
-//     ]);
-//   });
+    expect(orderAlphabetically(moviesArr)).toEqual([
+      'aaa',
+      'aab',
+      'abb',
+      'abc',
+      'acb'
+    ]);
+  });
 
-//   it('You should return the top20 after ordering them alphabetically.', () => {
-//     const moviesArr = [
-//       { title: 'aab' },
-//       { title: 'bab' },
-//       { title: 'acb' },
-//       { title: 'aaa' },
-//       { title: 'bbb' },
-//       { title: 'anc' },
-//       { title: 'kns' },
-//       { title: 'zds' },
-//       { title: 'pow' },
-//       { title: 'gda' },
-//       { title: 'res' },
-//       { title: 'ter' },
-//       { title: 'bca' },
-//       { title: 'ccc' },
-//       { title: 'bbt' },
-//       { title: 'qas' },
-//       { title: 'kmn' },
-//       { title: 'frt' },
-//       { title: 'afb' },
-//       { title: 'agb' },
-//       { title: 'apo' },
-//       { title: 'poa' },
-//       { title: 'cdf' },
-//       { title: 'sea' },
-//       { title: 'lom' },
-//       { title: 'acs' },
-//       { title: 'qas' },
-//       { title: 'mns' },
-//       { title: 'bvc' },
-//       { title: 'gha' },
-//       { title: 'lkj' },
-//       { title: 'era' },
-//       { title: 'ert' },
-//       { title: 'tex' },
-//       { title: 'zas' },
-//       { title: 'pol' }
-//     ];
+  it('You should return the top20 after ordering them alphabetically.', () => {
+    const moviesArr = [
+      { title: 'aab' },
+      { title: 'bab' },
+      { title: 'acb' },
+      { title: 'aaa' },
+      { title: 'bbb' },
+      { title: 'anc' },
+      { title: 'kns' },
+      { title: 'zds' },
+      { title: 'pow' },
+      { title: 'gda' },
+      { title: 'res' },
+      { title: 'ter' },
+      { title: 'bca' },
+      { title: 'ccc' },
+      { title: 'bbt' },
+      { title: 'qas' },
+      { title: 'kmn' },
+      { title: 'frt' },
+      { title: 'afb' },
+      { title: 'agb' },
+      { title: 'apo' },
+      { title: 'poa' },
+      { title: 'cdf' },
+      { title: 'sea' },
+      { title: 'lom' },
+      { title: 'acs' },
+      { title: 'qas' },
+      { title: 'mns' },
+      { title: 'bvc' },
+      { title: 'gha' },
+      { title: 'lkj' },
+      { title: 'era' },
+      { title: 'ert' },
+      { title: 'tex' },
+      { title: 'zas' },
+      { title: 'pol' }
+    ];
 
-//     expect(orderAlphabetically(moviesArr)).toEqual([
-//       'aaa',
-//       'aab',
-//       'acb',
-//       'acs',
-//       'afb',
-//       'agb',
-//       'anc',
-//       'apo',
-//       'bab',
-//       'bbb',
-//       'bbt',
-//       'bca',
-//       'bvc',
-//       'ccc',
-//       'cdf',
-//       'era',
-//       'ert',
-//       'frt',
-//       'gda',
-//       'gha'
-//     ]);
-//   });
-// });
+    expect(orderAlphabetically(moviesArr)).toEqual([
+      'aaa',
+      'aab',
+      'acb',
+      'acs',
+      'afb',
+      'agb',
+      'anc',
+      'apo',
+      'bab',
+      'bbb',
+      'bbt',
+      'bca',
+      'bvc',
+      'ccc',
+      'cdf',
+      'era',
+      'ert',
+      'frt',
+      'gda',
+      'gha'
+    ]);
+  });
+});
 
 // ******************************************************************************************
 // *************************************** BONUS ********************************************
@@ -405,83 +405,83 @@ describe('Order the movies by year - orderByYear', () => {
 /*
  * 7. turnHoursToMinutes
  */
-// describe('Turn duration of the movies - turnHoursToMinutes', () => {
-//   it('Defines turnHoursToMinutes', () => {
-//     expect(typeof turnHoursToMinutes).toBe('function');
-//   });
+describe('Turn duration of the movies - turnHoursToMinutes', () => {
+  it('Defines turnHoursToMinutes', () => {
+    expect(typeof turnHoursToMinutes).toBe('function');
+  });
 
-//   it('Should return an array', () => {
-//     expect(typeof turnHoursToMinutes(movies)).toBe('object');
-//   });
+  it('Should return an array', () => {
+    expect(typeof turnHoursToMinutes(movies)).toBe('object');
+  });
 
-//   it('Should return a new array, not update the original one', () => {
-//     expect(turnHoursToMinutes(movies)).not.toEqual(movies);
-//   });
+  it('Should return a new array, not update the original one', () => {
+    expect(turnHoursToMinutes(movies)).not.toEqual(movies);
+  });
 
-//   it('The duration of the movie should be a number', () => {
-//     expect(typeof turnHoursToMinutes(movies)[0].duration).toBe('number');
-//   });
+  it('The duration of the movie should be a number', () => {
+    expect(typeof turnHoursToMinutes(movies)[0].duration).toBe('number');
+  });
 
-//   it('The duration of the movie should return the correct number to a short movie - 31 minutes', () => {
-//     const movieTry = [{ duration: '0h 31min' }];
+  it('The duration of the movie should return the correct number to a short movie - 31 minutes', () => {
+    const movieTry = [{ duration: '0h 31min' }];
 
-//     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(31);
-//   });
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(31);
+  });
 
-//   it('The duration of the movie should return the correct number for really long movie - 341 minutes', () => {
-//     const movieTry = [{ duration: '5h 41min' }];
+  it('The duration of the movie should return the correct number for really long movie - 341 minutes', () => {
+    const movieTry = [{ duration: '5h 41min' }];
 
-//     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(341);
-//   });
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(341);
+  });
 
-//   it('It should return the correct number when the duration is only in hours', () => {
-//     const movieTry = [{ duration: '2h' }];
+  it('It should return the correct number when the duration is only in hours', () => {
+    const movieTry = [{ duration: '2h' }];
 
-//     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(120);
-//   });
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(120);
+  });
 
-//   it('It should return the correct number when the duration is only in minutes', () => {
-//     const movieTry = [{ duration: '54min' }];
+  it('It should return the correct number when the duration is only in minutes', () => {
+    const movieTry = [{ duration: '54min' }];
 
-//     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(54);
-//   });
-// });
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(54);
+  });
+});
 
 /*
  * 8. bestYearAvg
  */
 
-// describe('Best year average - bestYearAvg', () => {
-//   it('Defines bestYearAvg', () => {
-//     expect(typeof bestYearAvg).toBe('function');
-//   });
+describe('Best year average - bestYearAvg', () => {
+  it('Defines bestYearAvg', () => {
+    expect(typeof bestYearAvg).toBe('function');
+  });
 
-//   it('Should return null if the array is empty', () => {
-//     expect(bestYearAvg([])).toBe(null);
-//   });
+  it('Should return null if the array is empty', () => {
+    expect(bestYearAvg([])).toBe(null);
+  });
 
-//   it('Should return the correct answer to a single element array', () => {
-//     expect(bestYearAvg([{ year: 2007, rate: 8 }])).toEqual(
-//       'The best year was 2007 with an average rate of 8'
-//     );
-//   });
+  it('Should return the correct answer to a single element array', () => {
+    expect(bestYearAvg([{ year: 2007, rate: 8 }])).toEqual(
+      'The best year was 2007 with an average rate of 8'
+    );
+  });
 
-//   it('Should return the correct answer to a multiple elements array', () => {
-//     expect(bestYearAvg(movies)).toEqual(
-//       'The best year was 1972 with an average rate of 9.2'
-//     );
-//   });
+  it('Should return the correct answer to a multiple elements array', () => {
+    expect(bestYearAvg(movies)).toEqual(
+      'The best year was 1972 with an average rate of 9.2'
+    );
+  });
 
-//   it('Should return the oldest year when there is a tie', () => {
-//     const newMoviesArr = [
-//       { year: 2000, rate: 9 },
-//       { year: 2000, rate: 8 },
-//       { year: 1978, rate: 10 },
-//       { year: 1978, rate: 7 }
-//     ];
+  it('Should return the oldest year when there is a tie', () => {
+    const newMoviesArr = [
+      { year: 2000, rate: 9 },
+      { year: 2000, rate: 8 },
+      { year: 1978, rate: 10 },
+      { year: 1978, rate: 7 }
+    ];
 
-//     expect(bestYearAvg(newMoviesArr)).toEqual(
-//       'The best year was 1978 with an average rate of 8.5'
-//     );
-//   });
-// });
+    expect(bestYearAvg(newMoviesArr)).toEqual(
+      'The best year was 1978 with an average rate of 8.5'
+    );
+  });
+});
