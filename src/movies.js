@@ -43,10 +43,26 @@ function dramaMoviesRate(movies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
+function orderByYear(movies) {
+  return movies.slice().sort(function (a, b) {
+    if (a.year > b.year) {
+      return 1;
+    }
+    if (a.year < b.year) {
+      return -1;
+    }
+    if (a.year === a.year) {
+      if (a.title > b.title) {
+        return 1;
+      }
+      if (a.title < b.title) {
+        return -1;
+      }
+    }
+  })
+}
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
-
-// howManyMovies(movies);

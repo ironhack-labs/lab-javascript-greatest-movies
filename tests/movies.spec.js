@@ -204,44 +204,44 @@ describe('Average rate of Drama Movies - dramaMoviesRate', () => {
  * 5. orderByYear
  */
 
-// describe('Order the movies by year - orderByYear', () => {
-//   it('Defines orderByYear', () => {
-//     expect(typeof orderByYear).toBe('function');
-//   });
+describe('Order the movies by year - orderByYear', () => {
+  it('Defines orderByYear', () => {
+    expect(typeof orderByYear).toBe('function');
+  });
 
-//   it('Should return an array', () => {
-//     expect(typeof orderByYear(movies)).toBe('object');
-//   });
+  it('Should return an array', () => {
+    expect(typeof orderByYear(movies)).toBe('object');
+  });
 
-//   it('Should return a new array', () => {
-//     const arr = [];
-//     expect(orderByYear(arr)).not.toBe(arr);
-//   });
+  it('Should return a new array', () => {
+    const arr = [];
+    expect(orderByYear(arr)).not.toBe(arr);
+  });
 
-//   it('Should return the element in a single element array', () => {
-//     expect(orderByYear([{ year: 1982 }])).toEqual([{ year: 1982 }]);
-//   });
+  it('Should return the element in a single element array', () => {
+    expect(orderByYear([{ year: 1982 }])).toEqual([{ year: 1982 }]);
+  });
 
-//   it('Return the new array in ascending order', () => {
-//     expect(
-//       orderByYear([{ year: 2002 }, { year: 1982 }, { year: 1995 }])
-//     ).toEqual([{ year: 1982 }, { year: 1995 }, { year: 2002 }]);
-//   });
+  it('Return the new array in ascending order', () => {
+    expect(
+      orderByYear([{ year: 2002 }, { year: 1982 }, { year: 1995 }])
+    ).toEqual([{ year: 1982 }, { year: 1995 }, { year: 2002 }]);
+  });
 
-//   it('If two movies have the same year, order them alphabetically by their title', () => {
-//     expect(
-//       orderByYear([
-//         { title: 'abc', year: 2002 },
-//         { title: 'bac', year: 1982 },
-//         { title: 'aab', year: 1982 }
-//       ])
-//     ).toEqual([
-//       { title: 'aab', year: 1982 },
-//       { title: 'bac', year: 1982 },
-//       { title: 'abc', year: 2002 }
-//     ]);
-//   });
-// });
+  it('If two movies have the same year, order them alphabetically by their title', () => {
+    expect(
+      orderByYear([
+        { title: 'abc', year: 2002 },
+        { title: 'bac', year: 1982 },
+        { title: 'aab', year: 1982 }
+      ])
+    ).toEqual([
+      { title: 'aab', year: 1982 },
+      { title: 'bac', year: 1982 },
+      { title: 'abc', year: 2002 }
+    ]);
+  });
+});
 
 /*
  * 6. orderAlphabetically
