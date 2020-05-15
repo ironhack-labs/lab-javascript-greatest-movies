@@ -96,6 +96,29 @@ function orderAlphabetically(givenArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(givenArray) {
 
+    const hourstomin = givenArray.map(movie => {
+        const newArray = {
+            "title": movie.title,
+            "year": movie.year,
+            "director": movie.director,
+            "duration": movie.duration,
+            "genre": movie.genre,
+            "rate": movie.rate
+        }
+
+        if (newArray.duration.includes("h") && newArray.duration.includes("min")) {
+            newArray.duration = newArray.duration.slice(0, -3).split("h");
+            newArray.duration = Number(newArray.duration[0])*60 + Number(newArray.duration[1])
+        } else if (newArray.duration.includes("h")) {
+            newArray.duration = Number(newArray.duration.slice(0, -1))*60
+        } else {
+            newArray.duration = Number(newArray.duration.slice(0, -3))
+        }
+        return newArray
+    });
+        return hourstomin
+}
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
