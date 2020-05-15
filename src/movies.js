@@ -38,20 +38,17 @@ const orderByYear = movies => movies.length === 1 ? movies : movies.sort(compare
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 const compareByTitleStrings = function(a, b) {
-    if (typeof a.title === 'string' && typeof b.title === 'string') {
-        return a.title > b.title ? a.title : b.title
-    }
+    return a > b ? 1 : -1
 }
 
-const orderAlphabetically = function() {
-    const movies = [{ title: 'aab' }]
-        // const newArrayMovies = JSON.parse(JSON.stringify(movies)).sort(compareByTitleStrings).reverse().slice(0, 20)
-    for (let title of movies) {
-        console.log(Object.values(title))
+const orderAlphabetically = function(movies) {
+    const moviesTitlesString = []
+    for (let movie of movies) {
+        moviesTitlesString.push(Object.values(movie).toString())
     }
+    moviesTitlesString.sort(compareByTitleStrings)
 
-    // return Object.values(newArrayMovies)
-
+    return moviesTitlesString.slice(0, 20)
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
