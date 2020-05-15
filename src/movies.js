@@ -46,9 +46,7 @@ const orderAlphabetically = function(movies) {
     for (let movie of movies) {
         moviesTitlesString.push(Object.values(movie).toString())
     }
-    moviesTitlesString.sort(compareByTitleStrings)
-
-    return moviesTitlesString.slice(0, 20)
+    return (moviesTitlesString.sort(compareByTitleStrings)).slice(0, 20)
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
