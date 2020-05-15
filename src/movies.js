@@ -43,12 +43,15 @@ const compareByTitleStrings = function(a, b) {
 
 const orderAlphabetically = function(movies) {
     const moviesTitlesString = []
-    for (let movie of movies) {
-        moviesTitlesString.push(Object.values(movie).toString())
-    }
+    movies.forEach(movie => {
+        moviesTitlesString.push(movie.title.toString())
+    });
     return (moviesTitlesString.sort(compareByTitleStrings)).slice(0, 20)
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+const turnHoursToMinutes = function(movies) {
+    return movies
+}
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
