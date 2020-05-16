@@ -45,24 +45,27 @@ const orderAlphabetically = function(movies) {
     const moviesTitlesString = []
     movies.forEach(movie => {
         moviesTitlesString.push(movie.title.toString())
-    });
+    })
     return (moviesTitlesString.sort(compareByTitleStrings)).slice(0, 20)
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
 const turnHoursToMinutes = function(movies) {
-    const newMovies = []
-    movies.forEach(movie => {
-        newMovies.push(movie)
-    });
-
-    newMovies.forEach(newMovie => {
-        newMovie.duration = 'hola'
+    const moviesDuration = JSON.parse(JSON.stringify(movies))
+    moviesDuration.forEach(movie => {
+        const hours = movie.duration.indexOf('h') !== -1 ? Number(movie.duration.slice(0, movie.duration.indexOf('h'))) : 0
+        const minutes = movie.duration.indexOf('min') !== -1 ? Number(movie.duration.slice(movie.duration.indexOf('min') - 2, movie.duration.indexOf('min'))) : 0
+        movie.duration = !hours ? minutes : (!minutes ? hours * 60 : (hours * 60) + minutes)
     })
-    console.log('movies', movies);
-    console.log('newMovies', newMovies);
-
-    return newMovies
+    return moviesDuration
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+const bestYearAvg = function(movies) {
+    if (!movies.length) {
+        return null
+    }
+    movies.reduce()
+    return 'The best year was <YEAR> with an average rate of <RATE>'
+}
