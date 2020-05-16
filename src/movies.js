@@ -14,7 +14,7 @@ const howManyMovies = movies => movies.filter(movie => movie.director === 'Steve
 // }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-const ratesAverage = movies => !movies.length ? 0 : Number((movies.filter(movie => movie.rate).reduce(function(acumulartor, current) { return acumulartor + (!current.rate ? 0 : current.rate) }, 0) / movies.length).toFixed(2))
+const ratesAverage = movies => !movies.length ? 0 : Number((movies.filter(movie => movie.rate).reduce(function(acumulator, current) { return acumulator + (!current.rate ? 0 : current.rate) }, 0) / movies.length).toFixed(2))
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -24,8 +24,8 @@ const dramaMoviesRate = function(movies) {
         return 0
     }
     const reduceDramaFilms = dramaFilms.reduce(
-        function(acumulartor, current) {
-            return acumulartor + (!current.rate ? 0 : current.rate)
+        function(acumulator, current) {
+            return acumulator + (!current.rate ? 0 : current.rate)
         }, 0)
 
     return Number((reduceDramaFilms / dramaFilms.length).toFixed(2))
@@ -61,11 +61,37 @@ const turnHoursToMinutes = function(movies) {
     return moviesDuration
 }
 
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
 const bestYearAvg = function(movies) {
     if (!movies.length) {
         return null
     }
-    movies.reduce()
-    return 'The best year was <YEAR> with an average rate of <RATE>'
+    const movieYears = movies.map((movie) => movie.year)
+
+    const movieYearsUnique = []
+    for (const iterator of movieYears) {
+        if (movieYearsUnique.indexOf(iterator) === -1) {
+            movieYearsUnique.push(iterator)
+        }
+    }
+    const onlyYearsFilms = []
+    for (let index = 0; index < movieYearsUnique.length; index++) {
+        if (movies.filter(movie => movie.year === movieYearsUnique[index]).length !== 0) {
+            onlyYearsFilms.push(movies.filter(movie => movie.year === movieYearsUnique[index]))
+        }
+    }
+
+    console.log(onlyYearsFilms);
+
+    let acumulatorLength = 0
+    for (let index = 0; index < onlyYearsFilms.length; index++) {
+        if (ratesAverage(onlyYearsFilms[index]) >= acumulatorLength) {
+            acumulatorLength = ratesAverage(onlyYearsFilms[index])
+            moreFilmsOnYear = onlyYearsFilms[index][0].year
+        }
+    }
+
+    return `The best year was ${moreFilmsOnYear} with an average rate of ${acumulatorLength}`
 }
