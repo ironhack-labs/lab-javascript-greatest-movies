@@ -51,7 +51,18 @@ const orderAlphabetically = function(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 const turnHoursToMinutes = function(movies) {
-    return movies
+    const newMovies = []
+    movies.forEach(movie => {
+        newMovies.push(movie)
+    });
+
+    newMovies.forEach(newMovie => {
+        newMovie.duration = 'hola'
+    })
+    console.log('movies', movies);
+    console.log('newMovies', newMovies);
+
+    return newMovies
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
