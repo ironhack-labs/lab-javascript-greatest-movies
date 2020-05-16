@@ -45,13 +45,38 @@ const orderAlphabetically = function(movies) {
     const moviesTitlesString = []
     movies.forEach(movie => {
         moviesTitlesString.push(movie.title.toString())
-    });
+    })
     return (moviesTitlesString.sort(compareByTitleStrings)).slice(0, 20)
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-const turnHoursToMinutes = function(movies) {
-    return movies
+
+const turnHoursToMinutes = function() {
+    movies = [{
+        "title": "The Shawshank Redemption",
+        "year": 1994,
+        "director": "Frank Darabont",
+        "duration": "2h 22min",
+        "genre": ["Crime", "Drama"],
+        "rate": 9.3
+    }]
+    const moviesDuration = []
+    movies.forEach(movie => {
+        let hours = 0
+        let minutes = 0
+        for (let i = 0; i < movie.duration.indexOf('h'); i++) {
+            hours += Number(movie.duration[i])
+        }
+        for (let i = movie.duration.indexOf(' '); i < movie.duration.indexOf('min'); i++) {
+            minutes += Number(movie.duration[i])
+        }
+        console.log();
+
+        movie.duration = hours * 60 + minutes
+        moviesDuration.push(movie)
+    })
+
+    return moviesDuration
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
