@@ -49,14 +49,44 @@ function dramaMoviesRate(movies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
-function orderByYear() {
-    return;
+function orderByYear(movies) {
+    if (movies.length) { 
+        let orderListByYear = movies.sort(function(a, b) {
+            if (a.year > b.year) 
+            return 1;
+            if (a.year == b.year) {
+                if (a.title > b.title) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            } 
+            if (a.year < b.year) 
+            return -1;
+        })
+        return orderListByYear;
+    }
+    return 0;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
-function orderAlphabetically() {
-    return;
+function orderAlphabetically(movies) {
+
+    if (movies.length < 20) {
+        let orderListByTitle = movies.sort(function(a, b) {
+            if (a.title > b.title) 
+            return -1;
+            if (a.title == b.title)
+                return 0
+            if (a.title < b.title) 
+            return 1;
+        })
+        
+        return orderListByTitle;
+    }
+    
+    return movies.title;
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
