@@ -68,10 +68,8 @@ const bestYearAvg = function(movies) {
     if (!movies.length) {
         return null
     }
-    const movieYears = movies.map((movie) => movie.year)
-
     const movieYearsUnique = []
-    for (const iterator of movieYears) {
+    for (const iterator of movies.map((movie) => movie.year)) {
         if (movieYearsUnique.indexOf(iterator) === -1) {
             movieYearsUnique.push(iterator)
         }
@@ -82,9 +80,6 @@ const bestYearAvg = function(movies) {
             onlyYearsFilms.push(movies.filter(movie => movie.year === movieYearsUnique[index]))
         }
     }
-
-    console.log(onlyYearsFilms);
-
     let acumulatorLength = 0
     for (let index = 0; index < onlyYearsFilms.length; index++) {
         if (ratesAverage(onlyYearsFilms[index]) >= acumulatorLength) {
@@ -92,6 +87,5 @@ const bestYearAvg = function(movies) {
             moreFilmsOnYear = onlyYearsFilms[index][0].year
         }
     }
-
     return `The best year was ${moreFilmsOnYear} with an average rate of ${acumulatorLength}`
 }
