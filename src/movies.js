@@ -43,7 +43,7 @@ function ratesAverage(movies) {
 function dramaMoviesRate(movies) {
     const dramaMovies = movies.filter(movie => movie.genre.includes('Drama'))
 
-    if (movies.length === 0 || dramaMovies.length === 0 ) {
+    if (movies.length === 0 || dramaMovies.length === 0) {
         return 0
     }
 
@@ -61,24 +61,26 @@ function dramaMoviesRate(movies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
-    if (movies.length === 0) {return undefined}
+    if (movies.length === 0) {
+        return undefined
+    }
 
-   const sortedMovies = movies.sort((a, b) => a.year - b.year)
+    const sortedMovies = movies.sort((a, b) => a.year - b.year)
 
-   sortedMovies.sort(function(a,b){
-       if (a.year != b.year) {
-           return 0
-       } else {
-           if (a.title > b.title) {
-               return 1
-           }
-           if (a.title < b.title) {
-               return -1
-           }
-       }
-   })
+    sortedMovies.sort(function (a, b) {
+        if (a.year != b.year) {
+            return 0
+        } else {
+            if (a.title > b.title) {
+                return 1
+            }
+            if (a.title < b.title) {
+                return -1
+            }
+        }
+    })
 
-   return sortedMovies
+    return sortedMovies
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
@@ -86,7 +88,7 @@ function orderByYear(movies) {
 function orderAlphabetically(movies) {
     let orderedMovies = Array.from(movies)
 
-     orderedMovies = orderedMovies.sort((a, b) => {
+    orderedMovies = orderedMovies.sort((a, b) => {
         if (a.title > b.title) {
             return 1
         }
@@ -104,7 +106,7 @@ function orderAlphabetically(movies) {
     if (orderedMovies.length < 20) {
         twentyMovies = orderedMovies.map(movie => movie.title)
     } else {
-        for (let i = 0; i < 20; i++){
+        for (let i = 0; i < 20; i++) {
             twentyMovies.push(orderedMovies[i].title)
         }
     }
@@ -121,20 +123,22 @@ function turnHoursToMinutes(movies) {
     normalizedMovies.map(movie => {
         const hEnd = movie.duration.indexOf('h')
         const mEnd = movie.duration.indexOf('m')
-        let mStart = hEnd + 2 
+        let mStart = hEnd + 2
 
         let hours = 0
         let minutes = 0
 
-        if (hEnd != -1)  {
-            hours = parseInt(movie.duration.slice(0, hEnd),10)
-        } else {mStart = 0}
-
-        if (mEnd != -1)  {
-            minutes = parseInt(movie.duration.slice(mStart, mEnd),10)
+        if (hEnd != -1) {
+            hours = parseInt(movie.duration.slice(0, hEnd), 10)
+        } else {
+            mStart = 0
         }
 
-        movie.duration = hours*60 + minutes 
+        if (mEnd != -1) {
+            minutes = parseInt(movie.duration.slice(mStart, mEnd), 10)
+        }
+
+        movie.duration = hours * 60 + minutes
 
         return movie
     })
@@ -143,3 +147,42 @@ function turnHoursToMinutes(movies) {
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movies) {
+    if (movies.length === 0) {
+        return null
+    }
+
+    const years = []
+    const moviesByYear = []
+    movies.forEach(movie => {
+        if (!years.includes(movie.year)) {
+            years.push(movie.year)
+        }
+    })
+
+
+    years.forEach(year => {
+        moviesByYear.push(movies.filter(movie => movie.year === year))
+    })
+
+
+    const yearlyAverage = moviesByYear.map(year => {
+        return (year.reduce((acc, current) => acc + current.rate, 0) / year.length)
+    })
+
+    let highestRate = 0
+    let highestYear = 0
+
+    yearlyAverage.forEach(el => {
+        if (el === highestRate && years[yearlyAverage.indexOf(el)] > highestYear) {
+            highestRate = el
+            highestYear = years[yearlyAverage.indexOf(el)]
+        } else if (el > highestRate) {
+            highestRate = el
+            highestYear = years[yearlyAverage.indexOf(el)]
+        }
+    })
+
+    return `The best year was ${highestYear} with an average rate of ${highestRate}`
+}
