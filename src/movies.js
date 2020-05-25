@@ -138,39 +138,25 @@ function turnHoursToMinutes(movieArray) {
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
 function bestYearAvg(movieArray) {
-    if (movieArray.length === 0) {
-        return null
-    }
+    if (!movieArray.length) return null
 
-    const moviesYearsRate = movieArray.map(function (e) {
-        return { year: e.year, rate: e.rate }
-    })
+    const byMovies = movieArray.reduce((acc, e) => {
+        acc[e.year] = (acc[e.year] || [])
+        acc[e.year].push(e)
+        return acc
+    }, {})
 
-    moviesYearsRate.sort((a, b) => a.year > b.year ? 1 : -1)
+    const byRate = Object.keys(byMovies).reduce((acc, e) => {
+        acc[e] = byMovies[e].reduce((acc, e) => acc += e.rate, 0) / byMovies[e].length
+        return acc
+    }, {})
 
-    const years = moviesYearsRate.map(e => e.year)
 
-    // Guardar en un Array los elementos repetidos
+    const sortedRate = Object.keys(byMovies).sort((a, b) => byRate[b] - byRate[a])
 
-    const object = {};
-    const result = [];
+    console.log(sortedRate);
 
-    years.forEach(item => {
-        if (!object[item])
-            object[item] = 0;
-        object[item] += 1;
-    })
 
-    console.log(object);
-
-    for (const prop in object) {
-        if (object[prop] >= 2) {
-            result.push(parseInt(prop));
-        }
-    }
-
-    console.log(result);
-
-    // FIN Guardar en un Array los elementos repetidos
+    return `The best year was ${sortedRate[0]} with an average rate of ${byRate[sortedRate[0]]}`
 
 }
