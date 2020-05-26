@@ -456,6 +456,14 @@ describe('Best year average - bestYearAvg', () => {
     expect(typeof bestYearAvg).toBe('function');
   });
 
+<<<<<<< HEAD
+=======
+describe('Best year average - bestYearAvg', () => {
+  it('Defines bestYearAvg', () => {
+    expect(typeof bestYearAvg).toBe('function');
+  });
+
+>>>>>>> 06f8af765f5b6796edf08e339287dcacf61d480c
   it('Should return null if the array is empty', () => {
     expect(bestYearAvg([])).toBe(null);
   });

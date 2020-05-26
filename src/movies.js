@@ -85,7 +85,6 @@ function orderAlphabetically(array) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-
 function turnHoursToMinutes(array) {
 
   const newTimeInMinutes = array.map( movie => {
@@ -114,11 +113,20 @@ function turnHoursToMinutes(array) {
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
+<<<<<<< HEAD
 function bestYearAvg(array) {
   if (!array.length) {
     return null
   } else {
     let flimsByYear = array.reduce((acc, el) => {
+=======
+
+function bestYearAvg(array) {
+  if (array. length === 0) {
+    return null
+  } else {
+    let flimsByYear = array.reduce((acc, el) =>{
+>>>>>>> 06f8af765f5b6796edf08e339287dcacf61d480c
       acc[el.year] = (acc[el.year] || [])
       acc[el.year].push(el)
       return acc
@@ -128,6 +136,7 @@ function bestYearAvg(array) {
       acc[el] = flimsByYear[el].reduce((acc, el) => acc += el.rate, 0) / flimsByYear[el].length
         return acc
     }, {})
+<<<<<<< HEAD
     
   
     let sortedByRate = Object.keys(flimsByYear).sort((a, b) => yearRate[b] - yearRate[a])
@@ -136,4 +145,10 @@ function bestYearAvg(array) {
     return `The best year was ${sortedByRate[0]} with an average rate of ${yearRate[sortedByRate[0]]}`
   }
   
+=======
+    let sortedByRate = Object.keys(flimsByYear).sort((a, b) => yearRate[b] - yearRate[a])
+    
+    return `The best year was ${sortedByRate[0]} with an average rate of ${yearRate[sortedByRate[0]]}`
+  }
+>>>>>>> 06f8af765f5b6796edf08e339287dcacf61d480c
 }
