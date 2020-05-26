@@ -115,7 +115,7 @@ describe('Get how many movies - howManyMovies', () => {
 
 /*
  * 3. ratesAverage
-//  */
+ */
 describe('Get the average rate - ratesAverage', () => {
   it('Defines ratesAverage', () => {
     expect(typeof ratesAverage).toBe('function');
@@ -200,9 +200,9 @@ describe('Average rate of Drama Movies - dramaMoviesRate', () => {
   });
 });
 
-// /*
-//  * 5. orderByYear
-//  */
+/*
+ * 5. orderByYear
+ */
 
 describe('Order the movies by year - orderByYear', () => {
   it('Defines orderByYear', () => {
@@ -243,9 +243,9 @@ describe('Order the movies by year - orderByYear', () => {
   });
 });
 
-// /*
-//  * 6. orderAlphabetically
-//  */
+/*
+ * 6. orderAlphabetically
+ */
 
 describe('Order alphabetically - orderAlphabetically', () => {
   it('Defines orderAlphabetically', () => {
@@ -398,9 +398,9 @@ describe('Order alphabetically - orderAlphabetically', () => {
   });
 });
 
-// // ******************************************************************************************
-// // *************************************** BONUS ********************************************
-// // ******************************************************************************************
+// ******************************************************************************************
+// *************************************** BONUS ********************************************
+// ******************************************************************************************
 
 /*
  * 7. turnHoursToMinutes
@@ -456,14 +456,6 @@ describe('Best year average - bestYearAvg', () => {
     expect(typeof bestYearAvg).toBe('function');
   });
 
-<<<<<<< HEAD
-=======
-describe('Best year average - bestYearAvg', () => {
-  it('Defines bestYearAvg', () => {
-    expect(typeof bestYearAvg).toBe('function');
-  });
-
->>>>>>> 06f8af765f5b6796edf08e339287dcacf61d480c
   it('Should return null if the array is empty', () => {
     expect(bestYearAvg([])).toBe(null);
   });
