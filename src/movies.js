@@ -49,8 +49,8 @@ const orderByYear = (movies) => {
 }
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 const orderAlphabetically = (movies) => {
-    const willSortMoviesAlphabetically = movies.map(({ title }) => title)
-    return willSortMoviesAlphabetically.sort((titleA, titleB) => {
+    const titleMovies = movies.map(({ title }) => title)
+    return titleMovies.sort((titleA, titleB) => {
         if (titleA > titleB) {
             return 1;
         } else if (titleA < titleB) {
