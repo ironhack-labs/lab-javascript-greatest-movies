@@ -38,9 +38,7 @@ function dramaMoviesRate(movies) {
     });
     if (dramas.length === 0) return 0;
 
-    const sum = movies.filter(function(movie) {
-        return movie.genre.includes("Drama");
-    }).reduce(function(acc, val) {
+    const sum = dramas.reduce(function(acc, val) {
       return acc + val.rate
     }, 0);
 
@@ -49,9 +47,18 @@ function dramaMoviesRate(movies) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-
+function orderByYear(movies) {
+    const oldestMoviesFirst = movies.slice().sort(function(a, b) {
+      if (a.year === b.year) {
+        return a.title.localeCompare(b.title);
+      }
+      return a.year - b.year;
+    });
+    return oldestMoviesFirst;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
