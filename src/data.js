@@ -2967,3 +2967,11 @@ let movies = [
       "rate": 8
     }
   ]
+
+  //iteration #1 all directors
+  function getAllDirectors(moviesArr) {
+    const directorsArr = moviesArr.map(function showDirector(movie) {
+      return movie.director;
+    });
+    return directorsArr;
+  }
