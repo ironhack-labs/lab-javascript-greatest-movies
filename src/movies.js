@@ -39,18 +39,25 @@ function ratesAverage(movies){
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate(movies){
-    let dramaMovies = [];
-      dramaMovies = movies.filter(function(movie){
-      return movie.genre.includes("Drama");});
+  
+  let dramaMovies = movies.filter(function(movie){
+    return movie.genre == "Drama";});
+
+  let dramaMoviesLength = dramaMovies.length;
+
+  if(dramaMoviesLength == 0)
+return 0;
     
-    let ratesDramaSum = dramaMovies.reduce(function (acc, value){
-      return acc + value.rate;
-      },0);
-    
-      let avgDramaRate = (ratesDramaSum/movies.length).toFixed(2);
-      let avgDramaRateNumber = Number (avgDramaRate);
-      return avgDramaRateNumber;
+  else {
+         let ratesDramaSum = dramaMovies.reduce(function (acc, value){
+              return acc + value.rate;
+               },0);
+
+    let avgDramaRate = (ratesDramaSum/dramaMovies.length).toFixed(2);
+    let avgDramaRateNumber = Number (avgDramaRate);
+    return avgDramaRateNumber;
   }
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies){
@@ -65,22 +72,35 @@ function orderByYear(movies){
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(movies){
-  
-    let newMoviesArr = movies.map(function (movie){
-        return movie});
-    
-        newMoviesArr.sort(function (a, b) {
-          if(a.title < b.title){
-              return -1
-            }
-      });
-  
-    let newArr = newMoviesArr.map(function (movie){
-        return {
+  let newMoviesArr = movies.map(function (movie){
+      return movie});
+      newMoviesArr.sort(function (a, b) {
+        if(a.title < b.title){
+            return -1
+          }});
+  //return newMoviesArr
+  let newArr = newMoviesArr.map(function (movie){
+      return {
         title: movie.title
+      }});
+  //return newArr;
+  
+  function getMoviesTitles(newArr){
+    let moviesTitles = [];
+    if (newArr.length < 20){
+    for (let i=0; i < newArr.length; i++){
+          moviesTitles.push(newArr[i].title);
         }
-  });
-     return newArr;
+    return moviesTitles;
+    } else {
+    for (let j=0; j < 20; j++){
+          moviesTitles.push(newArr[j].title);
+        }
+    return moviesTitles;
+    }
+}
+
+return  getMoviesTitles(newArr);
   }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
