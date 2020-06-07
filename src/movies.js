@@ -26,14 +26,24 @@ function howManyMovies(movies){
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 function ratesAverage(movies){
-    //if (movies === []) return 0;
-    const ratesSum = movies.reduce(function (acc, value){
+  if (movies.length === 0)  
+   return 0;
+
+  //newArray is created to validate objects without rate:
+   let newArray =  movies.map(function (movie){
+        if(!movie.rate){
+          movie.rate = 0;
+        }
+        return movie;});
+    
+    const ratesSum = newArray.reduce(function (acc, value){
     return acc + value.rate;
     },0);
     
     let avgRate = (ratesSum/movies.length).toFixed(2);
     let avgRateNumber = Number (avgRate);
-    return avgRateNumber;
+  
+  return avgRateNumber;
   }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -61,13 +71,16 @@ return 0;
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies){
-    let newMoviesArr = movies.map(function (movie){
-          return movie});
-   
-      return newMoviesArr.sort(function(a, b){
-          return a.year - b.year;
-      })
-  }
+  let newMoviesArr = movies.map(function (movie){
+        return movie});
+ 
+  return newMoviesArr.sort(function(a, b){
+       if(a.year === b.year){
+         return a.title - b.title;
+       } else 
+         return a.year - b.year;
+    })
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
@@ -78,13 +91,10 @@ function orderAlphabetically(movies){
         if(a.title < b.title){
             return -1
           }});
-  //return newMoviesArr
   let newArr = newMoviesArr.map(function (movie){
       return {
         title: movie.title
       }});
-  //return newArr;
-  
   function getMoviesTitles(newArr){
     let moviesTitles = [];
     if (newArr.length < 20){
