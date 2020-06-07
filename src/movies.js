@@ -115,6 +115,19 @@ return  getMoviesTitles(newArr);
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
-
+function turnHoursToMinutes(movies){
+  let moviesTimeinMinuts = movies.map(function (movie){
+      let hours = Number (movie.duration.charAt(0));
+      let minutes = '0';
+      if(movie.duration.length === 8){
+        minutes = Number (movie.duration.charAt(3) + movie.duration.charAt(4));
+      } else {
+        minutes = Number (movie.duration.charAt(3));
+      }
+      let totalTime = (hours*60) + minutes;
+      movie.duration = totalTime;
+    ;});
+  return movies;
+}
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
