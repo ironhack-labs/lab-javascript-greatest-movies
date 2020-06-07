@@ -36,7 +36,7 @@ function howManyMovies(movies) {
   return spielbergDramaMovies.length;
   }
   
-// Iteration 3: All rates average - Get the average of all rates with 2 decimals;
+// Iteration 3: All rates average - Get the average of all rates with 2 decimals;//
 
 
 function ratesAverage(movies) {
