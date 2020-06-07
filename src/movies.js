@@ -131,3 +131,16 @@ function turnHoursToMinutes(movies){
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movies) {
+  if (movies.length === 0)  
+   return null;
+  
+  let newMoviesArr = movies.map(function (movie){
+        return movie});
+   newMoviesArr.sort(function(a, b){
+         return a.rate - b.rate
+    })
+  
+//  console.log (`The best year was ${} with an average rate of ${}`);
+}
