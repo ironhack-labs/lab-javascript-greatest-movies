@@ -17,11 +17,10 @@ function howManyMovies(movies){
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(movies){
     if(movies.length === 0) return 0;
-    let ratedMovies = movies.filter(function(movie) {
+    let sum = movies.filter(function(movie) {
         return movie.rate;
-    }); 
-    let sum = ratedMovies.reduce(function(sum, movie){
-        return sum + movie.rate;
+    }).reduce((sum, movie) => { 
+        return sum + movie.rate
     }, 0);
     let result = sum/movies.length;
     return Number(result.toFixed(2));
@@ -115,8 +114,6 @@ function rankingsAndYears(movies) {
 }
 
 function calculateAverage(ratingsArray){
-    if(ratingsArray.length === 0) return 0;
-    let result = 0;
-    ratingsArray.forEach(rating => result += rating);
-    return result/ratingsArray.length;
+    return ratingsArray.reduce((acc, val) => acc + val)/ratingsArray.length
 }
+
