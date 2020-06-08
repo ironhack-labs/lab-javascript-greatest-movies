@@ -16,16 +16,14 @@ function howManyMovies(movies) {
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(movies) {
-    if (movies.length === 1) return movies[0].rate;
     if (movies.length === 0) return 0;
 
-    const sum = movies.filter(function(movie) {
+    const average = movies.filter(function(movie) {
       return movie.rate
     }).reduce(function(acc, val) {
-      return acc + val.rate;
-    }, 0);
-
-    const average = sum / movies.length
+      return acc + (val.rate || 0);
+    }, 0) / movies.length;
+    
     return parseFloat(average.toFixed(2));
   }
 
