@@ -1,7 +1,37 @@
 // Iteration 1: All directors? - Get the array of all directors.
+
+// movieDirectors does generate an array of the directors in RunJavascript. However, when I call the function getAllDirectors, I receive an error message stating that getAllDirectors is not a function. I checked to make sure there was a return statement and I ensured that the data was in an array form before using the map method. 
+
+
+
+ 
+
+function getAllDirectors = movies.map(function (movie) {
+  
+    const makeArray = Object.entries(movie);
+    
+    const movieDirectors = makeArray[2][1];
+    
+    return movieDirectors
+       
+      });
+
+
+
+
+
+
+
+
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
+
+
+
+    const howManyMovies = movie.filter(function (movie) {
+        return !movies.includes(drama);
+    });
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
