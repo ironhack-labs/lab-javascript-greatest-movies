@@ -107,21 +107,24 @@ function orderAlphabetically(arr) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function stringToTime (str) { // needs to work for all cases this is flwaed!!!!
-  let hrs = str[0]
+function stringToTime (str) { 
+  let hrs = 0
   let mins = 0
-  let factor = 1
-  for (let i = 3; i < str.length; i++) {
-    if (str.charCodeAt(i) < 65) {
+  let factor = 10
+  for (let i = 0; i < str.length; i++) {
+    if(str[i+1] === 'h') {
+      hrs = str[i]
+    }
+    else if (str.charCodeAt(i) < 65 && str[i] !== " ") {
       mins += str[i]*factor
-      factor *= 10
+      factor = 1
     }
   }
   mins += (hrs*60)
   return mins
 }
 
-function turnHoursToMinutes(arr) { // why is it telling me that I am mutating the array?
+function turnHoursToMinutes(arr) {
   let newarr = arr.map(function (x) {return {...x}})
   for (movie of newarr) {
     console.log(movie.duration)
