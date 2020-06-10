@@ -1,13 +1,82 @@
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
+
+
+function mapFunc (obj) {
+  return obj.director
+}
+
+function getAllDirectors(arr) { // still have to remove duplicates somehow
+  let newarr = arr.map(mapFunc)
+  return newarr
+}
+
+// function getAllDirectors(arr) { // use map method
+//   let newarr = []
+//   for (movie of arr) {
+//     if (newarr.includes(movie.director)) {
+//       continue
+//     }
+//     else {
+//       newarr.push(movie.director)
+//     }
+//   }
+//   return newarr
+// }
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
+function filterCheck (obj) {
+  if (obj.director == 'Steven Spielberg' && obj.genre.includes('Drama'))
+    return obj
+}
+
+function howManyMovies (arr) {
+  let newarr = arr.filter(filterCheck)
+  return newarr.length
+}
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+function reduceRates (total, obj) {
+  if(obj.rate === undefined|| obj.rate === "") {
+    return total + 0
+  }
+  return total + obj.rate
+}
 
+function ratesAverage (arr) {
+  let sum = arr.reduce(reduceRates, 0)
+  if(sum == 0) {
+    return 0
+  }
+  let avg = parseFloat((sum/arr.length).toFixed(2))
+  return avg
+}
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
+function reduceDramas (total, obj) {
+  if (obj.genre.includes('Drama')) {
+    return total + obj.rate
+  }
+  return total + 0
+}
+
+function isDrama (obj) {
+  if (obj.genre.includes('Drama')) {
+    return obj
+  }
+}
+
+function dramaMoviesRate(arr) {
+  let newarr = arr.filter(isDrama)
+  let sum = newarr.reduce(reduceDramas, 0)
+  if (sum === 0) {return 0}
+  let avg = parseFloat((sum/newarr.length).toFixed(2))
+  return avg
+}
+
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
