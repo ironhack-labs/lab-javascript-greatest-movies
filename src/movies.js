@@ -103,10 +103,33 @@ function orderAlphabetically(arr) {
   if (newarr.length > 20) {
     newarr = newarr.splice(0,20)
   }
-  console.log(newarr)
   return newarr
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+function stringToTime (str) { // needs to work for all cases this is flwaed!!!!
+  let hrs = str[0]
+  let mins = 0
+  let factor = 1
+  for (let i = 3; i < str.length; i++) {
+    if (str.charCodeAt(i) < 65) {
+      mins += str[i]*factor
+      factor *= 10
+    }
+  }
+  mins += (hrs*60)
+  return mins
+}
+
+function turnHoursToMinutes(arr) { // why is it telling me that I am mutating the array?
+  let newarr = arr.map(function (x) {return {...x}})
+  for (movie of newarr) {
+    console.log(movie.duration)
+    movie.duration = stringToTime(movie.duration)
+    console.log(movie.duration)
+
+  }
+  return newarr
+}
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
