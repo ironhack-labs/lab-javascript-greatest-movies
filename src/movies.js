@@ -90,8 +90,8 @@ const orderAlphabetically = arr =>{
 		}
 	})
 
-	let finalArray = titlesArray.slice(0,20)
-	return finalArray
+	return titlesArray.slice(0,20)
+	
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
