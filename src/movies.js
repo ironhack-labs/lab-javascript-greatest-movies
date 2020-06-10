@@ -12,19 +12,6 @@ function getAllDirectors(arr) { // still have to remove duplicates somehow
   return newarr
 }
 
-// function getAllDirectors(arr) { // use map method
-//   let newarr = []
-//   for (movie of arr) {
-//     if (newarr.includes(movie.director)) {
-//       continue
-//     }
-//     else {
-//       newarr.push(movie.director)
-//     }
-//   }
-//   return newarr
-// }
-
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function filterCheck (obj) {
   if (obj.director == 'Steven Spielberg' && obj.genre.includes('Drama'))
@@ -127,12 +114,16 @@ function stringToTime (str) {
 function turnHoursToMinutes(arr) {
   let newarr = arr.map(function (x) {return {...x}})
   for (movie of newarr) {
-    console.log(movie.duration)
     movie.duration = stringToTime(movie.duration)
-    console.log(movie.duration)
-
   }
   return newarr
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+function bestYearAvg(arr) {
+  if(arr.length === 0) { return null }
+  let year = ""
+  let rate = 0
+
+  return `The best year was ${year} with an average of ${rate}`
+}
