@@ -9,7 +9,6 @@ function getAllDirectors(arr) {
       newarr.push(x.director)
     }
   })
-  console.log(newarr)
   return newarr
 }
 
@@ -123,8 +122,27 @@ function turnHoursToMinutes(arr) {
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 function bestYearAvg(arr) {
   if(arr.length === 0) { return null }
+  if(arr.length === 1) {return `The best year was ${arr[0].year} with an average rate of ${arr[0].rate}`}
   let year = ""
-  let rate = 0
-
-  return `The best year was ${year} with an average of ${rate}`
+  let largestAvg = 0
+  let largestYear = 0
+  let avg = 0
+  let sum = 0
+  let num = 0
+  arr.sort(compareYear)
+  for(let i = 0; i < arr.length; i++) {
+    if (arr[i].year > year) {
+      avg = parseFloat((sum/num).toFixed(2))
+      if(avg > largestAvg) {
+        largestAvg = avg
+        largestYear = year
+      }
+      sum = 0
+      num = 0
+    }
+    year = arr[i].year
+    sum += arr[i].rate
+    num++
+  }
+  return `The best year was ${largestYear} with an average rate of ${largestAvg}`
 }
