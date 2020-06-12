@@ -1,7 +1,7 @@
 let movies = [
     {
       "title": "The Shawshank Redemption",
-      "year": 1994,
+      "year": 1993,
       "director": "Frank Darabont",
       "duration": "2h 22min",
       "genre": [
