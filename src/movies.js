@@ -2,13 +2,14 @@
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
 
-
-function mapFunc (obj) {
-  return obj.director
-}
-
-function getAllDirectors(arr) { // still have to remove duplicates somehow
-  let newarr = arr.map(mapFunc)
+function getAllDirectors(arr) { 
+  let newarr = []
+  arr.map(x => {
+    if(!newarr.includes(x.director)) {
+      newarr.push(x.director)
+    }
+  })
+  console.log(newarr)
   return newarr
 }
 
