@@ -57,21 +57,22 @@ function orderByYear(movies){
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies){
-    const alphabetOrder = movies.map(movie => movie.title).sort();
-    return alphabetOrder.slice(0, 20);
+    const alphabetOrder = movies.map(movie => movie.title).sort().filter((movie, index) => index < 20 );
+    return alphabetOrder;
 }
 
 // console.log(orderAlphabetically(movies));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies){
-    const minuteArray = movies.map(movie => {
+    const newMovies = JSON.parse(JSON.stringify(movies)); //used JSON.parse to make a deep clone of the movies array
+    const minuteArray = newMovies.map(movie => {
         let sum = 0;
         let split = movie.duration.split(' ');
 
         for(let i = 0; i < split.length; i++){
             if(split[i].slice(-1) === 'h') sum += +split[i][0] * 60;
-            else sum += +split[i].slice(0, -3);            
+            else sum += +split[i].slice(0, -3);
         }
         movie.duration = sum;
         return movie;
@@ -83,22 +84,26 @@ function turnHoursToMinutes(movies){
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 function bestYearAvg(movies){
-    const yearOrderedArray = movies.map(movie => movie.year).sort();
-    const yearRating = [];
+    if(movies.length === 0) return null;
+    let sortedYearArray = movies.map(movie => movie.year).sort((a, b) => a - b);
+    sortedYearArray = uniqueArray(sortedYearArray);
+    let yearRating = [];    
 
-    for(let i = 0; i < yearOrderedArray.length; i++){
-        let obj = {};
-        const yearArray = movies.map(movie => {
-            if(movie.rate === yearOrderedArray[i]) return movie.rate
-        });
-        return yearArray;
-        const summedYear = yearArray.reduce((accumulator, current) => accumulator + current);
-        let ave = summedYear / yearArray.length;
-        obj.yearOrderedArray[i] = ave;
+    for(let i = 0; i < sortedYearArray.length; i++){
+        let obj = {year: 0, rate: 0};
+        const yearArrayRates = movies.filter(movie => movie.year === sortedYearArray[i]).map(movie => movie.rate);
+        const summedYear = yearArrayRates.reduce((accumulator, current) => accumulator + current);
+        let ave = summedYear / yearArrayRates.length;
+        obj.year = sortedYearArray[i];
+        obj.rate = ave;
         yearRating.push(obj);
     }
-    return yearRating;
-    // return 'The best year was ${} with an average rate of ${}';
+    yearRating.sort((a, b) => {
+        if(a.rate > b.rate) return -1;
+        if(a.rate < b.rate) return 1;
+    })
+
+    return `The best year was ${yearRating[0].year} with an average rate of ${yearRating[0].rate}`;
 }
 
 console.log(bestYearAvg(movies));
