@@ -6,7 +6,7 @@ const getAllDirectors = (arr) => arr.map((film) => film.director);
 function getAllDirectors(arr) {
   return arr.map(element => element.director);
 }
- */
+*/
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
@@ -19,7 +19,6 @@ const howManyMovies = (arr) =>
   ).length;
 
 /* DEUXIEME METHODE
-
 function howManyMovies(arr) {
   return arr.filter(movie => 
     movie.director === "Steven Spielberg" && movie.genre.includes("Drama")).length
@@ -53,13 +52,7 @@ function dramaMoviesRate(arr) {
 function orderByYear(arr) {
   if (arr.length === 0) return [];
 
-  // first : sort by name
-
-  /*  let newArray = Object.assign(
-      [emptyArray],
-      arr.sort((a, b) => a.year - b.year)
-    ); */
-
+  // first, sort by name
   let newArray = arr.sort(function alphaSorting(a, b) {
     if (a.title > b.title) {
       //pourquoi toUpperCase() ne fonctionne pas sur la propriété title ???
@@ -84,9 +77,59 @@ function orderByYear(arr) {
 /* Create a orderAlphabetically() function, that receives an array and returns an array of first 20 titles, alphabetically ordered. Return only the title of each movie, and if the array you receive has less than 20 movies, return all of them. */
 
 function orderAlphabetically(arr) {
-  
+  if (arr.length === 0) return [];
+
+  let orderedArr = Object.assign([], arr);
+
+  orderedArr.sort(function alphaSorting(a, b) {
+    if (a.title > b.title) {
+      return 1;
+    } else if (a.title < b.title) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+
+  let shortOrderedArr = [];
+  if (orderedArr.length < 20) {
+    for (let i = 0; i < orderedArr.length; i++) {
+      shortOrderedArr.push(orderedArr[i].title);
+    }
+  } else {
+    for (let i = 0; i < 20; i++) {
+      shortOrderedArr.push(orderedArr[i].title);
+    }
+  }
+  return shortOrderedArr;
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+//Keep in mind, you have to return a new array with all the info about movies, meaning, you shouldn't modify the original array.
+
+function turnHoursToMinutes(arr) {
+  if (arr.length === 0) return [];
+
+  let newArr = Object.assign([], arr);
+
+  newArr.forEach(
+    (movie) =>
+      movie.duration =
+        Number(movie.duration.charAt(0)) * 60 +
+        Number(movie.duration.charAt(3)) * 10 +
+        Number(movie.duration.charAt(4))
+  )
+
+  // IL Y A UN PROBLEME SI QUE DES HEURES OU QUE DES MINUTES !!!
+  // ESSAYER DE CALER UN 
+  // forEach(movie => if (movie.duration.includes("min")) => {....} )
+
+  console.log(newArr);
+  return newArr;
+}
+
+let movieTry = [{ duration: "2h 30min" }, { duration: "2h 1min" }];
+// console.log("new array is");
+// turnHoursToMinutes(movieTry);
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
