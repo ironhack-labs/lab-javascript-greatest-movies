@@ -2968,4 +2968,4 @@ var movies = [
     }
   ]
 
-  module.exports = movies;
+  module.exports = movies; //exporting the movies array to be usable outside of the data.js module.
