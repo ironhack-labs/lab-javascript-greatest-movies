@@ -1,9 +1,9 @@
 // Iteration 1: All directors? - Get the array of all directors.
 function getAllDirectors(moviesArr) {
-   let result = movies.map(function (el) {
+  let result = movies.map(function (el) {
     return el.director;
   });
-   return result;
+  return result;
 }
 getAllDirectors(movies);
 
@@ -11,16 +11,25 @@ getAllDirectors(movies);
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
-function howManyMovies (moviesArr) {
-    let dramaSpielberg = moviesArr.filter(function(el){
-        return el.director === "Steven Spielberg" && el.genre.includes("Drama");
-    });
-    return dramaSpielberg.length;
+function howManyMovies(moviesArr) {
+  let dramaSpielberg = moviesArr.filter(function (el) {
+    return el.director === "Steven Spielberg" && el.genre.includes("Drama");
+  });
+  return dramaSpielberg.length;
 }
 
-howManyMovies (movies);
+howManyMovies(movies);
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(array) {
+  return (
+    array.reduce(function (acc, el) {
+      return acc + el.rate.toFixed(2); // car 0 qui remplace acc.rate
+    }, 0) / array.length
+  );
+}
+let result = ratesAverage(movies);
+console.log(result);
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
