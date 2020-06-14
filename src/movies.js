@@ -85,3 +85,27 @@ let turnHoursToMinutes = (movies) => {
 };
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+let bestYearAvg = (movies) => {
+	if (!movies.length) return null;
+	let years = movies.map((movie) => movie.year);
+	let yearsWithoutDuplicates = years.filter(
+		(year, index) => years.indexOf(year) === index
+	);
+	currentYearTotal = 0;
+	let currentYearRate = 0;
+	let highestYearRate = 0;
+	let count;
+	yearsWithoutDuplicates.forEach((year) => {
+		count = 0;
+		currentYearTotal = 0;
+		currentYearRate = 0;
+		movies.forEach((movie) => {
+			if (movie.year === year) currentYearTotal += movie.rate;
+			count++;
+			currentYearRate = currentYearTotal / count;
+		});
+	});
+	if (currentYearRate > highestYearRate) highestYearRate = currentYearRate;
+	return highestYearRate;
+};
