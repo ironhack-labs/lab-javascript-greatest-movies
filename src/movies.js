@@ -40,8 +40,48 @@ const dramaMoviesRate = (arr) => {
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+const orderByYear = (arr) => {
+    //create sortedArr to store sorted by year.
+    const sortedArr = arr.slice().sort((a,b) => {
+      let sameYear = a.year - b.year;
+        //if same year, then sort alphabetically.
+        if(sameYear === 0) {
+            sameYear = a.title.localeCompare(b.title);
+        }
+            return sameYear
+    })
+    return sortedArr
+};
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+const orderAlphabetically = (arr) => {
+    const top20 = [];
+    //create titles array that contains whole list of only titles.
+    const titles = arr.map(function(namesArr){
+        return namesArr.title 
+    })
+//sort all titles and save in alphabetical array.
+    const alphabetical = titles.slice().sort((a,b) => {
+        if (a < b){
+            return -1;
+        } 
+        if (a > b){
+            return 1;
+        }
+            return 0;
+        })
+//create new array with top 20 titles.
+    if (alphabetical.length > 20) {
+        for(i=0;i<20;i++){
+            top20.push(alphabetical[i])
+        }
+//return top20 if more than 20 titles.
+    return top20
+    }
+//return alphabetical if less than 20 titles.
+    return alphabetical
+};
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
