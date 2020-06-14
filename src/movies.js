@@ -2,19 +2,24 @@
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
 const getAllDirectors = (arr) => {
+    //create array with all directors
     const directorsNames = arr.map(function(dir){
         return dir.director
     })
-    return directorsNames
+        return directorsNames
     };
+
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 const dramaSS = movies.filter(function(spielbergDramas){
     return (spielbergDramas.director = "Steven Spielberg") && (spielbergDramas.genre ='Drama')})
 
+
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 const ratesAverage = (arr) => {
+    //validate array
     if (arr.length > 0){
+        //create average variable with average of all rates
         const average = arr.reduce(function(acc,value){
       return acc + value.rate/arr.length
     },0)
@@ -24,14 +29,16 @@ const ratesAverage = (arr) => {
     }
 }
 // Iteration 4: Drama movies - Get the average of Drama Movies
-//create function to get newArr of movies based on genre.
-
 const dramaMoviesRate = (arr) => {
-    const newArr = arr.filter(movies=>movies.genre.includes('Drama'));
-        if (newArr.length > 0){
-            const average = newArr.reduce(function(acc,value){
-                return acc + value.rate/newArr.length
-    },0)
+    //create `dramas` array which stores all movies with the `Drama` genre
+    const dramas = arr.filter(movies=>movies.genre.includes('Drama'));
+        //validate array
+        if (dramas.length > 0){
+            //create average variable that finds average of newArr variable
+            const average = dramas.reduce(function(acc,value){
+                return acc + value.rate/dramas.length
+            },0)
+                //round average to2 decimal places
                 return Math.round(average * 100) / 100
         } else {
                 return 0
@@ -41,10 +48,10 @@ const dramaMoviesRate = (arr) => {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 const orderByYear = (arr) => {
-    //create sortedArr to store sorted by year.
+    //create sortedArr to store sorted by year
     const sortedArr = arr.slice().sort((a,b) => {
       let sameYear = a.year - b.year;
-        //if same year, then sort alphabetically.
+        //if same year, then sort alphabetically
         if(sameYear === 0) {
             sameYear = a.title.localeCompare(b.title);
         }
@@ -61,7 +68,7 @@ const orderAlphabetically = (arr) => {
     const titles = arr.map(function(namesArr){
         return namesArr.title 
     })
-//sort all titles and save in alphabetical array.
+    //sort all titles and save in alphabetical array.
     const alphabetical = titles.slice().sort((a,b) => {
         if (a < b){
             return -1;
@@ -71,15 +78,15 @@ const orderAlphabetically = (arr) => {
         }
             return 0;
         })
-//create new array with top 20 titles.
+    //create new array with top 20 titles.
     if (alphabetical.length > 20) {
         for(i=0;i<20;i++){
             top20.push(alphabetical[i])
         }
-//return top20 if more than 20 titles.
+    //return top20 if more than 20 titles.
     return top20
     }
-//return alphabetical if less than 20 titles.
+    //return alphabetical if less than 20 titles.
     return alphabetical
 };
 
