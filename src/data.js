@@ -2964,7 +2964,6 @@ let movies = [
         "Comedy",
         "Drama"
       ],
-      // "rate": 8
+      "rate": 8
     }
 ]
-
