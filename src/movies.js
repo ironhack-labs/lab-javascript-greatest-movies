@@ -88,21 +88,19 @@ let turnHoursToMinutes = (movies) => {
 
 let bestYearAvg = (movies) => {
 	if (!movies.length) return null;
-	let years = movies.map((movie) => movie.year); // returns [ 1994, 1994, 1975, 1975 ]
-	let yearsWithoutDuplicates = years.filter((year, index) => years.indexOf(year) === index); //returns [ 1994, 1975 ]
-	let obj = movies.map((movie) => {return { year: movie.year, rate: movie.rate };}); //returns obj with years plus their rates
+	let years = movies.map((movie) => movie.year); // returns arr of years ie. [ 1994, 1994, 1975, 1975 ]
+	let yearsWithoutDuplicates = years.filter((year, index) => years.indexOf(year) === index); //returns arr of non-duplicate years ie.[ 1994, 1975 ]
+	let obj = movies.map((movie) => {return { year: movie.year, rate: movie.rate };}); //returns arr of objs with all movie years plus their rates 
 	let avgRate = yearsWithoutDuplicates.map((year) => { // iterates each unique year to get back the avg rate for each year
-		let arrayForCurrentYear = obj.filter((yearObj) => year == yearObj.year); //filter to get back one array per year
-		sumForCurrentYear = arrayForCurrentYear.reduce((accum, current) => { //add each rate for each year
-			return accum + current.rate;
-		}, 0);
-		return {avg : sumForCurrentYear / arrayForCurrentYear.length, year : year}; 
+		let arrayForCurrentYear = obj.filter((yearObj) => year == yearObj.year); //filter to get back one array per year ie. [ { year: 1975, rate: 9.3 }, { year: 1975, rate: 8.2 } ]
+		sumForCurrentYear = arrayForCurrentYear.reduce((accum, current) =>  accum + current.rate, 0); //add each rate for each year ie. 17.5
+		return {avg : sumForCurrentYear / arrayForCurrentYear.length, year : year};  //return arr of objs with the avg rate and the year
 	});
-	let highestRating = Math.max(...avgRate.map(yearAvg => yearAvg.avg), 0); //find the highest rating
-
-	let highestRatingPlusYear = avgRate.filter(obj => {	//find the year that has that highest rating
-		return obj.avg === highestRating
-	  })
+	let highestRating = Math.max(...avgRate.map(yearAvg => yearAvg.avg)); //find the highest rating
+	let highestRatingPlusYear = avgRate.filter(obj => obj.avg === highestRating) //now that I have the highest rating, find the year(s) that it belongs to
+	if (highestRatingPlusYear.length > 1) { //if there is more than 1 year with the same max rating pick the oldest year (test case)
+		let oldestYear = Math.min(...highestRatingPlusYear.map((yearAvg) => yearAvg.year)); 
+		highestRatingPlusYear = highestRatingPlusYear.filter((obj) => obj.year === oldestYear);
+	}
 	return `The best year was ${highestRatingPlusYear[0].year} with an average rate of ${highestRatingPlusYear[0].avg}` ; 
 };
-console.log(bestYearAvg(movies));
