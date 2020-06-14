@@ -116,8 +116,8 @@ function orderAlphabetically(arr) {
 function turnHoursToMinutes(arr) {
   if (arr.length === 0) return [];
 
-  // let newArr = [...arr];
-  let newArr = JSON.parse(JSON.stringify(arr)); // in this case, movie.duration is a STRING, not a NUMBER, and Jasmine is Ok, which is weird
+  // let newArr = [...arr]; // in this case : duration is a NUMBER.
+  let newArr = JSON.parse(JSON.stringify(arr)); // in this case : duration is a STRING, not a NUMBER, and Jasmine is Ok, which is weird
 
   newArr.forEach(function toMinutes(movie) {
     let durationStr = movie.duration;
@@ -161,22 +161,25 @@ function bestYearAvg(arr) {
   let copiedArr = JSON.parse(JSON.stringify(arr));
 
   let bestYearRateAvg = 0;
-  let bestYear = Math.max(...copiedArr.map(movie => movie.year));
+  let bestYear = Math.max(...copiedArr.map((movie) => movie.year));
+  //console.log("temp best year : " + bestYear + "-------------------")
 
-  console.log("--------temp best year : " + bestYear)
-  console.log(typeof bestYear)
-  
   for (let i = 0; i < copiedArr.length; i++) {
-    
-    let sameYearMovies = copiedArr.filter((movie) => movie.year === copiedArr[i].year)
-    ;
-    console.log(sameYearMovies)
+    let sameYearMovies = copiedArr.filter(
+      (movie) => movie.year === copiedArr[i].year
+    );
+    //console.log(sameYearMovies)
     let newAvg = ratesAverage(sameYearMovies);
-    console.log(newAvg)
-    if ((newAvg === bestYearRateAvg && copiedArr[i].year < bestYear) || (newAvg > bestYearRateAvg && copiedArr[i].year > bestYear)) {
+    //console.log(newAvg)
+    if (
+      (newAvg >= bestYearRateAvg && copiedArr[i].year < bestYear) ||
+      (newAvg > bestYearRateAvg && copiedArr[i].year >= bestYear)
+    ) {
       bestYearRateAvg = newAvg;
       bestYear = copiedArr[i].year;
     }
+    // console.log("new best rate is : "+ bestYearRateAvg)
+    // console.log("new best year is : "+ bestYear)
   }
   return `The best year was ${bestYear} with an average rate of ${bestYearRateAvg}`;
 }
@@ -186,32 +189,10 @@ const newMoviesArr = [
   { year: 2000, rate: 8 },
   { year: 1978, rate: 10 },
   { year: 1978, rate: 7 },
-  { year: 2005, rate: 20 },
-  { year: 2019, rate: 2 }
+  { year: 2019, rate: 8.45 },
 ];
+console.log(bestYearAvg(newMoviesArr));
 
-const singleMovie = [{ year: 2007, rate: 8 }]
-
-console.log(bestYearAvg(singleMovie))
-
-console.log(ratesAverage(singleMovie))
-
-/* 
-
-ratesAverage()
-
-const howManyMovies = (arr) =>
-  arr.filter(
-    (movie) =>
-      movie.director === "Steven Spielberg" && movie.genre.includes("Drama")
-  ).length;
-
-function deleteDoubles(arr) {
-  let newArr = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (!newArr.includes(arr[i])) newArr.push(arr[i]);
-  }
-  return newArr;
-} 
-
-*/
+const singleMovie = [{ year: 2007, rate: 2.56 }];
+console.log(bestYearAvg(singleMovie));
+console.log(ratesAverage(singleMovie));
