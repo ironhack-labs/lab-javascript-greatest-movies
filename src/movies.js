@@ -96,9 +96,13 @@ let bestYearAvg = (movies) => {
 		sumForCurrentYear = arrayForCurrentYear.reduce((accum, current) => { //add each rate for each year
 			return accum + current.rate;
 		}, 0);
-		return sumForCurrentYear / arrayForCurrentYear.length; //returns an array of averages
+		return {avg : sumForCurrentYear / arrayForCurrentYear.length, year : year}; 
 	});
+	let highestRating = Math.max(...avgRate.map(yearAvg => yearAvg.avg), 0); //find the highest rating
 
-	return `The best year was  with an average rate of ${Math.max(...avgRate)}` ; //return the max of the avgs
+	let highestRatingPlusYear = avgRate.filter(obj => {	//find the year that has that highest rating
+		return obj.avg === highestRating
+	  })
+	return `The best year was ${highestRatingPlusYear[0].year} with an average rate of ${highestRatingPlusYear[0].avg}` ; 
 };
 console.log(bestYearAvg(movies));
