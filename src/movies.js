@@ -10,6 +10,14 @@ function getAllDirectors(arr) {
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
+function deleteDoubles(arr) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (!newArr.includes(arr[i])) newArr.push(arr[i]);
+  }
+  return newArr;
+}
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 const howManyMovies = (arr) =>
@@ -63,18 +71,16 @@ function orderByYear(arr) {
       return 0;
     }
   });
-  // console.log("-----1 : sorted by name: ");
-  // console.log(newArray);
 
   // then sort by years :
-  arr.sort((a, b) => a.year - b.year);
-  // console.log("-----2 : sorted by year: ");
-  // console.log(newArray);
+  newArray.sort((a, b) => a.year - b.year);
+
+  console.log(newArray);
   return newArray;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-/* Create a orderAlphabetically() function, that receives an array and returns an array of first 20 titles, alphabetically ordered. Return only the title of each movie, and if the array you receive has less than 20 movies, return all of them. */
+/* Create an orderAlphabetically() function, that receives an array and returns an array of first 20 titles, alphabetically ordered. Return only the title of each movie, and if the array you receive has less than 20 movies, return all of them. */
 
 function orderAlphabetically(arr) {
   if (arr.length === 0) return [];
@@ -110,26 +116,102 @@ function orderAlphabetically(arr) {
 function turnHoursToMinutes(arr) {
   if (arr.length === 0) return [];
 
-  let newArr = Object.assign([], arr);
+  // let newArr = [...arr];
+  let newArr = JSON.parse(JSON.stringify(arr)); // in this case, movie.duration is a STRING, not a NUMBER, and Jasmine is Ok, which is weird
 
-  newArr.forEach(
-    (movie) =>
-      movie.duration =
-        Number(movie.duration.charAt(0)) * 60 +
-        Number(movie.duration.charAt(3)) * 10 +
-        Number(movie.duration.charAt(4))
-  )
-
-  // IL Y A UN PROBLEME SI QUE DES HEURES OU QUE DES MINUTES !!!
-  // ESSAYER DE CALER UN 
-  // forEach(movie => if (movie.duration.includes("min")) => {....} )
-
+  newArr.forEach(function toMinutes(movie) {
+    let durationStr = movie.duration;
+    if (!movie.duration.includes("h")) {
+      let minutes = movie.duration.split("m");
+      movie.duration = Number(minutes[0]);
+    } else if (!movie.duration.includes("min")) {
+      let hours = movie.duration.split("h");
+      movie.duration = Number(hours[0] * 60);
+    } else {
+      let hoursAndMin = movie.duration.split("h ");
+      let minutes = hoursAndMin[1].split("m");
+      movie.duration = Number(hoursAndMin[0] * 60) + Number(minutes[0]);
+    }
+  });
   console.log(newArr);
   return newArr;
 }
+/* 
+let movieTest = [
+  { duration: "3h" },
+  { duration: "219min" },
+  { duration: "0h 30min" },
+];
+console.log(
+  "type of movieTest.duration BEFORE applying the function : " +
+    typeof movieTest[0].duration
+);
+turnHoursToMinutes(movieTest);
+console.log(
+  "type of movieTest.duration AFTER applying the function : " +
+    typeof movieTest[0].duration
+); 
+*/
 
-let movieTry = [{ duration: "2h 30min" }, { duration: "2h 1min" }];
-// console.log("new array is");
-// turnHoursToMinutes(movieTry);
+// BONUS - Iteration 8: Best yearly rate average
 
-// BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+function bestYearAvg(arr) {
+  if (arr.length === 0) return null;
+
+  let copiedArr = JSON.parse(JSON.stringify(arr));
+
+  let bestYearRateAvg = 0;
+  let bestYear = Math.max(...copiedArr.map(movie => movie.year));
+
+  console.log("--------temp best year : " + bestYear)
+  console.log(typeof bestYear)
+  
+  for (let i = 0; i < copiedArr.length; i++) {
+    
+    let sameYearMovies = copiedArr.filter((movie) => movie.year === copiedArr[i].year)
+    ;
+    console.log(sameYearMovies)
+    let newAvg = ratesAverage(sameYearMovies);
+    console.log(newAvg)
+    if ((newAvg === bestYearRateAvg && copiedArr[i].year < bestYear) || (newAvg > bestYearRateAvg && copiedArr[i].year > bestYear)) {
+      bestYearRateAvg = newAvg;
+      bestYear = copiedArr[i].year;
+    }
+  }
+  return `The best year was ${bestYear} with an average rate of ${bestYearRateAvg}`;
+}
+
+const newMoviesArr = [
+  { year: 2000, rate: 9 },
+  { year: 2000, rate: 8 },
+  { year: 1978, rate: 10 },
+  { year: 1978, rate: 7 },
+  { year: 2005, rate: 20 },
+  { year: 2019, rate: 2 }
+];
+
+const singleMovie = [{ year: 2007, rate: 8 }]
+
+console.log(bestYearAvg(singleMovie))
+
+console.log(ratesAverage(singleMovie))
+
+/* 
+
+ratesAverage()
+
+const howManyMovies = (arr) =>
+  arr.filter(
+    (movie) =>
+      movie.director === "Steven Spielberg" && movie.genre.includes("Drama")
+  ).length;
+
+function deleteDoubles(arr) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (!newArr.includes(arr[i])) newArr.push(arr[i]);
+  }
+  return newArr;
+} 
+
+*/
