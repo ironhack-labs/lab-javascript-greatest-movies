@@ -6,14 +6,31 @@ const getAllDirectors = (arr) => {
     const directorsNames = arr.map(function(dir){
         return dir.director
     })
-        return directorsNames
+    //create new set(set only allows unique values)
+    const uniqueDirectors = new Set(directorsNames);
+    //convert from object back to array
+    const backToArray = [...uniqueDirectors]
+        return backToArray
     };
+
+    getAllDirectors(movies)
 
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-const dramaSS = movies.filter(function(spielbergDramas){
-    return (spielbergDramas.director = "Steven Spielberg") && (spielbergDramas.genre ='Drama')})
-
+const howManyMovies = (arr) => {
+    //create `dramas` array which stores all movies with the `Drama` genre
+    const dramas = arr.filter(movies=>movies.genre.includes('Drama'));
+        //validate array
+        if (dramas.length > 0){
+          //filter Spielberg movies from dramas array
+          const dramaSpielberg = dramas.filter(function(spielbergDramas){
+            return spielbergDramas.director === "Steven Spielberg"})
+                //return number of Spielberg Dramas
+                return dramaSpielberg.length
+        } else {
+                return 0
+        } 
+};
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 const ratesAverage = (arr) => {
