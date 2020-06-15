@@ -87,7 +87,13 @@ const orderAlphabetically = arr => {
   return firstTwentyTitles.slice(0, 20); // use slice to get first 20 results of new array and return result
 }
 
+
+
+
+
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+
 
 const turnHoursToMinutes = (arr) => {
   const movieDuration = arr.map(movie => {
@@ -98,8 +104,6 @@ const turnHoursToMinutes = (arr) => {
     let minutes = Number(movie.duration.slice(3,5));
     
     let newDuration = hours + minutes; 
-    // console.log(typeof totalMinutes);
-    // console.log(`${movie.title} is ${totalMinutes} minutes long`);
 
     return {
       ...movie,
@@ -110,3 +114,13 @@ const turnHoursToMinutes = (arr) => {
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+
+const bestYearAvg = (arr) => {
+  if (!arr.length){
+      return null
+  };
+  const yearList = arr.map(movie => movie.year);
+
+  return yearList;
+};
