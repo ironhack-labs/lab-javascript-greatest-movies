@@ -5,12 +5,6 @@ return arrayDirectors;
 }
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
-
-
-
-
-
-
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(movies) {
 const dramaMovies = movies.filter( (movies) => movies.director === "Steven Spielberg" && movies.genre.includes("Drama"));
@@ -39,9 +33,7 @@ let dramamovies = movies.filter(elm => elm.genre.includes("Drama"));
 return ratesAverage(dramamovies);
 }
 
-
-// Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-
+// Iteration 5: Ordering by year - Order by year, ascending (in growing order)GI
 function orderByYear(movies){
 const order = [...movies].sort((a, b) => {
 if (a.year === b.year) {
@@ -56,14 +48,11 @@ return a.year - b.year;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-
 function orderAlphabetically(movies) {
 const orderAlpha = [...movies].sort((a, b) => a.title.localeCompare(b.title));
 const twenty = orderAlpha.slice(0, 20).map((movie) => movie.title);
 return twenty;
-  }
-
-
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
