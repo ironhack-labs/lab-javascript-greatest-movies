@@ -1,3 +1,7 @@
+// Turquoise team - Malamine & Charlotte
+
+//Here are some variables we created to run tests and console.log everything
+
 var moviesEx1 = [
   {
     title: "The Shawshank Redemption",
