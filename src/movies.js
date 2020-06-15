@@ -35,6 +35,9 @@ const howManyMovies = (arr) => {
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 const ratesAverage = (arr) => {
     //validate array
+    for(i=0;i<arr.length;i++){
+      if(arr[i].rate===undefined) {arr[i].rate = 0}
+    }
     if (arr.length > 0){
         //create average variable with average of all rates
         const average = arr.reduce(function(acc,value){
@@ -108,5 +111,30 @@ const orderAlphabetically = (arr) => {
 };
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+const turnHoursToMinutes = (arr) => {
+    const newArr = arr.map(function(time){
+    let num = time.duration.split('')
+    console.log(num)
+      if(num.includes('h') && num.includes('m')){
+          time.duration = Number(num[0]*60) + Number(num[3] + num[4])
+      } else if (num.includes('m')) {
+          time.duration = Number((num[0]) + (num[1]))
+      } else if(num.includes('h')) {
+          time.duration = Number(num[0]*60)
+      }
+      return time
+    })
+    return [...newArr]
+  };
+
+
+
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+const bestYearAvg = (arr) => {
+    if (arr > 0) {
+
+    } else {
+        return null
+    }
+};
