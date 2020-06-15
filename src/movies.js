@@ -121,39 +121,40 @@ function uniquifyArray(array) {
 }
 
 // Iteration 1: All directors? - Get the array of all directors.
-// - clone array  - clone spread ?
-// allDirectors = []
-//- recuperer juste les valeurs directeurs  avec map
 //---> should return an array; return a new array, not update the original, return an array with the same length as the original
 function getAllDirectors(array) {
   var directorsList = array.map((x) => x.director);
   return directorsList;
 }
 
+// ------   Tests  -----
 //console.log(getAllDirectors(moviesEx));
 //console.log(moviesEX.lenght);
 //console.log(getAllDirectors(moviesEx).lenght);
 
+
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
-// use uniquify function
+// use uniquify function (we wrote it Day4)
 var unifyDirectors = uniquifyArray(getAllDirectors);
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-// filter   movie.director === "Steven Spielberg" &&  movies.genre.includes("Drama")
 // --> should return a number : 0 if array is empty, 0 if no movie directed, 1 if only drama movies, 2 if only spielberg movies, else, 4
-function checkAllDrama(array) {
-  // checks if all the genres in the array are 'Drama'
+// Unfortunately, doesn't work, there's a problem when returning the results 1 and 2 and we're stuck.
+
+function checkAllDrama(array) {         // checks if all the genres in the array are 'Drama'  - WORKING
+
   return array.reduce((acc, cv) => acc && cv.genre.includes("Drama"), true);
 }
+// ------   Tests  -----
 //console.log(checkAllDrama(moviesEx2))
 
-function checkAllSteven(array) {
-  // checks if all the directors in the array are 'Steven Spielberg'
+function checkAllSteven(array) {      // checks if all the directors in the array are 'Steven Spielberg'   - WORKING
   return array.reduce(
     (acc, cv) => acc && cv.director === `Steven Spielberg`,
     true
   );
 }
+// ------   Tests  -----
 //console.log(checkAllSteven(moviesEx1))
 
 function howManyMovies(array) {
@@ -164,33 +165,31 @@ function howManyMovies(array) {
     if (!getAllDirectors(array).includes(`Steven Spielberg`)) {
       answer = 0;
     } else if (checkAllDrama(array)) {
-      // doesn't work
+      // doesn't work  :(
       answer = 1;
     } else if (checkAllSteven(array)) {
-      // doesn't work
+      // doesn't work :(
       answer = 2;
     } else {
       answer = 4;
-      // doesn't work
+      
     }
   }
   return answer;
 }
 
+// ------   Tests  -----
 //console.log(howManyMovies(moviesEx2));
 
+
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-// use average function ?
-// array avec que les notes ?
-// clone array
-// map pour array de notes puis reduce
-// reduce  (a, c) --- (a/nb elements) pour faire la moyennne
 //----> should return a number : return the average rate of two 8pts movies, rounded to 2 decimals, return 0 if no movie, return average even when movie doesn't have a rate
 
-/*array.reduce((acc, cv) => {     // doesn't work
+/*array.reduce((acc, cv) => {                // was an attempt to do average with the .reduce technique, but doesn't work
       if (!cv["rate"]) { return acc}
       else { return acc + (cv["rate"])}
     }) */
+
 
 function ratesAverage(array) {
   var avRate;
@@ -210,8 +209,11 @@ function ratesAverage(array) {
   return Math.round(avRate * 100) / 100;
 }
 
-console.log(ratesAverage(moviesEx4));
+// ------   Tests  -----
+//console.log(ratesAverage(moviesEx4));
 //console.log(moviesEx2[1]['rate'] + ' ' + typeof moviesEx2[1]['rate'])
+
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 // array notes des drama movies
@@ -226,9 +228,6 @@ function dramaMoviesRate(array) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-// clone array
-// sort by movie.year
-// if same year , sort alphabeticaly   fonction de comparaison
 //----> should return a new array, should return the element of a single elt array, return the new array in ascending order,  if 2  movies have the same year, order alphabetically by title
 
 function orderByYear(array) {
@@ -245,9 +244,6 @@ function orderByYear(array) {
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-// clone array
-// sort movies.title
-// filter   i < array[20]
 //----> returns an array, don't mutate the original array, only return the title of the movies (string), if there are less than 20, return all, if >20 return only 20 first, order them alphabetically
 
 function orderAlphabetically (array) {
@@ -260,7 +256,16 @@ function orderAlphabetically (array) {
   return orderedTop20;
 }
 
+// ------   Tests  -----
 //console.log(orderAlphabetically(moviesEx2))
+
+
+
+
+
+
+// ------   BONUSES we didn't work on  -----
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
