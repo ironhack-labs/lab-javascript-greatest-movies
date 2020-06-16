@@ -50,6 +50,7 @@ dramaMoviesRate(movies);
 function orderByYear(moviesArr) {
   copyMoviesArr = moviesArr.slice();
   return copyMoviesArr.sort(function (a, b) {
+    if (a.year === b.year) return a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
     return a.year - b.year;
   });
 }
