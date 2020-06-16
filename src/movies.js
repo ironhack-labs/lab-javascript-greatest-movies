@@ -79,11 +79,30 @@ turnHoursToMinutes(movies)
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
 const bestYearAvg = arr => {
+
     if (!arr.lenght){
         return null
     };
-    let yearList = arr.map(movie => movie.year).filter((year, index) =>  {
-        index === arr.indexOf(year)
-    })
+
+// 1. Filter only what I need to work with:
+    let zed = arr.map(item => {
+        return {year: item.year, rate: item.rate}; //creates object with keys year, rate
+        })
+
+// 2. Manipulate it and shape it to group together to return -> {year: [rate, rate], year: [rate, rate], ...}
+    let sortedMovie = zed.reduce(function (obj, mov) {  
+        var int = Math.floor(mov.year);  // Get the value I want to use to group
+    
+        if (!obj.hasOwnProperty(int)) { // If the group with that value doesn't already exist as a key in the object, create it
+            obj[int] = [];
+        }
+        
+        obj[int].push(mov.rate); // Push the rate to its value key
+        
+        return obj;  // Pass the object on to the next loop
+    }, {});
+    
+// 3. Create average function to return average of rates of each year and compare to find the higest
+// 4. Return the string `The best year was <YEAR> with an average rate of <RATE>`
 
 }
