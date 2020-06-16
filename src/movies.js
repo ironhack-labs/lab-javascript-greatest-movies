@@ -144,5 +144,6 @@ function bestYearAvg(arr) {
     sum += arr[i].rate
     num++
   }
+  console.log(`The best year was ${largestYear} with an average rate of ${largestAvg}`)
   return `The best year was ${largestYear} with an average rate of ${largestAvg}`
 }
