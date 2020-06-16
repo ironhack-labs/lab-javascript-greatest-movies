@@ -51,7 +51,7 @@ const dramaMoviesRate = (arr, callback) =>{
   const dramaMovies = arr.filter(movie => { // create new array
     return movie.genre.includes("Drama"); // filters only drama movies
   }); 
-  return callback(dramaMovies); // use ratesAverage as callback function to get average of drama movies array
+  return ratesAverage(dramaMovies); // use ratesAverage as callback function to get average of drama movies array
 };
 
 
@@ -63,13 +63,13 @@ const orderByYear = arr => {
   const sortByYear = arr.slice().sort((a, b) => { // use slice to create new array and sort to compare
     if (a.year > b.year) return 1; // order by year, oldest to newest
     if (a.year < b.year) return -1;
-  
+
     if(a.year === b.year) { // if year is the same
       if(a.title > b.title) return 1; // order title alphabetical
       if(a.title < b.title) return -1;
     }
   });
-  
+
   return sortByYear; // return result of new array
 };
 
@@ -82,45 +82,30 @@ const orderAlphabetically = arr => {
     if (a.title > b.title) return 1; // order title alphabetical
     if (a.title < b.title) return -1;
   });
-  
+
   const firstTwentyTitles = sortByTitle.map(movie => movie.title); // filter new array by title and store them in a new array
   return firstTwentyTitles.slice(0, 20); // use slice to get first 20 results of new array and return result
-}
-
+};
 
 
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
-
-
 const turnHoursToMinutes = (arr) => {
   const movieDuration = arr.map(movie => {
 
     let hours = movie.duration.slice(0,1);
     hours = Number(hours *= 60);
-    
-    let minutes = Number(movie.duration.slice(3,5));
-    
-    let newDuration = hours + minutes; 
 
+    let minutes = Number(movie.duration.slice(3, -3));
+
+    let newDuration = hours + minutes; 
+    
     return {
       ...movie,
       duration: newDuration
     }
   })
   return movieDuration;
-}
-
-// BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
-
-
-const bestYearAvg = (arr) => {
-  if (!arr.length){
-      return null
-  };
-  const yearList = arr.map(movie => movie.year);
-
-  return yearList;
 };
