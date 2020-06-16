@@ -51,6 +51,13 @@ function orderByYear(moviesArr) {
   copyMoviesArr = moviesArr.slice();
   return copyMoviesArr.sort(function (a, b) {
     if (a.year === b.year) return a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
+    /*same that :
+    {
+    if (a.year === b.year) { 
+      
+       if (a.title < b.title) return -1;
+       else if (a.title > b.title) return 1;
+       else return 0;} */
     return a.year - b.year;
   });
 }
