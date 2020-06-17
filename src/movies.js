@@ -12,17 +12,19 @@ let dirs = getAllDirectors(movies)
 let directors = new Set(dirs)
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(arr){
-    let b = movies.filter( function(item){return (item.director == 'Steven Spielberg' && item.genre.indexOf("Drama") !== -1 )}
-    
-     )
-     return b
-     ;}
+  if(arr.length < 1) return 0
+    let b = movies.filter( function(item){return (item.director == 'Steven Spielberg' && item.genre.indexOf("Drama") != -1 )})
+    if(b.length > 0){
+     return b.length}
+     else{ return 0}
+    }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(arr){
+    if(arr.length < 1) return 0
     let d = arr.reduce((a, b) => ({rate: a.rate + b.rate}))
     let all = arr.length
-    return (d.rate/all).toFixed(2);
+    return Number((d.rate/all).toFixed(2));
   }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -36,7 +38,7 @@ function dramaMoviesRate(arr){
     if(genreString[i].indexOf("Drama") > -1 )
     count += 1
   }
-  return Math.round(count/all)
+  return count/all
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
@@ -57,8 +59,9 @@ function orderByYear(arr){
   return 0;
 }
 
-let sorted = arr.sort( compare );
-return sorted
+let sorted = JSON.parse(JSON.stringify(arr))
+sorted = sorted.sort( compare )
+return sorted;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
@@ -73,7 +76,8 @@ function orderAlphabetically(arr){
   return 0;
 }
 
-let sorted = arr.sort(compare);
+let sorted = JSON.parse(JSON.stringify(arr))
+sorted = sorted.sort( compare )
 let newarray = sorted.map(function (val) {
   return val.title
   });
@@ -85,11 +89,15 @@ return newarray.slice(0 , 20)
 function turnHoursToMinutes(arr){
   let list = JSON.parse(JSON.stringify(arr))
   let time = ''
+  let min = 0
   for(i in list){
     time = list[i].duration.split(' ')
     let hr = Number(time[0][0])*60
-    let min = (time[1].split('m'))[0]
-    list[i].duration = hr + min
+    if(time.length == 2){
+      min = Number((time[1].split('m'))[0])
+    }
+    list[i].duration = (hr + min)
+    
   }
   return list
 }
