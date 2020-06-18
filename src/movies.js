@@ -85,12 +85,12 @@ const bestYearAvg = arr => {
     };
 
 // 1. Filter only what I need to work with:
-    let zed = arr.map(item => {
+    let filteredData = arr.map(item => {
         return {year: item.year, rate: item.rate}; //creates object with keys year, rate
         })
 
 // 2. Manipulate it and shape it to group together to return -> {year: [rate, rate], year: [rate, rate], ...}
-    let sortedMovie = zed.reduce(function (obj, mov) {  
+    let sortedMovie = filteredData.reduce(function (obj, mov) {  
         var int = Math.floor(mov.year);  // Get the value I want to use to group
     
         if (!obj.hasOwnProperty(int)) { // If the group with that value doesn't already exist as a key in the object, create it
@@ -100,7 +100,23 @@ const bestYearAvg = arr => {
         obj[int].push(mov.rate); // Push the rate to its value key
         
         return obj;  // Pass the object on to the next loop
-    }, {});
+    }, {})
+
+    for (let year in sortedMovie){
+        var sum = 0;
+            for( var i = 0; i < sortedMovie[year].length; i++ ){
+                //calculate sum for each year
+             
+                sum += sortedMovie[year][i];
+                sortedMovie.year = sum;
+        
+                //calculate average for each year
+                var avg = sum/sortedMovie[year].length;
+                avg.toFixed(2)
+              
+    }
+    
+    }
     
 // 3. Create average function to return average of rates of each year and compare to find the higest
 // 4. Return the string `The best year was <YEAR> with an average rate of <RATE>`
