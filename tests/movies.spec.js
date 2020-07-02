@@ -91,7 +91,7 @@ describe('Get how many movies - howManyMovies', () => {
         {
           director: 'Steven Spielberg',
           genre: ['Action', 'Drama', 'Thriller']
-        },
+        },  
         {
           director: 'James McTeigue',
           genre: ['Action', 'Drama']

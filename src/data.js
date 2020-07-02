@@ -72,7 +72,7 @@ let movies = [
       "title": "Pulp Fiction",
       "year": 1994,
       "director": "Quentin Tarantino",
-      "duration": "2h 34min",
+      "duration": "2h 34min", 
       "genre": [
         "Crime",
         "Drama"
