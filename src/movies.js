@@ -61,7 +61,7 @@ function orderAlphabetically(movies) {
     return [...new Set(titles)];
 }
 
-orderAlphabetically(movies).sort().slice(0, 20);
+orderAlphabetically(movies).sort();
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
