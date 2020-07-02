@@ -51,10 +51,10 @@ function orderByYear(movieArr) {
     let orderYear = movieArr.sort(function (movie1, movie2) {
         if (movie1.year === movie2.year) {
             if (movie1.title > movie2.title) {
-                return -1;
+                return 1;
             }
             if (movie1.title < movie2.title) {
-                return 1;
+                return -1;
             }
             return 0
         }
