@@ -86,10 +86,57 @@ function stringToMinutes(timeString) {
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 function bestYearAvg(array) {
     if (array.length === 0) {
-        return null;
+        return null
     }
-    let years = array
-        .map(film => film.year)
-        .sort((a, b) => a - b)
-    return years;
-};
+    let availablesYears = [];
+    let yearsAverage = [];
+    // construimos el array availableYears con los años disponibles
+    // de nuestra base de datos
+    const movieYears = array.map((film) => {
+        let year = film.year.toString();
+        if (availablesYears.includes(year) === false) {
+            availablesYears.push(year);
+        }
+    });
+    // Generamos array availablesYears que contiene un array por cada año,
+    // con cada película asociada a ese año
+    availablesYears
+        // Recorremos el array de los años disponibles y devolvemos
+        // un array por cada año que coincida con el array availablesYears
+        .map((item) => {
+            return array.filter((film) => film.year == Number(item));
+        })
+        // Recorremos cada array de año, calculamos el average de sus rates y
+        //rellenamos el array yearsAverage con dos claves valor por año y por averageRate
+        .map((item) => {
+            let yearAvg = item.reduce((acc, film) => {
+                //console.log(acc + film.rate);
+                return acc + film.rate;
+            }, 0);
+            //console.log(Number((yearAvg / item.length).toFixed(2)));
+            //console.log("/////////////////////");
+            yearsAverage.push({
+                year: item[0].year,
+                rate: Number((yearAvg / item.length).toFixed(2)),
+            });
+            //return item.reduce((acc, film) => acc + film.rate);
+        });
+    // Definimos variable del rate más elevado y del año que tiene el rate más elevado
+    let highRate = 0;
+    let highRateYear = 0;
+    let result = yearsAverage
+        // Ordenamos el array resultante de en orden ascendente según el año,
+        // ya que si hay empate se queda el año más antiguo
+        .sort((a, b) => {
+            return a.year - b.year;
+        })
+        // Recorremos el array y comparamos los rates sacando el más alto y asignándolo a highRate y a highRateYear
+        .map((yearFilm) => {
+            if (yearFilm.rate > highRate) {
+                highRate = yearFilm.rate;
+                highRateYear = yearFilm.year;
+            }
+        });
+    // Devolvemos un estring con el año con un rate más elevado
+    return `The best year was ${highRateYear} with an average rate of ${highRate}`;
+}
