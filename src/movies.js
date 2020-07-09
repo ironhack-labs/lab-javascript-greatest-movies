@@ -8,6 +8,17 @@ function getAllDirectors(movies) {
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
+function getUniqueList(movies) {
+    let list = [];
+    for (let i = 0; i <movies.length; i++) {
+        let director = movies[i].director;
+        if (list.indexOf(director) < 0) {
+            list.push(director);
+        }
+    }
+    return list;
+}
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 function howManyMovies(movies) {
@@ -32,7 +43,12 @@ function ratesAverage(movies) {
         return 0;
     } 
     let sum = movies.reduce(function(acc, movie) {
-        return acc + movie.rate;
+        if (movie.rate) {
+            return acc + movie.rate;
+        }
+        else {
+            return acc
+        }
     }, 0)
     let average = sum / movies.length;
     return Number(average.toFixed(2));
@@ -42,17 +58,9 @@ function ratesAverage(movies) {
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate(movies) {
-    let dramas;
-
-    dramas = movies.filter(function(movie) {
-        for (let i = 0; i < movie.genre.length; i++) {
-            
-          if (movie.genre[i] === "Drama") {
-              dramas += movie;
-          } 
-        }
-          return dramas;
-        })
+    let dramas = movies.filter(function(movie) {
+        return movie.genre.includes('Drama');
+     })
 
     if (dramas.length === 0) {
         return 0;
@@ -65,43 +73,62 @@ function dramaMoviesRate(movies) {
     return Number(dramaAvg.toFixed(2));
 }}
 
+
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-let newMovies = JSON.parse(JSON.stringify(movies));
-function orderByYear(newMovies) {
-    let yearSort = newMovies.sort(function(num1, num2){
-    if (num1.year > num2.year){
+
+function orderByYear(movies) {
+    let newMoviesArr = JSON.parse(JSON.stringify(movies));
+    let yearSort = newMoviesArr.sort(function(a, b){
+    if (a.year > b.year){
      return 1;
    }
-   else if (num1.year < num2.year) {
+   else if (a.year < b.year) {
        return -1;
     }
    else {
-      return 0;
-    }
+      if (a.title > b. title) {
+          return 1;
+      } 
+      else if (a.title < b.title) {
+          return -1;
+      }
+      else {
+          return 0;
+      }
+    } 
     })
     return yearSort;
 }
 
-// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles 
+// Something with .map?
+
+function orderAlphabetically(movies) {
 let alphaMovies = JSON.parse(JSON.stringify(movies));
-function orderAlphabetically(alphaMovies) {
-    alphaMovies.sort(function(a, b){
-    if (a.title > b.title){
+    alphaMovies = alphaMovies.map( (movie) => {
+        return movie.title;
+    })
+
+    alphaMovies.sort(function(a, b) {
+    if (a > b){
      return 1;
    }
-   else if (a.title < b.title) {
+   else if (a < b) {
        return -1;
     }
    else {
       return 0;
     }
     })
-    if (alphaMovies.length > 20) {
-        alphaMovies.splice(20); 
-    }
+    alphaMovies.splice(20); 
     return alphaMovies;
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+// Logic: seperate hours and min (duration.split(" ")), delete the letters ((splice(n, n)), for hours: * 60, do hours + minutes, use .map to change array and insert new duration values.
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+// Logic: sort per year. Calculate average per year. Looks for highest average.
+
