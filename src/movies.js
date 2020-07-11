@@ -18,104 +18,127 @@
 
 
 // movies
-
 //1
 
 function getAllDirectors(array) {
-    const directorArray = array.map(movie => {
-      return movie.director
-    })
-    return directorArray;
-  }
-  
-  //console.log(getAllDirectors(movies)) 
-  
-  //2
-  function howManyMovies (array) {
-    const directorSpielberg = array.filter((movie) => {
-      if (movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')) {
-        return movie
-      }
-    })//.map(movie => movie.title)
-    const onlyTitle = directorSpielberg.map(movie => movie.title)
-    return onlyTitle
-    
-  }
-  //console.log(howManyMovies(movies))
-  
-  //3
-  function ratesAverage(array) {
-    const sumRatingFunc = array.reduce((total, movie) => {
-      let sumRating =  total + movie.rate
-      return sumRating
-    }, 0)
-    let averRating = 0
-    if (array.length) {
-      if (array.length === 1) {
-        averRating = sumRatingFunc.toFixed(2);
-      } else {
-        averRating = (sumRatingFunc / array.length).toFixed(2);
-      }
-    } else (
-      averRating = 0
-    )
-    return Number(averRating);
-      
-  } 
-  //console.log(ratesAverage(movies));
-  
-  //4
-  function dramaMoviesRate(array) {
-    const dramaList = array.filter(movie => {
-      if (movie.genre.includes('Drama')) {
-        return movie;
-      }
-    })
-    const dramaSumRating = dramaList.reduce((totalSum, dramaMovieRating) => {
-      let sum = totalSum + dramaMovieRating.rate;
-      return sum;
-    }, 0)
-    let dramaRatingAverage = 0;
-    if(array.length) {
-      if (array.length === 1) {
-        dramaRatingAverage = dramaSumRating.toFixed(2)
-      } else {
-        dramaRatingAverage = (dramaSumRating / array.length).toFixed(2)
-      }
-    } else {
-      dramaRatingAverage = 0
+  const directorArray = array.map(movie => {
+    return movie.director
+  })
+  return directorArray;
+}
+
+//console.log(getAllDirectors(movies)) 
+
+//2
+function howManyMovies (array) {
+  const directorSpielberg = array.filter((movie) => {
+    if (movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')) {
+      return movie
     }
+  })//.map(movie => movie.title)
+  const onlyTitle = directorSpielberg.map(movie => movie.title)
+  return onlyTitle
   
+}
+//console.log(howManyMovies(movies))
+
+//3
+function ratesAverage(array) {
+  const sumRatingFunc = array.reduce((total, movie) => {
+    let sumRating =  total + movie.rate
+    return sumRating
+  }, 0)
+  let averRating = 0
+  if (array.length) {
+    if (array.length === 1) {
+      averRating = sumRatingFunc.toFixed(2);
+    } else {
+      averRating = (sumRatingFunc / array.length).toFixed(2);
+    }
+  } else (
+    averRating = 0
+  )
+  return Number(averRating);
     
-    
-    return Number(dramaRatingAverage);
+} 
+//console.log(ratesAverage(movies));
+
+//4
+function dramaMoviesRate(array) {
+  const dramaList = array.filter(movie => {
+    if (movie.genre.includes('Drama')) {
+      return movie;
+    }
+  })
+  const dramaSumRating = dramaList.reduce((totalSum, dramaMovieRating) => {
+    let sum = totalSum + dramaMovieRating.rate;
+    return sum;
+  }, 0)
+  let dramaRatingAverage = 0;
+  if(array.length) {
+    if (array.length === 1) {
+      dramaRatingAverage = dramaSumRating.toFixed(2)
+    } else {
+      dramaRatingAverage = (dramaSumRating / array.length).toFixed(2)
+    }
+  } else {
+    dramaRatingAverage = 0
   }
-  //console.log(dramaMoviesRate(movies))
+
   
-  //5
-  function orderByYear(array) {
-   
   
-    
-    const moviesSortedByYears = array.sort((a, b) => {
-  
-      if (a.year > b.year) {
+  return Number(dramaRatingAverage);
+}
+//console.log(dramaMoviesRate(movies))
+
+//5
+//i copied an movies array but couldn't pass the test "Order the movies by year - orderByYear Should return a new array"
+const newMoviesArrayForSort = [...movies];
+function orderByYear(array) {
+  const moviesSortedByYears = array.sort((a, b) => {
+    if (a.year > b.year) {
+      return 1
+    } else if (a.year < b.year) {
+      return -1
+    } else {
+      if (a.title > b.title)  {
         return 1
-      } else if (a.year < b.year) {
+      } else  if (a.title < b.title){
         return -1
       } else {
-        if (a.title > b.title)  {
-          return 1
-        } else  if (a.title < b.title){
-          return -1
-        } else {
-          return 0
-        }
+        return 0
       }
-    })
-    return moviesSortedByYears
+    }
+  })
+  return moviesSortedByYears
+}
+//console.log(orderByYear(newMoviesArrayForSort))
+
+//6
+let newMoviesArray = [...movies];
+function orderAlphabetically(array) {
+  let titleArray = [];
+  const titleArrayCreation = array.map((value) => {
+    titleArray.push(value['title'])
+    return titleArray
+  })
+  
+  
+  const sortedTitleArray = titleArray.sort()
+
+  const finalSortedTitle = [];
+  if (sortedTitleArray.length > 20) {
+    for (let i = 0; i < 20; i++) {
+      finalSortedTitle.push(sortedTitleArray[i]);
+   }
+  } else {
+    for (let j = 0; j < sortedTitleArray.length; j++) {
+      finalSortedTitle.push(sortedTitleArray[j])
+    }
   }
   
-  
-  console.log(orderByYear(movies))
-  
+  return finalSortedTitle
+
+}
+
+console.log(orderAlphabetically(movies))
