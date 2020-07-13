@@ -94,7 +94,7 @@ ratesAverage(movies)
       }
        return alpha
      }) 
-      return new Array(...sortedYears)
+      return [...sortedYears]
     }
     orderByYear(movies) 
     
