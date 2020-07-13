@@ -23,9 +23,10 @@ function ratesAverage (arr) {
     else {
     const rateArr = arr.map(item => item.rate)
     console.log(rateArr)
-  
-    
-    const sumOfRates = rateArr.reduce((acc, c) =>  acc + c);
+
+    const onlyActualRatesArr = rateArr.filter(element => typeof element === 'number')
+      
+    const sumOfRates = onlyActualRatesArr.reduce((acc, c) =>  acc + c);
     const averageRates = sumOfRates/rateArr.length;
     return Number(averageRates.toFixed(2));
   }
@@ -73,12 +74,60 @@ function orderByYear (arr){
       return alpha
      }) 
      byYear = sortedYears
-     return byYear
-    }
-    orderByYear(movies)
-
+    return byYear
+}
     
+orderByYear(movies)
+
+
+// failed attempt to fix error (should return new array) in Jasmine
+/*function orderByYear (arr){
+    let byYear = []
+    const sortedYears = arr.sort((a, b) => {
+      let alpha = a.year - b.year 
+      if (alpha === 0){
+        return a.title.localeCompare(b.title)
+      }
+      return alpha
+     }) 
+     byYear = ssortedYears.map(item => {
+        return {
+            'title': item.title, 
+            'year': item.year
+        }
+    }) 
+    return byYear
+}
+    
+orderByYear(movies) */
+
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+
+
+// function orderAlphabetically(arr){
+
+
+function orderAlphabetically(arr){
+    let alphabetically = []
+    const arrMapped = arr.map(item => item)
+    
+    arrMapped.sort((a, b) => {
+      return a.title.localeCompare(b.title)
+    })
+    
+    const titleAlpha = arrMapped.map(item => item.title)
+    
+    if (titleAlpha.length === 20) {
+      return titleAlpha
+    } else {
+      return titleAlpha.slice(0, 20)
+    } 
+  }
+  
+  orderAlphabetically(movies)
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
