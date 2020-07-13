@@ -5,6 +5,15 @@ function getAllDirectors(movieArr){
   } 
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+function getAllDirectors(movieArr){
+    const listDirectors = movieArr.map(item =>  `${item.director}`)
+    const listDirectorsfilter = listDirectors.filter((item, index) => {
+      return listDirectors.indexOf(item) === index
+    })
+    return listDirectorsfilter
+   }
+   
+   getAllDirectors(movies)  
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies (arr) {
@@ -30,20 +39,12 @@ function ratesAverage (arr) {
     const averageRates = sumOfRates/rateArr.length;
     return Number(averageRates.toFixed(2));
   }
-  }
+}
   
   ratesAverage(movies)
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-
-// function dramaMoviesRate(arr){
-//     const listGenre = arr.filter(movie => movie.genre.includes("Drama"))
-//     return listGenre   
-//   }
-// ratesAverage(dramaMoviesRate(movies))
-
-
 function dramaMoviesRate(arr){
   
     const listGenre = arr.filter(movie => movie.genre.includes("Drama"))
@@ -52,12 +53,8 @@ function dramaMoviesRate(arr){
         return 0;
     }
     
-  
     const rateArr = listGenre.map(item => item.rate)
-    console.log(rateArr)
-    
     const sumOfRates = rateArr.reduce((acc, c) =>  acc + c);
-  
     return Number((sumOfRates/rateArr.length).toFixed(2));
   }
   
@@ -98,17 +95,10 @@ orderByYear(movies)
     }) 
     return byYear
 }
-    
 orderByYear(movies) */
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-
-
-
-// function orderAlphabetically(arr){
-
-
 function orderAlphabetically(arr){
     let alphabetically = []
     const arrMapped = arr.map(item => item)
@@ -130,5 +120,21 @@ function orderAlphabetically(arr){
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+// 
+function turnHoursToMinutes(arr){
+    const newMoviesArr = arr.map(item => item)
+    // console.log(newMoviesArr)
+     
+    newMoviesArr.forEach((item, i) => {
+      if(typeof item.duration === 'string'){
+        newMoviesArr[i].duration = (Number(newMoviesArr[i].duration[0]) * 60) + Number(newMoviesArr[i].duration.slice(-5, -3)) 
+      }
+    })
+    return newMoviesArr
+  }
+  
+  turnHoursToMinutes(movies)
+  
+
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
