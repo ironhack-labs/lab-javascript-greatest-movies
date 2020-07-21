@@ -57,9 +57,7 @@ function orderAlphabetically(arr) {
     let moviesCopy = [];
     let sortedTitles = [];
     for (let movie of arr) {moviesCopy.push(movie.title);}
-    moviesCopy.sort((a, b) => {
-        return a.localeCompare(b);
-    });
+    moviesCopy.sort();
     if (moviesCopy.length < 20) {
         for (let j = 0; j < moviesCopy.length; j++) {sortedTitles.push(moviesCopy[j]);}
     } else for (let i = 0; i < 20; i++) {sortedTitles.push(moviesCopy[i]);}
