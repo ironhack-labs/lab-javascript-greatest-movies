@@ -1,4 +1,4 @@
-/* const movies = require('./data'); */
+const movies = require('./data');
 // Iteration 1: All directors? - Get the array of all directors.
 function getAllDirectors(arr) {
     return arr.map(movie => {
@@ -7,7 +7,25 @@ function getAllDirectors(arr) {
 }
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
+function uniqueDirectors(arr) {
+    let uniqueDirectorsArr = [...new Set(getAllDirectors(arr))];
+    uniqueDirectorsArr.sort();
+}
 
+/* 
+Para Referência:
+Resolução do Bonus 1 com reduce, retirada do vídeo-solução
+
+function uniqueDirectors(arr) {
+    const uniqueDirectorsArr = arr.reduce((acc, movie) => {
+        if (!acc.includes(movie.director)) {
+            acc.push(movie.director);
+        }
+        return acc;
+    }, [])
+}                                                        */
+
+/* console.log(unique); */
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
@@ -23,7 +41,7 @@ function howManyMovies(arr) {
 
 function ratesAverage(arr) {
     return arr.reduce((total, movie) => {
-        if (!movie.rate) {return total + 0;} // Essa precisei da ajuda do vídeo de solução
+        if (!movie.rate) {return total + 0;} // Essa linha precisei da ajuda do vídeo de solução
         return parseFloat((total + movie.rate / arr.length).toFixed(2));
     }, 0);
 }
@@ -63,9 +81,25 @@ function orderAlphabetically(arr) {
     } else for (let i = 0; i < 20; i++) {sortedTitles.push(moviesCopy[i]);}
     return sortedTitles;
 }
-console.log(orderAlphabetically(movies));
+
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(arr) {
+    if (arr.length === 0) {return null}
+    let ratesByYear = {}
+    arr.forEach(movie => {
+        if (!ratesByYear[movie.year]) {ratesByYear[movie.year] = {rate: movie.rate}}
+        else {ratesByYear[movie.year].rate += movie.rate}
+    });
+    let ratesByYearArr = Object.values(ratesByYear);
+    let resultArr = [];
+    for (let movie of ratesByYearArr) {
+        resultArr.push();
+    }
+}
+
+bestYearAvg(movies)
