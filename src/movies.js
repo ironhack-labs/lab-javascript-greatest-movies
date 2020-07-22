@@ -152,14 +152,98 @@ function orderAlphabetically(moviesIn) {
 
     let onlyTitles = copyOfmoviesIn.map(movie => movie.title);
 
-    let only20Titles = onlyTitles.slice(0,20);
+    let only20Titles = onlyTitles.slice(0, 20);
 
     return only20Titles;
 }
 
 console.log(orderAlphabetically(fromJasmine5));
 
-
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+const testMov = [{
+    "title": "Amores perros",
+    "year": 2000,
+    "director": "Alejandro González Iñárritu",
+    "duration": "2h 34min",
+    "genre": [
+        "Drama",
+        "Thriller"
+    ],
+    "rate": 8.1
+},
+{
+    "title": "The Truman Show",
+    "year": 1990,
+    "director": "Peter Weir",
+    "duration": "1h 43min",
+    "genre": [
+        "Comedy",
+        "Drama",
+        "Sci-Fi"
+    ],
+    "rate": 8.1
+},
+{
+    "title": "Hachi: A Dog\"s Tale",
+    "year": 1983,
+    "director": "Lasse Hallström",
+    "duration": "1h 33min",
+    "genre": [
+        "Drama",
+        "Family"
+    ],
+    "rate": 8.1
+}];
+
+const movieTry1 = [{ duration: '2h' }];
+
+const turnHoursToMinutes = function (moviesIn) {
+    let moviesDeepCopy = JSON.parse(JSON.stringify(moviesIn));
+    let hours = 0;
+    let minutes = 0;
+    let durationMin = 0;
+    moviesDeepCopy = moviesDeepCopy.map(movie => {
+        let durationOrig = movie.duration;
+        minutes = durationOrig.split('min');
+        if (minutes.length < 2 && minutes[0].indexOf('h') >= 0) {
+            hours = minutes[0].split('h');
+            durationMin = +hours[0] * 60;
+        } else if (minutes[1] === '' && minutes[0].indexOf('h') === -1) {
+            durationMin = +minutes[0];
+        } else {
+            hours = minutes[0].split('h ');
+            durationMin = (+hours[0] * 60) + +hours[1];
+        }
+        movie.duration = durationMin;
+        return movie;
+    });
+    return moviesDeepCopy;
+}
+
+console.log(turnHoursToMinutes(movieTry1));
+let string = "2h 54min";
+let test1 = string.split('min');
+//let test2 = test1[1].split('min');
+console.log(test1);
+//console.log(test2);
+
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+const bestYearAvg = function (moviesIn) {
+    let moviesDeepCopy = JSON.parse(JSON.stringify(moviesIn));
+
+    let onlyYearAndAvg = moviesDeepCopy.map(movie => {
+        return {
+            year: movie.year,
+            rate: movie.rate
+        }
+    })
+
+    let sortedByYear = onlyYearAndAvg.sort((movie1, movie2) => movie1.year - movie2.year);
+
+    let arrayYearSumRateQuantity = [];
+
+    return sortedByYear;
+}
+
+console.log(bestYearAvg(testMov));
