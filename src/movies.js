@@ -230,6 +230,8 @@ console.log(test1);
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 const bestYearAvg = function (moviesIn) {
+    if (moviesIn.length === 0) return null;
+    
     let moviesDeepCopy = JSON.parse(JSON.stringify(moviesIn));
 
     let onlyYearAndAvg = moviesDeepCopy.map(movie => {
