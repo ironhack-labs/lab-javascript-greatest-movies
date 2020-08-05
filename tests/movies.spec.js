@@ -1,9 +1,7 @@
-/* eslint no-undef: "off" */
-/* eslint jasmine/no-spec-dupes: "off" */
-
 /*
  * 1. getAllDirectors
  */
+
 describe(' All directors - getAllDirectors', () => {
   it('Defines getAllDirectors', () => {
     expect(typeof getAllDirectors).toBe('function');
@@ -405,21 +403,22 @@ describe('Order alphabetically - orderAlphabetically', () => {
 /*
  * 7. turnHoursToMinutes
  */
+
 describe('Turn duration of the movies - turnHoursToMinutes', () => {
   it('Defines turnHoursToMinutes', () => {
     expect(typeof turnHoursToMinutes).toBe('function');
   });
 
   it('Should return an array', () => {
-    expect(typeof turnHoursToMinutes(movies)).toBe('object');
+    expect(typeof turnHoursToMinutes(small)).toBe('object');
   });
 
   it('Should return a new array, not update the original one', () => {
-    expect(turnHoursToMinutes(movies)).not.toEqual(movies);
+    expect(turnHoursToMinutes(small)).not.toEqual(small);
   });
 
   it('The duration of the movie should be a number', () => {
-    expect(typeof turnHoursToMinutes(movies)[0].duration).toBe('number');
+    expect(typeof turnHoursToMinutes(small)[0].duration).toBe('number');
   });
 
   it('The duration of the movie should return the correct number to a short movie - 31 minutes', () => {
