@@ -41,8 +41,9 @@ function ratesAverage(arr){
     console.log(sumRating)
     console.log(sumRating/arr.length)
     console.log(arr.length)
-    if(!sumRating){
-        return Math.round(sumRating/arr.length).toFixed(2)
+    if(sumRating !== undefined){
+        console.log((sumRating/arr.length).toFixed(2))
+        return (sumRating/arr.length).toFixed(2)
     }else{
         return 0
     }
@@ -72,8 +73,8 @@ function dramaMoviesRate(arr){
     console.log(sumRating)
     console.log(sumRating/counter)
     console.log(counter)
-    if(!sumRating){
-        return Math.round(sumRating/counter).toFixed(2)
+    if(sumRating !== undefined || counter == 0){
+        return (sumRating/counter).toFixed(2)
     }else{
         return 0
     }
@@ -82,9 +83,20 @@ function dramaMoviesRate(arr){
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(arr){
-    let sortedArray=arr
+    let sortedArray=arr.slice()
     sortedArray.sort(function (a,b){
-        Number(a.year)-Number(b.year)
+        let comp = parseFloat(a.year)-parseFloat(b.year)
+        if(comp == 0){
+            if(a.title > b.title){
+                return 1
+            }else if(a.title < b.title){
+                return -1
+            }else{
+                return 0
+            }
+        }else{
+            return comp
+        }
     })
     console.log(sortedArray)
     return sortedArray
@@ -106,12 +118,9 @@ function orderAlphabetically(arr){
 
     })
 
-    let first20 = sortedArray.slice(0,20)
-    let first20_2 = []
-    for(let i = 0; i < first20.length; i++){
-        first20_2.push(arr[i].title)
-    }
-    return first20_2
+    let first20 = sortedArray.slice(0,20).map(elem => elem.title)
+    console.log(first20)
+    return first20
 
 }
 
