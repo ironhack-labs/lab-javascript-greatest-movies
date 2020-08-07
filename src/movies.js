@@ -1,11 +1,13 @@
 // Iteration 1: All directors? - Get the array of all directors.
 
 function getAllDirectors(peliculas) {
-    return peliculas.map(function(pelicula) {
-        return pelicula.director;
-    })
+    const directors = peliculas.map(function(pelicula) {
+            return pelicula.director;
+        })
+        // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+    return directors.filter((director, index) => directors.indexOf(director) == index)
 }
-// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
@@ -22,7 +24,6 @@ function ratesAverage(peliculas) {
         if (pelicula.rate)
             sum += pelicula.rate
     })
-    console.log((sum / peliculas.length).toFixed(2))
     return parseFloat((sum / peliculas.length).toFixed(2))
 }
 
@@ -69,4 +70,44 @@ function orderAlphabetically(peliculas) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(movies) {
+    const copyMovies = JSON.parse(JSON.stringify(movies))
+    const newMovies = copyMovies.map(movie => {
+        const duration = movie.duration;
+        let hoursInMin = 0;
+        let minInMin = 0;
+        if (duration.includes("h")) {
+            hoursInMin = parseInt(duration.slice(0, duration.indexOf("h"))) * 60;
+        }
+        if (duration.includes("min") && duration.includes("h")) {
+            minInMin = parseInt(duration.slice((duration.indexOf("h") + 2), duration.indexOf("min")));
+        } else if (duration.includes("min") && !duration.includes("h")) {
+            minInMin = parseInt(duration.slice(0, duration.indexOf("min")));
+        }
+        movie.duration = hoursInMin + minInMin
+        return movie
+    })
+    return newMovies;
+}
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movies) {
+    if (movies.length === 0) return null;
+    else if (movies.length === 1) return `The best year was ${movies[0].year} with an average rate of ${movies[0].rate}`;
+    const years = [];
+    movies.forEach(el => {
+        if (!years.includes(el)) years.push({ year: el.year, rates: [] })
+    })
+    movies.forEach(el => {
+        for (let i = 0; i < years.length; i++) {
+            if (el.year === years[i]) years[i].rates.push[el.rate]
+        }
+    })
+    years.forEach(el => el.averageRate = el.rates.reduce((a, b) => a + b) / el.rates.length);
+    const bestYear = years.filter((a, b) => {
+        if (a.averageRate != b.averageRate) return Math.max(a.averageRate, b.averageRate);
+        else return Math.min(a.year, b.year)
+    })
+    return `The best year was ${bestYear.year} with an average rate of ${bestYear.averageRate}`
+}
