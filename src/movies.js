@@ -96,18 +96,33 @@ function bestYearAvg(movies) {
     if (movies.length === 0) return null;
     else if (movies.length === 1) return `The best year was ${movies[0].year} with an average rate of ${movies[0].rate}`;
     const years = [];
-    movies.forEach(el => {
-        if (!years.includes(el)) years.push({ year: el.year, rates: [] })
+    movies.forEach(el => years.push(el.year))
+    const cleanYears = years.filter((year, index) => years.indexOf(year) == index)
+    const yearsAndRates = cleanYears.map(el => ({ year: el, rates: [] }))
+    yearsAndRates.forEach(el => {
+        movies.forEach(movie => {
+            if (movie.year === el.year) el.rates.push(movie.rate)
+        })
     })
-    movies.forEach(el => {
-        for (let i = 0; i < years.length; i++) {
-            if (el.year === years[i]) years[i].rates.push[el.rate]
+    yearsAndRates.forEach(el => {
+        el.averageYearRate = el.rates.reduce((a, b) => a + b) / el.rates.length
+    })
+    let bestRate = 0
+    const bestYear1 = yearsAndRates.filter(el => {
+        if (el.averageYearRate >= bestRate) {
+            bestRate = el.averageYearRate;
+            return el.averageYearRate >= bestRate;
         }
     })
-    years.forEach(el => el.averageRate = el.rates.reduce((a, b) => a + b) / el.rates.length);
-    const bestYear = years.filter((a, b) => {
-        if (a.averageRate != b.averageRate) return Math.max(a.averageRate, b.averageRate);
-        else return Math.min(a.year, b.year)
-    })
-    return `The best year was ${bestYear.year} with an average rate of ${bestYear.averageRate}`
+    let bestYear2 = bestYear1.filter(el => el.averageYearRate >= bestRate)
+    if (bestYear2.length > 1) {
+        let minYear = 2050
+        bestYear2.forEach(el => {
+            if (el.year < 2050) {
+                minYear = el.year
+            }
+        })
+        bestYear2 = bestYear2.filter(el => el.year === minYear)
+    }
+    return `The best year was ${bestYear2[0].year} with an average rate of ${bestYear2[0].averageYearRate}`
 }
