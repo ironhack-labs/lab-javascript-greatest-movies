@@ -47,8 +47,19 @@ console.log(listOfMovies)
   return listOfMovies;
 } 
 
-
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(movies) {
+let movieOrder = [];
+movies.map(function(movie){
+    movieOrder.push(movie.title)
+})  
+
+if (movieOrder.length> 20) {
+movieOrder = movieOrder.sort().slice(0,20);
+return movieOrder
+
+}  
+return movieOrder.sort() }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
