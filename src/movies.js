@@ -67,6 +67,29 @@ function dramaMoviesRate(movies) {
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+// Step 1: declaring a function
+// Step 2: using the sort method to iterate over the array
+
+function orderByYear(movies) {
+    let sortedMovies = movies.slice();
+    const yearSortedMovies = sortedMovies.sort(function (a, b){
+        let newOrder = a.year - b.year;
+        if (newOrder === 0) {
+            if (a.title === b.title) {
+                return 0;
+            } else {
+                
+                return a.title > b.title ? 1 : -1;
+            } 
+        }
+        return newOrder;
+    });
+
+    return yearSortedMovies;
+}
+
+
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
