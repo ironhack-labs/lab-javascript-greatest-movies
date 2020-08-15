@@ -18,7 +18,6 @@ function howManyMovies(movies) {
       return listOfSpielbergDramas.length;
 }
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-
 function ratesAverage(movies) {
     if (movies.length === 0) {
         return 0
@@ -34,9 +33,48 @@ function ratesAverage(movies) {
     }
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
+function dramaMoviesRate(movies) {
+    const listOfDramaMovies = movies.filter(function(movie) {
+          if (movie.genre.includes('Drama')) {
+              return true
+          }
+      })
+    if (listOfDramaMovies.length === 0) {
+      return 0
+    }
+  const dramaMoviesTotalRating = listOfDramaMovies.reduce(function(acc, val) {
+    return acc + val.rate
+  }, 0)
+  dramaMoviesTotalRating/listOfDramaMovies.length
+    return Number ((dramaMoviesTotalRating/listOfDramaMovies.length).toFixed(2))
+}
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
+function orderByYear (movies) {
+    const sorted = movies.slice(0).sort(function (a, b) {
+      if ( a.year === b.year) {
+        if(a.title < b.title) {
+          return -1
+        }
+        if( a.title > b.title) {
+          return 1
+        }
+      }
+        return a.year - b.year
+    })
+    return sorted
+}
+
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+function orderAlphabetically (movies) {
+    const sorted = movies.sort(function (a,b) {
+        
+    return a.title.localeCompare(b.title);
+    })
+    return sorted;
+    }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
