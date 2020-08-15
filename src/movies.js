@@ -89,5 +89,17 @@ function turnHoursToMinutes(array) {
     
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 function bestYearAvg (array) {
-
-}
+    if (array.length === 0) { 
+        return null
+    }
+    for(let i = 0; i < array.length; i++){
+      console.log(array.indexOf(array[i].year))
+      if (array[i].year){
+      const sum = array.reduce((acc, val)=>{
+       return acc + val.rate
+      }, 0)
+     const total = sum / array.length || null
+     return parseInt(total.toFixed(2))
+      }
+      }
+ }
