@@ -68,19 +68,23 @@ function dramaMoviesRate(movies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 // Step 1: declaring a function
-// Step 2: using the sort method to iterate over the array
+// step 2: declaring a new array of the array received array
+// Step 3: using the sort method to iterate over the array
+// Step 4: sort array by year
+// step 5: extra condition: if same year, sort by title
+
 
 function orderByYear(movies) {
     let sortedMovies = movies.slice();
-    const yearSortedMovies = sortedMovies.sort(function (a, b){
+    const yearSortedMovies = sortedMovies.sort(function (a, b) {
         let newOrder = a.year - b.year;
         if (newOrder === 0) {
             if (a.title === b.title) {
                 return 0;
             } else {
-                
+
                 return a.title > b.title ? 1 : -1;
-            } 
+            }
         }
         return newOrder;
     });
@@ -89,9 +93,139 @@ function orderByYear(movies) {
 }
 
 
-
-
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+// Step 1: declare a function
+// Step 2: map the array to extract the titles to a new array 
+// Step 3: iterate of the new array using the sort method and sort only the titles
+// Step 4: slice the array of alphabetically sorted titles from index 0 to 20
+
+function orderAlphabetically(movies) {
+    let movieTitles = movies.map(movie => movie.title);
+    let sortedTitles = movieTitles.sort(function (a, b) {
+        if (a > b) {
+            return 1;
+        }
+        if (a < b) {
+            return -1;
+        }
+        return 0;
+    });
+
+
+    return sortedTitles.slice(0, 20);
+
+}
+
+console.log(orderAlphabetically([{
+        title: 'aab'
+    },
+    {
+        title: 'bab'
+    },
+    {
+        title: 'acb'
+    },
+    {
+        title: 'aab'
+    },
+    {
+        title: 'bab'
+    },
+    {
+        title: 'acb'
+    },
+    {
+        title: 'aab'
+    },
+    {
+        title: 'bab'
+    },
+    {
+        title: 'acb'
+    },
+    {
+        title: 'aab'
+    },
+    {
+        title: 'bab'
+    },
+    {
+        title: 'acb'
+    },
+    {
+        title: 'aab'
+    },
+    {
+        title: 'bab'
+    },
+    {
+        title: 'acb'
+    },
+    {
+        title: 'aab'
+    },
+    {
+        title: 'bab'
+    },
+    {
+        title: 'acb'
+    },
+    {
+        title: 'aab'
+    },
+    {
+        title: 'bab'
+    },
+    {
+        title: 'acb'
+    },
+    {
+        title: 'aab'
+    },
+    {
+        title: 'bab'
+    },
+    {
+        title: 'acb'
+    },
+    {
+        title: 'aab'
+    },
+    {
+        title: 'bab'
+    },
+    {
+        title: 'acb'
+    },
+    {
+        title: 'aab'
+    },
+    {
+        title: 'bab'
+    },
+    {
+        title: 'acb'
+    },
+    {
+        title: 'aab'
+    },
+    {
+        title: 'bab'
+    },
+    {
+        title: 'acb'
+    },
+    {
+        title: 'aab'
+    },
+    {
+        title: 'bab'
+    },
+    {
+        title: 'acb'
+    }
+]));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
