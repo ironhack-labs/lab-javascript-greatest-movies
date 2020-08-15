@@ -11,6 +11,13 @@ function getAllDirectors(movies) {
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
+function cleanArray (newArray) {
+    uniqueDirectors = [];
+    for (let el in newArray) {
+        if (uniqueDirectors.indexOf(el) < 0) uniqueDirectors.push(el);
+    }
+    return uniqueDirectors;
+}
 
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -83,5 +90,74 @@ return oldestFirst.slice(0, 20);
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+// function turnHoursToMinutes (movies) {
+//     let totalTime = 0;
+//     let indexH =0;
+//     let indexM =0;
+//     const intoMinutes = movies.map(function(item){
+//             let timeValue = String(item.duration);
+//             totalTime = +timeValue.slice(0)*60 +timeValue.slice(3,4);
+//             if (timeValue.indexOf('min' < 0)) {
+//                 totalTime = +timeValue.slice(0,1)*60;
+//             }
+
+//             if (timeValue.indexOf('h') >= 0) {
+//                 if (timeValue.length === 8) {
+//                     totalTime = +timeValue.slice(0,1)*60 +timeValue.slice(3,5);
+//                 }
+//                 else if (timeValue.length === 7) {
+//                     totalTime = +timeValue.slice(0,1)*60 +timeValue.slice(3,4);
+//                 }
+//             }
+
+//             if (timeValue.indexOf('h') < 0) {
+//                 if (timeValue.length === 5) {
+//                     totalTime = +timeValue.slice(0,2);
+//                 }
+//                 else if (timeValue.length === 4) {
+//                     totalTime = +timeValue.charAt(0);
+//                 }
+//             }
+//             item.duration = +totalTime;
+//             return item;
+//     }) 
+//     return intoMinutes;
+// }
+
+function turnHoursToMinutes (movies) {
+    let totalTime = 0;
+    let newArray=[];
+    const intoMinutes = movies.forEach(function(item){
+            let timeValue = String(item.duration);
+            switch (timeValue.length) {
+                case (8):
+                    totalTime = +timeValue.slice(0,1)*60 + Number(timeValue.slice(3,5));
+                    break;
+                case (7):
+                    totalTime = +timeValue.slice(0,1)*60 + Number(timeValue.slice(3,4));
+                    break;
+                case (5):
+                    totalTime = +timeValue.slice(0,2);
+                    break;
+                case (4):
+                    totalTime = +timeValue.slice(0,1);
+                    break;
+                case (3):
+                    totalTime = +timeValue.slice(0,2)*60;
+                    break;
+                case (2):
+                    totalTime = +timeValue.slice(0,1)*60;
+                    break;
+
+            }
+            newArray.push({
+                ...item,
+                duration: +totalTime
+            })
+    }) 
+    return newArray;
+}
+
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
