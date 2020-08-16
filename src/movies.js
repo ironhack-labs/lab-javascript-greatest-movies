@@ -101,3 +101,23 @@ function turnHoursToMinutes (movies) {
   
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movies) {
+    if (movies.length === 0) {
+        return null
+    }
+    let counter = 0
+let bestYear = 0
+  for (let i = 1900; i < 2019; i++) {
+    const moviesByYear = movies.filter(function (movie) {
+      if (movie.year === i) {
+        return true
+      }
+    })
+    if (ratesAverage(moviesByYear) > counter) {
+      counter = ratesAverage(moviesByYear)
+      bestYear = i
+    }
+  }
+  return `The best year was ${bestYear} with an average rate of ${counter}`
+}
