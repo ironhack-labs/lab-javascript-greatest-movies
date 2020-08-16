@@ -1,6 +1,6 @@
 // Iteration 1: All directors? - Get the array of all directors.
-//map through the array of movies
-//get all the directors in one array
+//iterate through the array of movies
+//return the directors of each element in one array
 //create a function getAllDirectors() that receives an array of movies as an argument and returns an new mapped array
 
 const testArr = [
@@ -33,6 +33,8 @@ const testArr = [
 
 getAllDirectors(testArr);
 
+
+
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
 
@@ -40,27 +42,20 @@ getAllDirectors(testArr);
 
 /*The .filter() method iterates through an array and creates a new array with all elements that pass the condition we set.
 
-first condition would be director is Steven Spielberg
-if that condition is met, go to genre
-if genre contains drama, count up one
+look at each element in the movies array
+if Steven Spielberg is the director AND if genre contains drama, return element
+count the elements of the new array*/
 
-
-function howManyMovies(movies) 
-{
-  return movies.filter(function(movie){
-  return movie.director === 'Steven Spielberg'
-  }) 
-  return movie.genre.filter(function(el){
-    return movie.genre === 'Drama'
-  })
-}
-
-console.log(howManyMovies(testArr));
-*/
 
 function howManyMovies (){
 
 }
+
+const howManyMovies = movies.filter(function(movie){
+   return movie.director === 'Stanley Kubrick' && movie.genre.includes('Drama')
+});
+
+console.log(howManyMovies.length);
 
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
@@ -72,35 +67,33 @@ approach the number of rate-property
 reduce to sum of them
 devide by number of elements in the array
 
-Beispiel reduce.method:
-const numbers = [2, 4, 6, 8];
- 
-var total = numbers.reduce(function (accumulator, currentValue) {
-  console.log("accumulator is: ", accumulator, "and current value is: ", currentValue);
-  return accumulator + currentValue;
-});
- 
-console.log("total is: ", total);
 
+function ratesAverage(movies){
+  return movies.reduce(function(acc, val){
+    return acc.rate + val.rate / movies.length
+  })
+};
 
-
-var total = testArr.reduce(function(accumulator, currentValue){
-  return accumulator.rate + currentValue.rate / testArr.length
-  //console.log('accumulator is: ', accumulator, 'and current value is: ' );
-})
-
-console.log(total)
-
-*/
-
-
-function ratesAverage(){
-}
-
-ratesAverage(testArray);
+ratesAverage(testArr);
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
+
+ /* iterate over the movies array 
+ get array, return an number - reduce method
+ genre includes drama*/
+ 
+ 
+
+
+function dramaMoviesRate (movies) {
+  
+
+};
+
+dramaMoviesRate(testArr);
+
+
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
