@@ -80,20 +80,6 @@ function dramaMoviesRate(moviesArray) {
 }
 
 
-
-
-// const dramaMovies = moviesArray.map(function (movie) {
-//     return movie.genre.includes('Drama')
-// });
-// if (moviesArray.length === 0) {
-//     return 0
-// };
-// let dramaRating = dramaMovies.reduce(function (sum, movie) {
-//     return sum + movie.rate;
-// }, O)
-// return parseFloat((dramaRating / dramaMovies.length).toFixed(2));
-
-
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(moviesArray) {
