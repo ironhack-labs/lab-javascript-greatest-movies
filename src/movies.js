@@ -23,7 +23,7 @@ function ratesAverage(moviesData){
     if (moviesData.length===0){
         return 0
     }
-    let total = 0
+    let average = 0
     const ratings= moviesData.map(function(movie){
         if (!movie.rate){
             return movie.rate =0;
@@ -34,8 +34,8 @@ function ratesAverage(moviesData){
      const ratesSum= ratings.reduce(function(sum,val){
         return sum + val
     },0)
-    total = (ratesSum / array.length).toFixed(2)
-return parseInt(total);
+    average = (ratesSum / ratings.length).toFixed(2)
+return Number(average);
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
