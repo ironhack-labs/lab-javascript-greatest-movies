@@ -4,7 +4,13 @@ function getAllDirectors(movies) {
     const directorsList = movies.map(function(name) {
             return name.director
         })
-    return directorsList
+    let uniqueDirectorsList = []
+    for (let director of directorsList) {
+        if (uniqueDirectorsList.indexOf(director) === -1) {
+            uniqueDirectorsList.push(director)
+        }
+    }
+  return uniqueDirectorsList
     }
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
@@ -69,11 +75,13 @@ function orderByYear (movies) {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically (movies) {
-    const sorted = movies.sort(function (a,b) {
+    const sorted = movies.slice(0).sort(function (a,b) {
         
     return a.title.localeCompare(b.title);
     })
-    return sorted;
+    return sorted.slice(0, 20).map(function(movie) {
+      return movie.title
+    } );
     }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
