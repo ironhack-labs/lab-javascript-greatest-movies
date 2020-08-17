@@ -18,7 +18,7 @@ function getAllDirectors(movies) {
 function howManyMovies(array) {
     return array.filter(function(movie) {
         return movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')
-    }).length
+    }).length;
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
@@ -60,21 +60,16 @@ function dramaMoviesRate (dramAvg) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
-function orderByYear (a, b) {
-    
-    if (a > b) {
-        return 1;
+function orderByYear (movies) {
+  const sorted = movies.slice().sort(function(a, b) {
+      if (a.year !== b.year) {
+      return a.year - b.year;
+    } else {
+        return a.title.localeComapare(b.title);
     }
-    if (a === b) {
-        return 0;
-    } 
-    if (a < b) {
-        return -1;
-    }
+  })
+  return sorted;
 }
-
-const ordered = movies.year[0].sort(orderByYear);
-
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
