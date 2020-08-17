@@ -44,9 +44,32 @@ function howManyMovies(movies) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
+function dramaMoviesRate(movies){
+  // filter out the drama movies
+  const dramas = movies.filter(function (movie))
+
+}
+
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
+function orderByYear(movies) {
+  const sorted = movies.slice().sort(function (a, b) {
+    if (a.year !== b.year) {
+      return a.year - b.year;  
+    } else {
+      return a.title.localeCompare(b.title);
+    }
+  });
+  return sorted;
+}
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+const ordered = movies.map(function (movie) {
+  return movie.title
+}).sort(function (a, b) {
+  return a.localeCompare(b);
+}).slice
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
