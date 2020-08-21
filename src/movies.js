@@ -93,20 +93,9 @@ function hoursToMinutesString(hourString) {
   return totalMinutes;
 }
 
-function cloneObject(object) {
-  let clone = {};
-  for (let prop in object) {
-    if (object[prop] != null && typeof object[prop] == "object") {
-      clone[prop] = cloneObject(object[prop]);
-    } else {
-      clone[prop] = object[prop];
-    }
-  }
-  return clone;
-}
-
 function turnHoursToMinutes(movieArray) {
-  const newMovieArray = movieArray.map((item) => cloneObject(item));
+  const newMovieArray = JSON.parse(JSON.stringify(movieArray));
+
   newMovieArray.forEach((item) => {
     if (item.duration) {
       item.duration = hoursToMinutesString(item.duration);
