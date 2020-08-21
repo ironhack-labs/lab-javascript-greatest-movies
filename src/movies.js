@@ -69,9 +69,7 @@ function orderAlphabetically(movies) {
 function turnHoursToMinutes(movies) {
   const moviesClone = JSON.parse(JSON.stringify(movies));
 
-  let thrashCollector;
-
-  thrashCollector = moviesClone.map((x) => {
+  moviesClone.forEach((x) => {
     if (x.duration.includes("h ")) {
       x.duration =
         x.duration.split("min").join("").split("h ").join("")[0] * 60 +
@@ -100,13 +98,53 @@ function turnHoursToMinutes(movies) {
 // turnHoursToMinutes
 
 function bestYearAvg(movies) {
-  const moviesClone = JSON.parse(JSON.stringify(movies));
+  if (movies.length == 0) {
+    return null;
+  }
+
+  let moviesClone = JSON.parse(JSON.stringify(movies));
+
+  let currentYear = 0;
+  let sum = 0;
+  let indexCount = 0;
+  let biggestYearRate = [0, 0];
+
   moviesClone = orderByYear(moviesClone);
+
+  dateAndRate = moviesClone.map((x) => [x.year, x.rate]);
+  dateAndRate.forEach(eachOneofUS);
+
+  return (
+    "The best year was " +
+    biggestYearRate[0] +
+    " with an average rate of " +
+    biggestYearRate[1]
+  );
+
+  function eachOneofUS(element, i, array) {
+    if (biggestYearRate[1] == 0) {
+      currentYear = element[0];
+      biggestYearRate[0] = element[0];
+      biggestYearRate[1] = 0.01;
+    }
+
+    if (element[0] != currentYear) {
+      if (biggestYearRate[1] < sum / (i - indexCount)) {
+        biggestYearRate = [
+          currentYear,
+          Math.round((sum / (i - indexCount)) * 100) / 100,
+        ];
+      }
+      currentYear = element[0];
+      indexCount = i;
+      sum = 0;
+    }
+    sum += element[1];
+  }
 }
 
-function getAllFromProperty(movies, property) {
-  const mydirectors = movies.map((x) => x.property);
+// function getAllFromProperty(movies, property) {
+//   const mydirectors = movies.map((x) => x.property);
 
-  // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
-  return mydirectors.filter((x, index) => mydirectors.indexOf(x) === index);
-}
+//   return mydirectors.filter((x, index) => mydirectors.indexOf(x) === index);
+// }
