@@ -8,7 +8,7 @@ function getAllDirectors(movieArray) {
   // Bonus 1.1 Clean the array of directors
 
   let dirUnique = [];
-  dirUnique = dir.map(function (item) {
+  dir.forEach((item) => {
     if (!dirUnique.includes(item)) {
       dirUnique.push(item);
     }
@@ -56,7 +56,10 @@ function orderByYear(movieArray) {
   if (movieArray.length == 0) {
     return 0;
   }
-  movieArray.sort((a, b) => a.title - b.title);
+
+  movieArray.sort((a, b) =>
+    a.title < b.title ? -1 : a.title > b.title ? 1 : 0
+  );
   movieArray.sort((a, b) => a.year - b.year);
 
   // Não está retornando ordem alfabética
@@ -76,8 +79,41 @@ function orderAlphabetically(movieArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+function hoursToMinutesString(hourString) {
+  let timeArray;
+  let totalMinutes;
+  if (hourString.includes("h ")) {
+    timeArray = hourString.split("min").join("").split("h ");
+    totalMinutes = Number(timeArray[0] * 60 + Number(timeArray[1]));
+  } else if (hourString.includes("h")) {
+    totalMinutes = Number(hourString.split("h").join("") * 60);
+  } else {
+    totalMinutes = Number(hourString.split("min").join(""));
+  }
+  return totalMinutes;
+}
 
-function turnHoursToMinutes(movieArray) {}
+function cloneObject(object) {
+  let clone = {};
+  for (let prop in object) {
+    if (object[prop] != null && typeof object[prop] == "object") {
+      clone[prop] = cloneObject(object[prop]);
+    } else {
+      clone[prop] = object[prop];
+    }
+  }
+  return clone;
+}
+
+function turnHoursToMinutes(movieArray) {
+  const newMovieArray = movieArray.map((item) => cloneObject(item));
+  newMovieArray.forEach((item) => {
+    if (item.duration) {
+      item.duration = hoursToMinutesString(item.duration);
+    }
+  });
+  return newMovieArray;
+}
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
@@ -85,4 +121,58 @@ function bestYearAvg(movieArray) {
   if (movieArray.length == 0) {
     return null;
   }
+  let yearAll = movieArray.map((item) => item.year);
+
+  //console.log("yearAll:", yearAll);
+
+  let yearList = [];
+  yearAll.forEach((item) => {
+    if (!yearList.includes(item)) {
+      yearList.push(item);
+    }
+  });
+
+  //console.log("yearList:", yearList);
+
+  let yearRates = {};
+  for (let i = 0; i < yearList.length; i++) {
+    yearRates[yearList[i]] = [];
+  }
+
+  //console.log("yearRates:", yearRates);
+
+  for (let keyYear in yearRates) {
+    movieArray.forEach((item) => {
+      if (item.year == keyYear) {
+        yearRates[keyYear].push(item.rate);
+      }
+    });
+  }
+
+  //console.log("yearRates:", yearRates);
+
+  let total;
+  for (let keyYear in yearRates) {
+    total = 0;
+    for (let i = 0; i < yearRates[keyYear].length; i++) {
+      total += yearRates[keyYear][i];
+    }
+    yearRates[keyYear] = parseFloat(
+      (total / yearRates[keyYear].length).toFixed(2)
+    );
+  }
+
+  //console.log("yearRates:", yearRates);
+
+  let highest = 0;
+  let bestYear;
+  for (let keyYear in yearRates) {
+    if (yearRates[keyYear] > highest) {
+      bestYear = keyYear;
+      highest = yearRates[keyYear];
+    }
+  }
+
+  //console.log(highest, bestYear);
+  return `The best year was ${bestYear} with an average rate of ${highest}`;
 }
