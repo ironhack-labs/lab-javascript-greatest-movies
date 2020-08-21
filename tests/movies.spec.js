@@ -16,7 +16,7 @@ describe(' All directors - getAllDirectors', () => {
     expect(getAllDirectors(movies)).not.toEqual(movies);
   });
 
-  it('Should return a new array with the same length as the original one', () => {
+  it('Should return a new array with the same length as the original one', () => {    
     const testArr = [
       {
         title: 'Paths of Glory',
@@ -56,7 +56,7 @@ describe('Get how many movies - howManyMovies', () => {
   });
 
   it('Should return 0 if the array is empty', () => {
-    expect(howManyMovies([])).toBe(0);
+    expect(howManyMovies([])).toBe( 0);
   });
 
   it('Return 0 if he did not direct none of the movies in the array', () => {
