@@ -31,7 +31,8 @@ function ratesAverage(moviesArray) {
 
     } else {
 
-        const sumTotalRates = moviesArray.reduce((acc, element) => acc + element['rate'], 0)
+        // filter the movies with rate and then calculate average
+        const sumTotalRates = moviesArray.filter(element => element['rate'] !== undefined).reduce((acc, element) => acc + element['rate'], 0)
 
         const average = parseFloat((sumTotalRates / moviesArray.length).toFixed(2))
 
@@ -103,8 +104,6 @@ function orderAlphabetically(moviesArray) {
     const moviesOrderedByName = copyOfMoviesArray.map(element => element['title'])
 
     moviesOrderedByName.sort()
-
-    console.log(moviesOrderedByName.length)
 
     if (moviesOrderedByName.length > 20) {
 
