@@ -108,7 +108,8 @@ orderAlphabetically(movies)
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(dataMovies){
 
-    const newDataMovies = [...dataMovies]
+    //const newDataMovies = [...dataMovies]
+    let newDataMovies = JSON.parse(JSON.stringify(dataMovies))
     let result= []
     let hours = []
 
