@@ -149,10 +149,13 @@ function orderAlphabetically(array) {
 
 function turnHoursToMinutes(array) {
 
+    // We make a copy of the original array
     const copyArray = [...array]
 
+    // For each element of the string we want to change the duration string format
     copyArray.forEach(elm => {
 
+        // We store the original duration string
         const wrongStr = elm.duration
 
         let hourFirstIndex = 0, hourLastIndex = 0, minFirstIndex = 0, minLastIndex = 0
@@ -176,10 +179,27 @@ function turnHoursToMinutes(array) {
 
         }
 
-        elm.duration = rightHour[0] + rightHour[1]
+        // If it has only hours or it has only minutes
+        if (rightHour.length === 2) {
+
+            elm.duration = rightHour[0] + rightHour[1]
+
+        } else {
+
+            elm.duration = rightHour[0]
+
+        }
 
     })
 
+
+    copyArray.forEach(elm => {
+
+        console.log(elm.duration)
+
+        console.log(typeof (elm.duration))
+
+    });
 
     return copyArray
 
