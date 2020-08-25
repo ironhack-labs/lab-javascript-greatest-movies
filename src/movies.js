@@ -150,7 +150,7 @@ function orderAlphabetically(array) {
 function turnHoursToMinutes(array) {
 
     // We make a copy of the original array
-    const copyArray = [...array]
+    const copyArray = JSON.parse(JSON.stringify(array));
 
     // For each element of the string we want to change the duration string format
     copyArray.forEach(elm => {
@@ -193,13 +193,19 @@ function turnHoursToMinutes(array) {
     })
 
 
-    copyArray.forEach(elm => {
+    // copyArray.forEach(elm => {
+
+    //     console.log(elm.duration)
+
+    //     console.log(typeof (elm.duration))
+
+    // });
+
+    console.log(array.forEach(elm => {
 
         console.log(elm.duration)
 
-        console.log(typeof (elm.duration))
-
-    });
+    }))
 
     return copyArray
 
