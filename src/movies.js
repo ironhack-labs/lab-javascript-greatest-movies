@@ -7,7 +7,12 @@ getAllDirectors = movies=>movies.map(elm=>elm.director)
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
-// getAllDirectorsClean= movies=>getAllDirectors(movies).filter(elm=>)
+
+ getAllDirectorsClean= movies=>{
+    let arrayDirectors= getAllDirectors(movies)
+    let arrayDirectorsClean = [...new Set(arrayDirectors)];
+    return arrayDirectorsClean
+  }
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 howManyMovies = movies=> (movies.filter(elm=>elm.director=="Steven Spielberg" && elm.genre.includes("Drama"))).length
@@ -115,28 +120,39 @@ bestYearAvg= movies=>
     else{
 
         let total=0;
-        let count=1;
+        let count=0;
         let yearBefore=0;
-        let superTotal=0;
-        moviesInOrder.forEach(element => {
-        if(element.year==yearBefore){
+        let rateForYear=0;
+        let maxRate=0;
+        let bestRate=0;
+        let bestYear=0;
+        let actualYear=0;
+
+        moviesInOrder.forEach(element => 
+            {
+        if(element.year==yearBefore || yearBefore==0){
             count++
             yearBefore=element.year
+            rateForYear+=element.rate
         }else{
+            maxRate=rateForYear/count
+            rateForYear=0
+            rateForYear+=element.rate
             total=count;
             count=1;
-                if (total>=superTotal){
-                superTotal=total;
-                bestYearAtTheMoment=yearBefore
-            }
+            actualYear=yearBefore
             yearBefore=element.year
-        }
         
-        return bestYearAtTheMoment;
-    });
-    console.log(bestYearAtTheMoment)
+        if(bestRate<maxRate) {
+            bestRate=maxRate
+            bestYear=actualYear;
+            maxRate=0}
+            
+        // return bestYearAtTheMoment;
+        
+        }})
+        return `The best year was ${bestYear} with an average rate of ${bestRate}`
+        }
 } 
-}
+        
  
-bestYearAvg(movies)
-    
