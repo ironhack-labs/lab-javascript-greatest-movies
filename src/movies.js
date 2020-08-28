@@ -19,7 +19,7 @@ const testArr = [
     title: "Django Unchained",
     year: 2012,
     director: "Quentin Tarantino",
-    duration: "2h 45min",
+    duration: "5h 41min",
     genre: ["Western"],
     rate: 8.4,
   },
@@ -107,5 +107,29 @@ function orderAlphabetically(movies) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+function turnHoursToMinutes(movies) {
+  const copiedMovies = [...movies];
+
+  /*
+  const moviesArray = copiedMovies.map((movie) => {
+    let timeArray = movie.duration.replace(/[a-z]/gi, "").split(" ");
+    let runningTime = Number(timeArray[0] * 60) + Number(timeArray[1]);
+    movie.duration = runningTime;
+    console.log(copiedMovies);
+    return movie;
+  });
+  // console.log(moviesArray);
+  */
+}
+
+function splitDuration (movie){
+    let timeArray = movie.duration.replace(/[a-z]/gi, "").split(" ");
+}
+function convertTime (movie){
+    let runningTime = Number(timeArray[0] * 60) + Number(timeArray[1]);
+}
+
+turnHoursToMinutes(testArr);
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
