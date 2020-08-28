@@ -12,7 +12,7 @@ const testArr = [
     year: 2012,
     director: "Quentin Tarantino",
     duration: "2h 45min",
-    genre: ["Drama", "Western"],
+    genre: ["Western"],
     rate: 8.4,
   },
 ];
@@ -55,6 +55,11 @@ function ratesAverage(movies) {
 ratesAverage(testArr);
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(movies) {
+  const dramaMovies = movies.filter((movie) => movie.genre.includes("Drama"));
+  const dramaMoviesRate = ratesAverage(dramaMovies);
+  return dramaMoviesRate;
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
