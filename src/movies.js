@@ -75,9 +75,34 @@ function isSspMovie(movie){
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(movies){
+    var result = 0;
+    if (movies.length == 0){
+        return 0
+    }
+    result = movies.reduce(getAverage,0) / movies.length;
+    return Number(result.toFixed(2));
+}
 
+function getAverage(acc, rates){
+    var sumAvg = Number(acc);
+    if (!isNaN(rates.rate)){
+        sumAvg += rates.rate;
+    }
+    return sumAvg;
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(movies){
+    var result = 0;
+    if (movies.length == 0){
+        return 0;
+    }
+    var copy = [...movies];
+    copy = copy.filter(isDramaMovie);
+    result = ratesAverage(copy);
+    return result;
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
