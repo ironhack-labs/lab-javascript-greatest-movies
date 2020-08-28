@@ -112,7 +112,6 @@ function orderByYear(movies){
         return copy;
     }
     result = copy.sort(oldestMovies);
-    console.log(result);
     return result;
 }
 
@@ -127,8 +126,30 @@ function oldestMovies(film1, film2){
         }
     }
 }
-
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+function orderAlphabetically(movies){
+    var result = [];
+    var result20 = [];
+    var copy = [...movies];
+    result = copy.sort(isOrdered);
+    
+    for (let i = 0; i<20; i++){
+        if (result[i] === undefined){
+            break;
+        }
+        result20.push(result[i].title);
+    }
+    return result20;
+}
+
+function isOrdered(film1, film2){
+    if (film1.title < film2.title){
+        return -1;
+    } else {
+        return 1;
+    }
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
