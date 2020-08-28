@@ -62,6 +62,19 @@ function dramaMoviesRate(movies) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+function orderByYear(movies) {
+  const copiedMovies = [...movies];
+  const sortedMovies = copiedMovies.sort((a,b) => a.year -b.year || a.title.localeCompare(b.title))
+  return sortedMovies;
+  //console.log(copiedMovies)
+  console.log(sortedMovies);
+};
+orderByYear([
+    { title: 'abc', year: 2002 },
+    { title: 'bac', year: 1982 },
+    { title: 'aab', year: 1982 }
+  ])
+//orderByYear(testArr);
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
