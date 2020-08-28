@@ -8,6 +8,22 @@ const testArr = [
     rate: 8.4,
   },
   {
+    title: "Paths of Glory",
+    year: 1957,
+    director: "Stanley Kubrick",
+    duration: "1h 28min",
+    genre: ["Drama", "War"],
+    rate: 8.4,
+  },
+  {
+    title: "Django Unchained",
+    year: 2012,
+    director: "Quentin Tarantino",
+    duration: "2h 45min",
+    genre: ["Western"],
+    rate: 8.4,
+  },
+  {
     title: "Django Unchained",
     year: 2012,
     director: "Quentin Tarantino",
@@ -25,6 +41,13 @@ function getAllDirectors(movies) {
 }
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+function cleanDirectors(directors) {
+  const directorsNames = getAllDirectors(directors);
+
+  const cleanedDirectors = directorsNames.filter(
+    (a, b) => directorsNames.indexOf(a) === b
+  );
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(movies) {
@@ -64,22 +87,24 @@ function dramaMoviesRate(movies) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
   const copiedMovies = [...movies];
-  const sortedMovies = copiedMovies.sort((a,b) => a.year -b.year || a.title.localeCompare(b.title))
+  const sortedMovies = copiedMovies.sort(
+    (a, b) => a.year - b.year || a.title.localeCompare(b.title)
+  );
   return sortedMovies;
-  
-};
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(movies) {
-    const copiedMovies = [...movies];
-    const sortedMovies = copiedMovies.sort((a,b) => a.title.localeCompare(b.title))
-    const firstTwenty = sortedMovies.slice(0,20);
-    let array = [];
-    firstTwenty.forEach(movie => array.push(movie.title));
-    return array;
-};
-
+  const copiedMovies = [...movies];
+  const sortedMovies = copiedMovies.sort((a, b) =>
+    a.title.localeCompare(b.title)
+  );
+  const firstTwenty = sortedMovies.slice(0, 20);
+  let array = [];
+  firstTwenty.forEach((movie) => array.push(movie.title));
+  return array;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
