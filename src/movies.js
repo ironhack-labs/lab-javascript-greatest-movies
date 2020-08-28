@@ -4,7 +4,7 @@ let tester = [
       "title": "The Shawshank Redemption",
       "year": 1994,
       "director": "Frank Darabont",
-      "duration": "2h 22min",
+      "duration": "22min",
       "genre": [
         "Crime",
         "Drama"
@@ -53,10 +53,13 @@ function getDirectors(movie){
 function getAllDirectors(movies){
     var copy = [...movies];
     var result = copy.map(getDirectors);
-    return result;
+    //Bonus remove duplicates director's name
+    let unique = [...new Set(result)];
+    return unique;
 }
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(movies){
@@ -152,5 +155,33 @@ function isOrdered(film1, film2){
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(movies){
+    var result = [];
+    var copy = [...movies];
+    result = copy.map(hoursToMinutes);
+    console.log(result);
+    return result;
+}
+
+function hoursToMinutes(movie){
+    var hoursStr = movie.duration;
+    if (hoursStr.includes("h")){
+        var strArray = hoursStr.split('h'); 
+        var hours = Number(strArray[0]);
+        var minStr = strArray[1].split("min");
+        var min = minStr[0];
+        min = Number(min.slice(1));
+        movie.duration = hours * 60 + min;
+        return movie
+    } else {
+        var minStr = hoursStr.split("min");
+        var min = minStr[0];
+        min = Number(min);
+        movie.duration = min;
+        return movie
+    }
+}
+
+turnHoursToMinutes(tester);
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
