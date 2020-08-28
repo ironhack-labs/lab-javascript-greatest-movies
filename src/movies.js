@@ -38,13 +38,54 @@ function howManyMovies(array2) {
   return spielbergDramaMovies.length;
 }
 
-
-
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
-
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
+
+/*
+const movies = [
+    {
+      title: 'Paths of Glory',
+      year: 1957,
+      director: 'Stanley Kubrick',
+      duration: '1h 28min',
+      genre: ['Drama', 'War'],
+      rate: 7
+    },
+    {
+        title: 'Django Unchained',
+        year: 2012,
+        director: 'Quentin Tarantino',
+        duration: '2h 45min',
+        genre: ['Drama', 'Western'],
+        rate: 9
+      },
+      {
+        title: 'Django Unchained',
+        year: 2012,
+        director: 'Quentin Tarantino',
+        duration: '2h 45min',
+        genre: ['Drama', 'Western'],
+        rate: 9
+      }
+    ]
+*/
+
+function dramaMoviesRate(array4){
+    var dramaMovies = array4.filter(film4 => film4.genre.includes("Drama"))
+        
+            var rates = dramaMovies.map(film42 => film42.rate); 
+        if(rates.length > 0) {
+            const reducer = (acc, p) => acc + p;
+            var average = rates.reduce(reducer, 0)/rates.length;
+            console.log(dramaMovies);
+            console.log(rates);
+            console.log(average)
+            } else { average = 0;}
+            return Number(average.toFixed(2));
+}
+
+ //console.log(dramaMoviesRate(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
