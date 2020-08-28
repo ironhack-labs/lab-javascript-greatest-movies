@@ -19,6 +19,25 @@ function howManyMovies (movies) {
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
+function ratesAverage (movies) {
+    let newmovies = []
+    if(movies.length == 0) return 0
+    for (let i=0; i < movies.length; i++) {
+        if (typeof movies[i].rate !== 'undefined') {
+          newmovies.push(movies[i])
+        }
+        else {newmovies.push({rate : ""})}
+      }
+        const reducer = (acc, currentValue) => acc + currentValue.rate;
+
+         sum = (newmovies.reduce(reducer, 0));
+         avg = sum / newmovies.length;
+         avgdecimals2 = avg.toFixed(2) 
+
+  console.log(Number(avgdecimals2));
+  return Number(avgdecimals2)
+}
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
