@@ -52,12 +52,14 @@ const orderByYear = (movies) => {
     const copyMovies = [...movies];
     
     var moviesSorted = copyMovies.sort(function (a, b) {
-        return a.year - b.year
-    });
-    moviesSorted; if (moviesSorted[i].year === m)
-    return 
+        if (a.year === b.year) {
+            {return  a.title - b.title;};  
+        } else {return a.year - b.year
+        }
+    }); 
 }
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+order
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
