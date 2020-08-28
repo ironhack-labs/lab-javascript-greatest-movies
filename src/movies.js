@@ -105,6 +105,28 @@ function dramaMoviesRate(movies){
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+function orderByYear(movies){
+    var result = [];
+    var copy = [...movies];
+    if (movies.length == 1){
+        return copy;
+    }
+    result = copy.sort(oldestMovies);
+    console.log(result);
+    return result;
+}
+
+function oldestMovies(film1, film2){
+    if (film1.year - film2.year != 0){
+        return film1.year - film2.year;
+    } else {
+        if (film1.title < film2.title){
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
