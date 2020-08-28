@@ -14,11 +14,39 @@ function howManyMovies (movies) {
     return spielbergDrama.length;
 }
 
+
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
+function ratesAverage (movies) {
+    if (movies.length === 0) {
+        return 0
+    } else {
+        var rateExists = movies.filter(movies => movies.rate >= 0)
+        const sumRates = rateExists.reduce((acc, rateExists) => acc += rateExists.rate, 0);
+        var averageRates = (sumRates/movies.length)
+        return averageRates;
+    }
+}
 
+// ça marche avec .toFixed(2) dans le browser mais pas Jasmine
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
+
+
+function dramaMoviesRate(movies) {
+    if (movies.length === 0) {
+        return 0
+    } else {
+        var dramaMovies = movies.filter(movies => movies.genre.includes('Drama') && movies.rate >= 0);
+        if (dramaMovies.length === 0) {
+            return 0
+        } else {
+            var dramaMoviesAvg = dramaMovies.reduce((acc, dramaMovies) => acc += dramaMovies.rate, 0);
+            var avgDramaRates = (dramaMoviesAvg/dramaMovies.length);
+            return avgDramaRates;
+        }
+    }
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
