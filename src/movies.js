@@ -1,3 +1,22 @@
+const testArr = [
+  {
+    title: "Paths of Glory",
+    year: 1957,
+    director: "Stanley Kubrick",
+    duration: "1h 28min",
+    genre: ["Drama", "War"],
+    rate: 8.4,
+  },
+  {
+    title: "Django Unchained",
+    year: 2012,
+    director: "Quentin Tarantino",
+    duration: "2h 45min",
+    genre: ["Drama", "Western"],
+    rate: 8.4,
+  },
+];
+
 // Iteration 1: All directors? - Get the array of all directors.
 
 function getAllDirectors(movies) {
@@ -17,6 +36,23 @@ function howManyMovies(movies) {
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(movies) {
+  if (!movies.length) return 0;
+  const allRatings = [];
+  const getRates = movies.forEach((movie) => {
+    if (typeof movie.rate == "number") {
+      allRatings.push(movie.rate);
+    } else {
+      allRatings.push(0);
+    }
+  });
+
+  const avgRates =
+    allRatings.reduce((acc, val) => acc + val) / allRatings.length;
+  return Number(avgRates.toFixed(2));
+}
+
+ratesAverage(testArr);
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
