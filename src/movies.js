@@ -42,35 +42,6 @@ function howManyMovies(array2) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
-/*
-const movies = [
-    {
-      title: 'Paths of Glory',
-      year: 1957,
-      director: 'Stanley Kubrick',
-      duration: '1h 28min',
-      genre: ['Drama', 'War'],
-      rate: 7
-    },
-    {
-        title: 'Django Unchained',
-        year: 2012,
-        director: 'Quentin Tarantino',
-        duration: '2h 45min',
-        genre: ['Drama', 'Western'],
-        rate: 9
-      },
-      {
-        title: 'Django Unchained',
-        year: 2012,
-        director: 'Quentin Tarantino',
-        duration: '2h 45min',
-        genre: ['Drama', 'Western'],
-        rate: 9
-      }
-    ]
-*/
-
 function dramaMoviesRate(array4){
     var dramaMovies = array4.filter(film4 => film4.genre.includes("Drama"))
         
@@ -85,9 +56,60 @@ function dramaMoviesRate(array4){
             return Number(average.toFixed(2));
 }
 
- //console.log(dramaMoviesRate(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+
+/*
+const movies = [
+    {
+      title: 'Paths of Glory',
+      year: 3333,
+      director: 'Stanley Kubrick',
+      duration: '1h 28min',
+      genre: ['Drama', 'War'],
+      rate: 7
+    },
+    {
+        title: 'Django Unchained',
+        year: 0,
+        director: 'Quentin Tarantino',
+        duration: '2h 45min',
+        genre: ['Drama', 'Western'],
+        rate: 9
+      },
+      {
+        title: 'Django Unchained',
+        year: 1,
+        director: 'Quentin Tarantino',
+        duration: '2h 45min',
+        genre: ['Drama', 'Western'],
+        rate: 9
+      }
+    ]
+*/
+
+
+function orderByYear(array5){
+  const copy5 = [...array5];
+  var sortYears = copy5.sort(function(a,b){
+    if(a.year < b.year){
+      return -1;
+    } else if (a.year > b.year) {
+      return 1;
+    } else if (a.year === b.year) {
+      if(a.title < b.title){
+        return -1
+      } else if (a.title > b.title) {
+        return 1;
+      } else {return 0;}
+    }
+  })
+
+ return sortYears
+}
+
+
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
