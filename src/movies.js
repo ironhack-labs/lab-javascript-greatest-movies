@@ -132,7 +132,7 @@ function oldestMovies(film1, film2){
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(movies){
-    var result = [];
+    let result = [];
     var result20 = [];
     var copy = [...movies];
     result = copy.sort(isOrdered);
@@ -182,6 +182,15 @@ function hoursToMinutes(movie){
     }
 }
 
-turnHoursToMinutes(tester);
-
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+function bestYearAvg(movies){
+    if (movies.length == 0){
+        return null;
+    }
+    
+    var copy = [...movies];
+    result = copy
+    for (let i = 0; i<result.length; i++){
+        console.log(result[i].year);
+    }
+}
