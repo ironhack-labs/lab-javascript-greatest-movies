@@ -1,33 +1,8 @@
 // Iteration 1: All directors? - Get the array of all directors.
-/*
-const movies = [
-    {
-      title: 'Paths of Glory',
-      year: 1957,
-      director: 'Stanley Kubrick',
-      duration: '1h 28min',
-      genre: ['Drama', 'War'],
-      rate: 8.4
-    },
- {
-        title: 'Django Unchained',
-        year: 2012,
-        director: 'Quentin Tarantino',
-        duration: '2h 45min',
-        genre: ['Drama', 'Western'],
-        rate: 8.4
-      }]
-*/
 
   function getAllDirectors(array) {
     return array.map( film => film.director);
 }
-//const map1 = array1.map(x => x * 2);
-
-//console.log(getAllDirectors(movies))
-
-  // racines vaut désormais [1, 2, 3]
-  // nombres vaut toujours [1, 4, 9]
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
@@ -39,6 +14,19 @@ function howManyMovies(array2) {
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+
+function ratesAverage(array3){
+  const copy3 = [...array3]
+  var arrOfRates = copy3.map(a => a.rate);
+  var arrOfNumRates = arrOfRates.filter(b => typeof b === "number")
+  var sumOfRates = arrOfNumRates.reduce(function (a,b){
+    return a +b
+  },0 )
+  if (copy3.length === 0)
+  return 0;
+  else return Number((sumOfRates/arrOfRates.length).toFixed(2));
+}
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
