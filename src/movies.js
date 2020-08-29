@@ -47,36 +47,6 @@ function dramaMoviesRate(array4){
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
-/*
-const movies = [
-    {
-      title: 'Paths of Glory',
-      year: 3333,
-      director: 'Stanley Kubrick',
-      duration: '1h 28min',
-      genre: ['Drama', 'War'],
-      rate: 7
-    },
-    {
-        title: 'Django Unchained',
-        year: 0,
-        director: 'Quentin Tarantino',
-        duration: '2h 45min',
-        genre: ['Drama', 'Western'],
-        rate: 9
-      },
-      {
-        title: 'Django Unchained',
-        year: 1,
-        director: 'Quentin Tarantino',
-        duration: '2h 45min',
-        genre: ['Drama', 'Western'],
-        rate: 9
-      }
-    ]
-*/
-
-
 function orderByYear(array5){
   const copy5 = [...array5];
   var sortYears = copy5.sort(function(a,b){
@@ -98,7 +68,6 @@ function orderByYear(array5){
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
-//const movies = [{ title: 'zert' }, {title: 'azer'}, {title: 'fer'}]
 
 function orderAlphabetically(array6){
   const copy6 = [...array6];
@@ -117,9 +86,90 @@ function orderAlphabetically(array6){
 
 }
 
-//console.log(orderAlphabetically(movies))
-
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+/*
+function turnHoursToMinutes(arrayBonus1){
+  const copyBonus1 = [...arrayBonus1];
+  console.log(copyBonus1)
+  var isolateDuration = copyBonus1.map(film => film.duration)
+  console.log("-------------")
+  console.log(isolateDuration)
+  strDuration = isolateDuration.toString();
+  var arrOfHoursAndMinutes = strDuration.split(" ");
+  console.log(arrOfHoursAndMinutes)
+  var noLettersMin = arrOfHoursAndMinutes[1].match( /\d+/g );
+  console.log(noLettersMin)
+  var hoursInMin = (arrOfHoursAndMinutes[0].match( /\d+/g ))*60;
+  console.log(hoursInMin)
+  var timeInMinutes = hoursInMin + Number(noLettersMin);
+  console.log(timeInMinutes);
+//  isolateDuration = timeInMinutes;
+  copyBonus1[0].duration = timeInMinutes;
+  
+  
+
+  return copyBonus1
+
+}
+*/
+/*
+const movies = [{
+  "duration":"2h 22min",
+  "genre":["Crime","Drama"],
+  "rate":9.3
+},{
+  "duration":"1h 22min",
+  "genre":["Crime","Drama"],
+  "rate":9.3
+},{
+  "duration":"3h 22min",
+  "genre":["Crime","Drama"],
+  "rate":9.3
+}]
+*/
+
+
+
+
+
+function turnHoursToMinutesObject(arrayBonus1){
+  console.log("-----------------------------")
+
+  var isolateDuration = arrayBonus1.duration;
+  console.log(isolateDuration)
+  strDuration = isolateDuration.toString();
+  var arrOfHoursAndMinutes = strDuration.split(" ");
+  console.log(arrOfHoursAndMinutes)
+  var noLettersMin = arrOfHoursAndMinutes[1].match( /\d+/g );
+  console.log(noLettersMin)
+  var hoursInMin = (arrOfHoursAndMinutes[0].match( /\d+/g ))*60;
+  console.log(hoursInMin)
+  var timeInMinutes = hoursInMin + Number(noLettersMin);
+  console.log(timeInMinutes);
+  isolateDuration = timeInMinutes;
+  console.log(isolateDuration)
+
+
+  arrayBonus1.duration = isolateDuration;
+  console.log(">>>>>>>>>")
+    console.log(arrayBonus1)
+  //return arrayBonus1;
+}
+
+
+//console.log(turnHoursToMinutesObject(movies))
+
+
+function turnHoursToMinutes(bonusTime) {
+  const copyBonusTime = [...bonusTime];
+  var newArrayMin = copyBonusTime.map(turnHoursToMinutesObject);
+ // console.log(newArrayMin)
+  console.log(copyBonusTime);
+  return copyBonusTime;
+
+}
+//console.log(turnHoursToMinutes(movies))
+
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
