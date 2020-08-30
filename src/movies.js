@@ -287,8 +287,8 @@ return moviesArray;
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
 function bestYearAvg(movies) {
-  if(!movies.length) return null;
-  if(movies.length === 1) return `The best year was ${movies.year} with an average rate of ${movies.rate}`;
+  
+if(!movies.length) return null;
  
 // Make an array of objects containing year and rating info
  const yearAndRate = movies.map(movie => {
@@ -297,11 +297,11 @@ function bestYearAvg(movies) {
       rate: movie.rate,
       total: 1
     };
-    return movieInfo
+    return movieInfo;
   })
+
 //Sort the years in ascending order
 const sortedYears = yearAndRate.sort((a,b) => a.year - b.year);
-console.log(sortedYears);
 
 //Make new array with year, total ratings, and number of movies
 let ratingsArray = [sortedYears[0]];
@@ -309,30 +309,29 @@ let ratingsArray = [sortedYears[0]];
   if (ratingsArray[ratingsArray.length - 1].year === sortedYears[i].year) {
     ratingsArray[ratingsArray.length - 1].rate += sortedYears[i].rate;
     ratingsArray[ratingsArray.length - 1].total += 1;
-    console.log('same year!')
   } else {
-    console.log('keep trying')
     ratingsArray.push(sortedYears[i]);
   }
- }
- console.log(ratingsArray);
+ } 
+ //console.log(ratingsArray);
 
  //Divide total ratings by number of films to get average rate
  const avgRate = ratingsArray.map(movie => {
-  const movieInfo = {
-  year: movie.year,
-  avgRate: movie.rate/movie.total
-};
-return movieInfo
+  const movieInfo = [movie.year, movie.rate/movie.total];
+  return movieInfo;
 } );
+//console.log(avgRate);
 
-console.log(avgRate);
+//Find the highest average
+const avgArray = []; 
+avgRate.forEach(value => avgArray.push(value[1]));
+let highestAvg = Math.max(...avgArray);
+//Find the best year
+let bestYear = avgRate[avgArray.indexOf(highestAvg)][0];
 
-
- console.log(`The best year was ${avgRate.year} with an average rate of ${avgRate.rate}`)
-  return `The best year was ${avgRate.year} with an average rate of ${avgRate.rate}`
+  console.log(`The best year was ${bestYear} with an average rate of ${highestAvg}`);
+  return `The best year was ${bestYear} with an average rate of ${highestAvg}`;
 }
-
 
 bestYearAvg(testArr);
 
