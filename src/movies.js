@@ -109,6 +109,59 @@ const orderAlphabetically = (movies) => {
 //console.log(orderAlphabetically(moviesArr));
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+const turnHoursToMinutes = (movies) => {
+    let res;
+    const cpMovies = [...movies];
+    
+    let transformDuration = [];
+
+
+    for(var i = 0; i < cpMovies.length; i++){
+        if(cpMovies[i].duration !== '' || !cpMovies[i].duration) {
+            let duration = cpMovies[i].duration;
+            const tmp = duration.split(' ');
+            
+            if(tmp.length === 2){
+                let nbrHeure = Number(tmp[0].replace('h', ''));
+                let nbrMin = Number(tmp[1].replace('min', ''));
+                let myObject = {};
+                if(nbrHeure === 0 || nbrMin === 0) {
+                    if(nbrHeure === 0) {
+                        myObject = {duration: nbrMin} 
+                        transformDuration.push(myObject);
+                    } else {
+                        myObject = {duration: nbrHeure*60} 
+                        transformDuration.push(myObject);
+                    }
+                } else {
+                    let timesInNumeric = (nbrHeure*60) +nbrMin
+                    myObject = {duration: timesInNumeric};
+                    transformDuration.push(myObject);
+                }
+                res = [...transformDuration];
+                return res;
+            } else {
+                let myObject = {};
+                if(tmp.length === 1) {
+                    if (tmp[0].includes('min')) {
+                        let nbrMin = Number(tmp[0].replace('min', ''));
+                        myObject = {duration: nbrMin}; 
+                    } else {
+                        
+                        let nbrHeure = Number(tmp[0].replace('h', ''));
+                        myObject = {duration: nbrHeure * 60} ;
+                    }
+                }
+                transformDuration.push(myObject);
+            }
+            return transformDuration;
+        }
+    }
+    return res;
+};
+
+
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 /*
 const newMoviesArr = [
