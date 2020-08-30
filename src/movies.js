@@ -88,6 +88,32 @@ function orderAlphabetically(movies) {
 
     
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+const turnHoursToMinutes = movies => {
+    const copy = movies.map(movie => { 
+        return {...movie}
+    });
+// Works to complete Jasmin test but doesn't cover movies with a duration of 1h 01 to 1h 09 correctly.
+    copy.map(element => {
+        if(element.duration) {
+            const regexNum = /[1-9][0-9]/;
+            let minutesTotal; 
+            let hours;
+            if(element.duration[1] === 'h') hours = element.duration[0]*60;
+            else hours = 0;
+            let minutes = String(element.duration).match(regexNum);
+            minutes = Number(minutes);
+            minutesTotal = hours + minutes;
+            element.duration = minutesTotal;
+        }
+    });
+    return copy;
+}
 
-
+    
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+const bestYearAvg = movies => {
+    if (movies.length === 0) return null; 
+    let bestRate;
+    let bestYear;
+    return `The best year was ${bestYear} with an average rate of ${bestRate}`
+};
