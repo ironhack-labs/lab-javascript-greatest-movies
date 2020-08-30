@@ -1,38 +1,50 @@
-const testArr = [
+let testArr = [
   {
-    title: "Paths of Glory",
-    year: 1957,
-    director: "Stanley Kubrick",
-    duration: "1h 28min",
-    genre: ["Drama", "War"],
-    rate: 8.4,
+    "title": "The Shawshank Redemption",
+    "year": 1994,
+    "director": "Frank Darabont",
+    "duration": "2h 22min",
+    "genre": [
+      "Crime",
+      "Drama"
+    ],
+    "rate": 9.3
   },
   {
-    title: "Paths of Glory",
-    year: 1957,
-    director: "Stanley Kubrick",
-    duration: "1h 28min",
-    genre: ["Drama", "War"],
-    rate: 8.4,
+    "title": "The Godfather",
+    "year": 1972,
+    "director": "Francis Ford Coppola",
+    "duration": "2h 55min",
+    "genre": [
+      "Crime",
+      "Drama"
+    ],
+    "rate": 9.2
   },
   {
-    title: "Django Unchained",
-    year: 2012,
-    director: "Quentin Tarantino",
-    duration: "5h 41min",
-    genre: ["Western"],
-    rate: 8.4,
+    "title": "The Godfather: Part II",
+    "year": 1974,
+    "director": "Francis Ford Coppola",
+    "duration": "3h 22min",
+    "genre": [
+      "Crime",
+      "Drama"
+    ],
+    "rate": 9
   },
   {
-    title: "Django Unchained",
-    year: 2012,
-    director: "Quentin Tarantino",
-    duration: "2h 45min",
-    genre: ["Western"],
-    rate: 8.4,
-  },
-];
-
+    "title": "The Dark Knight",
+    "year": 2008,
+    "director": "Christopher Nolan",
+    "duration": "2h 32min",
+    "genre": [
+      "Action",
+      "Crime",
+      "Drama",
+      "Thriller"
+    ],
+    "rate": 9
+  }];
 // Iteration 1: All directors? - Get the array of all directors.
 
 function getAllDirectors(movies) {
@@ -109,27 +121,29 @@ function orderAlphabetically(movies) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes(movies) {
-  const copiedMovies = [...movies];
 
-  /*
-  const moviesArray = copiedMovies.map((movie) => {
-    let timeArray = movie.duration.replace(/[a-z]/gi, "").split(" ");
-    let runningTime = Number(timeArray[0] * 60) + Number(timeArray[1]);
-    movie.duration = runningTime;
-    console.log(copiedMovies);
-    return movie;
-  });
-  // console.log(moviesArray);
-  */
+//Make deep copy of array
+const copiedMovies = JSON.parse(JSON.stringify(movies));
+//Declare function to change format of duration
+function changeDuration(movie) {
+  if (movie.duration.includes('h') && movie.duration.includes('min')) {
+    let time = movie.duration.replace(/[a-z]/gi, "").split(" ");
+    movie.duration = Number(time[0] * 60) + Number(time[1]);
+  } else if(movie.duration.includes('h')) {
+    let time = movie.duration.replace(/[h]/i, "")
+    movie.duration = Number(time*60);
+  } else {
+    movie.duration = Number(movie.duration.replace(/[a-z\s]/gi, ""))
+  }
+  return movie;
 }
-
-function splitDuration (movie){
-    let timeArray = movie.duration.replace(/[a-z]/gi, "").split(" ");
-}
-function convertTime (movie){
-    let runningTime = Number(timeArray[0] * 60) + Number(timeArray[1]);
-}
+//Execute function to change duration
+let mappedMovies = copiedMovies.map(movie => changeDuration(movie));
+return mappedMovies;
+};
 
 turnHoursToMinutes(testArr);
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+
