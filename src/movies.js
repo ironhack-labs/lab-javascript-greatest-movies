@@ -5,31 +5,31 @@ const testArr = [
     director: "Stanley Kubrick",
     duration: "1h 28min",
     genre: ["Drama", "War"],
-    rate: 8.4,
+    rate: 8,
   },
   {
-    title: "Paths of Glory",
+    title: "Paths of Glory 2",
     year: 1957,
     director: "Stanley Kubrick",
     duration: "1h 28min",
     genre: ["Drama", "War"],
-    rate: 8.4,
+    rate: 9,
+  },
+  {
+    title: "Django Unchained 2",
+    year: 2012,
+    director: "Quentin Tarantino",
+    duration: "5h",
+    genre: ["Western"],
+    rate: 6,
   },
   {
     title: "Django Unchained",
     year: 2012,
     director: "Quentin Tarantino",
-    duration: "5h 41min",
+    duration: "45min",
     genre: ["Western"],
-    rate: 8.4,
-  },
-  {
-    title: "Django Unchained",
-    year: 2012,
-    director: "Quentin Tarantino",
-    duration: "2h 45min",
-    genre: ["Western"],
-    rate: 8.4,
+    rate: 4,
   },
 ];
 
@@ -110,26 +110,67 @@ function orderAlphabetically(movies) {
 
 function turnHoursToMinutes(movies) {
   const copiedMovies = [...movies];
-
-  /*
   const moviesArray = copiedMovies.map((movie) => {
-    let timeArray = movie.duration.replace(/[a-z]/gi, "").split(" ");
-    let runningTime = Number(timeArray[0] * 60) + Number(timeArray[1]);
-    movie.duration = runningTime;
-    console.log(copiedMovies);
+    if (!movie.duration.match("min")) {
+      let timeArray = movie.duration.replace(/[a-z]/gi, "");
+      let runningTime = Number(timeArray * 60);
+      movie.duration = runningTime;
+    } else if (!movie.duration.match("h")) {
+      let timeArray = movie.duration.replace(/[a-z]/gi, "");
+      let runningTime = Number(timeArray);
+      movie.duration = runningTime;
+    } else {
+      let timeArray = movie.duration.replace(/[a-z]/gi, "").split(" ");
+      let runningTime = Number(timeArray[0] * 60) + Number(timeArray[1]);
+      movie.duration = runningTime;
+    }
     return movie;
   });
-  // console.log(moviesArray);
-  */
-}
-
-function splitDuration (movie){
-    let timeArray = movie.duration.replace(/[a-z]/gi, "").split(" ");
-}
-function convertTime (movie){
-    let runningTime = Number(timeArray[0] * 60) + Number(timeArray[1]);
+  return moviesArray;
 }
 
 turnHoursToMinutes(testArr);
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movies) {
+
+}
+
+bestYearAvg(testArr);
+
+// console.log(sumRate)
+/*
+  for (let i = 0; i < movies.length; i++) {
+    if (movies[i].year === movies[i].year) {
+      const filteredMovies = movies.filter(
+        (movie) => movie.year == movies[i].year
+      );
+
+      const sumRate = filteredMovies.reduce((sum, movie) => {
+        return (sum + movie.rate) / filteredMovies.length;
+      }, 0);
+      console.log(sumRate)
+    }
+  }
+
+  //const years = movies.map((movie) => [movie.year, movie.rate]); //.sort((a,b) => a-b).flat();
+ // console.log(years)
+
+  const lastArray = []
+
+  for (let i = 0; i < movies.length; i++) {
+    if (movies[i].year === movies[i].year) {
+      const filteredMovies = movies.filter(
+        (movie) => movie.year == movies[i].year
+      );
+
+     //console.log(filteredMovies);
+      let filteredAvg = ratesAverage(filteredMovies);
+      //console.log(filteredAvg);
+
+      lastArray.push(filteredAvg);
+     
+    }
+  } console.log(lastArray); 
+*/
