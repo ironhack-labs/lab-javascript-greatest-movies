@@ -116,6 +116,7 @@ describe('Get how many movies - howManyMovies', () => {
 /*
  * 3. ratesAverage
  */
+
 describe('Get the average rate - ratesAverage', () => {
   it('Defines ratesAverage', () => {
     expect(typeof ratesAverage).toBe('function');
@@ -246,7 +247,6 @@ describe('Order the movies by year - orderByYear', () => {
 /*
  * 6. orderAlphabetically
  */
-
 describe('Order alphabetically - orderAlphabetically', () => {
   it('Defines orderAlphabetically', () => {
     expect(typeof orderAlphabetically).toBe('function');
@@ -403,8 +403,8 @@ describe('Order alphabetically - orderAlphabetically', () => {
 // ******************************************************************************************
 
 /*
- * 7. turnHoursToMinutes
- */
+* 7. turnHoursToMinutes
+*/
 describe('Turn duration of the movies - turnHoursToMinutes', () => {
   it('Defines turnHoursToMinutes', () => {
     expect(typeof turnHoursToMinutes).toBe('function');
@@ -448,9 +448,8 @@ describe('Turn duration of the movies - turnHoursToMinutes', () => {
 });
 
 /*
- * 8. bestYearAvg
- */
-
+* 8. bestYearAvg
+*/
 describe('Best year average - bestYearAvg', () => {
   it('Defines bestYearAvg', () => {
     expect(typeof bestYearAvg).toBe('function');
