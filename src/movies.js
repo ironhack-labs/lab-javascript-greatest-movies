@@ -31,6 +31,133 @@ let testArr = [
     genre: ["Western"],
     rate: 4,
   },
+  {
+    title: "Django Unchained 2",
+    year: 2012,
+    director: "Quentin Tarantino",
+    duration: "5h",
+    genre: ["Western"],
+    rate: 6,
+  },
+  {
+    title: "Django Unchained",
+    year: 2012,
+    director: "Quentin Tarantino",
+    duration: "45min",
+    genre: ["Western"],
+    rate: 4,
+  }, 
+  {
+    title: "Paths of Glory",
+    year: 1957,
+    director: "Stanley Kubrick",
+    duration: "1h 28min",
+    genre: ["Drama", "War"],
+    rate: 8,
+  },
+  {
+    title: "Paths of Glory 2",
+    year: 1957,
+    director: "Stanley Kubrick",
+    duration: "1h 28min",
+    genre: ["Drama", "War"],
+    rate: 9,
+  },
+  {
+    "title": "Léon",
+    "year": 1988,
+    "director": "Luc Besson",
+    "duration": "1h 50min",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Thriller"
+    ],
+    "rate": 8.6
+  },
+  {
+    "title": "Saving Private Ryan",
+    "year": 1998,
+    "director": "Steven Spielberg",
+    "duration": "2h 49min",
+    "genre": [
+      "Drama",
+      "War"
+    ],
+    "rate": 8.6
+  },
+  {
+    "title": "Sen to Chihiro no kamikakushi",
+    "year": 2001,
+    "director": "Hayao Miyazaki",
+    "duration": "2h 5min",
+    "genre": [
+      "Animation",
+      "Adventure",
+      "Family",
+      "Fantasy",
+      "Mystery"
+    ],
+    "rate": 8.6
+  },
+  {
+    "title": "American History X",
+    "year": 1998,
+    "director": "Tony Kaye",
+    "duration": "1h 59min",
+    "genre": [
+      "Crime",
+      "Drama"
+    ],
+    "rate": 8.5
+  },
+  {
+    "title": "C\"era una volta il West",
+    "year": 1968,
+    "director": "Sergio Leone",
+    "duration": "2h 44min",
+    "genre": [
+      "Western"
+    ],
+    "rate": 8.6
+  },
+  {
+    "title": "Interstellar",
+    "year": 2014,
+    "director": "Christopher Nolan",
+    "duration": "2h 49min",
+    "genre": [
+      "Adventure",
+      "Drama",
+      "Sci-Fi"
+    ],
+    "rate": 8.6
+  },
+  {
+    "title": "Psycho",
+    "year": 1960,
+    "director": "Alfred Hitchcock",
+    "duration": "1h 49min",
+    "genre": [
+      "Horror",
+      "Mystery",
+      "Thriller"
+    ],
+    "rate": 8.5
+  },
+  {
+    "title": "The Green Mile",
+    "year": 1999,
+    "director": "Frank Darabont",
+    "duration": "3h 9min",
+    "genre": [
+      "Crime",
+      "Drama",
+      "Fantasy",
+      "Mystery"
+    ],
+    "rate": 8.5
+  }
 ];
 
 // Iteration 1: All directors? - Get the array of all directors.
@@ -160,43 +287,54 @@ return moviesArray;
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
 function bestYearAvg(movies) {
+  if(!movies.length) return null;
+  if(movies.length === 1) return `The best year was ${movies.year} with an average rate of ${movies.rate}`;
+ 
+// Make an array of objects containing year and rating info
+ const yearAndRate = movies.map(movie => {
+    const movieInfo = {
+      year: movie.year,
+      rate: movie.rate,
+      total: 1
+    };
+    return movieInfo
+  })
+//Sort the years in ascending order
+const sortedYears = yearAndRate.sort((a,b) => a.year - b.year);
+console.log(sortedYears);
 
+//Make new array with year, total ratings, and number of movies
+let ratingsArray = [sortedYears[0]];
+ for(let i = 1; i < sortedYears.length; i++) {
+  if (ratingsArray[ratingsArray.length - 1].year === sortedYears[i].year) {
+    ratingsArray[ratingsArray.length - 1].rate += sortedYears[i].rate;
+    ratingsArray[ratingsArray.length - 1].total += 1;
+    console.log('same year!')
+  } else {
+    console.log('keep trying')
+    ratingsArray.push(sortedYears[i]);
+  }
+ }
+ console.log(ratingsArray);
+
+ //Divide total ratings by number of films to get average rate
+ const avgRate = ratingsArray.map(movie => {
+  const movieInfo = {
+  year: movie.year,
+  avgRate: movie.rate/movie.total
+};
+return movieInfo
+} );
+
+console.log(avgRate);
+
+
+ console.log(`The best year was ${avgRate.year} with an average rate of ${avgRate.rate}`)
+  return `The best year was ${avgRate.year} with an average rate of ${avgRate.rate}`
 }
+
 
 bestYearAvg(testArr);
 
-// console.log(sumRate)
-/*
-  for (let i = 0; i < movies.length; i++) {
-    if (movies[i].year === movies[i].year) {
-      const filteredMovies = movies.filter(
-        (movie) => movie.year == movies[i].year
-      );
 
-      const sumRate = filteredMovies.reduce((sum, movie) => {
-        return (sum + movie.rate) / filteredMovies.length;
-      }, 0);
-      console.log(sumRate)
-    }
-  }
-
-  //const years = movies.map((movie) => [movie.year, movie.rate]); //.sort((a,b) => a-b).flat();
- // console.log(years)
-
-  const lastArray = []
-
-  for (let i = 0; i < movies.length; i++) {
-    if (movies[i].year === movies[i].year) {
-      const filteredMovies = movies.filter(
-        (movie) => movie.year == movies[i].year
-      );
-
-     //console.log(filteredMovies);
-      let filteredAvg = ratesAverage(filteredMovies);
-      //console.log(filteredAvg);
-
-      lastArray.push(filteredAvg);
-     
-    }
-  } console.log(lastArray); 
-*/
+ 
