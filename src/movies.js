@@ -14,7 +14,6 @@
 //     movies.map(function(movie) {
 //         if(!directors.includes(movie.director)) directors.push(movie.director);
 //     });
-//     console.log(directors);
 //     return directors;
 // }
 
@@ -107,13 +106,13 @@ const turnHoursToMinutes = movies => {
         }
     });
     return copy;
-}
+};
 
     
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 const bestYearAvg = movies => {
     if (movies.length === 0) return null; 
-    let bestRate;
-    let bestYear;
-    return `The best year was ${bestYear} with an average rate of ${bestRate}`
+    else if(movies.length === 1) return `The best year was ${movies[0].year} with an average rate of ${movies[0].rate}`;
+    let years = []; 
+    return `The best year was ${bestYear} with an average rate of ${averagedRate}`;
 };
