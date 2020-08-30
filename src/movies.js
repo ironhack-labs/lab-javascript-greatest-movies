@@ -80,38 +80,55 @@ function orderAlphabetically(array6){
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 //const movies = [{ duration: '5h 41min' }];
-function turnHoursToMinutesObject(arrayBonus1){
-  console.log("-----------------------------")
-
-  var isolateDuration = arrayBonus1.duration;
-  console.log(isolateDuration)
-  strDuration = isolateDuration.toString();
-  var arrOfHoursAndMinutes = strDuration.split(" ");
-  console.log(arrOfHoursAndMinutes)
-  var noLettersMin = arrOfHoursAndMinutes[1].match( /\d+/g );
-  console.log(noLettersMin)
-  var hoursInMin = (arrOfHoursAndMinutes[0].match( /\d+/g ))*60;
-  console.log(hoursInMin)
-  var timeInMinutes = hoursInMin + Number(noLettersMin);
-  console.log(timeInMinutes);
-  isolateDuration = timeInMinutes;
-  console.log(isolateDuration)
-
-
-  arrayBonus1.duration = isolateDuration;
-  console.log(">>>>>>>>>>>>>>")
-    console.log(arrayBonus1)
-  //return arrayBonus1;
-}
+/*
+const movies = [
+  { duration: '2h' },
+  { duration: '5h' }
+];
+*/
 
 function turnHoursToMinutes(bonusTime) {
   const copyBonusTime = [...bonusTime];
-  var newArrayMin = copyBonusTime.map(turnHoursToMinutesObject);
+  var newArr = [];
+  newArr = copyBonusTime.map(turnHoursToMinutes1);
  // console.log(newArrayMin)
-  console.log(copyBonusTime);
-  return copyBonusTime;
-
+//  console.log(copyBonusTime);
+  return newArr;
 }
+
+function turnHoursToMinutes1(arrayBonus1){
+  var isolateDuration = arrayBonus1.duration;
+  console.log(isolateDuration)
+ // strDuration = isolateDuration.toString();
+ //  console.log(strDuration)
+  var arrOfHoursAndMinutes = isolateDuration.split(" ");
+//  console.log(arrOfHoursAndMinutes)
+if (arrOfHoursAndMinutes.length === 2) {
+     var noLettersMin = arrOfHoursAndMinutes[1].match( /\d+/g );
+//  console.log(noLettersMin)
+     var hoursInMin = (arrOfHoursAndMinutes[0].match( /\d+/g ))*60;
+//  console.log(hoursInMin)
+     var timeInMinutes = hoursInMin + Number(noLettersMin);
+//  console.log(timeInMinutes);
+//  isolateDuration = timeInMinutes;
+//  console.log(isolateDuration)
+} else if (arrOfHoursAndMinutes[0].includes("h")){
+     var noLetters = arrOfHoursAndMinutes[0].match( /\d+/g );
+     timeInMinutes = noLetters * 60;
+} else {
+     var noLetters = arrOfHoursAndMinutes[0].match( /\d+/g );
+     timeInMinutes = Number(noLetters);
+}
+
+  arrayBonus1.duration = timeInMinutes;
+  console.log(typeof arrayBonus1.duration)
+  
+//    console.log(arrayBonus1)
+    return arrayBonus1;
+  //return arrayBonus1;
+}
+
+
 //console.log(turnHoursToMinutes(movies))
 
 
