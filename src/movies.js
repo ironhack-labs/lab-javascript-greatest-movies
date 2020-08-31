@@ -1,14 +1,6 @@
 //** Iteration 1: All directors? - Get the array of all directors.
 
-function getAllDirectors(movies) {
-  let allDirectors = [];
-  for (let i = 0; i < movies.length; i++) {
-    const movie = movies[i];
-    allDirectors.push(movie.director);
-  }
-
-  return allDirectors;
-}
+const getAllDirectors = (movies) => movies.map((movie) => movie.director);
 
 //_Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
@@ -100,8 +92,6 @@ function orderAlphabetically(movies) {
   }
 }
 
-// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-
-
+//* BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
