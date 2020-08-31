@@ -1,13 +1,11 @@
 // Iteration 1: All directors? - Get the array of all directors.
 const getAllDirectors = (movies) => {
-  return movies.map(movie => movie.director);
+  return cleanList(movies.map(movie => movie.director));
 };
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 const cleanList = (list) => {
-  return list.filter(
-    item => list.indexOf(item,0) !== list.indexOf(item,-1)
-  );
+  return [...new Set(list)];
 };
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -40,7 +38,7 @@ const ratesAverage = (movies) => {
     return total_rate;
   },{sum:0,count:0});
 
-  return Math.round(rate.sum / movies.length * 100) / 100;
+  return +(rate.sum / movies.length ).toFixed(2);
 };
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -52,7 +50,7 @@ const dramaMoviesRate = (movies) => {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 const orderByYear = (movies) => {
   const ascending = (a,b) => {
-    if (a.year === b.year) return b.title < a.title ? 1 : (b.title>a.title)? -1 : 0;
+    if (a.year === b.year) return a.title.localeCompare(b.title);
     return a.year - b.year;
   };
 
@@ -61,11 +59,12 @@ const orderByYear = (movies) => {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 const orderAlphabetically = (movies) => {
-  const ascending = (a,b) => {
-    return b.title < a.title ? 1 : (b.title>a.title) ? -1 : 0;
-  };
+  const ascending = (a,b) => a.localeCompare(b);
 
-  return [...movies].sort(ascending).map(movie=>movie.title).slice(0,20);
+  return [...movies]
+    .map(movie=>movie.title)
+    .sort(ascending)
+    .slice(0,20);
 };
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes

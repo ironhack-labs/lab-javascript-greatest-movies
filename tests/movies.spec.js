@@ -42,6 +42,12 @@ describe(' All directors - getAllDirectors', () => {
   });
 });
 
+describe('Bonus - Clean List', () => {
+  it('Returns a cleand list', () => {
+    expect(cleanList(['a','b','c','a'])).toEqual(['a','b','c']);
+  });
+});
+
 /*
  * 2. howManyMovies
  */
