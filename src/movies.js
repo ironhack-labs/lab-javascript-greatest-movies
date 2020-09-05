@@ -1,17 +1,61 @@
 // Iteration 1: All directors? - Get the array of all directors.
 
-let getAllDirectors = (arrayOfMovies) => arrayOfMovies.map(arrayOfMovies => arrayOfMovies.directors)
-console.log(getAllDirectors)
+let getAllDirectors = (arrayOfMovies) => arrayOfMovies.map(arrayOfMovies => arrayOfMovies.director)
+
+console.log(getAllDirectors(movies))
+
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
+
+let howManyMovies = (arrayOfMovies) => arrayOfMovies.filter(movie => movie.director === "Steven Spielberg" && movie.genre.includes("Drama")).length
+
+// console.log(howManyMovies(movies).length)
+
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+
+
+// returns a list of ratings like this // [5.6, 7.8, undefined, 5.9]
+let ratesList = (arrayOfMovies) => { 
+    let ratingsList = arrayOfMovies.map(arrayOfMovies => arrayOfMovies.rate) 
+    let filteredratingsList = ratingsList.filter(e => e !== undefined)
+    return filteredratingsList
+}
+
+console.log(ratesList(movies))
+
+function ratesAverage(arrayOfMovies) {
+
+    if (arrayOfMovies.length === 0)
+        return 0
+
+
+    return Math.round(((ratesList(arrayOfMovies).reduce((accumulator, currentValue) => accumulator + currentValue, 0) / arrayOfMovies.length) * 100)) / 100
+}
+console.log(ratesAverage(movies))
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
+
+
+function dramaMoviesRate(arrayOfMovies) {
+    let dramaMovies = arrayOfMovies.filter(movie => movie.genre.includes("Drama"))
+    return ratesAverage(dramaMovies)
+}  
+
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+
+
+function orderByYear(listOfMovies) {
+    
+    return listOfMovies.sort((function (a, b) {
+        if (a.year < b.year) return 1; //  1 here (instead of -1 for ASC)
+        if (a.year > b.year) return -1; // -1 here (instead of  1 for ASC)
+        if (a.year === 0) return 0;
+      }))
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
