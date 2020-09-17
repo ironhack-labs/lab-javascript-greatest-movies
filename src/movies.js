@@ -1,5 +1,6 @@
 /*  Iteration 1: All directors? - Get the array of all directors.  */
-/*  Bonus: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
+/*  Bonus: It seems some of the directors had directed multiple movies,
+    so they will pop up multiple boths in the array of directors.
     How could you "clean" a bit this array and make it unified (without duplicates)? */
 const getAllDirectors = (movies) => {
   const directors = movies.map((movie) => {
@@ -20,7 +21,7 @@ const howManyMovies = (movies) => {
 
 /*  Iteration 3: All rates average - Get the average of all rates with 2 decimals.  */
 const ratesAverage = (movies) => {
-  const avgRating = movies.reduce((acc, movie, idx, src) => {
+  const avgRating = movies.reduce((acc, movie, _, src) => {
     return acc + movie.rate / src.length;
   }, 0);
   return Math.round(100 * avgRating) / 100;
@@ -41,15 +42,16 @@ const dramaMoviesRate = (movies) => {
 /*  Iteration 5: Order by year, ascending  */
 const orderByYear = (movies) => {
   const orderedMovies = JSON.parse(JSON.stringify(movies));
-  orderedMovies.sort((a, b) => {
-    if (a.year > b.year) {
+
+  orderedMovies.sort((movie_a, movie_b) => {
+    if (movie_a.year > movie_b.year) {
       return 1;
-    } else if (a.year < b.year) {
+    } else if (movie_a.year < movie_b.year) {
       return -1;
     } else {
-      if (a.title > b.title) {
+      if (movie_a.title > movie_b.title) {
         return 1;
-      } else if (a.title < b.title) {
+      } else if (movie_a.title < movie_b.title) {
         return -1;
       } else {
         return 0;
@@ -61,22 +63,60 @@ const orderByYear = (movies) => {
 
 /*  Iteration 6: Alphabetic Order - Order by title and print the first 20 titles.  */
 const orderAlphabetically = (movies) => {
-  const orderedMovies = JSON.parse(JSON.stringify(movies));
-  const orderedTitles = orderedMovies
+  const newMovies = JSON.parse(JSON.stringify(movies));
+
+  const orderedTitles = newMovies
     .map((movies) => {
       return movies.title;
     })
     .sort();
 
   if (orderedTitles.length > 21) {
-    return orderedTitles.splice(0, 20)
+    return orderedTitles.splice(0, 20);
   } else {
     return orderedTitles;
   }
 };
 
 /*  BONUS - Iteration 7: Turn duration of the movies from hours to minutes.  */
+const turnHoursToMinutes = (movies) => {
+  const minutedMovies = JSON.parse(JSON.stringify(movies));
 
+  minutedMovies.forEach((movie) => {
+    const hours = movie.duration.includes("h");
+    const minutes = movie.duration.includes("min");
 
+    if (!minutes) {
+      movie.duration = Number(movie.duration.slice(0, -1)) * 60;
+    } else if (!hours) {
+      movie.duration = Number(movie.duration.slice(0, -3));
+    } else {
+      const both = movie.duration.split(" ");
+      both[0] = Number(both[0].slice(0, -1)) * 60;
+      both[1] = Number(both[1].slice(0, -3));
+      movie.duration = both[0] + both[1];
+    }
+  });
+  return minutedMovies;
+};
 
 /*  BONUS - Iteration 8: Best yearly rate average.  */
+const bestYearAvg = (movies) => {
+  if (!movies.length) {
+    return null;
+  }
+
+  const yearAndRating = movies
+    .map((movie) => {
+      return { year: movie.year, rate: movie.rate, yearCount: 1 };
+    })
+    .sort((movie_a, movie_b) => {
+      if (movie_a.year > movie_b.year) {
+        return 1;
+      } else if (movie_a.year < movie_b.year) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+};
