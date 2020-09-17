@@ -70,14 +70,14 @@ const dramaMoviesRate = (array) => {
 
 const orderByYear = (array) => {
 
-    let a = JSON.stringify(array)
-    let b = JSON.parse(a)
+    // let a = JSON.stringify(array)
+    // let b = JSON.parse(a)
 
-    let newArray = JSON.parse(JSON.stringify(array))
-    let newArray2 = array
+    let movieByYear = JSON.parse(JSON.stringify(array))
+    //let movieByYear2 = array
 
 
-    newArray.sort((a, b) => {
+    movieByYear.sort((a, b) => {
         if (a.year > b.year) {
                     return 1;
                 }
@@ -95,9 +95,9 @@ const orderByYear = (array) => {
                       return 0
                     }
                 }
-    })
-    return newArray;
-}
+    });
+    return movieByYear;
+};
 
 
 
