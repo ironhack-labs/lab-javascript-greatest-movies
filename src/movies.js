@@ -125,25 +125,11 @@ const orderByYear = (array) => {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 const orderAlphabetically = (array) => {
-    // let a = JSON.stringify(array)
-    // let b = JSON.parse(a)
 
     let orderedMovies = JSON.parse(JSON.stringify(array))
     let orderedTitles = orderedMovies
 
-    
-    console.log(orderedMovies)
-    console.log(orderedTitles)
-
-  
-    let arrayTitles = orderedTitles.map((array) => {
-        return array.title;
-        console.log(arrayTitles);
-
-    });
-  
-
-   let arraySort = orderedTitles.sort((a, b) => {
+   let moviesSort = orderedTitles.sort((a, b) => {
         if (a.title > b.title) {
             return 1;
         }
@@ -162,17 +148,23 @@ const orderAlphabetically = (array) => {
             }
         }
 
-        if (orderedTitles.length > 21) {
-            return orderedTitles.splice(0, 21)
-        } else {
-            return orderedTitles;
-        }
+        // if (orderedTitles.length > 21) {
+        //     return orderedTitles.splice(0, 21)
+        // } else {
+        //     return orderedTitles;
+        // }
+
     });
 
-
-
+    let moviesTitle = orderedTitles.map((elem) => {
+        return elem.title
+   }) 
+   
     return orderedTitles;
 }
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+
+    
