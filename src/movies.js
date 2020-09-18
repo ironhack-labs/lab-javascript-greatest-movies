@@ -24,45 +24,66 @@ const ratesAverage = (array) => {
     
     if (array != "") {
 
-    let allRates = array.reduce((acc, i) => {
-        if (i.rate != '' && i.rate != undefined){
-            return acc + i.rate
-        } else {
-            return acc + 0
-        }
-    }, 0);
+        let averageRates = array.reduce((acc, i) => {
+            if (i.rate) {
+            return acc + i.rate / array.length
+            } else {
+                return acc + 0
+            }
+        }, 0)
+        //let avgRounded = averageRates.toFixed(2);
+        //return averageRates.toFixed(2);
+        
+        //return averageRates
+        let roundedAverage = (averageRates.toFixed(2));
+        roundedAverage = Number(roundedAverage); 
+        return roundedAverage
 
-    let averageRate = (allRates / array.length).toFixed(2); 
-    averageRate = Number(averageRate); 
-    return averageRate
-     
-} else {
-    return 0; 
-}
-}
+    } else {
+        return 0; 
+    }
+    }
+
+
+
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 const dramaMoviesRate = (array) => {
-    if (array.genre !== "drama") {
+    if (array.genre !== "Drama") {
         return 0;
     }; 
 
     let dramaMovies = array.filter((movie) => {
         return movie.genre.includes("Drama");
-    }).reduce((acc, i) => {
-        if (i.rate != '' && i.rate != undefined){
-            return acc + i.rate
-        } else {
-            return acc + 0
-        }
-    }, 0);
+     });
 
-    let averageDramaRates = (dramaMovies / array.length).toFixed(2);
-    averageDramaRates = Number(averageDramaRates); 
-    return averageDramaRates;
+    let dramaAverageRates = array.reduce((acc, i) => {
+            return acc + i.rate / dramaMovies.length
+        }, 0)
+
+    return dramaAverageRates
 }
+
+    //
+
+//     let dramaMovies = array.filter((movie) => {
+//         return movie.genre.includes("Drama");
+//     });
+    
+//     dramaAverageRates.reduce((acc, i) => {
+//         if (i.rate != '' && i.rate != undefined){
+//             return acc + i.rate
+//         } else {
+//             return acc + 0
+//         }
+//     }, 0);
+
+//     let averageDramaRates = (dramaMovies / array.length).toFixed(2);
+//     averageDramaRates = Number(averageDramaRates); 
+//     return averageDramaRates;
+// }
 
 
 
