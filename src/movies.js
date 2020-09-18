@@ -1,7 +1,7 @@
 // Iteration 1: All directors? - Get the array of all directors.
 function getAllDirectors(array){
-    let directorsArr = array.map((movie)=>{
-    return movie.director
+    let directorsArr = array.map((elem)=>{
+    return elem.director
     })
     return directorsArr
     }
@@ -17,78 +17,63 @@ function howManyMovies(array){
 }
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(array){
-    if(array != ''){
-    let total = array.reduce((acc, elem)=>{
-        if(elem.rate){
-            return acc + elem.rate / array.length
-        } else {
-            return acc
-        }
+    if(array.length === 0){
+        return 0
+    }
+    let average = array.reduce((acc, elem)=>{
+      return acc + elem.rate
     }, 0)
-    return total
-}
-}
+    return average / array.length
+  }
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate(array){
-    if (array != ''){
-        let movies =0;
-
-        let ratings = array.reduce((acc, elem)=>{
-            if(elem.genre.includes("Drama")){
-                movies++;
-                return acc + elem.rate
-            } else{
-                return acc
-            }
-        }, 0)
-    }
-    
-}
+    let dramaMovies = array.reduce((acc, elem)=>{
+      if(elem.genre.includes("Drama")){
+        return acc + elem.rate
+      } else{
+        return acc
+      }
+    }, 0)
+    return dramaMovies / dramaMovies.length
+  }
+  
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(array){
-    if(array !=''){
-        let movies = JSON.parse(JSON.stringify(array))
-
-        movies.sort((a,b)=>{
-            if(a.year > b.year){
-                return 1
-            } else if(a.year < b.year){
-                return -1
-            } else {
-                if (a.title > b.title) {
-                    return 1;
-                }
-                else if (a.title < b.title) {
-                    return -1;
-                }
-                else {
-                    return 0;
-                }
-            }
-        })
-        return movies
-    }
-
-}
+    let yearSort = array.sort((a,b)=>{
+              if(a.year > b.year){
+                  return 1
+              } else if(a.year < b.year){
+                  return -1
+              } else {
+                  if (a.title > b.title) {
+                      return 1;
+                  }
+                  else if (a.title < b.title) {
+                      return -1;
+                  }
+                  else {
+                      return 0;
+                  }
+              }
+          })
+    return yearSort
+  }
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(array){
-    let titles = array.map((elem)=> {
-        return elem.title;
+    let oredered = array.sort((a,b)=>{
+      if(a.title > b.title){
+        return 1
+      } else if(a.title < b.title){
+        return 1
+      }else {
+        return 0
+      }
     })
-    titles.sort((a,b)=>{
-        if(a>b){
-            return 1
-        } else if(a<b){
-            return -1
-        } else{
-            return 0
-        }
-    })
-    if(titles.length > 20){
-        titles.splice(20)
+    if(array.length > 20){
+      array.splice(20)
     }
-    return titles
-}
+    return oredered
+  }
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
