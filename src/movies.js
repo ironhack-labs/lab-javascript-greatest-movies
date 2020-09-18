@@ -1,6 +1,6 @@
 /*  Iteration 1: All directors? - Get the array of all directors.  */
 /*  Bonus: It seems some of the directors had directed multiple movies,
-    so they will pop up multiple boths in the array of directors.
+    so they will pop up multiple times in the array of directors.
     How could you "clean" a bit this array and make it unified (without duplicates)? */
 const getAllDirectors = (movies) => {
   const directors = movies.map((movie) => {
@@ -83,18 +83,15 @@ const turnHoursToMinutes = (movies) => {
   const minutedMovies = JSON.parse(JSON.stringify(movies));
 
   minutedMovies.forEach((movie) => {
-    const hours = movie.duration.includes("h");
-    const minutes = movie.duration.includes("min");
-
-    if (!minutes) {
+    if (!movie.duration.includes("min")) {
       movie.duration = Number(movie.duration.slice(0, -1)) * 60;
-    } else if (!hours) {
+    } else if (!movie.duration.includes("h")) {
       movie.duration = Number(movie.duration.slice(0, -3));
     } else {
-      const both = movie.duration.split(" ");
-      both[0] = Number(both[0].slice(0, -1)) * 60;
-      both[1] = Number(both[1].slice(0, -3));
-      movie.duration = both[0] + both[1];
+      const time = movie.duration.split(" ");
+      time[0] = Number(time[0].slice(0, -1)) * 60;
+      time[1] = Number(time[1].slice(0, -3));
+      movie.duration = time[0] + time[1];
     }
   });
   return minutedMovies;
