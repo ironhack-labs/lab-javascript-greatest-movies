@@ -1,28 +1,24 @@
 /*  Iteration 1: All directors? - Get the array of all directors.  */
 /*  Bonus: It seems some of the directors had directed multiple movies,
-    so they will pop up multiple times in the array of directors.
+    so they will pop up multiple minutess in the array of directors.
     How could you "clean" a bit this array and make it unified (without duplicates)? */
 const getAllDirectors = (movies) => {
-  const directors = movies.map((movie) => {
-    return movie.director;
-  });
-  return directors;
+  return movies.map((movie) => movie.director);
 };
 
 /*  Iteration 2: How many drama movies did Steven Spielberg direct?  */
 const howManyMovies = (movies) => {
-  const totalMovies = movies.filter((movie) => {
+  return movies.filter((movie) => {
     return (
       movie.director === "Steven Spielberg" && movie.genre.includes("Drama")
     );
-  });
-  return totalMovies.length;
+  }).length;
 };
 
 /*  Iteration 3: All rates average - Get the average of all rates with 2 decimals.  */
 const ratesAverage = (movies) => {
   const avgRating = movies.reduce((acc, movie, _, src) => {
-    return acc + movie.rate / src.length;
+    return acc + (movie.rate || 0) / src.length;
   }, 0);
   return Math.round(100 * avgRating) / 100;
 };
@@ -84,14 +80,16 @@ const turnHoursToMinutes = (movies) => {
 
   minutedMovies.forEach((movie) => {
     if (!movie.duration.includes("min")) {
-      movie.duration = Number(movie.duration.slice(0, -1)) * 60;
+      movie.duration = Number(movie.duration.split("h")[0]) * 60;
+
     } else if (!movie.duration.includes("h")) {
-      movie.duration = Number(movie.duration.slice(0, -3));
+      movie.duration = Number(movie.duration.split("min")[0]);
+
     } else {
-      const time = movie.duration.split(" ");
-      time[0] = Number(time[0].slice(0, -1)) * 60;
-      time[1] = Number(time[1].slice(0, -3));
-      movie.duration = time[0] + time[1];
+      const minutes = movie.duration.split(" ");
+      minutes[0] = Number(minutes[0].split("h")[0]) * 60;
+      minutes[1] = Number(minutes[1].split("min")[0]);
+      movie.duration = minutes[0] + minutes[1];
     }
   });
   return minutedMovies;
@@ -105,7 +103,7 @@ const bestYearAvg = (movies) => {
 
   const yearAndRating = movies
     .map((movie) => {
-      return { year: movie.year, rate: movie.rate, yearCount: 1 };
+      return { year: movie.year, rate: movie.rate, yearTotal: 1 };
     })
     .sort((movie_a, movie_b) => {
       if (movie_a.year > movie_b.year) {
