@@ -26,6 +26,12 @@ let orderByYear = arrayMovies => arrayMovies.map(e => e).sort((a,b) => {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
+let orderAlphabetically = arrayMovies => {
+    let newArray = arrayMovies.map(element => element.title).sort((a,b) => a>b ? 1 : -1);
+    if (arrayMovies.length >= 20) {return newArray.slice(0,20)};
+    return newArray;
+}
+
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
