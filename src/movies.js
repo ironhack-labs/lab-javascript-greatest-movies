@@ -11,18 +11,25 @@ let howManyMovies = arrayMovies => arrayMovies.filter(item => item.genre.filter(
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 let ratesAverage = arrayMovies => (Math.round(arrayMovies.reduce((acc,element) => acc + (element.rate || 0),0)/arrayMovies.length*100)/100 || 0);
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 let dramaMoviesRate = arrayMovies => ratesAverage(arrayMovies.filter(item => item.genre.includes("Drama")));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
+/* Versión 1
 let orderByYear = arrayMovies => arrayMovies.map(e => e).sort((a,b) => {
     if (a.year === b.year){
         return a.title > b.title ? 1 : -1; 
     };
     return a.year - b.year;
 });
+*/
+
+//Versión en una línea
+
+let orderByYear = arrayMovies => arrayMovies.map(e => e).sort((a,b) => a.year === b.year ? (a.title > b.title ? 1 : -1) : a.year - b.year);
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
@@ -34,4 +41,22 @@ let orderAlphabetically = arrayMovies => {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+let turnHoursToMinutes = arrayMovies => {
+    let reduceTime = someArray => {
+        if (someArray.length ==2) {
+          return someArray.reduce((x,y) => x.split(``).filter(e => e !==  `h`).join(``)*60 + y.split(``).filter(e => ![`m`,`i`,`n`].includes(e)).join(``)*1)
+        } else {
+          let tempArray = someArray[0].split(``);
+          if (tempArray.includes(`h`)){
+            return tempArray.filter(e => e !==  `h`).join(``)*60
+          } else {
+            return tempArray.filter(e => ![`m`,`i`,`n`].includes(e)).join(``)*1
+          }
+        }
+      };
+    let newArray = arrayMovies.map(e => Object.assign({},e,{"duration" : reduceTime(e.duration.split(" "))}));
+    return newArray
+};
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
