@@ -74,6 +74,6 @@ let bestYearAvg = arrayMovies => {
                 highestYear = i;
             };
         };
-        return `The best year was ${highestYear} with an average rate of ${highestrank}`|| null;
+        return `The best year was ${highestYear} with an average rate of ${highestrank}`;
     };
 };
