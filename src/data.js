@@ -1,3 +1,5 @@
+// + 'export' in front of let movies, to be able to verify console in nodemon
+
 let movies = [
     {
       "title": "The Shawshank Redemption",
@@ -2966,4 +2968,4 @@ let movies = [
       ],
       "rate": 8
     }
-  ]
+  ];
