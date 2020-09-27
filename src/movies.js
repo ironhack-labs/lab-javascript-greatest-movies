@@ -60,3 +60,20 @@ let turnHoursToMinutes = arrayMovies => {
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
+let bestYearAvg = arrayMovies => {
+    let yearsArray = arrayMovies.map (element => element.year).filter((item,index,array) => array.indexOf(item) === index);
+    let highestYear = 0;
+    let highestrank = 0;
+    if (arrayMovies.length == 0){
+        return null;
+    } else {
+        for (i=Math.min(...yearsArray); i<=Math.max(...yearsArray); i++) {
+            let tempRate = ratesAverage(arrayMovies.filter(e => e.year == i));
+            if (tempRate > highestrank) {
+                highestrank = tempRate;
+                highestYear = i;
+            };
+        };
+        return `The best year was ${highestYear} with an average rate of ${highestrank}`|| null;
+    };
+};
