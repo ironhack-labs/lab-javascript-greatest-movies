@@ -9,7 +9,7 @@ function getAllDirectors(movies) {
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
 function getAllDirectorsWithoutDuplicate(movies) {
-    return movies.reduce( (directorListWithoutDuplicate, movie) => {
+    return movies.reduce((directorListWithoutDuplicate, movie) => {
         if (directorListWithoutDuplicate.includes(movie.director) === false) {
             directorListWithoutDuplicate.push(movie.director);
         } 
@@ -20,7 +20,7 @@ function getAllDirectorsWithoutDuplicate(movies) {
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 function howManyMovies(movieList) {
-    let dramaMoviesOfSs = movieList.filter(movie => movie.genre.includes('Drama') && movie.director === "Steven Spielberg");
+    const dramaMoviesOfSs = movieList.filter(movie => movie.genre.includes('Drama') && movie.director === "Steven Spielberg");
     return dramaMoviesOfSs.length;
 }
 
@@ -30,10 +30,11 @@ function ratesAverage(movieList) {
     if (movieList.length === 0) {
         return 0;
     }
-    let sumRate = movieList.reduce((sum, currentMovie) => {
+    const sumRate = movieList.reduce((sum, currentMovie) => {
         if (typeof currentMovie.rate === "number") {
-        return sum + currentMovie.rate;
-        } return sum + 0;
+            return sum + currentMovie.rate;
+        }
+        return sum;
     }, 0);
     return Math.round((sumRate/movieList.length) * 100) / 100;
 }
@@ -48,8 +49,9 @@ function dramaMoviesRate(movieList) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(movieList) {
-    let newMovieList = [];
-    newMovieList = newMovieList.concat(movieList);
+
+    const newMovieList = JSON.parse(JSON.stringify(movieList));
+
     return newMovieList.sort((a, b) => {
         if (a.year === b.year) {
             return a.title.localeCompare(b.title);
@@ -65,7 +67,8 @@ function orderAlphabetically(movieList) {
     newList.sort((a, b) => a.localeCompare(b));
     if (newList.length <= 20) {
         return newList;
-    } return newList.slice(0,20);
+    }
+    return newList.slice(0,20);
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
@@ -73,6 +76,7 @@ function orderAlphabetically(movieList) {
 function turnHoursToMinutes(movieList) {
     return movieList.map(movie => {
         const duration = movie.duration;
+        // const { duration } = movie;
         let hour = 0;
         let minute = 0;
         if (duration.indexOf('h') !== -1) {
@@ -95,7 +99,7 @@ function turnHoursToMinutes(movieList) {
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
 function getAllYearsWithoutDuplicate(movies) {
-    return movies.reduce( (yearListWithoutDuplicate, movie) => {
+    return movies.reduce((yearListWithoutDuplicate, movie) => {
         if (yearListWithoutDuplicate.includes(movie.year) === false) {
             yearListWithoutDuplicate.push(movie.year);
         } 
