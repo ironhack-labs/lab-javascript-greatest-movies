@@ -112,5 +112,17 @@ function turnHoursToMinutes(moviesArr) {
     }
 }
 
-
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+function bestYearAvg(moviesArr) {
+    if (moviesArr.length === 0) {
+      return null;
+    }
+    
+    let orderedByYear = orderByYear(moviesArr);
+    
+    orderedByYear.forEach(movie => {
+        console.log(movie.year)
+    });
+    
+    //return 'The bes year was ' + 'YEAR' + ' with an average rate of ' + 'RATE';
+}
