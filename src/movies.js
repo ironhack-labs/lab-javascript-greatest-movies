@@ -57,20 +57,57 @@ let dramaMoviesRate =(movies) =>{
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-
-/*if (a.year > b.year) {
-        return 1;
-      } else if (b.year > a.year) {
-        return -1;
-      } else {
-        if (a.title > b.title) {
-          return 1;
-        } else if (b.title > a.title) {
-          return -1;
+ 
+/*let orderByYear = (movie) =>{
+    movies.sort(function(a, b) {
+        if (a.year > b.year) {
+            return 1;
+        } else if (a.year < b.year){
+            return -1;
+        } else {
+            if (a.title > b.title){
+                return 1;
+            } else if (b.title > a.title){
+                return -1;
+            }
+            return 0;
         }
-        return 0;
-      }*/
+    })
+}
+console.log(orderByYear(movie)); */
+
+let orderByYear = (movie) => {
+    let newArr = movie.map(function(m){
+        return m;
+    })
+    newArr.sort(function(a,b){
+        if (a.year > b.year) {
+            return 1;
+        } else if (a.year < b.year){
+            return -1;
+        } else {
+            if (a.title > b.title){
+                return 1;
+            } else if (b.title > a.title){
+                return -1;
+            }
+            return 0;
+        } 
+    }) 
+    return newArr;
+}
+console.log(orderByYear(movies))
+         
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+function orderAlphabetically(movies) {
+    let moviesTitle = movies.map(function (obj) {
+    return obj.title;
+    });
+    let moviesTitleSort = moviesTitle.sort();
+    return moviesTitleSort.slice(0, 20);
+    }
+    console.log(orderAlphabetically(movies));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
