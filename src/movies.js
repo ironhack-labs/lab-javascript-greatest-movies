@@ -58,7 +58,7 @@ function dramaMoviesRate(movies) {
 function orderByYear(movies) {
     let ordered = movies.sort(function(a, b){
         if(a.year === b.year){
-            return a.title - b.title
+            return 0
         }
       return a.year - b.year
     })
@@ -71,15 +71,22 @@ function orderByYear(movies) {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(movies) {
-    let ordered = movies.sort(function(a, b) {
-        return a - b
-    })
-    ordered.length = 19
-   
-    let arr = ordered.map(function(m) {
+    let arr = movies.map(function(m) {
         return m.title
+        } )
+    if(arr.length > 19){
+      var less =  arr.slice(0,20)
+      let ordered = less.sort(function(a, b) {
+            if(a>b){
+                return 1
+              }else{
+                return-1
+              } 
     })
-   
+
+    return ordered
+    }
+    
     return arr
 }
 
