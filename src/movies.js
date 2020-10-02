@@ -114,15 +114,40 @@ function turnHoursToMinutes(moviesArr) {
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 function bestYearAvg(moviesArr) {
-    if (moviesArr.length === 0) {
-      return null;
+  if (moviesArr.length === 0) {
+    return null;
+  }
+
+  let orderedByYear = orderByYear(moviesArr);
+  let topAvg = 0;
+  let bestYear = 0;
+  let yearsArr = []; 
+  orderedByYear.forEach((movie) => {
+    if (yearsArr[movie.year] == undefined) {
+      yearsArr[movie.year] = [];
+      yearsArr[movie.year].push(movie.rate);
+    } else {
+      yearsArr[movie.year].push(movie.rate);
     }
-    
-    let orderedByYear = orderByYear(moviesArr);
-    
-    orderedByYear.forEach(movie => {
-        console.log(movie.year)
-    });
-    
-    //return 'The bes year was ' + 'YEAR' + ' with an average rate of ' + 'RATE';
+  });
+
+  let totalRates = 0;
+  let avgRate = 0;
+
+  for (let i = 0; i < yearsArr.length; i++) {
+    if (yearsArr[i] !== undefined) {
+      for (let j = 0; j < yearsArr[i].length; j++) {
+        totalRates += yearsArr[i][j];
+      }
+      avgRate = totalRates / yearsArr[i].length;
+      console.log('Year: ' + i + ' avgRate: ' + avgRate);
+      if (avgRate > topAvg || avgRate == topAvg) {
+        topAvg = avgRate;
+        bestYear = i;
+      }
+      totalRates = 0;
+    }
+  }
+
+  return 'The best year was ' + bestYear + ' with an average rate of ' + topAvg;
 }
