@@ -114,40 +114,37 @@ function turnHoursToMinutes(moviesArr) {
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 function bestYearAvg(moviesArr) {
+  //Check empty array
   if (moviesArr.length === 0) {
     return null;
   }
 
-  let orderedByYear = orderByYear(moviesArr);
-  let topAvg = 0;
-  let bestYear = 0;
-  let yearsArr = []; 
-  orderedByYear.forEach((movie) => {
+  //Loop through movies and save rates into arrays
+  let yearsArr = []; //Initialize array to store rates using years as index
+  moviesArr.forEach((movie) => {
     if (yearsArr[movie.year] == undefined) {
-      yearsArr[movie.year] = [];
-      yearsArr[movie.year].push(movie.rate);
+      yearsArr[movie.year] = []; // Create array for the given year
+      yearsArr[movie.year].push(movie.rate); // Push first movie rate for the given year
     } else {
-      yearsArr[movie.year].push(movie.rate);
+      yearsArr[movie.year].push(movie.rate); // If year already exists, push movie rate into year
     }
   });
 
-  let totalRates = 0;
-  let avgRate = 0;
+  let topAvg = bestYear = totalRate = yearAvgRate = 0; // Init vars to store tmp data and final output
 
-  for (let i = 0; i < yearsArr.length; i++) {
+  for (let i = 0; i < yearsArr.length; i++) { //Loop through years
     if (yearsArr[i] !== undefined) {
-      for (let j = 0; j < yearsArr[i].length; j++) {
-        totalRates += yearsArr[i][j];
+      for (let j = 0; j < yearsArr[i].length; j++) { //Loop through rates in the same year
+        totalRate += yearsArr[i][j]; //Accumulate rates
       }
-      avgRate = totalRates / yearsArr[i].length;
-      console.log('Year: ' + i + ' avgRate: ' + avgRate);
-      if (avgRate > topAvg || avgRate == topAvg) {
-        topAvg = avgRate;
+      yearAvgRate = totalRate / yearsArr[i].length; //Calculate rates average for that year
+      //Update best year and top rating average if needed
+      if (yearAvgRate > topAvg) {
+        topAvg = yearAvgRate;
         bestYear = i;
       }
-      totalRates = 0;
+      totalRate = 0; //Reset rates
     }
   }
-
   return 'The best year was ' + bestYear + ' with an average rate of ' + topAvg;
 }
