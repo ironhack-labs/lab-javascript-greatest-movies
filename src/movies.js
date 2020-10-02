@@ -57,10 +57,18 @@ function dramaMoviesRate(movies) {
 
 function orderByYear(movies) {
     let ordered = movies.sort(function(a, b){
-        if(a.year === b.year){
-            return 0
+        if(a.year > b.year){
+            return 1
+        } else if (a.year < b.year) {
+            return -1
+        } else {
+            if(a.title>b.title){
+              return 1
+            } else {
+              return -1
+            }
         }
-      return a.year - b.year
+      
     })
     let newArr = ordered.map(function(m){
         return m
@@ -72,6 +80,15 @@ function orderByYear(movies) {
 
 function orderAlphabetically(movies) {
     let arr = movies.map(function(m) {
+        movies.sort(function(a, b){
+          if(a.rate > b.rate) {
+            return 1
+          } else if (a.rate < b.rate) {
+            return -1
+          } else {
+            return a.title>b.title
+          }
+        })
         return m.title
         } )
     if(arr.length > 19){
@@ -85,9 +102,15 @@ function orderAlphabetically(movies) {
     })
 
     return ordered
-    }
-    
-    return arr
+    } else{
+      return arr.sort(function(a, b) {
+            if(a>b){
+                return 1
+              }else{
+                return-1
+              } 
+    })
+    }  
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
