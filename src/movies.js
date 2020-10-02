@@ -442,12 +442,12 @@ let orderByYear = (movies) => {
     return [...movies].sort((a, b) => {
         if (a.year === b.year) {
             if (a.title < b.title) {
-                return -1;
+                return -1
             } if (a.title > b.title) {
-                return 1;
+                return 1
             }
         } else {
-            return a.year - b.year;
+            return a.year - b.year
         }
     });
 }
@@ -484,9 +484,7 @@ let turnHoursToMinutes = (movies) => {
     let newMovies = JSON.parse(JSON.stringify(movies))
 
     newMovies.forEach((element) => {
-        if (element.duration) {
-            element.duration = calcularMinutos(element.duration)
-        }
+        element.duration = calcularMinutos(element.duration)
     })
 
     return newMovies
