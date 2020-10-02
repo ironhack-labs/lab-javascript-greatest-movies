@@ -482,11 +482,10 @@ let calcularMinutos = (duration) => {
 let turnHoursToMinutes = (movies) => {
 
     let newMovies = JSON.parse(JSON.stringify(movies));
-    // let newMovies = [...movies]
 
-    newMovies.forEach((item) => {
-        if (item.duration) {
-            item.duration = calcularMinutos(item.duration);
+    newMovies.forEach((element) => {
+        if (element.duration) {
+            element.duration = calcularMinutos(element.duration);
         }
     });
     return newMovies;
@@ -497,6 +496,7 @@ let turnHoursToMinutes = (movies) => {
 
     // });
     // console.log(filtrada)
+    // let newMovies = [...movies]
     // let duration = newMovies.map(elm => elm.duration)
     // let newMovies = [...movies]
 
@@ -582,5 +582,33 @@ let turnHoursToMinutes = (movies) => {
     // }
     // )
 }
-console.log(turnHoursToMinutes(movies2))
+// console.log(turnHoursToMinutes(movies2))
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+
+function bestYearAvg(movies) {
+    if (!movies.length) { return null }
+
+    let ratesPorYear = movies.reduce((acc, movie) => {
+        if (movie.year in acc) {
+            acc[movie.year].push({ rate: movie.rate })
+        } else {
+            acc[movie.year] = [{ rate: movie.rate }]
+        }
+        return acc
+    }, {})
+
+    let mejorYear = 0
+    let mejorAvg = 0
+
+    for (let year in ratesPorYear) {
+        let avg = ratesAverage(ratesPorYear[year])
+        if (avg > mejorAvg) {
+            mejorYear = year;
+            mejorAvg = avg;
+        }
+    }
+    return `The best year was ${mejorYear} with an average rate of ${mejorAvg}`
+}
+
+// console.log(bestYearAvg(movies2))
