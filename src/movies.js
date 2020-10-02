@@ -415,7 +415,7 @@ let ratesAverage = (movies) => {
 let dramaMoviesRate = (movies) => {
     let dramaMovies = movies.filter((movie) => {
         // console.log(movie)
-        return movie.genre.includes("Drama");
+        return movie.genre.includes("Drama")
     })
     return ratesAverage(dramaMovies);
 }
@@ -457,38 +457,39 @@ orderByYear(movies2)
 
 let orderAlphabetically = (movies) => {
     return movies.map(movies => movies.title).sort((a, b) => {
-        if (a > b) return 1;
-        if (b < a) return -1;
-        if (a === b) return 0;
+        if (a > b) return 1
+        if (b < a) return -1
+        if (a === b) return 0
     }).slice(0, 20)
 }
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
-let calcularMinutos = (duration) => {
+let calcularMinutos = (string) => {
     let tiempo;
     let minutosTotales;
-    if (duration.includes("h ")) {
-        tiempo = duration.split("min").join("").split("h ");
-        minutosTotales = Number(tiempo[0] * 60 + Number(tiempo[1]));
-    } else if (duration.includes("h")) {
-        minutosTotales = Number(duration.split("h").join("") * 60);
+    if (string.includes("h ")) {
+        tiempo = string.split("min").join("").split("h ")
+        minutosTotales = Number(tiempo[0] * 60 + Number(tiempo[1]))
+    } else if (string.includes("h")) {
+        minutosTotales = Number(string.split("h").join("") * 60)
     } else {
-        minutosTotales = Number(duration.split("min").join(""));
+        minutosTotales = Number(string.split("min").join(""))
     }
-    console.log(minutosTotales)
+    // console.log(minutosTotales)
     return minutosTotales;
 }
 
 let turnHoursToMinutes = (movies) => {
 
-    let newMovies = JSON.parse(JSON.stringify(movies));
+    let newMovies = JSON.parse(JSON.stringify(movies))
 
     newMovies.forEach((element) => {
         if (element.duration) {
-            element.duration = calcularMinutos(element.duration);
+            element.duration = calcularMinutos(element.duration)
         }
-    });
-    return newMovies;
+    })
+
+    return newMovies
     // let filtrada = movies.forEach(element => {
     //     // console.log(element.duration)
     //     let durationArray = element.duration.split("h")
@@ -604,8 +605,8 @@ function bestYearAvg(movies) {
     for (let year in ratesPorYear) {
         let avg = ratesAverage(ratesPorYear[year])
         if (avg > mejorAvg) {
-            mejorYear = year;
-            mejorAvg = avg;
+            mejorYear = year
+            mejorAvg = avg
         }
     }
     return `The best year was ${mejorYear} with an average rate of ${mejorAvg}`
