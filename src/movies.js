@@ -115,4 +115,38 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(movies){
+    let newArr = movies.map(function(m){
+        return m
+    })
+    
+    let duration = []
+    
+    for(let i = 0; i<newArr.length; i++){
+      duration.push(newArr[i].duration)
+    }
+    let toMin = duration.map(function(m){ 
+      if(m[0] === '1'){
+        m[0] = '6'
+      } else if (m[0] === '2'){
+        m[0] = '120'
+      } else {
+        m[0] = '180'
+      }
+    })
+    return toMin
+}
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movies){
+    if(movies.length === 0){
+        return null
+    }
+    if (movies.length === 1){
+        return `The best year was ${movies.year} with an average rate of ${movies.rate}`
+    }
+
+
+    return `The best year was \<YEAR\> with an average rate of \<RATE\>`
+}
