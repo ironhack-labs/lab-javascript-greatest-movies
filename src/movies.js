@@ -1,66 +1,78 @@
 // Iteration 1: All directors? - Get the array of all directors.
-function getAllDirectors(array) {
-    return array.map(function (movie) {
-      return movie.director;
-    });
-  }
+//function getAllDirectors(array) {
+  //  return array.map(function (movie) {
+    //  return movie.director;
+    //});
+//  }
 
   //console.log(getAllDirectors(movies));
 
+  function getAllDirectors(movies){
+    let directors = movies.map(function(film){
+      return film.director
+    })
+    return directors
+  }
+  
+
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
-let uniqueDirectors = getAllDirectors.filter((el, index) => getAllDirectors.indexOf(el) === index)
+//let uniqueDirectors = getAllDirectors.filter((el, index) => getAllDirectors.indexOf(el) === index)
 
 //console.log(uniqueDirectors);
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 function howManyMovies(array) {
-    return movies.filter(function (movies) {
+     return movies.filter(function (movies) {
       return (
         movies.director === 'Steven Spielberg' && movies.genre.includes('Drama')
       );
     }).length;
   }
-  console.log(howManyMovies(movies));
-}
+  //console.log(howManyMovies(movies));
+
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
-function rateAverage (movies){
-    let sum = movies.reduce(function(acc, curr){
-    return acc+curr.rate
-    },0);
-    return (sum/movies.length).toFixed(2)
-    }
-    console.log(rateAverage(movies));
+function ratesAverage (movies){
+  let sum = movies.reduce(function (acc, film) {
+    return acc.rate + film.rate;
+}
+  );
+    return ((sum/movies.length) && toFixed(2))
+}
+
+    //console.log(rateAverage(movies));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate (movies){
-    let dramaMovies = movies.filter(function(movies){
-    return movies.genre.includes("Drama")
+    let dramaMovies = movies.filter(function(film){
+      return movies.genre.includes("Drama")
     });
-    
-  
-    let sum = dramaMovies.reduce(function(acc, curr){
-    return acc+curr.rate
+    let suma = dramaMovies.reduce(function(acc, curr){
+    return acc.rate+curr.rate
     },0);
-    return (sum/dramaMovies.length).toFixed(2)
+    return (sum/dramaMovies.length)
   }
-  console.log(dramaMoviesRate(movies))
+  //console.log(dramaMoviesRate(movies))
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear (movies){
-    movies.sort(function (a, b) {
+  let sortedMovies = movies.sort(function (a, b) {
         if (a.year > b.year) {
             return 1;
         } else if (a.year < b.year) {
-        return -1;
+          return -1;
         } else {
-        return 0;
-        }}
-    console.log (orderByYear(movies))
+          return 0; 
+      }
+    })
+    return sortedMovies
+  }
+
+    //console.log (orderByYear(movies))
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
@@ -75,7 +87,7 @@ function orderAlphabetically(movies) {
     return moviesTitleSort.slice(0, 20);
     }
     
-    console.log(orderAlphabetically(movies));
+    console.log(orderAlphabetically(movies))
 
  
 
