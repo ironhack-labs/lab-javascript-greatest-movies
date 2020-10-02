@@ -3049,11 +3049,11 @@ function orderByYear (movies) {
             return 0;
         }
     });
-    return orderByYear;
+    return orderByYear.map((obj) => obj);
 }
 
-newOrderedMovies = orderByYear(movies);
-console.log(newOrderedMovies);
+console.log(orderByYear(movies));
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
