@@ -2970,21 +2970,17 @@
     }
   ]
 */
-function howManyMovies(movies) {
-  if (movies.length === 0) {
-    return 0;
+  function getAllDirectors(movies) {
+    let directors = movies.map(function (theDirectors) {
+      return theDirectors.director;
+    });
+    return directors;
   }
-  let dramaMovies = movies.filter(function (theDramaSpielberg) {
-    return (
-      theDramaSpielberg.director === 'Steven Spielberg' &&
-      theDramaSpielberg.genre.includes('Drama')
-    );
-  });
-  if (dramaMovies.length === 0) {
-    return 0;
-  }
-  return dramaMovies.length;
-}
+  
+  directors = getAllDirectors(movies);
+  console.log(movies.length);
+  console.log(directors.length);
+  console.log(directors);
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
