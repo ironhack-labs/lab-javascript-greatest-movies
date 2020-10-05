@@ -2966,4 +2966,25 @@ let movies = [
       ],
       "rate": 8
     }
-  ]
+  ];
+
+
+  function orderAlphabetically(object) {
+    const sortedObject = object.sort( (a, b) => {
+      if(a.title < b.title) {
+        return -1;
+      } else if(a.title > b.title) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+
+    let items20 = [];
+    for(let i = 0; i < 20; i++) {
+      items20.push(sortedObject[i].title);
+    }
+    return items20;
+  }
+
+  console.log(orderAlphabetically(movies));
