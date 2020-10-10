@@ -66,4 +66,38 @@ function orderAlphabetically(movies){
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function conversion(horas){ //función auxiliar para hacer la conversión
+    let indiceH = horas.indexOf("h"); //calculamos posición de la h en el formato de la duración
+    let indiceM = horas.indexOf("m"); //calculamos posición de la m en el formato de la duración
+
+    let h;
+    let m;
+
+    if(indiceH===-1){//en el caso de que solo nos pasen minutos
+        m = horas.slice(0,indiceM);
+        return  Number(m);
+    }else{
+        let h = horas.slice(0,indiceH);
+        let m = horas.slice(indiceH+1,indiceM);
+    
+        return Number(h)*60 + Number(m);
+    }
+}
+
+function turnHoursToMinutes(movies){
+    let nuevaArray = movies.slice(); //copia del array
+
+    return nuevaArray.map((objeto)=>{
+        objeto.duration = conversion(objeto.duration); //utilizamos la función auxiliar de conversión en el mapeo
+        return objeto;
+    });
+}
+
+
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(){
+    
+}
+
