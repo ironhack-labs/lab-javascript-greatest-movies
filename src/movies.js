@@ -12,7 +12,7 @@ function cleanArrayDirectors(directors){
     return directorsClean;
 }
 
-function directorDuplicado(director, indice, array){
+function directorDuplicado(director, indice, array){ //Callback para comprobar si el director se encuentra ya en los elementos previos al índice actual
 for(let i=0; i<indice;i++){
   if(array[i]===director)return false;
 }
@@ -46,7 +46,16 @@ function dramaMoviesRate(movies){
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
+function orderByYear(movies){
+    let nuevaArray = movies.slice();
+    return nuevaArray.sort((a,b) =>{
+        return a.year===b.year ? a.title.localeCompare(b.title) : a.year-b.year;
+    });
+}
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
