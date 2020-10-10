@@ -35,8 +35,35 @@ function ratesAverage(arr) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
+function dramaMoviesRate(arr) {
+  let dramaAverage = 0;
+    let totalDrama = 0
+    let counter = 0;
+    let dramaFilms = arr.filter(film => {
+        let isDrama = film.genre.includes("Drama");
+        if (isDrama) {
+            totalDrama += film.rate
+            counter++
+        }
+        return totalDrama
+    })
+    if (counter) dramaAverage = totalDrama / counter
+    else dramaAverage = 0;
+    return +(dramaAverage.toFixed(2))
+    
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+
+function orderByYear(arr) {
+
+    let sortYearFilms = arr.sort((a, b) => {
+        let sameYear = a.year === b.year
+        if(sameYear) return a.title.localeCompare(b.localeCompare)
+        else return a.year - b.year
+    })
+    return sortYearFilms
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
