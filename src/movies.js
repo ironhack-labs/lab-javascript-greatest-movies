@@ -97,7 +97,40 @@ function turnHoursToMinutes(movies){
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
-function bestYearAvg(){
+function bestYearAvg(movies){
+
+    if(movies[0]){ //comprobamos que el array no sea vacío
+    let newArray = [];
     
+    movies.forEach(elem=>{
+        if(!newArray.includes(elem.year)) newArray.push(elem.year);//creamos newArray con los años que sean distintos para luego aplicar un filtro
+      });
+
+      let mejorAverage =0;
+      let mejorAño = 0;
+      let rate = 0;
+      let times = 0;
+      let avg =0;
+
+      for(let i=0;i<newArray.length;i++){ 
+        rate = movies.reduce((acc, current)=>{ //sumamos los rates que coincidan con el año de la iteración actual sobre newArray
+            if(current.year===newArray[i]){ 
+                times++;
+                return acc + current.rate;
+                
+            }else return acc;
+        },0);
+        avg = rate/times;
+        if(avg>mejorAverage){ //actualizamos la mejor rate si es mayor que la guardada previamente
+            mejorAño = newArray[i];
+            mejorAverage = avg;
+        }else if(avg===mejorAverage){ //en el caso de rates iguales comprobamos si el nuevo año del array es más antiguo que el guardado la última vez
+            if(mejorAño-newArray[i]>0)mejorAño = newArray[i];
+        }
+        rate =0;
+        times =0;
+      }
+    return `The best year was ${mejorAño} with an average rate of ${mejorAverage}`;
+    }else return null;
 }
 
