@@ -12,15 +12,50 @@ function getAllDirectors (directors) {
 function howManyMovies(movies){
     let stevenSpielbergMovies = movies.filter(function(movie){
         return movie.director === "Steven Spielberg" && movie.genre.includes("Drama");  
-    })
+    });
 return stevenSpielbergMovies.length;    
 };
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-
+function ratesAverage(movies) {
+    if (movies.length === 0) {
+        return 0;
+    }
+    let total = movies.reduce(function (acc, rating) {
+        if (typeof rating.rate === "number") {
+        return acc + rating.rate;
+        } else {
+        return acc + 0;
+        }
+    }, 0); 
+    let avRate = total/movies.length
+    return Math.round(avRate * 100) / 100
+};
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
+//Este probe de varias formas pero no lo pude hacer que funcione de esta u otra manera, me faltan 4 en Jasmine.
+function dramaMoviesRate(movies){
+    if (movies.length === 0) {
+        return 0;   
+}
+let dramaMovies = movies.filter(function(drama){
+    return drama.genre.includes("Dramas");
+});
+return dramaMovies.length;
+};
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-
+//Este lo consegui buscando mucho como realizar sorted copiando antes con slice, porque me frustre bastante, pero alfinal salio!
+function orderByYear(movies) {
+    let copy = movies.slice()
+    let sorted = copy.sort((a, b) => {
+        if (a.year === b.year) {
+            if (a.title < b.title) { return -1; }
+            if (a.title > b.title) { return -1; }
+        } else {
+            return a.year - b.year
+        }
+    });
+    return sorted;
+};
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
