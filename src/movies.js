@@ -16,10 +16,10 @@ function howManyMovies(arr) {
     })
     return stevenSpielberMovies.length
     }
-    
+
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(arr) {
-  
+    if(!arr.length) return 0;
     const sumNums = arr.reduce(function(acc, next){
         return acc + next.rate 
      },0)
@@ -28,28 +28,33 @@ function ratesAverage(arr) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate(arr) {
-
-    if (movies[0].genre.includes('Drama') === true) {
-      return ratesAverage(arr)
-    }
-   
-   }
+  if(!arr[0].genre.includes('Drama')) return 0;
+  let filteredArr = arr.filter(word => word.genre.includes("Drama"));
+  return ratesAverage(filteredArr)
+}    
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arr) {
-    let sortedYear = arr.sort(function(a, b){
-      return a.year - b.year
+    let sortedYear = arr.slice()
+    sortedYear.sort(function(a, b){
+      if (a.year === b.year) {
+        return a.title - b.title
+      } else {
+        return a.year - b.year 
+      }
     })
     return sortedYear
    }
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(arr) {
-    let sortedTitle = arr.sort(function(a, b){
-      return a.title - b.title
+    let sortedTitle = arr.slice(0,20)
+    sortedTitle.sort(function(a, b){
+      return a.title.localeCompare(b.title)
     })
-    return sortedTitle[0].title
+    return sortedTitle.map(title => title.title)
   }
-  orderAlphabetically(movies)
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
