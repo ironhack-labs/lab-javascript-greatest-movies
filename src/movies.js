@@ -2983,12 +2983,9 @@ function howManyMovies(param) {
   ]
   param = []
 
-  if (param.length === 0) {
+  if (param.length === 0) {//si es un array vacio
     result = 0
   } else{
-
-
-
       function esStenven(movie) {
         return movie.director === "Francis Ford Coppola"
       }
