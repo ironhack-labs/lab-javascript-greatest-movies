@@ -1,11 +1,11 @@
 // Iteration 1: All directors? - Get the array of all directors.
 
 function getAllDirectors(array){
-const allDirectors = array.map(movie => { 
+    return array.map((movie) => movie.director);
+/*const allDirectors = array.map(movie => { 
     const container = movie.director
-    
     return container})
-    return allDirectors
+    return allDirectors*/
 }
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
@@ -15,11 +15,11 @@ Array.from(new Set(getAllDirectors(movies)))
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 function howManyMovies(array){
-   const container = array.filter( item =>
+   
+return (array.filter( item =>
     item.director === "Steven Spielberg" &&
     item.genre.includes('Drama')
-    )
-    return container.length
+    )).length
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
@@ -27,13 +27,9 @@ function ratesAverage(array){
     if(!array.length){
         return 0
     }
-const allRatings = array.map(movie => { 
-    const container = movie.rate
-    
-    return container})
+    const allRatings = array.map((movie) => movie.rate);
 
-
-let total = allRatings.reduce(function(sum, item){
+    let total = allRatings.reduce(function(sum, item){
         return sum + item
     })
 
@@ -65,14 +61,7 @@ function dramaMoviesRate(array){
 function orderByYear(array){
    const orderedArray = array.sort(function (a, b) {
         return a.year - b.year}); 
-
-   /* for(let i = 0; i <orderedArray.length; i++){
-        if (orderedArray[i].year === orderedArray[i++].year && orderedArray[i].title < orderedArray[i++].title) {
-            
-
-        }
-    }*/
-
+    
     return orderedArray
 
 }
@@ -88,6 +77,13 @@ function orderAlphabetically(array){
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(array){
+
+
+}
 
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+function bestYearAvg(array){
+
+}
