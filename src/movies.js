@@ -1,13 +1,5 @@
 // Iteration 1: All directors? - Get the array of all directors.
 
-/*function getAllDirectors(array) {
-  let directorArray = []
-    for (let i = 0; i < array.length; i++){
-        directorArray.push(array[i].director)
-    }
-    return directorArray
-}
-console.log(getAllDirectors(movies))*/
 function getAllDirectors(array){
 const allDirectors = array.map(movie => { 
     const container = movie.director
@@ -40,18 +32,62 @@ const allRatings = array.map(movie => {
     
     return container})
 
+
 let total = allRatings.reduce(function(sum, item){
         return sum + item
     })
+
     return Math.round((total/array.length)*100)/100
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(array){
+    const drama = array.filter( item =>
+    item.genre.includes('Drama')
+    )
+    if (!drama.length){
+        return 0
+    }
+
+    const allRatings = drama.map(movie => { 
+    const container = movie.rate
+    
+    return container})
+
+    let total = allRatings.reduce(function(sum, item){
+        return sum + item
+    })
+    return Math.round((total/drama.length)*100)/100
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
+function orderByYear(array){
+   const orderedArray = array.sort(function (a, b) {
+        return a.year - b.year}); 
+
+   /* for(let i = 0; i <orderedArray.length; i++){
+        if (orderedArray[i].year === orderedArray[i++].year && orderedArray[i].title < orderedArray[i++].title) {
+            
+
+        }
+    }*/
+
+    return orderedArray
+
+}
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(array){
+    const allTitles = array.map(movie => { 
+        const container = movie.title
+        return container})
+
+    const sortedTitles =  allTitles.sort()
+    let top20 = sortedTitles.slice(0, 20)
+    return top20
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
