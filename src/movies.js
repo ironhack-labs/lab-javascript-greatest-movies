@@ -13,7 +13,7 @@ function getAllDirectors(movies) {
 
 let d = [
   {
-    director: 'James McTeigue',
+    director: 'Peter Weir',
     genre: ['Action', 'Drama', 'Thriller']
   }
 ];
@@ -3006,7 +3006,17 @@ function howManyMovies(param) {
 
   function moviesInTheArray(directorToCheck) {
     directorToCheck.map((director) => {
-      return console.log(director.director);
+      directorNombre = director.director;
+      movies.filter( movie => {
+        if (movie.director!==directorNombre) {
+          result = 0
+        } else {
+          console.log("se encontro director");
+        }
+        console.log(result);
+      } );
+
+      return ;
     });
   }
 
