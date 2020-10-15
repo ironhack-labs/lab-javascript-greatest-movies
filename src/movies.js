@@ -1,11 +1,3 @@
-// const movies = [
-//   { title: "aab" },
-//   { title: "aaa" },
-//   { title: "abc" },
-//   { title: "acb" },
-//   { title: "abb" },
-// ];
-
 // Iteration 1: All directors? - Get the array of all directors.
 
 function getAllDirectors(moviesArr) {
@@ -64,26 +56,24 @@ function dramaMoviesRate(arr) {
   return Number((dramaRatesTotal / dramaRatesArr.length).toFixed(2));
 }
 
-dramaMoviesRate(movies);
-
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
-//  Worked on by Alex
-
-// const orderByYear = (moviesArray) => {
-//   let moviesCopy = moviesArray;
-
-//   moviesCopy.sort((a, b) => {
-//     if (a["year"] > b["year"]) return 1;
-//     if (a["year"] < b["year"]) return -1;
-//     if (a["title"] > b["title"]) return 1;
-//     if (a["title"] < b["title"]) return -1;
-//   });
-
-//   return moviesCopy;
-// };
-
-// orderByYear(movies);
+function orderByYear(arr) {
+  if (arr.length === 1) {
+    return arr;
+  }
+  let moviesCopy = arr.map((movie) => {
+    return movie;
+  });
+  moviesCopy.sort((a, b) => {
+    let yearCompare = a.year - b.year;
+    if (yearCompare === 0) {
+      yearCompare = a.title.localeCompare(b.title);
+    }
+    return yearCompare;
+  });
+  return moviesCopy;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
