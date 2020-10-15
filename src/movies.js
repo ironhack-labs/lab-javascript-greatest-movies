@@ -2981,32 +2981,32 @@ function howManyMovies(param) {
       "rate": 8
     }
   ]
+  function esStenven(movie) {
+    return movie.director === "Francis Ford Coppola"
+  }
 
-  if (param === undefined) {
+  function itsDrama(moviesByAuthor) {
+    let dramaticMovies = [];
+    for (i = 0; i <= moviesByAuthor.genre.length; i++) {
+      if (moviesByAuthor.genre[i]=== "Drama") {
+        param = 1;
+        result = 1;
+        dramaticMovies = moviesByAuthor
+      }
+    }
+    return dramaticMovies
+  };
+
+
+  if (param === undefined) { //si no hay parametro
     result = 0
     param = []
   } else if (param.length === 0) {//si es un array vacio
     result = 0
-  } else {
-      function esStenven(movie) {
-        return movie.director === "Francis Ford Coppola"
-      }
-      let moviesByAuthor = movies.filter(esStenven);
+  }  else {
+    let moviesByAuthor = movies.filter(esStenven);
 
-      function itsDrama(moviesByAuthor) {
-        let dramaticMovies = [];
-        for (i = 0; i <= moviesByAuthor.genre.length; i++) {
-          if (moviesByAuthor.genre[i]=== "Drama") {
-            param = 1;
-            result = 1;
-            dramaticMovies = moviesByAuthor
-          }
-        }
-        return dramaticMovies
-      };
-
-      let onlyDrama = moviesByAuthor.filter(itsDrama);
-
+    let onlyDrama = moviesByAuthor.filter(itsDrama);
 
 
   }
