@@ -2981,11 +2981,13 @@ function howManyMovies(param) {
       "rate": 8
     }
   ]
-  param = []
 
-  if (param.length === 0) {//si es un array vacio
+  if (param === undefined) {
     result = 0
-  } else{
+    param = []
+  } else if (param.length === 0) {//si es un array vacio
+    result = 0
+  } else {
       function esStenven(movie) {
         return movie.director === "Francis Ford Coppola"
       }
