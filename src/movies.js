@@ -66,8 +66,8 @@ function compare(a,b) {
 }
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
-    let moviesTitle = movies.map(function (title) {
-        return title.title;
+    let moviesTitle = movies.map(function (movie) {
+        return movie.title;
       });
     let moviesTitleSort = moviesTitle.sort();
     return moviesTitleSort.slice(0, 20);
