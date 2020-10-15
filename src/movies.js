@@ -13,7 +13,6 @@ function getAllDirectors(movies) {
 
 
 function howManyMovies(param) {
-  param = ""
   let movies = [{
       "title": "The Shawshank Redemption",
       "year": 1994,
@@ -2982,32 +2981,37 @@ function howManyMovies(param) {
       "rate": 8
     }
   ]
-
-
-  function esStenven(movie) {
-    return movie.director === "Francis Ford Coppola"
-  }
-  let moviesByAuthor = movies.filter(esStenven);
-
-  function itsDrama(moviesByAuthor) {
-    // console.log(moviesByAuthor.genre);
-    for (i = 0; i <= moviesByAuthor.genre.length; i++) {
-      console.log();
-      if (moviesByAuthor.genre[i]=== "Drama") {
-        return console.log(moviesByAuthor);
-      }
-    }
-
-
-  };
-
-  let onlyDrama = moviesByAuthor.filter(itsDrama);
-  // result = onlyDrama;
-
+  param = []
 
   if (param.length === 0) {
     result = 0
+  } else{
+
+
+
+      function esStenven(movie) {
+        return movie.director === "Francis Ford Coppola"
+      }
+      let moviesByAuthor = movies.filter(esStenven);
+
+      function itsDrama(moviesByAuthor) {
+        let dramaticMovies = [];
+        for (i = 0; i <= moviesByAuthor.genre.length; i++) {
+          if (moviesByAuthor.genre[i]=== "Drama") {
+            param = 1;
+            result = 1;
+            dramaticMovies = moviesByAuthor
+          }
+        }
+        return dramaticMovies
+      };
+
+      let onlyDrama = moviesByAuthor.filter(itsDrama);
+
+
+
   }
+  console.log(result);
   return result
 };
 
