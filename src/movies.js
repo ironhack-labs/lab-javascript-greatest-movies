@@ -11,7 +11,12 @@ function getAllDirectors(movies) {
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
-
+let d = [
+  {
+    director: 'James McTeigue',
+    genre: ['Action', 'Drama', 'Thriller']
+  }
+];
 function howManyMovies(param) {
   let movies = [{
       "title": "The Shawshank Redemption",
@@ -2981,6 +2986,7 @@ function howManyMovies(param) {
       "rate": 8
     }
   ]
+
   function esStenven(movie) {
     return movie.director === "Francis Ford Coppola"
   }
@@ -2988,7 +2994,7 @@ function howManyMovies(param) {
   function itsDrama(moviesByAuthor) {
     let dramaticMovies = [];
     for (i = 0; i <= moviesByAuthor.genre.length; i++) {
-      if (moviesByAuthor.genre[i]=== "Drama") {
+      if (moviesByAuthor.genre[i] === "Drama") {
         param = 1;
         result = 1;
         dramaticMovies = moviesByAuthor
@@ -2996,21 +3002,31 @@ function howManyMovies(param) {
     }
     return dramaticMovies
   };
+ // Return 0 if he did not direct none of the movies in the array
+
+  function moviesInTheArray(directorToCheck) {
+    directorToCheck.map((director) => {
+      return console.log(director.director);
+    });
+  }
+
+  moviesInTheArray(d);
+
 
 
   if (param === undefined) { //si no hay parametro
     result = 0
     param = []
-  } else if (param.length === 0) {//si es un array vacio
+  } else if (param.length === 0) { //si es un array vacio
     result = 0
-  }  else {
+  } else {
     let moviesByAuthor = movies.filter(esStenven);
 
     let onlyDrama = moviesByAuthor.filter(itsDrama);
 
 
   }
-  console.log(result);
+  // console.log(result);
   return result
 };
 
