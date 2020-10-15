@@ -12,7 +12,19 @@ function getAllDirectors(movies) {
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 function howManyMovies() {
-  let movies = [{
+  let movies = [
+    {
+      "title": "Saving Private Ryan",
+      "year": 1998,
+      "director": "Steven Spielberg",
+      "duration": "2h 49min",
+      "genre": [
+        "Drama",
+        "War"
+      ],
+      "rate": 8.6
+    },
+    {
       "title": "The Shawshank Redemption",
       "year": 1994,
       "director": "Frank Darabont",
