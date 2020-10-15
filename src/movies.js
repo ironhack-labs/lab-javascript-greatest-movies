@@ -16,13 +16,13 @@ function howManyMovies(arr) {
 
 function ratesAverage(arr) {
   if (arr.length != 0) {
-  let average = arr.map(movie => {
-    if (movie.rate) {
-      return movie.rate;
+  let average = arr.reduce((acc, cv) => {
+    if (cv.rate) {
+      return acc + cv.rate;
     } else {
-      return 0
+      return acc + 0;
     }
-  }).reduce((acc, cv) => acc + cv) / arr.length;
+  }, 0) / arr.length;
 
   return parseFloat(average.toFixed(2));
   } else {
