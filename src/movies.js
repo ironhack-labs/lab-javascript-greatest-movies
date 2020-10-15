@@ -11,8 +11,10 @@ function getAllDirectors(movies) {
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
-function howManyMovies() {
-  let movies = [
+
+function howManyMovies(m) {
+
+  const movies = [
     {
       "title": "Saving Private Ryan",
       "year": 1998,
@@ -77,6 +79,11 @@ function howManyMovies() {
 
   let result = movies.filter(esStenven);
   console.log(result);
+
+  if (m.length === 0){
+    result = 0
+
+  }
   return result
 };
 howManyMovies();
