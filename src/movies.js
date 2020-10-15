@@ -27,13 +27,17 @@ function ratesAverage(array){
     if(!array.length){
         return 0
     }
+
     const allRatings = array.map((movie) => movie.rate);
 
     let total = allRatings.reduce(function(sum, item){
-        return sum + item
+        if(typeof item !== 'number'){
+            return sum
+        }else {
+        return sum + item}
     })
-
-    return Math.round((total/array.length)*100)/100
+    
+       return Math.round((total/array.length)*100)/100
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -41,38 +45,32 @@ function dramaMoviesRate(array){
     const drama = array.filter( item =>
     item.genre.includes('Drama')
     )
-    if (!drama.length){
-        return 0
+    return ratesAverage(drama)
+}
+function byTitle(array) { 
+    return array.sort(function(a, b){
+        var x = a.title.toLowerCase()
+        var y = b.title.toLowerCase()
+        if (x < y) {return -1}
+        if (x > y) {return 1}
+        return 0;
+        })
     }
 
-    const allRatings = drama.map(movie => { 
-    const container = movie.rate
-    
-    return container})
-
-    let total = allRatings.reduce(function(sum, item){
-        return sum + item
-    })
-    return Math.round((total/drama.length)*100)/100
-}
-
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-
-function orderByYear(array){
-   const orderedArray = array.sort(function (a, b) {
-        return a.year - b.year}); 
+function orderByYear(array){ 
+    //When I comment the line below out, the alphabetical test fails and the year ascending test fails, now it's the other way around ¯\_(ツ)_/¯
     
-    return orderedArray
+    //array = byTitle(array)
+    
+    return Array.from(array.sort(function (a, b) {
+      return a.year- b.year}))
+    }
 
-}
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(array){
-    const allTitles = array.map(movie => { 
-        const container = movie.title
-        return container})
-
-    const sortedTitles =  allTitles.sort()
-    let top20 = sortedTitles.slice(0, 20)
+    const allTitles = array.map((movie) => movie.title);
+    let top20 = allTitles.sort().slice(0, 20)
     return top20
 }
 
