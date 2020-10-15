@@ -1,7 +1,9 @@
 // Iteration 1: All directors? - Get the array of all directors.
 
+
+
 function getAllDirectors(movies) {
-  let directors = movies.map(movie  => movie.director);
+  let directors = movies.map(movie => movie.director);
 
   return directors
 }
@@ -9,6 +11,63 @@ function getAllDirectors(movies) {
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
+function howManyMovies() {
+  let movies = [{
+      "title": "The Shawshank Redemption",
+      "year": 1994,
+      "director": "Frank Darabont",
+      "duration": "2h 22min",
+      "genre": [
+        "Crime",
+        "Drama"
+      ],
+      "rate": 9.3
+    },
+    {
+      "title": "The Godfather",
+      "year": 1972,
+      "director": "Francis Ford Coppola",
+      "duration": "2h 55min",
+      "genre": [
+        "Crime",
+        "Drama"
+      ],
+      "rate": 9.2
+    },
+    {
+      "title": "The Lord of the Rings: The Two Towers",
+      "year": 2002,
+      "director": "Peter Jackson",
+      "duration": "2h 59min",
+      "genre": [
+        "Adventure",
+        "Drama",
+        "Fantasy"
+      ],
+      "rate": 8.7
+    },
+    {
+      "title": "One Flew Over the Cuckoo\"s Nest",
+      "year": 1975,
+      "director": "Milos Forman",
+      "duration": "2h 13min",
+      "genre": [
+        "Drama"
+      ],
+      "rate": 8.7
+    },
+
+  ];
+
+  function esStenven(movie) {
+    return movie.director === "Francis Ford Coppola"
+  }
+
+  let result = movies.filter(esStenven);
+  console.log(result);
+  return result
+};
+howManyMovies();
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
