@@ -90,10 +90,51 @@ function orderAlphabetically(movies){
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(arr) {
+    const newTime = arr.map(function(movie) {
+    const newMovies = Object.assign({}, movie);
+    newMovies.duration = hoursToMinutes(movie.duration);
+    return newMovies;
+  });
+    function hoursToMinutes(time) {
+        if (!time.includes("min")){
+          let hoursAndMinutes = time.split (" ");
+          return parseInt(hoursAndMinutes[0])*60;
+        }
+        if (!time.includes("h")){
+          return parseInt(time);
+        }
+          let hoursAndMinutes = time.split (" ");
+          return parseInt(hoursAndMinutes[0])*60+parseInt(hoursAndMinutes[1]);
+    }
+  return newTime;
+  }
 
 
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
-
+function bestYearAvg(movies) {
+    if (!movies.length) {
+       return null
+      }
+      let rateDividedByYear =  movies.reduce(function(yearlyrate,movie){
+         if(movie.year in yearlyrate){
+           yearlyrate[movie.year].push({rate : movie.rate})
+         } else {
+           yearlyrate[movie.year]= [{rate : movie.rate}]
+         }
+         return yearlyrate
+      },{})
+      let bestYear = 0
+      let bestAvg = 0
+      for (let year in rateDividedByYear){
+        let avg = ratesAverage(rateDividedByYear[year])
+        if(avg > bestAvg){
+          bestYear = year
+          bestAvg = avg
+        }
+      }
+      return `The best year was ${bestYear} with an average rate of ${bestAvg}`
+    }
 
