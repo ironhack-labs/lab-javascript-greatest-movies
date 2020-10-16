@@ -31,7 +31,7 @@ function ratesAverage(movies) {
     if(movies.length == 0) {
       return 0;
     }
-    let newArr = movies.reduce(function(acc, currIndex) {
+    let newArr = movies.reduce(function(acc, currIndex) { 
       var rate = 0
       if(currIndex.rate > 0){
         rate = currIndex.rate;
@@ -75,8 +75,8 @@ function compare(a,b) {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(movies) {
-    let moviesTitle = movies.map(function (title) {
-        return title.title;
+    let moviesTitle = movies.map(function (movie) {
+        return movie.title;
       });
     let moviesTitleSort = moviesTitle.sort();
     
@@ -86,8 +86,8 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
-function turnHoursToMinutes(arr) {
-  const newTime = arr.map(function(movie) {
+function turnHoursToMinutes(movies) {
+  const newTime = movies.map(function(movie) {
    
   const newMovies = Object.assign({}, movie);
   newMovies.duration = hoursToMinutes(movie.duration);
@@ -96,7 +96,7 @@ function turnHoursToMinutes(arr) {
   function hoursToMinutes(time) {
       if (!time.includes("min")){
         let hoursAndMinutes = time.split (" ");
-        return parseInt(hoursAndMinutes[0])*60;  
+        return parseInt(hoursAndMinutes[0])*60;  //120 + 22 =142
       }
       if (!time.includes("h")){
         return parseInt(time);
@@ -106,8 +106,6 @@ function turnHoursToMinutes(arr) {
   }
 return newTime;
 }
-
-
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 function bestYearAvg(movies) {
   if (!movies.length) {
