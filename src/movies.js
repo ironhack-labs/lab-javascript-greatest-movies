@@ -1,16 +1,13 @@
 // Iteration 1: All directors? - Get the array of all directors.
-
 function getAllDirectors(array) {
     return array.map((movie) => movie.director);
-    /*const allDirectors = array.map(movie => { 
-        const container = movie.director
-        return container})
-        return allDirectors*/
 }
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
-const noDoubleDirectors = Array.from(new Set(getAllDirectors(movies)))
+function noDoubleDirectors(array) {
+    return Array.from(new Set(getAllDirectors(array)))
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
@@ -21,6 +18,7 @@ function howManyMovies(array) {
         item.genre.includes('Drama')
     )).length
 }
+
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(array) {
@@ -51,27 +49,24 @@ function dramaMoviesRate(array) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
-function byTitle(array) {
-    return array.sort(function (a, b) {
-        if (a.title.toLowerCase() < b.title.toLowerCase()) {
-            return -1
-        }
-        if (a.title.toLowerCase() > b.title.toLowerCase()) {
-            return 1
-        }
-        return 0;
-    })
+function compare(a, b) {
+    if (a.year < b.year) return -1;
+    if (a.year > b.year) return 1;
+    if (a.year === b.year) {
+        if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
+        if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+    }
 }
 
 function orderByYear(array) {
-    //When I comment the line below out, the alphabetical test is good and the year ascending test fails, now it's the other way around ¯\_(ツ)_/¯
 
-    //array = byTitle(array)
-
-    return Array.from(array.sort(function (a, b) {
-        return a.year - b.year
+    return Array.from(array.sort((a, b) => {
+        return compare(a, b);
     }))
+
 }
+
+console.log(orderByYear(movies))
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(array) {
@@ -82,12 +77,13 @@ function orderAlphabetically(array) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(array) {
-
+    return
 
 }
 
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 function bestYearAvg(array) {
+    return
 
 }
