@@ -2995,7 +2995,7 @@ function howManyMovies(param) {
     let dramaticMovies = [];
     for (i = 0; i <= moviesByAuthor.genre.length; i++) {
       if (moviesByAuthor.genre[i] === "Drama") {
-        param = 1;
+        // param = 1;
         result = 1;
         dramaticMovies = moviesByAuthor
       }
@@ -3004,23 +3004,27 @@ function howManyMovies(param) {
   };
  // Return 0 if he did not direct none of the movies in the array
 
+  //AQUI
   function moviesInTheArray(directorToCheck) {
-    directorToCheck.map((director) => {
-      directorNombre = director.director;
-      movies.filter( movie => {
-        if (movie.director!==directorNombre) {
-          result = 0
-        } else {
-          console.log("se encontro director");
-        }
+    if ( directorToCheck.constructor === Array) {
+      directorToCheck.map((director) => {
+        directorNombre = director.director;
+        movies.filter( movie => {
+          if (movie.director!==directorNombre) {
+            result = 0
+          } else {
+            // result = "se encontro director";
+          }
+          return result
+        } );
         console.log(result);
-      } );
+        return result;
+      });
+    }
 
-      return ;
-    });
+
   }
 
-  moviesInTheArray(d);
 
 
 
@@ -3033,14 +3037,15 @@ function howManyMovies(param) {
     let moviesByAuthor = movies.filter(esStenven);
 
     let onlyDrama = moviesByAuthor.filter(itsDrama);
-
-
+    // console.log(param) ;
+    // AQUI
+    let m = moviesInTheArray(param);
+    // console.log(param);
   }
-  // console.log(result);
   return result
 };
 
-howManyMovies();
+howManyMovies(d);
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
