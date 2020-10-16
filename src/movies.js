@@ -66,7 +66,7 @@ function orderByYear(array) {
 
 }
 
-console.log(orderByYear(movies))
+//console.log(orderByYear(movies))
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(array) {
@@ -77,13 +77,53 @@ function orderAlphabetically(array) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(array) {
-    return
+    const newArray = array
 
+    for (let i = 0; i < array.length; i++) {
+        if (!array[i].duration.length) {
+            continue
+        }
+        if (array[i].duration.includes('h') && array[i].duration.includes('min')) {
+            newArray[i].duration = (parseInt(array[i].duration[0]) * 60) + parseInt(array[i].duration.slice(3, 5))
+
+        } else if (array[i].duration.includes('h')) {
+            newArray[i].duration = parseInt(array[i].duration[0]) * 60
+        } else if (array[i].duration.includes('min')) {
+            newArray[i].duration = parseInt(array[i].duration)
+        } else {
+            continue
+        }
+
+    }
+    return newArray
 }
+
 
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
-function bestYearAvg(array) {
-    return
+// function yearsGrouped(array) {
+//     return array.reduce(function (r, a) {
+//         r[a.year] = r[a.year] || [];
+//         r[a.year].push(a);
+//         return r;
+//     }, Object.create(null));
+// }
 
-}
+// function bestYearAvg(array) {
+//     if (!array.length) {
+//         return null
+//     }
+//     array = yearsGrouped(array)
+
+//     for (let i = 0; i < array.length; i++) {
+//         console.log(array[i])
+//         // for (let j = 0; j < array[i].length; j++) {
+
+//         //     console.log(array[i][j].rate)
+
+
+//         // }
+//     }
+
+// }
+// bestYearAvg(test)
