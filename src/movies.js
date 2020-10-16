@@ -19,12 +19,19 @@ return listOfSteveDramaMovies.length;
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 const ratesAverage =(movies) => {
-
-    var average = movies.reduce(function (avg, item) {
-        return avg + ((item.rate) / movies.length);
-     }, 0);
-     return parseFloat(parseFloat(average).toFixed(2));
+    if (!Array.isArray(movies) || !movies.length) {
+        return 0;
     }
+    var rates = movies.reduce(function (avg, movie) {
+      if(movie.hasOwnProperty('rate')){
+         avg += (movie.rate);
+      }
+      return avg;
+     }, 0);
+
+     var average = rates / movies.length;
+     return parseFloat(parseFloat(average).toFixed(2));
+}
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 const dramaMoviesRate =(movies) => {
@@ -44,9 +51,22 @@ return parseFloat(parseFloat(average).toFixed(2));
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)  
+const orderByYear =(movies) => {
+    if (!Array.isArray(movies) || !movies.length) {
+        return 0;
+    }
+    let ascendingOrder = movies.year
 
+    movies.year.sort((a, b) => a - b);
+}
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-
+function orderAlphabetically(movies) {
+    let moviesTitle = movies.map(function (title) {
+        return title.title;
+      });
+    let moviesTitleSort = moviesTitle.sort();
+    return moviesTitleSort.slice(0, 20);
+}
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
