@@ -1,48 +1,42 @@
+
 // Iteration 1: All directors? - Get the array of all directors.
 
-/* const allMovieDirections = movies.map(getAllDirectors => items.director)
-console.log(getAllDirectors);
- */
 
 
-
- /*    function getAllDirectors(items) {
-        let allDirectors = movies.map(items => items.director);
-        return getAllDirectors;
-    } 
- */
-
-    function getAllDirectors(movies) {
-        const allDirectors = movies.map(item => item.director)
-        return allDirectors
-    }
+    const getAllDirectors = (moviesList) => {
+        const movieDirectorsList = moviesList.map((movie) => movie.director);
+        // clean up the directors list of duplicates
+        const removedDuplicates = movieDirectorsList.reduce((acc, currentValue) => {
+          if (acc.includes(currentValue)) {
+            return acc;
+          } else {
+            return [...acc, currentValue];
+          }
+        }, []);
+        return removedDuplicates;
+    };
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
-    /* const howManyMovies = (movies) => {
-        let filmographySpielberg = movies.filter(
-            films => films.director.includes('Steven Spielberg'));
-        let dramaSpielberg = filmographySpielberg.filter(
-            films => films.genre.includes('Drama')
-        )
-        return dramaSpielberg.length
-    } */
+
+
+    const howManyMovies = (moviesList) => {
+      return moviesList.filter((movie) => {
+        return (
+        movie.director === "Steven Spielberg" && movie.genre.includes("Drama")
+        );
+      }).length;
+    };
   
 
-
-    function howManyMovies(movies) {
-        return movies.filter(i => i.genre.includes("Drama") && i.director === "Steven Spielberg").length;
-    } 
-
-    howManyMovies(movies)
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
     function ratesAverage(allRates) {
-        const sum = allRate.reduce((totalRate, singleRate) => totalRate + singleRate)
-        return (sum / allRate.length).toFixed(2)
+        const sum = allRates.reduce((totalRate, singleRate) => totalRate + singleRate)
+        return (sum / allRates.length).toFixed(2)
         console.log(sum)
     }
     ratesAverage(allRates)
@@ -72,26 +66,45 @@ function orderByYear(movies) {
    
    console.log(orderByYear(movies))
 
+
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 const orderAlphabetically = (movies) => {
-    let moviesList = [...movies];
-    let sortedTitleList = moviesList.sort((a, b) => {
-      if (a.title > b.title) {
-        return 1
-      } else if (b.title > a.title) {
-        return -1
-      } else {
-        return 0
-      }
-    let moviesTitleList = movies.map(
-      items => items.title)
-    })
-    console.log(moviesTitleList)
-  }
-  
-  orderAlphabetically(movies)
+  let moviesList = [...movies];
+  let sortedTitleList = moviesList.sort((a, b) => {
+    if (a.title > b.title) {
+      return 1
+    } else if (b.title > a.title) {
+      return -1
+    } else {
+      return 0
+    }
+  let moviesTitleList = movies.map(
+    items => items.title)
+  })
+  console.log(moviesTitleList)
+}
+
+orderAlphabetically(movies)
+
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+// const sum = allRates.reduce((totalRate, singleRate) => totalRate + singleRate)
+//   return sum 
+
+  /* const average = allRates.reduce((total, rate, index, array) => {
+      total += rate;
+      if( index === allRates.length-1) { 
+        return total/allRates.length;
+      } else { 
+        return total;
+      }
+  };
+  ) */
+
+

@@ -1,0 +1,50 @@
+
+Iteration 1 - Iterations done with Issa & Irene
+    function getAllDirectors(items) {
+       let allDirectors = movies.map(items => items.director);
+       return getAllDirectors;
+   } 
+
+
+    function getAllDirectors(movies) {
+       const allDirectors = movies.map(item => item.director)
+       return allDirectors
+   } 
+
+    const allMovieDirections = movies.map(getAllDirectors => items.director)
+   console.log(getAllDirectors);
+   
+
+
+   Iteration 2 - Iterations done individually
+
+   /* const howManyMovies = (movies) => {
+    let filmographySpielberg = movies.filter(
+        films => films.director.includes('Steven Spielberg'));
+    let dramaSpielberg = filmographySpielberg.filter(
+        films => films.genre.includes('Drama')
+    )
+    return dramaSpielberg.length
+} */
+
+/* 
+function howManyMovies(movies) {
+    return movies.filter(i => i.genre.includes("Drama") && i.director === "Steven Spielberg").length;
+} 
+
+howManyMovies(movies) */
+   
+Iteration 6 - Done individually
+
+const orderAlphabetically = (movies) => {
+    let moviesTitleList = movies.map(
+      films => films.title)
+    return moviesTitleList
+  
+    let alphaOrder = moviesTitleList.sort((a, b) => {
+      return a - b;
+   });
+    console.log(alphaOrder)
+  }
+  
+  orderAlphabetically(movies);
