@@ -101,29 +101,40 @@ function turnHoursToMinutes(array) {
 
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
-// function yearsGrouped(array) {
-//     return array.reduce(function (r, a) {
-//         r[a.year] = r[a.year] || [];
-//         r[a.year].push(a);
-//         return r;
-//     }, Object.create(null));
-// }
+function yearsGrouped(array) {
+    return array.reduce(function (r, a) {
+        r[a.year] = r[a.year] || [];
+        r[a.year].push(a);
+        return r;
+    }, Object.create(null));
+}
 
-// function bestYearAvg(array) {
-//     if (!array.length) {
-//         return null
-//     }
-//     array = yearsGrouped(array)
-
-//     for (let i = 0; i < array.length; i++) {
-//         console.log(array[i])
-//         // for (let j = 0; j < array[i].length; j++) {
-
-//         //     console.log(array[i][j].rate)
+function yearsArr(array) {
+    let groupedObj = yearsGrouped(array)
+    let groupArr = Object.values(groupedObj)
+    return groupArr
+}
 
 
-//         // }
-//     }
+function bestYearAvg(array) {
+    if (!array.length) {
+        return null
+    }
+    array = yearsArr(array)
 
-// }
-// bestYearAvg(test)
+    for (let i = 0; i < array.length; i++) {
+        let arr = array[i]
+        let avg = arr.reduce((a, b) => a + b.rate, 0) / arr.length
+        for (let j = 0; j < array[i].length; j++) {
+            array[i][j].average = avg
+        }
+    }
+    array = array.sort(function (a, b) {
+        return a[0].year - b[0].year
+    })
+    array = array.sort(function (a, b) {
+        return b[0].average - a[0].average
+    })
+
+    return `The best year was ${array[0][0].year} with an average rate of ${array[0][0].average}`
+}
