@@ -26,6 +26,21 @@ const ratesAverage = (movies) => {
     
   }
 // Iteration 4: Drama movies - Get the average of Drama Movies
+const dramaMoviesRate = (movies) => {
+    const dramaMovies = movies.filter((elem) => {
+      return elem.genre.includes(`Drama`);
+    });
+    if (dramaMovies.length === 0){
+        return 0;
+    }
+    const dramaRate = dramaMovies.map((elem) => {
+      return elem.rate;
+    });
+    const dramaAvgRating = dramaRate.reduce((accum, currVal) => {
+      return accum + currVal;
+    }, 0); return (dramaAvgRating / dramaMovies.length).toFixed(2)*1;
+  }
+  
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
