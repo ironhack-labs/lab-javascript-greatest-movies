@@ -13,12 +13,15 @@ const howManyMovies = (movies) => {
   }
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 const ratesAverage = (movies) => {
+    if (movies.length === 0){
+        return 0;
+    }
     const getRates = movies.map((elem) => {
       return elem.rate;
     })
     const avgRate = getRates.reduce((accum, currValue) => {
       return accum + currValue;
-    }, 0);  return (avgRate / getRates.length).toFixed(2);
+    }, 0);  return (avgRate / getRates.length).toFixed(2)*1;
     
     
   }
