@@ -4,21 +4,17 @@ function getAllDirectors(array) {
 }
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
-
 function noDoubleDirectors(array) {
     return Array.from(new Set(getAllDirectors(array)))
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-
 function howManyMovies(array) {
-
     return (array.filter(item =>
         item.director === "Steven Spielberg" &&
         item.genre.includes('Drama')
     )).length
 }
-
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(array) {
@@ -35,7 +31,6 @@ function ratesAverage(array) {
             return sum + item
         }
     })
-
     return Math.round((total / array.length) * 100) / 100
 }
 
@@ -48,7 +43,6 @@ function dramaMoviesRate(array) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-
 function compare(a, b) {
     if (a.year < b.year) return -1;
     if (a.year > b.year) return 1;
@@ -59,14 +53,10 @@ function compare(a, b) {
 }
 
 function orderByYear(array) {
-
     return Array.from(array.sort((a, b) => {
         return compare(a, b);
     }))
-
 }
-
-//console.log(orderByYear(movies))
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(array) {
@@ -93,15 +83,12 @@ function turnHoursToMinutes(array) {
         } else {
             continue
         }
-
     }
     return newArray
 }
 
-
-
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
-function yearsGrouped(array) {
+function groupYearsObject(array) {
     return array.reduce(function (r, a) {
         r[a.year] = r[a.year] || [];
         r[a.year].push(a);
@@ -109,19 +96,17 @@ function yearsGrouped(array) {
     }, Object.create(null));
 }
 
-function yearsArr(array) {
-    let groupedObj = yearsGrouped(array)
+function groupYearsArray(array) {
+    let groupedObj = groupYearsObject(array)
     let groupArr = Object.values(groupedObj)
     return groupArr
 }
-
 
 function bestYearAvg(array) {
     if (!array.length) {
         return null
     }
-    array = yearsArr(array)
-
+    array = groupYearsArray(array)
     for (let i = 0; i < array.length; i++) {
         let arr = array[i]
         let avg = arr.reduce((a, b) => a + b.rate, 0) / arr.length
@@ -135,6 +120,5 @@ function bestYearAvg(array) {
     array = array.sort(function (a, b) {
         return b[0].average - a[0].average
     })
-
     return `The best year was ${array[0][0].year} with an average rate of ${array[0][0].average}`
 }
