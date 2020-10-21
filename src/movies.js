@@ -215,8 +215,8 @@ function orderByYear(arr) {
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-
-function orderAlphabetically(array) {
+function orderAlphabetically(array){
+  return [...array].sort((a, b) => a.title < b.title ? -1 : 1).splice(0,20).map(e => e.title)
   
 }
 
