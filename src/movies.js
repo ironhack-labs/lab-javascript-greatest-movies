@@ -13,7 +13,7 @@ const movies2 = [
 		title: "The Godfather",
 		year: 1972,
 		director: "Francis Ford Coppola",
-		duration: "2h 55min",
+		duration: "2h 55min", 
 		genre: ["Crime", "Drama"],
 		rate: 9.2,
 	},
@@ -51,7 +51,7 @@ const movies2 = [
 	},
 	{
 		title: "Pulp Fiction",
-		year: 1994,
+		year: 1993,
 		director: "Quentin Tarantino",
 		duration: "2h 34min",
 		genre: ["Crime", "Drama"],
@@ -101,12 +101,11 @@ const movies2 = [
 		title: "Star Wars: Episode V - The Empire Strikes Back",
 		year: 1980,
 		director: "Irvin Kershner",
-		duration: "2h 4min",
+		duration: "2h", //"2h 2min"
 		genre: ["Action", "Adventure", "Fantasy", "Sci-Fi"],
 		rate: 8.8,
 	},
 ];
-
 
 // Iteration 1: All directors? - Get the array of all directors.
 // ### Iteration 1: All directors
@@ -189,7 +188,7 @@ function orderByYear(arr) {
 //cl(orderByYear(movies2))
 
 ///// 1) order alphabetically ignoring "THE" at begin of title ****
-// **startsWith works in repl not VSC or JAsmine
+// **startsWith works in repl ..but not VSC or JAsmine. app how to use all JS versions???
 // function orderByYear1(array) {
 //   let titSort = array.sort((a, b) => {
 //   for(el in array)
@@ -220,8 +219,40 @@ function orderAlphabetically(array){
   
 }
 
-cl(orderAlphabetically(movies2));
+//cl(orderAlphabetically(movies2));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+//// WORKS in console and repl.it but not passing any JASMINE tests
+function turnHoursToMinutes(array){
+  if(Array.isArray(array)=== false) return "invalid entry"
+  if(array.length === 0) return 0
+  newArray = [...array]
+  for(el of newArray){
+    if(!el.duration) return "invalid array"  
+    let durS = el.duration.split(" ")
+    if(durS[0].includes("h") && durS[1]){
+      let durSh = durS.join(" ").split("h")
+      let hour2Min = durSh[0] * 60 + parseInt(durSh[1]) + "min"
+      el.duration = hour2Min
+    } else if(durS[0].includes("h")){
+      let durSm = durS.join("").split("h").join("").split(/\s/).join("")
+      el.duration = durSm * 60 + "min" 
+    } else {
+      el.duration
+    }
+  }
+  return newArray
+}
+
+
+
+//console.log(turnHoursToMinutes(movies2))
+
+// cl(turnHoursToMinutes())
+// cl(turnHoursToMinutes(["duration"]))
+// cl(turnHoursToMinutes(["hey"]))
+// cl(turnHoursToMinutes(5))
+
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average

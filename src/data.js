@@ -2970,3 +2970,32 @@ let movies = [
 
 
 
+ 
+//// WORKS in console and repl.it but not passing any JASMINE tests
+
+  
+  function turnHoursToMinutes(array){
+    if(Array.isArray(array)=== false) return "invalid entry"
+    if(array.length === 0) return 0
+    newArray = [...array]
+    for(el of newArray){
+      if(!el.duration) return "invalid array"  
+      let durS = el.duration.split(" ")
+      if(durS[0].includes("h") && durS[1]){
+        let durSh = durS.join(" ").split("h")
+        let hour2Min = durSh[0] * 60 + parseInt(durSh[1]) + "min"
+        el.duration = hour2Min
+      } else if(durS[0].includes("h")){
+        let durSm = durS.join("").split("h").join("").split(/\s/).join("")
+        el.duration = durSm * 60 + "min" 
+      } else {
+  
+        el.duration
+      }
+    }
+    return newArray
+  }
+  
+  
+  
+  console.log(turnHoursToMinutes(movies))
