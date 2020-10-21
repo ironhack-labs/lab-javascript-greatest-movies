@@ -52,6 +52,19 @@ const dramaMoviesRate = (movies) => {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
+const orderAlphabetically = (movies) => {
+  const moviesAlpha = movies.map((elem) => {
+    return elem.title;
+  });
+  moviesAlpha.sort();
+  if (movies.length < 20){
+    return moviesAlpha;
+  } else{
+    return moviesAlpha.slice(0,20);
+  }
+  
+}
+
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
