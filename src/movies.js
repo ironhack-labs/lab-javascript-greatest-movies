@@ -4,7 +4,7 @@ const movies2 = [
 	{
 		title: "The Shawshank Redemption",
 		year: 1994,
-		director: "Frank Darabont",
+		director: "The Frank Darabont",
 		duration: "2h 22min",
 		genre: ["Crime", "Drama"],
 		//rate: 9.3,
@@ -147,38 +147,80 @@ function howManyMovies(array){
 
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+      
+        
+function ratesAverage(array){
+ for (elem of array) {
+  if ("rate" in elem === false) elem.rate = 0;
+ } 
+return array.length ? Number((array.reduce((acc, el) => acc + Number(el.rate), 0) / array.length).toFixed(2)): 0
+ 
 
-
-
-function ratesAverage(array) {
-	for (elem of array) {
-		if ("rate" in elem === false) elem.rate = 0;
-  }
-	if (array.length) {
-		let avg =
-			[...array].reduce((acc, el) => acc + Number(el.rate), 0) / array.length;
-		return Number(avg.toFixed(2));
-	} else {
-		return 0;
-	}
 }
+	
 
 // cl("rate" in movies2[4]);
- cl(ratesAverage(movies2));
-
-
+ //cl(ratesAverage(movies2));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate(array){
-  let dramaRate = [...array].filter((el) => el.genre.includes("Drama"))
-  return ratesAverage(dramaRate)
-	
+  return ratesAverage([...array].filter((el) => el.genre.includes("Drama")))	
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
+
+
+function orderByYear(arr) {
+  if(arr.length){
+  return arr.sort((a, b) => {
+    if(a.year === b.year){
+    return a.title < b.title ? -1 : 1
+    } else {
+    return a.year - b.year
+    }
+  })
+  } else {
+    return 0
+  }
+}
+
+//cl(orderByYear(movies2))
+
+///// 1) order alphabetically ignoring "THE" at begin of title ****
+// **startsWith works in repl not VSC or JAsmine
+// function orderByYear1(array) {
+//   let titSort = array.sort((a, b) => {
+//   for(el in array)
+//     if( array[el].title.startsWith("The ")){ 
+//       array[el].title2 = array[el].title.substr(4)  
+//     } else {
+//       array[el].title2 =  array[el].title
+//     }
+//     a.title2 < b.title2 ? -1 : 1
+//    })
+
+//   for (elem of array) 
+//     if ("title2" in elem === true) delete elem.title2
+
+// 	return array.length ? titSort.sort((a, b) => a.year - b.year) : 0;
+// }
+
+//  cl(orderByYear1(movies2));
+
+
+///// 2) REFACTOR order alphabetically ignoring "THE" at begin of title ****
+
+
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+function orderAlphabetically(array) {
+  
+}
+
+cl(orderAlphabetically(movies2));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
