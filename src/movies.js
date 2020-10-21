@@ -24,11 +24,13 @@ function howManyMovies(movies) {
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-function ratesAverage(movies){
-    const rates= movies.rate
-    const ratesSum= rates.reduce((accum, currValue)=>{return accum+currValue;}, 0);
-    return (ratesSum/rates.length);
-} 
+const ratesSum= movies.reduce((accum, currValue) => {
+    return accum + currValue.rate;}, 0).toFixed(2);
+    function ratesAverage(movies) {
+      return ratesSum/movies.length
+    }
+   let rateAvg= ratesAverage(movies).toFixed(2)
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
