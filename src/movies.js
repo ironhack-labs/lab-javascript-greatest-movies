@@ -11,8 +11,8 @@ function howManyMovies(movies) {
   const spielMoviesArr = movies.filter(
     (movie) => movie.director == "Steven Spielberg"
   );
-  const spielDramaMovies = movies.filter(
-    (movie) => movie.director == "Steven Spielberg" && movie.genre == "drama"
+  const spielDramaMovies = spielMoviesArr.filter(
+    (movie) => movie.genre == "drama"
   );
   if (spielMoviesArr) {
     return spielMoviesArr.length;
@@ -24,16 +24,23 @@ function howManyMovies(movies) {
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-const ratesSum= movies.reduce((accum, currValue) => {
-    return accum + currValue.rate;}, 0).toFixed(2);
-    function ratesAverage(movies) {
-      return ratesSum/movies.length
-    }
-   let rateAvg= ratesAverage(movies).toFixed(2)
+const ratesSum = movies
+  .reduce((accum, currValue) => {
+    return accum + currValue.rate;
+  }, 0)
+function ratesAverage(movies) {
+  return (ratesSum / movies.length).toFixed(2)*1;
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+function orderByYear(){
+    const moviesByYear= [...movies].sort((a,b)=>b.year-a.year);
+    return moviesByYear;
+  }
+  orderByYear(movies)
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
