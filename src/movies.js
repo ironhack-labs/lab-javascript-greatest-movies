@@ -1,4 +1,4 @@
-let movies = [
+let movies2 = [
     {
       "title": "The Shawshank Redemption",
       "year": 1994,
@@ -2970,26 +2970,60 @@ let movies = [
 
 // Iteration 1: All directors? - Get the array of all directors.
 
-const listDirectors = movies.map(theDirectors => theDirectors.director);
-  
-console.log(listDirectors);
+const getAllDirectors = movies2.map(theDirectors => theDirectors.director);
+
+console.log(getAllDirectors);
 
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
-let howManyMovies = (names) => movies.filter(name => name.director === names)
+const howManyMovies = (names) => movies2.filter(name => name.director === names)
 
 console.log(howManyMovies(`Steven Spielberg`));
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
+const ratesAverage = movies2.reduce(function (accumulator, currentValue) {
+    return accumulator + currentValue.rate/movies2.length;
+  },0);
+  
+  console.log(ratesAverage.toFixed(2))
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
+let orderByYear = (movies2) => {
+    let sortMovies = movies2.sort(function (filmA, filmB) {
+          if (filmA.year > filmB.year) {
+              return 1;
+          } else if (filmA.year < filmB.year) {
+            return -1;
+          } else {
+            return 0; 
+        }
+      })
+      return sortMovies
+  }
+  
+  console.log(orderByYear(movies2))
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+const orderAlphabetically = (movies2) => {
+    let moviesTitle = movies2.map(function (object) {
+    return object.title;
+    });
+
+    let moviesTitleAlpha = moviesTitle.sort();
+
+    return moviesTitleAlpha.slice(0, 20);
+    }
+
+    console.log(orderAlphabetically(movies2))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
