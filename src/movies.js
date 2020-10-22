@@ -3042,13 +3042,30 @@ function dramaMoviesRate(arr) {
      return avgDramaRates.toFixed(2)
 }
 
-console.log(dramaMoviesRate(movies))
+// console.log(dramaMoviesRate(movies))
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
+function orderByYear(arr) {
+const orderedArr = arr.sort((a, b) => {
+   return a.year - b.year
+})
+return orderedArr
+}
+// console.log(orderByYear(movies))
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(arr){
+   const firstTwenty = arr.slice(0, 20)
+  const titles = firstTwenty.map((el) => {
+     return el.title
+   })
+   const sortedTwenty = titles.sort()
+    return sortedTwenty
+}
+
+console.log(orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
