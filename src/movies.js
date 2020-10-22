@@ -41,14 +41,16 @@ function orderByYear(movies) {
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(movies) {
-    const titleOrder = [...movies];
-    titleOrder.sort(function(a,b) {
-        return (a[`title`].localeCompare(b[`title`]))
-    })
-    const titleOnly = titleOrder.title;
-    return titleOrder;
-}
+function orderAlphabetically(array) {
+    return array.map((movies) => movies.title)
+      .sort((a, b) => {
+        if (a > b) return 1;
+        else if (a < b) return -1;
+        else if (a === b) return 0;
+      })
+      .slice(0, 20);
+  }
+
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
