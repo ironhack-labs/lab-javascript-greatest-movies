@@ -92,22 +92,16 @@ function turnHoursToMinutes (arr) {
   const newArr = JSON.parse(JSON.stringify(arr)); 
 
   newArr.forEach((element) => {
-    const durationArr = element.duration.split(' ');
-    let hours; 
-    let minutes; 
 
-    if (durationArr.length > 1) {
-      hours = Number(durationArr[0].replace(/\D/g,''));
-      minutes = Number(durationArr[1].replace(/\D/g,''));
-    } else if (durationArr[0].includes('h')) {
-      hours = Number(durationArr[0].replace(/\D/g,''));
-      minutes = 0; 
-    } else {
-      hours = 0;
-      minutes = Number(durationArr[0].replace(/\D/g,'')); 
-    }
+    const dur = element.duration.split(' ').reduce((acc, cur) => {
+      if (cur.includes('h')) {
+        return acc + parseInt(cur) * 60; 
+      } else {
+        return acc + parseInt(cur); 
+      }
+    }, 0)
     
-    element.duration = (hours * 60) + minutes; 
+    element.duration = dur; 
   })
   
   return newArr; 
