@@ -9,26 +9,19 @@ function getAllDirectors(movies) {
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(movies) {
   const spielMoviesArr = movies.filter(
-    (movie) => movie.director == "Steven Spielberg"
-  );
-  const spielDramaMovies = spielMoviesArr.filter(
-    (movie) => movie.genre == "drama"
+    (movie) => movie.director == "Steven Spielberg" && movies.genre.includes("drama")
   );
   if (spielMoviesArr) {
     return spielMoviesArr.length;
-  } else if (spielDramaMovies) {
-    return spielDramaMovies.length;
   } else {
     return null;
   }
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-const ratesSum = movies
-  .reduce((accum, currValue) => {
-    return accum + currValue.rate;
-  }, 0)
-function ratesAverage(movies) {
+let ratesSum = movies.reduce((accum, currValue) => {
+    return accum + currValue.rate;}, 0)
+function ratesAverage() {
   return (ratesSum / movies.length).toFixed(2)*1;
 }
 
@@ -36,14 +29,18 @@ function ratesAverage(movies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(){
-    const moviesByYear= [...movies].sort((a,b)=>b.year-a.year);
+    let moviesByYear= [...movies].sort((a,b)=>a.year-b.year); {
+    }
     return moviesByYear;
   }
   orderByYear(movies)
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-
+function orderAlphabetically(){
+    return [...movies].sort((a,b)=>a.title <b.title
+  ? -1 : 1).splice(0,20).map(movie => movie.title)
+  }
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
