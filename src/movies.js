@@ -1,13 +1,56 @@
-// Iteration 1: All directors? - Get the array of all directors.
+//Iteration 1: All directors? - Get the array of all directors.
+function getAllDirectors(movieList){
+  return directors = movieList.map(function (movie) {
+    return movie.director
+  })
+}
+//console.log(getAllDirectors(movies));
+
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
+function howManyMovies(movieList){
+  movieList.filter(function (movie) {
 
+  })
+}
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(movieList) {
+
+  const sumRate = movieList.reduce(function (total,movie) {
+
+    let rate = movie.rate;
+    if(typeof rate !== "number"){
+      return total
+    }else{
+      //console.log(rate);
+      return total + rate
+    }
+
+  },0)
+
+  const averageRate = (sumRate/movieList.length).toFixed(2);
+  return averageRate
+}
+
+console.log(ratesAverage(movies));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+function orderByYear(movieList){
+  const movieListCopy = [...movieList];
+  movieListCopy.sort(function (a,b) {
+    if(a.year!== b.year){
+      return a.year-b.year
+    }else{
+      return a.title.localeCompare(b.title);
+    }
+  });
+
+  return movieListCopy
+}
+//console.log(orderByYear(movies));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
