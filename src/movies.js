@@ -60,29 +60,37 @@ function dramaMoviesRate(movies) {
 }
 
 // Iteration 5: Ordering by year - Order by year ascending (in growing order)
-// I tried map as it returns new array I aimed to put sort in map to sort years and return them as new array
-// function orderByYear(movies) {
-//   let moviesByYear = movies.map(function (year)) {
-//    return movies.year.sort(function (movieYear, anotherMovieYear) {
-//     return movies.year - movies.year;
-//   });
-// } return moviesByYear
-// }
+// I tried map as it returns new array
 
-// function orderByYear(movies) {
-//   let moviesByYear = movies.sort(function (movieYear, anotherMovieYear) {
-//     return movies.year - movies.year;
-//   });
-//   return moviesByYear;
-// }
-
-//below also did basic passes
-// function orderByYear(movies) {
-//   let moviesByYear = movies.sort();
-//   return moviesByYear;
-// }
+function orderByYear(movies) {
+  let moviesByYear = movies.sort(function (movie, anotherMovie) {
+    return movie.year - anotherMovie.year;
+  });
+  let arrayOfMoviesByYear = moviesByYear.map(function (element) {
+    return element;
+  });
+  return arrayOfMoviesByYear;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+function orderAlphabetically(movies) {
+  let moviesByTitle = movies.sort(function (movie, anotherMovie) {
+    return movie.title - anotherMovie.title;
+  });
+  let arrayOfMoviesByTitle = moviesByTitle.map(function (element) {
+    return element;
+  });
+
+  let just20movies = arrayOfMoviesByTitle.slice(0, 21);
+  //console.log(just20movies); OK, objects {title: "hjsh"}
+
+  let titles = just20movies.map(function (movies) {
+    return movie.title;
+  });
+  return titles;
+}
+console.log(titles);
 
 // BONUS - Iteration 7: Time Format - Turn duration //of the movies from hours to minutes
 
