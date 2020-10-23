@@ -33,7 +33,7 @@ function ratesAverage(movies) {
     let total = movies.length;
     let sum = 0;
     for (let i = 0; i < total; i++) {
-      if (movies[i].rate === "" || movies[i].rate === undefined) {
+      if (!movies[i].rate) {
         sum += 0;
       } else {
         sum += movies[i].rate;
