@@ -12,11 +12,20 @@ function howManyMovies(directorname) {
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-function ratesAverage(movies){}
+function ratesAverage(movies) {
+  if (movies.length === 0) return 0;
+  let rates = movies.map((currentMovie) => currentMovie.rate);
+  let sum = rates.reduce((accumulator, currentMovie) => {
+    return accumulator + currentMovie;
+  });
+  let average = sum / rates.length;
+  let fixed = average.toFixed(2);
+  let floated = parseFloat(fixed);
+  return floated;
+}
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate(movies) {}
-
-console.log("The average rate of  Drama movies is: " + dramaMoviesRate(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(year) {
