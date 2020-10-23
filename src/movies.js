@@ -12,14 +12,9 @@ const getAllDirectors = (movies) => {
 
 const howManyMovies = (movies) => {
     const array = movies.filter(item => {
-      return item.director === 'Steven Spielberg'
+      return item.director === 'Steven Spielberg' && item.genre.includes('Drama')
     })
-    const drama = array.filter(item => {
-      if(item.genre.includes('Drama')){
-        return item
-      }
-    })
-  return drama.length
+  return array.length
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
