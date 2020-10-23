@@ -4,7 +4,8 @@
 
 function getAllDirectors(movies){
 
-   return movies.map((movie)=>movie.director);
+
+   return [...setArr = new Set(movies.map((movie)=>movie.director).sort())];
  
 
    
