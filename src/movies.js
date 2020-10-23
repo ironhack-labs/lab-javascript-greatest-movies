@@ -21,7 +21,7 @@ function howManyMovies(array) {
   const filteredMovies = array.filter((movie) => {
     // console.log("-----director", movie.director);
 
-    let director = movie.director;
+    const director = movie.director;
 
     if (director === "Steven Spielberg" && movie.genre.includes("Drama")) {
       return true;
@@ -32,6 +32,33 @@ function howManyMovies(array) {
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+
+// These are the best movies based on their rates, so supposedly all of them have a remarkable rate. In this iteration, we want to know the average rate of all of them and display it on the console. Create a ratesAverage() function that receives an array as a parameter and solves the challenge.
+
+// The rate must be returned rounded to 2 decimals!
+
+// 💡 Maybe you want to "reduce" the data to a single value. 😉
+
+function ratesAverage(array) {
+  if (array.length === 0) return 0;
+  // console.log(array);
+
+  const sum = array.reduce((acc, val) => {
+    //console.log("val.rate", val.rate);
+    if (val.rate === "" || "rate" in val === false) return 0;
+
+    // || val.rate == undefined
+    return acc + val.rate;
+  }, 0);
+  //console.log("-------", average);
+  return Number((sum / array.length).toFixed(2));
+}
+
+// const totalRates = product.reviews.reduce(function (sum, review) {
+//   return sum + review.rate;
+// }, 0);
+
+// console.log(totalRates);
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
