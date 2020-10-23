@@ -114,29 +114,32 @@ function turnHoursToMinutes(movies) {
 
 function bestYearAvg(movies){
     if(movies.length){
-    let avg = [];
-        let years = movies.map(function(movie){
-        return {"year":movie.year,"rate":movie.rate}}).sort((a,b)=>(a.year-b.year));
-    
-
-    let year = 0;
-    let rate = 0;
-    let cont = 1;
-
-    years.forEach(function(element){
-        if(element.year === year){
-            rate += element.rate;
-            cont++;
+       let avg = [];
+        if(movies.length === 1){
+            avg = movies;
         }else{
-            avg.push({"year": year, "rate": rate/cont})
-            year = element.year;
-            rate = element.rate;
-            cont = 1;
-        }
-    });  
 
-    avg.sort((a,b)=>b.rate-a.rate)
-   
+            let years = movies.map(function(movie){
+                return {"year":movie.year,"rate":movie.rate}}).sort((a,b)=>(a.year-b.year));
+            
+            let year = 0;
+            let rate = 0;
+            let cont = 1;
+
+            years.forEach(function(element){
+                if(element.year === year){
+                    rate += element.rate;
+                    cont++;
+                }else{
+                    avg.push({"year": year, "rate": rate/cont})
+                    year = element.year;
+                    rate = element.rate;
+                    cont = 1;
+                }
+            });  
+
+            avg.sort((a,b)=>b.rate-a.rate);
+    }  
     return `The best year was ${avg[0].year} with an average rate of ${avg[0].rate}`;
 }else{
     return null;
