@@ -30,13 +30,16 @@ function ratesAverage(movies) {
   if (movies.length === 0) {
     return 0;
   } else {
-    const rate = movies.map((movies) => {
-      return movies.rate;
-    });
-    const sum = rate.reduce((acc, value) => acc + value);
-    const avg = sum / movies.length;
-    console.log(sum);
-    console.log(movies.length);
+    let total = movies.length;
+    let sum = 0;
+    for (let i = 0; i < total; i++) {
+      if (movies[i].rate === "" || movies[i].rate === undefined) {
+        sum += 0;
+      } else {
+        sum += movies[i].rate;
+      }
+    }
+    const avg = sum / total;
     return parseFloat(avg.toFixed(2));
   }
 }
