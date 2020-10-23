@@ -35,8 +35,19 @@ console.log(dramaMoviesRate(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(array){
-    let orderedByYear = array.sort((movie1, movie2) => movie1.year < movie2.year);
-    return orderByYear;
+    let orderedByYear = array.map(el => el).sort(function(movie1, movie2){
+      if (movie1.year < movie2.year){
+        return -1;
+      }
+      if (movie1.year === movie2.year){
+        if (movie1.title.toLowerCase() < movie2.title.toLowerCase()){
+          return -1;
+        }
+      }
+      return +1;
+      
+    });
+    return orderedByYear;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
