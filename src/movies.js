@@ -12,17 +12,28 @@ function howManyMovies(directorname) {
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-
-function ratesAverage(rates) {
-    if (movies.rates.length){
-  return rates.reduce((a, b) => a + b) / rates.length; 
-
-
+function ratesAverage(movies){}
 // Iteration 4: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(movies) {}
+
+console.log("The average rate of  Drama movies is: " + dramaMoviesRate(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+function orderByYear(year) {
+  movies.sort(function (a, b) {
+    if (a.year < b.year) return -1;
+    if (a.year > b.year) return 1;
+  });
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(movies) {
+  return movies
+    .map((movie) => movies.tittle)
+    .sort()
+    .slice(0, 20);
+}
+console.log(orderAlphabetically(movies));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
