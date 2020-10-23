@@ -20,20 +20,30 @@ function ratesAverage(array) {
     let averageRate = total + element.rate;
     return averageRate;
   }, 0);
-  //console.log(result);
   const floatingAverage = result / array.length;
-  return Number(floatingAverage.toFixed(2));
+  if (array.length == 0) {
+    return 0;
+  } else {
+    return Number(floatingAverage.toFixed(2));
+  }
 }
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate(array) {
   const filteredMovies = array.filter((item) => item.genre.includes("Drama"));
-  return ratesAverage(filteredMovies);
+  if (filteredMovies.length > 0) {
+    return ratesAverage(filteredMovies);
+  } else return 0;
 }
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(array) {
-  const myMovies = movies.map((item) => item.year + item.title);
+  const myMovies = array.map((item) => item.year + item.title);
   myMovies.sort();
+  let moviesyear = myMovies.map((item) => item.slice(0, 4));
+  let moviesname = myMovies.map((item) => item.slice(4));
+  return moviesyear.map((item, i) => {
+    return { title: moviesname[i], year: item };
+  });
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
