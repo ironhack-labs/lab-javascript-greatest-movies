@@ -29,8 +29,8 @@ function howManyMovies(movies) {
 
 // Failed attempt to change this into new syntax
 // function howManyMovies(movies) {
-//   let getStevenSpilbergDramas = movies.filter(
-//     (eachMovie) => element.director === "Steven Spielberg" && element.genre.includes("Drama")
+//   let getStevenSpilbergDramas = movies.filter( element =>
+//       element.director === "Steven Spielberg" && element.genre.includes("Drama")
 //   );
 //   return getStevenSpilbergDramas.length;
 // }
@@ -44,10 +44,9 @@ function ratesAverage(array) {
   }, 0);
   return Number(avarageRate.toFixed(2));
 }
-//   return avarageRate; //.toFixed(2) returns a string!!!, so changing it back to number with metrod Andre shown Number(variabName)
+//   return avarageRate; //.toFixed(2) returns a string!!!, so Number(variabName)
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-// average rate of ony drama movies (no other)
 
 function dramaMoviesRate(movies) {
   let onlyDramas = movies.filter(function (eachMovie) {
@@ -60,17 +59,42 @@ function dramaMoviesRate(movies) {
 }
 
 // Iteration 5: Ordering by year - Order by year ascending (in growing order)
-// I tried map as it returns new array
+// map returns new array
+
+// function orderByYear(movies) {
+//   let moviesByYear = movies.sort(function (movie, anotherMovie) {
+//     return movie.year - anotherMovie.year;
+//   });
+//   let arrayOfMoviesByYear = moviesByYear.map(function (element) {
+//     return element;
+//   });
+//   return arrayOfMoviesByYear;
+// }
 
 function orderByYear(movies) {
-  let moviesByYear = movies.sort(function (movie, anotherMovie) {
-    return movie.year - anotherMovie.year;
-  });
-  let arrayOfMoviesByYear = moviesByYear.map(function (element) {
-    return element;
-  });
-  return arrayOfMoviesByYear;
+  let moviesByYear = movies
+    .map((element) => element)
+    .sort((movie, anotherMovie) => {
+      if (movie.year < anotherMovie.year) {
+        return -1;
+      }
+      if (movie.year === anotherMovie.year) {
+        if (movie.title.toLowerCase() < anotherMovie.title.toLowerCase()) {
+          return -1;
+        }
+      }
+      return +1;
+    });
+  return moviesByYear;
 }
+
+//       if (movie.year === anotherMovie.year) {
+//         return movie.title.toLowerCase() - anotherMovie.title.toLowerCase();
+//       }
+//       return movie.year - anotherMovie.year;
+//     });
+//   return moviesByYear;
+// }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
@@ -81,16 +105,9 @@ function orderAlphabetically(movies) {
   let arrayOfMoviesByTitle = moviesByTitle.map(function (element) {
     return element;
   });
-
-  let just20movies = arrayOfMoviesByTitle.slice(0, 21);
-  //console.log(just20movies); OK, objects {title: "hjsh"}
-
-  let titles = just20movies.map(function (movies) {
-    return movie.title;
-  });
-  return titles;
+  let just20movies = arrayOfMoviesByTitle.join("").split("").slice(0, 21);
+  return just20movies;
 }
-console.log(titles);
 
 // BONUS - Iteration 7: Time Format - Turn duration //of the movies from hours to minutes
 
