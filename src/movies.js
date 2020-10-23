@@ -26,14 +26,59 @@ function howManyMovies(arrayOfMovies) {
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 // Create a ratesAverage() function that receives an array as a parameter. The rate must be returned rounded to 2 decimals! Maybe you want to "reduce" the data to a single value.
 
+function ratesAverage(moviesArr) {
+  // if (!moviesArr.length) {
+  //   return 0; // se o array não existe, retorne 0
+  // }
+
+  const avg = moviesArr.reduce(
+    (acc, currentValue, currentIndex, originalArray) => {
+      if (!currentValue.rate) {
+        currentValue.rate = 0; // caso a propriedade rate esteja vazia, atualize-a para 0
+      }
+      if (currentIndex === originalArray.length - 1) {
+        // se o reduce estiver no último elemento da array, retorne a média
+        acc = acc + currentValue.rate; // atualize o acumulador
+        return acc / originalArray.length; // retorne o acumulador dividido pela quantidade de elementos do array
+      }
+      return acc + currentValue.rate; // caso contrário, atualize o acumulador
+    },
+    0 // define o início do acumulador em 0 (não funciona sem isso)
+  );
+  return parseFloat(avg.toFixed(2)); // coloca 2 casas decimais
+}
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
 // Create a dramaMoviesRate() function that receives an array as a parameter to get the average rate of all drama movies! Let's see if it is better than the general average. Again, rounded to 2 decimals!
+
+function dramaMoviesRate(movies) {
+  let dramaMovies = movies.filter(
+    (movie) => movie.genre.includes("Drama") >= 0
+  );
+  return ratesAverage(dramaMovies);
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 // Create a function orderByYear() that receives an array as parameter and returns a new sorted array. If two movies have the same year, order them in alphabetical order by their title!
 
-function orderByYear(array) {
-  return array.sort((a, b) => a.year - b.year);
+function orderByYear(moviesArr) {
+  const newArr = moviesArr.map((movie) => movie);
+
+  newArr.sort((a, b) => {
+    if (a.year > b.year) {
+      return 1;
+    } else if (b.year > a.year) {
+      return -1;
+    } else {
+      if (a.title > b.title) {
+        return 1;
+      } else if (b.title > a.title) {
+        return -1;
+      }
+      return 0;
+    }
+  });
+  return newArr;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
