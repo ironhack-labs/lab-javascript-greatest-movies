@@ -35,9 +35,7 @@ const ratesAverage = (movies) => {
 
 const dramaMoviesRate = (movies) => {
     const drama = movies.filter(item => {
-      if(item.genre.includes('Drama')){
-        return item
-      }
+      return item.genre.includes('Drama')
     })
     if(drama.length === 0){return 0}
     const rate = drama.reduce((sum,item) => {
@@ -53,7 +51,10 @@ const orderByYear = (movies) => {
     const year = movies.sort((a, b) => {
       if(a.year > b.year){return 1}
       else if(a.year < b.year){return -1}
-      else{return -1}
+      else{
+        if(a.title > a.title){return 1}
+        else{return -1}
+      }
       })
     return year
 }
