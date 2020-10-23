@@ -5,7 +5,7 @@
 function getAllDirectors(movies){
 
 
-   return [...setArr = new Set(movies.map((movie)=>movie.director).sort())];
+   return [...setArr = new Set(movies.map((movie)=>movie.director))];
  
 
    
@@ -55,7 +55,8 @@ function dramaMoviesRate(movies){
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(movies){
-    let title = "";
+  
+  /*  let title = "";
     return movies.map(function(movie){
         if(movie.title !== undefined){
              return {
@@ -72,6 +73,11 @@ function orderByYear(movies){
     })
     .sort(function(a, b){return ( +(a.title > b.title) || +(a.title === b.title) - 1)})
     .sort(function(a,b){return  a.year - b.year});
+*/
+    return movies.map((movie)=>movie)    
+    .sort(function(a, b){return ( +(a.title > b.title) || +(a.title === b.title) - 1)})
+    .sort(function(a,b){return  a.year - b.year});
+
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
