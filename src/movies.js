@@ -78,7 +78,8 @@ function orderByYear(movies) {
     }
     return 0;
   }
-  const orderedAlpha = movies.sort(compareAlpha);
+  const newArr = movies.map((movies) => movies);
+  const orderedAlpha = newArr.sort(compareAlpha);
   const resultAlpha = orderedAlpha.map((movies) => {
     return movies;
   });
@@ -92,7 +93,7 @@ function orderByYear(movies) {
     }
     return 0;
   }
-  const orderedYear = movies.sort(compareNumber);
+  const orderedYear = resultAlpha.sort(compareNumber);
   const resultNumber = orderedYear.map((movies) => {
     return movies;
   });
@@ -110,8 +111,8 @@ function orderAlphabetically(movies) {
     }
     return 0;
   }
-
-  const orderedTitle = movies.sort(compareAlpha);
+  const newArr = movies.map((movies) => movies);
+  const orderedTitle = newArr.sort(compareAlpha);
   const tittle = orderedTitle.map((orderedTitle) => {
     return orderedTitle.title;
   });
