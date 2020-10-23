@@ -102,7 +102,7 @@ const turnHoursToMinutes = (array) => {
         );
     }
     el.duration = parseInt(el.duration);
-    onsole.log(typeof el.duration); // Hey Jasmine check this out
+    console.log(typeof el.duration); // Hey Jasmine check this out
     return el;
   });
   return fixedArray;
