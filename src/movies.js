@@ -74,25 +74,39 @@ const orderByYear = function (array) {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 const orderAlphabetically = function (array) {
   const titles = array.map((el) => el.title);
-    titles.sort();
-    titles.splice(20, array.length);
+  titles.sort();
+  titles.splice(20, array.length);
   return titles;
 };
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-const turnHoursToMinutes = (array)=> {
-    const fixedArray = array.map ((el)=> {
-    if (!el.duration.includes("h")){
-        el.duration = parseInt(el.duration.substring(el.duration.indexOf(" "),el.duration.indexOf("m")));
-    } else if (!el.duration.includes("m")){
-        el.duration = el.duration = parseInt(el.duration.substring(0,el.duration.indexOf("h")))*60;
+const turnHoursToMinutes = (array) => {
+  const fixedArray = array.map((el) => {
+    if (!el.duration.includes("h")) {
+      el.duration = parseInt(
+        el.duration.substring(
+          el.duration.indexOf(" "),
+          el.duration.indexOf("m")
+        )
+      );
+    } else if (!el.duration.includes("m")) {
+      el.duration = el.duration =
+        parseInt(el.duration.substring(0, el.duration.indexOf("h"))) * 60;
     } else {
-        el.duration = parseInt(el.duration.substring(0,el.duration.indexOf("h")))*60 + parseInt(el.duration.substring(el.duration.indexOf(" "),el.duration.indexOf("m")));
+      el.duration =
+        parseInt(el.duration.substring(0, el.duration.indexOf("h"))) * 60 +
+        parseInt(
+          el.duration.substring(
+            el.duration.indexOf(" "),
+            el.duration.indexOf("m")
+          )
+        );
     }
     el.duration = parseInt(el.duration);
+    onsole.log(typeof el.duration); // Hey Jasmine check this out
     return el;
-    });
-    return fixedArray;
-}
+  });
+  return fixedArray;
+};
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 //
