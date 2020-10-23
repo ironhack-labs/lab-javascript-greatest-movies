@@ -69,8 +69,8 @@ function orderByYear(movies){
         
        
     })
-    .sort(function(a, b){return a.year - b.year})
-    .sort();
+    .sort(function(a, b){return ( +(a.title > b.title) || +(a.title === b.title) - 1)})
+    .sort(function(a,b){return  a.year - b.year});
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
