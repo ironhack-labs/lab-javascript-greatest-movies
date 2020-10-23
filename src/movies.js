@@ -16,12 +16,10 @@ console.log(getAllDirectors(movies))
 function howManyMovies(arr) {
 
     const SpielbergDramaMovies = arr.filter(function (movie) {
-        //return director === spiel && genre of director spiel === drama 
 
         const director = movie.director
         const genre = movie.genre
-        // && genre.includes('drama')
-        // console.log(genre.includes('drama'))
+
 
         return director === 'Steven Spielberg' && genre.includes('Drama')
     }).length;
@@ -35,7 +33,6 @@ console.log(howManyMovies(movies));
 function ratesAverage(arr) {
     if (!arr.length) return 0
     const averageRating = arr.reduce(function (total, el) {
-        // console.log(el.rate)
         const movieRating = total + el.rate;
         return movieRating
     }, 0)
@@ -52,7 +49,7 @@ function dramaMoviesRate(arr) {
     });
     return ratesAverage(dramaMovies)
 }
-// console.log(dramaMoviesRate(movies))
+console.log(dramaMoviesRate(movies))
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
@@ -74,15 +71,6 @@ function orderAlphabetically(arr) {
         return movie.title
     });
     movieTitles.sort();
-
-    // let i = 0;
-    // let listOfMovies = []
-    // while (i < 20) {
-    //     listOfMovies.push(movieTitles[i]);
-    //     i++
-    // }
-    // return listOfMovies
-
 
     let twentyMovies = movieTitles.splice(0, 20)
     return twentyMovies
