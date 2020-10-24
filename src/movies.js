@@ -20,7 +20,6 @@ function ratesAverage(array){
         return acc + val.rate}, 0)
     return Number((rateSum/array.length).toFixed(2));
 }
-console.log(ratesAverage(movies));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate(array){
@@ -31,7 +30,6 @@ function dramaMoviesRate(array){
     let rateSum = onlyDrama.reduce((acc, val)=> acc+val.rate, 0)
     return Number((rateSum/onlyDrama.length).toFixed(2));
 }
-console.log(dramaMoviesRate(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(array){
@@ -58,4 +56,37 @@ function orderAlphabetically(array){
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(array){
+    function stringToMinutes(duration){
+        let hoursString = duration.split(" ")[0];
+        let minutesString = duration.split(" ")[1];
+        if (duration.indexOf("h")===-1){
+            let minutes = Number(duration.split("m")[0]);
+            return minutes;
+        }
+        if (minutesString && hoursString){
+            let minutes = (Number(minutesString.slice(0, duration.split(" ")[1].indexOf("m"))));
+            let hours = (Number(hoursString.slice(0, duration.split(" ")[0].indexOf("h"))))*60;
+            return hours + minutes;
+        }
+        if (hoursString && !minutesString){
+            let hours = (Number(hoursString.slice(0, duration.split(" ")[0].indexOf("h"))))*60;
+            return hours;
+        }
+        
+    }
+    const moviesInMinutes = array.map(el => el);
+    return moviesInMinutes.map(movie => {
+        let newMovie = {...movie}
+        newMovie.duration = stringToMinutes(movie.duration);
+        return newMovie;
+    });
+}
+console.log(movies);
+console.log(turnHoursToMinutes(movies));
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(array){
+    
+}
