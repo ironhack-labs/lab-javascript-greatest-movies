@@ -169,8 +169,18 @@ function dramaMoviesRate(array){
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
+//// function further down to ignore "THE"  while  sorting
+function orderByYear(arr) {
+	if(arr.length){
+	return arrayObjSortIgnoreWord1(arr, "title", "the").sort((a, b) => a.year - b.year)
+	} else {
+		return 0
+	}
+}
 
+//cl(orderByYear(movies2))
 
+/// to pass jasmine
 function orderByYear(arr) {
   if(arr.length){
   return arr.sort((a, b) => {
@@ -187,39 +197,86 @@ function orderByYear(arr) {
 
 //cl(orderByYear(movies2))
 
-///// 1) order alphabetically ignoring "THE" at begin of title ****
-// **startsWith works in repl ..but not VSC or JAsmine. app how to use all JS versions???
-// function orderByYear1(array) {
-//   let titSort = array.sort((a, b) => {
-//   for(el in array)
-//     if( array[el].title.startsWith("The ")){ 
-//       array[el].title2 = array[el].title.substr(4)  
-//     } else {
-//       array[el].title2 =  array[el].title
-//     }
-//     a.title2 < b.title2 ? -1 : 1
-//    })
 
-//   for (elem of array) 
-//     if ("title2" in elem === true) delete elem.title2
+///// **** order alphabetically ignoring "THE" at begin of title ****
+////~~~~ REUSABLE but can only do  1 word any property...trying to refactor multiple words 
+function arrayObjSortIgnoreWord1(array, property, ignore) {
+  let count = ignore.length + 1
+  ignore = ignore[0].toUpperCase() + ignore.substr(1)
+  let newArray = [...array].sort((a,b)=>{
+       if(a[property].substr(0,count)=== `${ignore} ` && b[property].substr(0,count)=== `${ignore} `)
+         return a[property].substr(count).localeCompare(b[property].substr(count))
+       
+       if(a[property].substr(0,count)=== `${ignore} `)
+         return a[property].substr(count).localeCompare(b[property]) 
+          
+       if(b[property].substr(0,count)=== `${ignore} `)
+         return a[property].localeCompare(b[property].substr(count))
+      
+        return a[property].localeCompare(b[property])   
+     }) 
+   return newArray//.map(e => e[property]) 
+ }  
 
-// 	return array.length ? titSort.sort((a, b) => a.year - b.year) : 0;
-// }
-
-//  cl(orderByYear1(movies2));
+//cl(arrayObjSortIgnoreWord1(movies2, "title", "the")) 
+//cl(arrayObjAlphabetically(movies2, "title", "a")) 
 
 
-///// 2) REFACTOR order alphabetically ignoring "THE" at begin of title ****
+
+////~~~HARDCODED~~~~
+function orderTitles(array) {
+	let titlesArr =  [...array].sort((a,b)=>{
+			if(a.title.substr(0,4)=== "The " && b.title.substr(0,4)=== "The ")
+				return a.title.substr(4).localeCompare(b.title.substr(4))
+			if(a.title.substr(0,4)=== "The ")
+				 return a.title.substr(4).localeCompare(b.title) 
+			if(b.title.substr(0,4)=== "The ")
+			 return a.title.localeCompare(b.title.substr(4))
+			return a.title.localeCompare(b.title)
+		}) 
+	return titlesArr.map(e => e.title) 
+}  
+
+//cl(orderTitles(movies2))
+	
+								/// OR ///
+// **startsWith() works in repl ..but not VSC or JAsmine. app how to use all JS versions???
+function orderByYear1(array) {
+  let titSort = array.sort((a, b) => {
+  for(el of array)
+    if( el.title.startsWith("The ")){ 
+      el.title2 = el.title.substr(4)  
+    } else {
+      el.title2 =  el.title
+    }
+    return a.title2 < b.title2 ? -1 : 1
+   })
+
+  for (elem of array) 
+    if ("title2" in elem === true) delete elem.title2
+
+	return array.length ? titSort.sort((a, b) => a.year - b.year) : 0;
+}
+
+//cl(orderByYear1(movies2));
+
 
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+// to pass  jasmine
 function orderAlphabetically(array){
   return [...array].sort((a, b) => a.title < b.title ? -1 : 1).splice(0,20).map(e => e.title)
   
 }
 
-//cl(orderAlphabetically(movies2));
+///  ignore "The" beginning of movie to sort 
+function orderAlphabetically(array){
+  return arrayObjSortIgnoreWord1(array, "title", "the").splice(0,20).map(e => e.title)
+}
+
+cl(orderAlphabetically(movies2))
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 

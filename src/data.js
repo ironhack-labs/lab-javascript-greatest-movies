@@ -2968,34 +2968,60 @@ let movies = [
     }
   ]
 
+////// ORDER ALPHABETICALLY ignore begins with "The" for sort (not work for jasmine for challenge)
+///  resuable version.... others in  movies.js
+function arrayObjSortIgnoreWord1(array, property, ignore) {
+  let count = ignore.length + 1
+  ignore = ignore[0].toUpperCase() + ignore.substr(1)
+  let newArray = [...array].sort((a,b)=>{
+       if(a[property].substr(0,count)=== `${ignore} ` && b[property].substr(0,count)=== `${ignore} `)
+         return a[property].substr(count).localeCompare(b[property].substr(count))
+       
+       if(a[property].substr(0,count)=== `${ignore} `)
+         return a[property].substr(count).localeCompare(b[property]) 
+          
+       if(b[property].substr(0,count)=== `${ignore} `)
+         return a[property].localeCompare(b[property].substr(count))
+      
+        return a[property].localeCompare(b[property])   
+     }) 
+   return newArray//.map(e => e[property]) 
+ }  
 
+//console.log(arrayObjSortIgnoreWord1(movies2, "title", "the")) 
+//console.log(arrayObjAlphabetically(movies2, "title", "a")) 
+
+
+function orderAlphabetically(array){
+  return arrayObjSortIgnoreWord1(array, "title", "the").splice(0,20).map(e => e.title)
+}
+
+console.log(orderAlphabetically(movies))
 
  
-//// WORKS in console and repl.it but not passing any JASMINE tests
+//////HOURS 2 MINS  WORKS in console and repl.it but not passing any JASMINE tests
+function turnHoursToMinutes(array){
+  if(Array.isArray(array)=== false) return "invalid entry"
+  if(array.length === 0) return 0
+  newArray = [...array]
+  for(el of newArray){
+    if(!el.duration) return "invalid array"  
+    let durS = el.duration.split(" ")
+    if(durS[0].includes("h") && durS[1]){
+      let durSh = durS.join(" ").split("h")
+      let hour2Min = durSh[0] * 60 + parseInt(durSh[1]) + "min"
+      el.duration = hour2Min
+    } else if(durS[0].includes("h")){
+      let durSm = durS.join("").split("h").join("").split(/\s/).join("")
+      el.duration = durSm * 60 + "min" 
+    } else {
 
-  
-  function turnHoursToMinutes(array){
-    if(Array.isArray(array)=== false) return "invalid entry"
-    if(array.length === 0) return 0
-    newArray = [...array]
-    for(el of newArray){
-      if(!el.duration) return "invalid array"  
-      let durS = el.duration.split(" ")
-      if(durS[0].includes("h") && durS[1]){
-        let durSh = durS.join(" ").split("h")
-        let hour2Min = durSh[0] * 60 + parseInt(durSh[1]) + "min"
-        el.duration = hour2Min
-      } else if(durS[0].includes("h")){
-        let durSm = durS.join("").split("h").join("").split(/\s/).join("")
-        el.duration = durSm * 60 + "min" 
-      } else {
-  
-        el.duration
-      }
+      el.duration
     }
-    return newArray
   }
+  return newArray
+}
   
   
   
-  console.log(turnHoursToMinutes(movies))
+  // console.log(turnHoursToMinutes(movies))
