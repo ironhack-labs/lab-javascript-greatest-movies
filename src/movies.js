@@ -82,11 +82,59 @@ function turnHoursToMinutes(array){
         return newMovie;
     });
 }
-console.log(movies);
-console.log(turnHoursToMinutes(movies));
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
-function bestYearAvg(array){
-    
+function yearlyMoviesRate(array, specificYear){
+    let onlyCurrentYear = array.filter(element => element.year === specificYear);
+    if (onlyCurrentYear.length===0){
+        return 0;
+    }
+    let rateSum = onlyCurrentYear.reduce((acc, val)=> acc+val.rate, 0)
+    return Number((rateSum/onlyCurrentYear.length).toFixed(1));
 }
+
+function bestYearAvg(array){
+    if (array.length === 0){
+        return null;
+    }
+    let listOfYears = [];
+    let listOfAverages = [];
+    for(let movie of array){
+        listOfYears.push(movie.year);
+    }
+    const earliestYear = listOfYears.reduce((acc, year) => {
+        if (acc < year){
+            return acc;
+        }
+        return year;
+    })
+    const latestYear = listOfYears.reduce((acc, year)=> {
+        if(acc>year){
+            return acc;
+        }
+        return year;
+    })
+    for (let currentYear = earliestYear; currentYear <= latestYear; currentYear++){
+        function yearlyMoviesRate(array, currentYear){
+            let onlyCurrentYear = array.filter(element => element.year === currentYear);
+            if (onlyCurrentYear.length===0){
+                return 0;
+            }
+            let rateSum = onlyCurrentYear.reduce((acc, val)=> acc+val.rate, 0)
+            return Number((rateSum/onlyCurrentYear.length).toFixed(1));
+        }
+    }
+    for (let currentYear = earliestYear; currentYear <= latestYear; currentYear++){
+        listOfAverages.push({Year: currentYear, Average: yearlyMoviesRate(array, currentYear)});
+    }
+    let sortedListOfAverages = listOfAverages.sort((yearObject1, yearObject2) => {
+        if (yearObject1.Average > yearObject2.Average){
+            return -1;
+        };
+    })
+    return `The best year was ${sortedListOfAverages[0].Year} with an average rate of ${sortedListOfAverages[0].Average}`
+
+}
+
+console.log(bestYearAvg(movies));
