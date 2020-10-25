@@ -80,7 +80,7 @@ function dramaMoviesRate(array) {
 //💡 Make sure not to mutate the original array 😉
 
 function orderByYear(array) {
-  let sortedArray = [...array];
+  const sortedArray = [...array];
   sortedArray.sort((a, b) => {
     if (a.year === b.year) {
       if (a.title < b.title) {
@@ -96,6 +96,34 @@ function orderByYear(array) {
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+// Another popular way to order the movies is to sort them alphabetically using the title key. However, in this case, we only need to print the title of the first 20. Easy peasy for an expert like you. 😉
+// Create a orderAlphabetically() function, that receives an array and returns an array of first 20 titles, alphabetically ordered. Return only the title of each movie, and if the array you receive has less than 20 movies, return all of them.
+
+function orderAlphabetically(array) {
+  const arrOfTitles = array.map((title) => {
+    console.log(title.title);
+    return title.title;
+  });
+
+  const sorted = arrOfTitles.sort((a, b) => {
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+    return a - b;
+  });
+
+  if (sorted.length > 20) {
+    console.log(sorted.slice(0, 20));
+    return sorted.slice(0, 20);
+  }
+  // console.log(sorted);
+
+  return sorted;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
