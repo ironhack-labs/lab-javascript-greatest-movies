@@ -80,9 +80,8 @@ function dramaMoviesRate(array) {
 //💡 Make sure not to mutate the original array 😉
 
 function orderByYear(array) {
-  const sortedByYear = [];
-
-  const sortArr = array.sort((a, b) => {
+  let sortedArray = [...array];
+  sortedArray.sort((a, b) => {
     if (a.year === b.year) {
       if (a.title < b.title) {
         return -1;
@@ -90,21 +89,10 @@ function orderByYear(array) {
       if (a.title > b.title) {
         return 1;
       }
-      return 0;
     }
-
     return a.year - b.year;
   });
-  console.log("sortArr", sortArr);
-
-  sortArr.map((element) => {
-    element = { year: element.year };
-    // console.log("element", element);
-
-    sortedByYear.push(element);
-  });
-  console.log("sortedByYear", sortedByYear);
-  return sortedByYear;
+  return sortedArray;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
