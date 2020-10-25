@@ -15,6 +15,11 @@ function howManyMovies(array) {
 }
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(array) {
+  array.forEach((item) => {
+    if (typeof item.rate !== "number") {
+      item.rate = 0;
+    }
+  });
   const result = array.reduce(function (total, element) {
     let averageRate = total + element.rate;
     return averageRate;
@@ -36,50 +41,119 @@ function dramaMoviesRate(array) {
 }
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(array) {
-  const myMovies = array.map((item) => item.year + item.title);
-  myMovies.sort();
-  let moviesyear = myMovies.map((item) => item.slice(0, 4));
-  let moviesname = myMovies.map((item) => item.slice(4));
-  return moviesyear.map((item, i) => {
-    return { title: moviesname[i], year: item };
+  const moviesArray = [...array];
+
+  moviesArray.sort((a, b) => {
+    if (a.year < b.year) {
+      return -1;
+    } else if (b.year < a.year) {
+      return 1;
+    } else if (a.title < b.title) {
+      return -1;
+    }
   });
+
+  return moviesArray;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
-const firstTwentyMovies = [];
+function orderAlphabetically(arr) {
+  const myArray = [...arr];
 
-function orderAlphabetically(array) {
-  const movietitles = array.map((item) => item.title);
-  movietitles.sort();
-  if (array.length < 20) {
-    const sortedMovieTitles = movietitles.map((item) => {
-      return { title: item.title };
-    });
-    return sortedMovieTitles;
-  } else {
-    for (i = 0; i < 20; i++) {
-      firstTwentyMovies.push(movietitles[i].title);
+  myArray.sort((a, b) => {
+    if (a.title < b.title) {
+      return -1;
     }
-  }
-  finalresult = firstTwentyMovies.map((item) => {
-    return { title: item.title };
   });
-  return finalresult;
+
+  if (myArray.length < 20) {
+    const myList = myArray.map((item) => item.title);
+    return myList;
+  }
+
+  const myList = [];
+  for (let i = 0; i < 20; i++) {
+    myList.push(myArray[i].title);
+  }
+  return myList;
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(array) {
+  const movieArray = array.map((item) => {
+    if (item.duration[0] === "0") {
+      const movieCopy = { ...item };
+      movieCopy.duration = Number(item.duration.slice(-5, -3));
+      return movieCopy;
+    } else if (item.duration.length === 2) {
+      const movieCopy = { ...item };
+      movieCopy.duration = Number(item.duration[0] * 60);
+      return movieCopy;
+    } else if (item.duration.length === 5) {
+      const movieCopy = { ...item };
+      movieCopy.duration = Number(item.duration.slice(0, 2));
+      return movieCopy;
+    } else {
+      const movieCopy = { ...item };
+      movieCopy.duration =
+        Number(item.duration.slice(0, 1)) * 60 +
+        Number(item.duration.slice(-5, -3));
+      return movieCopy;
+    }
+  });
+
+  return movieArray;
+}
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
-let yearAndRatingArray = [];
+function bestYearAvg(array) {
+  if (array.length == 0) {
+    return null;
+  }
 
-function bestYearAvg(arr) {
-  yearAndRatingArray = arr.map((item) => {
-    return { year: item.year, rating: item.rate };
+  const yearsAndRating = array.map((item) => {
+    return { year: item.year, rate: item.rate };
   });
+
+  const yearsAccumulated = [];
+
+  yearsAndRating.forEach((item) => {
+    let year = item.year;
+    let total = 0;
+    let count = 0;
+    yearsAndRating.forEach((item) => {
+      if (item.year === year) {
+        total += item.rate;
+        count += 1;
+      }
+    });
+    yearsAccumulated.push({ year: year, rate: total, count: count });
+  });
+
+  const yearsAndAverage = [];
+
+  yearsAccumulated.forEach((item) => {
+    yearsAndAverage.push({
+      year: item.year,
+      average: Math.round((item.rate / item.count) * 10) / 10,
+    });
+  });
+
+  yearsAndAverage.sort((a, b) => {
+    if (a.average < b.average) {
+      return -1;
+    } else if (b.average < a.average) {
+      return 1;
+    } else if (a.year < b.year) {
+      return 1;
+    }
+  });
+
+  return `The best year was ${
+    yearsAndAverage[yearsAndAverage.length - 1].year
+  } with an average rate of ${
+    yearsAndAverage[yearsAndAverage.length - 1].average
+  }`;
 }
-
-console.log("yearAndRatingArray", yearAndRatingArray);
-
-bestYearAvg(movies);
