@@ -2048,14 +2048,26 @@ function ratesAverage(phMovies) {
 ratesAverage(movies); // 8.31
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function getDrama(phMovies) {
-  const dramas = phMovies.map(function (movie) {
+function dramaMoviesRate(movielist) {
+  const drama = movielist.filter(function (movie) {
     return movie.genre.includes("Drama");
   });
-  return dramas.rate;
+  let total = 0;
+  let result = drama.map((x) => (total += x.rate));
+  return total / drama.length;
 }
 
+console.log(dramaRate(movies));
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+
+function orderByYear(phMovies) {
+  const sorted = phMovies.sort(function (a, b) {
+    return a.year - b.year; //or b - a if descending
+  });
+  return sorted;
+}
+
+orderByYear(movies);
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
