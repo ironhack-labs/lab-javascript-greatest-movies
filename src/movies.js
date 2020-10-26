@@ -12,7 +12,22 @@ function howManyMovies (StevenS) {
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
-const ratesAverage ()
+const ratesAverage = (arr) => {
+    let sum = 0
+    if (!arr.length) {
+      return 0
+    }
+  
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].rate) {
+        sum += arr[i].rate
+      }
+    }
+  
+    let avg = sum / arr.length
+    return Number(avg.toFixed(2))
+  }
+
 
 
 
