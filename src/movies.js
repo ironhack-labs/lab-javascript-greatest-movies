@@ -4,10 +4,6 @@ const getAllDirectors = arrayOfMovies => arrayOfMovies.map(elm => elm.director)
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies (StevenS) {
-    return StevenS.filter(obj => obj.director === "Steven Spielberg" && obj.genre.includes("Drama"))
-}
-
 
 
 
