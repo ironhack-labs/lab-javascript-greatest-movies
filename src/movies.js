@@ -98,7 +98,7 @@ function turnHoursToMinutes(array) {
         else if (elm.duration.length = 2) {
             //la duracion es es de "XH"
             hourToMin = parseInt(elm.duration.substr(0, 1)) * 60
-            elm.Duration = hourToMin
+            elm.duration = hourToMin
             return  minDur 
         }
         else if (elm.duration.length = 5) {
@@ -113,7 +113,7 @@ function turnHoursToMinutes(array) {
 }
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
-function bestYear(array) {
+function bestYearAvg(array) {
     
 }
 
