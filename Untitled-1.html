@@ -1,4 +1,13 @@
-let movies = [
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    let movies = [
     {
       "title": "The Shawshank Redemption",
       "year": 1994,
@@ -2968,4 +2977,62 @@ let movies = [
     }
 ]
   
+const getAllDirectors = movieArray => movieArray.map(elem => elem.director)
 
+    console.log (getAllDirectors)
+
+
+
+
+
+const howManyMovies = movieArray1 => movieArray1.filter (elem => elem.director.includes('Steven Spielberg') && elem.genre.includes ('Drama')
+
+    console.log (howManyMovies)
+
+
+
+
+
+const ratesAverage = movieArray3 => movieArray3.reduce((acc, elem) => {
+    return acc + elem.rate
+}, 0)
+
+const numberMovies = movieArray3.length
+
+totalAverage = parseFloat((ratesAverage/ numberMovies).toFixed(2))
+
+    console.log ('El promedio es', totalAverage)
+
+
+
+
+
+const dramaMoviesRate = movies.filter (elem => elem.genre.includes ('Drama'))
+
+console.log (dramaMoviesRate)
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+</script>
+</body>
+</html>
