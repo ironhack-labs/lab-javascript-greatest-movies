@@ -15,8 +15,13 @@ function howManyMovies (StevenS) {
 const ratesAverage = (challenge) => {
     return Number((challenge.reduce((sum, curr) => sum + Number(curr.rate), 0)/challenge.length).toFixed(2)) || 0
 
-
     }
+
+    let sum = challenge.reduce((accum, currentMovie) => {
+        if(currentMovie.rate){
+            return accum + currentMovie.rate
+        }
+    }, 0)
    
 
 
