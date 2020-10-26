@@ -26,17 +26,7 @@ const dramaMoviesRate = (totalMovies) => {
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-const orderByYear = (correctOrder) => {
-    let sortedCorrectOrder = [...correctOrder]
 
-    return sortedCorrectOrder.sort ((a, b) => {
-        if (a.year === b.year) {
-          if(!a.title){return}
-          return a.title.localeCompare(b.title)
-        } else {
-          return a.year - b.year;
-        }
-      })
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
