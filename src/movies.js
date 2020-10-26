@@ -13,21 +13,11 @@ function howManyMovies (StevenS) {
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 const ratesAverage = (challenge) => {
-    let sum = 0
-    if (!challenge.length) {
-      return 0
-    }
-  
-    for (let i = 0; i < challenge.length; i++) {
-      if (challenge[i].rate) {
-        sum += challenge[i].rate
-      }
-    }
-  
-    let avg = sum / challenge.length
-    return Number(avg.toFixed(2))
-  }
+    return Number((challenge.reduce((sum, curr) => sum + Number(curr.rate), 0)/challenge.length).toFixed(2)) || 0
 
+
+    }
+   
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
