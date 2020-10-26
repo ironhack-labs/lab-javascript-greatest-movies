@@ -59,8 +59,11 @@ function dramaMoviesRate(movies) {
 function orderByYear(movies) {
 
     const moviesCopy = JSON.parse(JSON.stringify(movies));
-    const orden = moviesCopy.year.sort((a, b) => a - b)
+    const orden = moviesCopy.sort((a, b) => a.year - b.year)
+
     return orden
+
+
 }
 
 
@@ -68,9 +71,56 @@ function orderByYear(movies) {
 
 function orderAlphabetically(movies) {
 
+    const moviesCopy2 = JSON.parse(JSON.stringify(movies));
+
+    const orderTitle = moviesCopy2.sort((a, b) => {
+        if (a.title < b.title) {
+            return -1;
+        }
+        else if (a.title > b.title) {
+            return 1;
+        }
+        return 0;
+    })
+
+    let arrTitle = orderTitle.map(elm => elm.title)
+    return (arrTitle.splice(0, 20))
+
+
 }
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(movies) {
+    const moviesCopy3 = JSON.parse(JSON.stringify(movies));
+
+    const duration = moviesCopy3.map(elm => {
+        const time = elm.duration
+        let hours = time.charAt(0)
+        let newHours = parseInt(hours)
+        let minutes = newHours * 60
+        let newMinutes = parseFloat(time.slice(3, 4)) + minutes
+        console.log(newMinutes)
+        const obt = {
+            ...elm,
+            duration: newMinutes
+        }
+        return obt
+    })
+    return duration
+}
+
+
+
+
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movies) {
+
+    if (movies.length === 0) {
+        return null
+    }
+
+}
