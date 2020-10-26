@@ -2946,7 +2946,7 @@ let movies = [
       "title": "Dog Day Afternoon",
       "year": 1975,
       "director": "Sidney Lumet",
-      "duration": "2h 5min",
+      "duration": "2h",
       "genre": [
         "Biography",
         "Crime",
@@ -2959,7 +2959,7 @@ let movies = [
       "title": "Dead Poets Society",
       "year": 1989,
       "director": "Peter Weir",
-      "duration": "2h 8min",
+      "duration": "8min",
       "genre": [
         "Comedy",
         "Drama"
@@ -2968,14 +2968,46 @@ let movies = [
     }
   ]
 
-const orderAlphabetically = (movies) => {
-    
-    const alphabeticalTitlesOnly = movies.sort((a, b) => {
-        return a.title - b.title;
-    }).map(movie => {
-        return movie.title;
-    })
-    return alphabeticalTitlesOnly.slice(0, 19);
-};
+  const test = [
+    { 
+      "year": 2003,
+      "rate": 8.2
+    },
+    { 
+      "year": 2014,
+      "rate": 9.6
+    },
+    { 
+      "year": 2014,
+      "rate": 7.5
+    },
+    { 
+      "year": 2008,
+      "rate": 5.9
+    }
+  ]
 
-console.log(orderAlphabetically(movies));
+  const bestYearAvg = (movies) => {
+    const ratingsByYear = {};
+    movies.forEach(movie => {
+        const existingYear = ratingsByYear[movie.year];
+        if (!existingYear) {
+            ratingsByYear[movie.year] = [movie.rate]
+        }
+        else ratingsByYear[movie.year].push(movie.rate)
+    })
+
+    const averageRateByYear = Object.values(ratingsByYear).map(year => {
+      return year.reduce((acc, rate) => acc + rate, 0 ) / year.length
+    }) 
+   
+    console.log(ratingsByYear)
+    console.log(averageRateByYear)
+
+
+    // const highestAverage = {}
+
+    // return `The best year was ${highestAverage.year} with an average rate of ${highestAverage.rate}`
+}
+
+console.log(bestYearAvg(test))

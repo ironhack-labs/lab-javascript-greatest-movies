@@ -8,7 +8,15 @@ const getAllDirectors = (arr) => {
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
-
+const getAllDirectorsUnified = (arr) => {
+    const unified = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (!unified.includes(arr[i])) {
+            unified.push(arr[i]);
+        }
+    } 
+    return unified;
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 const howManyMovies = (arr) => {
@@ -93,4 +101,22 @@ const orderAlphabetically = (movies) => {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+const turnHoursToMinutes = (movies) => {
+    const moviesCopy = [...movies];
+    const durationInMins = moviesCopy.map(movie => {
+      let minutes;
+      if (movie.duration.includes(' ')) {
+        const split = movie.duration.split(' ').map(element => {
+          return element.includes('h') ? Number(element.replace('h', '')) * 60 : Number(element.replace('min', ''));
+        })
+        minutes = split[0] + split[1]
+      } else {
+        minutes = ( movie.duration.includes('h') ? Number(movie.duration.replace('h', '')) * 60 : Number(movie.duration.replace('min', '')))
+      }
+      return movieCopy = {...movie, duration: minutes};
+    })
+    return durationInMins;
+  };
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
