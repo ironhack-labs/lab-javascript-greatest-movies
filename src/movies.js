@@ -5,7 +5,7 @@ const getAllDirectors = arrayOfMovies => arrayOfMovies.map(elm => elm.director)
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 const howManyMovies = movies.filter (elm => {elm.drama && elm.director
-    return elm % 2 === 0
+    return elm % 0;
 })
 
 
