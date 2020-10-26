@@ -12,6 +12,9 @@ function howManyMovies (StevenS) {
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
+const ratesAverage = moviesArray => moviesArray.filter (elm => elm
+    rates.reduce ((acc,elm) => acc + elm.rate,0))
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
