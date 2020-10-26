@@ -4,22 +4,24 @@ const getAllDirectors = arrayOfMovies => arrayOfMovies.map(movie => movie.direct
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
-// function oneFilmDirector(arr) {
-    
-//     for (i = 0; i < arr.length; i++) {
-//         if (lastIndexOf(arr[i]) !== i) {
-//             director.spliced(i, 1)
-//             i--
-//         }
-//     }
-//     return arr;
-// }
+// let clonedArrayForDuplicatedDirectors = JSON.parse(JSON.stringify(movies));
+
+// let getAllDirectorsWithDuplicated = arrayOfMovies => arrayOfMovies.map(clonedArrayForDuplicatedDirectors => clonedArrayForDuplicatedDirectors.director);
+// let noDuplicatedGetAllDirectors = []
+// let obj = {}
+// getAllDirectorsWithDuplicated.forEach(elm => {
+//     if (!(elm in obj)) {
+//         obj[elm] = true
+//         noDuplicatedGetAllDirectors.push(elm)
+//     };
+// });
+// return noDuplicatedGetAllDirectors;
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 function howManyMovies(arr) {
-    const howManyList = arr.filter(elm => elm.director.toLowerCase() === "steven spielberg" && elm.genre.includes("Drama"))
-    return howManyList.length;
+    const howManySpielbergMoviesAreDramas = arr.filter(elm => elm.director.toLowerCase() === "steven spielberg" && elm.genre.includes("Drama"))
+    return howManySpielbergMoviesAreDramas.length;
 };
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
@@ -37,10 +39,10 @@ function ratesAverage(arr) {
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate(arr) {
-    const dramaList = arr.filter(function (arr) {
+    const dramaMoviesList = arr.filter(function (arr) {
         return arr.genre.includes("Drama");
     });
-    return ratesAverage(dramaList);
+    return ratesAverage(dramaMoviesList);
 };
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
@@ -68,8 +70,8 @@ function orderByYear(clonedArrayForOrderByYear) {
 let clonedArrayForAlphabeticalOrder = JSON.parse(JSON.stringify(movies));
 
 function orderAlphabetically(clonedArrayForAlphabeticalOrder) {
-    const movieList = clonedArrayForAlphabeticalOrder.map(clonedArrayForAlphabeticalOrder => (clonedArrayForAlphabeticalOrder.title));
-    const alphabeticalOrderedList = movieList.sort();
+    const movieListByTitle = clonedArrayForAlphabeticalOrder.map(clonedArrayForAlphabeticalOrder => (clonedArrayForAlphabeticalOrder.title));
+    const alphabeticalOrderedList = movieListByTitle.sort();
     return alphabeticalOrderedList.slice(0, 20);
 };
 
@@ -78,7 +80,9 @@ function orderAlphabetically(clonedArrayForAlphabeticalOrder) {
 let clonedArrayForHoursToMinutes = JSON.parse(JSON.stringify(movies));
 
 function turnHoursToMinutes(clonedArrayForHoursToMinutes) {
-    
+    const movieListByDuration = clonedArrayForHoursToMinutes.map(clonedArrayForHoursToMinutes => (clonedArrayForHoursToMinutes.duration));
+    const hoursToMinutes = movieListByDuration.asMinutes();
+    return hoursToMinutes // This is not the way...
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
