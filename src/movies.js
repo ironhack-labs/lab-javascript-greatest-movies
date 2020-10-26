@@ -75,12 +75,42 @@ function orderAlphabetically(movies) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes(movies) {
-    
+
 }
 
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
 function bestYearAvg(movies) {
+
+    if (movies.length === 0) { return null }
+
+    //  SET DE AÑOS 
+    const years = movies.map(elm => elm.year)
+    const yearsSet = Array.from(new Set(years))
+    const yearsSetOrdered = yearsSet.sort((a, b) => b - a)  //  PARA EL CASO DE EMPATE COGER EL QUE MAS ANTIGUO
+
+    let maxAvg = 0  //  MEDIA ANUAL MAS ALTA   
+    
+    let maxAvgYear  //  AÑO CON LA MEDIA MAS ALTA
+
+    let moviesByYear    //  PELICULAS SEPARADAS POR AÑO
+    
+    let moviesByYearAvg //  MEDIA DE LAS PELICULAS POR AÑO
+
+    
+    //  PARA CADA AÑO DEL SET ORDENADO CALCULO LA MEDIA Y COMPARO CON EL QUE TIENE MAYOR MEDIA HASTA EL MOMENTO
+    
+    yearsSetOrdered.forEach(year => {   
+
+        moviesByYear = movies.filter(elm => elm.year === year)
+        moviesByYearAvg = moviesByYear.reduce((acc, elm) => acc + elm.rate / moviesByYear.length, 0)
+        if (moviesByYearAvg >= maxAvg) {
+            maxAvg = moviesByYearAvg
+            maxAvgYear = year
+        }
+    })
+
+    return `The best year was ${maxAvgYear} with an average rate of ${maxAvg}`
 
 }
