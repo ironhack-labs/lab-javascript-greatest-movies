@@ -120,3 +120,32 @@ const turnHoursToMinutes = (movies) => {
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
+const bestYearAvg = (movies) => {
+    let ratingsByYear = {};
+  
+    movies.forEach(movie => {
+        const existingYear = ratingsByYear[movie.year];
+        if (!existingYear) {
+            ratingsByYear[movie.year] = [movie.rate]
+        }
+        else ratingsByYear[movie.year].push(movie.rate)
+    })  
+    console.log(ratingsByYear)
+  
+    for (let year in ratingsByYear) {
+      ratingsByYear[year] = ratingsByYear[year].reduce((acc, rate) => acc + rate, 0 ) / ratingsByYear[year].length;
+    }
+    
+    console.log(ratingsByYear)
+  
+    let highestRate = Math.max.apply(null, Object.keys(ratingsByYear).map(x => ratingsByYear[x]))
+  
+    let yearWithHighestRate = Object.keys(ratingsByYear).reduce((result, key) => { 
+      if (ratingsByYear[key] === highestRate){ 
+        result.push(key); 
+      } 
+      return result; 
+    }, []);
+  
+    return `The best year was ${highestRate} with an average rate of ${yearWithHighestRate}`
+  }
