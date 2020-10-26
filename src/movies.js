@@ -76,6 +76,23 @@ function orderAlphabetically(movies) {
 
 function turnHoursToMinutes(movies) {
 
+    let clonedMovies = JSON.parse(JSON.stringify(movies))
+
+    clonedMovies.forEach(elm => {
+
+        if (elm.duration.includes('h' && 'min')) {
+            let durationSplit = elm.duration.split(" ")
+            let durationMin = parseInt(durationSplit[0]) * 60 + parseInt(durationSplit[1])
+            elm.duration = durationMin
+        } else if (elm.duration.includes('h')) {
+            elm.duration = parseInt(elm.duration) * 60
+        } else {
+            elm.duration = parseInt(elm.duration.split('min')[0])
+        }
+    })
+
+    return clonedMovies
+
 }
 
 
@@ -91,17 +108,17 @@ function bestYearAvg(movies) {
     const yearsSetOrdered = yearsSet.sort((a, b) => b - a)  //  PARA EL CASO DE EMPATE COGER EL QUE MAS ANTIGUO
 
     let maxAvg = 0  //  MEDIA ANUAL MAS ALTA   
-    
+
     let maxAvgYear  //  AÑO CON LA MEDIA MAS ALTA
 
     let moviesByYear    //  PELICULAS SEPARADAS POR AÑO
-    
+
     let moviesByYearAvg //  MEDIA DE LAS PELICULAS POR AÑO
 
-    
+
     //  PARA CADA AÑO DEL SET ORDENADO CALCULO LA MEDIA Y COMPARO CON EL QUE TIENE MAYOR MEDIA HASTA EL MOMENTO
-    
-    yearsSetOrdered.forEach(year => {   
+
+    yearsSetOrdered.forEach(year => {
 
         moviesByYear = movies.filter(elm => elm.year === year)
         moviesByYearAvg = moviesByYear.reduce((acc, elm) => acc + elm.rate / moviesByYear.length, 0)
