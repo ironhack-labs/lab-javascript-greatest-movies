@@ -102,14 +102,7 @@ function orderAlphabetically(arr) {
 }  
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
-function turnHoursToMinutes(arr) {
-    const changeDuration = arr.map(elm => {
-        let duration = elm["duration"];
-        let change = duration.split(":");
-        let total = parseInt(change[0]) * 60 + parseInt(change[1]);
-        return total
-    })
-    return changeDuration;
+function turnHoursToMinutes(arr) {   
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
