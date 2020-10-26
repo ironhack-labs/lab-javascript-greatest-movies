@@ -17,12 +17,6 @@ const ratesAverage = (challenge) => {
 
     }
 
-    let sum = challenge.reduce((accum, currentMovie) => {
-        if(currentMovie.rate){
-            return accum + currentMovie.rate
-        }
-    }, 0)
-   
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
