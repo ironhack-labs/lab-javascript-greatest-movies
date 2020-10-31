@@ -48,9 +48,7 @@ function dramaMoviesRate(moviesArr){
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArr){
     let sortedMatriz = moviesArr.sort(function(a,b){
-  
-        return a-b
-
+        
     })
 
 }
