@@ -15,19 +15,26 @@ function howManyMovies(arrMovies){
     return movieSpielberg.length
 }
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-    function ratesAverage(arrMovies){
-
-    let allRates = arrMovies.map(movie => movie.rate)
-
-    if(arrMovies.length === 0){
-            return 0
-
-   }else{
-       let sumRates = allRates.reduce((acumulador, movie) => acumulador + movie, 0)
-       let totalRate = (sumRates / arrMovies.length).toFixed(2)  
-       return parseFloat(totalRate)   
-    }
     
+
+    function ratesAverage(arrMovies){
+       
+        if(arrMovies.length === 0){
+            return 0
+   
+       }
+
+    let sumRates = arrMovies.reduce((acumulador, movie) => {
+        if(movie.rate){
+            return acumulador += movie.rate;
+        }else{
+            return acumulador;
+        }
+    },0)
+
+    let totalRate = (sumRates / arrMovies.length).toFixed(2)  
+        return parseFloat(totalRate) 
+
     }
 
 
@@ -38,17 +45,11 @@ function howManyMovies(arrMovies){
                
         if(filtroDrama.length === 0){
            return 0
-        }else{
-            let sumDrama = filtroDrama.reduce((acumulador, movie) => acumulador + movie, 0)
-            let dramaMedia= ((sumDrama / filtroDrama.length).toFixed(2))  
-
-        return parseFloat(dramaMedia)
-        //     let  dramaMovieRate = ratesAverage(dramaMovies)
-        //     return parseFloat(dramaMoviesRate)
-        // }
+        }
+        return ratesAverage(filtroDrama)
         
 }
-    }
+    
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
