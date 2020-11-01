@@ -36,25 +36,77 @@ function ratesAverage(movies) {
 
 function dramaMoviesRate(movies) {
 
-    const dramaAvg = movies.reduce(function(totalDrama, currentMovie) {
+    let totalDrama = 0;
+
+    const sumRate = movies.reduce(function(sumRating, currentMovie) {
         if (currentMovie.genre.indexOf('Drama') !== -1) {
+            sumRating += currentMovie.rate;
             totalDrama += 1;
         }
 
-        return totalDrama;
-
+        return sumRating;
     }, 0);
 
-    console.log('total => ', dramaAvg);
+    if (totalDrama === 0) {
+        return 0;
+    }
 
-    return (Math.round(dramaAvg / movies.length * 100) / 100);
-
+    return (Math.round(sumRate / totalDrama * 100) / 100);
 }
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
+function orderByYear(movies) {
+
+    if (movies.length === 1) {
+        return singleMovie = movies;
+    }
+
+    const moviesOrderByYear = [...movies].sort(function(movieA, movieB) {
+
+        if (movieA.year === movieB.year && movieA.title !== movieB.title) {
+
+            if (movieA.title > movieB.title) {
+                return movieA;
+            }
+
+            return movieB;
+        }
+
+        return movieA.year - movieB.year;
+    });
+
+    return moviesOrderByYear;
+}
+
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+function orderAlphabetically(movies) {
+
+    const orederedByTitle = [...movies].sort(compareTitles);
+
+    const twentyFirst = orederedByTitle.slice(0, 20);
+
+    const titleValues = twentyFirst.map((value) => value.title);
+
+    return titleValues;
+
+}
+
+function compareTitles(a, b) {
+
+    if (a.title < b.title) {
+        return -1;
+    }
+
+    if (a.title > b.title) {
+        return 1;
+    }
+
+    return 0;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
