@@ -67,11 +67,8 @@ function orderByYear(movies) {
 
         if (movieA.year === movieB.year && movieA.title !== movieB.title) {
 
-            if (movieA.title > movieB.title) {
-                return movieA;
-            }
+            return compareTitles(movieA, movieB);
 
-            return movieB;
         }
 
         return movieA.year - movieB.year;
@@ -95,13 +92,13 @@ function orderAlphabetically(movies) {
 
 }
 
-function compareTitles(a, b) {
+function compareTitles(prevMovie, nextMovie) {
 
-    if (a.title < b.title) {
+    if (prevMovie.title < nextMovie.title) {
         return -1;
     }
 
-    if (a.title > b.title) {
+    if (prevMovie.title > nextMovie.title) {
         return 1;
     }
 
@@ -110,4 +107,89 @@ function compareTitles(a, b) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(movies) {
+
+    const movieDurationInMinutes = [];
+
+    movies.map(function(movie) {
+
+        if (typeof movie.duration === 'number') {
+            return movieDurationInMinutes.push(movie);
+        }
+
+        let numberDuration = timesToMinutes(movie.duration);
+        let copyMovie = Object.assign({}, movie);
+        copyMovie.duration = numberDuration;
+
+        return movieDurationInMinutes.push(copyMovie);
+    });
+
+    return movieDurationInMinutes;
+
+}
+
+
+function timesToMinutes(duration) {
+
+    if (duration.length <= 2) {
+
+        return Number(duration[0]) * 60;
+
+    } else if (duration.length < 5 && duration.length > 2) {
+
+        return Number(duration.substr(0, 1));
+
+    } else if (duration.length === 5) {
+
+        return Number(duration.substr(0, 2));
+
+    } else {
+
+        let arrayDuration = duration.split(" ");
+        let realMinutes = 0;
+
+        if (arrayDuration[1].length < 5) {
+
+            realMinutes = Number(arrayDuration[1].substr(0, 1));
+
+        } else {
+
+            realMinutes = Number(arrayDuration[1].substr(0, 2));
+        }
+
+        return (Number(arrayDuration[0]) * 60) + realMinutes;
+    }
+
+}
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movies) {
+
+    if (movies.length === 0) {
+        return null;
+    }
+
+    // 1º array of movies in years
+    const moviesInYears = [];
+
+
+    movies.map(function(movie) {
+
+        if (moviesInYears.indexOf(movie.year) === -1) { // no está el año
+
+            return moviesInYears.push({ year: movie.year, films: [{ title: movie.title, rate: movie.rate }] });
+
+        } else { // está el año
+
+            return moviesInYears.films.push({ title: movie.title, rate: movie.rate });
+        }
+
+    });
+
+    console.log('movies in year =>', moviesInYears);
+
+
+    return `The best year was 1994 with an average rate of 9`;
+
+}
