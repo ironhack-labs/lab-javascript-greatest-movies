@@ -9,7 +9,7 @@ function howManyMovies (arr) {
     return arr.filter(movie => movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')).length 
 }
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-function ratesAverage(arr) {
+function ratesAverage (arr) {
     return arr.length === 0 ? 0 : Math.round((arr.reduce((acc, el) => (typeof el.rate !== "number") ? acc : acc + el.rate, 0)) / arr.length * 100) / 100;
 }
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -21,7 +21,11 @@ function orderByYear (arr) {
     return (arr.filter(movieYear => movieYear.year)).sort((a, b) => (a.year > b.year) ? 1 : (a.year === b.year) ? ((a.title > b.title) ? 1 : -1) : -1);
 }
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-
+function orderAlphabetically (arr) {
+    return arr.map(movie => movie.title).sort().slice(0, 20);
+}
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-
+function turnHoursToMinutes (arr) {
+    
+}
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
