@@ -49,20 +49,14 @@ function orderAlphabetically(arr) {
 function turnHoursToMinutes(arr) {
     return arr
         .map(movie => {
-            console.log({...movie})
-            const updatedMovie = {...movie};
-            if (updatedMovie.duration.includes('h')) {
-                const durationArr = updatedMovie.duration.split(/\D+/).map(item => Number(item));
-                durationArr[0] *= 60;
-                updatedMovie.duration = durationArr.reduce((acc, num) => acc + num, 0);
-                return updatedMovie;
-            }   
-            updatedMovie.duration = Number(updatedMovie.duration.slice(0,2));
-            return updatedMovie
+          const updatedMovie = {...movie};
+            if (movie.duration.includes('h')) {
+                updatedMovie.duration = parseInt(movie.duration.slice(0,2)) * 60 + parseInt(movie.duration.slice(3, 5) || 0);
+            }   else {
+                updatedMovie.duration = Number(movie.duration.slice(0,2));
+            }   return updatedMovie;
         });
 };
-
-
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
 function orderByYearInverse(arr) {
