@@ -48,20 +48,19 @@ function orderAlphabetically(arr) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arr) {
     return arr
-        .slice(0, arr.length)
         .map(movie => {
-            if (movie.duration.includes('h')) {
-                const durationArr = movie.duration.split(/\D+/).filter(item => item).map(item => Number(item));
+            console.log({...movie})
+            const updatedMovie = {...movie};
+            if (updatedMovie.duration.includes('h')) {
+                const durationArr = updatedMovie.duration.split(/\D+/).map(item => Number(item));
                 durationArr[0] *= 60;
-                movie.duration = durationArr.reduce((acc, num) => acc + num, 0);
-                return movie;
+                updatedMovie.duration = durationArr.reduce((acc, num) => acc + num, 0);
+                return updatedMovie;
             }   
-            movie.duration = Number(movie.duration.slice(0,2));
-            return movie
+            updatedMovie.duration = Number(updatedMovie.duration.slice(0,2));
+            return updatedMovie
         });
 };
-
-console.log(turnHoursToMinutes(movies))
 
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
