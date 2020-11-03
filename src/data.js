@@ -1,4 +1,4 @@
-let movies = [
+movies = [
     {
       "title": "The Shawshank Redemption",
       "year": 1994,
@@ -2967,3 +2967,5 @@ let movies = [
       "rate": 8
     }
   ]
+
+
