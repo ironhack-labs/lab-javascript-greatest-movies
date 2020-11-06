@@ -26,6 +26,13 @@ function orderAlphabetically (arr) {
 }
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes (arr) {
-    
+    arr.filter(movie => movie.duration).map(movie => {
+      if (movie.duration === NaN) {
+        hours = parseFloat(movie.duration.charAt()) * 60;
+        minutes = parseFloat(movie.duration.slice(3, -3));
+        minutes = minutes + hours;
+      } 
+      return minutes; 
+    })   
 }
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
