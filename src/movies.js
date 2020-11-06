@@ -15,13 +15,40 @@ const howManyMovies = (arr) => {
 
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+// Me queda añadir la condición de que devuelva una media incluso si una película no tiene rate
 
-
+const ratesAverage = (movies) => {
+    const average = movies.reduce(function (acc, rates) {
+        return acc + rates.rate;
+    }, 0);
+    if (movies.length === 0) {
+        return 0
+    } else {
+        return Math.round((average/movies.length)*100)/100
+    }
+}
+  
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
+const dramaMoviesRate = (movies) => {
+    const dramaMovies = movies.filter (element => element.genre.includes ('Drama'))
+    return dramaMovies.reduce (function (acc, rates) {
+        return Math.round((acc + rates.rate)*100)/100;
+    }, 0);
+}
+
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+
+const orderByYear = (movie) => {
+    movie.year.sort( function(a, b) {
+        if (a < b) return -1;
+        if (a > b) return 1;
+        if (a === b) return movie.title.sort ();
+    });
+    return orderByYear;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
