@@ -27,31 +27,57 @@ const ratesAverage = (movies) => {
         return Math.round((average/movies.length)*100)/100
     }
 }
+
+
   
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
-const dramaMoviesRate = (movies) => {
-    const dramaMovies = movies.filter (element => element.genre.includes ('Drama'))
-    return dramaMovies.reduce (function (acc, rates) {
-        return Math.round((acc + rates.rate)*100)/100;
-    }, 0);
-}
+function dramaMoviesRate(array) {
+  
+    const dramaArray = array.filter(elemento => elemento.genre.includes ("Drama") && elemento.rate>0)
+    const solution = Math.round( dramaRatesSum(dramaArray)/dramaArray.length * 1e2 ) / 1e2;
+  
+    if (solution > 0){
+      return solution}
+      else 
+      {
+        return 0
+      }  }
+  const dramaRatesSum = (array) => array.filter (elemento => elemento.rate > 0).reduce((acumulador, elemento) => acumulador + elemento.rate, 0)
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
-const orderByYear = (movie) => {
-    movie.year.sort( function(a, b) {
-        if (a < b) return -1;
-        if (a > b) return 1;
-        if (a === b) return movie.title.sort ();
-    });
-    return orderByYear;
-}
+function orderByYear(array) {
+    const orderedMovies = array.sort((a, b) => {
+  
+      if (a.year > b.year) return 1;
+      if (a.year < b.year) return -1;
+      if (a.title > b.title) return 1;
+      if (a.title < b.title) return -1; });
+  
+     return orderedMovies
+   }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
+function orderAlphabetically (array) {
+    const onlyTitle = (array) => array.map (elemento => elemento.title)
+    return onlyTitle(array).sort().slice(0, 20)
+    }
+
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+function turnHoursToMinutes(array) {
+  return array.map(movie => {
+        const newMovieArray = {movie};
+          if (movie.duration.includes('h')) {
+            newMovieArray.duration = parseInt(movie.duration.slice(0,2)) * 60 + parseInt(movie.duration.slice(3, 5) || 0);
+          }   else {
+            newMovieArray.duration = Number(movie.duration.slice(0,2));
+          }   return newMovieArray;
+      });
+};
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
