@@ -10,7 +10,7 @@ console.log(getAllDirectors);
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 function howManyMovies(arr) {
-  let newArr = arr.filter((obj) => obj.director === "Steven Spielberg");
+  let newArr = arr.filter((arr) => arr.director === "Steven Spielberg");
   let nextArr = newArr.filter((obj) => obj.genre.includes("Drama"));
   return nextArr.length;
 }
@@ -19,26 +19,51 @@ howManyMovies(movies);
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
-function ratesAverage(movies) {
-  let average = movies.map((obj) => obj.rate).reduce(function(accum, currVal) {
-    return accum + currVal / movies.length;
+function ratesAverage(arr) {
+  let average = arr.filter((arr) => arr.rate).reduce(function(accum, currVal) {
+    return accum + currVal.rate / arr.length;
   }, 0);
   return Number(average.toFixed(2));
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
-function dramaMoviesRate(movies) {
-  let dramas = movies.filter((obj) => obj.genre.includes('Drama'));
-  let dramasAverage = dramas.map((obj) => obj.rate).reduce(function(accum, currVal) {
-   return accum + currVal / movies.length;
- }, 0);
- return Number(dramasAverage.toFixed(2));
-}
+function dramaMoviesRate(arr) {
+  let dramas = arr.filter((arr) => arr.genre.includes('Drama'));
+  return ratesAverage(dramas);
+};
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
+function orderByYear(arr) {
+  let newArr = arr.map((arr) => arr);
+  let orderedMovies = newArr.sort((a, b) => {
+      if (a.year < b.year) {
+        return -1;
+      } if (a.year > b.year) {
+        return 1;
+      } if (a.year === b.year) {
+          if(a.title < b.title) {
+            return -1;
+          } if (a.title > b.title) {
+            return 1;
+          }
+      }
+  });
+  return orderedMovies
+}
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+function orderAlphabetically(arr) {
+  let titles = arr.map((arr) => arr.title)
+  let sortedTitles = titles.sort()
+  if (sortedTitles <= 20) {
+    return sortedTitles
+  } else {
+    return sortedTitles.slice(0, 20)
+  }
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
