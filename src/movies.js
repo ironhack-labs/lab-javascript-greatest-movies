@@ -77,4 +77,26 @@ const orderAlphabetically = (array) => {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+const turnHoursToMinutes = (array) => {
+  //clean the array and extract the hours
+  let hours = 0;
+  let min = 0;
+  let splitArray = [];
+  let hoursInMin = [];
+  for (let i of array) {
+    let splitArray = i.duration.split(' ');
+    for (let x of splitArray) {
+      if (x.includes('h')) {
+        hours = parseInt(x);
+      } else if (x.includes('min')) {
+        min = parseInt(x);
+      } else {
+        hours = 0;
+      }
+    }
+    hoursInMin.push(hours * 60 + min);
+  }
+  return hoursInMin;
+};
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
