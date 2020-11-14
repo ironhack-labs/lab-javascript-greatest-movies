@@ -71,34 +71,52 @@ function dramaMoviesRate(movies) {
 const reversedMovies = [...movies.reverse()];
 
 function orderByYear(reversedMovies) {
-  const sortedYear = reversedMovies.sort(function (yearA, yearB) {
-    return yearA.year - yearB.year;
+  const sortedYear = [...reversedMovies].sort(function (yearA, yearB) {
+    if (yearA === yearB) {
+      if (a.title > b.title) {
+        return 1;
+      } else if (a.title < b.title) {
+        return -1;
+      } else {
+        return 0;
+      }
+    } else {
+      return yearA.year - yearB.year;
+    }
   });
+
   return sortedYear;
 }
+
 let avYears = orderByYear(movies);
 
 console.log(avYears);
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
-function orderAlphabetically(array) {
-  function compareTitle(a, b) {
-    if (a.title > b.title) {
-      return 1;
-    } else if (a.title < b.t) {
-      return -1;
-    } else {
-      return 0;
-    }
+function compareTitle(a, b) {
+  if (a > b) {
+    return 1;
+  } else if (a < b) {
+    return -1;
+  } else {
+    return 0;
   }
-  array.sort(compareTitle);
-
-  return array;
 }
 
-let ordA = orderAlphabetically(movies);
-console.log(ordA);
+function orderAlphabetically(array) {
+  let newArray = movies.map((movie) => movie.title);
+
+  newArray.sort(compareTitle);
+
+  if (newArray.length < 20) {
+    return newArray;
+  } else {
+    return newArray.slice(0, 20);
+  }
+}
+
+//When we tried the specs from the document movies.specs it worked but it's not turning green on Jasmine
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
