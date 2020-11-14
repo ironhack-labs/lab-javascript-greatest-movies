@@ -8,6 +8,7 @@
 // } 
 
 function getAllDirectors(movies) {
+
     return movies.map(movie => {
         return movie.director
     })
@@ -29,18 +30,22 @@ function howManyMovies(movies) {
 
 function ratesAverage (movies) {
 
+
     let allRatings = movies.map (movie => {
         return movie.rate
     })
 
-    let totalRate = allRatings.reduce((acc, currentVal) => {
+    let totalRate = allRatings.reduce((acc, currentVal) => 
+    
+    {
     return acc + currentVal;})
 
-    let averageRate = totalRate / movies.length
-    return averageRate
-}
+    averageRate = totalRate /= movies.length
+   
+    return Number(averageRate)
+    }
 
- 
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
@@ -59,29 +64,36 @@ let totalDramaRates = dramaRates.reduce ((acc, currentVal) => {
 let averageRateDrama = totalDramaRates / movies.length
 return averageRateDrama
 
+
+
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)function rates
 
 function orderByYear (movies) {
 
-let arrByYear = [...movies];
+    let arrByYear = [...movies]
+return arrByYear.sort ((a, b) =>
+(a.year > b.year) ? 1 : -1)
 
-return arrByYear.sort(function(a, b){
-    return a.year - b.year;
-  });
+}
 
- }
+// let arrByYear = [...movies];
+
+// return arrByYear.sort(function(a, b){
+//     return a.year - b.year;
+//   });
+
+ 
  orderAlphabetically
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically (movies) {
-    let arrAlphab = [...movies];
-
-return arrAlphab.map(movie => {
-    return movie.title
-})
+    return movies.map(movie => {
+        return movie.title
+    }).sort().slice(0,20)
 }
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
