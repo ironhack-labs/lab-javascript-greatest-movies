@@ -78,4 +78,41 @@ function orderAlphabetically(array) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function getHoursinMinutes(array) {
+  let hours = [];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].duration.includes("h")) {
+      hours.push(Number(array[i].duration.slice(0, 1) * 60));
+    } else {
+      hours.push(Number(array[i].duration.slice(0, 2)));
+    }
+  }
+  return hours;
+}
+
+function getMinutes(array) {
+  let minutes = [];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].duration.length === 8) {
+      minutes.push(Number(array[i].duration.slice(3, 5)));
+    } else if (array[i].duration.length === 7) {
+      minutes.push(Number(array[i].duration.slice(3, 4)));
+    } else if (array[i].duration.length === 2) {
+      minutes.push(Number(0));
+    } else minutes.push(Number(0));
+  }
+  return minutes;
+}
+
+function turnHoursToMinutes(array) {
+  let clone = [...array];
+  let lengthMinutes = getHoursinMinutes(array).map(function (a, b) {
+    return a + getMinutes(array)[b];
+  });
+  for (let i = 0; i < clone.length; i++) {
+    clone[i].duration = lengthMinutes[i];
+  }
+  return clone;
+}
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
