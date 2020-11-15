@@ -28,22 +28,51 @@ function howManyMovies(movies) {
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
+
+
 function ratesAverage (movies) {
 
+if (movies.length === 0)  {return 0}
 
-    let allRatings = movies.map (movie => {
-        return movie.rate
-    })
+const foundRates = movies.map(movie => movie.rate);
 
-    let totalRate = allRatings.reduce((acc, currentVal) => 
-    
-    {
-    return acc + currentVal;})
+const sumRates = foundRates.reduce(function(totalRate, rate) {
+if (!rate) {return totalRate}
+    return totalRate + rate 
+})
 
-    averageRate = totalRate /= movies.length
-   
-    return Number(averageRate)
-    }
+  const average = sumRates / foundRates.length
+
+  return Math.round(average*100)/100;
+  }
+// const movieWithRates = movies.filter(movie => {return movie.rate})
+
+// const foundRates = movieWithRates.map(movie => movie.rate);
+// const totalRates = foundRates.reduce((acc, val) => acc + val);
+// return averageRate = Number((totalRates / foundRates.length).toFixed(2));
+
+// }
+// }
+// if (movies.length === 0) {return 0}
+
+// return Number(((movies
+// .map (movie => movie.rate)
+// .reduce ((acc, val) => acc + val) 
+//  ) / movies.length).toFixed(2))
+
+// }
+
+    // let allRatings = movies.map (movie => {
+    //     return movie.rate
+    // });
+
+    // let totalRate = allRatings.reduce((acc, currentVal) => {
+    // return acc + currentVal;})
+
+    // averageRate = totalRate /= movies.length
+    // return averageRate
+
+    // }
 
 
 
@@ -52,21 +81,53 @@ function ratesAverage (movies) {
 
 function dramaMoviesRate(movies) {
 
-let dramaMovie = movies.filter(movie => {
-    return movie.genre.includes("Drama") })
 
-let dramaRates = dramaMovie.map (movie => {
-    return movie.rate })
+const dramaMovies = movies.filter(movie => {
+return movie.genre.includes("Drama") 
+});
 
-let totalDramaRates = dramaRates.reduce ((acc, currentVal) => {
-    return acc + currentVal;})
+const dramaRates = dramaMovies.map (movie => {
+    return movie.rate
+})
 
-let averageRateDrama = totalDramaRates / movies.length
-return averageRateDrama
+const dramaTotalRates = dramaRates.reduce ((acc, val) => {
+    return acc + val
+})
+
+return Number((dramaTotalRates / dramaMovies.length).toFixed(2))
+
+    }
+
+    //     constTotal = movies.filter(movie => {
+    //       return movie.genre.includes("Drama")
+    //     }).map(movie => {
+    //       return movie.rate
+    //     }).reduce((acc, val) => {
+    //       return acc + val
+    //     })
+        
+    //     constLength = movies.filter(movie => {
+    //         return movie.genre.includes("Drama")
+    //     })
+       
+    //    return Math.round(constTotal*100)/100 / constLength.length
+    //   }
+
+// let dramaMovie = movies.filter(movie => {
+//     return movie.genre.includes("Drama") })
+
+// let dramaRates = dramaMovie.map (movie => {
+//     return movie.rate })
+
+// let totalDramaRates = dramaRates.reduce ((acc, currentVal) => {
+//     return acc + currentVal;})
+
+// let averageRateDrama = totalDramaRates / movies.length
+// return Number(averageRateDrama.toFixed(2))
 
 
 
-}
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)function rates
 
