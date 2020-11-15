@@ -78,4 +78,72 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+// I spent time trying to make it work but Jasmine does not agree. So I'm still leaving it here
+
+// function turnHoursToMinutes(movies) {
+//   const copyMovies = [...movies]
+
+//   const moviesTime = copyMovies.map(function (movie) {
+//     // if (!movie.duration.includes('h')) {
+//     //   return movie.duration.split('min')[0]
+//     // } 
+//     // console.log(movie.duration.split('min')[0])
+    
+//     const movieTime = movie.duration.split(' ')
+//     const movieHoursArray = movieTime[0].split('h')
+//     // console.log(movieHoursArray)
+//     const movieHours = movieHoursArray[0]
+
+//     const movieMinutesArray= movieTime[1]
+//     const movieMinutes = movieMinutesArray ? movieMinutesArray.split('min') : 0
+//     const movieInMinutes = Number(movieHours) * 60 + Number(movieMinutes)
+//     return movieInMinutes
+//   })
+//   return moviesTime
+// }
+
+// function turnHoursToMinutes(movies) {
+
+//   const moviesTime = movies.map(function (movie) {
+    
+//     const movieTime = movie.duration.split(' ')
+//     const movieHoursArray = movieTime[0].split('h')
+//     console.log(movieHoursArray)
+//     // const movieHours = movieHoursArray[0]
+//     const movieMinutesArray= movieTime[1].split('min')
+//     // const movieMinutes = movieMinutesArray[0]
+//     const movieInMinutes = Number(movieHoursArray) * 60 + Number(movieMinutesArray)
+//     // return Number(movieHoursArray) * 60 + Number(movieMinutesArray)
+//     // console.log(movieInMinutes)
+//     // const movieMin = 
+//   })
+//   // return moviesTime
+// }
+
+
+// console.log(turnHoursToMinutes([
+//   {
+//     "title": "The Shawshank Redemption",
+//     "year": 1994,
+//     "director": "Frank Darabont",
+//     "duration": "2h 22min",
+//     "genre": [
+//       "Crime",
+//       "Drama"
+//     ],
+//     "rate": 9.3
+//   },
+//   {
+//     "title": "The Godfather",
+//     "year": 1972,
+//     "director": "Francis Ford Coppola",
+//     "duration": "1h 30min",
+//     "genre": [
+//       "Crime",
+//       "Drama"
+//     ],
+//     "rate": 9.2
+//   }]))
+
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
