@@ -2967,3 +2967,9 @@ let movies = [
       "rate": 8
     }
   ]
+
+  module.exports = { movies };
+
+
+
+
