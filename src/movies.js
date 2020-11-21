@@ -4,10 +4,7 @@ function getAllDirectors(movieArray) {
 }
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
-const directors = movies.filter(function (movie, i) {
-    const firstIndex = movies.indexOf(movie)
 
-})
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(arr) {
     let howMovies = arr.filter(function (elem) {
@@ -17,6 +14,23 @@ function howManyMovies(arr) {
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(arr) {
+    if (arr.length === 0) {
+        return 0
+    }
+    const sumRate = arr.reduce(function (acc, elem) {
+        console.log (elem.rate)
+        if (elem.rate === undefined){
+          return acc
+        }
+        return acc + elem.rate
+    }, 0) 
+
+    const numberOfMovies = arr.length
+    const totalRate = parseFloat((sumRate / numberOfMovies).toFixed(2))
+    return totalRate
+}
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
