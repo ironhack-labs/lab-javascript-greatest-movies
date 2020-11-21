@@ -109,6 +109,7 @@ describe('Get how many movies - howManyMovies', () => {
   });
 
   it('Should return 4', () => {
+    console.log('movies');
     expect(howManyMovies(movies)).toBe(4);
   });
 });
