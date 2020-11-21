@@ -31,8 +31,8 @@ function ratesAverage(arr) {
     return totalRate
 }
 
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
