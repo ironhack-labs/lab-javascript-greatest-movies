@@ -73,7 +73,6 @@ console.log(dramaMoviesRate(movies))
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
-
 function orderByYear(arr){
   const newArray= [...arr]
   const moviesByYear = newArray.sort(function (y1,y2){
@@ -95,8 +94,22 @@ console.log(orderByYear(movies))
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 
+function orderAlphabetically(arr){
+  let orderedTitles=[]
+  arr.forEach(element => {
+    orderedTitles.push(element.title)
+    });
+  orderedTitles.sort()
+  if(orderedTitles.length<20){
+    return orderedTitles
+  }
+  else{
+    return orderedTitles.slice(0,20)
+  }
+  
+}
 
-
+console.log(orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
