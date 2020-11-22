@@ -17,13 +17,14 @@ const howManyMovies = (movies) => movies.filter(movie => movie.director === "Ste
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 const ratesAverage = (movies) => {
-  console.log(movies.length)
-  movies.length === 0 ? 0 : Number((movies.reduce((sum, movie) => {
-    return (sum + movie.rate)
+  //Return 0 if there is an empty array
+  return movies.length === 0 ? 0 : Number((movies.reduce((sum, movie) => {
+    //Add 0 if there is no movie.rate
+    return movie.rate ? sum + movie.rate : sum + 0
   }, 0) / movies.length).toFixed(2))
 }
 
-console.log(ratesAverage([]))
+console.log(ratesAverage([{ rate: 6 }, { rate: '' }, {}]))
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
