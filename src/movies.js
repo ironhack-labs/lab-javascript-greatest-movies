@@ -68,7 +68,7 @@ function dramaMoviesRate(arr){
   return parseFloat((sumDramaMovies/dramaMovies.length).toFixed(2))
 }
 
-console.log(dramaMoviesRate(movies))
+//console.log(dramaMoviesRate(movies))
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
@@ -88,7 +88,7 @@ function orderByYear(arr){
   return moviesByYear
 }
 
-console.log(orderByYear(movies))
+//console.log(orderByYear(movies))
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
@@ -109,9 +109,37 @@ function orderAlphabetically(arr){
   
 }
 
-console.log(orderAlphabetically(movies))
+//console.log(orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+function turnHoursToMinutes(arr){
+
+    let moviesWithMinutes = [...arr]
+   
+    moviesWithMinutes = arr.map(function(element){
+    let hours= 0
+    let minutes= 0
+
+    if(element.duration.length===7 || element.duration.length===8){
+     hours = parseInt(element.duration.slice(0,1))
+     minutes = parseInt(element.duration.slice(3,element.duration.length-3))
+    }
+    else if(element.duration.length===2){
+      hours = parseInt(element.duration.slice(0,1))
+    }else{
+      minutes = parseInt(element.duration.slice(0,element.duration.length-3))
+    }
+    
+    let totalMinutes = hours*60 + minutes
+    element.duration = totalMinutes
+    return element
+  })
+return moviesWithMinutes
+}
+
+console.log(turnHoursToMinutes(movies))
+
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
