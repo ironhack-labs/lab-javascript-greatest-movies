@@ -61,6 +61,18 @@ const turnHoursToMinutes = (movies) => {
   }));
 }
 
-const movieTry = [{ duration: '5h 41min' }]
-console.log(turnHoursToMinutes(movieTry)[0].duration)
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+const avg = (arr) => arr.reduce((sum, elem) => sum + elem) / arr.length;
+
+const bestYearAvg = (movies) => {
+  const allYears = [...new Set(movies.map(movie => movie.year))]
+  const yearAvg = []
+  allYears.forEach((year, index) => {
+    yearAvg[index] = { year, avgRating: avg(movies.filter(movie => movie.year === year).map(movie => movie.rate)) }
+  })
+  //Shorter version of Iteration 5
+  bestYear = yearAvg.sort((a, b) => b.avgRating - a.avgRating || a.year - b.year)[0]
+
+  return movies.length === 0 ? null : `The best year was ${bestYear.year} with an average rate of ${bestYear.avgRating}`
+}
