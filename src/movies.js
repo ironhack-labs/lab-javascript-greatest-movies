@@ -24,9 +24,22 @@ const ratesAverage = (movies) => {
   }, 0) / movies.length).toFixed(2))
 }
 
-console.log(ratesAverage([{ rate: 6 }, { rate: '' }, {}]))
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
+
+const dramaMoviesRate = (movies) => {
+  dramas = movies.filter(movie => movie.genre.includes("Drama"));
+  return dramas.length === 0 ? 0 : Number((dramas.reduce((sum, movie) => {
+    return movie.rate ? sum + movie.rate : sum + 0
+  }, 0) / dramas.length).toFixed(2))
+}
+
+
+console.log(dramaMoviesRate([
+  { genre: ['Drama'], rate: 8 },
+  { genre: ['Romance'], rate: 9 },
+  { genre: ['Drama'], rate: 7 }
+]))
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
