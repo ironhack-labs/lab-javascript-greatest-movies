@@ -46,16 +46,21 @@ const orderAlphabetically = (movies) => movies.map(movie => movie.title).sort().
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-const hourMinToSec = (hourMin) => Number(hourMin[0]) * 60 + Number(hourMin[1])
-
-const turnHoursToMinutes = (movies) => {
-  const moviesCopy = [...movies]
-  moviesCopy.forEach(movie => {
-    movie.duration = hourMinToSec(movie.duration.replace(/h|min/g, '').split(' '))
-  });
-  return moviesCopy
+const hourMinToSec = (hourMin) => {
+  const hourRe = new RegExp(/(\d+)h/)
+  const minRe = new RegExp(/(\d+)min/)
+  const hours = hourRe.test(hourMin) ? hourMin.match(hourRe)[1] * 60 : 0;
+  const mins = minRe.test(hourMin) ? hourMin.match(minRe)[1] : 0;
+  return Number(hours) + Number(mins)
 }
 
-console.log(typeof turnHoursToMinutes(movies)[0].duration)
+const turnHoursToMinutes = (movies) => {
+  return movies.map(({ duration, ...rest }) => ({
+    ...rest,
+    duration: hourMinToSec(duration)
+  }));
+}
 
+const movieTry = [{ duration: '5h 41min' }]
+console.log(turnHoursToMinutes(movieTry)[0].duration)
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
