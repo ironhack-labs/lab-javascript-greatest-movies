@@ -40,15 +40,22 @@ const orderByYear = (movies) => {
   return newMovies.sort((a, b) => a.year === b.year ? a.title.localeCompare(b.title) : a.year - b.year);
 }
 
-
-
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-
 
 const orderAlphabetically = (movies) => movies.map(movie => movie.title).sort().splice(0, 20);
 
-console.log(orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+const hourMinToSec = (hourMin) => Number(hourMin[0]) * 60 + Number(hourMin[1])
+
+const turnHoursToMinutes = (movies) => {
+  const moviesCopy = [...movies]
+  moviesCopy.forEach(movie => {
+    movie.duration = hourMinToSec(movie.duration.replace(/h|min/g, '').split(' '))
+  });
+  return moviesCopy
+}
+
+console.log(typeof turnHoursToMinutes(movies)[0].duration)
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
