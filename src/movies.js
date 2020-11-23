@@ -33,17 +33,21 @@ const dramaMoviesRate = (movies) => {
   }, 0) / dramas.length).toFixed(2))
 }
 
-
-console.log(dramaMoviesRate([
-  { genre: ['Drama'], rate: 8 },
-  { genre: ['Romance'], rate: 9 },
-  { genre: ['Drama'], rate: 7 }
-]))
-
-
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
+const orderByYear = (movies) => {
+  newMovies = [...movies]
+  return newMovies.sort((a, b) => a.year === b.year ? a.title.localeCompare(b.title) : a.year - b.year);
+}
+
+
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+
+const orderAlphabetically = (movies) => movies.map(movie => movie.title).sort().splice(0, 20);
+
+console.log(orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
