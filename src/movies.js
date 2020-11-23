@@ -23,9 +23,60 @@ function howManyMovies(dramaMovies){
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
+
+function ratesAverage(movies) {
+
+    if (movies.length === 0) {
+        return 0.00;
+    };
+
+    // accumulate the rates of all movies
+    const sumRates = movies.reduce(function (totalRate, movie) {
+
+        // check if movie rate exits
+        if ("rate" in movie) {
+  
+      // check if movie rate is a number
+            if (typeof movie.rate === "number") {
+                return totalRate + movie.rate
+            } else { return totalRate }
+
+        } else {
+            return totalRate
+        }
+    }, 0.00);
+
+    //calulate de averages dividing by the length of movies array
+ 
+    return Math.round(((sumRates / movies.length) * 100)) / 100;
+}
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
+function dramaMoviesRate(movies){
+
+    const dramaMovies = movies.filter(function(movie){
+       return  movie.genre.includes('Drama')
+    });
+
+    return ratesAverage(dramaMovies);
+}
+
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+
+function orderByYear(movies){
+    let yearsSorted = movies; 
+    if (yearsSorted.length === 0) {
+        return yearsSorted;
+    };
+
+  
+    
+    // sort array of years
+    return yearsSorted.sort(function (movie1,movie2){
+        return movie1.year - movie2.year;
+    });
+};
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
