@@ -198,6 +198,7 @@ describe('Average rate of Drama Movies - dramaMoviesRate', () => {
       ])
     ).toBe(0);
   });
+
 });
 
 /*
