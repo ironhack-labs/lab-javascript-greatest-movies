@@ -94,7 +94,28 @@ function orderByYear(movies) {
 };
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(movies) {
 
+    // select the first 20 titles
+    if (movies.length === 0) {
+        return []
+    }
+
+    let moviesTitles = movies.map(function (movie) {
+        return movie.title;
+    })
+    //  console.log(moviesTitles);
+    let moviesTitlesSorted = moviesTitles.sort();
+
+    if (moviesTitlesSorted.length >= 20) {
+
+        return moviesTitlesSorted.slice(0, 20);
+
+    } else {
+        return moviesTitlesSorted.slice();
+    }
+    //   console.log(first20Movies);
+};
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
