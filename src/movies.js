@@ -100,10 +100,6 @@ function orderByYear(arr) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arr) {
   return arr.map(function (elem) {
-    if(elem.duration.length === 1){
-      elem.duration = 0
-      return elem
-    }
     if (elem.duration.length === 8) {
       const hours = parseFloat(elem.duration.slice(0, 1) * 60)
       const minutes = parseFloat(elem.duration.slice(3, -3))
