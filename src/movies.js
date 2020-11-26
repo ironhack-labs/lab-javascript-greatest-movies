@@ -137,3 +137,26 @@ return newMovies
 }
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
+function bestYearAvg(arr){
+  if(arr.length===0){
+    return null
+  }
+  const newArray = [...arr]
+  const years = []
+  let moviesRate = []
+  let rate = []
+  let auxSum = []
+  let maxRate = 0
+  for(let i=0; i<newArray.length; i++){
+    years.push(newArray[i].year)
+  }
+  const yearsFiltered = [...new Set(years)]
+  yearsFiltered.forEach(element => {moviesRate.push(newArray.filter(movie => movie.year===element).map(a =>a.rate))})
+  moviesRate.forEach((item,idx) => auxSum.push(item.reduce((acc,b) => acc + b)))
+  for(let i=0; i<moviesRate.length; i++){
+    rate.push(auxSum[i]/moviesRate[i].length)
+  }
+  maxRate = (rate.sort((a,b) => b-a))[0]
+  return `The best year was ${yearsFiltered[auxSum.indexOf(maxRate)]} with an average rate of ${maxRate}`
+}
+console.log(bestYearAvg(movies))
