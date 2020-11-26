@@ -3069,13 +3069,13 @@ function orderAlphabetically(orderTitle) {
     let title = orderTitle.map((movies) => movies.title)
     if (orderTitle.length <= 20) {
         title.sort(function (a, b) {
-            if (a.title < b.title) {
+            if (a < b) {
                 return -1
             }
-            else if (a.title > b.title) {
+            else if (a > b) {
                 return 1
             }
-            else if (a.title === b.title) {
+            else if (a === b) {
                 return 0
             }
         });
@@ -3085,6 +3085,7 @@ function orderAlphabetically(orderTitle) {
         return title.splice(0, 20)
 
     }
+    
 
 }
 
@@ -3093,4 +3094,6 @@ function orderAlphabetically(orderTitle) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() { }
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
-function bestYearAvg() { }
+function bestYearAvg(best) {
+    if (best.length == 0) return null
+ }
