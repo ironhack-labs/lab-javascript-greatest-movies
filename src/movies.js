@@ -6,6 +6,7 @@ function getAllDirectors (array){
 }
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+// Opción 1 con forEach y push
 function getDirectors (array){
   let directors = [];
   array.forEach(function(movie){
@@ -13,23 +14,26 @@ function getDirectors (array){
   })
   return directors;
 }
+// Opción 2 con filter y getAllDirectors()
+const getAllDirectorsUniq = movies => {
+  let allDirectors = getAllDirectors (movies);
+  let allDirectorsUniq = allDirectors.filter((director, idx) => {
+    return allDirectors.indexOf(director) == idx; // En un elemento repetido solo retornará el primero puesto que las repeticiones no cumplirán la condición al ser su índice diferente al del primero.
+  });
+  return allDirectorsUniq;
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies(movies){
-  let moviesBySteven = movies.filter(function(movies){
-    if (movies.director === "Steven Spielberg" && movies.genre.includes('Drama')) {
-    return true
-    }
+const howManyMovies = movies => {
+  let dramaSteven = movies.filter(movie => {
+    return movie.director === "Steven Spielberg" && movie.genre.includes('Drama');
   })
-return moviesBySteven.length;
+return dramaSteven.length;
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-
 let calculateAverage = function (arr){
-  if (arr.length === 0){
-    return 0
-  }
+  if (arr.length === 0){ return 0 }
   let averageSum = arr.reduce(function(acc, curr){
     return acc + curr
   }, 0)
@@ -37,9 +41,6 @@ let calculateAverage = function (arr){
 }
 
 let ratesAverage = function (movies) {
-  if (movies.length === 0){
-    return 0
-  }
   let ratesMap = movies.map(function(movies){
     if ( typeof movies.rate === "number" ){
       return movies.rate
@@ -51,11 +52,7 @@ let ratesAverage = function (movies) {
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-
 let dramaMoviesRate = function (movies) {
-  if (movies.length === 0){
-    return 0
-  }
   let dramaFilter = movies.filter(function(movies){
     return movies.genre.includes('Drama') ? true : false
   })
@@ -67,22 +64,12 @@ let dramaMoviesRate = function (movies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 let orderByYear = function (movies){
-  if (movies.length === 0){
-    return 0
-  }
+  if (movies.length === 0){ return 0 }
   let newArr = movies.sort((a, b) => {
-      if ( b.year > a.year ){
-        return -1
-      } else if (b.year < a.year){
-        return 1
-      } else if (b.year === a.year){
-        if (b.title > a.title){
-          return -1
-        } else {
-          return 1
-        }
+      if ( b.year !== a.year ){
+        return a.year - b.year
       } else {
-        return 0
+        return a.title > b.title
       }
   });
   return newArr
@@ -90,9 +77,7 @@ let orderByYear = function (movies){
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 let orderAlphabetically = function (movies){
-  let namesArr = movies.map(function(movies){
-    return movies.title
-  })
+  let namesArr = movies.map(movie => movie.title);
   return namesArr.sort().slice(0, 20);
 }
 
