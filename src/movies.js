@@ -1,19 +1,16 @@
 // Iteration 1: All directors? - Get the array of all directors.
-function getAllDirectors (array){
-  return array.map(function(movies){
-      return movies.director
-  });
+const getAllDirectors = arr => {
+  return arr.map(movies => movies.director);
 }
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 // Opción 1 con forEach y push
-function getDirectors (array){
+const getDirectors = arr => {
   let directors = [];
-  array.forEach(function(movie){
-    !directors.includes(movie.director) ? directors.push(movie.director) : false
-  })
+  arr.forEach(movie => !directors.includes(movie.director) ? directors.push(movie.director) : false)
   return directors;
 }
+
 // Opción 2 con filter y getAllDirectors()
 const getAllDirectorsUniq = movies => {
   let allDirectors = getAllDirectors (movies);
@@ -32,16 +29,16 @@ return dramaSteven.length;
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-let calculateAverage = function (arr){
+const calculateAverage = arr => {
   if (arr.length === 0){ return 0 }
-  let averageSum = arr.reduce(function(acc, curr){
+  let averageSum = arr.reduce((acc, curr) => {
     return acc + curr
   }, 0)
   return Number((averageSum/arr.length).toFixed(2))
 }
 
-let ratesAverage = function (movies) {
-  let ratesMap = movies.map(function(movies){
+const ratesAverage = movies => {
+  let ratesMap = movies.map(movies => {
     if ( typeof movies.rate === "number" ){
       return movies.rate
     } else {
@@ -52,38 +49,41 @@ let ratesAverage = function (movies) {
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-let dramaMoviesRate = function (movies) {
-  let dramaFilter = movies.filter(function(movies){
+const dramaMoviesRate = movies => {
+  let dramaFilter = movies.filter(movies => {
     return movies.genre.includes('Drama') ? true : false
   })
-  let newArray = dramaFilter.map(function(movies){
+  let newArray = dramaFilter.map(movies => {
     return movies.rate
   })
   return calculateAverage(newArray)
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-let orderByYear = function (movies){
+const orderByYear = movies => {
   if (movies.length === 0){ return 0 }
   let newArr = movies.sort((a, b) => {
       if ( b.year !== a.year ){
         return a.year - b.year
       } else {
-        return a.title > b.title
+        if ( a.title > b.title ){
+					return 1
+				} else {
+					return -1
+				}
       }
   });
   return newArr
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-let orderAlphabetically = function (movies){
-  let namesArr = movies.map(movie => movie.title);
-  return namesArr.sort().slice(0, 20);
+const orderAlphabetically = movies => {
+  return movies.map(movie => movie.title).sort().slice(0, 20);
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-let turnHoursToMinutes = function (movies){
-  let moviesCopy = movies.map(function(movie){
+const turnHoursToMinutes = movies => {
+  let moviesCopy = movies.map(movie => {
     minutes = movie.duration.replace(/\D/g,' ').split(' ');
     if (minutes[2] === '' || minutes[2] === undefined ){ minutes[2] = 0 }
 
@@ -106,18 +106,18 @@ let turnHoursToMinutes = function (movies){
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
-let bestYearAvg = function(movies){
+const bestYearAvg = movies => {
 
   if (movies.length === 0){
     return null;
   }
 
-  let allYears = movies.map(function(movie){
+  let allYears = movies.map(movie => {
     return movie.year
   })
 
   let years = []
-  allYears.forEach(function(year){
+  allYears.forEach(year => {
     if ( !years.includes(year) ){
       years.push(year)
     }
