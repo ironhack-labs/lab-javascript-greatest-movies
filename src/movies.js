@@ -66,8 +66,8 @@ function orderByYear (arr){
 
 /* ============ Iteration 5: Ordering by year ======== OPTION 2 =====
 function orderByYear(array) {
-    let newArray = [...array]
-    let moviesByYear = newArray.sort(function (movie1, movie2){
+    let moviesInMinutes = [...array]
+    let moviesByYear = moviesInMinutes.sort(function (movie1, movie2){
         if(movie1.year === movie2.year){
             return movie1.title.localeCompare(movie2.title)
         } 
@@ -107,16 +107,21 @@ const regexHour = /(\d+)(?=\s*h)/g;
 const regexMin = /(\d+)(?=\s*min)/g;
 
 function turnHoursToMinutes(arr) {
-  newArray = []
+  moviesInMinutes = []
   arr.forEach(function(movie){
     modifiedMovie = {...movie}
     hoursToMinutes = movie.duration.match(regexHour) * 60
     minutes = movie.duration.match(regexMin) * 1
     modifiedMovie.duration = hoursToMinutes + minutes
-    newArray.push(modifiedMovie)
+    moviesInMinutes.push(modifiedMovie)
   })
- return newArray
+ return moviesInMinutes
 }
-//console.log(turnHoursToMinutes(movies));
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(arr){
+    if (arr.length === 0) return null
+
+    return `The best year was ${year} with an average rate of ${rate}`
+}
