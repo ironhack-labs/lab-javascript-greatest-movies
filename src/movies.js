@@ -1,12 +1,12 @@
 // Iteration 1: All directors? - Get the array of all directors.
 function getAllDirectors(arr) {
-    var directors = arr.map(function (movie) {
+    let directors = arr.map(function (movie) {
         return movie.director;
     });
     return directors;
 }
-
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(array) {
     let filteredDirectors = array.filter(function (movie) {
@@ -102,12 +102,21 @@ function orderAlphabetically(arr){
 */
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(arr){
-    let arrayDuration = arr.map(function (movie){
-        return movie.duration;
-    });
-    let onlyNumbers = arrayDuration.replaceAll("[^0-9]", "")
-    return onlyNumbers
-};
+
+const regexHour = /(\d+)(?=\s*h)/g;
+const regexMin = /(\d+)(?=\s*min)/g;
+
+function turnHoursToMinutes(arr) {
+  newArray = []
+  arr.forEach(function(movie){
+    modifiedMovie = {...movie}
+    hoursToMinutes = movie.duration.match(regexHour) * 60
+    minutes = movie.duration.match(regexMin) * 1
+    modifiedMovie.duration = hoursToMinutes + minutes
+    newArray.push(modifiedMovie)
+  })
+ return newArray
+}
+//console.log(turnHoursToMinutes(movies));
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
