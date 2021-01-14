@@ -13,18 +13,18 @@ console.log(getAllDirectors(movies));
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
-function removeDuplicate(array) {
-  let newDirectorsArray = [];
-  newDirectorsArray = array.filter(function (el) {
-    if (newDirectorsArray.includes(el)) {
-    } else {
-      return el;
-    }
-  });
-  return newDirectorsArray;
-}
+// function removeDuplicate(array) {
+//   let newDirectorsArray = [];
+//   newDirectorsArray = array.filter(function (el) {
+//     if (newDirectorsArray.includes(el)) {
+//     } else {
+//       return el;
+//     }
+//   });
+//   return newDirectorsArray;
+// }
 
-console.log(removeDuplicate(getAllDirectors(movies)));
+// console.log(removeDuplicate(getAllDirectors(movies)));
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
