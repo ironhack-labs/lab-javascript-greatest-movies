@@ -138,7 +138,7 @@ describe('Get the average rate - ratesAverage', () => {
   });
 
   it('Return average even if one of the movies does not have rate!', () => {
-    expect(ratesAverage([{ rate: 6 }, { rate: '' }, {}])).toBe(2);
+    expect( ratesAverage([{ rate: 6 }, { rate: '' }, {}])).toBe(2);
   });
 });
 

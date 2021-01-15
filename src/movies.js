@@ -98,7 +98,8 @@ console.log(dramaMoviesRate(movies));
 console.log("Iteration 5 ----------------");
 
 function orderByYear(moviesArray) {
-    let orderedArray = moviesArray.slice().sort(function compare(a, b) {
+    const moviesArrayCopy = moviesArray.slice(); // [...moviesArray]
+    let orderedArray = moviesArrayCopy.sort(function compare(a, b) {
         if (a.year < b.year) {
             return -1;
         }
@@ -149,6 +150,105 @@ console.log(orderAlphabetically(movies));
 
 console.log("Iteration 7 ----------------");
 
+function turnHoursToMinutes(moviesArray) {
+
+    const modifiedMoviesArray = moviesArray.map((film) => {
+
+        const filmCopy = { ...film };
+        filmCopy.duration = convertDuration(film.duration)
+
+        return filmCopy;
+    })
+
+
+    return modifiedMoviesArray
+}
+
+function convertDuration(durationStr) {
+
+    const timeArr = durationStr.split(" "); //"2h 22min" -> ["2h", "22min"]
+    const minutes = timeArr.reduce((totalMinutes, el) => {
+        if (el.includes('h')) {
+            const hourArr = el.split(""); //"2h" -> ["2", "h"]
+            const hour = Number(hourArr[0]);
+
+            const convertedMinutes = hour * 60;
+
+            return totalMinutes + convertedMinutes;
+        } else {
+            const minArr = el.split("min"); // "22min" -> ["22"]
+            const convertedMinutes = Number(minArr[0]);
+
+            return totalMinutes + convertedMinutes;
+        }
+    }, 0)
+
+    return minutes;
+}
+
+console.log(turnHoursToMinutes(movies));
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+// Create a dictionary - create an object and assaign and create it's properties using object bracket notation
 
 console.log("Iteration 8 ----------------");
+
+function getAllSingleYears(moviesArray) {
+    const years = moviesArray.slice().map(film => {
+        return film.year;
+    });
+    let singleYears = years.filter((value, index, self) => {
+        return self.indexOf(value) === index;
+    });
+    return singleYears;
+};
+
+function bestYearAvg(moviesArray) {
+    if(moviesArray.length === 0){
+        return null
+    };
+
+    const yearsArray = getAllSingleYears(moviesArray);
+
+    let orderedYearsArray = yearsArray.sort(function compare(a, b) {
+        if (a < b) {
+            return -1;
+        }
+        if (a > b) {
+            return 1;
+        }
+        return 0;
+    })
+
+    let bestYear = 0;
+    let bestAvg = 0;
+
+    orderedYearsArray.forEach((year) => {
+        const moviesOfYear = moviesArray.slice().filter(film => {
+            return film.year === year
+        })
+
+        const rateOfYear = moviesOfYear.map((film) => {
+            return film.rate;
+        });
+
+        let totalRateYear = rateOfYear.reduce(function (acc, el) {
+            if (el) {
+                return acc + el;
+            } else {
+                return acc;
+            }
+        }, 0);
+    
+        const avgByYear = Math.round((totalRateYear / rateOfYear.length) * 100) / 100;
+
+        if(avgByYear > bestAvg){
+            bestYear = year;
+            bestAvg = avgByYear;
+        }        
+    })
+
+    return `The best year was ${bestYear} with an average rate of ${bestAvg}`;
+}
+
+console.log(bestYearAvg(movies));
