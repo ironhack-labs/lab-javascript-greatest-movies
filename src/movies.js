@@ -7,7 +7,7 @@ function getAllDirectors(movies) {
     const directorsArr = movies.map((movie) => movie.director);
 
     //note/ if index of "director" in the arr = index, filter those out into a new array with the name uniqueDirector
-    const uniqueDirector = directorsArr.filter((v,i) => directorsArr.indexOf(v) === i)
+    const uniqueDirector = directorsArr.filter((director,index) => directorsArr.indexOf(director) === index)
  
     return uniqueDirector;
 }
@@ -151,3 +151,41 @@ function turnHoursToMinutes(movies) {
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
+function bestYearAvg(movies) {
+
+    if (movies.length < 1) {
+        return null;
+    }
+  
+    let counter = 0;
+    const avgArr = [];
+    const avgYears = [];
+    
+ 
+   for (i = 1915; i < 2020; i++) {
+     for (j = 0; j < movies.length; j++) {
+      if (i == movies[j].year && avgYears.indexOf(i) === -1) {
+        
+         const filterAllYears = movies.filter(function(movie){
+         if (movie.year === i) {
+         return true;}}).reduce(function(a,b){
+           return a + b.rate;
+         },0);
+         
+         const arrLength = movies.filter(function(movie){
+         if (movie.year === i) {
+         return true;}}).length
+         
+         avgYears.push(i)
+        
+         avgArr.push(filterAllYears/arrLength)
+        
+      } 
+     }
+   }
+   
+   let posHighestNum = avgArr.indexOf(Math.max.apply(Math, avgArr));
+   
+   return `The best year was ${avgYears[posHighestNum]} with an average rate of ${avgArr[posHighestNum]}`
+     
+ }
