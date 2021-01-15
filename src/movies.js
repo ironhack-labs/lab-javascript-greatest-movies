@@ -13,8 +13,6 @@ getAllDirectors(movies);
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
-
-
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 function howManyMovies(arr) {
@@ -37,16 +35,38 @@ function howManyMovies(arr) {
 
 function ratesAverage(arr) {
 
-    const sumRates = arr.reduce(function(total, film) {
-        return total + film.rate
+    if (arr.length === 0) {
+        return 0;
+    }
+
+    totalRates = arr.reduce(function(total, film) {
+
+    let sumRates = 0;
+        if (film.rate === 0 || undefined) {
+            return total;
+        } else {
+            sumRates = total + film.rate;
+        }
+        return sumRates;
     }, 0);
-    return Number((sumRates / arr.length).toFixed(2));
+        return Number((totalRates / arr.length).toFixed(2));
 }
+
 ratesAverage(movies);
 
-// Jasmine says it should return 0 if there is no movie
+// ==========================NaN should be 2 ???==========================
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
+
+function dramaMoviesRate(arr) {
+
+    let dramaMovies = arr.filter(function (arrElement) {
+      return arrElement.genre.includes("Drama");
+    });
+    return ratesAverage(dramaMovies);
+  }
+  
+  dramaMoviesRate(movies);
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
