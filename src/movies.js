@@ -67,12 +67,7 @@ function ratesAverage(array){
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
-function dramaMoviesRate(array){
-
-    return ratesAverage(array.filter(function(movie){
-        return movie.genre.includes("Drama")
-    }));
-}
+function dramaMoviesRate(){}
 
 //not sure 
 
@@ -84,13 +79,24 @@ function dramaMoviesRate(array){
 // if same year oder by title 
 
 
-function orderByYear(movies){}
+function orderByYear(movies){
+  const yearOrder = movies.sort(function(a,b){
+    if (a.year === b.year){
+      if (a.title >b.title){
+        return 1;
+      } else if (a.title<b.title){
+        return -1;
+      } else {
+        return 0;
+      }
+    } else {
+      return a.year-b.year;
+    }
+  });
+  return yearOrder
+}
 
-const yearOrder = movies.sort(function(a,b){
-  return a.year - b.year
-})
-
-console.log(yearOrder)
+orderByYear(movies)
 
 // + find if year = year, how order by title + put everything in the function 
 
