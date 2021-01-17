@@ -1,4 +1,4 @@
-let movies = [
+const data = [
     {
       "title": "The Shawshank Redemption",
       "year": 1994,
@@ -2966,4 +2966,6 @@ let movies = [
       ],
       "rate": 8
     }
-  ]
+];
+
+export default data
