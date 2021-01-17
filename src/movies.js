@@ -50,12 +50,16 @@ console.log(howManyMovies(movies));
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 function ratesAverage(array){
-    const totalRate = array.reduce(function(total,rates){
-    return total + rates.rate
+    const totalRate = array.reduce(function(total,movie){
+    return total + movie.rate
   },0) 
-  let average = totalRate / (array.length);
-  let roundedAverage = Math.round(average);
-  return roundedAverage;
+  if (array.length === 0) {
+    return 0; 
+  } else {
+    let average = totalRate / (array.length);
+    let roundedAverage = Math.round(average);
+    return roundedAverage;
+  }
   }
   
   ratesAverage(movies)
@@ -88,7 +92,7 @@ dramaMoviesRate(movies)
 function orderByYear(array){
   if (array === [])
     return []
-  const yearOrder = array.sort(function(a,b){
+  const yearOrder = array.slice().sort(function(a,b){
     if (a.year === b.year){
       if (a.title >b.title){
         return 1;
@@ -110,6 +114,10 @@ orderByYear(movies)
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+function orderAlphabetically(){
+  
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
