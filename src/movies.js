@@ -94,26 +94,25 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
-function bestYearAvg(testArr) {
-    if (testArr.length === 0) return null
-    const years = {}
-    let bestYear
-    let avgArray
-    testArr.map(elm => {
-        if (!years.hasOwnProperty(elm.year)) {
-            years[elm.year] = [elm.rate]
+function bestYearAvg(moviesArray) {
+    if (moviesArray.length === 0) return null
+
+    const yearsRatings = moviesArray.reduce((acc, elm) => {
+        if (!acc.hasOwnProperty(elm.year)) {
+            acc[elm.year] = [elm.rate]
         } else {
-            years[elm.year].push(elm.rate)
+            acc[elm.year].push(elm.rate)
         }
-        avgArray = Object.entries(years).map(elm1 => {
-            const sum = elm1[1].reduce((acc, elm1) => acc + elm1)
-            return Number((sum / elm1[1].length).toFixed(2))
-        })
-        const bestAvgIndex = avgArray.indexOf(Math.max(...avgArray))
-        bestYear = Object.keys(years)[bestAvgIndex]
+        return acc
+    }, {})
 
-
+    const avgArray = Object.entries(yearsRatings).map(elm1 => {
+        const sum = elm1[1].reduce((acc, elm1) => acc + elm1)
+        return Number((sum / elm1[1].length).toFixed(2))
     })
-    const answer = `The best year was ${bestYear} with an average rate of ${Math.max(...avgArray)}`
+    const maxAvg = Math.max(...avgArray)
+    const bestAvgIndex = avgArray.indexOf(maxAvg)
+    const bestYear = Object.keys(yearsRatings)[bestAvgIndex]
+    const answer = `The best year was ${bestYear} with an average rate of ${maxAvg}`
     return answer
 }
