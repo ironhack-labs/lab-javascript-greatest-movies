@@ -93,3 +93,62 @@ function turnHoursToMinutes(moviesArray) {
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+// const testArr = [{
+//         "title": "The Shawshank Redemption",
+//         "year": 1994,
+//         "director": "Frank Darabont",
+//         "duration": "2h 22min",
+//         "genre": [
+//             "Crime",
+//             "Drama"
+//         ],
+//         "rate": 9.3
+//     },
+//     {
+//         "title": "The Godfather",
+//         "year": 1972,
+//         "director": "Francis Ford Coppola",
+//         "duration": "2h 55min",
+//         "genre": [
+//             "Crime",
+//             "Drama"
+//         ],
+//         "rate": 9.2
+//     },
+//     {
+//         "title": "The Godfather: Part II",
+//         "year": 1974,
+//         "director": "Francis Ford Coppola",
+//         "duration": "3h 22min",
+//         "genre": [
+//             "Crime",
+//             "Drama"
+//         ],
+//         "rate": 9
+//     },
+// ]
+
+function bestYearAvg(testArr) {
+    if (testArr.length === 0) return null
+    const years = {}
+    let bestYear
+    let avgArray
+    testArr.map(elm => {
+        if (!years.hasOwnProperty(elm.year)) {
+            years[elm.year] = [elm.rate]
+        } else {
+            years[elm.year].push(elm.rate)
+        }
+        avgArray = Object.entries(years).map(elm => {
+            const sum = elm[1].reduce((acc, elm) => acc + elm)
+            return Number((sum / elm[1].length).toFixed(2))
+        })
+        const bestAvgIndex = avgArray.indexOf(Math.max(...avgArray))
+        console.log(years)
+        bestYear = Object.keys(years)[bestAvgIndex]
+
+
+    })
+    const answer = `The best year was ${bestYear} with an average rate of ${Math.max(...avgArray)}`
+    return answer
+}
