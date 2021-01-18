@@ -115,8 +115,20 @@ const orderAlphabetically = (arr) => {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
-const turnHoursToMinutes = () => {
-    
+const turnHoursToMinutes = (arr) => {
+    const newArrMovies = []
+    arr.map(elm => {
+        newArrMovies.push(elm)
+    })
+    newArrMovies.map(elm => {
+        const duration = elm.duration
+        const hours = parseInt( duration.slice(0,1) ) * 60;
+        const minutes = parseInt( duration.slice(3, duration.indexOf("min")) )
+        elm.duration = hours + minutes;
+        console.log(typeof elm.duration, elm.duration)
+        return elm
+    })
+    return newArrMovies
 }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
