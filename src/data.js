@@ -2967,3 +2967,100 @@ let movies = [
       "rate": 8
     }
   ]
+
+
+// Iteration 1: All directors? - Get the array of all directors.
+
+  function getAllDirectors(array) {
+    return array.map(function(director) { 
+     if ( director.director  )
+     return director.director 
+  })
+  
+  }
+  
+  //console.log(getAllDirectors(movies));
+  
+  //* Store the (return) new Array */ 
+  //const storeAllDirectosNames = getAllDirectors(movies)
+  //console.log(storeAllDirectosNames) 
+  
+  //// Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct? //////////
+
+
+  function howManyMovies(array) {
+    return array.filter(function(element) {
+     // condition  
+      
+       if (element.genre == 'Drama' && element.director == 'Steven Spielberg') {
+          return true
+      }
+   
+     }).length
+    }
+    
+     console.log(howManyMovies(movies));
+  
+  
+     // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+
+     // Iteration #4: Calculate the average
+     // Level 1: Array of numbers
+     
+// 1 function 
+function ratesAverage(array) {
+  // 2.what function should return when array is empty
+  if (array.lengt === 0) {
+    return 0;
+  }
+// 3 how i get the movies.rates? 
+  const rates = array.map(function(element) { 
+     return element.rate
+})
+  
+// 4.caluclate the sum with reduce / or sum function
+
+// 5 get the average 
+
+}
+
+//console.log(ratesAverage(movies))
+
+// SumNumbers 
+/*
+function sumNumbers(numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i]
+  }
+  return sum
+}
+*/
+     
+// Iteration 4: Drama movies - Get the average of Drama Movies
+/*function that receives an array as a parameter to get the average rate of all drama movies! Let's see if it is better than the general average */
+
+
+function dramaMoviesRate(array) {
+// 2.what function should return when array is empty
+// 3 get the array of dramaMovies with map
+// 4.caluclate with reduce 
+
+} 
+
+
+/*### Iteration 5: Order by year that receives an array as parameter and returns a _new sorted array_. */
+
+/*If two movies have the same year, order them in alphabetical order by their title! :heavy_check_mark */
+
+function orderByYear(array) {
+  // use sort()
+}
+
+
+/*### Iteration 6: Alphabetic order
+ that receives an array and returns an array of first 20 titles, alphabetically ordered. Return only the title of each movie, and if the array you receive has less than 20 movies, return all of them.*/
+
+function orderAlphabetically(array) {
+
+}
