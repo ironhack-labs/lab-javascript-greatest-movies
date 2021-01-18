@@ -13,7 +13,7 @@ function howManyMovies (StevenS) {
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 const ratesAverage = (challenge) => {
- return Number((challenge.reduce((acc, elm) => acc + Number(elm.rate), 0)/challenge.length).toFixed(2)) || 0,
+ return Number((challenge.reduce((acc, elm) => acc + Number(elm.rate), 0)/challenge.length).toFixed(2)) || 0
 }
 
 
