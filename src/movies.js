@@ -1,8 +1,8 @@
 // Iteration 1: All directors? - Get the array of all directors.
 function getAllDirectors(moviesArray) {
     return moviesArray.map(elm => elm.director)
-
 }
+
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 function unifyDirectorsArray(directorsArray) {
     const unifiedDirectorsArray = []
@@ -31,7 +31,7 @@ function ratesAverage(moviesArray) {
         return acc + elm.rate
     }, 0)
     const avg = summedAverages / moviesArray.length
-    return +avg.toFixed(2)
+    return Number(avg.toFixed(2))
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -46,7 +46,7 @@ function dramaMoviesRate(moviesArray) {
         return acc + elm.rate
     }, 0)
     const avg = dramaArraySum / dramaArray.length
-    return +avg.toFixed(2)
+    return Number(avg.toFixed(2))
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
@@ -60,7 +60,18 @@ function orderByYear(moviesArray) {
     })
     return sorted
 }
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(moviesArray) {
+    const sortedArray = [...moviesArray]
+    sortedArray.sort((a, b) => a.title.localeCompare(b.title))
+    const titlesArray = sortedArray.map(elm => elm.title)
+    return titlesArray.filter((elm, idx) => {
+        if (idx < 20) {
+            return elm
+        }
+    })
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
