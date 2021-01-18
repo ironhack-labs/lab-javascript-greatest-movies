@@ -31,8 +31,6 @@ const howManyMovies = arr => {
     return spielbergMovies
 }
 
-
-
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 const ratesAverage = (array) => {
@@ -75,27 +73,50 @@ const dramaMoviesRate = (arr) => {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 const orderByYear = (arr) => {
-    const moviesByYear = arr.map(elm => {
-
+    const newArrMovies = []
+    arr.map(elm => {
+        newArrMovies.push(elm)
     })
 
+    const compare = (elm1, elm2) => {
+        const yearA = elm1.year
+        const yearB = elm2.year
 
+        let comparison = 0
+        
+        if (yearA > yearB) {
+            comparison = 1;
+        } else if (yearA < yearB) {
+            comparison = -1
+        }
+        return comparison
+    }
+    newArrMovies.sort(compare)
+    return newArrMovies
 }
-
-
-
-
-
-// var numArray = [140000, 104, 99];
-// numArray.sort(function(a, b) {
-//   return a - b;
-// });
-
-// console.log(numArray);
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
+const orderAlphabetically = (arr) => {
+    const newArrMovies = []
+    arr.map(elm => {
+        const titles = elm.title
+        newArrMovies.push(titles)
+    })
+    
+    newArrMovies.sort();
+    if (newArrMovies.length > 20) {
+        return newArrMovies.slice(0, 20)
+    } else {
+        return newArrMovies
+    }
+}
+
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+const turnHoursToMinutes = () => {
+    
+}
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
