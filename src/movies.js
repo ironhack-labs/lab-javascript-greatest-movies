@@ -15,13 +15,26 @@ function howManyMovies(arr) {
     let steven = arr.filter((eachMovie) => {
         return eachMovie.director === `Steven Spielberg` && eachMovie.genre.includes(`Drama`);
     })
-    console.log(steven.length);
     return steven.length;
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
+function ratesAverage(arr){
+    let currentTotal = 0;
+    let avg = 0;
+     if (!arr.length == 0){
+       for (let i = 0; i < arr.length; i++){
+         if (arr[i].rate >= 0){
 
+          currentTotal += arr[i].rate;
+         }
+        }
+      avg = currentTotal / arr.length;
+      return Number(avg.toFixed(2));
+      }
+    return 0;
+  }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
