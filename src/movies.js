@@ -1,9 +1,16 @@
 // Iteration 1: All directors? - Get the array of all directors.
 
 function getAllDirectors(array) {
-    return array.map( (element) => {
-        return element.director;
-    })
+    return array
+        .map( (element) => {
+            return element.director;
+        })
+        .reduce((acc,element) => {
+            if (!acc.join('').includes(element)){
+                acc.push(element);
+            }
+            return acc;
+        },[]);
 }
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
@@ -11,21 +18,23 @@ function getAllDirectors(array) {
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 function howManyMovies(array) {
-    return array.filter( (element) => {
-        return (element.director === 'Steven Spielberg' &&
+    return array
+        .filter( (element) => {
+            return (element.director === 'Steven Spielberg' &&
                 element.genre.join('').includes('Drama'));
-    }).length;
+        }).length;
 }
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 function ratesAverage(array) {
-    return array.reduce((acc, element, index, array)=> {
-        if (index === array.length - 1) {
-            return Math.round((acc+ (element.rate ? element.rate: 0))/array.length*100)/100;
-        }
-        return acc + (element.rate ? element.rate: 0);
-    }, 0);
+    return array
+        .reduce((acc, element, index, array)=> {
+            if (index === array.length - 1) {
+                return Math.round((acc+ (element.rate ? element.rate: 0))/array.length*100)/100;
+            }
+            return acc + (element.rate ? element.rate: 0);
+        }, 0);
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -40,12 +49,13 @@ function dramaMoviesRate(array) {
 
 function orderByYear(array) {
     const myArray = [...array];
-    return myArray.sort((a,b) => {
-        if (a.year === b.year) {
-            return (a.title < b.title) ? -1: 1;
-        }  
-        return a.year - b.year;
-    } );
+    return myArray
+        .sort((a,b) => {
+            if (a.year === b.year) {
+                return (a.title < b.title) ? -1: 1;
+            }  
+            return a.year - b.year;
+        } );
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
@@ -65,4 +75,33 @@ function orderAlphabetically(array) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(array) {
+    const newArray = [...array];
+    newArray
+        .forEach((element, index) => {
+            if (newArray[index].duration && (typeof newArray[index].duration == 'string')) {
+                let rawDuration = newArray[index].duration;
+                let rawHours = (rawDuration.indexOf('h') > 0) 
+                    ? rawDuration.substring(0,rawDuration.indexOf('h')) 
+                    : '0';
+                let rawMinutes = (rawDuration.indexOf('min') > 0) 
+                    ? rawDuration.substring(rawDuration.indexOf('h')+1,rawDuration.indexOf('min')) 
+                    : '0';
+                element.duration = parseInt(rawHours)*60 + parseInt(rawMinutes);
+            }
+        });
+    return newArray;
+}
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(array) {
+    let year = '';
+    let rate = '';
+    const newArray = array.reduce((acc, element, index, array) = > {
+        for (let i = 0) {
+
+        }
+    },[]);
+    return 'The best year was '+year+' with an average rate of ' + rate;
+};
