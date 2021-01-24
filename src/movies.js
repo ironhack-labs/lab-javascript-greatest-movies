@@ -5,8 +5,8 @@ function getAllDirectors(array) {
         .map( (element) => {
             return element.director;
         })
-        .reduce((acc,element) => {
-            if (!acc.join('').includes(element)){
+        .reduce((acc,element, index) => {
+            if (acc.indexOf(element) === -1){
                 acc.push(element);
             }
             return acc;
@@ -96,12 +96,33 @@ function turnHoursToMinutes(array) {
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
 function bestYearAvg(array) {
-    let year = '';
-    let rate = '';
-    const newArray = array.reduce((acc, element, index, array) = > {
-        for (let i = 0) {
-
+    if (!array || array.length===0) {
+        return null;
+    }
+    const newArray = array.reduce((acc, element) => {
+        const iterationYear = element.year;
+        const accIndex = acc.findIndex(element2 => element2.year === iterationYear);
+        if (accIndex === -1 && element.rate) {
+          acc.push({year: element.year, 
+        sumRate: element.rate,
+        countRate: 1});
+        }else if (element.rate) {
+          acc[accIndex].sumRate += element.rate;
+          acc[accIndex].countRate++;
         }
+        return acc;
     },[]);
-    return 'The best year was '+year+' with an average rate of ' + rate;
+    let maxYear = '';
+    let maxAvgRate = 0;
+    newArray.forEach((element) => {
+      element.avgRate = element.sumRate/element.countRate;
+      if (element.sumRate/element.countRate >= maxAvgRate) {
+          if (element.sumRate/element.countRate > maxAvgRate || element.year < maxYear) {
+            maxAvgRate = element.sumRate/element.countRate;
+            maxYear = element.year;
+          }
+        }
+    });
+    return 'The best year was ' + maxYear + ' with an average rate of ' 
+    + Math.round(maxAvgRate*100)/100;
 };
