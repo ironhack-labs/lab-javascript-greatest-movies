@@ -2,8 +2,9 @@
 // Iteration 1: All directors? - Get the array of all directors.
 
 function getAllDirectors(array){
-    return array.map((element) =>{
-        return {director: element.director}
+    let newArray = []
+    return newArray = array.map((element) =>{
+        return element.director
     })
 }
 
@@ -14,8 +15,8 @@ function getAllDirectors(array){
 function getAllDirectorsClean(array){
     let directorsArray = getAllDirectors(array)
     for(let i = 0; i<directorsArray.length; i++){
-        for(let j = 0; j<array.length; j++){
-            if(array[j].director === directorsArray[i].director && i !== j){
+        for(let j = 0; j<directorsArray.length; j++){
+            if(directorsArray[j].director === directorsArray[i].director && i !== j){
                 directorsArray.splice(j,1);            }
         }
     }
@@ -29,7 +30,7 @@ function getAllDirectorsClean(array){
 function howManyMovies(array){
     return array.filter((element) =>{
         return element.director === "Steven Spielberg" && element.genre.includes('Drama') 
-    })
+    }).length
 }
 
 // console.log(howManyMovies(movies));
@@ -37,7 +38,13 @@ function howManyMovies(array){
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 function ratesAverage(array){
+    if(array.length === 0){
+        return 0;
+    }
     return Math.round(((array.reduce((acc, element) =>{
+        if(!element.rate){
+            element.rate = 0;
+        }
         return acc + element.rate;
     }, 0))/array.length)*100)/100;
 }
@@ -95,15 +102,66 @@ function orderAlphabetically(array){
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
-// function turnHoursToMinutes(array){
-//     let minutesArray = [];
-//     return minutesArray = array.map((element)=>{
-//         element.duration = 
-//         // return element.duration 
-//     })
-// }
+function turnHoursToMinutes(array){
+    let minutesArray = array;
+    let hour = 0;
+    let minutes = 0;
+    return minutesArray = minutesArray.map((element, index)=>{
+        //only considers movies with up to 9 hours
+        if(element.duration.includes('h')){
+            hour = parseInt(element.duration.charAt(element.duration.indexOf('h')-1)*60, 10);
+            if(element.duration.includes('m')){
+                if(element.duration.length === 8){
+                    minutes = parseInt(element.duration.slice(3,5))
+                } else if(element.duration.length === 7){
+                    minutes = parseInt(element.duration.slice(3,4))
+                }
+            }
+        }
+        if(element.duration.includes('m')){
+            if(element.duration.length === 5){
+                minutes = parseInt(element.duration.slice(0,2))
+            } else if(element.duration.length === 4){
+                minutes = parseInt(element.duration.slice(0,1))
+            }
+        }
+        element.duration = hour+minutes
+        return minutesArray
+    })
+}
 
 // console.log(turnHoursToMinutes(movies))
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
  
+function bestYearAvg(array){
+    if(!array || array.length === 0){
+        return null;
+    }
+    let yearRateArray = array.map((element)=>{
+        return {year: element.year, rate: element.rate}
+    })
+    let avg = 0;
+    let resultArray = [{resultYear: 0, resultAvg: 0}]
+    let rateSum = 0;
+    let count = 0;
+    for(let i = 0; i<yearRateArray.length; i++){
+        for(let j = 0; j<yearRateArray.length; j++){
+            if(yearRateArray[i].year === yearRateArray[j].year){
+                rateSum += yearRateArray[j].rate;
+                count += 1;
+            }
+        }
+        avg = rateSum/count;
+        if(avg > resultArray[0].resultAvg){
+            resultArray[0].resultAvg = avg;
+            resultArray[0].resultYear = yearRateArray[i].year;
+        }
+        avg = 0;
+        count = 0;
+        rateSum = 0;
+    }
+    return `The best year was ${resultArray[0].resultYear} with an average rate of ${resultArray[0].resultAvg}`
+}
+
+console.log(bestYearAvg(movies))
