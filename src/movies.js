@@ -1,16 +1,79 @@
-// Iteration 1: All directors? - Get the array of all directors.
-// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+//Iteration 1
+function getAllDirectors(movies) {
+  const directorsArray = movies.map(function (movies) {
+    return movies.director;
+  });
+  return directorsArray;
+}
 
-// Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
+//BONUS 1.1
 
-// Iteration 3: All rates average - Get the average of all rates with 2 decimals
+//Iteration 2
+function howManyMovies(movies) {
+  const spielbergsDramas = movies.filter(function (movies) {
+    return (
+      movies.director === "Steven Spielberg" && movies.genre.includes("Drama")
+    );
+  });
+  return spielbergsDramas.length;
+}
 
-// Iteration 4: Drama movies - Get the average of Drama Movies
+//Iteration 3
+function ratesAverage(movies) {
+  if (movies.length === 0) {
+    return 0;
+  }
+  let totalRate = movies.reduce(function (acc, val) {
+    if (!val.rate) {
+      return acc;
+    }
+    return acc + val.rate;
+  }, 0);
+  return parseFloat((totalRate / movies.length).toFixed(2));
+}
 
-// Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+//Iteration 4
+function dramaMoviesRate(movies) {
+  const onlyDramas = movies.filter(function (movies) {
+    return movies.genre.includes("Drama");
+  });
+  if (onlyDramas.length === 0) {
+    return 0;
+  }
+  const totalDramasRate = onlyDramas.reduce(function (acc, val) {
+    return acc + val.rate;
+  }, 0);
+  return parseFloat((totalDramasRate / onlyDramas.length).toFixed(2));
+}
 
-// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+//Iteration 5
+function orderByYear(movies) {
+  const moviesChronologically = movies.map(function (element) {
+    return element;
+  });
+  moviesChronologically.sort(function (movie1, movie2) {
+    if (movie1.year < movie2.year) {
+      return -1;
+    } else if (movie1.year > movie2.year) {
+      return 1;
+    } else if (movie1.title < movie2.title) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+  return moviesChronologically;
+}
 
-// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+//Iteration 6
+function orderAlphabetically(movies) {
+  const moviesAlphabeticaly = movies.map(function (movies) {
+    return movies.title;
+  });
+  moviesAlphabeticaly.sort();
+  return moviesAlphabeticaly.slice(0, 20);
+}
 
-// BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+//BONUS - Iteration 7
+
+//BONUS - Iteration 8
