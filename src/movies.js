@@ -1,15 +1,14 @@
-
 // Gizem Wanka && Aleksandra Porada
 
 // Iteration 1: All directors? - Get the array of all directors.
 
 function getAllDirectors(arrayOfMovies) {
-    let allDirectors = [];
-    {
-        for (let movie of arrayOfMovies) {
-            allDirectors.push(movie.director);
-        }
-    }
+    let allDirectors = [...arrayOfMovies];
+
+    allDirectors = allDirectors.map(function(movie) {
+        return movie.director;
+    });
+
     return allDirectors;
     console.log(allDirector);
 }
@@ -19,66 +18,36 @@ function getAllDirectors(arrayOfMovies) {
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 function howManyMovies(arrayOfMovies) {
-    if (arrayOfMovies.length === 0) {
-        return 0;
-    }
-    let stevensDramas = 0;
-    let stevensMovies = 0;
-
-    for (let movie of arrayOfMovies) {
+    const stevenDramas = arrayOfMovies.filter(function(movie) {
         if (
-            movie.director === "Steven Spielberg" &&
-            movie.genre.includes("Drama")
+            movie.genre.includes("Drama") &&
+            movie.director === "Steven Spielberg"
         ) {
-            stevensDramas += 1;
+            return true;
         }
-    }
-    return stevensDramas;
+    });
 
-    if (movie.director === "Steve Spielberg") {
-        return stevensMovies;
-    }
+    return stevenDramas.length;
 }
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 function ratesAverage(arrayOfMovies) {
-    if (arrayOfMovies.length === 0) {
-        return 0;
-    }
-    let totalRate = 0;
-    let averageRate = 0;
-    for (movie of arrayOfMovies) {
-        if (!movie.rate) {
-            continue;
+    const averageRate = arrayOfMovies.reduce(function(acc, val) {
+        if (!val.rate) {
+            return acc;
         }
-        totalRate += movie.rate;
-    }
-    averageRate = totalRate / arrayOfMovies.length;
-    averageRate = parseFloat(averageRate.toFixed(2));
-    return averageRate;
+        return acc + val.rate / arrayOfMovies.length;
+    }, 0);
+    return Number(averageRate.toFixed(2));
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate(arrayOfMovies) {
-    if (arrayOfMovies.length === 0) {
-        return 0;
-    }
-    let totalRateDrama = 0;
-    let averageRateDrama = 0;
-    let counter = 0;
-    for (movie of arrayOfMovies) {
-        if (movie.genre.includes("Drama") && movie.rate) {
-            counter += 1;
-            totalRateDrama += movie.rate;
-        }
-    }
-    if (counter === 0) {
-        return 0;
-    }
-    averageRateDrama = totalRateDrama / counter;
-    averageRateDrama = parseFloat(averageRateDrama.toFixed(2));
-    return averageRateDrama;
+    const dramaMovies = arrayOfMovies.filter(function(movie) {
+        return movie.genre.includes("Drama");
+    });
+    return ratesAverage(dramaMovies);
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
@@ -99,7 +68,6 @@ function orderByYear(arrayOfMovies) {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(arrayOfMovies) {
-
     let newOrder = [...arrayOfMovies];
 
     newOrder.sort(function(a, b) {
@@ -110,7 +78,6 @@ function orderAlphabetically(arrayOfMovies) {
     });
     return newOrder.slice(0, 20);
 }
-
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
