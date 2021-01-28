@@ -48,9 +48,10 @@ function dramaMoviesRate(arr) {
                 actualCount++
             }
         }
-        if(actualCount){
+        if (actualCount) {
             avg = currentTotal / actualCount;
-            return Number(avg.toFixed(2));}
+            return Number(avg.toFixed(2));
+        }
     }
     return 0;
 }
@@ -59,19 +60,42 @@ function dramaMoviesRate(arr) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(arr) {
-    let sortedByYear = arr.slice();
-    sortedByYear.sort((movie1, movie2) => {
-      if (movie1.year > movie2.year) { return 1 }
-      else if (movie1.year == movie2.year) {
-        if (movie1.title < movie2.title) { return -1; }
-      }
-      else { return -1 };
-      // return movie1.year - movie2.year;
+    // let sortedByYear = arr.slice();
+    return arr.slice().sort((movie1, movie2) => {
+        if (movie1.year > movie2.year) {
+            return 1;
+        } else if (movie1.year == movie2.year) {
+            if (movie1.title < movie2.title) {
+                return -1;
+            }
+        } else {
+            return -1
+        };
+        // return movie1.year - movie2.year;
     })
-    return sortedByYear;
-  }
+    // return sortedByYear;
+}
 
-  // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(arr) {
+    let abcOrder = [...arr];
+    let titleAbcOrder = [];
+    ///////////////////////////////////
+    abcOrder.sort((movie1, movie2) => {
+      if (movie1.title > movie2.title) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+  
+    ////////////////////////////////////
+    for (let i = 0; i < 20; i++) {
+      titleAbcOrder.push(abcOrder[i]);
+    }
+      return titleAbcOrder;
+  };
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
