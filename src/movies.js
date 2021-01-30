@@ -1,9 +1,56 @@
+//IronHack Miami - WebDev Part Time Spring Cohort 2021
+//Author: Jorge Sirias
+//Date: 1/28/2021
+
 // Iteration 1: All directors? - Get the array of all directors.
+function getAllDirectors(movies){
+    
+    let newArray = movies.map(eachDirector => eachDirector.director)
+    return newArray;
+
+}
+
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
+function howManyMovies(movies){
+
+    let moviesSpielberg = []
+  
+      movies.forEach( function (movie){
+  
+        if(movie.director === "Steven Spielberg" && movie.genre.includes("Drama"))
+        
+        moviesSpielberg.push(movie);
+  
+      });
+  
+    
+  
+      return moviesSpielberg.length;
+  
+  }
+
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+
+function ratesAverage(movies){
+
+    let ratesTotal = movies.reduce( function (total, movie) {
+
+        if( (movies.length === 0) || movie.rate === ""){
+
+            return total + 0;
+
+        }
+
+        return total + movie.rate;
+
+    },0);
+
+    return Number((ratesTotal/movies.length).toFixed(2));
+
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
