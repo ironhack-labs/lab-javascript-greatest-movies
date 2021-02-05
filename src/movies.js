@@ -1,5 +1,25 @@
+var {movies}=require("./data.js");
 // Iteration 1: All directors? - Get the array of all directors.
+
+// const getAllDirectors = function (movies) {
+//     return movie.reduce ;
+// }
+
+const getAllDirectors= function(movies) {
+    return movies.reduce((acc, movie) => { acc.push(movie.director); 
+    return acc;
+    [...new Set(movies)]
+    }, [])}
+
+
+// const getAllDirectors= movies.reduce((acc, movie) => { 
+//     arrDirectors.push(movie.director);
+//    return arrDirectors;
+// }, 0)
+
+
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
