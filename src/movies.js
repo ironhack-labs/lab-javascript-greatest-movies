@@ -2989,11 +2989,12 @@ console.log(getAllDirectors(movies))
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
-const ratings = movies.reduce(function (sum, films) {
-    return sum + films.rate;
-}, 0);
-
-console.log(ratings)
+let totalRates = movies.rate.reduce(function (accumulator, review) {
+    return accumulator + review.rate;
+  }, 0);
+  let averageRate = totalRates / movies.rate.length;
+   
+  console.log(averageRate)
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate (movies) {
