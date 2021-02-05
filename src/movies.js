@@ -2970,12 +2970,6 @@ let movies = [
 
 // Iteration 1: All directors? - Get the array of all directors.
 
-//movies.map(function getAllDirectors(directors) {
-//    return directors;
-//})  
-
-//console.log(getAllDirectors)
-
 function getAllDirectors(movies) {
     return movies.map(function (movie){return movie.director}); 
     // return movies.map(movie => movie.director); 
@@ -3002,11 +2996,32 @@ const ratings = movies.reduce(function (sum, films) {
 console.log(ratings)
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate (movies) {
+  return ratesAverage(movies.filter(movie => movie.genre.includes('Drama')));
+
+}
+console.log(dramaMoviesRate(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-
+function orderByYear(movies) {
+  const moviesCopy = movies.slice();
+  moviesCopy.sort((a, b) => {
+    if (a.year === b.year) {
+      return a.title.localeCompare(b.title);
+    }
+    return a.year - b.year;
+  });
+  return moviesCopy;
+}
+orderByYear(movies);
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(movies) {
+  const movieTitle = movies.map(movie => movie.title);
+  movieTitle.sort((a, b) => a.localeCompare(b));
+  return movieTitle.slice(0, 20);
+}
 
+orderAlphabetically(movies);
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
