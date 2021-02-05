@@ -1,4 +1,4 @@
-//var { movies } = require('./data.js')
+var { testMovies } = require('./data.js')
 
 // Iteration 1: All directors? - Get the array of all directors.
 function getAllDirectors(movies) { return [movies.map(movie=> movie.director)];}
@@ -6,10 +6,11 @@ function getAllDirectors(movies) { return [movies.map(movie=> movie.director)];}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(movies) {
-    const mov = movies.filter(movie => {
-        return  movie.director === "Steven Spielberg" && movie.genre.includes("drama");    
-    }
+    let stevie = movies.filter(function (movie) {
+       return movie = "Steven Spielberg";
+    });
 }
+ 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
