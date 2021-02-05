@@ -12,12 +12,13 @@ function getAllDirectors(movies) {
 
 function howManyMovies(moviesList) {
   const dramaMovies = moviesList.filter(function (movie) {
-    if (movie.genre.includes("Drama") === true && 
-    movie.director.includes("Steven Spielberg")=== true){
+    if (movie.genre.includes("Drama") === true &&
+      movie.director === "Steven Spielberg") {
       console.log(movie)
+      return true
     }
   });
-  // return dramaMovies;
+   return dramaMovies.length;
 }
 
 
