@@ -2975,13 +2975,14 @@ let array = [
 
     function getAllDirectors(movies) { 
         const directors = movies.map(function(movie) {
-        return movie.director;
+          return movie.director;
         });
-    
-    const noDuplicateDir = directors.filter(function(item, index){
-            return directors.indexOf(item) === index;
-        });
+        return directors;
     }
+
+    // const noDuplicateDir = getAllDirectors(movie).filter(function(item, index){
+    //         return directors.indexOf(item) === index;
+    //     });
 
     //console.log(getAllDirectors(movies));
     //console.log(noDuplicateDir);
@@ -3010,14 +3011,48 @@ function howManyMovies (arrMovies) {
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
-/*function ratesAverage (arrMovies) {
-    const filtered = arrMovies.map(function(movies{
+function ratesAverage(arrMovies) {
+  if (arrMovies.length === 0){
+    return 0;  
+  } else {
+    let total;
+    const filtered = arrMovies.map(function(movie) {
+      return movie.rate;
+    });
+
+    let averageTotal = filtered.reduce(function(acc, current) {
+      total = acc + current;
+      return total;
     })
-}*/
+    return parseFloat((averageTotal / filtered.length).toFixed(2));
+  }
+}
+// console.log(ratesAverage(array)); 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
+// Faire un array avec les drama movies
+// Utiliser ratesAverage sur cet array
+function dramaMoviesRate(arrMovies) {
+  // if (arrMovies.length === 0){
+  //   return 0;  
+  // } else {
+  const dramaMovies = arrMovies.filter(function(item){
+      return item.genre.includes("Drama");
+  });
+  return ratesAverage(dramaMovies);
+}
+
+// console.log(dramaMoviesRate(array));
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+function orderByYear(arrMovies) {
+  let yearsOrdered = array.sort(function(a, b) {
+    return a.year - b.year;
+  });
+  console.log(yearsOrdered);
+  return yearsOrdered;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
