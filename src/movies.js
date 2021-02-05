@@ -35,10 +35,15 @@ function ratesAverage(arr) {
   if (arr.length === 0) {
     return 0;
   };
-  const rates = arr.map(obj => obj.rate);
+  const rates = arr.map(obj => {
+    if (!isNaN(obj.rate) || (obj.rate) !== undefined || typeof(obj.rate) !== "string") {
+      return obj.rate
+    }
+  });
   console.log(rates);
-  const average = (rates.reduce((a, c) =>  a + c)) / (rates.length);
-  return average
+  const average = ((rates.reduce((a, c) =>  a + c)) / (rates.length));
+  const averageWithTwoFloatingPoints = Number(average.toFixed(2));
+  return averageWithTwoFloatingPoints;
 };
 
 console.log("<------Iteration 4------>");
