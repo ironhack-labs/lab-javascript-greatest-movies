@@ -1,6 +1,6 @@
 // Iteration 1: All directors? - Get the array of all directors.
 const getAllDirectors = function (movies) {
-  return movies.map(movie => movie.director);
+  return movies.map((movie) => movie.director);
 };
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
@@ -17,15 +17,17 @@ const howManyMovies = function (movies) {
 };
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 const ratesAverage = function (movies) {
-  if (movies.length === 0) {
-    return 0;
-  }
+  if (movies.length === 0) return 0;
+  
   let count = movies.length;
   const sum = movies.reduce((accumulator, movie) => {
-    //  if (movie.rate!==undefined) {
-    return accumulator + movie.rate;
-    // } else {count--}
+     if (typeof movie.rate == "number") {
+    return accumulator + movie.rate; 
+     } else {
+    return accumulator + 0
+     }
   }, 0);
+
   const average = Number((sum / count).toFixed(2));
   console.log(typeof average);
   return average;
