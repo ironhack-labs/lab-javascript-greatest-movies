@@ -56,12 +56,44 @@ return ratesAverage(dramaMovies);
 console.log("<------Iteration 5------>");
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arr) {
-const newArr = [...arr];
-
+  const newArr = [...arr];
+  const moviesByYear = newArr.sort((a, b) => {
+    if (a.year > b.year) {
+      return 1;
+    } else {
+      return -1
+    }
+  })
+  return moviesByYear;
 };
 
 console.log("<------Iteration 6------>");
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(arr) {
+  const newArr = [...arr];
+  const moviesByYear = newArr.sort((a, b) => {
+    if (a.title > b.title) {
+      return 1;
+    } else {
+      return -1
+    }
+  });
+  const arrayOfMovies = moviesByYear.filter(a => a.title);
+  console.log(arrayOfMovies);
+  const arrayOfTitles = [];
+  for (let i = 0; i < arrayOfMovies.length; i++) {
+    arrayOfTitles.push(arrayOfMovies[i].title);
+  }
+  console.log(arrayOfTitles);
+  const top20 = [];
+  if (arrayOfTitles.length > 20) {
+    for (let k = 0; k < 20; k++) {
+    top20.push(arrayOfTitles[k]);
+    }
+  return top20;
+  } 
+  return arrayOfTitles;
+};
 
 console.log("<------Iteration 7------>");
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
