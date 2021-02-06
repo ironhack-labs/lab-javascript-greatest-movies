@@ -113,7 +113,23 @@ function ratesAverage(array) {
 return Number(((totalRate / rates.length).toFixed(2)));
 }
 
-console.log(ratesAverage(movieLab))
+console.log(ratesAverage(movieLab));
+
+
+///Iteration 4
+
+function dramaMoviesRate(array) {
+  const dramaMovies = array.filter(function (value) {
+      return value.genre.includes("Drama");
+  });
+  if(!dramaMovies.length){
+    return 0;
+  } else {
+  return ratesAverage(dramaMovies);
+}
+}
+
+dramaMoviesRate(movieLab);
 
 
 
