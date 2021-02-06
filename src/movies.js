@@ -99,7 +99,17 @@ function orderAlphabetically(arr) {
 console.log("<------Iteration 7------>");
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arr) {
-
+  const modifiedArray = arr.map(movie => {
+    return {
+      title: movie.title,
+      year: movie.year,
+      director: movie.director,
+      duration: convertDurationtoMinutes(movie.duration),
+      genre: movie.genre,
+      rate: movie.rate
+    }
+  });
+  return modifiedArray;
 };
 
 function convertDurationtoMinutes(string) {
