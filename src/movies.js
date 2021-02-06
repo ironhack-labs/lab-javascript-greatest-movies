@@ -81,20 +81,127 @@ let directors = array.map(function(movie) {
     return directors;
 }
 getAllDirectors(movieLab);
-// console.log(getAllDirectors)
-// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
-
-// Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 
-// Iteration 3: All rates average - Get the average of all rates with 2 decimals
+// Iteration 2
 
-// Iteration 4: Drama movies - Get the average of Drama Movies
+function howManyMovies(array) {
+  const numberMovie = array.filter(function(movie){
+    if (movie.director === "Steven Spielberg") {
+      return movie;
+    }
+  })
+  return numberMovie.length;
+}
 
-// Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+console.log(howManyMovies(movieLab));
 
-// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+/// Iteration 3
+function ratesAverage(array) {
+  let rates = array.map(function(array) {
+    // console.log(array.rate);
+    return array.rate;
+    })
 
-// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
-// BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+  let totalRate = rates.reduce(function(acc, rate){
+  acc += rate;
+  // console.log(acc)
+  return acc;
+  },0)
+
+return Number(((totalRate / rates.length).toFixed(2)));
+}
+
+console.log(ratesAverage(movieLab))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let fruits = ["apple", "banana", "peach", "apple", "apple"];
+
+// const findApple = fruits.filter(function(str){return str === "apple";}).length;
+
+// console.log(findApple);
+
+
+
+
+
+// // console.log(getAllDirectors)
+// // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+
+// // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
+
+// // function howManyMovies(listFilm){
+// //   let numberMovies = listFilm.filter(function(movie){
+// //     if(movie.genre === "drama" && movie.director === "Steven Spielberg"){
+// //       numberMovies += 1;
+// //     }
+// //     return numberMovies;
+// //   })
+// // }
+
+// // howManyMovies(movieLab);
+
+
+
+
+
+// checkFruit(fruits);
+
+
+// let fruits = ["apple", "banana", "peach", "apple", "apple"];
+
+
+// function findFruit(b){
+//   let value = b.filter(function(array){
+//     return b.array === "apple"
+// });
+//   return value;
+// }
+
+// findFruit(fruits);
+
+
+
+
+
+
+
+// /// const result = words.filter(word => word.length > 6);
+
+//   let numberMovies
+// }
+
+
+
+// // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+
+// // Iteration 4: Drama movies - Get the average of Drama Movies
+
+// // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+
+// // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+// // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+// // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
