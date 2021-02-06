@@ -10,8 +10,9 @@ a function named getAllDirectors() that receives an array of movies as an
 argument and returns a new (mapped array). */
 
 function getAllDirectors(arr) {
-  let directors = arr.map(n => n.director)
-  return directors;
+  let directors = arr.map(n => n.director);
+  let filteredDirectors =  directors.filter((director, i) => directors.indexOf(director) === i);
+  return filteredDirectors;
 };
 
 console.log("<------Iteration 1 - Bonus------>");
