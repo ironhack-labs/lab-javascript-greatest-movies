@@ -1,3 +1,5 @@
+//var { movies } = require("./data.js")
+
 console.log("------Iteration 1------");
 // Iteration 1: All directors? - Get the array of all directors.
 
@@ -27,7 +29,6 @@ function howManyMovies(arr) {
   return directedBySP.length;
 };
 
-
 console.log("<------Iteration 3------>");
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
@@ -40,7 +41,6 @@ function ratesAverage(arr) {
       return obj.rate
     }
   });
-  console.log(rates);
   const average = ((rates.reduce((a, c) =>  a + c)) / (rates.length));
   const averageWithTwoFloatingPoints = Number(average.toFixed(2));
   return averageWithTwoFloatingPoints;
@@ -68,6 +68,7 @@ function orderByYear(arr) {
 };
 
 console.log("<------Iteration 6------>");
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(arr) {
   const newArr = [...arr];
@@ -97,6 +98,33 @@ function orderAlphabetically(arr) {
 
 console.log("<------Iteration 7------>");
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(arr) {
+
+};
+
+function convertDurationtoMinutes(string) {
+  let hoursString = '';
+  let minutesString = '';
+  let indexOfSpace = string.indexOf(' ');
+  for (let i = 0; i < string.length; i++) {
+    if (string.indexOf('h') === -1) {
+      minutesString += string[i];
+    } else if (i < indexOfSpace || indexOfSpace === -1) {
+      hoursString += string[i];
+    } else {
+      minutesString += string[i];
+    }
+  }
+  if (hoursString.length === 0) {
+    return parseInt(minutesString, 10);
+  } if (minutesString.length === 0) {
+    return parseInt(hoursString, 10) * 60;
+  }
+  return  parseInt(hoursString, 10) * 60 + parseInt(minutesString, 10);
+};
 
 console.log("<------Iteration 8------>");
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+function bestYearAvg() {
+
+};
