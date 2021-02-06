@@ -14,8 +14,8 @@ function howManyMovies(moviesList) {
   const dramaMovies = moviesList.filter(function (movie) {
     if (movie.genre.includes("Drama") === true &&
       movie.director === "Steven Spielberg") {
-      console.log(movie)
-      return true
+      console.log(movie);
+      return true;
     }
   });
    return dramaMovies.length;
