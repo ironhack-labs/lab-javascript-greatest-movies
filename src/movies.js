@@ -14,15 +14,37 @@ function howManyMovies(moviesList) {
   const dramaMovies = moviesList.filter(function (movie) {
     if (movie.genre.includes("Drama") === true &&
       movie.director === "Steven Spielberg") {
-      console.log(movie);
+      // console.log(movie);
       return true;
     }
   });
-   return dramaMovies.length;
+  return dramaMovies.length;
 }
 
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(moviesRate) {
+  if (moviesRate.length === 0){
+    return 0;
+  };
+  
+  const rates = moviesRate.map(function (movie) {
+    return movie.rate;
+  });
+  const sum = rates.reduce(function (acc, currentRate) {
+    return (acc += currentRate);
+  });
+  if (moviesRate.rate == undefined || moviesRate.rate == Number){
+    const average = sum / rates.length;
+  let res = average.toFixed(2);
+  let res2 = parseFloat(res);
+  console.log(res2);
+  return res2; // On n'est pas sûr de comprendre ce que Jasmine demande: "Return average even if one of the movies does not have rate!"
+  }
+}
+
+
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
