@@ -84,11 +84,32 @@ function orderByYear(moviesYear) {
       }
     }
   });
+  console.log(sortedCloneMap);
   return sortedCloneMap;
 };
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(movies) {
+  const cloneMoviesTitle = [...movies];
+  const cloneMap2 = cloneMoviesTitle.map(function (movie) {
+   
+    return movie.title;
+  });
+  
+  const sortedTitles = cloneMap2.sort(function (a, b) {
+    if (a.title < b.title) {
+      return -1;
+    } 
+  });
+ 
+  return sortedTitles;
+};
+
+
+
+
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
