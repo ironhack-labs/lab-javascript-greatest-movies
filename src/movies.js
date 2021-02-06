@@ -2981,11 +2981,11 @@ console.log(getAllDirectors(movies))
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
-// FILTER FUNCTION: Should we create two filters (one that filters after the other) or one function that filters for two parameters?
+const filteredMovies = movies.filter(function (dramaDirector) {
+  return dramaDirector == "director.Steven Spielberg" && dramaDirector == "genre.Drama";
+});
 
-//const evenNumbers = numbers.filter(function (number) {
-//    return number % 2 === 0;
-//  });
+console.log(filteredMovies);
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
@@ -3002,6 +3002,19 @@ function dramaMoviesRate (movies) {
 
 }
 console.log(dramaMoviesRate(movies));
+
+// Mackenzie's note: I noticed that this is just filtering for Drama movies so far and isn't looking for the average yet. I tried to
+// come up with a solution. My function isn't working, but here's what I came up with based on the lessons.
+
+//const totalReviews = movies.rate.reduce(function (acc, reivew) {
+//  return acc + review.rate;
+//}, 0);
+//const averageRate = totalReviews / movies.rate.length;
+
+//console.log(averageRate)
+
+// This is inspired by this link: https://my.ironhack.com/lms/courses/course-v1:IRONHACK+WDFT+202102_PAR/units/ironhack-course-chapter_1-sequential_3-vertical_1
+// and the Amazon example. Hope it helps. :)
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
