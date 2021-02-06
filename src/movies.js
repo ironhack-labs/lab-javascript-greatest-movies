@@ -70,30 +70,19 @@ function orderByYear(arr) {
 console.log("<------Iteration 6------>");
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+// Extraire les titles dans un array
+// Trier l'array de titre
+// .Splice() Method pour couper l'array à 20 max
 function orderAlphabetically(arr) {
-  const newArr = [...arr];
-  const moviesByYear = newArr.sort((a, b) => {
-    if (a.title > b.title) {
-      return 1;
-    } else {
-      return -1
-    }
+  let allTitles = arr.map(movie => movie.title)
+  let moviesByName = allTitles.sort( (movie1, movie2) => {
+      if (movie1 > movie2 )  return 1
+      else return -1;
   });
-  const arrayOfMovies = moviesByYear.filter(a => a.title);
-  console.log(arrayOfMovies);
-  const arrayOfTitles = [];
-  for (let i = 0; i < arrayOfMovies.length; i++) {
-    arrayOfTitles.push(arrayOfMovies[i].title);
+  if ( moviesByName.length > 20 ) {
+      return moviesByName.splice(0, 20);
   }
-  console.log(arrayOfTitles);
-  const top20 = [];
-  if (arrayOfTitles.length > 20) {
-    for (let k = 0; k < 20; k++) {
-    top20.push(arrayOfTitles[k]);
-    }
-  return top20;
-  } 
-  return arrayOfTitles;
+  return moviesByName
 };
 
 console.log("<------Iteration 7------>");
@@ -135,6 +124,35 @@ function convertDurationtoMinutes(string) {
 
 console.log("<------Iteration 8------>");
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
-function bestYearAvg() {
-
+function bestYearAvg(listOfMovies) {
+  if (listOfMovies.length === 0) {
+    return null;
+  }
+  // map over list of movies and return an array with the years only
+  const unfilteredYears = listOfMovies.map( n => n.year);
+  // delete doubles from the array of years
+  const filteredYears = unfilteredYears.filter((n,i) => unfilteredYears.indexOf(n) === i);
+  // for each year, create an array that will accept object movies as value
+  let arrayOfMoviesPerYear = [];
+  for (let i = 0; i < filteredYears.length; i++) {
+    arrayOfMoviesPerYear[i] = [];
+    for (let k = 0; k < listOfMovies.length; k++) {
+      if (listOfMovies[k].year === filteredYears[i]) {
+        arrayOfMoviesPerYear[i].push(listOfMovies[k]);
+      }
+    } 
+  };
+  // create a best year and a best average variable
+  let bestYear ='';
+  let bestAverage = 0;
+  // iterate over arrayOfMoviesPerYear
+  for (let j = 0; j < arrayOfMoviesPerYear.length; j++) {
+    // reassign variable best avg and year to var bestYear and best Average
+    if (ratesAverage(arrayOfMoviesPerYear[j]) >= bestAverage) {
+      bestAverage = ratesAverage(arrayOfMoviesPerYear[j]);
+      bestYear = arrayOfMoviesPerYear[j][0].year;
+    }
+  };
+  // return result
+  return "The best year was " + bestYear + " with an average rate of " + bestAverage;
 };
