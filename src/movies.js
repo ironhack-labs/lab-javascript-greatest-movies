@@ -83,8 +83,13 @@ function turnHoursToMinutes(movies) {
   moviesDuration.map(movie => {
     let hours = 0;
     let mins = 0;
-    hours = Number(movie.duration.split('h')[0]);
-    mins = Number(movie.duration.split('h')[1].split('min')[0]);
+    if (movie.duration.includes('h')) { 
+        hours = Number(movie.duration.split('h')[0]);
+        mins = Number(movie.duration.split('h')[1].split('min')[0]);
+    } else {
+        hours = 0;
+        mins = Number(movie.duration.split('min')[0]);
+    }
     return movie.duration = hours * 60 + mins;
   });
   return moviesDuration
@@ -92,30 +97,22 @@ function turnHoursToMinutes(movies) {
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
-// function bestYearAvg(movies) {
-//   // For a given year AAAA
-//   let moviesInYear = movies.map(toto => {
-//     const moviesInYear = movies.filter(toto => toto.year === AAAA;
-//     return ratesAverage(moviesInYear);
-//   }
-// }
+function bestYearAvg(movies) {
+  if (movies.length === 0) {return null} else {
+  const ratesByYear = [];
+  for (let y=1900; y<2020; y++) {
+      const moviesInYear = movies.filter(movie => movie.year === y);
+      ratesByYear.push({"year": y, "rate":ratesAverage(moviesInYear)});
+  }
+  ratesByYear.sort((a,b)=> {
+      if (b.rate !== a.rate) {
+      return b.rate-a.rate
+  } else {
+      return a.year-b.year
+  }
+  });
+  return `The best year was ${ratesByYear[0].year} with an average rate of ${ratesByYear[0].rate}`;
+  }
+}
 
-// const bestYearAvg = arr => {
-//     if (arr.length === 0) {
-//       return undefined;
-//     }
-//     if (arr.length === 1) {
-//       return `The best year was ${arr[0].year} with an average rate of ${arr[0].rate}`;
-//     }
-//     const allRatesArr = filteredSingleYear(arr);
-//     let maxRate = 0;
-//     let maxRateYear = 0;
-//     for (let i = 0; i < allRatesArr.length; i += 1) {
-//       if (allRatesArr[i][1] > maxRate) {
-//         maxRate = allRatesArr[i][1];
-//         maxRateYear = allRatesArr[i][0];
-//       }
-//     }
-//     return `The best year was ${maxRateYear} with an average rate of ${maxRate}`;
-//   }
-//   console.log(bestYearAvg(newMoviesArr));
+console.log(bestYearAvg(films))
