@@ -125,6 +125,36 @@ function convertDurationtoMinutes(string) {
 
 console.log("<------Iteration 8------>");
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(arr) {
+  if (arr.length === 0) return null;
+  let ratesPerYear = {};
+  // Create an object with key = year / value = [all the rates]
+  arr.forEach(element => {
+      if (element.year in ratesPerYear) {
+          ratesPerYear[element.year].push(element.rate)
+          // add element.rate
+      } else {
+          ratesPerYear[element.year] = [element.rate]
+      };
+  });
+  // Calculate the best year and 
+  let bestYear = 0
+  let bestYearAvgRate = 0;
+  for (const [year, rates] of Object.entries(ratesPerYear)) {
+      let totalRates = rates.reduce((sum, rate) => sum + rate)
+      let yearAvgRate = totalRates / rates.length
+      if (yearAvgRate > bestYearAvgRate) {
+          bestYear = year
+          bestYearAvgRate = yearAvgRate
+      };
+  };
+  let result = `The best year was ${bestYear} with an average rate of ${bestYearAvgRate}`;
+  return result;
+};
+
+
+/*
 function bestYearAvg(listOfMovies) {
   if (listOfMovies.length === 0) {
     return null;
@@ -156,4 +186,4 @@ function bestYearAvg(listOfMovies) {
   };
   // return result
   return "The best year was " + bestYear + " with an average rate of " + bestAverage;
-};
+}; */
