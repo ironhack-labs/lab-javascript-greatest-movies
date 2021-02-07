@@ -52,6 +52,7 @@ function dramaMoviesRate(movies) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+
 function orderByYear(movies) {
   let cloneMovies = [...movies];
 
@@ -76,37 +77,18 @@ function orderByYear(movies) {
   return cloneMovies;
 }
 
-// We need to sort the movies in ascending order by their release year.
-// This should be easy using one of the methods we have just learned. :wink:
-// Create a function orderByYear() that receives an array as parameter and returns a new sorted array.
-// If two movies have the same year, order them in alphabetical order by their title! :heavy_check_mark:
-// :bulb: Make sure not to mutate the original array :wink:
-// arrayCopy = [...array]
-
-function orderByYear(movies) {
-  let byYear = movies.map(function (movie) {
-    for (let i = 0; i<movie.length; i++)
-    return movie.year;
-  });
-  console.log(byYear.length);
-  return byYear;
-} 
-
-
-it('Should return the element in a single element array', () => {
-  expect(orderByYear([{ year: 1982 }])).toEqual([{ year: 1982 }]);
-});
-
-
-
-
-
-
-
+///function orderByYear(movies) {
+  //let byYear = movies.map(function (movie) {
+    //for (let i = 0; i < movie.length; i++) return movie.year;
+ // });
+ // console.log(byYear.length);
+ // return byYear;
+//}
 
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
 function orderAlphabetically(movies) {
   let sortedTitles = movies.map(function (arrayOfMovies) {
     return arrayOfMovies.title;
@@ -131,6 +113,7 @@ function orderAlphabetically(movies) {
   return sortedTitles.slice(0, 20);
 }
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
 function turnHoursToMinutes(movies) {
   updatedMovies = movies.map(function (moviesElements) {
     const clone = { ...moviesElements };
