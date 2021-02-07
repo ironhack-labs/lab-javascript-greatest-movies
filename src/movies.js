@@ -68,18 +68,12 @@ return movieYearsOrder;
 
 function orderAlphabetically (moviesArr) {
   const newMoviesArr = [...moviesArr];
-  
-  const twentyFirstMovies = moviesArr.filter (function(movie) {
-    return movies[i] < 20)
-  }
-  const moviesOrder = twentyFirstMovies.sort (function (a, b) {
-    if (a.title === b.title) return a.title.localeCompare(b.title) 
-      else 
-      return a.title - b.title;
-    }
-  } 
-    return moviesOrder;
+  const moviesOrder = newMoviesArr.sort (function (a, b) {
+  return a.title.localeCompare(b.title) 
+    })
+   return moviesOrder;
 }
+   
 
 /*function orderAlphabetically (moviesArr) {
   const newMoviesArr = [...moviesArr];
