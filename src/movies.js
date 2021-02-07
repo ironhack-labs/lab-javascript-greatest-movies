@@ -31,7 +31,6 @@ const ratesAverage = function (movies) {
   }, 0);
 
   const average = Number((sum / count).toFixed(2));
-  console.log(typeof average);
   return average;
 };
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -86,3 +85,32 @@ const timeToNum = function(time) {
   }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+const bestYearAvg = function(movies) {
+
+  if (movies.length === 0) return null;
+  
+  let filmYears = {}
+  
+  movies.forEach(movie => {
+    if (filmYears[movie.year]) {
+      filmYears[movie.year].push(movie)
+    } else {
+      filmYears[movie.year] = [movie]
+    }
+  })
+
+  let rates = []
+  let years = []
+  
+  for (let prop in filmYears) {
+    rates.push(ratesAverage(filmYears[prop]))
+    years.push(prop)
+  }
+  
+  let max = Math.max(...rates)
+  let winner = rates.indexOf(max)
+  
+  return `The best year was ${years[winner]} with an average rate of ${rates[winner]}`
+  
+}
