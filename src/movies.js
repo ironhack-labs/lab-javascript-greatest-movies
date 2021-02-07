@@ -4,7 +4,7 @@ function getAllDirectors(movies) {
   let directorlist = movies.map(function (movie) {
     return movie.director;
   });
-  console.log(directorlist.length);
+  //console.log("print", typeof(directorlist));
   return directorlist;
 }
 
@@ -12,16 +12,6 @@ function getAllDirectors(movies) {
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
-//const howManyMovies = movies.filter(function(StevenMovies){
-//return StevenMovies movies.director[i]=== 'Steven Spielberg';
-
-//});
-
-///One of the most famous directors in cinema is Steven Spielberg, and he has some really awesome drama movies that are on our list,
-//but we want to know how many of them are there.
-
-//Go ahead and create a howManyMovies() function that receives an array as a parameter and filter 👀 the array so we can have only
-//the drama movies where Steven Spielberg is the director.
 function howManyMovies(list) {
   let stevenMovies = list.filter(function (newlist) {
     for (i = 0; i < newlist.genre.length; i++) {
@@ -61,9 +51,118 @@ function dramaMoviesRate(movies) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+function orderByYear(movies) {
+  let cloneMovies = [...movies];
+
+  cloneMovies.sort(function (a, b) {
+    if (a.year === b.year) {
+      if (a.title.toUpperCase() < b.title.toUpperCase()) {
+        //console.log(-1, a.title.toUpperCase());
+        return -1;
+      }
+      if (a.title.toUpperCase() > b.title.toUpperCase()) {
+        //console.log(1);
+        return 1;
+      }
+      if (a.title.toUpperCase() === b.title.toUpperCase()) {
+        return 0;
+      }
+    }
+
+    return a.year - b.year;
+  });
+
+  return cloneMovies;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(movies) {
+  let sortedTitles = movies.map(function (arrayOfMovies) {
+    return arrayOfMovies.title;
+  });
+  //console.log(sortedTitles);
 
+  sortedTitles.sort(function (a, b) {
+    if (a.toUpperCase() < b.toUpperCase()) {
+      //console.log(-1, a.title.toUpperCase());
+      return -1;
+    }
+    if (a.toUpperCase() > b.toUpperCase()) {
+      // console.log(1);
+      return 1;
+    }
+    if (a.toUpperCase() === b.toUpperCase()) {
+      return 0;
+    }
+  });
+
+  //console.log("print", typeof(movieTitles));
+  return sortedTitles.slice(0, 20);
+}
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(movies) {
+  updatedMovies = movies.map(function (moviesElements) {
+    const clone = { ...moviesElements };
+    if (
+      moviesElements.duration.includes("h") &&
+      moviesElements.duration.includes("min")
+    ) {
+      let time = moviesElements.duration.split("h ");
+      //console.log("show",time)
+      let min = time[1].split("min");
+      //console.log("show",min);
+      let hours = +time[0];
+      let minutes = +min[0];
+      let updatedDurationMinutes = hours * 60 + minutes;
+      clone.duration = updatedDurationMinutes;
+      //console.log(clone);
+    } else if (moviesElements.duration.includes("h")) {
+      let time = moviesElements.duration.split("h");
+      //console.log("show",time)
 
+      //console.log("show",min);
+      let updatedDurationMinutes = +time[0] * 60;
+      clone.duration = updatedDurationMinutes;
+      //console.log(clone);
+    } else {
+      let min = moviesElements.duration.split("min");
+      //console.log("show",time)
+      //let min = time[1].split("min");
+      //console.log("show",min);
+      let updatedDurationMinutes = +min[0];
+      clone.duration = updatedDurationMinutes;
+      //console.log(clone);
+    }
+
+    return clone;
+  });
+  //console.log("print", updatedMovies);
+  return updatedMovies;
+}
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg(movies) {
+  if (movies.length === 0) {
+    return null;
+  }
+  let yearlist = movies.map(function (movie) {
+    let moviesRateTotal = movies.reduce(function (acc, number) {
+      return acc + number.rate;
+    }, 0);
+    console.log(moviesRateTotal);
+
+    return { year: movie.year, rate: movie.rate };
+  });
+  console.log(yearlist);
+  return yearlist;
+}
+
+// let oldestYear = movie.sort(function(a,b){
+//    if (a.rate === b.rate){
+//        connsole.log(a.year -b.year)
+//       return a.year - b.year;
+//        }
+//connsole.log(a.year -b.year)
+//   });
+
+//   return oldestYear
