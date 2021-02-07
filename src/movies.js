@@ -131,7 +131,34 @@ function dramaMoviesRate(array) {
 
 dramaMoviesRate(movieLab);
 
+<<<<<<< HEAD
 /// Iteration 5
+=======
+// // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+
+
+function orderByYear(movieList) {
+  const yearMovies = movieList.filter(function (movie) {
+    return movie.year
+  });
+  return yearMovies.sort();
+
+}
+
+console.log(orderByYear(movieLab));
+
+// // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+function orderAlphabetically (movieList){
+
+}
+
+
+// // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+// // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+>>>>>>> d5b070b43fdaba93645205f041daf2c655a4b21b
 
 
 
