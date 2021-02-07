@@ -60,7 +60,7 @@ const orderAlphabetically = function (movies) {
 };
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
-const timeToNum = function(time) {
+ /*const timeToNum = function(time) {
  
   let check = time.split(" ")
   
@@ -76,13 +76,31 @@ const timeToNum = function(time) {
      return check[0]
   }
    
- }
+ }*/
+
+ const durNum = function(time) {
+  
+  let result = 0;
+   
+  for (let i=0; i<time.length; i++) {
+    
+    if (time[i+1]==="h") result += time[i]*60
+    if (time[i+1]==="m") result += time[i]*1+time[i-1]*10
+  }
+ 
+  return result
+}
+
   
   const turnHoursToMinutes = function(movies) {  
-  const newArray = [...movies];
-  newArray.forEach(movie => movie.duration = timeToNum(movie.duration));
-  return newArray
-  }
+   
+  let array = [...movies];
+  
+  array.forEach(movie => movie.duration = durNum(movie.duration));
+  
+  return array
+ 
+}
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
