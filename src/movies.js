@@ -96,17 +96,15 @@ return numberMovie.length;
 
 console.log(howManyMovies(movieLab));
 
-/// Iteration 3
+// // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 function ratesAverage(array) {
 let rates = array.map(function(array) {
-  // console.log(array.rate);
   return array.rate;
   })
 
 let totalRate = rates.reduce(function(acc, rate){
 acc += rate;
-// console.log(acc)
 return acc;
 },0)
 
@@ -115,7 +113,7 @@ return Number(((totalRate / rates.length).toFixed(2)));
 
 console.log(ratesAverage(movieLab));
 
-///Iteration 4
+// // Iteration 4: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesRate(array) {
 const dramaMovies = array.filter(function (value) {
@@ -170,90 +168,3 @@ console.log(orderAlphabetically(movieLab));
 // // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let fruits = ["apple", "banana", "peach", "apple", "apple"];
-
-// const findApple = fruits.filter(function(str){return str === "apple";}).length;
-
-// console.log(findApple);
-
-
-
-
-
-// // console.log(getAllDirectors)
-// // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
-
-// // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-
-// // function howManyMovies(listFilm){
-// //   let numberMovies = listFilm.filter(function(movie){
-// //     if(movie.genre === "drama" && movie.director === "Steven Spielberg"){
-// //       numberMovies += 1;
-// //     }
-// //     return numberMovies;
-// //   })
-// // }
-
-// // howManyMovies(movieLab);
-
-
-
-
-
-// checkFruit(fruits);
-
-
-// let fruits = ["apple", "banana", "peach", "apple", "apple"];
-
-
-// function findFruit(b){
-//   let value = b.filter(function(array){
-//     return b.array === "apple"
-// });
-//   return value;
-// }
-
-// findFruit(fruits);
-
-
-
-
-
-
-
-// /// const result = words.filter(word => word.length > 6);
-
-//   let numberMovies
-// }
-
-
-
-// // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-
-// // Iteration 4: Drama movies - Get the average of Drama Movies
-
-// // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-
-// // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-
-// // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-
-// // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
