@@ -131,10 +131,10 @@ function orderByYear(movieList) {
     let map2 = arr.map(arr => {
             return arr.title
     });
-    map2.sort(function(movieA, movieB){
-        if (movieA.title < movieB.title) {
+    map2.sort(function(titleA, titleB){
+        if (titleA < titleB) {
             return -1;
-        } else if (movieA.title > movieB.title){
+        } else if (titleA > titleB){
             return 1;
         } else {
             return 0;
