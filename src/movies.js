@@ -3053,23 +3053,29 @@ console.log(orderAlphabetically(array))
 
 
 
-
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+const turnStringToMinuts = string => {
+  const timeSplit = string.indexOf("h") !== -1 ? string.replace('h', '').replace('min','').split(" ") : [0, string.replace('min','').split(" ")] ;
+  return timeSplit.length === 2 ? timeSplit[0]*60 + Number(timeSplit[1]) : timeSplit[0]*60
+}
+
+const turnHoursToMinutes = movies => {
+  let moviesCopy = JSON.parse(JSON.stringify(movies)) ;
+  moviesCopy.forEach(movie => {movie.duration = turnStringToMinuts(movie.duration)})
+  return moviesCopy ;
+}
 
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+const bestYearAvg = movies => {
+  const ratingPerYear = {} ;
+  movies.forEach(movie => ratingPerYear[movie.year] ? (ratingPerYear[movie.year][0] += movie.rate, ratingPerYear[movie.year][1]++) : ratingPerYear[movie.year] = [movie.rate,1]) ;
+  let bestYear, yearAverage,  bestYearAverage = -Infinity ;
+  for (let year in ratingPerYear) {
+    yearAverage = ratingPerYear[year][0]/ratingPerYear[year][1] ;
+    bestYear = bestYearAverage < yearAverage ? year : bestYear ;
+    bestYearAverage = bestYearAverage < yearAverage ? yearAverage : bestYearAverage ;
+  }
 
-function bestYearAvg (movies) {
-  orderByYear(movies)
-  const arrayOfYear = movies.map((movie)=> movie.year)}
-  // const bestYear = movies.reduce((acc, movie)=> {
-  
-
-
-
-
-//   //   ratesAverage(movie)
-//   },0)
-// return bestYear }
-
-console.log(bestYearAvg(arr))
+  return movies.length > 0 ? 'The best year was '+ bestYear +' with an average rate of '+bestYearAverage : null ;
+}
