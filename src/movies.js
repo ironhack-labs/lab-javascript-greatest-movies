@@ -3058,3 +3058,18 @@ console.log(orderAlphabetically(array))
 
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg (movies) {
+  orderByYear(movies)
+  const arrayOfYear = movies.map((movie)=> movie.year)}
+  // const bestYear = movies.reduce((acc, movie)=> {
+  
+
+
+
+
+//   //   ratesAverage(movie)
+//   },0)
+// return bestYear }
+
+console.log(bestYearAvg(arr))
