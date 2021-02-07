@@ -38,15 +38,16 @@ return result;
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
-function dramaMoviesRate (moviesArr){
-const howManyDramaMovies = moviesArr.filter(function(movie){
+function dramaMoviesRate(moviesArr) {
+  const howManyDramaMovies = moviesArr.filter(function (movie) {
     return movie.genre.includes("Drama");
-} 
-) 
- let numberOfDramaMovies = howManyDramaMovies.length;
- return numberOfDramaMovies;
-
-} 
+  });
+  let numberOfDramaMovies = howManyDramaMovies.length;
+  const averageDramaRates = moviesArr.reduce(function (acc, movie){
+    return acc += movie.rate / numberOfDramaMovies;
+},0 ) 
+return averageDramaRates;
+}
 
 
 
