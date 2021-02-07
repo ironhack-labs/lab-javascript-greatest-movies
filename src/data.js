@@ -62,7 +62,7 @@ let movies = [
       "director": "Steven Spielberg",
       "duration": "3h 15min",
       "genre": [
-        "Biography",
+        "Bio＞＞raphy",
         "Drama",
         "History"
       ],
