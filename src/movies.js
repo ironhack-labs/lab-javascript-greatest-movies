@@ -1,19 +1,7 @@
-var { testmovies } = require("./data.js");
+var { testmovies}= require("./data.js");
 
 
 // Iteration 1: All directors? - Get the array of all directors.
-
-//  function getAllDirectors (){
-//     let directorslist = moviesList.map(getdirector(movie));
-
-//  return directorslist;
-//  }
-
-
-// function getdirector(movie){
-//     return movie.director;
-// }
-
 
     function getAllDirectors (moviesList){ 
         const getdirector = moviesList.map(movie => { 
@@ -59,22 +47,17 @@ function ratesAverage(moviesList) {
 
 // Iteration 4: Drama moviesList - Get the average of Drama Movies
 
+
 function dramaMoviesRate(moviesList) {
-   
-    if(moviesList.genre.includes("Drama")){
-        return 0;
-    }
-    if (moviesList.genre.includes("Drama")) {
-    let getDramaAverage = moviesList.reduce(function (sum, value) {
-            return sum + value.rate
-            }, 0) / moviesList.length 
-        return getDramaAverage
+    if (moviesList.genre.includes("Drama")){
+   let getDramaAverage = moviesList.reduce(function (sum, value) {
+        return sum + value.rate }, 0) / moviesList.length 
         
-    }
-}
+           return getDramaAverage;
+        } 
+        else if(!moviesList.genre.includes("Drama")){return 0;}}
+
     
-     
-        
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
