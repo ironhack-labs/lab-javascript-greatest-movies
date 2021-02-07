@@ -2969,7 +2969,6 @@ let arr = [
   ]
 
 // Iteration 1: All directors? - Get the array of all directors.
-//Florida Zebu Comment : Jasmine functional code is looking for an array so i renamed movies in to arr
 function getAllDirectors(arr) {
     return arr.map(function (movie){return movie.director}); 
     // return movies.map(movie => movie.director); 
@@ -2987,13 +2986,8 @@ const howManyMovies = function (arr) {
   })
   return howMany.length
 };
-//Florida Zebi Commenting out because of errors
-// const howManyMovies = arr.filter(function (dramaDirector) {
-//   return dramaDirector == "director.Steven Spielberg" && dramaDirector == "genre.Drama";
-// });
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-//Florida Zebi : fixed it in order the function to be correct 
 function ratesAverage(arr) {
 let totalRates = arr.reduce(function (accumulator, review) {
     return accumulator + Number(review.rate);
@@ -3009,19 +3003,6 @@ function dramaMoviesRate (arr) {
 }
 console.log(dramaMoviesRate(arr));
 
-// Mackenzie's note: I noticed that this is just filtering for Drama movies so far and isn't looking for the average yet. I tried to
-// come up with a solution. My function isn't working, but here's what I came up with based on the lessons.
-
-//const totalReviews = movies.rate.reduce(function (acc, reivew) {
-//  return acc + review.rate;
-//}, 0);
-//const averageRate = totalReviews / movies.rate.length;
-
-//console.log(averageRate)
-
-// This is inspired by this link: https://my.ironhack.com/lms/courses/course-v1:IRONHACK+WDFT+202102_PAR/units/ironhack-course-chapter_1-sequential_3-vertical_1
-// and the Amazon example. Hope it helps. :)
-
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arr) {
   const moviesCopy = arr.slice();
@@ -3034,6 +3015,8 @@ function orderByYear(arr) {
   return moviesCopy;
 }
 orderByYear(arr);
+
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(arr) {
   const movieTitle = arr.map(movie => movie.title);
