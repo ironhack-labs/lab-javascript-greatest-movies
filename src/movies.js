@@ -26,7 +26,7 @@ function howManyMovies(movies) {
 
 // const ratesAverage = movies => movies.reduce((sumRates, movie) => sumRates + movie.rate, 0) / movies.length
 
-const ratesAverage = movies => {
+function ratesAverage (movies) {
   if (movies.length === 0) {
     return 0;
   } else {
@@ -48,14 +48,14 @@ const ratesAverage = movies => {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
-const dramaMoviesRate = movies => {
+function dramaMoviesRate(movies) {
   const dramaMovies = movies.filter(movie => movie.genre.includes('Drama'));
   return ratesAverage(dramaMovies);
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
-const orderByYear = movies => {
+function orderByYear(movies) {
   const sortedMovies = [...movies];
   return sortedMovies.sort((mov1,mov2) => {
       if (mov1.year !== mov2.year) {
@@ -78,37 +78,27 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
-const turnHoursToMinutes = movies => {
-    const newArr = [...movies];
-    newArr.map(movie => {
-      const hDurationSplit = movie.duration.split('h')[0];
-      let hours;
-      let mins;
-      if (isNaN(hDurationSplit)) {
-        hours = 0;
-        mins = parseInt(hDurationSplit.split('min')[0]);
-      } else {
-        hours = parseInt(hDurationSplit * 60);
-        if (movie.duration.split('h')[1] !== '') {
-          mins = parseInt(movie.duration.split('h')[1].split('min')[0]);
-        } else {
-          mins = 0;
-        }
-      }
-      movie.duration = hours + mins;
-    })
-    return newArr;
-  };
+function turnHoursToMinutes(movies) {
+  const moviesDuration = [...movies];
+  moviesDuration.map(movie => {
+    let hours = 0;
+    let mins = 0;
+    hours = Number(movie.duration.split('h')[0]);
+    mins = Number(movie.duration.split('h')[1].split('min')[0]);
+    return movie.duration = hours * 60 + mins;
+  });
+  return moviesDuration
+}
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
-function bestYearAvg(movies) {
-  // For a given year AAAA
-  let moviesInYear = movies.map(toto => {
-    const moviesInYear = movies.filter(toto => toto.year === AAAA;
-    return ratesAverage(moviesInYear);
-  }
-}
+// function bestYearAvg(movies) {
+//   // For a given year AAAA
+//   let moviesInYear = movies.map(toto => {
+//     const moviesInYear = movies.filter(toto => toto.year === AAAA;
+//     return ratesAverage(moviesInYear);
+//   }
+// }
 
 // const bestYearAvg = arr => {
 //     if (arr.length === 0) {

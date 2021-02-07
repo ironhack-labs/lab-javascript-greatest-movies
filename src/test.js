@@ -1,11 +1,5 @@
-const test = [{ title: 'aab' }, { title: 'bab' }, { title: 'acb' }];
+const test = [{ duration: '0h 31min' }];
 
-  function orderAlphabetically(movies) {
-    const movies2 = [...movies];
-    const movies2Title = movies2.map((toto) => {
-      return toto.title;
-    });
-    return movies2Title.sort((titi, tutu) => titi.localeCompare(tutu)).splice(0, 20);
-  }
 
-  console.log("Result: "+orderAlphabetically(test));
+
+console.log(typeof turnHoursToMinutes(test))
