@@ -1,4 +1,4 @@
-let movies = [
+let arr = [
     {
       "title": "The Shawshank Redemption",
       "year": 1994,
@@ -2969,39 +2969,45 @@ let movies = [
   ]
 
 // Iteration 1: All directors? - Get the array of all directors.
-
-function getAllDirectors(movies) {
-    return movies.map(function (movie){return movie.director}); 
+//Florida Zebu Comment : Jasmine functional code is looking for an array so i renamed movies in to arr
+function getAllDirectors(arr) {
+    return arr.map(function (movie){return movie.director}); 
     // return movies.map(movie => movie.director); 
 }
-console.log(getAllDirectors(movies))
+console.log(getAllDirectors(arr))
 
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-
-const filteredMovies = movies.filter(function (dramaDirector) {
-  return dramaDirector == "director.Steven Spielberg" && dramaDirector == "genre.Drama";
-});
-
-console.log(filteredMovies);
+const howManyMovies = function (arr) {
+  const howMany = arr.filter( function (movie) {
+      if (movie.director === "Steven Spielberg" && movie.genre.includes('Drama')) 
+      return movie
+  })
+  return howMany.length
+};
+//Florida Zebi Commenting out because of errors
+// const howManyMovies = arr.filter(function (dramaDirector) {
+//   return dramaDirector == "director.Steven Spielberg" && dramaDirector == "genre.Drama";
+// });
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-
-let totalRates = movies.rate.reduce(function (accumulator, review) {
-    return accumulator + review.rate;
+//Florida Zebi : fixed it in order the function to be correct 
+function ratesAverage(arr) {
+let totalRates = arr.reduce(function (accumulator, review) {
+    return accumulator + Number(review.rate);
   }, 0);
-  let averageRate = totalRates / movies.rate.length;
-   
-  console.log(averageRate)
+  return Number((totalRates / arr.length).toFixed(2));
+}
+  console.log(ratesAverage(arr))
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesRate (movies) {
-  return ratesAverage(movies.filter(movie => movie.genre.includes('Drama')));
+function dramaMoviesRate (arr) {
+  return ratesAverage(arr.filter(movie => movie.genre.includes('Drama')));
 
 }
-console.log(dramaMoviesRate(movies));
+console.log(dramaMoviesRate(arr));
 
 // Mackenzie's note: I noticed that this is just filtering for Drama movies so far and isn't looking for the average yet. I tried to
 // come up with a solution. My function isn't working, but here's what I came up with based on the lessons.
@@ -3017,8 +3023,8 @@ console.log(dramaMoviesRate(movies));
 // and the Amazon example. Hope it helps. :)
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(movies) {
-  const moviesCopy = movies.slice();
+function orderByYear(arr) {
+  const moviesCopy = arr.slice();
   moviesCopy.sort((a, b) => {
     if (a.year === b.year) {
       return a.title.localeCompare(b.title);
@@ -3027,15 +3033,15 @@ function orderByYear(movies) {
   });
   return moviesCopy;
 }
-orderByYear(movies);
+orderByYear(arr);
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(movies) {
-  const movieTitle = movies.map(movie => movie.title);
+function orderAlphabetically(arr) {
+  const movieTitle = arr.map(movie => movie.title);
   movieTitle.sort((a, b) => a.localeCompare(b));
   return movieTitle.slice(0, 20);
 }
 
-orderAlphabetically(movies);
+orderAlphabetically(arr);
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
