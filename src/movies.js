@@ -58,9 +58,9 @@ const movieYearsOrder = newMoviesArr.sort(function (a, b) {
  if (a.year === b.year) return a.title.localeCompare(b.title)
 else
   return a.year - b.year;
-});
 
-return movieYearsOrder;
+})
+ return movieYearsOrder
 }
 
 
@@ -71,7 +71,11 @@ function orderAlphabetically (moviesArr) {
   const moviesOrder = newMoviesArr.sort (function (a, b) {
   return a.title.localeCompare(b.title) 
     })
-   return moviesOrder;
+   let moviesTitlesArray = moviesOrder.map(function (movie) {
+     return movie.director;
+   });
+   let twentyMovies = moviesTitlesArray.slice(0, 20);
+   return twentyMovies;
 }
    
 
