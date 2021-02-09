@@ -40,9 +40,9 @@ function ratesAverage(moviesArray) {
         return acc + element.rate;
     }, 0);
 
-    const avg = (ratesSum / moviesArray.length).toFixed(2);
+    const average = (ratesSum / moviesArray.length).toFixed(2);
     
-    return + avg
+    return + average
 
 }
 
