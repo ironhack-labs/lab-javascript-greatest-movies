@@ -34,17 +34,17 @@ console.log("<------Iteration 3------>");
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 function ratesAverage(arr) {
-  if (arr.length === 0) {
-    return 0;
-  };
-  const rates = arr.map(obj => {
-    if (!isNaN(obj.rate) || (obj.rate) !== undefined || typeof(obj.rate) !== "string") {
-      return obj.rate
-    }
+  if (arr.length === 0 ) return 0;
+  let rates = arr.map(movie => {
+      if (isNaN(movie.rate) || movie.rate === undefined || typeof movie.rate === "string") {
+        return 0;
+      } else {
+        return movie.rate;
+      }
   });
-  const average = ((rates.reduce((a, c) =>  a + c)) / (rates.length));
-  const averageWithTwoFloatingPoints = Number(average.toFixed(2));
-  return averageWithTwoFloatingPoints;
+  let totalRates = rates.reduce( (acc, rate) => { return acc + rate},0);
+  let averageRate = Number((totalRates / arr.length).toFixed(2))
+  return averageRate;
 };
 
 console.log("<------Iteration 4------>");
