@@ -72,17 +72,19 @@ function orderByYear(movies){
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
-function orderAlphabetically(movies){}
+function orderAlphabetically(movies){
+    let firstTwentyMovies = movies.map(function(movie){
+     return movie.title;
+    });
+    return firstTwentyMovies.slice(0,19).sort();
+ }
+
+ //Didn't understand the two tests in Jasmine that were wrong. One was about an array greater than 20, but my slice does this without having to create an if statement, I think! Second error I couldn't understand neither. 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
-function turnHoursToMinutes(movies){}
+
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
-function bestYearAvg(movies){
-    if (movies.length == 0) {
-        return null;
-    }
-}
 
