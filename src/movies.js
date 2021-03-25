@@ -14,10 +14,20 @@ function howManyMovies(data){
 const getSS = data.filter((data)=>{return data.director === `Steven Spielberg`&& data.genre.includes(`Drama`)})
 return(getSS.length)
 }
-
-
-
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(data){
+    if (data.length === 0){return(0)}
+        else{const filmRates = data.map((data)=>{if (data.rate===``){return 0}
+        else if (data.rate === undefined){return 0}
+        else {return (data.rate)}})
+    const totalRate = filmRates.reduce(function (sum, rates) {
+    return sum + rates;
+    }, 0)
+    let noRound = totalRate/filmRates.length
+    return(Math.round(noRound*100)/100)}console.log (data.rate)}
+
+
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
