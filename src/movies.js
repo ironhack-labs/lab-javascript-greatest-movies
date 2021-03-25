@@ -16,7 +16,20 @@ const howManyMovies = (arr) => {
       return stevenFilms.length
   }
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-
+const ratesAverage = (arr) => {
+    if(arr.length === 0){
+        return 0
+      }
+    const sumOfRatings = arr.reduce((counter, rates)=> {
+        if(rates.rate) {return counter + rates.rate
+        } else {
+            return counter}
+    }, 0)
+    const average = sumOfRatings / arr.length
+    const roundedDecimals = Math.round(average*100)/100
+    return roundedDecimals
+  }
+  
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
