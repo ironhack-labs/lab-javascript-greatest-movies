@@ -22,3 +22,9 @@ let ratesAverage = (arr) => {
     }, 0);
     return parseFloat(average.toFixed(2));
 };
+
+// Iteration 4: Drama movies - Get the average of Drama Movies
+let dramaMoviesRate = (arr) => {
+    let dramaMovies = arr.filter((el) => el.genre.includes("Drama"));
+    return ratesAverage(dramaMovies);
+};
