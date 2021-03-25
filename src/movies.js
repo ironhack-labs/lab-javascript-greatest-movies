@@ -45,7 +45,21 @@ function dramaMoviesRate(movies) {
   return Number(dramaRateAvg.toFixed(2));
 }
 
-// Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+// Iteration 5: Ordering by year - Order by year, ascending (in growing order)//done
+function orderByYear(movies) {
+  let sortedYears = movies.concat().sort((el1, el2) => {
+    if (el1.year === el2.year) {
+      if (el1.title < el2.title) {
+        return -1;
+      }
+    } else if (el1.year < el2.year) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+  return sortedYears;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
