@@ -9,7 +9,6 @@ getAllDirectors(movies).forEach((director) => {
 		directors.push(director);
 	}
 });
-//console.log(directors);
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 let howManyMovies = (arr) =>
@@ -35,13 +34,7 @@ let orderByYear = (arr) => {
 
 	let sortedByName = sortedByYear.sort((a, b) => {
 		if (a.year === b.year) {
-			if (a.title === b.title) {
-				return 0;
-			} else if (a.title < b.title) {
-				return -1;
-			} else {
-				return 1;
-			}
+			return a.title.localeCompare(b.title);
 		}
 	});
 	return [...sortedByName];
@@ -74,7 +67,9 @@ let turnHoursToMinutes = (arr) => {
 		} else {
 			minutes = 0;
 		}
+		//Converting hours and minutes into minutes.
 		let totalMinutes = hours * 60 + minutes;
+		//Adding totalMinutes to object.
 		if ("duration" in mov) {
 			mov.duration = totalMinutes;
 		}
@@ -85,3 +80,32 @@ let turnHoursToMinutes = (arr) => {
 };
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+let bestYearAvg = (arr) => {
+	if (arr.length === 0) return null;
+	let bestAverageRate = 0;
+	let bestYearRate = 0;
+	//Getting all unique years from arr parameter.
+	let years = [];
+	arr.map((movie) => movie.year).forEach((year) => {
+		if (!years.includes(year)) {
+			years.push(year);
+		}
+	});
+	years.forEach((year) => {
+		let moviesPerYear = arr.filter((movie) => movie.year === year);
+		let currentAvg = moviesPerYear.reduce((acc, movie) => {
+			acc += movie.rate / moviesPerYear.length;
+			return acc;
+		}, 0);
+		if (currentAvg > bestAverageRate) {
+			bestAverageRate = currentAvg;
+			bestYearRate = year;
+		} else if (currentAvg === bestAverageRate) {
+			if (bestYearRate > year) {
+				bestYearRate = year;
+			}
+		}
+	});
+
+	return `The best year was ${bestYearRate} with an average rate of ${bestAverageRate}`;
+};
