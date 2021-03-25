@@ -4,10 +4,10 @@ let getAllDirectors = (arr) => arr.map((e) => e.director);
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 //How could you "clean" a bit this array and make it unified (without duplicates)?
 let directors = [];
-getAllDirectors(movies).forEach(director => {
-    if(!directors.includes(director)){
-        directors.push(director);
-    }
+getAllDirectors(movies).forEach((director) => {
+	if (!directors.includes(director)) {
+		directors.push(director);
+	}
 });
 //console.log(directors);
 
@@ -55,22 +55,33 @@ let orderAlphabetically = (arr) => {
 };
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-let turnHoursToMinutres = (arr) => {
-    const REGEX = /\d+/g;
-    arr.map(e => {
-        let timeArr = e.duration.match(REGEX);
-        let minutes = 0;
-        timeArr.forEach((time,i) => {
-            if(i === 0){
-                minutes += time * 60;
-            } else {
-                minutes += time;
-            }
-        });
-    });
-    return {}
-}
-
-turnHoursToMinutres(movies);
+let turnHoursToMinutes = (arr) => {
+	let newMovies = [];
+	const REGEX_HOURS = /\d+h/g;
+	const REGEX_MINUTES = /\d+m/g;
+	[...arr].forEach((mov) => {
+		//Extracting hours from duration
+		let hours = mov.duration.match(REGEX_HOURS);
+		if (hours !== null) {
+			hours = Number(hours[0].slice(0, this.length - 1));
+		} else {
+			hours = 0;
+		}
+		//Extracting minutes from duration
+		let minutes = mov.duration.match(REGEX_MINUTES);
+		if (minutes !== null) {
+			minutes = Number(minutes[0].slice(0, this.length - 1));
+		} else {
+			minutes = 0;
+		}
+		let totalMinutes = hours * 60 + minutes;
+		if ("duration" in mov) {
+			mov.duration = totalMinutes;
+		}
+		totalMinutes = 0;
+		newMovies.push(mov);
+	});
+	return newMovies;
+};
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
