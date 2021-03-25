@@ -28,3 +28,24 @@ let dramaMoviesRate = (arr) => {
     let dramaMovies = arr.filter((el) => el.genre.includes("Drama"));
     return ratesAverage(dramaMovies);
 };
+
+// Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+let orderByYear = (arr) => {
+    let sortedMovies = arr.slice(0);
+    sortedMovies.sort((movie1, movie2) => {
+      if (movie1.year === movie2.year) {
+        if (movie1.title < movie2.title) {
+          return -1;
+        } else if (movie1.title > movie2.title) {
+          return 1;
+        } else {
+          return 0;
+        }
+      } else if (movie1.year < movie2.year) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+    return sortedMovies;
+};
