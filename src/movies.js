@@ -26,10 +26,19 @@ function ratesAverage(data){
     let noRound = totalRate/filmRates.length
     return(Math.round(noRound*100)/100)}console.log (data.rate)}
 
-
-
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(data){
+    const getDrama = data.filter((data)=>{return data.genre.includes(`Drama`)})
+    if (getDrama.length === 0){return(0)}
+        else{const filmRates = getDrama.map((data)=>{if (data.rate===``){return 0}
+        else if (data.rate === undefined){return 0}
+        else {return (data.rate)}})
+    const totalRate = filmRates.reduce(function (sum, rates) {
+    return sum + rates;
+    }, 0)
+    let noRound = totalRate/filmRates.length
+    return(Math.round(noRound*100)/100)}console.log (data.rate)}
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
