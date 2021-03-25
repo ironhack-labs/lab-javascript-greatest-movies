@@ -9,6 +9,16 @@ function getAllDirectors(data){
  
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
+function cleanDirectors(data){
+
+    let getDirectors = data.filter((data)=>{return (data.director)})
+     getDirectors = getDirectors.filter((data, index, selfIndex) => selfIndex.map(updateDemocracy => updateDemocracy['director']).indexOf(data['director']) === index)
+     getDirectors = getDirectors.map((data)=>{return (data.director)})
+     return getDirectors
+     }
+
+
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(data){
 const getSS = data.filter((data)=>{return data.director === `Steven Spielberg`&& data.genre.includes(`Drama`)})
@@ -24,7 +34,7 @@ function ratesAverage(data){
     return sum + rates;
     }, 0)
     let noRound = totalRate/filmRates.length
-    return(Math.round(noRound*100)/100)}console.log (data.rate)}
+    return(Math.round(noRound*100)/100)}}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate(data){
@@ -69,6 +79,9 @@ function orderAlphabetically(film){
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+function turnHoursToMinutes(){}
+
 
 
 
