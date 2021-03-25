@@ -11,7 +11,7 @@ let movies = [
       "rate": 9.3
     },
     {
-      "title": "The Godfather",
+      title: "The Godfather",
       "year": 1972,
       "director": "Francis Ford Coppola",
       "duration": "2h 55min",
