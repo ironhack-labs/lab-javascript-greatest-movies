@@ -38,9 +38,29 @@ const ratesAverage = (arr) => {
   
    
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-
+const orderByYear = (arr) => {
+    const newArr = arr.map((films)=>{
+        return films
+    })
+    const alphabetical = newArr.sort((a, b) => {
+      if (a.name >= b.name) return 1;
+      if (a.name <= b.name) return -1
+    })
+    const order = alphabetical.sort((a, b) => {
+      return a.year - b.year;
+    })
+    return order
+    }
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
+    const orderAlphabetically = (arr) => {
+        const numberOfMovies = 20
+        let onlyTitle = arr.map((arr) => arr.title).sort((a,b) => {
+            if (a > b) return 1;
+            if (a < b) return -1;
+        })
+        return onlyTitle.slice(0, numberOfMovies)
+      }
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
