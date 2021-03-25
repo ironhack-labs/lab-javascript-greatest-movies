@@ -86,3 +86,22 @@ let orderAlphabetically = (arr) => {
     });
     return alphabeticalMovies.map((el) => el.title).slice(0, 20);
 };
+
+// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+let turnHoursToMinutes = (arr) => {
+    let modifiedMovies = [];
+    modifiedMovies = arr.map((movie) => {
+        let newMovieObject = {};
+        let time = movie.duration.split(" ");
+        newMovieObject = { ...movie };
+        if (time.length === 1 && movie.duration.includes('h')) {
+            newMovieObject.duration = parseInt(time[0].split("h")) * 60;
+        } else if (time.length === 1 && movie.duration.includes('min')) {
+            newMovieObject.duration = parseInt(time[0].split("min"));
+        } else {
+            newMovieObject.duration = parseInt(time[0].split("h")) * 60 + parseInt(time[1].split("min"));
+        }
+        return newMovieObject;
+    });
+    return modifiedMovies;
+};
