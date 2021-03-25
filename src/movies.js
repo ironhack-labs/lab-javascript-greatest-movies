@@ -21,6 +21,9 @@ function howManyMovies(movies) {
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals//done
 function ratesAverage(movies) {
   const getSumRate = (movie) => {
+    if (!movie.rate) {
+      return 0;
+    }
     return movie.rate;
   };
   let finalRateAvg = movies.reduce((acc, el) => {
@@ -61,7 +64,25 @@ function orderByYear(movies) {
   return sortedYears;
 }
 
-// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles//done
+function orderAlphabetically(movies) {
+  let sortedTitle = movies.concat().sort((el1, el2) => {
+    if (el1.title === el2.title) {
+      return 0;
+    } else if (el1.title < el2.title) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+  let sortedList = [];
+  sortedTitle.map((el, i) => {
+    if (i < 20) {
+      sortedList.push(el.title);
+    }
+  });
+  return sortedList;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
