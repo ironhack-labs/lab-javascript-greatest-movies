@@ -30,14 +30,14 @@ let dramaMoviesRate = (arr) => {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 let orderByYear = (arr) => {
-	let sortedByYear = arr.sort((a, b) => a.year - b.year);
+	let sortedByYear = [...arr].sort((a, b) => a.year - b.year);
 
 	let sortedByName = sortedByYear.sort((a, b) => {
 		if (a.year === b.year) {
 			return a.title.localeCompare(b.title);
 		}
 	});
-	return [...sortedByName];
+	return sortedByName;
 };
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
@@ -49,34 +49,31 @@ let orderAlphabetically = (arr) => {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 let turnHoursToMinutes = (arr) => {
-	let newMovies = [];
+	let newMoviesArray = [];
 	const REGEX_HOURS = /\d+h/g;
 	const REGEX_MINUTES = /\d+m/g;
-	[...arr].forEach((mov) => {
+	console.log(arr)
+	newMoviesArray = arr.map((movie) => {
+		let newMovieObject = {};
 		//Extracting hours from duration
-		let hours = mov.duration.match(REGEX_HOURS);
-		if (hours !== null) {
-			hours = Number(hours[0].slice(0, this.length - 1));
-		} else {
-			hours = 0;
-		}
+		let hours = movie.duration.match(REGEX_HOURS);		
+		hours = (hours !== null) ? parseInt(hours[0].slice(0, this.length - 1)) : 0;
+
 		//Extracting minutes from duration
-		let minutes = mov.duration.match(REGEX_MINUTES);
-		if (minutes !== null) {
-			minutes = Number(minutes[0].slice(0, this.length - 1));
-		} else {
-			minutes = 0;
-		}
+		let minutes = movie.duration.match(REGEX_MINUTES);
+		minutes = (minutes !== null) ? parseInt(minutes[0].slice(0, this.length - 1)) : 0;
+
 		//Converting hours and minutes into minutes.
 		let totalMinutes = hours * 60 + minutes;
 		//Adding totalMinutes to object.
-		if ("duration" in mov) {
-			mov.duration = totalMinutes;
+		if ("duration" in movie) {
+			newMovieObject = {...movie}; /* 😶 */
+			newMovieObject.duration = parseInt(totalMinutes);
 		}
 		totalMinutes = 0;
-		newMovies.push(mov);
+		return newMovieObject;
 	});
-	return newMovies;
+	return newMoviesArray;
 };
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
