@@ -105,3 +105,38 @@ let turnHoursToMinutes = (arr) => {
     });
     return modifiedMovies;
 };
+
+// BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+let bestYearAvg = (arr) => {
+    if (arr.length === 0) return null;
+    let bestYearAvg = { year: 0, avg: 0 };
+    let yearsMapped = [];
+    arr
+      .map((movie) => movie.year)
+      .forEach((year) => {
+        if (!yearsMapped.includes(year)) {
+          yearsMapped.push(year);
+        }
+      });
+    yearsMapped.forEach((year) => {
+      //Get all movies for year
+      let moviesOfYear = arr.filter((movie) => {
+        return movie.year === year;
+      });
+      //Calc Avg of year movies
+      let yearAvg = moviesOfYear.reduce((acc, movie) => {
+        acc += movie.rate / moviesOfYear.length;
+        return acc;
+      }, 0);
+      //Compare values
+      if (yearAvg > bestYearAvg.avg) {
+        bestYearAvg.avg = yearAvg;
+        bestYearAvg.year = year;
+      } else if (yearAvg === bestYearAvg.avg) {
+        if (bestYearAvg.year > year) {
+          bestYearAvg.year = year;
+        }
+      }
+    });
+    return `The best year was ${bestYearAvg.year} with an average rate of ${bestYearAvg.avg}`;
+};
