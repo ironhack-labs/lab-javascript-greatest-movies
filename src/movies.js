@@ -7,12 +7,6 @@ let getAllDirectors = (movies) => movies.map((el) => {
 
 });
   
-  //console.log(getAllDirectors);
-
-
-
-
-
 
 
 
@@ -41,7 +35,7 @@ let moviesRate2 = arr.reduce((acc,el) => {
     return acc;
     
   }, 0)
- return moviesRate2;
+ return (Number(moviesRate2.toFixed(2)))
 
 }
  
@@ -64,62 +58,51 @@ function dramaMoviesRate(arr) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 
-function orderByYear(aRray) {
+function orderByYear(movies) {
     
     let maped = movies.map((el) => {
-        return el.year;
+        return el;
     })
 
-    let orderRate = maped.sort((a ,b) => {
-    if (a.year === b.year){
-        if (a.title === b.title){
+    let orderRate = maped.sort((a, b) => {
+        if (a.year === b.year){
+            if (a.title === b.title){
+            
+            return 0;
+        }   else if (a.title < b.title) {
+            return -1;
+        }   else {
+            return 1;
+        } 
         
-        return 0;
-     }   else if (a.title < b.title) {
-         return -1;
-     }   else {
-         return 1;
-     } 
-       
-}   else if (a.year < b.year) {
-    return -1;
-}   else {
-    return 1;
-}
+    }   else if (a.year < b.year) {
+        return -1;
+    }   else {
+        return 1;
+    }
 });
 
-return orderRate;
+    return orderRate;
 }
    
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
-function orderAlphabetically(arr) {
+function orderAlphabetically(movies) {
 
-    let orMov = movies.sort(function (a, b) {
-        if (a.title[0] < b.title[0]) return 1; //  1 here (instead of -1 for ASC)
-        if (a.title[0] > b.title[0]) return -1; // -1 here (instead of  1 for ASC)
-        if (a.title[0] === b.title[0]) return 0;
-      }); 
+    let newArray = movies.map((el) => {
+        return el.title;
+    
+    });
 
-      let twentyTi = orMov.slice(0,19);
+    let orMov = newArray.sort()
+    
+    let twentyTi = orMov.slice(0,19);
 
-      return twentyTi;
+    return twentyTi;
 }
 
 
 
 
 
-
-/*movies.sort(function (a, b) {
-    if (a.title[0] < b.title[0]) return 1; //  1 here (instead of -1 for ASC)
-    if (a.title[0] > b.title[0]) return -1; // -1 here (instead of  1 for ASC)
-    if (a.title[0] === b.title[0]) return 0;
-  }); 
-  */
-  
-
-// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-
-// BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
