@@ -27,7 +27,7 @@ function ratesAverage(data) {
   const avg = data.reduce(function (total, current) {
     return total + current.rate;
   }, 0);
-  return avg / data.length;
+  return parseFloat((avg / data.length).toFixed(2));
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
