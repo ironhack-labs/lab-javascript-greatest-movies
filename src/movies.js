@@ -17,14 +17,10 @@ const howManyMovies = (arr) => {
   }
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 const ratesAverage = (arr) => {
-    if(arr.length === 0){
-        return 0
-      }
+    if(arr.length === 0){return 0}
     const sumOfRatings = arr.reduce((counter, rates)=> {
-        if(rates.rate) {return counter + rates.rate
-        } else {
-            return counter}
-    }, 0)
+        if(rates.rate) {return counter + rates.rate}
+        else { return counter} }, 0)
     const average = sumOfRatings / arr.length
     const roundedDecimals = Math.round(average*100)/100
     return roundedDecimals
@@ -32,6 +28,15 @@ const ratesAverage = (arr) => {
   
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
+    const dramaMoviesRate = (arr) => {
+        let filteredDramaArray = arr.filter((movie) => 
+        movie.genre.includes("Drama"));
+        let average = filteredDramaArray.reduce((acc, movie) => 
+        acc + movie.rate / filteredDramaArray.length, 0);
+        return Number(average.toFixed(2));
+    };
+  
+   
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
