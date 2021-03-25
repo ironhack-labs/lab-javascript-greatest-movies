@@ -106,8 +106,7 @@ function orderAlphabetically(movieArr) {
             return -1;
         } else if (el1.title > el2.title) {
             return 1;
-        }
-        return 0;
+        } else return 0;
     });
     newSortedAlphabetical = newSortedAlphabetical.slice(0, 20);
     newSortedAlphabetical = newSortedAlphabetical.reduce(function(moviesArr, movie) {
