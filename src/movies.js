@@ -6,6 +6,18 @@ let getAllDirectors = (moviesArr) => {
     return directorsArr
 }
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+/* let getAllDirectors = (moviesArr) => {
+    let directorsArr = moviesArr.map((movieElem) => {
+        return movieElem.director
+    })
+  let cleanDirectorsArr =[]                               
+  for (i = 0; i < directorsArr.length; i++){         
+    if(cleanDirectorsArr.indexOf(directorsArr[i]) === -1){  
+      cleanDirectorsArr.push(directorsArr[i])                
+    }
+  }
+  return cleanDirectorsArr
+} */
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 let howManyMovies = (moviesArr) => {
