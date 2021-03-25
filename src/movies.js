@@ -49,21 +49,21 @@ function dramaMoviesRate(arr) {
 }
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arr) {
-  let movYear = arr.map((el) => {
-    return el.year;
-  });
-  let sortedYears = movYear.sort((el1, el2) => {
-    if (el1 === el2) {
-      movies.sort();
-      return 0;
-    } else if (el1 > el2) {
-      return 1;
-    } else {
-      return -1;
-    }
-  });
-  return sortedYears;
-}
+    let movYear = arr.map((el) => {
+      return el;
+    });
+    let sortedYears = movYear.sort((el1, el2) => {
+      if (el1.year === el2.year) {
+        movies.sort();
+        return 0;
+      } else if (el1.year > el2.year) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+    return sortedYears;
+  }
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically (arr) {
     let movTitle = arr.map((el) => {
