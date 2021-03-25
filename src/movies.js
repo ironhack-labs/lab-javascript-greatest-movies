@@ -1,7 +1,7 @@
 // Iteration 1: All directors? - Get the array of all directors.
 const getAllDirectors = (arr) => 
 {   
-    const directorsList = movies.map((films)=>{
+    const directorsList = arr.map((films)=>{
     return films.director
   })
   return directorsList
@@ -10,11 +10,10 @@ const getAllDirectors = (arr) =>
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 const howManyMovies = (arr) => {
-    const dramaMovies = movies.filter((films)=> {
-      if(films.genre.includes('Drama') && films.director === 'Steven Spielberg')
-        return films
-    })
-      return dramaMovies
+    const stevenFilms = arr.filter((films) => {
+      return films.director === 'Steven Spielberg' && films.genre.includes('Drama')
+    }) 
+      return stevenFilms.length
   }
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
