@@ -53,16 +53,17 @@ function dramaMoviesRate(movies) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
     const sorted = movies.sort(function (a, b) {
-       let aTitle = a.title, bTitle = b.title;
+        let aTitle = a.title,
+            bTitle = b.title;
         if (a.year == b.year) {
-            if(aTitle < bTitle){
-              return -1;
+            if (aTitle < bTitle) {
+                return -1;
             }
-          if(aTitle > bTitle){
-              return 1;
+            if (aTitle > bTitle) {
+                return 1;
             }
-          return 0; 
-          
+            return 0;
+
         }
         return a.year - b.year;
     })
@@ -70,6 +71,14 @@ function orderByYear(movies) {
     return sortedToReturn;
 }
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+//use above plus map plus Slice
+function orderAlphabetically(movies) {
+    const mapped = movies.map(function (movie) {
+        return movie.title;
+    });
+    return mapped.sort().slice(0,20);
+}
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
