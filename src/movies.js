@@ -1,11 +1,14 @@
 // Iteration 1: All directors? - Get the array of all directors.
 function getAllDirectors(movies) {
+    let directorsSet = [];
     const directors = movies.map(function (movie) {
         console.log(movie.director)
         return movie.director;
 
     })
-    return directors;
+    directorsSet = [...new Set(directors)];
+
+    return directorsSet;
 }
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
@@ -82,8 +85,29 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(movies){
+    let moviesCopy = [...movies];
+    for (let i=0; i<moviesCopy.length; i++){
+     
+      let justNumbers = moviesCopy[i].duration.replace(/\D/g,'');
+      let separated = justNumbers.slice(' ');
+      moviesCopy[i].duration = (separated[0]*60) + (parseInt(separated[1])*10) + (parseInt(separated[2])); 
+    }
+    return moviesCopy; 
+  }
+  
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
+
+
+
+
+
+
+
+
+//Working Area
 function filterByType(movieArr, key, value) {
     const filteredMovies = movieArr.filter(function (movie) {
         if (movie[key].includes(value)) {
@@ -93,3 +117,16 @@ function filterByType(movieArr, key, value) {
 
     return filteredMovies;
 }
+
+
+
+
+
+// function turnHoursToMinutes(movies){
+//     let moviesCopy = [...movies];
+//     for (movie of moviesCopy){
+//       let timeSplit = movie.duration.split('h',' ','min');
+//     }
+    
+//   }
+  
