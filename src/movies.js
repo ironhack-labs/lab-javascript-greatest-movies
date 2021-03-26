@@ -100,7 +100,7 @@ function orderAlphabetically(movies) {
 
     let orMov = newArray.sort()
     
-    let twentyTi = orMov.slice(0,19);
+    let twentyTi = orMov.slice(0,20);
 
     return twentyTi;
 }
