@@ -12,10 +12,10 @@ function getAllDirectors(data){
 function cleanDirectors(data){
 
     let getDirectors = data.filter((data)=>{return (data.director)})
-     getDirectors = getDirectors.filter((data, index, selfIndex) => selfIndex.map(updateDemocracy => updateDemocracy['director']).indexOf(data['director']) === index)
-     getDirectors = getDirectors.map((data)=>{return (data.director)})
-     return getDirectors
-     }
+    getDirectors = getDirectors.map((data)=>{return (data.director)})
+    getDirectors = getDirectors.filter((data, index, self) => self.indexOf(data) === index)
+    return getDirectors
+  }
 
 
 
