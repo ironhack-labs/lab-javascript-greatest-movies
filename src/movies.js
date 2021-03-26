@@ -54,4 +54,15 @@ function orderAlphabetically(arr) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes(arr) {
+  let newArray = [...arr];
+  for (let i = 0; i < newArray.length; i++) {
+    let duration = newArray[i].duration;
+    let hour = Number(duration.split(" ")[0].replace("h", ""));
+    let minutes = Number(duration.split(" ")[1].replace("min", ""));
+    newArray[i].duration = hour * 60 + minutes;
+  }
+  return newArray;
+}
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
