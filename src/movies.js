@@ -3,8 +3,6 @@ const getAllDirectors = (movies) => {
     return movies.map(mappedArray => mappedArray.director); 
 };
 
-// getAllDirectors(movies);
-
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
@@ -15,11 +13,10 @@ const cleanDirectorArray =[...set];
 
 
 const howManyMovies = (array) => {
-    let stevensList = array.filter(drama=> drama.genre.includes('Drama') && drama.director === 'Steven Spielberg')
+    let stevensList = array.filter(movieitem=> movieitem.genre.includes('Drama') && movieitem.director === 'Steven Spielberg')
     return stevensList.length
 };
 
-// console.log(howManyMovies(movies))
 
 
 
@@ -33,7 +30,7 @@ const ratesAverage = (array) => {
         return 0; 
     else 
         return Number(movie.rate);
-} );
+    } );
     const sum = numbers.reduce((acc, cur) => {
     return acc + cur
     },0);
@@ -52,30 +49,44 @@ const dramaMoviesRate = (array) => {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 // const orderByYear = (array) => {
-// const newOrderArray = array.sort((a,b)=> {
-//     return a.year - b.year
-//    })
-//    return newOrderArray
-//   };
+//     if (array.length === 0){return [];}
+//     newOrder = array.sort((a,b)=> { 
+//     return a.year - b.year 
+// })
+// return newOrder
+// };
 
 const orderByYear = (array) => {
-    const newOrderArray = array.sort((a,b)=> {
-    return a.year - b.year
-})
-return newOrderArray
-};
+    if (array.length === 0){return [];}
+    let orderByAlpha = array.sort(function(a, b) {
+      if (a.title === b.title) {return 0 }
+      else if (a.title < b.title){ return -1 }
+      else {return 1};
+      });
+    let newOrder = array.sort((a,b)=> { 
+    return a.year - b.year 
+  })
+  return newOrder
+  };
+  
+  console.log(orderByYear(movies))
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(arr) {
-    const movieTitlesAlp = arr.sort(function(a, b) {
-    if (a.title === b.title) {return 0 }
-    else if (a.title < b.title){ return -1 }
+    let titles = arr.map(item => item.title)
+    let movieTitlesAlp = titles.sort(function(a, b) {
+    if (a === b) {return 0 }
+    else if (a < b){ return -1 }
     else {return 1};
     });
-    return movieTitlesAlp.slice(0,20);    
+    return movieTitlesAlp.slice(0,20)
+    
 }
+
+console.log(orderAlphabetically(movies))
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
