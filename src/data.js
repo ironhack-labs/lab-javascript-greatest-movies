@@ -2967,3 +2967,11 @@ let movies = [
       "rate": 8
     }
   ]
+
+  function howManyMovies(movies) {
+    return movies.filter(function (movie) {
+        if (movie.director === 'Steven Spielberg' && movie.genre.includes("Drama")) return true;
+    })
+}
+
+console.log(howManyMovies(movies))
