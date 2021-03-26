@@ -39,16 +39,48 @@ function ratesAverage(movies) {
 }
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate(movies) {
-    const filteredMovies = movies.filter(function(movie){
-        if(movie.genre.includes('Drama')){return true;}
-    });
-    
-    return ratesAverage(filteredMovies);
+    // const filteredMovies = movies.filter(function (movie) {
+    //     if (movie.genre.includes('Drama')) {
+    //         return true;
+    //     }
+    // });
+
+    // return ratesAverage(filteredMovies);
+
+    //SEE BOTTOM OF SCRIPT-wanted to test calling nested methods
+    return ratesAverage(filterByType(movies, 'genre', 'Drama'));
 }
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-
+function orderByYear(movies) {
+    const sorted = movies.sort(function (a, b) {
+       let aTitle = a.title, bTitle = b.title;
+        if (a.year == b.year) {
+            if(aTitle < bTitle){
+              return -1;
+            }
+          if(aTitle > bTitle){
+              return 1;
+            }
+          return 0; 
+          
+        }
+        return a.year - b.year;
+    })
+    const sortedToReturn = [...sorted]
+    return sortedToReturn;
+}
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function filterByType(movieArr, key, value) {
+    const filteredMovies = movieArr.filter(function (movie) {
+        if (movie[key].includes(value)) {
+            return true;
+        }
+    });
+
+    return filteredMovies;
+}
