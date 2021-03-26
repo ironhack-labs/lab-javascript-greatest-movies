@@ -34,8 +34,7 @@ function ratesAverage(movies){
         return acc + val;
       }, 0);  
       return Math.round((sumRate/movies.length)*100)/100;
-    }
-};
+    };
   
 //console.log(ratesAverage(movies));
 
@@ -58,14 +57,15 @@ function dramaMoviesRate(movies){
         
         const averageDrama = ratesDrama / filterDrama.length;
         return Math.round((averageDrama)*100)/100;
+}
 };
 
-//console.log(dramaMoviesRate(movies))
+// //console.log(dramaMoviesRate(movies))
 
 
 
 
-// Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+// // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(movies){
   const mapped = movies.map(function(movie){
@@ -77,12 +77,12 @@ function orderByYear(movies){
   return sorted;
 }
 
-//console.log(orderByYear(movies))
+ //console.log(orderByYear(movies))
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
-function orderAlphabetically(movies){
-    const titlesMovie = movies.map(function(movie{
+function orderAlphabetically(movies) {
+    const titlesMovie = movies.map(function(movie) {
         return movie.title;
     });
     const titlesSorted = titlesMovie.sort(function(title1, title2){
