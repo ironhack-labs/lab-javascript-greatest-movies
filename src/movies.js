@@ -87,7 +87,7 @@ const orderAlphabetically = (originalArray) => {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 const turnHoursToMinutes = (originalArray) => {
-    let arrayToModify = originalArray.slice()
+    let arrayToModify = [...originalArray]
     arrayToModify = arrayToModify.filter((movie) => {
       return movie.duration && movie.duration !== undefined
     })
@@ -110,10 +110,17 @@ const turnHoursToMinutes = (originalArray) => {
           timeCounter += Number(fullMinStr)
         }
       }
-      arrayToModify[movieIndex].duration = String(timeCounter)+'min'
+      arrayToModify[movieIndex].duration = timeCounter
     }
-    let = arrayToModify2 = arrayToModify.slice()
-    return arrayToModify2
+    return arrayToModify
   }
   
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+const bestYearAvg = (moviesArr) => {
+  const arrayToReturn = [...moviesArr]
+  moviesArr.sort((a, b) => {
+    return a.year - b.year
+  })
+  return arrayToReturn
+}
+
