@@ -46,12 +46,43 @@ let orderByYear = (moviesArray) => {
     if (elem1.year > elem2.year) {
       return 1;
     } else if (elem1.year < elem2.year) {
-      return 1;
+      return -1;
+    } else {
+      if (elem1.title > elem2.title) {
+        return 1;
+      } else if (elem1.title < elem2.title) {
+        return -1;
+      } else {
+        return 0;
+      }
     }
   });
+  return clonedMovies;
 };
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+function orderAlphabetically(moviesArray) {
+  // sort
+  let clonedMovies = JSON.parse(JSON.stringify(moviesArray));
+
+  clonedMovies.sort((elem1, elem2) => {
+    if (elem1.title > elem2.title) {
+      return 1;
+    } else if (elem1.title < elem2.title) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+  //map
+  let titles = clonedMovies.map((elem) => {
+    return elem.title;
+  });
+
+  // slice
+  return titles.slice(0, 20);
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
