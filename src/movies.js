@@ -117,10 +117,32 @@ const turnHoursToMinutes = (originalArray) => {
   
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 const bestYearAvg = (moviesArr) => {
-  const arrayToReturn = [...moviesArr]
-  moviesArr.sort((a, b) => {
-    return a.year - b.year
-  })
-  return arrayToReturn
-}
+  if (moviesArr.length === 0) {
+    return null
+  } else {
+    const arrayCopy = [...moviesArr]
+    arrayCopy.sort((a, b) => {
+      return a.year - b.year
+    })
+    const moviesByYear = {}
+    arrayCopy.forEach((movie, index) => {
+      if (movie.year in moviesByYear) {
+        moviesByYear[movie.year].push(movie)
+      } else {
+        moviesByYear[movie.year] = [movie]
+      }
+    })
+    const yearWithAvgRate = {}
+    let highestRate = 0
+    let bestYear = 0
 
+    for (year in moviesByYear) {
+      yearWithAvgRate[year] = ratesAverage(moviesByYear[year])
+      if (yearWithAvgRate[year] > highestRate) {
+        highestRate = yearWithAvgRate[year]
+        bestYear = year
+      }
+    }
+    return `The best year was ${bestYear} with an average rate of ${highestRate}`
+  }
+}
