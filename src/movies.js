@@ -1,9 +1,9 @@
 // Iteration 1: All directors? - Get the array of all directors.
 function getAllDirectors(arr) {
-    const result = arr.map(function (movie) {
+    const directors = arr.map(function (movie) {
         return movie.director;
     })
-    return result;
+    return directors;
 }
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
 
@@ -11,55 +11,67 @@ function getAllDirectors(arr) {
 function howManyMovies(arr) {
     let counter = 0;
     const result = arr.filter(function (movie) {
-        if (movie.genre.includes('Drama') && movie.director.includes('Steven Spielberg')) {
-            counter++;
+        if (movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')) {
+            return counter++;
         }
     })
     return counter;
 }
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(arr) {
-    const average = arr.reduce(function (acc, val) {
-        return acc + val.rate / arr.length
+    if (arr.length === 0) {
+        return 0;
+    }
+    const average = arr.filter(function (movie) {
+        if (typeof movie.rate === 'number') {
+            return true;
+        } else {
+            return false;
+        }
+    }).reduce(function (acc, val) {
+        return acc + val.rate;
     }, 0)
-    return Number(average.toFixed(2));
+    return Number((average / arr.length).toFixed(2));
 }
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate(arr) {
-    const avgDramaRate = arr.map(function (movie) {
-        for (let i = 0; i < movie.genre.length; i++) {
-            if (movie.genre[i] === 'Drama') {
-                return movie.rate;
-            }
+    const dramaMovies = arr.filter(function (movie) {
+        if (movie.genre.includes('Drama')) {
+            return true;
+        } else {
+            return false;
         }
-    }).reduce(function (acc, val) {
-        return (acc + val / arr.length);
     })
-    return avgDramaRate;
+    if (dramaMovies.length === 0) {
+        return 0;
+    }
+    const dramaAvgRate = dramaMovies.reduce(function (acc, val) {
+        return acc + val.rate;
+    }, 0)
+    return Number((dramaAvgRate / dramaMovies.length).toFixed(2));
 }
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arr) {
-    const years = arr.map(function (movie) {
-        return `${movie.title} : ${movie.year}`;
-    }).sort(function (a, b) {
+    const sorted = arr.sort(function (a, b) {
         if (a.year === b.year) {
             return a.title.length - b.title.length;
-        } else {
-            return a.year - b.year;
         }
+    }).slice().sort(function (a, b) {
+        return a.year - b.year;
     })
-    return years;
+    return sorted;
 }
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(arr) {
-    result = arr.map(function (movie) {
+    const sorted = arr.sort(function (a, b) {
+        return a.title.length - b.title.length;
+    }).filter(function (movie, index) {
+        return index < 20;
+    }).map(function (movie) {
         return movie.title;
-    }).slice(0, 20).sort(function (a, b) {
-        return a.length - b.length;
     })
-    return result;
+    return sorted;
 }
-
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
