@@ -90,4 +90,25 @@ console.log(orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+let calculateHoursToMin = (arr) =>{  
+    arr.forEach(element => {
+    return element.duration.replace(/h/g, '*60+') && (/min/g, '');
+    });
+}
+
+let turnHoursToMinutes = (arr) => {
+    let newArray= arr.map(arr => ({
+    "title": arr.title,
+    "year": arr.year,
+    "director": arr.director,
+    "duration": calculateHoursToMin(movies),
+    "genre": arr.genre,
+    "rate": arr.rate
+
+    }));
+    return newArray
+}
+
+
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
