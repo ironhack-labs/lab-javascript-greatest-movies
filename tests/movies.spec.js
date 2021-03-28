@@ -461,7 +461,7 @@ describe('Best year average - bestYearAvg', () => {
   });
 
   it('Should return the correct answer to a single element array', () => {
-    expect(bestYearAvg([{ year: 2007, rate: 8 }])).toEqual(
+    expect(bestYearAvg( [{ year: 2007, rate: 8 }] )).toEqual(
       'The best year was 2007 with an average rate of 8'
     );
   });
