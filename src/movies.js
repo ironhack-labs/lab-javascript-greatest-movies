@@ -20,22 +20,28 @@ howManyMovies(movies);
 // 1. map array numeros
 // 2. variable con suma de todos reduce
 // 3. division entre numero total
-let moviesRate = 0;
+
 
 function ratesAverage(movies) {
-    moviesRate = movies.map((movie) => {
-        return movie.rate;
-    });
-    return moviesRate;
+
+    let total = 0;
+    if (movies.length === 0) {
+        return 0;
+    }
+    for (let keys in movies) {
+        console.log(movies[keys].rate)
+    }
+    for (i = 0; i < movies.length; i++) {
+        total += movies[i].rate;
+    }
+
+    return (parseFloat((total / movies.length).toFixed(2)));
 }
 
-function averageRate(arr) {
-    let filmrates = arr.reduce((acc, movie) => {
-        acc += (movie.rate / arr.length);
-        return acc;
-    }, 0)
-    return Number(finalRatesAvg.toFixed(2));
-}
+ratesAverage(movies);
+
+
+// ratesAverage(movies);
 // Iteration 4: Drama movies - Get the average of Drama Movies
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
