@@ -49,11 +49,40 @@ function dramaMoviesRate(movies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
+function orderByYear (movies){
+    const yearDeepCopy = JSON.parse(JSON.stringify(movies))
+    const orderedYears = yearDeepCopy.map(elm => elm.year)
+
+    orderedYears.sort (function (prev, next){
+        if(prev.year > next.year){
+            return 1
+        } if (prev.year < next.title){
+            return -1
+        }
+        return 0
+
+    })
+
+    return orderedYears
+}
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
+function orderAlphabetically(movies) {
+    const moviesDeepCopy = JSON.parse(JSON.stringify(movies))
+    const orderedMovies = moviesDeepCopy.map(elm => elm.title)
 
+     orderedMovies.sort (function (prev,next){
+         if (prev.title > next.title){
+             return 1
+         } if (prev.title < next.title){
+             return -1
+         }
+         return 0
+     })
+     return orderedMovies.slice(0 , 20)
+}
 
 
 
