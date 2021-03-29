@@ -69,12 +69,8 @@ function turnHoursToMinutes(movies) {
             duration = +movie.duration[0] * 60 + +movie.duration[3] * 10 + +movie.duration[4];
         }
         return {
-            "title": movie.title,
-            "year": movie.year,
-            "director": movie.director,
+            ...movie,
             "duration": duration,
-            "genre": movie.genre,
-            "rate": movie.rate
         }
     });
 }
