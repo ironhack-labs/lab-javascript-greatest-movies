@@ -28,7 +28,7 @@ function ratesAverage(movies) {
 function dramaMoviesRate(movies) {
     let dramaMovies = movies.filter(movie => movie.genre.includes('Drama'));
     if (dramaMovies.length === 0) return 0;
-    return Math.round(dramaMovies.map(movie => movie.rate).filter(rate => rate != null).reduce((sum, rate) => sum + rate) / dramaMovies.length * 100) / 100;
+    return ratesAverage(dramaMovies);
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
@@ -88,11 +88,11 @@ function bestYearAvg(movies) {
     let bestAvg = 0;
     for (let year of years) {
         let yearMovies = movies.filter(movie => movie.year === year);
-        let avg = yearMovies.map(movie => movie.rate).filter(rate => rate != null).reduce((sum, rate) => sum + rate) / yearMovies.length;
+        let avg = ratesAverage(yearMovies);
         if (avg > bestAvg) {
             bestYear = year;
             bestAvg = avg;
         }
     }
-    return `The best year was ${bestYear} with an average rate of ${Math.round(bestAvg * 100) / 100}`;
+    return `The best year was ${bestYear} with an average rate of ${bestAvg}`;
 }
