@@ -56,7 +56,7 @@ function orderByYear (movies){
     orderedYears.sort (function (prev, next){
         if(prev.year > next.year){
             return 1
-        } if (prev.year < next.title){
+        } if (prev.year < next.year){
             return -1
         }
         return 0
