@@ -13,7 +13,11 @@ describe(' All directors - getAllDirectors', () => {
   });
 
   it('Should return a new array, not update the original one', () => {
-    expect(getAllDirectors(movies)).not.toEqual(movies);
+    expect(
+  
+      getAllDirectors(movies)
+    
+      ).not.toEqual(movies);
   });
 
   it('Should return a new array with the same length as the original one', () => {
