@@ -1,1606 +1,1606 @@
 let movies = [
     {
-      "title": "The Shawshank Redemption",
-      "year": 1994,
-      "director": "Frank Darabont",
+      title: "The Shawshank Redemption",
+      year: 1994,
+      director: "Frank Darabont",
       "duration": "2h 22min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 9.3
+      rate: 9.3
     },
     {
-      "title": "The Godfather",
-      "year": 1972,
-      "director": "Francis Ford Coppola",
+      title: "The Godfather",
+      year: 1972,
+      director: "Francis Ford Coppola",
       "duration": "2h 55min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 9.2
+      rate: 9.2
     },
     {
-      "title": "The Godfather: Part II",
-      "year": 1974,
-      "director": "Francis Ford Coppola",
+      title: "The Godfather: Part II",
+      year: 1974,
+      director: "Francis Ford Coppola",
       "duration": "3h 22min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 9
+      rate: 9
     },
     {
-      "title": "The Dark Knight",
-      "year": 2008,
-      "director": "Christopher Nolan",
+      title: "The Dark Knight",
+      year: 2008,
+      director: "Christopher Nolan",
       "duration": "2h 32min",
-      "genre": [
+      genre: [
         "Action",
         "Crime",
         "Drama",
         "Thriller"
       ],
-      "rate": 9
+      rate: 9
     },
     {
-      "title": "12 Angry Men",
-      "year": 1957,
-      "director": "Sidney Lumet",
+      title: "12 Angry Men",
+      year: 1957,
+      director: "Sidney Lumet",
       "duration": "1h 36min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 8.9
+      rate: 8.9
     },
     {
-      "title": "Schindler\"s List",
-      "year": 1993,
-      "director": "Steven Spielberg",
+      title: "Schindler\"s List",
+      year: 1993,
+      director: "Steven Spielberg",
       "duration": "3h 15min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama",
         "History"
       ],
-      "rate": 8.9
+      rate: 8.9
     },
     {
-      "title": "Pulp Fiction",
-      "year": 1994,
-      "director": "Quentin Tarantino",
+      title: "Pulp Fiction",
+      year: 1994,
+      director: "Quentin Tarantino",
       "duration": "2h 34min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 8.9
+      rate: 8.9
     },
     {
-      "title": "The Lord of the Rings: The Return of the King",
-      "year": 2003,
-      "director": "Peter Jackson",
+      title: "The Lord of the Rings: The Return of the King",
+      year: 2003,
+      director: "Peter Jackson",
       "duration": "3h 21min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama",
         "Fantasy"
       ],
-      "rate": 8.9
+      rate: 8.9
     },
     {
-      "title": "Il buono, il brutto, il cattivo",
-      "year": 1966,
-      "director": "Sergio Leone",
+      title: "Il buono, il brutto, il cattivo",
+      year: 1966,
+      director: "Sergio Leone",
       "duration": "3h 2min",
-      "genre": [
+      genre: [
         "Western"
       ],
-      "rate": 8.9
+      rate: 8.9
     },
     {
-      "title": "Fight Club",
-      "year": 1999,
-      "director": "David Fincher",
+      title: "Fight Club",
+      year: 1999,
+      director: "David Fincher",
       "duration": "2h 19min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.8
+      rate: 8.8
     },
     {
-      "title": "The Lord of the Rings: The Fellowship of the Ring",
-      "year": 2001,
-      "director": "Peter Jackson",
+      title: "The Lord of the Rings: The Fellowship of the Ring",
+      year: 2001,
+      director: "Peter Jackson",
       "duration": "2h 58min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama",
         "Fantasy"
       ],
-      "rate": 8.8
+      rate: 8.8
     },
     {
-      "title": "Forrest Gump",
-      "year": 1994,
-      "director": "Robert Zemeckis",
+      title: "Forrest Gump",
+      year: 1994,
+      director: "Robert Zemeckis",
       "duration": "2h 22min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama",
         "Romance"
       ],
-      "rate": 8.8
+      rate: 8.8
     },
     {
-      "title": "Star Wars: Episode V - The Empire Strikes Back",
-      "year": 1980,
-      "director": "Irvin Kershner",
+      title: "Star Wars: Episode V - The Empire Strikes Back",
+      year: 1980,
+      director: "Irvin Kershner",
       "duration": "2h 4min",
-      "genre": [
+      genre: [
         "Action",
         "Adventure",
         "Fantasy",
         "Sci-Fi"
       ],
-      "rate": 8.8
+      rate: 8.8
     },
     {
-      "title": "Inception",
-      "year": 2010,
-      "director": "Christopher Nolan",
+      title: "Inception",
+      year: 2010,
+      director: "Christopher Nolan",
       "duration": "2h 28min",
-      "genre": [
+      genre: [
         "Action",
         "Adventure",
         "Sci-Fi",
         "Thriller"
       ],
-      "rate": 8.8
+      rate: 8.8
     },
     {
-      "title": "The Lord of the Rings: The Two Towers",
-      "year": 2002,
-      "director": "Peter Jackson",
+      title: "The Lord of the Rings: The Two Towers",
+      year: 2002,
+      director: "Peter Jackson",
       "duration": "2h 59min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama",
         "Fantasy"
       ],
-      "rate": 8.7
+      rate: 8.7
     },
     {
-      "title": "One Flew Over the Cuckoo\"s Nest",
-      "year": 1975,
-      "director": "Milos Forman",
+      title: "One Flew Over the Cuckoo\"s Nest",
+      year: 1975,
+      director: "Milos Forman",
       "duration": "2h 13min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.7
+      rate: 8.7
     },
     {
-      "title": "Goodfellas",
-      "year": 1990,
-      "director": "Martin Scorsese",
+      title: "Goodfellas",
+      year: 1990,
+      director: "Martin Scorsese",
       "duration": "2h 26min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 8.7
+      rate: 8.7
     },
     {
-      "title": "The Matrix",
-      "year": 1999,
-      "director": "Lana Wachowski",
+      title: "The Matrix",
+      year: 1999,
+      director: "Lana Wachowski",
       "duration": "2h 16min",
-      "genre": [
+      genre: [
         "Action",
         "Sci-Fi"
       ],
-      "rate": 8.7
+      rate: 8.7
     },
     {
-      "title": "Shichinin no samurai",
-      "year": 1954,
-      "director": "Akira Kurosawa",
+      title: "Shichinin no samurai",
+      year: 1954,
+      director: "Akira Kurosawa",
       "duration": "3h 27min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama"
       ],
-      "rate": 8.7
+      rate: 8.7
     },
     {
-      "title": "Star Wars",
-      "year": 1977,
-      "director": "George Lucas",
+      title: "Star Wars",
+      year: 1977,
+      director: "George Lucas",
       "duration": "2h 1min",
-      "genre": [
+      genre: [
         "Action",
         "Adventure",
         "Fantasy",
         "Sci-Fi"
       ],
-      "rate": 8.7
+      rate: 8.7
     },
     {
-      "title": "Cidade de Deus",
-      "year": 2002,
-      "director": "Fernando Meirelles",
+      title: "Cidade de Deus",
+      year: 2002,
+      director: "Fernando Meirelles",
       "duration": "2h 10min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 8.7
+      rate: 8.7
     },
     {
-      "title": "Se7en",
-      "year": 1995,
-      "director": "David Fincher",
+      title: "Se7en",
+      year: 1995,
+      director: "David Fincher",
       "duration": "2h 7min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.6
+      rate: 8.6
     },
     {
-      "title": "The Silence of the Lambs",
-      "year": 1991,
-      "director": "Jonathan Demme",
+      title: "The Silence of the Lambs",
+      year: 1991,
+      director: "Jonathan Demme",
       "duration": "1h 58min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Thriller"
       ],
-      "rate": 8.6
+      rate: 8.6
     },
     {
-      "title": "It\"s a Wonderful Life",
-      "year": 1946,
-      "director": "Frank Capra",
+      title: "It\"s a Wonderful Life",
+      year: 1946,
+      director: "Frank Capra",
       "duration": "2h 10min",
-      "genre": [
+      genre: [
         "Drama",
         "Family",
         "Fantasy"
       ],
-      "rate": 8.6
+      rate: 8.6
     },
     {
-      "title": "La vita è bella",
-      "year": 1997,
-      "director": "Roberto Benigni",
+      title: "La vita è bella",
+      year: 1997,
+      director: "Roberto Benigni",
       "duration": "1h 56min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama",
         "War"
       ],
-      "rate": 8.6
+      rate: 8.6
     },
     {
-      "title": "The Usual Suspects",
-      "year": 1995,
-      "director": "Bryan Singer",
+      title: "The Usual Suspects",
+      year: 1995,
+      director: "Bryan Singer",
       "duration": "1h 46min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.6
+      rate: 8.6
     },
     {
-      "title": "Léon",
-      "year": 1988,
-      "director": "Luc Besson",
+      title: "Léon",
+      year: 1988,
+      director: "Luc Besson",
       "duration": "1h 50min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Thriller"
       ],
-      "rate": 8.6
+      rate: 8.6
     },
     {
-      "title": "Saving Private Ryan",
-      "year": 1998,
-      "director": "Steven Spielberg",
+      title: "Saving Private Ryan",
+      year: 1998,
+      director: "Steven Spielberg",
       "duration": "2h 49min",
-      "genre": [
+      genre: [
         "Drama",
         "War"
       ],
-      "rate": 8.6
+      rate: 8.6
     },
     {
-      "title": "Sen to Chihiro no kamikakushi",
-      "year": 2001,
-      "director": "Hayao Miyazaki",
+      title: "Sen to Chihiro no kamikakushi",
+      year: 2001,
+      director: "Hayao Miyazaki",
       "duration": "2h 5min",
-      "genre": [
+      genre: [
         "Animation",
         "Adventure",
         "Family",
         "Fantasy",
         "Mystery"
       ],
-      "rate": 8.6
+      rate: 8.6
     },
     {
-      "title": "American History X",
-      "year": 1998,
-      "director": "Tony Kaye",
+      title: "American History X",
+      year: 1998,
+      director: "Tony Kaye",
       "duration": "1h 59min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "C\"era una volta il West",
-      "year": 1968,
-      "director": "Sergio Leone",
+      title: "C\"era una volta il West",
+      year: 1968,
+      director: "Sergio Leone",
       "duration": "2h 44min",
-      "genre": [
+      genre: [
         "Western"
       ],
-      "rate": 8.6
+      rate: 8.6
     },
     {
-      "title": "Interstellar",
-      "year": 2014,
-      "director": "Christopher Nolan",
+      title: "Interstellar",
+      year: 2014,
+      director: "Christopher Nolan",
       "duration": "2h 49min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama",
         "Sci-Fi"
       ],
-      "rate": 8.6
+      rate: 8.6
     },
     {
-      "title": "Psycho",
-      "year": 1960,
-      "director": "Alfred Hitchcock",
+      title: "Psycho",
+      year: 1960,
+      director: "Alfred Hitchcock",
       "duration": "1h 49min",
-      "genre": [
+      genre: [
         "Horror",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "The Green Mile",
-      "year": 1999,
-      "director": "Frank Darabont",
+      title: "The Green Mile",
+      year: 1999,
+      director: "Frank Darabont",
       "duration": "3h 9min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Fantasy",
         "Mystery"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Casablanca",
-      "year": 1942,
-      "director": "Michael Curtiz",
+      title: "Casablanca",
+      year: 1942,
+      director: "Michael Curtiz",
       "duration": "1h 42min",
-      "genre": [
+      genre: [
         "Drama",
         "Romance",
         "War"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "City Lights",
-      "year": 1931,
-      "director": "Charles Chaplin",
+      title: "City Lights",
+      year: 1931,
+      director: "Charles Chaplin",
       "duration": "1h 27min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama",
         "Romance"
       ],
-      "rate": 8.6
+      rate: 8.6
     },
     {
-      "title": "Intouchables",
-      "year": 2011,
-      "director": "Olivier Nakache",
+      title: "Intouchables",
+      year: 2011,
+      director: "Olivier Nakache",
       "duration": "1h 52min",
-      "genre": [
+      genre: [
         "Biography",
         "Comedy",
         "Drama"
       ],
-      "rate": 8.6
+      rate: 8.6
     },
     {
-      "title": "Modern Times",
-      "year": 1936,
-      "director": "Charles Chaplin",
+      title: "Modern Times",
+      year: 1936,
+      director: "Charles Chaplin",
       "duration": "1h 27min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama",
         "Family",
         "Romance"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Raiders of the Lost Ark",
-      "year": 1981,
-      "director": "Steven Spielberg",
+      title: "Raiders of the Lost Ark",
+      year: 1981,
+      director: "Steven Spielberg",
       "duration": "1h 55min",
-      "genre": [
+      genre: [
         "Action",
         "Adventure"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "The Pianist",
-      "year": 2002,
-      "director": "Roman Polanski",
+      title: "The Pianist",
+      year: 2002,
+      director: "Roman Polanski",
       "duration": "2h 30min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama",
         "Music",
         "War"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "The Departed",
-      "year": 2006,
-      "director": "Martin Scorsese",
+      title: "The Departed",
+      year: 2006,
+      director: "Martin Scorsese",
       "duration": "2h 31min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Thriller"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Rear Window",
-      "year": 1954,
-      "director": "Alfred Hitchcock",
+      title: "Rear Window",
+      year: 1954,
+      director: "Alfred Hitchcock",
       "duration": "1h 52min",
-      "genre": [
+      genre: [
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Terminator 2: Judgment Day",
-      "year": 1991,
-      "director": "James Cameron",
+      title: "Terminator 2: Judgment Day",
+      year: 1991,
+      director: "James Cameron",
       "duration": "2h 17min",
-      "genre": [
+      genre: [
         "Action",
         "Sci-Fi",
         "Thriller"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Back to the Future",
-      "year": 1985,
-      "director": "Robert Zemeckis",
+      title: "Back to the Future",
+      year: 1985,
+      director: "Robert Zemeckis",
       "duration": "1h 56min",
-      "genre": [
+      genre: [
         "Adventure",
         "Comedy",
         "Sci-Fi"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Whiplash",
-      "year": 2014,
-      "director": "Damien Chazelle",
+      title: "Whiplash",
+      year: 2014,
+      director: "Damien Chazelle",
       "duration": "1h 47min",
-      "genre": [
+      genre: [
         "Drama",
         "Music"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Gladiator",
-      "year": 2000,
-      "director": "Ridley Scott",
+      title: "Gladiator",
+      year: 2000,
+      director: "Ridley Scott",
       "duration": "2h 35min",
-      "genre": [
+      genre: [
         "Action",
         "Adventure",
         "Drama"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "The Prestige",
-      "year": 1994,
-      "director": "Christopher Nolan",
+      title: "The Prestige",
+      year: 1994,
+      director: "Christopher Nolan",
       "duration": "2h 10min",
-      "genre": [
+      genre: [
         "Drama",
         "Mystery",
         "Sci-Fi",
         "Thriller"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "The Lion King",
-      "year": 1994,
-      "director": "Roger Allers",
+      title: "The Lion King",
+      year: 1994,
+      director: "Roger Allers",
       "duration": "1h 28min",
-      "genre": [
+      genre: [
         "Animation",
         "Adventure",
         "Drama",
         "Family",
         "Musical"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Memento",
-      "year": 2000,
-      "director": "Christopher Nolan",
+      title: "Memento",
+      year: 2000,
+      director: "Christopher Nolan",
       "duration": "1h 53min",
-      "genre": [
+      genre: [
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Apocalypse Now",
-      "year": 1979,
-      "director": "Francis Ford Coppola",
+      title: "Apocalypse Now",
+      year: 1979,
+      director: "Francis Ford Coppola",
       "duration": "2h 27min",
-      "genre": [
+      genre: [
         "Drama",
         "War"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Alien",
-      "year": 1979,
-      "director": "Ridley Scott",
+      title: "Alien",
+      year: 1979,
+      director: "Ridley Scott",
       "duration": "1h 57min",
-      "genre": [
+      genre: [
         "Horror",
         "Sci-Fi"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "The Great Dictator",
-      "year": 1940,
-      "director": "Charles Chaplin",
+      title: "The Great Dictator",
+      year: 1940,
+      director: "Charles Chaplin",
       "duration": "2h 5min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama",
         "War"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Sunset Blvd.",
-      "year": 1950,
-      "director": "Billy Wilder",
+      title: "Sunset Blvd.",
+      year: 1950,
+      director: "Billy Wilder",
       "duration": "1h 50min",
-      "genre": [
+      genre: [
         "Drama",
         "Film-Noir"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
-      "year": 1964,
-      "director": "Stanley Kubrick",
+      title: "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
+      year: 1964,
+      director: "Stanley Kubrick",
       "duration": "1h 35min",
-      "genre": [
+      genre: [
         "Comedy"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Nuovo Cinema Paradiso",
-      "year": 1988,
-      "director": "Giuseppe Tornatore",
+      title: "Nuovo Cinema Paradiso",
+      year: 1988,
+      director: "Giuseppe Tornatore",
       "duration": "2h 35min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Das Leben der Anderen",
-      "year": 2006,
-      "director": "Florian Henckel von Donnersmarck",
+      title: "Das Leben der Anderen",
+      year: 2006,
+      director: "Florian Henckel von Donnersmarck",
       "duration": "2h 17min",
-      "genre": [
+      genre: [
         "Drama",
         "Thriller"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Hotaru no haka",
-      "year": 1988,
-      "director": "Isao Takahata",
+      title: "Hotaru no haka",
+      year: 1988,
+      director: "Isao Takahata",
       "duration": "1h 29min",
-      "genre": [
+      genre: [
         "Animation",
         "Drama",
         "War"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Blade Runner 2049",
-      "year": 2017,
-      "director": "Denis Villeneuve",
+      title: "Blade Runner 2049",
+      year: 2017,
+      director: "Denis Villeneuve",
       "duration": "2h 44min",
-      "genre": [
+      genre: [
         "Mystery",
         "Sci-Fi",
         "Thriller"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Paths of Glory",
-      "year": 1957,
-      "director": "Stanley Kubrick",
+      title: "Paths of Glory",
+      year: 1957,
+      director: "Stanley Kubrick",
       "duration": "1h 28min",
-      "genre": [
+      genre: [
         "Drama",
         "War"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Django Unchained",
-      "year": 2012,
-      "director": "Quentin Tarantino",
+      title: "Django Unchained",
+      year: 2012,
+      director: "Quentin Tarantino",
       "duration": "2h 45min",
-      "genre": [
+      genre: [
         "Drama",
         "Western"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "The Shining",
-      "year": 1980,
-      "director": "Stanley Kubrick",
+      title: "The Shining",
+      year: 1980,
+      director: "Stanley Kubrick",
       "duration": "2h 26min",
-      "genre": [
+      genre: [
         "Drama",
         "Horror"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "WALL·E",
-      "year": 2008,
-      "director": "Andrew Stanton",
+      title: "WALL·E",
+      year: 2008,
+      director: "Andrew Stanton",
       "duration": "1h 38min",
-      "genre": [
+      genre: [
         "Animation",
         "Adventure",
         "Family",
         "Sci-Fi"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "American Beauty",
-      "year": 1999,
-      "director": "Sam Mendes",
+      title: "American Beauty",
+      year: 1999,
+      director: "Sam Mendes",
       "duration": "2h 2min",
-      "genre": [
+      genre: [
         "Drama",
         "Romance"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "The Dark Knight Rises",
-      "year": 2012,
-      "director": "Christopher Nolan",
+      title: "The Dark Knight Rises",
+      year: 2012,
+      director: "Christopher Nolan",
       "duration": "2h 44min",
-      "genre": [
+      genre: [
         "Action",
         "Thriller"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Mononoke-hime",
-      "year": 1997,
-      "director": "Hayao Miyazaki",
+      title: "Mononoke-hime",
+      year: 1997,
+      director: "Hayao Miyazaki",
       "duration": "2h 14min",
-      "genre": [
+      genre: [
         "Animation",
         "Adventure",
         "Fantasy"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Oldeuboi",
-      "year": 2003,
-      "director": "Chan-wook Park",
+      title: "Oldeuboi",
+      year: 2003,
+      director: "Chan-wook Park",
       "duration": "2h",
-      "genre": [
+      genre: [
         "Action",
         "Drama",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Aliens",
-      "year": 1986,
-      "director": "James Cameron",
+      title: "Aliens",
+      year: 1986,
+      director: "James Cameron",
       "duration": "2h 17min",
-      "genre": [
+      genre: [
         "Action",
         "Adventure",
         "Sci-Fi",
         "Thriller"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Witness for the Prosecution",
-      "year": 1957,
-      "director": "Billy Wilder",
+      title: "Witness for the Prosecution",
+      year: 1957,
+      director: "Billy Wilder",
       "duration": "1h 56min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Once Upon a Time in America",
-      "year": 1984,
-      "director": "Sergio Leone",
+      title: "Once Upon a Time in America",
+      year: 1984,
+      director: "Sergio Leone",
       "duration": "3h 49min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Das Boot",
-      "year": 1981,
-      "director": "Wolfgang Petersen",
+      title: "Das Boot",
+      year: 1981,
+      director: "Wolfgang Petersen",
       "duration": "2h 29min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama",
         "Thriller",
         "War"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Citizen Kane",
-      "year": 1941,
-      "director": "Orson Welles",
+      title: "Citizen Kane",
+      year: 1941,
+      director: "Orson Welles",
       "duration": "1h 59min",
-      "genre": [
+      genre: [
         "Drama",
         "Mystery"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Dangal",
-      "year": 2016,
-      "director": "Nitesh Tiwari",
+      title: "Dangal",
+      year: 2016,
+      director: "Nitesh Tiwari",
       "duration": "2h 41min",
-      "genre": [
+      genre: [
         "Action",
         "Biography",
         "Drama",
         "Sport"
       ],
-      "rate": 8.6
+      rate: 8.6
     },
     {
-      "title": "Vertigo",
-      "year": 2001,
-      "director": "Alfred Hitchcock",
+      title: "Vertigo",
+      year: 2001,
+      director: "Alfred Hitchcock",
       "duration": "2h 8min",
-      "genre": [
+      genre: [
         "Mystery",
         "Romance",
         "Thriller"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "North by Northwest",
-      "year": 1959,
-      "director": "Alfred Hitchcock",
+      title: "North by Northwest",
+      year: 1959,
+      director: "Alfred Hitchcock",
       "duration": "2h 16min",
-      "genre": [
+      genre: [
         "Action",
         "Adventure",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Star Wars: Episode VI - Return of the Jedi",
-      "year": 1983,
-      "director": "Richard Marquand",
+      title: "Star Wars: Episode VI - Return of the Jedi",
+      year: 1983,
+      director: "Richard Marquand",
       "duration": "2h 11min",
-      "genre": [
+      genre: [
         "Action",
         "Adventure",
         "Fantasy",
         "Sci-Fi"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Braveheart",
-      "year": 1995,
-      "director": "Mel Gibson",
+      title: "Braveheart",
+      year: 1995,
+      director: "Mel Gibson",
       "duration": "2h 58min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama",
         "History",
         "War"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Reservoir Dogs",
-      "year": 1992,
-      "director": "Quentin Tarantino",
+      title: "Reservoir Dogs",
+      year: 1992,
+      director: "Quentin Tarantino",
       "duration": "1h 39min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Thriller"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "M",
-      "year": 1931,
-      "director": "Fritz Lang",
+      title: "M",
+      year: 1931,
+      director: "Fritz Lang",
       "duration": "1h 57min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Requiem for a Dream",
-      "year": 2000,
-      "director": "Darren Aronofsky",
+      title: "Requiem for a Dream",
+      year: 2000,
+      director: "Darren Aronofsky",
       "duration": "1h 42min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Le fabuleux destin d\"Amélie Poulain",
-      "year": 2001,
-      "director": "Jean-Pierre Jeunet",
+      title: "Le fabuleux destin d\"Amélie Poulain",
+      year: 2001,
+      director: "Jean-Pierre Jeunet",
       "duration": "2h 2min",
-      "genre": [
+      genre: [
         "Comedy",
         "Romance"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Taare Zameen Par",
-      "year": 2007,
-      "director": "Aamir Khan",
+      title: "Taare Zameen Par",
+      year: 2007,
+      director: "Aamir Khan",
       "duration": "2h 45min",
-      "genre": [
+      genre: [
         "Drama",
         "Family"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "A Clockwork Orange",
-      "year": 1971,
-      "director": "Stanley Kubrick",
+      title: "A Clockwork Orange",
+      year: 1971,
+      director: "Stanley Kubrick",
       "duration": "2h 16min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Sci-Fi"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Kimi no na wa.",
-      "year": 2016,
-      "director": "Makoto Shinkai",
+      title: "Kimi no na wa.",
+      year: 2016,
+      director: "Makoto Shinkai",
       "duration": "1h 46min",
-      "genre": [
+      genre: [
         "Animation",
         "Drama",
         "Fantasy",
         "Romance"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Lawrence of Arabia",
-      "year": 1962,
-      "director": "David Lean",
+      title: "Lawrence of Arabia",
+      year: 1962,
+      director: "David Lean",
       "duration": "3h 36min",
-      "genre": [
+      genre: [
         "Adventure",
         "Biography",
         "Drama",
         "History",
         "War"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Double Indemnity",
-      "year": 1944,
-      "director": "Billy Wilder",
+      title: "Double Indemnity",
+      year: 1944,
+      director: "Billy Wilder",
       "duration": "1h 47min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Film-Noir",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Amadeus",
-      "year": 1984,
-      "director": "Milos Forman",
+      title: "Amadeus",
+      year: 1984,
+      director: "Milos Forman",
       "duration": "2h 40min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama",
         "History",
         "Music"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Eternal Sunshine of the Spotless Mind",
-      "year": 2004,
-      "director": "Michel Gondry",
+      title: "Eternal Sunshine of the Spotless Mind",
+      year: 2004,
+      director: "Michel Gondry",
       "duration": "1h 48min",
-      "genre": [
+      genre: [
         "Drama",
         "Romance",
         "Sci-Fi"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Taxi Driver",
-      "year": 1976,
-      "director": "Martin Scorsese",
+      title: "Taxi Driver",
+      year: 1976,
+      director: "Martin Scorsese",
       "duration": "1h 53min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "To Kill a Mockingbird",
-      "year": 1962,
-      "director": "Robert Mulligan",
+      title: "To Kill a Mockingbird",
+      year: 1962,
+      director: "Robert Mulligan",
       "duration": "2h 9min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Dunkirk",
-      "year": 2017,
-      "director": "Christopher Nolan",
+      title: "Dunkirk",
+      year: 2017,
+      director: "Christopher Nolan",
       "duration": "1h 46min",
-      "genre": [
+      genre: [
         "Action",
         "Drama",
         "History",
         "Thriller",
         "War"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Full Metal Jacket",
-      "year": 1987,
-      "director": "Stanley Kubrick",
+      title: "Full Metal Jacket",
+      year: 1987,
+      director: "Stanley Kubrick",
       "duration": "1h 56min",
-      "genre": [
+      genre: [
         "Drama",
         "War"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "2001: A Space Odyssey",
-      "year": 1968,
-      "director": "Stanley Kubrick",
+      title: "2001: A Space Odyssey",
+      year: 1968,
+      director: "Stanley Kubrick",
       "duration": "2h 29min",
-      "genre": [
+      genre: [
         "Adventure",
         "Sci-Fi"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Singin\" in the Rain",
-      "year": 1952,
-      "director": "Stanley Donen",
+      title: "Singin\" in the Rain",
+      year: 1952,
+      director: "Stanley Donen",
       "duration": "1h 43min",
-      "genre": [
+      genre: [
         "Comedy",
         "Musical",
         "Romance"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Toy Story 3",
-      "year": 2010,
-      "director": "Lee Unkrich",
+      title: "Toy Story 3",
+      year: 2010,
+      director: "Lee Unkrich",
       "duration": "1h 43min",
-      "genre": [
+      genre: [
         "Animation",
         "Adventure",
         "Comedy",
         "Family",
         "Fantasy"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Toy Story",
-      "year": 1995,
-      "director": "John Lasseter",
+      title: "Toy Story",
+      year: 1995,
+      director: "John Lasseter",
       "duration": "1h 21min",
-      "genre": [
+      genre: [
         "Animation",
         "Adventure",
         "Comedy",
         "Family",
         "Fantasy"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "The Sting",
-      "year": 1973,
-      "director": "George Roy Hill",
+      title: "The Sting",
+      year: 1973,
+      director: "George Roy Hill",
       "duration": "2h 9min",
-      "genre": [
+      genre: [
         "Comedy",
         "Crime",
         "Drama"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "3 Idiots",
-      "year": 2009,
-      "director": "Rajkumar Hirani",
+      title: "3 Idiots",
+      year: 2009,
+      director: "Rajkumar Hirani",
       "duration": "2h 50min",
-      "genre": [
+      genre: [
         "Adventure",
         "Comedy",
         "Drama",
         "Romance"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Ladri di biciclette",
-      "year": 1948,
-      "director": "Vittorio De Sica",
+      title: "Ladri di biciclette",
+      year: 1948,
+      director: "Vittorio De Sica",
       "duration": "1h 29min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Inglourious Basterds",
-      "year": 2009,
-      "director": "Quentin Tarantino",
+      title: "Inglourious Basterds",
+      year: 2009,
+      director: "Quentin Tarantino",
       "duration": "2h 33min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama",
         "War"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "The Kid",
-      "year": 1921,
-      "director": "Charles Chaplin",
+      title: "The Kid",
+      year: 1921,
+      director: "Charles Chaplin",
       "duration": "1h 8min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama",
         "Family"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Snatch",
-      "year": 2000,
-      "director": "Guy Ritchie",
+      title: "Snatch",
+      year: 2000,
+      director: "Guy Ritchie",
       "duration": "1h 44min",
-      "genre": [
+      genre: [
         "Comedy",
         "Crime"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Monty Python and the Holy Grail",
-      "year": 1975,
-      "director": "Terry Gilliam",
+      title: "Monty Python and the Holy Grail",
+      year: 1975,
+      director: "Terry Gilliam",
       "duration": "1h 31min",
-      "genre": [
+      genre: [
         "Adventure",
         "Comedy",
         "Fantasy"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Good Will Hunting",
-      "year": 1997,
-      "director": "Gus Van Sant",
+      title: "Good Will Hunting",
+      year: 1997,
+      director: "Gus Van Sant",
       "duration": "2h 6min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Jagten",
-      "year": 2012,
-      "director": "Thomas Vinterberg",
+      title: "Jagten",
+      year: 2012,
+      director: "Thomas Vinterberg",
       "duration": "1h 55min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Per qualche dollaro in più",
-      "year": 1965,
-      "director": "Sergio Leone",
+      title: "Per qualche dollaro in più",
+      year: 1965,
+      director: "Sergio Leone",
       "duration": "2h 12min",
-      "genre": [
+      genre: [
         "Western"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "L.A. Confidential",
-      "year": 1997,
-      "director": "Curtis Hanson",
+      title: "L.A. Confidential",
+      year: 1997,
+      director: "Curtis Hanson",
       "duration": "2h 18min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Scarface",
-      "year": 1983,
-      "director": "Brian De Palma",
+      title: "Scarface",
+      year: 1983,
+      director: "Brian De Palma",
       "duration": "2h 50min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "The Apartment",
-      "year": 1960,
-      "director": "Billy Wilder",
+      title: "The Apartment",
+      year: 1960,
+      director: "Billy Wilder",
       "duration": "2h 5min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama",
         "Romance"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Metropolis",
-      "year": 1927,
-      "director": "Fritz Lang",
+      title: "Metropolis",
+      year: 1927,
+      director: "Fritz Lang",
       "duration": "2h 33min",
-      "genre": [
+      genre: [
         "Drama",
         "Sci-Fi"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Jodaeiye Nader az Simin",
-      "year": 2011,
-      "director": "Asghar Farhadi",
+      title: "Jodaeiye Nader az Simin",
+      year: 2011,
+      director: "Asghar Farhadi",
       "duration": "2h 3min",
-      "genre": [
+      genre: [
         "Drama",
         "Mystery"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Rashômon",
-      "year": 1950,
-      "director": "Akira Kurosawa",
+      title: "Rashômon",
+      year: 1950,
+      director: "Akira Kurosawa",
       "duration": "1h 28min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Mystery"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Indiana Jones and the Last Crusade",
-      "year": 1989,
-      "director": "Steven Spielberg",
+      title: "Indiana Jones and the Last Crusade",
+      year: 1989,
+      director: "Steven Spielberg",
       "duration": "2h 7min",
-      "genre": [
+      genre: [
         "Action",
         "Adventure",
         "Fantasy"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "All About Eve",
-      "year": 1950,
-      "director": "Joseph L. Mankiewicz",
+      title: "All About Eve",
+      year: 1950,
+      director: "Joseph L. Mankiewicz",
       "duration": "2h 18min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Yôjinbô",
-      "year": 1961,
-      "director": "Akira Kurosawa",
+      title: "Yôjinbô",
+      year: 1961,
+      director: "Akira Kurosawa",
       "duration": "1h 50min",
-      "genre": [
+      genre: [
         "Action",
         "Drama",
         "Thriller"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Babam ve Oglum",
-      "year": 2005,
-      "director": "Çagan Irmak",
+      title: "Babam ve Oglum",
+      year: 2005,
+      director: "Çagan Irmak",
       "duration": "1h 48min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.5
+      rate: 8.5
     },
     {
-      "title": "Up",
-      "year": 2009,
-      "director": "Pete Docter",
+      title: "Up",
+      year: 2009,
+      director: "Pete Docter",
       "duration": "1h 36min",
-      "genre": [
+      genre: [
         "Animation",
         "Adventure",
         "Comedy",
         "Family"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Batman Begins",
-      "year": 2005,
-      "director": "Christopher Nolan",
+      title: "Batman Begins",
+      year: 2005,
+      director: "Christopher Nolan",
       "duration": "2h 32min",
-      "genre": [
+      genre: [
         "Action",
         "Adventure",
         "Thriller"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Some Like It Hot",
-      "year": 1959,
-      "director": "Billy Wilder",
+      title: "Some Like It Hot",
+      year: 1959,
+      director: "Billy Wilder",
       "duration": "2h 1min",
-      "genre": [
+      genre: [
         "Comedy",
         "Romance"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "The Treasure of the Sierra Madre",
-      "year": 1948,
-      "director": "John Huston",
+      title: "The Treasure of the Sierra Madre",
+      year: 1948,
+      director: "John Huston",
       "duration": "2h 6min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama",
         "Western"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Unforgiven",
-      "year": 1992,
-      "director": "Clint Eastwood",
+      title: "Unforgiven",
+      year: 1992,
+      director: "Clint Eastwood",
       "duration": "2h 10min",
-      "genre": [
+      genre: [
         "Drama",
         "Western"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Der Untergang",
-      "year": 2004,
-      "director": "Oliver Hirschbiegel",
+      title: "Der Untergang",
+      year: 2004,
+      director: "Oliver Hirschbiegel",
       "duration": "2h 36min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama",
         "History",
         "War"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Die Hard",
-      "year": 1988,
-      "director": "John McTiernan",
+      title: "Die Hard",
+      year: 1988,
+      director: "John McTiernan",
       "duration": "2h 11min",
-      "genre": [
+      genre: [
         "Action",
         "Thriller"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Raging Bull",
-      "year": 1980,
-      "director": "Martin Scorsese",
+      title: "Raging Bull",
+      year: 1980,
+      director: "Martin Scorsese",
       "duration": "2h 9min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama",
         "Sport"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Heat",
-      "year": 1995,
-      "director": "Michael Mann",
+      title: "Heat",
+      year: 1995,
+      director: "Michael Mann",
       "duration": "2h 50min",
-      "genre": [
+      genre: [
         "Action",
         "Crime",
         "Drama",
         "Thriller"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "The Third Man",
-      "year": 1949,
-      "director": "Carol Reed",
+      title: "The Third Man",
+      year: 1949,
+      director: "Carol Reed",
       "duration": "1h 44min",
-      "genre": [
+      genre: [
         "Film-Noir",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Bacheha-Ye aseman",
-      "year": 1997,
-      "director": "Majid Majidi",
+      title: "Bacheha-Ye aseman",
+      year: 1997,
+      director: "Majid Majidi",
       "duration": "1h 29min",
-      "genre": [
+      genre: [
         "Drama",
         "Family"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "The Great Escape",
-      "year": 1963,
-      "director": "John Sturges",
+      title: "The Great Escape",
+      year: 1963,
+      director: "John Sturges",
       "duration": "2h 52min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama",
         "History",
         "Thriller",
         "War"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Ikiru",
-      "year": 1952,
-      "director": "Akira Kurosawa",
+      title: "Ikiru",
+      year: 1952,
+      director: "Akira Kurosawa",
       "duration": "2h 23min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Chinatown",
-      "year": 1974,
-      "director": "Roman Polanski",
+      title: "Chinatown",
+      year: 1974,
+      director: "Roman Polanski",
       "duration": "2h 10min",
-      "genre": [
+      genre: [
         "Drama",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "El laberinto del fauno",
-      "year": 2006,
-      "director": "Guillermo del Toro",
+      title: "El laberinto del fauno",
+      year: 2006,
+      director: "Guillermo del Toro",
       "duration": "1h 58min",
-      "genre": [
+      genre: [
         "Drama",
         "Fantasy",
         "War"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Tonari no Totoro",
-      "year": 1988,
-      "director": "Hayao Miyazaki",
+      title: "Tonari no Totoro",
+      year: 1988,
+      director: "Hayao Miyazaki",
       "duration": "1h 26min",
-      "genre": [
+      genre: [
         "Animation",
         "Family",
         "Fantasy"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Incendies",
-      "year": 2010,
-      "director": "Denis Villeneuve",
+      title: "Incendies",
+      year: 2010,
+      director: "Denis Villeneuve",
       "duration": "2h 11min",
-      "genre": [
+      genre: [
         "Drama",
         "Mystery",
         "War"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Ran",
-      "year": 1985,
-      "director": "Akira Kurosawa",
+      title: "Ran",
+      year: 1985,
+      director: "Akira Kurosawa",
       "duration": "2h 42min",
-      "genre": [
+      genre: [
         "Action",
         "Drama"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "The Gold Rush",
-      "year": 1925,
-      "director": "Charles Chaplin",
+      title: "The Gold Rush",
+      year: 1925,
+      director: "Charles Chaplin",
       "duration": "1h 35min",
-      "genre": [
+      genre: [
         "Adventure",
         "Comedy",
         "Drama",
         "Family"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "El secreto de sus ojos",
-      "year": 2009,
-      "director": "Juan José Campanella",
+      title: "El secreto de sus ojos",
+      year: 2009,
+      director: "Juan José Campanella",
       "duration": "2h 9min",
-      "genre": [
+      genre: [
         "Drama",
         "Mystery",
         "Romance",
         "Thriller"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Inside Out",
-      "year": 2014,
-      "director": "Pete Docter",
+      title: "Inside Out",
+      year: 2014,
+      director: "Pete Docter",
       "duration": "1h 35min",
-      "genre": [
+      genre: [
         "Animation",
         "Adventure",
         "Comedy",
@@ -1608,185 +1608,185 @@ let movies = [
         "Family",
         "Fantasy"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Judgment at Nuremberg",
-      "year": 1961,
-      "director": "Stanley Kramer",
+      title: "Judgment at Nuremberg",
+      year: 1961,
+      director: "Stanley Kramer",
       "duration": "3h 6min",
-      "genre": [
+      genre: [
         "Drama",
         "War"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "On the Waterfront",
-      "year": 1954,
-      "director": "Elia Kazan",
+      title: "On the Waterfront",
+      year: 1954,
+      director: "Elia Kazan",
       "duration": "1h 48min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Thriller"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Hauru no ugoku shiro",
-      "year": 2004,
-      "director": "Hayao Miyazaki",
+      title: "Hauru no ugoku shiro",
+      year: 2004,
+      director: "Hayao Miyazaki",
       "duration": "1h 59min",
-      "genre": [
+      genre: [
         "Animation",
         "Adventure",
         "Family",
         "Fantasy"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "The Bridge on the River Kwai",
-      "year": 1957,
-      "director": "David Lean",
+      title: "The Bridge on the River Kwai",
+      year: 1957,
+      director: "David Lean",
       "duration": "2h 41min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama",
         "War"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Room",
-      "year": 2015,
-      "director": "Lenny Abrahamson",
+      title: "Room",
+      year: 2015,
+      director: "Lenny Abrahamson",
       "duration": "1h 58min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Det sjunde inseglet",
-      "year": 1957,
-      "director": "Ingmar Bergman",
+      title: "Det sjunde inseglet",
+      year: 1957,
+      director: "Ingmar Bergman",
       "duration": "1h 36min",
-      "genre": [
+      genre: [
         "Drama",
         "Fantasy"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Lock, Stock and Two Smoking Barrels",
-      "year": 1998,
-      "director": "Guy Ritchie",
+      title: "Lock, Stock and Two Smoking Barrels",
+      year: 1998,
+      director: "Guy Ritchie",
       "duration": "1h 47min",
-      "genre": [
+      genre: [
         "Comedy",
         "Crime"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Mr. Smith Goes to Washington",
-      "year": 1939,
-      "director": "Frank Capra",
+      title: "Mr. Smith Goes to Washington",
+      year: 1939,
+      director: "Frank Capra",
       "duration": "2h 9min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Blade Runner",
-      "year": 1982,
-      "director": "Ridley Scott",
+      title: "Blade Runner",
+      year: 1982,
+      director: "Ridley Scott",
       "duration": "1h 57min",
-      "genre": [
+      genre: [
         "Sci-Fi",
         "Thriller"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Casino",
-      "year": 1995,
-      "director": "Martin Scorsese",
+      title: "Casino",
+      year: 1995,
+      director: "Martin Scorsese",
       "duration": "2h 58min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "A Beautiful Mind",
-      "year": 2001,
-      "director": "Ron Howard",
+      title: "A Beautiful Mind",
+      year: 2001,
+      director: "Ron Howard",
       "duration": "2h 15min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "The Elephant Man",
-      "year": 1980,
-      "director": "David Lynch",
+      title: "The Elephant Man",
+      year: 1980,
+      director: "David Lynch",
       "duration": "2h 4min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Smultronstället",
-      "year": 1957,
-      "director": "Ingmar Bergman",
+      title: "Smultronstället",
+      year: 1957,
+      director: "Ingmar Bergman",
       "duration": "1h 31min",
-      "genre": [
+      genre: [
         "Drama",
         "Romance"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "V for Vendetta",
-      "year": 2005,
-      "director": "James McTeigue",
+      title: "V for Vendetta",
+      year: 2005,
+      director: "James McTeigue",
       "duration": "2h 12min",
-      "genre": [
+      genre: [
         "Action",
         "Drama",
         "Thriller"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "The Wolf of Wall Street",
-      "year": 2013,
-      "director": "Martin Scorsese",
+      title: "The Wolf of Wall Street",
+      year: 2013,
+      director: "Martin Scorsese",
       "duration": "3h",
-      "genre": [
+      genre: [
         "Biography",
         "Comedy",
         "Crime",
         "Drama"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "The General",
-      "year": 1926,
-      "director": "Clyde Bruckman",
+      title: "The General",
+      year: 1926,
+      director: "Clyde Bruckman",
       "duration": "1h 7min",
-      "genre": [
+      genre: [
         "Action",
         "Adventure",
         "Comedy",
@@ -1794,1081 +1794,1081 @@ let movies = [
         "War",
         "Western"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Warrior",
-      "year": 2011,
-      "director": "Gavin O\"Connor",
+      title: "Warrior",
+      year: 2011,
+      director: "Gavin O\"Connor",
       "duration": "2h 20min",
-      "genre": [
+      genre: [
         "Drama",
         "Sport"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Trainspotting",
-      "year": 1996,
-      "director": "Danny Boyle",
+      title: "Trainspotting",
+      year: 1996,
+      director: "Danny Boyle",
       "duration": "1h 34min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Dial M for Murder",
-      "year": 1954,
-      "director": "Alfred Hitchcock",
+      title: "Dial M for Murder",
+      year: 1954,
+      director: "Alfred Hitchcock",
       "duration": "1h 45min",
-      "genre": [
+      genre: [
         "Crime",
         "Film-Noir",
         "Thriller"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Gran Torino",
-      "year": 2008,
-      "director": "Clint Eastwood",
+      title: "Gran Torino",
+      year: 2008,
+      director: "Clint Eastwood",
       "duration": "1h 56min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Sunrise: A Song of Two Humans",
-      "year": 1927,
-      "director": "F.W. Murnau",
+      title: "Sunrise: A Song of Two Humans",
+      year: 1927,
+      director: "F.W. Murnau",
       "duration": "1h 34min",
-      "genre": [
+      genre: [
         "Drama",
         "Romance"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Gone with the Wind",
-      "year": 1939,
-      "director": "Victor Fleming",
+      title: "Gone with the Wind",
+      year: 1939,
+      director: "Victor Fleming",
       "duration": "3h 58min",
-      "genre": [
+      genre: [
         "Drama",
         "History",
         "Romance",
         "War"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Andrey Rublev",
-      "year": 1966,
-      "director": "Andrei Tarkovsky",
+      title: "Andrey Rublev",
+      year: 1966,
+      director: "Andrei Tarkovsky",
       "duration": "3h 25min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama",
         "History"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "The Deer Hunter",
-      "year": 1978,
-      "director": "Michael Cimino",
+      title: "The Deer Hunter",
+      year: 1978,
+      director: "Michael Cimino",
       "duration": "3h 3min",
-      "genre": [
+      genre: [
         "Drama",
         "War"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Fargo",
-      "year": 1996,
-      "director": "Joel Coen",
+      title: "Fargo",
+      year: 1996,
+      director: "Joel Coen",
       "duration": "1h 38min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "The Sixth Sense",
-      "year": 1999,
-      "director": "M. Night Shyamalan",
+      title: "The Sixth Sense",
+      year: 1999,
+      director: "M. Night Shyamalan",
       "duration": "1h 47min",
-      "genre": [
+      genre: [
         "Drama",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "The Thing",
-      "year": 2004,
-      "director": "John Carpenter",
+      title: "The Thing",
+      year: 2004,
+      director: "John Carpenter",
       "duration": "1h 49min",
-      "genre": [
+      genre: [
         "Horror",
         "Mystery",
         "Sci-Fi"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "No Country for Old Men",
-      "year": 2007,
-      "director": "Ethan Coen",
+      title: "No Country for Old Men",
+      year: 2007,
+      director: "Ethan Coen",
       "duration": "2h 2min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "The Big Lebowski",
-      "year": 1998,
-      "director": "Joel Coen",
+      title: "The Big Lebowski",
+      year: 1998,
+      director: "Joel Coen",
       "duration": "1h 57min",
-      "genre": [
+      genre: [
         "Comedy",
         "Crime"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Eskiya",
-      "year": 1996,
-      "director": "Yavuz Turgul",
+      title: "Eskiya",
+      year: 1996,
+      director: "Yavuz Turgul",
       "duration": "2h 8min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Thriller"
       ],
-      "rate": 8.4
+      rate: 8.4
     },
     {
-      "title": "Finding Nemo",
-      "year": 2003,
-      "director": "Andrew Stanton",
+      title: "Finding Nemo",
+      year: 2003,
+      director: "Andrew Stanton",
       "duration": "1h 40min",
-      "genre": [
+      genre: [
         "Animation",
         "Adventure",
         "Comedy",
         "Family"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Tôkyô monogatari",
-      "year": 1953,
-      "director": "Yasujirô Ozu",
+      title: "Tôkyô monogatari",
+      year: 1953,
+      director: "Yasujirô Ozu",
       "duration": "2h 16min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "There Will Be Blood",
-      "year": 2007,
-      "director": "Paul Thomas Anderson",
+      title: "There Will Be Blood",
+      year: 2007,
+      director: "Paul Thomas Anderson",
       "duration": "2h 38min",
-      "genre": [
+      genre: [
         "Drama",
         "History"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Cool Hand Luke",
-      "year": 1967,
-      "director": "Stuart Rosenberg",
+      title: "Cool Hand Luke",
+      year: 1967,
+      director: "Stuart Rosenberg",
       "duration": "2h 6min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Rebecca",
-      "year": 1940,
-      "director": "Alfred Hitchcock",
+      title: "Rebecca",
+      year: 1940,
+      director: "Alfred Hitchcock",
       "duration": "2h 10min",
-      "genre": [
+      genre: [
         "Drama",
         "Mystery",
         "Romance",
         "Thriller"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Hacksaw Ridge",
-      "year": 2016,
-      "director": "Mel Gibson",
+      title: "Hacksaw Ridge",
+      year: 2016,
+      director: "Mel Gibson",
       "duration": "2h 19min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama",
         "History",
         "War"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "La La Land",
-      "year": 2016,
-      "director": "Damien Chazelle",
+      title: "La La Land",
+      year: 2016,
+      director: "Damien Chazelle",
       "duration": "2h 8min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama",
         "Music",
         "Musical",
         "Romance"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Idi i smotri",
-      "year": 1992,
-      "director": "Elem Klimov",
+      title: "Idi i smotri",
+      year: 1992,
+      director: "Elem Klimov",
       "duration": "2h 22min",
-      "genre": [
+      genre: [
         "Drama",
         "War"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Kill Bill: Vol. 1",
-      "year": 2003,
-      "director": "Quentin Tarantino",
+      title: "Kill Bill: Vol. 1",
+      year: 2003,
+      director: "Quentin Tarantino",
       "duration": "1h 51min",
-      "genre": [
+      genre: [
         "Action",
         "Crime",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Rang De Basanti",
-      "year": 2006,
-      "director": "Rakeysh Omprakash Mehra",
+      title: "Rang De Basanti",
+      year: 2006,
+      director: "Rakeysh Omprakash Mehra",
       "duration": "2h 37min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama",
         "History",
         "Romance"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "How to Train Your Dragon",
-      "year": 2010,
-      "director": "Dean DeBlois",
+      title: "How to Train Your Dragon",
+      year: 2010,
+      director: "Dean DeBlois",
       "duration": "1h 38min",
-      "genre": [
+      genre: [
         "Animation",
         "Adventure",
         "Comedy",
         "Family",
         "Fantasy"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "La passion de Jeanne d\"Arc",
-      "year": 1928,
-      "director": "Carl Theodor Dreyer",
+      title: "La passion de Jeanne d\"Arc",
+      year: 1928,
+      director: "Carl Theodor Dreyer",
       "duration": "1h 50min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama",
         "History"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Mary and Max",
-      "year": 2009,
-      "director": "Adam Elliot",
+      title: "Mary and Max",
+      year: 2009,
+      director: "Adam Elliot",
       "duration": "1h 32min",
-      "genre": [
+      genre: [
         "Animation",
         "Comedy",
         "Drama"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Gone Girl",
-      "year": 2014,
-      "director": "David Fincher",
+      title: "Gone Girl",
+      year: 2014,
+      director: "David Fincher",
       "duration": "2h 29min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Into the Wild",
-      "year": 2007,
-      "director": "Sean Penn",
+      title: "Into the Wild",
+      year: 2007,
+      director: "Sean Penn",
       "duration": "2h 28min",
-      "genre": [
+      genre: [
         "Adventure",
         "Biography",
         "Drama"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Shutter Island",
-      "year": 2010,
-      "director": "Martin Scorsese",
+      title: "Shutter Island",
+      year: 2010,
+      director: "Martin Scorsese",
       "duration": "2h 18min",
-      "genre": [
+      genre: [
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Logan",
-      "year": 2017,
-      "director": "James Mangold",
+      title: "Logan",
+      year: 2017,
+      director: "James Mangold",
       "duration": "2h 17min",
-      "genre": [
+      genre: [
         "Action",
         "Drama",
         "Sci-Fi",
         "Thriller"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "It Happened One Night",
-      "year": 1934,
-      "director": "Frank Capra",
+      title: "It Happened One Night",
+      year: 1934,
+      director: "Frank Capra",
       "duration": "1h 45min",
-      "genre": [
+      genre: [
         "Comedy",
         "Romance"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Life of Brian",
-      "year": 1979,
-      "director": "Terry Jones",
+      title: "Life of Brian",
+      year: 1979,
+      director: "Terry Jones",
       "duration": "1h 34min",
-      "genre": [
+      genre: [
         "Comedy"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Relatos salvajes",
-      "year": 2014,
-      "director": "Damián Szifron",
+      title: "Relatos salvajes",
+      year: 2014,
+      director: "Damián Szifron",
       "duration": "2h 2min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "A Wednesday",
-      "year": 2008,
-      "director": "Neeraj Pandey",
+      title: "A Wednesday",
+      year: 2008,
+      director: "Neeraj Pandey",
       "duration": "1h 44min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.3
+      rate: 8.3
     },
     {
-      "title": "Platoon",
-      "year": 1986,
-      "director": "Oliver Stone",
+      title: "Platoon",
+      year: 1986,
+      director: "Oliver Stone",
       "duration": "2h",
-      "genre": [
+      genre: [
         "Drama",
         "War"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Hotel Rwanda",
-      "year": 2004,
-      "director": "Terry George",
+      title: "Hotel Rwanda",
+      year: 2004,
+      director: "Terry George",
       "duration": "2h 1min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama",
         "History",
         "War"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Le salaire de la peur",
-      "year": 1953,
-      "director": "Henri-Georges Clouzot",
+      title: "Le salaire de la peur",
+      year: 1953,
+      director: "Henri-Georges Clouzot",
       "duration": "2h 11min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama",
         "Thriller"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Network",
-      "year": 1976,
-      "director": "Sidney Lumet",
+      title: "Network",
+      year: 1976,
+      director: "Sidney Lumet",
       "duration": "2h 1min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Rush",
-      "year": 2013,
-      "director": "Ron Howard",
+      title: "Rush",
+      year: 2013,
+      director: "Ron Howard",
       "duration": "2h 3min",
-      "genre": [
+      genre: [
         "Action",
         "Biography",
         "Drama",
         "History",
         "Sport"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "In the Name of the Father",
-      "year": 1993,
-      "director": "Jim Sheridan",
+      title: "In the Name of the Father",
+      year: 1993,
+      director: "Jim Sheridan",
       "duration": "2h 13min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Stand by Me",
-      "year": 1986,
-      "director": "Rob Reiner",
+      title: "Stand by Me",
+      year: 1986,
+      director: "Rob Reiner",
       "duration": "1h 29min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Persona",
-      "year": 1966,
-      "director": "Ingmar Bergman",
+      title: "Persona",
+      year: 1966,
+      director: "Ingmar Bergman",
       "duration": "1h 25min",
-      "genre": [
+      genre: [
         "Drama",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Ben-Hur",
-      "year": 1959,
-      "director": "William Wyler",
+      title: "Ben-Hur",
+      year: 1959,
+      director: "William Wyler",
       "duration": "3h 32min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama",
         "History"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "The Grand Budapest Hotel",
-      "year": 2014,
-      "director": "Wes Anderson",
+      title: "The Grand Budapest Hotel",
+      year: 2014,
+      director: "Wes Anderson",
       "duration": "1h 39min",
-      "genre": [
+      genre: [
         "Adventure",
         "Comedy",
         "Drama"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Les quatre cents coups",
-      "year": 1959,
-      "director": "François Truffaut",
+      title: "Les quatre cents coups",
+      year: 1959,
+      director: "François Truffaut",
       "duration": "1h 32min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Salinui chueok",
-      "year": 2003,
-      "director": "Joon-ho Bong",
+      title: "Salinui chueok",
+      year: 2003,
+      director: "Joon-ho Bong",
       "duration": "2h 11min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "12 Years a Slave",
-      "year": 2013,
-      "director": "Steve McQueen",
+      title: "12 Years a Slave",
+      year: 2013,
+      director: "Steve McQueen",
       "duration": "2h 14min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama",
         "History"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Mad Max: Fury Road",
-      "year": 2015,
-      "director": "George Miller",
+      title: "Mad Max: Fury Road",
+      year: 2015,
+      director: "George Miller",
       "duration": "2h",
-      "genre": [
+      genre: [
         "Action",
         "Adventure",
         "Sci-Fi",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Jurassic Park",
-      "year": 2000,
-      "director": "Steven Spielberg",
+      title: "Jurassic Park",
+      year: 2000,
+      director: "Steven Spielberg",
       "duration": "2h 7min",
-      "genre": [
+      genre: [
         "Adventure",
         "Sci-Fi",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Spotlight",
-      "year": 2015,
-      "director": "Tom McCarthy",
+      title: "Spotlight",
+      year: 2015,
+      director: "Tom McCarthy",
       "duration": "2h 8min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "History"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Million Dollar Baby",
-      "year": 2004,
-      "director": "Clint Eastwood",
+      title: "Million Dollar Baby",
+      year: 2004,
+      director: "Clint Eastwood",
       "duration": "2h 12min",
-      "genre": [
+      genre: [
         "Drama",
         "Sport"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Stalker",
-      "year": 1979,
-      "director": "Andrei Tarkovsky",
+      title: "Stalker",
+      year: 1979,
+      director: "Andrei Tarkovsky",
       "duration": "2h 42min",
-      "genre": [
+      genre: [
         "Drama",
         "Sci-Fi"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Butch Cassidy and the Sundance Kid",
-      "year": 1969,
-      "director": "George Roy Hill",
+      title: "Butch Cassidy and the Sundance Kid",
+      year: 1969,
+      director: "George Roy Hill",
       "duration": "1h 50min",
-      "genre": [
+      genre: [
         "Biography",
         "Crime",
         "Drama",
         "Western"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Amores perros",
-      "year": 2000,
-      "director": "Alejandro González Iñárritu",
+      title: "Amores perros",
+      year: 2000,
+      director: "Alejandro González Iñárritu",
       "duration": "2h 34min",
-      "genre": [
+      genre: [
         "Drama",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "The Truman Show",
-      "year": 1990,
-      "director": "Peter Weir",
+      title: "The Truman Show",
+      year: 1990,
+      director: "Peter Weir",
       "duration": "1h 43min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama",
         "Sci-Fi"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Hachi: A Dog\"s Tale",
-      "year": 1983,
-      "director": "Lasse Hallström",
+      title: "Hachi: A Dog\"s Tale",
+      year: 1983,
+      director: "Lasse Hallström",
       "duration": "1h 33min",
-      "genre": [
+      genre: [
         "Drama",
         "Family"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "The Maltese Falcon",
-      "year": 1941,
-      "director": "John Huston",
+      title: "The Maltese Falcon",
+      year: 1941,
+      director: "John Huston",
       "duration": "1h 40min",
-      "genre": [
+      genre: [
         "Film-Noir",
         "Mystery"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Kaze no tani no Naushika",
-      "year": 1984,
-      "director": "Hayao Miyazaki",
+      title: "Kaze no tani no Naushika",
+      year: 1984,
+      director: "Hayao Miyazaki",
       "duration": "1h 57min",
-      "genre": [
+      genre: [
         "Animation",
         "Adventure",
         "Fantasy",
         "Sci-Fi"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "The Princess Bride",
-      "year": 1987,
-      "director": "Rob Reiner",
+      title: "The Princess Bride",
+      year: 1987,
+      director: "Rob Reiner",
       "duration": "1h 38min",
-      "genre": [
+      genre: [
         "Adventure",
         "Family",
         "Fantasy",
         "Romance"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Before Sunrise",
-      "year": 1995,
-      "director": "Richard Linklater",
+      title: "Before Sunrise",
+      year: 1995,
+      director: "Richard Linklater",
       "duration": "1h 41min",
-      "genre": [
+      genre: [
         "Drama",
         "Romance"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Le notti di Cabiria",
-      "year": 1957,
-      "director": "Federico Fellini",
+      title: "Le notti di Cabiria",
+      year: 1957,
+      director: "Federico Fellini",
       "duration": "1h 50min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Paper Moon",
-      "year": 1973,
-      "director": "Peter Bogdanovich",
+      title: "Paper Moon",
+      year: 1973,
+      director: "Peter Bogdanovich",
       "duration": "1h 42min",
-      "genre": [
+      genre: [
         "Comedy",
         "Crime",
         "Drama"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Prisoners",
-      "year": 2013,
-      "director": "Denis Villeneuve",
+      title: "Prisoners",
+      year: 2013,
+      director: "Denis Villeneuve",
       "duration": "2h 33min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Harry Potter and the Deathly Hallows: Part 2",
-      "year": 2011,
-      "director": "David Yates",
+      title: "Harry Potter and the Deathly Hallows: Part 2",
+      year: 2011,
+      director: "David Yates",
       "duration": "2h 10min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama",
         "Fantasy",
         "Mystery"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "The Grapes of Wrath",
-      "year": 1940,
-      "director": "John Ford",
+      title: "The Grapes of Wrath",
+      year: 1940,
+      director: "John Ford",
       "duration": "2h 9min",
-      "genre": [
+      genre: [
         "Drama",
         "History"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Rocky",
-      "year": 1976,
-      "director": "John G. Avildsen",
+      title: "Rocky",
+      year: 1976,
+      director: "John G. Avildsen",
       "duration": "2h",
-      "genre": [
+      genre: [
         "Drama",
         "Sport"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Catch Me If You Can",
-      "year": 2002,
-      "director": "Steven Spielberg",
+      title: "Catch Me If You Can",
+      year: 2002,
+      director: "Steven Spielberg",
       "duration": "2h 21min",
-      "genre": [
+      genre: [
         "Biography",
         "Crime",
         "Drama"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Touch of Evil",
-      "year": 1958,
-      "director": "Orson Welles",
+      title: "Touch of Evil",
+      year: 1958,
+      director: "Orson Welles",
       "duration": "1h 35min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Film-Noir",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Les diaboliques",
-      "year": 1955,
-      "director": "Henri-Georges Clouzot",
+      title: "Les diaboliques",
+      year: 1955,
+      director: "Henri-Georges Clouzot",
       "duration": "1h 57min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Horror",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Gandhi",
-      "year": 1982,
-      "director": "Richard Attenborough",
+      title: "Gandhi",
+      year: 1982,
+      director: "Richard Attenborough",
       "duration": "3h 11min",
-      "genre": [
+      genre: [
         "Biography",
         "Drama",
         "History"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Donnie Darko",
-      "year": 2001,
-      "director": "Richard Kelly",
+      title: "Donnie Darko",
+      year: 2001,
+      director: "Richard Kelly",
       "duration": "1h 53min",
-      "genre": [
+      genre: [
         "Drama",
         "Sci-Fi",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Munna Bhai M.B.B.S.",
-      "year": 2003,
-      "director": "Rajkumar Hirani",
+      title: "Munna Bhai M.B.B.S.",
+      year: 2003,
+      director: "Rajkumar Hirani",
       "duration": "2h 36min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama",
         "Romance"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Monsters, Inc.",
-      "year": 2001,
-      "director": "Pete Docter",
+      title: "Monsters, Inc.",
+      year: 2001,
+      director: "Pete Docter",
       "duration": "1h 32min",
-      "genre": [
+      genre: [
         "Animation",
         "Adventure",
         "Comedy",
         "Family",
         "Fantasy"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Star Wars: Episode VII - The Force Awakens",
-      "year": 2015,
-      "director": "J.J. Abrams",
+      title: "Star Wars: Episode VII - The Force Awakens",
+      year: 2015,
+      director: "J.J. Abrams",
       "duration": "2h 16min",
-      "genre": [
+      genre: [
         "Action",
         "Adventure",
         "Fantasy",
         "Sci-Fi"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Annie Hall",
-      "year": 1977,
-      "director": "Woody Allen",
+      title: "Annie Hall",
+      year: 1977,
+      director: "Woody Allen",
       "duration": "1h 33min",
-      "genre": [
+      genre: [
         "Comedy",
         "Romance"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "The Terminator",
-      "year": 1984,
-      "director": "James Cameron",
+      title: "The Terminator",
+      year: 1984,
+      director: "James Cameron",
       "duration": "1h 47min",
-      "genre": [
+      genre: [
         "Action",
         "Sci-Fi"
       ],
-      "rate": 8
+      rate: 8
     },
     {
-      "title": "Barry Lyndon",
-      "year": 1975,
-      "director": "Stanley Kubrick",
+      title: "Barry Lyndon",
+      year: 1975,
+      director: "Stanley Kubrick",
       "duration": "3h 4min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama",
         "History",
         "War"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "The Bourne Ultimatum",
-      "year": 2007,
-      "director": "Paul Greengrass",
+      title: "The Bourne Ultimatum",
+      year: 2007,
+      director: "Paul Greengrass",
       "duration": "1h 55min",
-      "genre": [
+      genre: [
         "Action",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "The Wizard of Oz",
-      "year": 1939,
-      "director": "Victor Fleming",
+      title: "The Wizard of Oz",
+      year: 1939,
+      director: "Victor Fleming",
       "duration": "1h 42min",
-      "genre": [
+      genre: [
         "Adventure",
         "Family",
         "Fantasy",
         "Musical"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Groundhog Day",
-      "year": 1993,
-      "director": "Harold Ramis",
+      title: "Groundhog Day",
+      year: 1993,
+      director: "Harold Ramis",
       "duration": "1h 41min",
-      "genre": [
+      genre: [
         "Comedy",
         "Fantasy",
         "Romance"
       ],
-      "rate": 8
+      rate: 8
     },
     {
-      "title": "La haine",
-      "year": 1995,
-      "director": "Mathieu Kassovitz",
+      title: "La haine",
+      year: 1995,
+      director: "Mathieu Kassovitz",
       "duration": "1h 38min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "8½",
-      "year": 1963,
-      "director": "Federico Fellini",
+      title: "8½",
+      year: 1963,
+      director: "Federico Fellini",
       "duration": "2h 18min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Jaws",
-      "year": 1975,
-      "director": "Steven Spielberg",
+      title: "Jaws",
+      year: 1975,
+      director: "Steven Spielberg",
       "duration": "2h 4min",
-      "genre": [
+      genre: [
         "Adventure",
         "Drama",
         "Thriller"
       ],
-      "rate": 8
+      rate: 8
     },
     {
-      "title": "Twelve Monkeys",
-      "year": 1995,
-      "director": "Terry Gilliam",
+      title: "Twelve Monkeys",
+      year: 1995,
+      director: "Terry Gilliam",
       "duration": "2h 9min",
-      "genre": [
+      genre: [
         "Mystery",
         "Sci-Fi",
         "Thriller"
       ],
-      "rate": 8
+      rate: 8
     },
     {
-      "title": "The Best Years of Our Lives",
-      "year": 1946,
-      "director": "William Wyler",
+      title: "The Best Years of Our Lives",
+      year: 1946,
+      director: "William Wyler",
       "duration": "2h 50min",
-      "genre": [
+      genre: [
         "Drama",
         "Romance",
         "War"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Mou gaan dou",
-      "year": 2002,
-      "director": "Wai-Keung Lau",
+      title: "Mou gaan dou",
+      year: 2002,
+      director: "Wai-Keung Lau",
       "duration": "1h 41min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Mystery",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Paris, Texas",
-      "year": 1984,
-      "director": "Wim Wenders",
+      title: "Paris, Texas",
+      year: 1984,
+      director: "Wim Wenders",
       "duration": "2h 25min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "The Help",
-      "year": 2011,
-      "director": "Tate Taylor",
+      title: "The Help",
+      year: 2011,
+      director: "Tate Taylor",
       "duration": "2h 26min",
-      "genre": [
+      genre: [
         "Drama"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Faa yeung nin wa",
-      "year": 2000,
-      "director": "Kar-Wai Wong",
+      title: "Faa yeung nin wa",
+      year: 2000,
+      director: "Kar-Wai Wong",
       "duration": "1h 38min",
-      "genre": [
+      genre: [
         "Drama",
         "Romance"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Sholay",
-      "year": 1975,
-      "director": "Ramesh Sippy",
+      title: "Sholay",
+      year: 1975,
+      director: "Ramesh Sippy",
       "duration": "3h 18min",
-      "genre": [
+      genre: [
         "Action",
         "Adventure",
         "Comedy",
@@ -2876,94 +2876,94 @@ let movies = [
         "Musical",
         "Thriller"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Beauty and the Beast",
-      "year": 1991,
-      "director": "Gary Trousdale",
+      title: "Beauty and the Beast",
+      year: 1991,
+      director: "Gary Trousdale",
       "duration": "1h 24min",
-      "genre": [
+      genre: [
         "Animation",
         "Family",
         "Fantasy",
         "Musical",
         "Romance"
       ],
-      "rate": 8
+      rate: 8
     },
     {
-      "title": "La battaglia di Algeri",
-      "year": 1966,
-      "director": "Gillo Pontecorvo",
+      title: "La battaglia di Algeri",
+      year: 1966,
+      director: "Gillo Pontecorvo",
       "duration": "2h 1min",
-      "genre": [
+      genre: [
         "Drama",
         "War"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Ah-ga-ssi",
-      "year": 2016,
-      "director": "Chan-wook Park",
+      title: "Ah-ga-ssi",
+      year: 2016,
+      director: "Chan-wook Park",
       "duration": "2h 24min",
-      "genre": [
+      genre: [
         "Crime",
         "Drama",
         "Mystery",
         "Romance",
         "Thriller"
       ],
-      "rate": 8.1
+      rate: 8.1
     },
     {
-      "title": "Pirates of the Caribbean: The Curse of the Black Pearl",
-      "year": 2003,
-      "director": "Gore Verbinski",
+      title: "Pirates of the Caribbean: The Curse of the Black Pearl",
+      year: 2003,
+      director: "Gore Verbinski",
       "duration": "2h 23min",
-      "genre": [
+      genre: [
         "Action",
         "Adventure",
         "Fantasy"
       ],
-      "rate": 8
+      rate: 8
     },
     {
-      "title": "PK",
-      "year": 2014,
-      "director": "Rajkumar Hirani",
+      title: "PK",
+      year: 2014,
+      director: "Rajkumar Hirani",
       "duration": "2h 33min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama",
         "Fantasy",
         "Sci-Fi"
       ],
-      "rate": 8.2
+      rate: 8.2
     },
     {
-      "title": "Dog Day Afternoon",
-      "year": 1975,
-      "director": "Sidney Lumet",
+      title: "Dog Day Afternoon",
+      year: 1975,
+      director: "Sidney Lumet",
       "duration": "2h 5min",
-      "genre": [
+      genre: [
         "Biography",
         "Crime",
         "Drama",
         "Thriller"
       ],
-      "rate": 8
+      rate: 8
     },
     {
-      "title": "Dead Poets Society",
-      "year": 1989,
-      "director": "Peter Weir",
+      title: "Dead Poets Society",
+      year: 1989,
+      director: "Peter Weir",
       "duration": "2h 8min",
-      "genre": [
+      genre: [
         "Comedy",
         "Drama"
       ],
-      "rate": 8
+      rate: 8
     }
   ]
