@@ -97,7 +97,7 @@ function orderByYear(moviesArr) {
 // }
 
 function orderAlphabetically(moviesArr) {
-    const ordered = movies.map(function (movie) {
+    const ordered = moviesArr.map(function (movie) {
         return movie.title
     }).sort(function (a, b) {
         return a.localeCompare(b);
