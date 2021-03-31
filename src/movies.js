@@ -19,8 +19,7 @@ function getAllDirectors(moviesArr) {
 
 function howManyMovies(moviesArr) {
     const stevenSpielbergDrama = moviesArr.filter(function (movie) {
-        if (movie.director === 'Steven Spielberg' && movie.genre.includes('Drama'))
-            return true
+        return movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')
     })
     return stevenSpielbergDrama.length
 }
@@ -47,8 +46,7 @@ function ratesAverage(moviesArr) {
 
 function dramaMoviesRate(moviesArr) {
     const dramaMovies = moviesArr.filter(function (movie) {
-        if (movie.genre.includes('Drama'))
-            return true
+        return movie.genre.includes('Drama')
     })
     return ratesAverage(dramaMovies);
 }
