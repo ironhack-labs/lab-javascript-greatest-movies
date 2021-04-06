@@ -57,9 +57,36 @@ function ratesAverage(movies) {
     console.log(dramaMoviesRate(movies))
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+function orderByYear(movies){
+        const orderedMovies = movies.sort(function compare (a, b) {
+            if (a.year === b.year){
+                if (a.title< b.title){return -1;}
+                else if (a.title>b.title){return 1}
+                else {return 0}
+                } 
+        {return a.year - b.year; }        
+    }); return orderedMovies
+}
+
+console.log(orderByYear(movies))
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(movies){
+    const orderedMovies = movies.sort(function compare (a, b) {
+        if (a.title< b.title){return -1;}
+        else if (a.title>b.title){return 1}
+        else {return 0}
+        }); if (orderedMovies.length<20){
+            return orderedMovies.title
+            } else if (orderedMovies.length>=20) {
+                const orderedMovieTitles = orderedMovies.map((movie)=>{
+                    return movie.title
+                }); return orderedMovieTitles.slice(0, 20)
+                }        
+            }
 
+console.log(orderAlphabetically(movies))
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies){
     const moviesWithMinutes = movies.map((movie)=>
