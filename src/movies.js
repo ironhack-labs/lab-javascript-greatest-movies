@@ -94,12 +94,33 @@ function orderAlphabetically() {
     const ascend = place.reverse()
     const print = ascend.slice(0,20);
       return print
-    }
-    
+    } 
+  
     console.log(orderAlphabetically());
 
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
+function turnHoursToMinutes() {
+  const time = movies.map((movie) => {
+    return movie.duration
+  })
+  const only = time.replace(/h|min/gi, "");
+  const rem = only.split('');
+  return minutes[0] * 60 + minutes[2] + minutes[3]
+}
+
+console.log(turnHoursToMinutes());
+
+
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+
+function bestYearAvg() {
+  const start = movies.map((movie) => {
+    return movie.year
+  })
+ return start
+}
+
+console.log(bestYearAvg());
