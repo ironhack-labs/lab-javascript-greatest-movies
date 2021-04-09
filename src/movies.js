@@ -7,8 +7,15 @@
   }
 console.log(getAllDirectors(movies))
 
-// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (without duplicates)?
+/*  _Bonus_: It seems some of the directors had directed multiple movies so they 
+will pop up multiple times in the array of directors. How could you "clean" a bit this 
+array and make it unified (without duplicates)? */
 
+  const justDirectors = getAllDirectors(movies)
+  new Set(justDirectors)
+  let uniqueDirectors = uniqueDirectors.from(new Set(uniqueDirectors))
+  console.log(uniqueDirectors)
+  
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
   function howManyMovies (movies) {
@@ -36,7 +43,7 @@ console.log(getAllDirectors(movies))
     }, 0)
     return parseFloat(rateAverage.toFixed(2))
   }
-console.log(ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }]))
+console.log(ratesAverage(movies))
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesRate (movies) {
@@ -63,6 +70,15 @@ function orderByYear (movies) {
   console.log(orderByYear(movies))
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
+
+
+function orderAlphabetically(movies) {
+  const titles = movies.map((movie) =>  movie.title)
+  const sortedTitles = titles.sort() 
+  return sortedTitles.slice(0,20)
+  
+}
+console.log(orderAlphabetically(movies))
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
