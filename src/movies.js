@@ -36,7 +36,7 @@ const ratesAverage = (array) => {
     }
     let puntuacion = (promedios / array.length)
 
-    return parseInt(puntuacion.toFixed(2))
+    return Number(puntuacion.toFixed(2))
 
 }
 
@@ -74,7 +74,7 @@ const orderAlphabetically = (arr) => {
     });
     return sort.map(e => e.title).slice(0, 20);
 };
-console.log(orderAlphabetically(movies))
+console.log(orderAlphabetically(movies));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
