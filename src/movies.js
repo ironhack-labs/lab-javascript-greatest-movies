@@ -107,6 +107,68 @@ function orderByYear(movies) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
+
+// console.log(`-------- Jordan's way ----------`);
+
+
+function orderAlphabetically(moviesArr) {
+
+  const moviesClone = [...moviesArr];
+
+  moviesClone.sort((a, b) => a.title !== b.title ? a.title < b.title ? -1 : 1 : 0);
+
+  const titlesArr = moviesClone.map(function(movie) {
+    return movie.title;
+  });
+
+   if (titlesArr.length < 20) {
+    console.log(titlesArr);
+    return titlesArr;
+  } else {
+    console.log(titlesArr.slice(0, 20));
+    return titlesArr.slice(0, 20);
+  }  
+
+}
+
+
+  // --------------------
+
+// function orderAlphabetically(movies) {
+
+//     const replica = [...movies];
+//   let orderByTitle = replica.sort(function (a, b) {
+//       return a.title - b.title;
+//     });
+
+//     console.log(orderByTitle);
+//     return orderByTitle;
+// }
+
+  // --------------------
+
+
+  
+  // const titleList = movies.map(function (movie) {
+
+  //   return {title:movie.title};
+    
+  // })
+
+  // console.log(titleList);
+
+  // const orderedList = titleList.sort(function (a,b) {
+
+  //   return a - b;
+    
+  // })
+
+  // return orderedList;
+
+
+  // ---------------------------
+
+
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
