@@ -114,10 +114,8 @@ function orderAlphabetically(moviesArr) {
   });
 
    if (titlesArr.length < 20) {
-    console.log(titlesArr);
     return titlesArr;
   } else {
-    console.log(titlesArr.slice(0, 20));
     return titlesArr.slice(0, 20);
   }  
 
