@@ -1,8 +1,8 @@
 // Iteration 1: All directors? - Get the array of all directors.
 
-function getAllDirectors(movie){
+function getAllDirectors(movies){
     const directors = movies.map((movie) => {
-        return movie.director
+        return movie.director;
     })
     return directors;
 }
@@ -15,18 +15,37 @@ function getAllDirectors(movie){
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
-function giveDramaMovies(movie){
-    const dramaMovies = movies.map((movie) => {
-        return movie.genre[drama]
-    })
+function howManyMovies(movies){
+    const splielbergMovies = movies.filter(movie =>
+        movie.director["Steven Spielberg"] && movie.genre["Drama"]);
+        return splielbergMovies.length;    
 }
-// crear giveDramaMovies para darle esa "acción" a .map junto con el array de las pelis de Spilgberg
+    
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+
+function ratesAverage(movies){
+    const ratesSum = movies.reduce(function(acc, movie){
+        return acc + movie.rate
+    }, 0)
+    const averageRate = ratesSum / movies.rate.length;
+    const avgRate = averageRate.toFixed(2);
+    console.log(`Movies rate average is ${avgRate}`)
+}
+    
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+
+function orderByYear(movies){
+    const years = movies.year.sort(function(year1, year2){
+        year1-year2;
+    if (movie.year1 === movie.year2){
+        movie.title.sort()
+    } console.log(order)
+    })  
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
