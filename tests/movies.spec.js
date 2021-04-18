@@ -4,6 +4,7 @@
 /*
  * 1. getAllDirectors
  */
+
 describe(' All directors - getAllDirectors', () => {
   it('Defines getAllDirectors', () => {
     expect(typeof getAllDirectors).toBe('function');
