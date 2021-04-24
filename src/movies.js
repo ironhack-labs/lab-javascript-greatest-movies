@@ -21,21 +21,42 @@ function howManyMovies(moviesArr) {
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 function ratesAverage(moviesArr) {
-    if(moviesArr.length == 0) {
+    let newMoviesArr = moviesArr
+    if(newMoviesArr.length == 0) {
         return 0
     } else {
-      for (let i = 0; i < moviesArr.length; i++) {
-        if (moviesArr[i].rate == undefined) {
-          let newMoviesArr = moviesArr.splice(i, 1)
+      for (let i = 0; i < newMoviesArr.length; i++) {
+        if (newMoviesArr[i].rate == undefined) {
+          newMoviesArr.splice(i, 1)
         }
       }
-    let moviesTotalScore = moviesArr.reduce((acc, val) => {
+    let moviesTotalScore = newMoviesArr.reduce((acc, val) => {
         return acc + val.rate;
     }, 0);
-    return Math.round((moviesTotalScore / moviesArr.length)*100)/100
+    return Math.round((moviesTotalScore / newMoviesArr.length)*100)/100
 }}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
+
+function dramaMoviesRate(moviesArr) {
+    let newMoviesArr = moviesArr
+    if(newMoviesArr.length == 0) {
+        return 0
+    } else {
+      for (let i = 0; i < newMoviesArr.length; i++) {
+        if (newMoviesArr[i].rate == undefined) {
+          newMoviesArr.splice(i, 1)
+        }
+        if (!newMoviesArr[i].genre.includes("Drama")) {
+            newMoviesArr.splice(i, 1)
+          }
+      }
+    let moviesTotalScore = newMoviesArr.reduce((acc, val) => {
+        return acc + val.rate;
+    }, 0);
+    return Math.round((moviesTotalScore / newMoviesArr.length)*100)/100
+}
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
