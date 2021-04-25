@@ -54,10 +54,14 @@ function orderByYear(moviesArr) {
     let newMoviesArr = moviesArr
     newMoviesArr.sort(function(v1, v2) {
       if (v1.year === v2.year) {
-        return v1.title.toUpperCase() - v2.title.toUpperCase()
-      } else {
-         return v1.year > v2.year ? 1 : -1;
+        if(v1.title < v2.title) {
+          return -1
+        }
+        if(v1.title > v2.title){
+          return 1
+        }  
       }
+         return v1.year - v2.year;
       })
   return newMoviesArr
 }
