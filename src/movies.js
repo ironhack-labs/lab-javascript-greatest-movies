@@ -26,7 +26,7 @@ function ratesAverage(moviesArr) {
         return 0
     } else {
       for (let i = 0; i < newMoviesArr.length; i++) {
-        if (newMoviesArr[i].rate == undefined) {
+        if (typeof (newMoviesArr[i].rate) !== "number") {
           newMoviesArr.splice(i, 1)
         }
       }
@@ -55,13 +55,35 @@ function orderByYear(moviesArr) {
         } else if (v1.year > v2.year) {
             return +1
         } else {
-            return 0
+            return v1.title.toUpperCase() - v2.title.toUpperCase()
         }
     })
     return newMoviesArr
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+function orderAlphabetically(moviesArr) {
+    let newMoviesArr = moviesArr
+    newMoviesArr.sort(function(v1, v2) {
+        if (v1.title < v2.title) {
+            return -1
+        } else if (v1.title > v2.title) {
+            return +1
+        } else {
+          return 0
+        }}
+      )
+    let only20 = []
+    for (let i = 0; i < 20; i++) {
+        if (newMoviesArr[i] == undefined) {
+            break;
+        } else {
+        only20.push(newMoviesArr[i].title)
+    }
+    }
+    return only20
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
