@@ -26,6 +26,9 @@ function ratesAverage(moviesArr) {
         return 0
     } else {
       for (let i = 0; i < newMoviesArr.length; i++) {
+/*This next line should fix jasmine issue number 17: "Get the average 
+rate - ratesAverage Return average even if one of the movies does 
+not have rate!". But it doesn't, and I don't know why*/
         if (typeof (newMoviesArr[i].rate) !== "number") {
           newMoviesArr.splice(i, 1)
         }
@@ -50,15 +53,13 @@ function dramaMoviesRate(moviesArr) {
 function orderByYear(moviesArr) {
     let newMoviesArr = moviesArr
     newMoviesArr.sort(function(v1, v2) {
-        if (v1.year < v2.year) {
-            return -1
-        } else if (v1.year > v2.year) {
-            return +1
-        } else {
-            return v1.title.toUpperCase() - v2.title.toUpperCase()
-        }
-    })
-    return newMoviesArr
+      if (v1.year === v2.year) {
+        return v1.title.toUpperCase() - v2.title.toUpperCase()
+      } else {
+         return v1.year > v2.year ? 1 : -1;
+      }
+      })
+  return newMoviesArr
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
