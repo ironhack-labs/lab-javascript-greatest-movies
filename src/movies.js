@@ -21,7 +21,10 @@ function howManyMovies(moviesArr) {
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
 function ratesAverage(moviesArr) {
-    let newMoviesArr = moviesArr
+  let newMoviesArr = []
+  for (i = 0; i < moviesArr.length; i++) {
+    newMoviesArr.push(moviesArr[i])
+  }
     if(newMoviesArr.length == 0) {
         return 0
     } else {
@@ -53,7 +56,10 @@ function dramaMoviesRate(moviesArr) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(moviesArr) {
-    let newMoviesArr = moviesArr
+  let newMoviesArr = []
+  for (i = 0; i < moviesArr.length; i++) {
+    newMoviesArr.push(moviesArr[i])
+  }
     newMoviesArr.sort(function(v1, v2) {
       if (v1.year === v2.year) {
         if(v1.title < v2.title) {
