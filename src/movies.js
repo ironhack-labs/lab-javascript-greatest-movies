@@ -26,9 +26,11 @@ function ratesAverage(moviesArr) {
         return 0
     } else {
       for (let i = 0; i < newMoviesArr.length; i++) {
-/*This next line should fix jasmine issue number 17: "Get the average 
+/*
+This next line should fix jasmine issue number 17: "Get the average 
 rate - ratesAverage Return average even if one of the movies does 
-not have rate!". But it doesn't, and I don't know why*/
+not have rate!". But it doesn't, and I don't know why
+*/
         if (typeof (newMoviesArr[i].rate) !== "number") {
           newMoviesArr.splice(i, 1)
         }
@@ -69,7 +71,11 @@ function orderByYear(moviesArr) {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(moviesArr) {
-    let newMoviesArr = moviesArr
+//This next loop is not to mutate the original array
+  let newMoviesArr = []
+    for (i = 0; i < moviesArr.length; i++) {
+      newMoviesArr.push(moviesArr[i])
+    }
     newMoviesArr.sort(function(v1, v2) {
         if (v1.title < v2.title) {
             return -1
