@@ -15,7 +15,7 @@ function howManyMovies(moviesArray) {
       return 0;
     }
     let dramonesDeSpielberg = moviesArray.filter((peli) => {
-      return peli.director === 'Steven Spielberg' && peli.genre.includes('Drama');
+      return peli.director === "Steven Spielberg" && peli.genre.includes("Drama");
     });
     return dramonesDeSpielberg.length;
   }
@@ -48,11 +48,28 @@ const dramaMoviesRate = (moviesArray) => {
     return ratesAverage(dramones)
 }
 
-
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+
+const orderByYear = moviesArray => {
+
+    let pelisAOrdenar = moviesArray.slice()
+
+        return pelisAOrdenar.sort(function(peli1, peli2) {
+            if (peli1.year > peli2.year) {
+                return 1;
+            } else if (peli1.year < peli2.year) {
+                return -1;
+            } else if (peli1.year === peli2.year) {
+                return peli1.title.localeCompare(peli2.title)
+        }
+    })
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
+  const orderAlphabetically = moviesArray => {
+      return moviesArray.map(peli => peli.title).sort().slice(0, 20)
+  }
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
