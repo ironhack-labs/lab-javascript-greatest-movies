@@ -146,25 +146,31 @@ function turnHoursToMinutes(pelis) {
 const bestYearAvg = (movies) => {
   if (movies.length <= 0) {
     return null;
-  } else {
-    const myObj = {};
-    const newArr = [];
-    movies.forEach((el) => {
-      if (!(el.year in myObj)) {
-        myObj[el.year] = true;
-        newArr.push(el.year);
-      }
-    });
-    let mejorAño = 0;
-    let mejorMedia = 0;
-    for (let año in newArr) {
-      let arrYear = movies.filter((el) => el.year.includes(año));
-      if (ratesAverage(arrYear) > mejorAño) {
-        mejorMedia = ratesAverage(arrYear);
-        mejorAño = año;
-      }
+  }
+  const myObj = {};
+  const newArr = [];
+  movies.forEach((el) => {
+    if (!(el.year in myObj)) {
+      myObj[el.year] = true;
+      newArr.push(el.year);
+    }
+  });
+  //console.log(newArr);
+  const newArr2 = newArr.sort();
+  const reversed = newArr2.reverse();
+  let mejorAño = 0;
+  let mejorMedia = 0;
+  //console.log(newArr2);
+
+  for (let año of reversed) {
+    //console.log(año);
+    let arrYear = movies.filter((peli) => peli.year == año);
+    if (ratesAverage(arrYear) >= mejorMedia) {
+      mejorMedia = ratesAverage(arrYear);
+      mejorAño = año;
     }
   }
-
   return `The best year was ${mejorAño} with an average rate of ${mejorMedia}`;
 };
+
+//console.log(bestYearAvg(movies));
