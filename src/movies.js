@@ -106,10 +106,65 @@ const orderAlphabetically = (nombres) => {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
-const turnHoursToMinutes = (pelis) => {};
+const convertMinute = (duracionM) => {
+  const minutDur = duracionM.split("min");
+  return Number(minutDur[0]);
+};
+
+const convertHour = (duracionH) => {
+  const horaDur = duracionH.split("h");
+  return Number(horaDur[0] * 60);
+};
+
+const convertDurat = (duracionC) => {
+  let divisiones = duracionC.split(" ");
+  let duracionMinutos = divisiones.reduce((sum, tiempo) => {
+    if (tiempo.includes("h")) {
+      return sum + convertHour(tiempo);
+    }
+    return sum + convertMinute(tiempo);
+  }, 0);
+  return duracionMinutos;
+};
+
+function turnHoursToMinutes(pelis) {
+  let pelisArr = pelis.map((pelicula) => {
+    let newArr = {};
+    newArr.title = pelicula.title;
+    newArr.year = pelicula.year;
+    newArr.director = pelicula.director;
+    newArr.duration = convertDurat(pelicula.duration);
+    newArr.genre = pelicula.genre;
+    newArr.rate = pelicula.rate;
+    return newArr;
+  });
+  return pelisArr;
+}
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
 
-const bestYearAvg = (mejor) => {
-  return "The best year was <YEAR> with an average rate of <RATE>";
+const bestYearAvg = (movies) => {
+  if (movies.length <= 0) {
+    return null;
+  } else {
+    const myObj = {};
+    const newArr = [];
+    movies.forEach((el) => {
+      if (!(el.year in myObj)) {
+        myObj[el.year] = true;
+        newArr.push(el.year);
+      }
+    });
+    let mejorAño = 0;
+    let mejorMedia = 0;
+    for (let año in newArr) {
+      let arrYear = movies.filter((el) => el.year.includes(año));
+      if (ratesAverage(arrYear) > mejorAño) {
+        mejorMedia = ratesAverage(arrYear);
+        mejorAño = año;
+      }
+    }
+  }
+
+  return `The best year was ${mejorAño} with an average rate of ${mejorMedia}`;
 };
