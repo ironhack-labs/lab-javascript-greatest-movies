@@ -43,6 +43,14 @@ const ratesAverage = (movies) => {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
+const dramaMoviesRate = (movies) => {
+  let drama = movies.filter(movie => movie.genre.includes("Drama"));
+  if(drama.length === 0){
+    return 0;
+  }
+  return ratesAverage(drama)
+}
+
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
