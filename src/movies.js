@@ -26,16 +26,20 @@ const howManyMovies = (movies) => {
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 const ratesAverage = (movies) => {
-    if(movies.lenght === 0){
+    if(movies.length === 0){
         return 0
       }
-    let sumRates = movies.reduce((acc, rates) => {
-      return acc + rates.rate
+    const sumRates = movies.reduce((acc, rates) => {
+      if(rates.rate){
+        return acc + rates.rate 
+      } else {
+        return acc
+      }  
     }, 0);
     const average = sumRates / movies.length
     return (Math.round(average * 100) / 100)
   }
-  console.log(ratesAverage((movies)))
+  console.log(ratesAverage(movies))
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
