@@ -16,20 +16,36 @@ function howManyMovies(array) {
         default:
             //No se le pasa a function por parametro el array, ya que ese trabajo ya lo hace el metodo al hacer: array.filter
             //Primero guardamos en un array todas las de Spielberg
-            const Spielberg = array.filter(element => element.director == "Steven Spielberg");
+            //  const Spielberg = array.filter(element => element.director == "Steven Spielberg");
             //Devolvemos el valor del ternario
             //Condición Truthy: Si no hay pelis de Spielberg en el array devuelve cero (Spileberg==false)
             //Condición Falsy: Si hay pelis de Spielberg, comprobar las de drama de Spielberg: Operador ternario anidado
             //Si las hay >> condicion Truthy: devuelve 2. Si no las hay >> condicion Falsy: devuelve 1
-            return Spielberg == false ? 0 : Spielberg.filter(element => element.genre.filter(element => element == "Drama")) ? 2 : 1;
-        // if (drama == true && array.filter(element => element.director == "Steven Spielberg") {
-        //     return 2
-        // } else {
-        //     return 1;
-        // }
-        //Si no hay ningun elemento que cumpla las condiciones (director y genero) filter será false.
-        // return drama== false ? 0 : movies.map(element => element.title);
-        // const movies = array.filter(element => element.director == "Steven Spielberg" && element.genre.filter(element => element == "Drama"));
+            //    return Spielberg == false ? 0 : Spielberg.filter(element => element.genre.filter(element => element == "Drama")) ? 2 : 1;
+            // if (drama == true && array.filter(element => element.director == "Steven Spielberg") {
+            //     return 2
+            // } else {
+            //     return 1;
+            // }
+            //Si no hay ningun elemento que cumpla las condiciones (director y genero) filter será false.
+            // return drama== false ? 0 : movies.map(element => element.title);
+            const moviesSpielberg = array.filter(element => {
+                if (element.director === "Steven Spielberg") {
+                    return true
+                } return false
+
+            })
+            const moviesDrama = moviesSpielberg.filter(movie => {
+                for (let i = 0; i < movie.genre.length; i++) {
+                    if (movie.genre[i] === "Drama") {
+                        return true;
+                    }
+                    //Si no encuentra drama iterando sera que nionguna lo es, por tanrto devuelve fALSE
+
+                } return false
+
+            })
+            return moviesDrama.length
         // //Si no hay ningun elemento que cumpla las condiciones (director y genero) filter será false.
         // return movies == false ? 0 : movies.map(element => element.title);
 
@@ -39,23 +55,28 @@ function howManyMovies(array) {
         //}
     }
 
-    howManyMovies(movies);
+    const ratesAverage = () => { }
     // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-    function ratesAverage(array) {
-        switch (array.length) {
-            case 0:
-                return 0
-                break
-            default:
-                //El resultado de la media: suma puntuaciones/numeros peliculas, debe redondearse a 2 decimales con el metodo toFixed()
-                const result = array.reduce((acc, element) => {
-                    if(element.rate=="NaN")
-                    return acc + element.rate
-                }, 0) / array.length;
-                return result.toFixed(2);
-        } 
-    }
-    ratesAverage(movies);
+    // function ratesAverage(array) {
+    //     switch (array.length) {
+    //         case 0:
+    //             return 0
+    //             break
+    //         default:
+    //             //El resultado de la media: suma puntuaciones/numeros peliculas, debe redondearse a 2 decimales con el metodo toFixed()
+    //             //Si el objeto no tiene propiedad devuelve "undefined". Por tanto: acc + undefined = NaN
+    //             const result = array.reduce((acc, element) => {
+    //                 if(!element.rate){
+    //                     return acc
+    //                 } else {
+    //                     return acc + element.rate
+    //                 }
+
+    //             }, 0) / array.length;
+    //             return result.toFixed(2);
+    //     } 
+    // }
+    // ratesAverage(movies);
 
     // Iteration 4: Drama movies - Get the average of Drama Movies
 
