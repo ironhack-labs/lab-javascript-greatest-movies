@@ -59,20 +59,21 @@ function howManyMovies(array) {
 // const ratesAverage = () => { }
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 function ratesAverage(array) {
-    if(array.length===0) {
-            return 0
-    }else {
-            //El resultado de la media: suma puntuaciones/numeros peliculas, debe redondearse a 2 decimales con el metodo toFixed()
-            //Si el objeto no tiene propiedad devuelve "undefined". Por tanto: acc + undefined = NaN
-            const result = array.reduce((acc, element) => {
-                if (!element.rate) {
-                    return acc
-                } else {
-                    return acc + element.rate
-                }
+    if (array.length === 0) {
+        return 0
+    } else {
+        //El resultado de la media: suma puntuaciones/numeros peliculas, debe redondearse a 2 decimales con el metodo toFixed()
+        //Si el objeto no tiene propiedad devuelve "undefined". Por tanto: acc + undefined = NaN
+        const result = array.reduce((acc, element) => {
+            if (!element.rate) {
+                return acc
+            } else {
+                return acc + element.rate
+            }
 
-            }, 0) / array.length;}
-            return result.toFixed(2);
+        }, 0) / array.length;
+    }
+    return result.toFixed(2);
 
 }
 
