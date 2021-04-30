@@ -1,12 +1,12 @@
 const movies = require('../src/data');
 const {
   bestYearAvg,
-  dramaMoviesRate,
+  dramaMoviesScore,
   getAllDirectors,
   howManyMovies,
   orderAlphabetically,
   orderByYear,
-  ratesAverage,
+  scoresAverage,
   turnHoursToMinutes
 } = require('../src/movies');
 
@@ -32,7 +32,7 @@ describe('Function "getAllDirectors"', () => {
         director: 'Stanley Kubrick',
         duration: '1h 28min',
         genre: ['Drama', 'War'],
-        rate: 8.4
+        score: 8.4
       },
       {
         title: 'Django Unchained',
@@ -40,7 +40,7 @@ describe('Function "getAllDirectors"', () => {
         director: 'Quentin Tarantino',
         duration: '2h 45min',
         genre: ['Drama', 'Western'],
-        rate: 8.4
+        score: 8.4
       }
     ];
     expect(getAllDirectors(testArr)).toEqual([
@@ -120,82 +120,84 @@ describe('Function "howManyMovies"', () => {
 });
 
 // Iteration 3
-describe('Function "ratesAverage"', () => {
+describe('Function "scoresAverage"', () => {
   it('should be declared', () => {
-    expect(typeof ratesAverage).toBe('function');
+    expect(typeof scoresAverage).toBe('function');
   });
 
   it('should return a number', () => {
-    expect(typeof ratesAverage(movies)).toBe('number');
+    expect(typeof scoresAverage(movies)).toBe('number');
   });
 
-  it(' should return the average rate of 2 movies with rate 8 each', () => {
-    expect(ratesAverage([{ rate: 8 }, { rate: 8 }])).toBe(8);
+  it(' should return the average score of 2 movies with score 8 each', () => {
+    expect(scoresAverage([{ score: 8 }, { score: 8 }])).toBe(8);
   });
 
   it('should be rounded to 2 decimals places', () => {
-    expect(ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }])).toBe(8.67);
+    expect(scoresAverage([{ score: 8 }, { score: 9 }, { score: 9 }])).toBe(
+      8.67
+    );
   });
 
   it('should return 0 if an empty array is passed', () => {
-    expect(ratesAverage([])).toBe(0);
+    expect(scoresAverage([])).toBe(0);
   });
 
-  it('should return average even if one of the movies does not have rate', () => {
-    expect(ratesAverage([{ rate: 6 }, { rate: '' }, {}])).toBe(2);
+  it('should return average even if one of the movies does not have score', () => {
+    expect(scoresAverage([{ score: 6 }, { score: '' }, {}])).toBe(2);
   });
 });
 
 // Iteration 4
-describe('Function "dramaMoviesRate"', () => {
+describe('Function "dramaMoviesScore"', () => {
   it('should be declared', () => {
-    expect(typeof dramaMoviesRate).toBe('function');
+    expect(typeof dramaMoviesScore).toBe('function');
   });
 
   it('should return a number', () => {
-    expect(typeof dramaMoviesRate(movies)).toBe('number');
+    expect(typeof dramaMoviesScore(movies)).toBe('number');
   });
 
-  it('should return the rate of a single element array', () => {
-    expect(dramaMoviesRate([{ genre: ['Drama'], rate: 8 }])).toBe(8);
+  it('should return the score of a single element array', () => {
+    expect(dramaMoviesScore([{ genre: ['Drama'], score: 8 }])).toBe(8);
   });
 
   it('should return the average of the rating of the drama movies in the array', () => {
     expect(
-      dramaMoviesRate([
-        { genre: ['Drama'], rate: 8 },
-        { genre: ['Drama'], rate: 9 },
-        { genre: ['Drama'], rate: 7 }
+      dramaMoviesScore([
+        { genre: ['Drama'], score: 8 },
+        { genre: ['Drama'], score: 9 },
+        { genre: ['Drama'], score: 7 }
       ])
     ).toBe(8);
   });
 
   it('should return the average of the array, a floating point number', () => {
     expect(
-      dramaMoviesRate([
-        { genre: ['Drama'], rate: 9 },
-        { genre: ['Drama'], rate: 9 },
-        { genre: ['Drama'], rate: 7 }
+      dramaMoviesScore([
+        { genre: ['Drama'], score: 9 },
+        { genre: ['Drama'], score: 9 },
+        { genre: ['Drama'], score: 7 }
       ])
     ).toBe(8.33);
   });
 
   it('should only calculate the average for drama movies', () => {
     expect(
-      dramaMoviesRate([
-        { genre: ['Drama'], rate: 8 },
-        { genre: ['Romance'], rate: 9 },
-        { genre: ['Drama'], rate: 7 }
+      dramaMoviesScore([
+        { genre: ['Drama'], score: 8 },
+        { genre: ['Romance'], score: 9 },
+        { genre: ['Drama'], score: 7 }
       ])
     ).toBe(7.5);
   });
 
   it('should return 0 if there is no Drama movie', () => {
     expect(
-      dramaMoviesRate([
-        { genre: ['Action'], rate: 8 },
-        { genre: ['Romance'], rate: 9 },
-        { genre: ['Sci-Fi'], rate: 7 }
+      dramaMoviesScore([
+        { genre: ['Action'], score: 8 },
+        { genre: ['Romance'], score: 9 },
+        { genre: ['Sci-Fi'], score: 7 }
       ])
     ).toBe(0);
   });
@@ -440,27 +442,27 @@ describe('Function "bestYearAvg"', () => {
   });
 
   it('should return the correct answer to a single element array', () => {
-    expect(bestYearAvg([{ year: 2007, rate: 8 }])).toEqual(
-      'The best year was 2007 with an average rate of 8'
+    expect(bestYearAvg([{ year: 2007, score: 8 }])).toEqual(
+      'The best year was 2007 with an average score of 8'
     );
   });
 
   it('should return the correct answer to a multiple elements array', () => {
     expect(bestYearAvg(movies)).toEqual(
-      'The best year was 1972 with an average rate of 9.2'
+      'The best year was 1972 with an average score of 9.2'
     );
   });
 
   it('should return the oldest year when there is a tie', () => {
     const newMoviesArr = [
-      { year: 2000, rate: 9 },
-      { year: 2000, rate: 8 },
-      { year: 1978, rate: 10 },
-      { year: 1978, rate: 7 }
+      { year: 2000, score: 9 },
+      { year: 2000, score: 8 },
+      { year: 1978, score: 10 },
+      { year: 1978, score: 7 }
     ];
 
     expect(bestYearAvg(newMoviesArr)).toEqual(
-      'The best year was 1978 with an average rate of 8.5'
+      'The best year was 1978 with an average score of 8.5'
     );
   });
 });
