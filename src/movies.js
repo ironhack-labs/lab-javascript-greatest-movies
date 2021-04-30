@@ -54,29 +54,29 @@ function howManyMovies(array) {
         //console.log(result3);
         //}
     }
+}
 
-    const ratesAverage = () => { }
-    // Iteration 3: All rates average - Get the average of all rates with 2 decimals
-    // function ratesAverage(array) {
-    //     switch (array.length) {
-    //         case 0:
-    //             return 0
-    //             break
-    //         default:
-    //             //El resultado de la media: suma puntuaciones/numeros peliculas, debe redondearse a 2 decimales con el metodo toFixed()
-    //             //Si el objeto no tiene propiedad devuelve "undefined". Por tanto: acc + undefined = NaN
-    //             const result = array.reduce((acc, element) => {
-    //                 if(!element.rate){
-    //                     return acc
-    //                 } else {
-    //                     return acc + element.rate
-    //                 }
+// const ratesAverage = () => { }
+// Iteration 3: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(array) {
+    if(array.length===0) {
+            return 0
+    }else {
+            //El resultado de la media: suma puntuaciones/numeros peliculas, debe redondearse a 2 decimales con el metodo toFixed()
+            //Si el objeto no tiene propiedad devuelve "undefined". Por tanto: acc + undefined = NaN
+            const result = array.reduce((acc, element) => {
+                if (!element.rate) {
+                    return acc
+                } else {
+                    return acc + element.rate
+                }
 
-    //             }, 0) / array.length;
-    //             return result.toFixed(2);
-    //     } 
-    // }
-    // ratesAverage(movies);
+            }, 0) / array.length;}
+            return result.toFixed(2);
+
+}
+
+ratesAverage(movies);
 
     // Iteration 4: Drama movies - Get the average of Drama Movies
 
@@ -87,4 +87,3 @@ function howManyMovies(array) {
     // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
     // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
-}
