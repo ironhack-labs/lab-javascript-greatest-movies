@@ -72,15 +72,36 @@ function ratesAverage(array) {
             }
 
         }, 0) / array.length;
-    }
-    return result.toFixed(2);
+        return Number(result.toFixed(2)); //Esto devuelve la media con 2 decimales en formato string (cadena numerica)
+        //Para transformar la cadena numerica a numeros utilizamos el objeto number
 
+    }
 }
 
 ratesAverage(movies);
 
-    // Iteration 4: Drama movies - Get the average of Drama Movies
+// Iteration 4: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(array) {
+    if (array.length === 0) {
+        return 0;
+    }
+    //Recorremos el array para almacenar las peliculas de genero drama 
+    const drama = array.filter(movie => movie.genre.indexOf("Drama") !== -1);
 
+    //A traves del metodo reduce() hacemos la sumatoria de las puntuaciones de las peliculas del array drama
+    //Para hacer la media dividimos lo anterior entre la longitud del array drama, de ahi que sea necesario haberlo hecho
+    //en 2 pasos, para ahora poder acceder a la longitud del array de peliculas de drama
+    //OPCION A
+    return drama.length === 0 ? 0 : Number((drama.reduce((acc, movie) => { return movie.rate + acc }, 0) / drama.length).toFixed(2))
+
+    //OPCION B
+    // if (drama.length === 0) {
+    //     return 0
+    // } else {
+    //     return Number((drama.reduce((acc, movie) => { return movie.rate + acc }, 0) / drama.length).toFixed(2));
+    // }
+}
+dramaMoviesRate(movies);
     // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
     // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
