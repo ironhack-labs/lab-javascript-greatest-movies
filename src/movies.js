@@ -63,7 +63,7 @@ const orderByYear = movies => {
    }else if(movie1.year < movie2.year){
      return -1;
    }else if(movie1.year === movie2.year){
-     return movie1.title.localCompare(movie2.title);
+     return movie1.title.localeCompare(movie2.title);
    }
  })
 }
