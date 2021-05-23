@@ -12,19 +12,20 @@ Best way to practice is to work with real data. In the **`src/data.js`** file yo
 
 ## Requirements
 
-- Fork this repo
-- Clone this repo
-- Practice JavaScript advanced methods (`map`, `reduce`, `filter` and `sort` to manipulate arrays)
+- Fork this repo.
+- Clone this repo.
+- - Visit the "actions" tab in your fork, and enable workflows.
+- Practice JavaScript advanced methods (`map`, `reduce`, `filter` and `sort` to manipulate arrays).
 
 ## Submission
 
 - Upon completion, run the following commands:
 
-  ```
-  git add .
-  git commit -m "done"
-  git push origin master
-  ```
+```bash
+$ git add .
+$ git commit -m "Solved lab"
+$ git push origin master
+```
 
 - Create Pull Request so your TAs can check up your work.
 
