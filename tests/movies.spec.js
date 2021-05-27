@@ -1,13 +1,13 @@
 const movies = require('../src/data');
 const {
-  bestYearAvg,
-  dramaMoviesScore,
   getAllDirectors,
   howManyMovies,
-  orderAlphabetically,
-  orderByYear,
   scoresAverage,
-  turnHoursToMinutes
+  dramaMoviesScore,
+  orderByYear,
+  orderAlphabetically,
+  turnHoursToMinutes,
+  bestYearAvg,
 } = require('../src/movies');
 
 // Iteration 1
