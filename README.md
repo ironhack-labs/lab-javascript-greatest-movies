@@ -12,19 +12,20 @@ Best way to practice is to work with real data. In the **`src/data.js`** file yo
 
 ## Requirements
 
-- Fork this repo
-- Clone this repo
-- Practice JavaScript advanced methods (`map`, `reduce`, `filter` and `sort` to manipulate arrays)
+- Fork this repo.
+- Clone this repo.
+- Visit the "actions" tab in your fork, and enable workflows.
+- Practice JavaScript advanced methods (`map`, `reduce`, `filter` and `sort` to manipulate arrays).
 
 ## Submission
 
 - Upon completion, run the following commands:
 
-  ```
-  git add .
-  git commit -m "done"
-  git push origin master
-  ```
+```bash
+$ git add .
+$ git commit -m "Solved lab"
+$ git push origin master
+```
 
 - Create Pull Request so your TAs can check up your work.
 
@@ -39,7 +40,7 @@ The `src/data.js` contains an array of 250 movies. We are talking about the arra
   "director":"Frank Darabont",
   "duration":"2h 22min",
   "genre":["Crime","Drama"],
-  "rate":9.3
+  "score":9.3
 }
 ```
 
@@ -70,11 +71,11 @@ One of the most famous directors in cinema is **[Steven Spielberg](https://en.wi
 
 Go ahead and create a `howManyMovies()` function that receives an array as a parameter and `filter` :eyes: the array so we can have only the **drama** movies where **Steven Spielberg** is the director.
 
-### Iteration 3: All rates average
+### Iteration 3: All scores average
 
-These are the best movies based on their rates, so supposedly all of them have a remarkable rate. In this iteration, we want to know the average rate of all of them and display it on the console. Create a `ratesAverage()` function that receives an array as a parameter and solves the challenge.
+These are the best movies based on their scores, so supposedly all of them have a remarkable score. In this iteration, we want to know the average score of all of them and display it on the console. Create a `scoresAverage()` function that receives an array as a parameter and solves the challenge.
 
-The rate must be returned rounded to 2 decimals!
+The score must be returned rounded to 2 decimals!
 
 **:bulb: Maybe you want to _"reduce"_ the data to a single value. :wink:**
 
@@ -82,7 +83,7 @@ The rate must be returned rounded to 2 decimals!
 
 Drama is the genre that repeats the most on our `array`. Apparently, people love drama! :eyes:
 
-Create a `dramaMoviesRate()` function that receives an array as a parameter to get the average rate of all drama movies! Let's see if it is better than the general average.
+Create a `dramaMoviesScore()` function that receives an array as a parameter to get the average score of all drama movies! Let's see if it is better than the general average.
 
 Again, rounded to 2 decimals!
 
@@ -118,7 +119,7 @@ Finding the longest movie is almost impossible using that format, so let's chang
   "director":"Frank Darabont",
   "duration":"2h 22min",
   "genre":["Crime","Drama"],
-  "rate":9.3
+  "score":9.3
 }
 ```
 
@@ -131,21 +132,21 @@ Should be:
   "director":"Frank Darabont",
   "duration":142,
   "genre":["Crime","Drama"],
-  "rate":9.3
+  "score":9.3
 }
 ```
 
 **Keep in mind**, you have to return a new array with all the info about movies, meaning, you shouldn't modify the original array.
 
-### BONUS - Iteration 8: Best yearly rate average
+### BONUS - Iteration 8: Best yearly score average
 
-We always hear so much about classic movies, but we want to know which year has the best average rate, so we can declare the **BEST YEAR FOR CINEMA** officially!
+We always hear so much about classic movies, but we want to know which year has the best average score, so we can declare the **BEST YEAR FOR CINEMA** officially!
 
-Go ahead and find which year have the best average rate for the movies that were released on that year!
-Create `bestYearAvg()` function that receives an array of movies and gives us an answer which year was the best year for cinema and what was its average rate. The `bestYearAvg()` should return a **string** with the following structure:
+Go ahead and find which year have the best average score for the movies that were released on that year!
+Create `bestYearAvg()` function that receives an array of movies and gives us an answer which year was the best year for cinema and what was its average score. The `bestYearAvg()` should return a **string** with the following structure:
 <br>
 
-**The best year was \<YEAR\> with an average rate of \<RATE\>**
+**The best year was \<YEAR\> with an average score of \<RATE\>**
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_dfc3fe557576abca4dba274e3aabe9a3.gif)
 
