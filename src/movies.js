@@ -1,7 +1,7 @@
 // Iteration 1: All directors? - Get the array of all directors.
 
 function getAllDirectors(arr){
-    let directors=arr.map(element=>element.director);
+    let directors=arr.map(element=>element.director); 
     return directors
   }
 
@@ -46,12 +46,12 @@ function orderByYear(arr){
                         )
   return arr.length===0? null : ordered
 }
-
+                                                          
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(arr){
-   
-    let orderedAlph=arr.sort(function (a,b){
+   let newArr=arr.slice()
+    let orderedAlph=newArr.sort(function (a,b){
         if (a.title<b.title) return -1
         if (a.title>b.title) return 1
         if (a.title===b.title) return 0});
@@ -64,12 +64,31 @@ function orderAlphabetically(arr){
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes(arr){
-    let changedDuration=arr.map(function(element){
+    let arrCopy=arr.slice();
+  
+    let durationArr=arrCopy.map(element=>element.duration)                    // making an Array Only with the Durations to work with 
+    let durationArrSplit=durationArr.map(element=>element.split(' '));     // Split that Array in to SubArrays     
+    let durationArrConv= [];                                  
+    const hRegex= new RegExp('h','g');                                      // regex for hours
+    const minRegex= new RegExp ('min','g');                                  // regex for minutes   
+    const d = /\d+/;   
+                                                     // regex for digits 
+          for(let i=0;i<durationArrSplit.length; i++){                         // 2 nested loops to iterate over the array and its subarray 
+                let x=0;
+                for(let j=0;j<durationArrSplit[i].length;j++)
+                    {
+                    if(hRegex.test(durationArrSplit[i][j])===true)              // if regex finds and "h"-value => take it and multiply it by 60 and add it to x
+                    {x+=((durationArrSplit[i][j].match(d))*60)};          
+                    if(minRegex.test(durationArrSplit[i][j])===true)             // if regex finds and "min"-value => take it and add it to x as it is 
+                    {x+=(durationArrSplit[i][j].match(d))*1}
+                    }
+                    durationArrConv.push(x)                                       // take final of x and push it to the new converted Arr! 
+                         };
+                            
+      for(let k=0;k<arrCopy.length;k++)                                       //loop over the duplicated Array and asign every duration the equivalent Value from the converted Array
+      {arrCopy[k].duration=durationArrConv[k]};
       
-    })
-
-}
-
-
+  return arrCopy
+      }
 
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
