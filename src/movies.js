@@ -105,17 +105,28 @@ function orderAlphabetically(movies) {
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {
+function turnHoursToMinutes(movies) {
 
+let newMovies = movies.map((m) => {
+
+})
+
+return newMovies;
 
 }
 
 
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {
+function bestYearAvg(movies) {
 
+let year = [];
+for (let i = 0; i < movies.length; i++) {
+let movie = movies[i];
+if (year.indexOf(movie) == -1)
+}
 
+return "The best year was <YEAR> with an average score of <RATE>"
 }
 
 
