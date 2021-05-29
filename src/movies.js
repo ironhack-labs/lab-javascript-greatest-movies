@@ -2033,9 +2033,9 @@ function howManyMovies(moviesArray) {
   let titleArray = spielbergArray.map((element) =>{
     return element.title;
   })
-  return titleArray;
+  return titleArray.length;
 }
-//console.log(howManyMovies(movies));
+console.log(howManyMovies(movies));
 
 
 
@@ -2080,7 +2080,7 @@ function orderAlphabetically(array) {
   let orderedByTitle = titles.sort();
   return orderedByTitle;
   } 
-console.log(orderAlphabetically(movies));
+//console.log(orderAlphabetically(movies));
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
