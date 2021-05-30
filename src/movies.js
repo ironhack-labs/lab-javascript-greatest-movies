@@ -2023,7 +2023,6 @@ let directorsArrayFilter = directorsArray.filter(function(director, indice){
 //console.log(directorsArrayFilter);
 
 
-
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 function howManyMovies(moviesArray) {
@@ -2035,8 +2034,7 @@ function howManyMovies(moviesArray) {
   })
   return titleArray.length;
 }
-console.log(howManyMovies(movies));
-
+//console.log(howManyMovies(movies));
 
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
@@ -2047,7 +2045,6 @@ function scoresAverage(array) {
   return Math.round(average*100)/100;
 }
 //console.log(scoresAverage(movies));
-
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -2063,12 +2060,21 @@ function dramaMoviesScore(array) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(array) {
-let orderedYears = array.sort(function(a, b){
-  return a.year -b.year;
-})
-return orderedYears;
+  let orderedYears = array.sort(function(a, b){
+    if(a.year !== b.year){
+      return a.year - b.year;
+    }else if(a.year === b.year){
+      let alphabet = array.sort(function(a,b){
+        a.title - b.title;  
+      })
+      return alphabet;
+    }  
+  })
+  return orderedYears;
 }
-//console.log(orderByYear(movies));
+console.log(orderByYear(movies));
+  
+  
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
