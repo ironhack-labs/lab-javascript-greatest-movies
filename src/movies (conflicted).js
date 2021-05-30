@@ -2005,10 +2005,7 @@ const movies = [
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(array) {
-  const director = array.map((movie) => movie.director); // list of directors
-  const duplicateDirector = director.filter((x,i) => director.indexOf(x) === i) // Bonus 1: remove duplicates directors
-  const sortDirector = duplicateDirector.sort() // ordered list of directors
-  return director
+  return array.map((movie) => movie.director);
 }
 // console.log(getAllDirectors(movies))
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -2049,25 +2046,24 @@ function dramaMoviesScore(array) {
 
   return scoresAverage(mediaDramaMovies)
 }
-// console.log(dramaMoviesScore(movies));
+console.log(dramaMoviesScore(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(array) {
-  const years = array.map((year) => year).sort((a,b) => a.year - b.year)
-  // const mapYears = years.sort((a,b) => a.year - b.year)
   
+  const years = array.sort((a,b) => a.year - b.year)
   return years
 }
 console.log(orderByYear(movies))
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(array) {
-  const movies = array.map((movies) => movies.title).sort()
-  console.log(movies)
-  const arrZeroToTwenty = movies.slice(0,20)
-  // console.log(arrZeroToTwenty)
-  return arrZeroToTwenty
+  const arrZeroToTwenty = arry.slice(0,20)
+  const movies = array.map((movies) => movies.title)
+  const moviesSort = movies.sort()
+
+  return moviesSort
 }
-// console.log(orderAlphabetically(movies))
+console.log(oder)
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
