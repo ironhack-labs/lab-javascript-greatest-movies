@@ -56,9 +56,14 @@ In the next a couple of iterations, you will be using your JS knowledge to manip
 
 ## Tests!
 
-Ohh yes! We have our beloved tests, and you already know how this works. Open your terminal, change directories into the root of the lab, and run `npm install` to install the test runner.
+Ohh yes! We have our beloved tests, and you already know how this works. Open your terminal, change directories into the root of the lab, and run `npm install` to install the test runner. Next, run the tests by running the command `npm run test:watch`. In summary, the steps are:
 
-Next, run the tests by running the command `npm run test:watch`.
+```shell
+$ cd lab-javascript-greatest-movies
+$ npm install
+$ npm run test:watch
+```
+
 And last, open the generated `lab-solution.html` file with the "Live Server" VSCode extension to see test results.
 
 Remember to focus on one test at a time and read carefully the instructions to understand what you have to do. The tests can be found in the `tests/movies.spec.js` file.
