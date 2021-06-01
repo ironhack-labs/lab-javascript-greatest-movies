@@ -2015,20 +2015,6 @@ function getAllDirectors(moviesArray) {
   });
   return allDirectors
 }
-// console.log(getAllDirectors(movies));
-
-// function noDupliDirectors(directorsArray) {
-//   const directors = directorsArray.filter(function (director) {
-//     if (director === director) {
-//       continue
-//     } else {
-//       directors.push(director);
-//     }
-//   });
-//   return directors;
-// }
-// console.log(noDupliDirectors(getAllDirectors(movies)));
-
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
@@ -2037,7 +2023,6 @@ function howManyMovies(moviesArray) {
   });
   return allSpielbergDramas.length;
 }
-//console.log(howManyMovies(movies));
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
@@ -2056,7 +2041,6 @@ function scoresAverage(moviesArray) {
     return Number((allScores / moviesArray.length).toFixed(2));
   } 
 } 
-// console.log(scoresAverage(movies));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
@@ -2074,7 +2058,6 @@ function dramaMoviesScore(moviesArray) {
     return Number((allDramasScores / allDramas.length).toFixed(2));
   } 
 } 
-// console.log(dramaMoviesScore(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
@@ -2098,7 +2081,6 @@ function orderByYear(moviesArray) {
   });
   return moviesYear
 }
-//console.log(orderByYear(movies))
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
@@ -2117,33 +2099,8 @@ function orderAlphabetically(moviesArray) {
   }); 
   return moviesAlphabetically.slice(0, 20)
 }
-// console.log(orderAlphabetically(test))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-let moviesTest = [
-  {
-    title: 'AAA',
-    duration: '0h 31min'
-  },
-  {
-    title: 'BBB',
-    duration: '5h 41min'
-  },
-  {
-    title: 'BBB',
-    duration: '4h 51min'
-  },
-  {
-    title: 'AAA',
-    duration: '2h'
-  },
-  {
-    title: 'AAA',
-    duration: '2h 1min'
-
-  }
-]
-
 function turnHoursToMinutes (moviesArray) {
   let moviesDuration = []
   moviesArray.forEach(element => {
@@ -2173,12 +2130,6 @@ function turnHoursToMinutes (moviesArray) {
   });
   return moviesDuration
 }
-
-console.log(turnHoursToMinutes(moviesTest));
-console.log(moviesTest);
-// console.log(movies);
-
-
 
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
