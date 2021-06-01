@@ -1,4 +1,4 @@
-// Iteration 1: All directors? - Get the array of all directors.
+
 const movies = [
   {
     title: 'The Shawshank Redemption',
@@ -2004,35 +2004,39 @@ const movies = [
 ];
 
 
-function getAllDirectors(array) {
-  let newArray = array.map(function(person){
-    return person.director;
-  })
-  return newArray;
-}
+// Iteration 1: All directors? - Get the array of all directors.
+// function getAllDirectors(array) {
+//   let newArray = array.map(function(person){
+//     return person.director;
+//   })
+//   return newArray;
+// }
 //console.log(getAllDirectors(movies));
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-
-let directorsArray = getAllDirectors(movies);
-//console.log(directorsArray);
-let directorsArrayFilter = directorsArray.filter(function(director, indice){
-  return directorsArray.indexOf(director) === indice;
-})
-//console.log(directorsArrayFilter);
+function getAllDirectors(array) {
+  let allDirectors = array.map(function(element){
+      return element.director;
+  })
+  let directorsFiltered = allDirectors.filter(function(element, index){
+      return allDirectors.indexOf(element) === index;
+  })
+return directorsFiltered;
+}
+//console.log(getAllDirectors(movies));
 
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-
 function howManyMovies(moviesArray) {
   let spielbergArray = moviesArray.filter(function(movie){
     return movie.director === 'Steven Spielberg' && movie.genre.includes('Drama');
   })
-  let titleArray = spielbergArray.map((element) =>{
-    return element.title;
-  })
-  return titleArray.length;
+  // let titleArray = spielbergArray.map((element) =>{
+  //   return element.title;
+  // })
+  // return titleArray.length;
+  return spielbergArray.length;
 }
 //console.log(howManyMovies(movies));
 
@@ -2072,28 +2076,40 @@ function orderByYear(array) {
   })
   return orderedYears;
 }
-console.log(orderByYear(movies));
+//console.log(orderByYear(movies));
   
   
-
-
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(array) {
-  let firstTwenty = array.slice(0,20);
-  let titles = firstTwenty.map(function(movie){
-    return movie.title;
+  let titlesArray = array.map(function(element){
+      return element.title;
   })
-  let orderedByTitle = titles.sort();
-  return orderedByTitle;
-  } 
+  let topTwentyOrder = titlesArray.sort().slice(0,20); 
+  return topTwentyOrder;
+}
 //console.log(orderAlphabetically(movies));
 
 
+
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(array) {
+  let hoursToMinutes = array.map(function(element){
+    if(!isNaN(Number(element.duration[4]))){ //se valor no indice[4] for numero
+     element.duration = Number(element.duration.slice(0,1)) * 60 + Number(element.duration.slice(3,5));
+    }else if(isNaN(Number(element.duration[4]))){ // se nao for numero
+     element.duration = Number(element.duration.slice(0,1)) * 60 + Number(element.duration.slice(3,4));
+    } 
+    let minutesArray = element; 
+    return minutesArray;
+  })
+  return hoursToMinutes;
+}
+//console.log(turnHoursToMinutes(movies));
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(){}
+ 
 
 
 
