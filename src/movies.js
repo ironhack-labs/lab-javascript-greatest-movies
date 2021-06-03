@@ -5,7 +5,10 @@ function getAllDirectors(movies) {
   let mappedDirectors = movies.map((singleMovie) => {
     return singleMovie.director
   })
-  return mappedDirectors
+  let noDuplicates = mappedDirectors.filter((item, ind) => {
+    return mappedDirectors.indexOf(item)== ind;
+  })
+  return noDuplicates
 }
 
 
@@ -77,10 +80,43 @@ function orderByYear(movies) {
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(movies) {
+  let clonedArray = JSON.parse(JSON.stringify(movies));
+  let output =  clonedArray.sort((first, second)=> {
+    if (first.title > second.title){
+      return 1;
+    }
+    else if (first.title < second.title){
+      return -1;
+    }else{
+      return 0
+    }
+  })
+  let mappedArray = output.map((elem) => {
+    return elem.title
+  })
+  return mappedArray.slice(0,20)
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(movies) {
+  let updatedTime = movies.map((value) => {
+    let result = JSON.parse(JSON.stringify(value));
+    let hoursStr = result.duration.split(" ")[0]; //"2h"
+    let minutesStr = "";
+    if (result.duration.includes("min")){
+      minutesStr = result.duration.split(" ")[1]; //"22min"
+    }else{
+      minutesStr = "0min";
+    }
+    let hours = Number(hoursStr[0]);
+    let minutes = Number(minutesStr.substring(0, minutesStr.length - 3));
+    let finalTime = hours*60 + minutes;
+    result.duration = finalTime;
+    return result;
+  })
+  return updatedTime;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
