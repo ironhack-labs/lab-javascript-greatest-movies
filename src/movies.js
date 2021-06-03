@@ -1,22 +1,83 @@
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
+
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors() {}
+function getAllDirectors(movies) {
+   
+  const movieMap = movies.map((movie) => movie.director );
+ 
+  return movieMap
+}
+//that receives an array of movies as an argument and returns a new (mapped array)
+
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(directors) {
+
+  const directorsFilter = directors.filter((directors) => getAllDirectors == 'Steven Spielberg'); // can i used a forEach?  instead? 
+
+  return directorsFilter.length  // index starts at 0 so take away one for extra number? DERP!!! IDK -- Feedback 
+
+}
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(score) {
+
+  const averageScore =  score.reduce(score,0)/ averageScore.length 
+   // new array to hold the average   
+  //2 decimal scores -  this will need to be fixed with a method rounding *Floating numbers issue*
+  // get sum so use reduce 
+  // divide .length of scores
+
+  return scoresAverage.toFixed(2);// to fix  decimal 
+
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore() {
+
+    // same logic  as before but only applied  movie.genre  =  "Drama"
+
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear() {
+// using sort 
+  let cloneNumber = JSON.parse( JSON.stringify(numbers)  ) //always clone first because data will get modified otherwise
+
+cloneNumber.sort((first, second) => { // this format to fix any wierd things like  10000 vs 1  example
+    if (first > second) {
+        return 1
+    }
+    else if (first < second) {
+      return -1
+    }
+    else {
+      return 0
+    }
+})
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically() {
+
+
+  let cloneAlphabetically = JSON.parse( JSON.stringify(numbers)  )
+  
+  cloneAlphabetically.sort((first, second) => { 
+    if (first > second) {
+        return 1
+    }
+    else if (first < second) {
+      return -1
+    }
+    else {
+      return 0
+    }
+})
+ return  // 20 titles  20 < .length
+
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
