@@ -1,6 +1,7 @@
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 
+const { findIndex } = require("./data");
 const movies = require("./data");
 
 // How could you "clean" a bit this array and make it unified (without duplicates)?
@@ -84,32 +85,65 @@ function orderAlphabetically(movies) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
   const clonedArray = JSON.parse(JSON.stringify(movies));
+
 clonedArray.forEach((movie) => {
-let hours = 0, mins = 0; 
+  let hours = 0, mins = 0; 
   if (movie.duration.includes('min')) {
- mins = parseInt(movie.duration.slice(-5,-3)) }
-if (movie.duration.includes('h')) {
- hours = parseInt(movie.duration.charAt(0)) * 60 }
-movie.duration = hours + mins 
-} )
+    mins = parseInt(movie.duration.slice(-5,-3)) 
+  } if (movie.duration.includes('h')) {
+    hours = parseInt(movie.duration.charAt(0)) * 60 
+  }
+  movie.duration = hours + mins 
+}
+)
 return clonedArray;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(movies) {}
-//   const clonedArray = JSON.parse(JSON.stringify(movies));
-//    let years = movies.map((movie) => {
-//     return movie.year})
- 
-//   let uniqueYears = years.filter((item, pos, self ) => {
-//     return self.indexOf(item) == pos;
-//   })
-   
- 
-//     )
+function bestYearAvg(movies) {
   
-// return `The best year was ${year} with an average score of ${rate}`
-// }
+  if (!movies.length) {return null};
+
+  const clonedArray = JSON.parse(JSON.stringify(movies));
+   
+  let yearList = []  
+  
+  clonedArray.forEach((movie) => {
+    if (!yearList.includes(movie.year)) {
+        yearList.push(movie.year)
+        }
+  })
+  
+  let fullList = []
+  fullList = yearList.map((year, index, array) => {
+    return { 'year' : year, 'avg' : 0 }
+  })
+  
+  fullList.forEach((elem, index, array) => {
+    elem.avg = scoresAverage(clonedArray.filter((movie, ind) =>{
+     return movie.year === elem.year}))
+  })
+  
+  fullList.sort((a,b) => {
+    if (a.avg > b.avg) { 
+      return -1
+    } else if (a.avg < b.avg) {
+      return +1
+    } else if (a.avg === b.avg) 
+    {  if (a.year < b.year) {
+       return -1
+    }  else  if (a.year > b.year) {
+         return +1
+       } else {
+         return 0
+       }
+    }
+   })
+  return `The best year was ${fullList[0].year} with an average score of ${fullList[0].avg}`
+
+  }
+
+
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
 if (typeof module !== 'undefined') {
