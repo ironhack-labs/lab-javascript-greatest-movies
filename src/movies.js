@@ -14,9 +14,11 @@ function getAllDirectors(movies) {
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(directors) {
 
-  const directorsFilter = directors.filter((directors) => getAllDirectors == 'Steven Spielberg'); // can i used a forEach?  instead? 
+  const directorsFilter = directors.filter((directors) => getAllDirectors == 'Steven Spielberg' && movie.genre.includes('Drama'); // can i used a forEach?  instead? 
+  //get director S.S. and drama 
 
-  return directorsFilter.length  // index starts at 0 so take away one for extra number? DERP!!! IDK -- Feedback 
+  return directorsFilter.length   //  gets the count 
+  //index starts at 0 so take away one for extra number? DERP!!! IDK -- Feedback 
 
 }
 
@@ -34,9 +36,9 @@ function scoresAverage(score) {
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {
-
-    // same logic  as before but only applied  movie.genre  =  "Drama"
+function dramaMoviesScore(score) {
+  const averageScore =  score.reduce(score,0)/ averageScore.length => score.genre == 'Drama' );
+    // same logic  as before but only applied   if  movie.genre  =  "Drama"
 
 }
 
@@ -65,7 +67,8 @@ function orderAlphabetically() {
   let cloneAlphabetically = JSON.parse( JSON.stringify(numbers)  )
   
   cloneAlphabetically.sort((first, second) => { 
-    if (first > second) {
+    
+    if else(first > second) {
         return 1
     }
     else if (first < second) {
@@ -75,9 +78,14 @@ function orderAlphabetically() {
       return 0
     }
 })
- return  // 20 titles  20 < .length
+  
+  if (20<=cloneAlphabetically.length) { // 20 titles  if   20 < .length
+    return  cloneAlphabetically
+ }
 
 }
+  
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
