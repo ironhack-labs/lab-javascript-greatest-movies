@@ -33,6 +33,16 @@ function scoresAverage(score) {
 
   return scoresAverage.toFixed(2);// to fix  decimal 
 
+if ( movies.length==0 not a git repository (or any of the parent directories): .git){
+return 0
+}
+  let sum = movies.reduce(()) => 
+  {
+ return acc + movie.score
+  }
+
+  // forgot tp pass to a number ...   use a plus or Number()
+
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
