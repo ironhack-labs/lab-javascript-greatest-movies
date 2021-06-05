@@ -34,8 +34,7 @@ function scoresAverage(movies) {
       }
     }, 0)
     const med = scoreMovies/movies.length
-    const roundes = med.toFixed(2)
-    return Number(roundes)
+    return Number(med.toFixed(2))
   }
   
 }
@@ -45,22 +44,95 @@ function dramaMoviesScore(movies) {
   const dramaMovies = movies.filter((drama)=>{
     return drama.genre.includes("Drama")
   })
-  const scoresDrama = scoresAverage(dramaMovies)
-  return scoresDrama
+  return scoresAverage(dramaMovies)
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
-
-  const sortedYear = movies.sort(movies.year)
-  return sortedYear
+  const sortedYear = [...movies]
+  sortedYear.sort((a, b) => {
+    if (a.year > b.year){
+      return 1;
+    }
+    else if (a.year < b.year){
+      return -1;
+    }
+    else{
+      if (a.title > b.title){
+        return 1;
+      }
+      else if (a.title < b.title){
+        return -1;
+      }
+      else {
+        return 0;
+      }
+    }
+  })
+  return sortedYear;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(movies) {
+  const orderAlphabetically = [...movies];
+  return orderAlphabetically.sort((a,b) => {
+    if (a.title > b.title){
+      return 1;
+    }
+    else if (a.title < b.title){
+      return -1;
+    } else {
+      return 0;
+    }
+  }).map((titles)=> titles.title).slice(0, 20);
+
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(movies) {
+  let moviesCopy = [...movies]
+  let splited = ""
+  let hours
+  let sepH
+  let sepMin
+  let soma
+  let moviesSplit =  moviesCopy.map((movieDur) => {
+    splited = movieDur.duration.split(" ")
+    for (let i = 0; i<splited.length; i++){
+      
+      if (splited[i].includes("h")){
+        sepH = splited[i].slice(0, -1)
+        hours = Number(sepH) * 60
+        //console.log("-> ",hours )
+        // console.log(hours)
+      }
+      else if (splited[i].includes("min")){
+        sepMin = splited[i].slice(0, -3)
+        // console.log(sepMin)
+      }
+      if (!movieDur.duration.includes("h")){
+          hours = 0
+      }
+      else if (!movieDur.duration.includes("min")){
+          sepMin = 0
+      }
+      soma = hours + Number(sepMin)
+      
+      
+    }
+    let finalList = {}
+    finalList.title = movieDur.title
+    finalList.year = movieDur.year
+    finalList.director = movieDur.director
+    finalList.duration = soma
+    finalList.genre = movieDur.genre
+    finalList.score = movieDur.score
+    return finalList
+  })
+ // return moviesCopy
+
+  return moviesSplit
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
