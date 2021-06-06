@@ -6,21 +6,14 @@ const movies = require("./data");
 
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(movies) {
-  let mappedDirectors = movies.map((singleMovie) => {
-    return singleMovie.director
-  })
-  return mappedDirectors
+  return movies.map(singleMovie => singleMovie.director)
 }
 
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(movies) {
-  let spielbergDramas = movies.filter((movie) => {
-    return movie.director == 'Steven Spielberg' && movie.genre.includes('Drama')
-   })
-   return spielbergDramas.length
+  return movies.filter((movie) => movie.director == 'Steven Spielberg' && movie.genre.includes('Drama'))
 }
-
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(movies) {
   if (!movies.length) {return 0};
