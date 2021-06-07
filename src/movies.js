@@ -2004,6 +2004,8 @@ const movies = [
     score: 8
   }
 ];
+//comments--lang:SPANGLISH or whatever you'd like, I'll be translating
+
 function getAllDirectors(array) {
   const directors = array.map(eachMovie => eachMovie.director)
 
@@ -2018,8 +2020,8 @@ function howManyMovies(lucaThisIsAnArray) {//thanksgod
   return filtered2.length || 0
 
 }
-console.log(howManyMovies(movies))
-console.log(howManyMovies([
+console.log('howmany', howManyMovies(movies))
+console.log('howmany', howManyMovies([
   {
     director: 'Steven Spielberg',
     genre: ['Action', 'Drama', 'Thriller']
@@ -2044,14 +2046,15 @@ console.log(howManyMovies([
 // we want to know the average score of all of them and display it on the console.
 // Create a`scoresAverage()` function that receives an array as a parameter and solves the challenge.
 function scoresAverage(array) {
-  //const filterDrama = 'Drama'
-  //const filtered = array.filter(eachMovie => eachMovie.genre.includes(filterDrama))
-  //const sumScores = filtered.reduce((acc, eachMovie) => { return acc + eachMovie.score }, 0)
-  const sumScores = array.reduce((acc, eachMovie) => { return acc + eachMovie.score }, 0)
-  return parseFloat((sumScores / array.length).toFixed(2))||0
+  const sumScores = array.reduce((acc, eachMovie) => {
+    // if (eachMovie.score == false) { eachMovie.score = scoresAverage }?? i tried also with filter like the following but wasn't working
+    return acc + eachMovie.score
+  }, 0)
+  const scoresAverage = parseFloat((sumScores / array.length).toFixed(2)) || 0
+  return scoresAverage
 }
-console.log(scoresAverage([{ score: 8 }, { score: 8 }]))
-console.log(scoresAverage(movies))
+console.log('scoresAverage', scoresAverage([{}, { score: 8 }]))
+console.log('scoresAverage', scoresAverage(movies))
 // Iteration 4: Drama movies - Get the average of Drama Movies
 // Drama is the genre that repeats the most on our`array`.
 // Apparently, people love drama! : eyes:
@@ -2059,17 +2062,41 @@ console.log(scoresAverage(movies))
 // function that receives an array as a parameter to get the average score of all drama movies! 
 // Let's see if it is better than the general average.
 
-function dramaMoviesScore() { }
-// console.log(dramaMoviesScore(movies))
+function dramaMoviesScore(array) {
+  const filterDrama = 'Drama'
+  const filtered = array.filter(eachMovie => eachMovie.genre.includes(filterDrama))
+  const sumScores = filtered.reduce((acc, eachMovie) => { return acc + eachMovie.score }, 0)
+  const avgDrama = parseFloat((sumScores / filtered.length).toFixed(2)) || 0
+  return avgDrama
+}
+console.log('ddramaavg', dramaMoviesScore(movies))
+console.log('ddramaavg', dramaMoviesScore([
+  { genre: ['Drama'], score: 8 },
+  { genre: ['Romance'], score: 9 },
+  { genre: ['Drama'], score: 7 }
+]))
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() { }
-// console.log(orderByYear(movies))
+function orderByYear(array) {
+const getYear = array.map(eachMovie=> eachMovie.year)
+const ordered = getYear.sort((a,b) => a-b)
+return ordered//como puedo lograr esto??? 
+ }
+console.log('year', orderByYear([{ year: 1982 }]))
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() { }
-// console.log(orderAlphabetically(movies))
+function orderAlphabetically(array) { 
+  const getTitle = array.map(eachMovie => eachMovie.title)
+  const ordered = getTitle.sort()// el que hace estas pruebas está loco o quiere que nos volvamos locos!!!
+  return ordered
+}
+console.log('title',orderAlphabetically( movies))
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() { }
-// console.log(turnHoursToMinutes(movies))
+function turnHoursToMinutes(array) {
+  const getTime = array.map(eachMovie => eachMovie.duration)
+  console.log('getTime',getTime)
+  const translateTime = [getTime].filter(eachItem => parseFloat(eachItem))
+  console.log('translate', typeof translateTime)
+}
+ console.log('hoursToMinutes',turnHoursToMinutes(movies))
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() { }
 // console.log(bestYearAvg(movies))
