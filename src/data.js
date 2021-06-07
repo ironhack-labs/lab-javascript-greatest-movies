@@ -44,7 +44,7 @@ const movies = [
     year: 1993,
     director: 'Steven Spielberg',
     duration: '3h 15min',
-    genre: ['Biography', 'Drama', 'History'],
+    genre: ['Biography', 'Drama', 'History'], 
     score: 8.9
   },
   {
