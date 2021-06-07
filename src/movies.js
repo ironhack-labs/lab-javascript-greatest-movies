@@ -34,12 +34,25 @@ const testmovies = [
 const movies = require("./data");
 
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-const getAllDirectors = (movies) => {
+// const getAllDirectors = (movies) => {
+//   const directors = movies.map((movie) => movie.director);
+//   console.log(directors);
+//     return directors;
+// };
+// getAllDirectors(movies);
+
+// How could you "clean" a bit this array and make it unified (without duplicates)?
+const getAllDirectors = (movies) => { 
   const directors = movies.map((movie) => movie.director);
   console.log(directors);
-    return directors;
+  return directors;
 };
-getAllDirectors(movies);
+  getAllDirectors(movies);
+
+// //SAME AS a traditional function
+// function getAllDir(film) {
+//   const dir = movies.map((film)
+// }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
   const howManyMovies = (movies) => { 
@@ -58,7 +71,7 @@ function howManyMovies_SS(movies) {
 console.log(howManyMovies_SS(movies));
 
 
-// Iteration 3: All scores average - Get the average of all scores with 2 decimals
+// Iteration 3: All scores average - Get the average of all scores with 2 decimals. NB function-in-function below...
 function scoresAverage(movies) {
 const sum = movies.reduce((accumulator, currentValue) => { //remember, we must have two params for .reduce function
   return accumulator + currentValue.score; //get the specific part of the obj .score as the .reduce function loops through
