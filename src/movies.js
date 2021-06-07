@@ -57,8 +57,6 @@ function orderAlphabetically(arr) {
 function turnHoursToMinutes(arr) {
   const newArr = JSON.parse(JSON.stringify(arr));
 
-  const time = newArr.duration;
-
   // sacando duration string
   const [{ duration }] = newArr;
   // separando tiempos
@@ -79,7 +77,38 @@ function turnHoursToMinutes(arr) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg() {
+  const newObj = [];
+
+  const arrScores = arr.filter((elem) => elem.score);
+
+  arrScores.forEach((element) => {
+    if (element.year in newObj) {
+      newObj[`${element.year}`].score += element.score;
+      newObj[`${element.year}`].repetition++;
+    } else {
+      newObj[`${element.year}`] = {
+        score: element.score,
+        repetition: 1
+      };
+    }
+  });
+  // console.log(newObj);
+  const x = newObj.map((elem) => elem.score / elem.repetition);
+  // console.log(x);
+  let newKey = [];
+
+  for (const key in x) {
+    newKey.push([key, x[key]]);
+  }
+
+  const data = newKey.sort((a, b) => b[1] - a[1]).splice(0, 1);
+  console.log(data[0]);
+  const [year, score] = data[0];
+  // // console.log(year + '---' + score);
+  // return `The best year was ${year} with an average score of ${score}`;
+  // The best year was 1972 with an average score of 9.2
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
