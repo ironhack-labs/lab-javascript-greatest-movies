@@ -2007,30 +2007,65 @@ const movies = [
 function getAllDirectors() {
   const directors = movies.map(eachMovie=> eachMovie.director)
   
-  return directors.filter((eachDirector,duplicate)=> directors.indexOf(eachDirector)===duplicate)
+  return directors//.filter((eachDirector,duplicate)=> directors.indexOf(eachDirector)===duplicate)
 }
 console.log(getAllDirectors())
-// Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+// Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct? 
+function howManyMovies(lucaThisIsAnArray) {//thanksgod 
+  const filterDrama = 'Drama'
+  const filtered1 = lucaThisIsAnArray.filter(eachFilm => eachFilm.director === 'Steven Spielberg')
+  const filtered2 = filtered1.filter(eachSSfilm => eachSSfilm.genre.indexOf(filterDrama)>=0)
+  return  filtered2.length || 0
+  
+}
+console.log(howManyMovies(movies))
+console.log(howManyMovies([
+  {
+    director: 'Steven Spielberg',
+    genre: ['Action', 'Drama', 'Thriller']
+  },
+  {
+    director: 'James McTeigue',
+    genre: ['Action', 'Drama']
+  },
+  {
+    director: 'Karl Moses',
+    genre: ['Thriller', 'Drama']
+  },
+  {
+    director: 'Steven Spielberg',
+    genre: ['Drama', 'Thriller']
+  }
+]))
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
+// These are the best movies based on their scores, 
+// so supposedly all of them have a remarkable score.In this iteration, 
+// we want to know the average score of all of them and display it on the console.
+// Create a`scoresAverage()` function that receives an array as a parameter and solves the challenge.
 function scoresAverage() {}
-
+console.log(scoresAverage(movies))
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+// Drama is the genre that repeats the most on our`array`.
+// Apparently, people love drama! : eyes:
+// Create a`dramaMoviesScore()` 
+// function that receives an array as a parameter to get the average score of all drama movies! 
+// Let's see if it is better than the general average.
 
+function dramaMoviesScore() {}
+console.log(dramaMoviesScore(movies))
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear() {}
-
+console.log(orderByYear(movies))
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
-
+console.log(orderAlphabetically(movies))
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
-
+console.log(turnHoursToMinutes(movies))
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
-
+console.log(bestYearAvg(movies))
 
 
 // The following is required to make unit tests work.
