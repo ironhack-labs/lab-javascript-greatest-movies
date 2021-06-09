@@ -74,49 +74,97 @@ console.log(getAllDirectors(movies));
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
-function howManyMovies(arr) {
- 
-  const movies = arr.filter(function(movie) {
-    return movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')
+function howManyMovies(movies) {
 
+  const filtered = movies.filter(function (film) {
+
+    if (film.director === 'Steven Spielberg' & film.genre.includes ('Drama')) {
+      return true
+    }
   })
 
-  return movies.length
+  return filtered.length
 }
 
-// Filter function
-// How many drama movies?
+console.log(howManyMovies(movies));
+
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 
-function scoresAverage() {}
+function scoresAverage(movies) {
 
-//movies.reduce(function (accumulator , currentValue))
+  if (movies.length === 0) return 0; 
 
+  const summe = movies.reduce(function (sum, movie) {
 
+    if (movie.score === '' || movie.score === undefined) {
+      movie.score = 0
+    }
+    
+    return sum + movie.score;
+  }, 0);
+  
+  const average = (summe / movies.length).toFixed(2);
+  const result = parseFloat(average);
+  
+  return result;
+}
 
-
-// reduce function
-// Score returned rounded to two decimals 
-
+// scoresAverage([{ score: 6 }, { score: '' }, {}])
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+
+function dramaMoviesScore(movies) {
+
+  const filterDramaMovies = movies.filter(function(movie) {
+    return movie.genre.includes('Drama');
+  }); 
+
+    return scoresAverage(filterDramaMovies);
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+
+  function orderByYear(movies) {
+
+    const sorted = movies.slice().sort(function(a,b) {
+  
+      if (a.year < b.year) return -1;
+      if (a.year > b.year) return 1; 
+      if (a.year === b.year) return a.title.localeCompare(b.title);
+  
+    })
+  
+    return sorted;
+  }
+  
+  console.log(orderByYear(movies));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+
+  function orderAlphabetically (movies) {
+
+    const ordered = movies.map(function(movie) {
+    
+    return movie.title;
+    
+    }).sort(function (a,b) {
+    
+    return a.localeCompare(b);
+    
+    }).slice(0,20);
+    
+    return ordered;
+    }
+    
+    console.log(orderAlphabetically(movies));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
-
-
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
@@ -132,6 +180,3 @@ if (typeof module !== 'undefined') {
     bestYearAvg,
   };
 }
-
-
-
