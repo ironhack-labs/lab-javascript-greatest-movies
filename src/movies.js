@@ -21,20 +21,26 @@ function howManyMovies(arr) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(arr) {
-  // function round(num) {
-  //   var m = Number((Math.abs(num) * 100).toPrecision(15));
-  //   return Math.round(m) / 100 * Math.sign(num);
-  // }
-  arr.reduce((acc, num) => {
-    //console.log(number.score)
-    return acc + num.score;
-  }, 0)
+    // function round(num) {
+    //   var m = Number((Math.abs(num) * 100).toPrecision(15));
+    //   return Math.round(m) / 100 * Math.sign(num);
+    // }
+    let totalScore
+
+    totalScore = arr.reduce((acc, val) => {
+      //console.log(number.score)
+      return acc + val.score;
+    }, 0);
+
+    let average = totalScore / arr.length;
+    return Number(average.toFixed(2))
+   //return Math.floor(average * 100) / 100
 }
 
-
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore() {
+  
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear() {}
