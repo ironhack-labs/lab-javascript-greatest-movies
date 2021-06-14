@@ -40,7 +40,9 @@ const scoresAverage = (arr) => {
     return acc + val.score
   }, 0);
   let average = sum / arr.length
+
   return Number(average.toFixed(2))
+  //return isNaN(Number(average.toFixed(2))) ? 0 : Number(average.toFixed(2))
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -71,7 +73,7 @@ const orderByYear = (array) => array.sort((a, b) => a.year - b.year)
 //   })
 // return variable.slice(0,20)
 // }
-
+// One line VERSION
 const orderAlphabetically = (array) => array.sort((a, b) => a.title.localeCompare(b.title)).slice(0, 20)
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
