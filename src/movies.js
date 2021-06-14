@@ -45,10 +45,8 @@ const scoresAverage = (arr) => {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 const dramaMoviesScore = (arr) => {
-  let dramaArray = arr.filter((eachMovie) => eachMovie.genre.includes('Drama'))
-  // return dramaArray // debug line
-  // console.log(dramaArray) debug line
-  return scoresAverage(dramaArray)
+    let dramaArray = arr.filter((eachMovie) => eachMovie.genre.includes('Drama'))
+    return isNaN(scoresAverage(dramaArray)) ? 0 : scoresAverage(dramaArray); // shorthand version of if-else statements
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
