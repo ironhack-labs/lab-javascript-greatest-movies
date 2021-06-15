@@ -4,31 +4,26 @@
 //const movies = require("./data");
 
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors() {
-  let copyAllDirectors = movies.map(movie => movie.director)
-  return copyAllDirectors;
-}
+// function getAllDirectors() {
+//   let copyAllDirectors = movies.map(movie => movie.director)
+//   return copyAllDirectors;
+// }
 
 //console.log(getAllDirectors);
-
-
-
-
-
-
-
-
-
-
-
-
-
+function getAllDirectors(array) {
+  let directorNames = array.map((eachMovie) => {
+    return eachMovie.director;
+  });
+  return directorNames;
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies() {
   return movies.filter((movie) => {
-    return (movie.director === "Steven Spielberg" && movie.genre.includes('Drama'))
-  })
+    return (
+      movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')
+    );
+  });
   //return spielberg.length;
 }
 
@@ -50,8 +45,6 @@ function turnHoursToMinutes() {}
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
 
-
-
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
 if (typeof module !== 'undefined') {
@@ -63,6 +56,6 @@ if (typeof module !== 'undefined') {
     orderByYear,
     orderAlphabetically,
     turnHoursToMinutes,
-    bestYearAvg,
+    bestYearAvg
   };
 }
