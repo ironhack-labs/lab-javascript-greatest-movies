@@ -10,9 +10,12 @@ const {
   bestYearAvg,
 } = require('../src/movies');
 
+/* Well this has been an absolute disaster. I don't even know what to ask. I thought these were making sense but put in this context I really don't understand how to apply what I've learnt to this. I can't seem to use the examples I've got from the classwork to get any of these to work. */
+
+
 // Iteration 1
-describe('Function "getAllDirectors"', () => {
-  it('should be declared', () => {
+function "getAllDirectors", () => {
+  it('getAllDirectors', () => {
     expect(typeof getAllDirectors).toBe('function');
   });
 
@@ -52,7 +55,7 @@ describe('Function "getAllDirectors"', () => {
 
 // Iteration 2
 
-describe('Function "howManyMovies"', () => {
+function howManyMovies(movies) /* => */{
   it('should be declared', () => {
     expect(typeof howManyMovies).toBe('function');
   });
@@ -120,10 +123,14 @@ describe('Function "howManyMovies"', () => {
 });
 
 // Iteration 3
-describe('Function "scoresAverage"', () => {
-  it('should be declared', () => {
-    expect(typeof scoresAverage).toBe('function');
-  });
+Function "scoresAverage", (arrayOfFilms) => {
+  const avgScore = arrayOfFilms.reduce( (total, movie) => {
+    if(movie.score) {
+      return total + movies.score/arrayOfFilms.length
+    }; 0;)
+  }
+  return avgScore
+  }
 
   it('should return a number', () => {
     expect(typeof scoresAverage(movies)).toBe('number');
