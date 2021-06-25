@@ -1,22 +1,86 @@
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors() {}
+
+
+const movies = require("./data");
+
+function getAllDirectors(movies) {
+
+  const arrDirectors = movies.map(
+    (dir) => dir.director)
+    return arrDirectors
+}
+ 
+
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(movies) {
+
+  const spielbergMovies = movies.filter(
+    (movie) => movie.director === "Steven Spielberg" && movie.genre.includes("Drama"))
+    return spielbergMovies.length
+}
+  
+
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(movies) {
+
+  if (movies.length === 0) {
+    return 0
+  }
+
+  const sumScores = movies.reduce((acumulador, valorActual) => {
+    if (valorActual.score) {
+      return acumulador + valorActual.score
+    } else {
+      return acumulador
+    }
+  }, 0)
+
+  const avgMovies = sumScores / movies.length
+  return Number(avgMovies.toFixed(2))
+
+}
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(movies) {
+
+  if (movies.length === 0) {
+    return 0
+  }
+
+  const dramaMovies = movies.filter(
+    (movie) => movie.genre.includes("Drama"))
+    return scoresAverage(dramaMovies)
+
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(movies) {
+
+  const yearSort = movies.sort((a, b) => a.year - b.year)
+  return yearSort
+}
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(movies) {
+  const arrMovies = movies.map(
+    (movie) => movie.title)
+
+    const alphMov = arrMovies.sort()
+
+    while (alphMov.length > 20)
+      alphMov.pop()
+
+    return alphMov
+
+}
+
+console.log(orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
