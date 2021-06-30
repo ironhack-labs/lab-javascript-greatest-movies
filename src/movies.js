@@ -114,7 +114,8 @@ function orderAlphabetically(movies) {
   return ordered;
 }
 
-// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes 
+//next step
 function turnHoursToMinutes() {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
