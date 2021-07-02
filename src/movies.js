@@ -79,7 +79,7 @@ function convertToMin(string) {
 
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(movies) {
+/* function bestYearAvg(movies) {
   if (movies.length === 0) return null
 
   let years = [...new Set(movies.map(movie => movie.year))]
@@ -108,19 +108,44 @@ function bestYearAvg(movies) {
   years.sort((a,b) => b[1] - a[1])
 
   return `The best year was ${years[0][0]} with an average score of ${years[0][1]}`
-}
+}*/
 
 function avg(tab){
   return tab.reduce((a, v) => a + v)/tab.length
+} 
+
+function bestYearAvg(movies){
+  if (movies.length === 0) return null
+
+  const ratingByYear = movies.reduce((acc, curr) => { 
+    if(acc[curr.year]){
+      acc[curr.year].push(curr.score)
+    }
+    else{
+      acc[curr.year] = [curr.score]
+    }
+    
+    return acc
+  }, {})
+  
+  const avgRatingByYear = []
+
+  Object.entries(ratingByYear).forEach(([key, value]) => {
+    avgRatingByYear.push([key, avg(value)])
+  })
+  
+  avgRatingByYear.sort((a,b) => b[1] - a[1])
+
+  return `The best year was ${avgRatingByYear[0][0]} with an average score of ${avgRatingByYear[0][1]}`
 }
  
-bestYearAvg([
+console.log(bestYearAvg([
   { year: 2000, score: 9 },
   { year: 2000, score: 8 },
   { year: 1978, score: 10 },
   { year: 1978, score: 7 },
   { year: 2222, score: 7 }
-])
+]))
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
