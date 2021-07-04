@@ -13,7 +13,7 @@ const movies = [
     director: 'Francis Ford Coppola',
     duration: '2h 55min',
     genre: ['Crime', 'Drama'],
-    score: 9.2
+    // score: 9.2
   },
   {
     title: 'The Godfather: Part II',
@@ -21,7 +21,7 @@ const movies = [
     director: 'Francis Ford Coppola',
     duration: '3h 22min',
     genre: ['Crime', 'Drama'],
-    score: 9
+    // score: 9
   },
   {
     title: 'The Dark Knight',
@@ -29,7 +29,7 @@ const movies = [
     director: 'Christopher Nolan',
     duration: '2h 32min',
     genre: ['Action', 'Crime', 'Drama', 'Thriller'],
-    score: 9
+    // score: 9
   },
   {
     title: '12 Angry Men',
