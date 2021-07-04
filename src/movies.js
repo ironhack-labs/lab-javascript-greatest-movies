@@ -1,3 +1,6 @@
+// arrays variables.
+//----------------------------------------------------
+
 const smallArray = [
   {
     title: 'Paths of Glory',
@@ -29,6 +32,9 @@ let array = JSON.parse(JSON.stringify(smallArray));
 // unified (without duplicates)?
 //----------------------------------------------------
 
+//
+// ***************************************************
+
 function getAllDirectors(array) {  
   const directorsMap = array.map((obj) => {
     return obj.director; 
@@ -43,16 +49,16 @@ console.log(getAllDirectors(array), '\n');
 // Bonus - Iteration 1.1: Clean the array of directors: 
 //----------------------------------------------------
 
-// ***************************************************
-//
-// ????? not yet done.
+// ????? not done yet.
 //
 // ***************************************************
-
 
 // Iteration 2: Steven Spielberg. The best? - 
 //How many drama movies did STEVEN SPIELBERG direct?
 //----------------------------------------------------
+
+//
+// ***************************************************
 
 function howManyMovies(array) {
   const dramaSpielberg = array.filter((obj) => {
@@ -69,8 +75,6 @@ console.log(howManyMovies(moviesArr), '\n');
 // of all scores with 2 decimals
 //----------------------------------------------------
 
-// ***************************************************
-//
 // i struggle to understand where is the issue with 
 // this one it looks like i've the good answer. 
 // the following test keeps on failing : ===>
@@ -109,6 +113,9 @@ console.log(scoresAverage(array), '\n');
 // Drama Movies
 //----------------------------------------------------
 
+//
+// ***************************************************
+
 function dramaMoviesScore(array) {
   const filteredArray = array.filter((obj) => {
     return obj.genre.includes('Drama');
@@ -123,11 +130,6 @@ console.log(dramaMoviesScore(array), '\n');
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 //----------------------------------------------------
 
-// ***************************************************
-//
-// i struggle to understand should return "the element 
-// in a single element array".
-// and the next one also, it seems i'm good.
 //
 // ***************************************************
 
@@ -156,7 +158,6 @@ console.log(orderByYear(array), '\n');
 // print the first 20 titles
 //----------------------------------------------------
 
-// ***************************************************
 //
 // ***************************************************
 
@@ -180,7 +181,6 @@ console.log(orderAlphabetically(array), '\n');
 // the movies from hours to minutes
 //----------------------------------------------------
 
-// ***************************************************
 //
 // ***************************************************
 
@@ -212,11 +212,13 @@ console.log(turnHoursToMinutes(array), '\n');
 // Best yearly score average
 //----------------------------------------------------
 
-// ***************************************************
 //
 // ***************************************************
 
 function bestYearAvg(array) {
+  if (array.length === 0) {
+    return null;
+  }
   const bestYear = orderByYear(array);
   // console.log(bestYear);
   return console.log("The best year was ", "<YEAR>", " with an average score of ", "<RATE>");
