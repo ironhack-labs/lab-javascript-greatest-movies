@@ -125,10 +125,6 @@ console.log(dramaMoviesScore(array), '\n');
 
 // ***************************************************
 //
-// i struggle to understand should return "the element 
-// in a single element array".
-// and the next one also, it seems i'm good.
-//
 // ***************************************************
 
 function orderByYear(array) {
