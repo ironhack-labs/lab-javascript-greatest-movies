@@ -176,7 +176,14 @@ function orderAlphabetically(array) {
 console.log("Iteration 6:");
 console.log(orderAlphabetically(array), '\n');
 
-// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+// BONUS - Iteration 7: Time Format - Turn duration of 
+// the movies from hours to minutes
+//----------------------------------------------------
+
+// ***************************************************
+//
+// ***************************************************
+
 function turnHoursToMinutes(array) {
   // working on a deep copy of array.
   const deepCopy = JSON.parse(JSON.stringify(array));
@@ -201,7 +208,14 @@ function turnHoursToMinutes(array) {
 console.log("Iteration 7:");
 console.log(turnHoursToMinutes(array), '\n');
 
-// BONUS - Iteration 8: Best yearly score average - Best yearly score average
+// BONUS - Iteration 8: Best yearly score average - 
+// Best yearly score average
+//----------------------------------------------------
+
+// ***************************************************
+//
+// ***************************************************
+
 function bestYearAvg(array) {
   const bestYear = orderByYear(array);
   // console.log(bestYear);
@@ -210,8 +224,6 @@ function bestYearAvg(array) {
 
 console.log("Iteration 8:");
 console.log(bestYearAvg(array), '\n');
-
-
 
 
 // The following is required to make unit tests work.
