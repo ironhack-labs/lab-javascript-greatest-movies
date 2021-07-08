@@ -75,7 +75,7 @@ function orderAlphabetically(movies) {
       return -1
     }
   })
-  
+
 
   return orderAlphabetically.slice(0,20)
 }
