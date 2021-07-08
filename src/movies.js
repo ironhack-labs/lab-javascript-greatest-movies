@@ -70,14 +70,14 @@ function orderAlphabetically(movies) {
     if (a.title>b.title){
       return 1
     }
-    else if (a.title<b.title){
+    else {
     
       return -1
     }
   })
   
 
-  return orderAlphabetically
+  return orderAlphabetically.slice(0,20)
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
