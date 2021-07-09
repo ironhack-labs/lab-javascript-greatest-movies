@@ -56,7 +56,28 @@ function dramaMoviesScore(movies) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
   var oderedMovies = JSON.parse(JSON.stringify(movies));
-  return oderedMovies.sort((movie1, movie2) => movie1.year < movie2.year);
+
+  oderedMovies.sort(function(movie1, movie2) {
+    var year1 = movie1.year;
+    var year2 = movie2.year;
+    if (year1 < year2) {
+      return -1;
+    }
+    if (year1 > year2) {
+      return 1;
+    }
+    return 0;
+  });
+
+  let onlyTwenty = oderedMovies.slice(0, 5);
+  console.log(onlyTwenty);
+
+  let movieTitles = [];
+  onlyTwenty.forEach(element => {
+    movieTitles.push(element.title);
+  });
+
+  return onlyTwenty;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
