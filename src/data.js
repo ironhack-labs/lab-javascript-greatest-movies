@@ -1005,8 +1005,7 @@ const movies = [
     year: 1997,
     director: 'Majid Majidi',
     duration: '1h 29min',
-    genre: ['Drama', 'Family'],
-    score: 8.4
+    genre: ['Drama', 'Family']
   },
   {
     title: 'The Great Escape',
