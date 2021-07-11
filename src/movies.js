@@ -36,7 +36,8 @@ function dramaMoviesScore(array) {
 
   let averageDramaScore = listOfDramas.reduce(
     (acumulator, currentValue) =>
-      acumulator + Math.round((currentValue.score / array.length) * 100) / 100,
+      acumulator +
+      Math.round((currentValue.score / listOfDramas.length) * 100) / 100,
     0
   );
 
@@ -74,7 +75,7 @@ function orderAlphabetically(array) {
 function turnHoursToMinutes(array) {
   let movieTimeInMinutes = Object.assign([], array);
 
-  if (array.length === 0) {
+  if (movieTimeInMinutes.length === 0) {
     return null;
   }
 
