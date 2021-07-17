@@ -3,8 +3,13 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors() {}
 
+
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(arr) {}
+
+
+
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage() {}
