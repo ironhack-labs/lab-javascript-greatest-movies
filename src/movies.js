@@ -85,17 +85,35 @@ function orderByYear(movies) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
-  if (movies.length < 20) {
-    const order = movies.filter((element, index, arr) => {
-      return element.title;
-    });
+  const order = movies
+    .slice()
+    .sort((a, b) => {
+      return a.title.localeCompare(b.title);
+    })
+    .slice(0, 20);
 
-    return order.toString();
-  }
+  const allMovies = order.map((element) => {
+    return element.title;
+  });
+
+  return allMovies;
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(movies) {
+  const order = movies
+    .slice()
+    .sort((a, b) => {
+      return a.title.localeCompare(b.title);
+    })
+    .slice(0, 20);
+
+  const allMovies = order.map((element) => {
+    return element.title;
+  });
+
+  return allMovies;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
