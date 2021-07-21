@@ -45,17 +45,6 @@ function scoresAverage(movies) {
       return Math.round(number*100) / 100;
     };
 
-/*const moviesWithScoreEight = movies.reduce((acc,el)=>{
-  if(el.score === 8){
-    return acc + el.score;
-  } else {
-    return acc;
-  }
-  
-}, 0);*/
-
-
-
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies) {
@@ -77,12 +66,22 @@ function dramaMoviesScore(movies) {
       }
   }, 0);
 
-  return roundToTwoDecimals(avgScoreOfDramaMovies / dramaMovies);
+  return roundToTwoDecimals(avgScoreOfDramaMovies / dramaMovies.length);
 
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(movies) {
+  const orderByReleaseYear = movies.slice().sort((movie1,movie2) => {
+    if(movie1.year === movie2.year){
+      return movie1.title.localeCompare(movie2);
+    } else if ( movie1.year !== movie2.year){
+      return movie1.year - movie2.year; 
+    }
+  });
+  return orderByReleaseYear;
+}
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
