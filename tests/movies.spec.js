@@ -1,13 +1,14 @@
 const movies = require('../src/data');
 const {
   getAllDirectors,
+  cleanMultipleDirectors,
   howManyMovies,
   scoresAverage,
   dramaMoviesScore,
   orderByYear,
   orderAlphabetically,
   turnHoursToMinutes,
-  bestYearAvg,
+  bestYearAvg
 } = require('../src/movies');
 
 // Iteration 1
@@ -46,6 +47,73 @@ describe('Function "getAllDirectors"', () => {
     expect(getAllDirectors(testArr)).toEqual([
       'Stanley Kubrick',
       'Quentin Tarantino'
+    ]);
+  });
+});
+
+// Iteration 1.1
+
+describe('Function "cleanMultipleDirectors"', () => {
+  it('should be declared', () => {
+    expect(typeof cleanMultipleDirectors).toBe('function');
+  });
+
+  it('should return an array', () => {
+    expect(cleanMultipleDirectors(movies) instanceof Array).toBe(true);
+  });
+
+  it('should return a new array, not update the original one', () => {
+    expect(cleanMultipleDirectors(movies)).not.toEqual(movies);
+  });
+
+  it('should return a new array with the same length as the original one', () => {
+    const testArr = [
+      {
+        title: 'Paths of Glory',
+        year: 1957,
+        director: 'Stanley Kubrick',
+        duration: '1h 28min',
+        genre: ['Drama', 'War'],
+        score: 8.4
+      },
+      {
+        title: 'Django Unchained',
+        year: 2012,
+        director: 'Quentin Tarantino',
+        duration: '2h 45min',
+        genre: ['Drama', 'Western'],
+        score: 8.4
+      },
+      {
+        title: 'Pulp Fiction',
+        year: 1994,
+        director: 'Quentin Tarantino',
+        duration: '2h 34min',
+        genre: ['Crime', 'Drama'],
+        score: 8.9
+      },
+      {
+        title:
+          'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+        year: 1964,
+        director: 'Stanley Kubrick',
+        duration: '1h 35min',
+        genre: ['Comedy'],
+        score: 8.5
+      },
+      {
+        title: 'Nuovo Cinema Paradiso',
+        year: 1988,
+        director: 'Giuseppe Tornatore',
+        duration: '2h 35min',
+        genre: ['Drama'],
+        score: 8.5
+      }
+    ];
+    expect(cleanMultipleDirectors(testArr)).toEqual([
+      'Stanley Kubrick',
+      'Quentin Tarantino',
+      'Giuseppe Tornatore'
     ]);
   });
 });
