@@ -21,7 +21,7 @@ function howManyMovies(listSteven) {
 
   return moviesDramaWith.length;
 }
-//console.log(howManyMovies(movies));
+console.log(howManyMovies(movies));
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(listAll) {
@@ -41,7 +41,8 @@ function dramaMoviesScore(listAll) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(listAll) {
-const abcOrder = listAll.sort(function (a, b) {
+const abcOrder = JSON.parse(JSON.stringify(listAll));
+abcOrder.sort(function (a, b) {
   if (a.title > b.title) {
     return 1;
   }
@@ -60,7 +61,8 @@ return abcOrder.sort((a, b) => {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 // 1. colocar em ordem 2.imprimir apenas os 20 primeiros 3. apenas titulos desse array
 function orderAlphabetically(listAll) {
-  const abcOrder = listAll.sort(function (a, b) {
+  const abcOrder = JSON.parse(JSON.stringify(listAll));
+  abcOrder.sort(function (a, b) {
     if (a.title > b.title) {
       return 1;
     }
@@ -69,12 +71,17 @@ function orderAlphabetically(listAll) {
     }
     return 0;
   });
- if(abcOrder.length > 20){
+    if(abcOrder.length > 20){
    abcOrder.splice(20 , abcOrder.length);
   } 
-  return abcOrder.map(a => a.title); 
+    return abcOrder.map(a => a.title);  
 }
-console.log(orderAlphabetically(movies));
+/* {
+  return {
+      title: a.title }
+    });  */
+//console.log(orderAlphabetically(movies));
+
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
 
@@ -97,3 +104,27 @@ if (typeof module !== 'undefined') {
     bestYearAvg,
   };
 }
+function countPositivesSumNegatives(arr) {
+  if (arr.length < 1){
+  return [];
+}
+  let result = [];
+  let negative = 0;
+  let positive = 0;
+  
+for (let i = 0; i < arr.length ; i++){
+  if(arr[i] > 0){
+  positive = positive + 1;
+  }
+  else{
+   negative = arr[i] + negative;
+  }
+}
+  result.push(negative);
+  result.push(positive);
+  return result;
+  }
+
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15];
+
+  console.log(countPositivesSumNegatives(numbers));
