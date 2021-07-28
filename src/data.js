@@ -261,7 +261,6 @@ const movies = [
     director: 'Alfred Hitchcock',
     duration: '1h 49min',
     genre: ['Horror', 'Mystery', 'Thriller'],
-    score: 8.5
   },
   {
     title: 'The Green Mile',
