@@ -1,0 +1,74 @@
+Introdução
+O src / data.js contém uma matriz de 250 filmes. Estamos falando sobre a matriz de 250 objetos contendo as informações sobre cada filme. Aqui está um exemplo de como os dados são exibidos:
+
+{
+  "title": "The Shawshank Redemption",
+  "ano": 1994,
+  "diretor": "Frank Darabont",
+  "duração": "2h 22min",
+  "gênero": ["Crime", "Drama"],
+  "pontuação": 9,3
+}
+Nas próximas iterações, você usará seu conhecimento de JS para manipular esses dados.
+
+
+Testes!
+Ohh sim! Temos nossos amados testes e você já sabe como isso funciona. Abra seu terminal, mude de diretório para a raiz do laboratório e execute npm install para instalar o executor de teste. Em seguida, execute os testes executando o comando npm run test: watch. Em resumo, as etapas são:
+
+$ cd lab-javascript-greatest-movies
+$ npm install
+$ npm executar teste: assistir
+E, por último, abra o arquivo lab-solution.html gerado com a extensão VSCode "Live Server" para ver os resultados do teste.
+
+Lembre-se de focar em um teste de cada vez e ler cuidadosamente as instruções para entender o que você deve fazer. Os testes podem ser encontrados no arquivo tests / movies.spec.js.
+
+
+Instruções
+Você se aprofundará em alguns "fatos" que esse conjunto de dados contém. Vemos todos esses dados brutos, mas isso não nos diz muito. Por exemplo, se quisermos ver qual é o filme mais popular, qual é a duração média do filme, lista de filmes de algum diretor, etc., não encontraríamos as respostas apenas observando esta matriz. Bem, aí vem o seu desafio. Leia a descrição de cada iteração com atenção e vamos começar a trabalhar nas soluções.
+
+Você tem que trabalhar no arquivo src / movies.js.
+
+
+Iteração 1: Todos os diretores
+Precisamos obter o conjunto de todos os diretores. Como este é um aquecimento, daremos uma dica: você deve mapear a matriz de filmes e colocar todos os diretores em uma matriz como resultado final. Vá em frente e crie uma função chamada getAllDirectors () que recebe um array de filmes como argumento e retorna um novo (array mapeado).
+
+
+Bônus - Iteração 1.1: Limpe o conjunto de diretores
+Parece que alguns dos diretores dirigiram vários filmes, então eles aparecerão várias vezes na lista de diretores. Como você poderia "limpar" um pouco esse array e torná-lo unificado (ou seja, sem duplicatas)? Não priorize a parte do bônus agora, você pode voltar a ela quando terminar com as iterações obrigatórias. piscadela
+
+
+Iteração 2: Steven Spielberg. Ao melhor?
+Um dos diretores mais famosos do cinema é Steven Spielberg, e ele tem alguns filmes de drama realmente incríveis que estão em nossa lista, mas queremos saber quantos deles estão lá.
+
+Vá em frente e crie uma função howManyMovies () que recebe um array como parâmetro e filtra os olhos do array para que possamos ter apenas os filmes de drama em que Steven Spielberg é o diretor.
+
+
+Iteração 3: média de todas as pontuações
+Esses são os melhores filmes com base em suas partituras, então, supostamente, todos eles têm uma pontuação notável. Nesta iteração, queremos saber a pontuação média de todos eles e exibi-la no console. Crie uma função scoresAometric () que recebe um array como parâmetro e resolve o desafio.
+
+A pontuação deve ser retornada arredondada para 2 casas decimais!
+
+lâmpada Talvez você queira "reduzir" os dados a um único valor. piscadela
+
+Iteração 5: Ordem por ano
+Precisamos classificar os filmes em ordem crescente por ano de lançamento. Isso deve ser fácil usando um dos métodos que acabamos de aprender. wink Crie uma função orderByYear () que recebe um array como parâmetro e retorna um novo array ordenado.
+
+
+
+Se dois filmes tiverem o mesmo ano, ordene-os em ordem alfabética pelo título! heavy_check_mark
+
+lâmpada Certifique-se de não alterar o wink da matriz original
+
+
+Iteração 6: ordem alfabética
+Outra maneira popular de ordenar os filmes é classificá-los em ordem alfabética usando a tecla de título. No entanto, neste caso, só precisamos imprimir o título dos primeiros 20. Fácil para um especialista como você. piscadela
+
+Crie uma função orderAlphabetically (), que recebe uma matriz e retorna uma matriz dos primeiros 20 títulos, ordenados alfabeticamente. Retorne apenas o título de cada filme e, se a matriz que você receber tiver menos de 20 filmes, retorne todos eles.
+
+
+BÔNUS - Iteração 7: Formato de hora
+Pegamos as informações na página do IMDB, mas as informações de duração foram salvas em um formato que nos dificultou muito a comparação de filmes.
+
+Encontrar o filme mais longo é quase impossível usando esse formato, então vamos mudá-lo!
+
+Crie uma função turnHoursToMinutes () que recebe um array como parâmetro, e com alguma mágica implementada por você - substitui as informações de duração de cada um dos filmes por seu equivalente em minutos. Por exemplo:
