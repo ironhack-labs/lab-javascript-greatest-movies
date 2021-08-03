@@ -14,18 +14,20 @@ function howManyMovies(moviesArray) {
       return movieObject; 
     } 
   });
-  return moviesDirected.length
+  return moviesDirected.length;
 };
   
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
-  if (moviesArray.length === 0) return 0;
+  if (moviesArray.length === 0) {
+    return 0;
+  };
   const scoreSum = moviesArray.reduce(function(acc, movieObject){
     if (!movieObject.score){
       return acc + 0;
     }
     return acc + movieObject.score;
-  }, 0)
+  }, 0);
     const scoreAverage = (scoreSum / moviesArray.length).toFixed(2);
     return +scoreAverage;
 };
@@ -33,16 +35,29 @@ function scoresAverage(moviesArray) {
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
   const dramaMovies = moviesArray.filter((movieObject) => {
-    return movieObject.genre.includes("Drama")
+    return movieObject.genre.includes("Drama");
   });
   const avgScoreDrama = dramaMovies.reduce((accmulator, movieObject) => {
-    return accmulator + movieObject.score / dramaMovies.length
+    return (accmulator + movieObject.score / dramaMovies.length);
   }, 0);
   return Math.round(avgScoreDrama * 100) / 100;
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(moviesArray) {
+  const moviesCopy = JSON.parse(JSON.stringify(moviesArray));
+  moviesCopy.sort((movie1, movie2)=>{
+    if (movie1.year < movie2.year){
+      return -1;
+    } 
+    if (movie1.year > movie2.year){
+      return 1;
+    }else{
+      return movie1.title.localeCompare(movie2.title);
+    }  
+  });
+  return moviesCopy;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
