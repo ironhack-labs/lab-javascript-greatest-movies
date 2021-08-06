@@ -11,27 +11,53 @@ function howManyMovies(arrayMovies) {
   return stevenDramaMovies.length
 }
 
-// Iteration 3: All scores average - Get the average of all scores with 2 decimals
+// Iteration 3: All scores average - Get the average of all scores with 2 decimals <----------------- !?!?!?!?
+
 function scoresAverage(arrayMovies) {
-  if(arrayMovies.length === 0) return 0;
-  const sumRating = arrayMovies.reduce(function(acc, rating){
-    if(rating.rate === 0) {
-      return acc + 0;
-    }
-    return acc + rating.rate;
-  } , 0);
-  const avgRating = (sumRating / arrayMovies.length).toFixed(2);
-  return +avgRating;
+  sumScore = arrayMovies.reduce((acc, element) => !element.score? acc + 0 : acc + element.score / arrayMovies.length
+  ,0)
+  return parseFloat(sumScore.toFixed(2));
 }
 
-// Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+// if(arrayMovies.length === 0) return 0;
+//   const sumRating = arrayMovies.reduce(function(acc, rating){
+//     if(rating.rate === 0) {
+//       return acc + 0;
+//     }
+//     return acc + rating.rate;
+//   } , 0);
+//   const avgRating = (sumRating / arrayMovies.length);
+//   return Math.round((avgRating*100)/100);
+
+// Iteration 4: Drama movies - Get the average of Drama Movies      <----------------- ?!?!?!?!
+function dramaMoviesScore(arrayMovies) { 
+  const dramaMovies = arrayMovies.filter(dramaMovie => dramaMovie.genre.includes ('Drama'))
+  return scoresAverage(dramaMovies);
+} 
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(arrayMovies) {
+  const copyMovies = JSON.parse(JSON.stringify(arrayMovies));
+
+  copyMovies.sort((a,b) => {
+  if(a.year < b.year) return -1;
+  if(a.year > b.year) return 1;
+  return a.title.localeCompare(b.title)
+ });
+ return copyMovies
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(arrayMovies) {
+  const titles = arrayMovies.map(movieTitle => movieTitle.title)
+
+  titles.sort((a,b) => {
+    if(a < b) return -1;
+    if(a > b) return 1;
+  })
+  return titles.slice(0,20)
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
