@@ -13,13 +13,15 @@ function howManyMovies(arrayMovies) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(arrayMovies) {
-  if(arrayMovies.length === 0){
-    return 0}
-
-  const sumRating = arrayMovies.reduce((acc, rating)=> acc + rating.rate , 0)
-  const avgRating = sumRating / arrayMovies.length;
-
-  return parseFloat(avgRating.toFixed(2));
+  if(arrayMovies.length === 0) return 0;
+  const sumRating = arrayMovies.reduce(function(acc, rating){
+    if(rating.rate === 0) {
+      return acc + 0;
+    }
+    return acc + rating.rate;
+  } , 0);
+  const avgRating = (sumRating / arrayMovies.length).toFixed(2);
+  return +avgRating;
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
