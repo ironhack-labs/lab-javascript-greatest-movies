@@ -53,6 +53,9 @@ function dramaMoviesScore(allMoviesArray) {
 	// Get Drama movies
 	let dramaMovies = allMoviesArray.filter((item) => item.genre.includes('Drama'));
 
+	return scoresAverage(dramaMovies);
+
+	/*
 	// Get Score of Drama Movies
 	if (dramaMovies.length === 0) {
 		return 0;
@@ -72,7 +75,8 @@ function dramaMoviesScore(allMoviesArray) {
 			}) / getScoreDramaMovies.length;
 
 		return Number(getAverageDrama.toFixed(2));
-	}
+		
+	}*/
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
@@ -90,7 +94,9 @@ function orderAlphabetically(moviesByTitle) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(movieArrayToMinutes) {
+	//duration: '2h 55min' string, convertir a int
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
