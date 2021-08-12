@@ -42,12 +42,11 @@ function scoresAverage(movies) {
   },
     0);
 
-    let avgScoreDecimals = (avgScore/movies.length);
-    return avgScoreDecimals;
+    let avgScoreDecimals = (avgScore/movies.length).toFixed(2);
+    return parseFloat(avgScoreDecimals)
   }
-   function avgScoreDecimals(number){
-     return Math.round(number/100)*100;   // Metodo fixed
-   }
+
+   
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies) {
   if(movies.length===0){
