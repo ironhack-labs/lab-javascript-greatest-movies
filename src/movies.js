@@ -8,7 +8,20 @@ function getAllDirectors(movies) {
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(moviesArray) {
+
+/* 
+  const filterredSpielbergDramaMovies = moviesArray.filter(function (element) {
+    return element.director === 'Steven Spielberg' && element.genre.includes('Drama');
+  })
+    return filterredSpielbergDramaMovies.length;
+*/
+
+// Después del comentario está la versión ArrowFunction de lo comentado arriba, equivale a lo mismo. Primero ejecuta el .filter que me daría los datos filtrados según la condición expuesta y luego ejecuta el .length de esos datos filtrados
+
+  return  moviesArray.filter(element => element.director === 'Steven Spielberg' && element.genre.includes('Drama')).length
+    
+}
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage() {}
