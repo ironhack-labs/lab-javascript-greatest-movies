@@ -44,14 +44,23 @@ function scoresAverage(moviesArray) {
   
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+
+  if (moviesArray.length === 0){
+    return 0
+  }
+    const filteredDramaMovies = moviesArray.filter((element)  => element.genre.includes('Drama'));
+
+    return scoresAverage(filteredDramaMovies)
+}
+
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(moviesArray) {}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(moviesArray) {}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
