@@ -1,16 +1,57 @@
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
+
+const movies = require('./data');
+
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors() {}
+function getAllDirectors(movies) {
+  return movies.map(function (elements) {
+    return elements.director;
+  });
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(movies) {
+  let StevenSpielbergMovies = movies.filter((moviesBySteven) => {
+    return (
+      moviesBySteven.director === 'Steven Spielberg' &&
+      moviesBySteven.genre.includes('Drama')
+    );
+  });
+
+  return StevenSpielbergMovies.length;
+}
+
+/*if (StevenSpielbergMovies.length === 0) {
+    return 0;
+  } else {
+    return StevenSpielbergMovies.length;
+  }
+  */
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(movies) {
+  if (movies.length === 0) {
+    return 0;
+  } else {
+    let ScoresOfMovies = movies.map((theScore) => theScore.score);
+
+    let scoresSum = ScoresOfMovies.reduce((sum1, sum2) => {
+      if (sum2) {
+        return sum1 + sum2;
+      } else {
+        sum2;
+      }
+    });
+    //return scoresSum / movies.length;
+    let rounded = Number((scoresSum / movies.length).toFixed(2));
+
+    return rounded;
+  }
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(movies) {}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear() {}
@@ -24,8 +65,6 @@ function turnHoursToMinutes() {}
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
 
-
-
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
 if (typeof module !== 'undefined') {
@@ -37,6 +76,6 @@ if (typeof module !== 'undefined') {
     orderByYear,
     orderAlphabetically,
     turnHoursToMinutes,
-    bestYearAvg,
+    bestYearAvg
   };
 }
