@@ -17,14 +17,29 @@ function howManyMovies(moviesArray) {
     return filterredSpielbergDramaMovies.length;
 */
 
-// Después del comentario está la versión ArrowFunction de lo comentado arriba, equivale a lo mismo. Primero ejecuta el .filter que me daría los datos filtrados según la condición expuesta y luego ejecuta el .length de esos datos filtrados
+// NOTA PARA MI - Aun no me aclaro con las arrowFunction
+// Versión arrowFunction de lo de arriba. Primero ejecuta el .filter que me daría los datos filtrados según la condición expuesta y luego ejecuta el .length de esos datos filtrados
 
   return  moviesArray.filter(element => element.director === 'Steven Spielberg' && element.genre.includes('Drama')).length
     
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(moviesArray) {
+  if (moviesArray.length === 0){
+    return 0
+  }
+  
+  const totalScores = moviesArray.reduce(function (accumulated, currentValue){
+    return accumulated + currentValue.score;
+  }, 0);
+
+  const totalScoresAverage = totalScores / moviesArray.length;
+  return totalScoresAverage;
+
+  const roundedScore = totalScoresAverage.toFixed(2);
+  //return Number(roundedScore.toFixed(2))
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore() {}
