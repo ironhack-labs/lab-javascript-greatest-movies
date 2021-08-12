@@ -7,13 +7,24 @@ function getAllDirectors(moviesArray) {
     return (movie.director);})
   return directorsArray;
 }
+
+function getAllDirectorsWithoutDuplicates (moviesArray){
+  let allDirectors = getAllDirectors(moviesArray);
+  let allDirectorsWithoutDuplicates = allDirectors.filter((director,index) =>
+  {
+    return allDirectors.indexOf(director) === index;
+  })
+  return (allDirectorsWithoutDuplicates);
+}
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
   //filtrar para conseguir todos las pelis de Spielberg
   let spielbergMovies = moviesArray.filter ((movie) => {
-  return (movie.director.includes("Steven Spielberg"));})
+  return (movie.director.includes("Steven Spielberg")); })
   //filtrar para conseguir los dramas
-  let dramaAndSpielberg = spielbergMovies.filter ( (movie) => {return movie.genre.includes("Drama") });
+  let dramaAndSpielberg = spielbergMovies.filter ( (movie) => {
+  return movie.genre.includes("Drama") });
   return(dramaAndSpielberg.length);
 }
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
@@ -42,7 +53,6 @@ function dramaMoviesScore(moviesArray) {
   }
   //filtrar para conseguir los dramas
   let dramaMovies = moviesArray.filter ( (movie) => {return movie.genre.includes("Drama") });
-  console.log (dramaMovies)
   if (dramaMovies.length === 0) {
     return 0;
   }
@@ -106,19 +116,17 @@ function turnHoursToMinutes(moviesArray) {
     let horas = durationString.split("h");
     //minutos es siempre el elemento 1 de horas
     let minutos;
-    console.log ("elem:" + horas[1])
     if (horas.includes("")){
       minutos = 0;
     } else { 
     minutos = horas[1].split("min");
     minutos = minutos[0];
     }
-    console.log("TPM:"+minutos);
     horas = horas[0];
     //pasar de string a integer
     horas = parseInt(horas);
     minutos = parseInt (minutos);
-    let horasAMinutos = horas *60;
+    let horasAMinutos = horas * 60;
     let total = horasAMinutos + minutos;
     //asignar total al objeto
     newMovie.duration = total;
@@ -127,11 +135,55 @@ function turnHoursToMinutes(moviesArray) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {
-  //
+
+function yearAverage(moviesArray,year) {
+  //por cada año => sacar la media =>
+  let newArray = [...moviesArray];
+  let yearsMovies = newArray.filter((movie) => {
+    return (movie.year === year)
+  })
+  let yearsScores = yearsMovies.map ((movie) => {
+    return (movie.score);
+  })
+  let totalScore = yearsScores.reduce((accumulator, currentValue) => { 
+    return accumulator + currentValue;
+    });
+  let average = totalScore / yearsScores.length;
+  return (average)
 }
 
-
+function bestYearAvg(moviesArray) {
+  if (moviesArray.length === 0) {
+    return (null);
+  }
+//conseguir una lista de todos los años
+let newArray = [...moviesArray];
+let yearsArray = newArray.map ( (movie) => {
+  return (movie.year);
+} )
+//eliminar duplicados
+let uniqueYearsArray = yearsArray.filter((year,index) =>
+  {
+    return yearsArray.indexOf(year) === index;
+  })
+//crear una lista 
+objectsArray = [];
+//llenar la lista con años
+for (i=0; i<uniqueYearsArray.length; i++){
+  let year = {name: uniqueYearsArray[i],
+              average: yearAverage(moviesArray, uniqueYearsArray[i])};
+  objectsArray.push(year);
+}
+//ordenar la lista de objetos -> sort
+const orderedYears = objectsArray.sort((yearA,yearB) => {
+  if (yearB.average === yearA.average){
+    return (yearA.name - yearB.name)
+  }
+  return (yearB.average - yearA.average) 
+})
+//devolver primera posicion, construir frase
+return ("The best year was " + orderedYears[0].name + " with an average score of " + orderedYears[0].average);
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
