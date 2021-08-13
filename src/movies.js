@@ -74,7 +74,28 @@ function dramaMoviesScore(bestMoviesEver) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(bestMoviesEver) {
+  let clonedArray =  JSON.parse(JSON.stringify(bestMoviesEver))
+
+  let sortedArray = clonedArray.sort((firstMovie, secondMovie) =>{
+    
+    if (firstMovie.year < secondMovie.year ){
+      return -1;
+    } else if (firstMovie.year > secondMovie.year) {
+      return 1;
+    } else { 
+      if (firstMovie.title < secondMovie.title ){
+        return -1;
+      } else if (firstMovie.title > secondMovie.title) {
+        return 1;
+      } else {
+        return 0;
+      }
+    } 
+  }) 
+ 
+  return sortedArray
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
