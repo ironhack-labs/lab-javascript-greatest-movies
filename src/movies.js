@@ -64,7 +64,7 @@ function turnHoursToMinutes(moviesArr) {
   const arrayCopy = JSON.parse(JSON.stringify(moviesArr));
 
   return arrayCopy.map((movie) => {
-    if (typeof movie.duration !== 'number') {
+    if (typeof movie.duration !== 'number') { // '2h 55min'
       let hours = movie.duration.match(/[^h]*/);
       let mins = movie.duration.match(/(?<=\s).*(?=min)/);
 
