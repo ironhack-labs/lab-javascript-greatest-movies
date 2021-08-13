@@ -38,7 +38,7 @@ function scoresAverage(movies) {
 
   let averageScore = listOfScores / movies.length;
 
-  return Math.round(averageScore * 100) / 100;
+  return Math.round(averageScore * 100) / 100; //+averageScore.toFixed(2)
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -58,6 +58,8 @@ function dramaMoviesScore(movies) {
 
   let averageDramaScore = listOfDramaScores / listOfDramaMovies.length;
 
+  //Another solution whicg reuses the previous function!
+
   return Math.round(averageDramaScore * 100) / 100;
 }
 
@@ -65,6 +67,7 @@ function dramaMoviesScore(movies) {
 
 function orderByYear(movies) {
   const listToBeOrdered = movies.slice();
+  // const listToBeOrdered = JSON.parse(JSON.stringify(movies)); => deep clone
 
   const orderedByYear = listToBeOrdered.sort(function (elem1, elem2) {
     if (elem1.year > elem2.year) {
@@ -79,6 +82,12 @@ function orderByYear(movies) {
       }
       return 0;
     }
+    // The following is also valid
+    /*if (elem1.year > elem2.year) return 1;
+    if (elem1.year < elem2.year) return -1;
+    if (elem1.title > elem2.title) return 1;
+    if (elem1.title < elem2.title) return -1;
+    return 0;*/
   });
 
   return orderedByYear;
@@ -90,13 +99,19 @@ function orderAlphabetically(movies) {
     return eachMovie.title;
   });
 
-  const orderedByTitle = listOfMovieTitles.sort();
+  const orderedByTitle = listOfMovieTitles.sort().slice(0, 20);
 
-  const orderedListOf20Titles = orderedByTitle.slice(0, 20);
+  return orderedByTitle;
 
-  return orderedListOf20Titles;
+  // The following is also valid
+  /*const listOfMoviesByTitle = movies
+    .map(function (eachMovie) {
+      return eachMovie.title;
+    })
+    .sort()
+    .slice(0, 20);
 
-  // return orderByYear;
+  return listOfMoviesByTitle;*/
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
