@@ -90,9 +90,7 @@ function orderAlphabetically(moviesArr) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArr) {
-  let newArray3 = [...moviesArr]
-
-  let newArray4 = [...newArray3]
+  let newArray3 =  JSON.parse(JSON.stringify(moviesArr))
 
 
   const moviesDurations = newArray3.map(movie => movie.duration.split("h"))
@@ -105,10 +103,10 @@ function turnHoursToMinutes(moviesArr) {
 
         return parseInt(duration[0], 10) * 60})
   
-  for(let i = 0; i < newArray4.length; i++){
-    newArray4[i].duration = toMinutes[i]
+  for(let i = 0; i < newArray3.length; i++){
+    newArray3[i].duration = toMinutes[i]
   }
-  return newArray4
+  return newArray3
   }
 
 
