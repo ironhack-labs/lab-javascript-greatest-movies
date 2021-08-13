@@ -41,7 +41,9 @@ function dramaMoviesScore(moviesArr) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArr) {
-  return moviesArr.map((movie) => movie).sort((a, b) => {
+  return moviesArr
+    .map((movie) => movie)
+    .sort((a, b) => {
       if (a.year - b.year === 0) {
         return a.title < b.title ? -1 : 1;
       }
@@ -62,7 +64,7 @@ function turnHoursToMinutes(moviesArr) {
   const arrayCopy = JSON.parse(JSON.stringify(moviesArr));
 
   return arrayCopy.map((movie) => {
-    if (typeof movie.duration !== 'number') { // '2h 55min'
+    if (typeof movie.duration !== 'number') {
       let hours = movie.duration.match(/[^h]*/);
       let mins = movie.duration.match(/(?<=\s).*(?=min)/);
 
@@ -105,12 +107,10 @@ function bestYearAvg(moviesArr) {
     .map(JSON.parse)
     .sort((a, b) => b[1] - a[1]);
 
-  let finalBestYear;
+  let finalBestYear = bestYearAvg[0];
 
   if (bestYearAvg.length !== 1 && bestYearAvg[0][1] === bestYearAvg[1][1])
     finalBestYear = bestYearAvg[1];
-  else if (bestYearAvg.length === 1) finalBestYear = bestYearAvg[0];
-  else finalBestYear = bestYearAvg[0];
 
   return `The best year was ${finalBestYear[0]} with an average score of ${finalBestYear[1]}`;
 
