@@ -1,13 +1,35 @@
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors() {}
+function getAllDirectors(movies) {
+  return movies.map((movie) => movie.director);
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(movies) {
+  const spielbergDramaMovies = movies.filter((movie) => {
+    return (
+      movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')
+    );
+  });
+  return spielbergDramaMovies.length;
+}
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(movies) {
+  if (!movies.length) {
+    return 0;
+  }
+  const sum = movies.reduce((sum, movie) => {
+    if (movie.score) {
+      return sum + movie.score;
+    } else {
+      return sum;
+    }
+  }, 0);
+  const average = sum / movies.length;
+  return Math.round(average * 100) / 100;
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore() {}
@@ -24,8 +46,6 @@ function turnHoursToMinutes() {}
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
 
-
-
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
 if (typeof module !== 'undefined') {
@@ -37,6 +57,6 @@ if (typeof module !== 'undefined') {
     orderByYear,
     orderAlphabetically,
     turnHoursToMinutes,
-    bestYearAvg,
+    bestYearAvg
   };
 }
