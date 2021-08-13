@@ -29,7 +29,21 @@ function howManyMovies(movies) {
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+//to round numbers
+// Math.round((num + Number.EPSILON) * 100) / 100
+// TODO average is not calculating correctly: fix it
+function scoresAverage(movieAvg) {
+  const meanScore = movieAvg.reduce(function (sum, movieScore) {
+    return (
+      Math.round(
+        ((sum + movieScore.score) / movieAvg.length + Number.EPSILON).toFixed(
+          2
+        ) * 100
+      ) / 100
+    );
+  }, 0);
+  return meanScore;
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore() {}
