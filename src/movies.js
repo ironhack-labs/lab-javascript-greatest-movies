@@ -69,10 +69,10 @@ return (sum / numberOfMoives).toFixed(2);
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 const orderByYear = (movies) => {
-  const newSorted = movies.sort( (a, b) => (a.year > b.year ? 1 : -1)); //sorting a & b where a & b will be each movie swapping a for b
-    return newSorted;        //if it
+  const newSortedArray = movies.sort((a, b) => (a.year > b.year ? 1 : -1)); //sorting a & b where a & b will be each movie swapping a for b
+    return newSortedArray;        //if it
  }
-// console.log(orderByYear(movies));
+console.log(orderByYear(movies));
 
 
 // function compare (a, b){
@@ -92,13 +92,17 @@ const orderByYear = (movies) => {
 
 
 
-// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-  const orderAlphabetically = (movies) => {
-    let new20MoviesArray = [];
-    for (let i = 0; i < 20; i++){ 
-      new20MoviesArray.push(movies[i].title)
-    }
-    new20MoviesArray = new20MoviesArray
+//Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+ const orderAlphabetically = (movies) => { 
+   movies.sort((a, b) => (a.title > b.title ? 1 : -1)) 
+   let sorted = []
+   for (let i = 0; i < 20; i++) {
+     sorted.push(movies[i].title)
+   }
+   return sorted; 
+ }
+
+ console.log(orderAlphabetically(movies)); 
  
 
 
@@ -128,4 +132,4 @@ if (typeof module !== 'undefined') {
     turnHoursToMinutes,
     bestYearAvg,
   };
-}
+} 
