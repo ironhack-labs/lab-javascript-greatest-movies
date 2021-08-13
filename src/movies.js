@@ -5,7 +5,7 @@ function getAllDirectors(bestMoviesEver) {
   const directors = bestMoviesEver.map(function(movie) {
     return movie.director;
   });
-  // console.log("hiiiiiiiiiiiiii", directors)
+  //console.log("hiiiiiiiiiiiiii", directors)
   return directors
 }
 
@@ -75,9 +75,9 @@ function dramaMoviesScore(bestMoviesEver) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(bestMoviesEver) {
-  let clonedArray =  JSON.parse(JSON.stringify(bestMoviesEver))
+  const clonedArray =  JSON.parse(JSON.stringify(bestMoviesEver))
 
-  let sortedArray = clonedArray.sort((firstMovie, secondMovie) =>{
+  const sortedArray = clonedArray.sort((firstMovie, secondMovie) =>{
     
     if (firstMovie.year < secondMovie.year ){
       return -1;
@@ -98,7 +98,24 @@ function orderByYear(bestMoviesEver) {
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(bestMoviesEver) {
+  
+  const clonedArray =  JSON.parse(JSON.stringify(bestMoviesEver))
+
+  const sortedTitles = clonedArray.sort((firstMovie, secondMovie) => {
+    if (firstMovie.title < secondMovie.title ){
+      return -1;
+    } else if (firstMovie.title > secondMovie.title) {
+      return 1;
+    } else {
+      return 0;
+    }
+  })
+  const titles = sortedTitles.map(function(movie) {
+    return movie.title;
+  });
+  return titles.slice(0, 20)
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
