@@ -61,13 +61,14 @@ function dramaMoviesScore(movies) {
 function orderByYear(movies) {
   const moviesCopy = JSON.parse(JSON.stringify(movies));
   moviesCopy.sort(function (a, b) {
-      return a.year - b.year
-  });
+    if (a.title > b.title) return 1;
+    if (a.title < b.title) return -1;
+    if (a.title === 0) return 0
+   })
   moviesCopy.sort(function (a, b) {
-    if (a.year === b.yaer) {
-      return a.title - b.title
-    }
-  }); 
+    return a.year - b.year
+  })
+   
   return moviesCopy
 }
 
@@ -149,18 +150,26 @@ function bestYearAvg(movies) {
   }, 0)
   const avg = parseFloat((sumOfScores / sameYearsMovies[i].length).toFixed(2))
  
-       yearAndAvg.push({year: sameYearsMovies[i][0].year},{avg:avg})
+       yearAndAvg.push({year: sameYearsMovies[i][0].year,avg:avg})
     }
-     console.log(yearAndAvg)
-    console.log('here')
     
+    yearAndAvg.sort(function(a, b) {
+      if (a.avg !== b.avg){
+        return b.avg - a.avg
+      }
+      if (a.avg === b.avg) {
+        return a.year -b.year
+      }
+    })
+    
+    const bestYear = yearAndAvg[0].year
+    const bestRate = yearAndAvg[0].avg
+   
 
-    return "The best year was <YEAR> with an average score of <RATE>"
+    return`The best year was ${bestYear} with an average score of ${bestRate}`
+    
   }
 }
-
-
-bestYearAvg(movies)
 
 
 
