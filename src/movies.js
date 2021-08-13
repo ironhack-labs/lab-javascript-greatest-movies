@@ -44,7 +44,34 @@ function scoresAverage(bestMoviesEver) {
 
   
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(bestMoviesEver) {
+  if(bestMoviesEver.length === 0){
+    return 0;
+  }
+
+  const allDramas = bestMoviesEver.filter(function(movie){
+    if(movie.genre.includes('Drama')){
+      return true;
+    }
+    return false; 
+  })
+
+  if(allDramas.length === 0){
+    return 0;
+  }
+
+  const sumDramaScore = allDramas.reduce((accumulator, value) => {
+    if(typeof(value.score) === "number") {
+      return accumulator + value.score
+    }
+    
+    return accumulator 
+  },0)
+
+  const averageScoreDramas = sumDramaScore / allDramas.length
+  
+  return Math.round(averageScoreDramas * 100) / 100
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear() {}
