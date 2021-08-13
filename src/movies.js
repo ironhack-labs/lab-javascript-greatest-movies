@@ -77,7 +77,7 @@ function orderAlphabetically(moviesDatabase) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesDatabase) {
-  let newArr = [...moviesDatabase]
+  let newArr = JSON.parse(JSON.stringify(moviesDatabase))
   
   newArr.map(currentElement => {
     currentElement["duration"] = currentElement["duration"].replace(" ","")
@@ -85,7 +85,7 @@ function turnHoursToMinutes(moviesDatabase) {
   
     if (currentElement["duration"][1] === ""){
        let hours = parseFloat(currentElement["duration"][0]) *60
-       currentElement["duration"] = hours
+       currentElement["duration"] =  hours
      }
      else {
        let hours2 = parseFloat(currentElement["duration"][0]) *60 + parseFloat(currentElement["duration"][1])
