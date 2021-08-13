@@ -17,20 +17,32 @@ function howManyMovies(moviesArray) {
 
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}    // <---------.reduce
+function scoresAverage(arr) {
+  if (arr.length === 0){return 0}
+  let scoreList
+  scoreList = arr.map((movie) => {
+    if(!movie.score){return 0} 
+     else {return movie.score}})
 
+  let sumScore
+  sumScore = scoreList.reduce((a,b) => a + b)
 
+  let scoreAverage 
+  scoreAverage = sumScore/(scoreList.length)
 
-
-
+  return Math.round(scoreAverage*100)/100
+}
 
 
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
-
-
+function dramaMoviesScore(arr) {
+  let dramaFilms
+  dramaFilms = arr.filter((movie) => movie.genre.includes('Drama'))
+  
+  return scoresAverage(dramaFilms)
+}
 
 
 
@@ -39,15 +51,15 @@ function dramaMoviesScore() {}
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
- function orderByYear(movies) {
-  const orderByReleaseYear = movies.slice().sort((movie1,movie2) => {
-    if(movie1.year === movie2.year){
-      return // (no se que poner aquí)
-    } else if ( movie1.year !== movie2.year){
-      return movie1.year - movie2.year; 
-    }
-  });
-  return orderByReleaseYear;
+function orderByYear(moviesArr) {
+  return moviesArr
+    .map((movie) => movie)
+    .sort((a, b) => {
+      if (a.year - b.year === 0) {
+        return a.title < b.title ? -1 : 1;
+      }
+      return a.year - b.year;
+    });
 }
 
 
@@ -73,6 +85,9 @@ function orderAlphabetically(arrayMovies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
+
+
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
