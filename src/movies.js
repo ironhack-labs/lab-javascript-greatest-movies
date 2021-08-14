@@ -17,20 +17,27 @@ return spielbergDramaMovies.length
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(movies) {
-  const ratesAverage = movies.reduce(function(acc, movie){
-    return acc + +movie.rate / movies.length
-  },0);
-  ratesAverage.toFixed(2);
+
+  let totalAverage = movies.reduce((film1, film2) => {
+    if (fiml1.score) {
+      return film1 + film2.score;
+    } else {
+      return film1;
+    }
+  }, 0);
+
+  return Number((totalAverage / movies.length).toFixed(2)); // return the average converted into a number and only two decimals
+  // you can use Number(), parseInt() or simply plus + to convert a string into a number
 }
 
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies) {
-  const dramaMovies = movies.filter(function(movie) {
+  let dramaMovies = movies.filter(function(movie) {
     return movie.genre.includes("Drama");
 });
-return ratesAverage(dramaMovies);
+return scoresAverage(dramaMovies);
 }
 
 
