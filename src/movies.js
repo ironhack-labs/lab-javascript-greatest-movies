@@ -81,13 +81,81 @@ function dramaMoviesScore(moviesArr) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(moviesArr) {
+  
+  const copyOfMovies = moviesArr.map(function(movie) {
+    return movie;
+  })
+  
+  const yearAndTitleSortedMovies = copyOfMovies.sort(function(a, b) {
+    if (a.year === b.year) {
+      return (a.title).localeCompare(b.title);
+    }
+    return a.year - b.year;
+  })
+  
+  return yearAndTitleSortedMovies;
+  
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(moviesArr) {
+  
+  const copyOfMovies = moviesArr.map(function(movie) {
+    return movie;
+  })
+  
+  const alphOrdered = copyOfMovies.sort(function(a,b) {
+    return a.title.localeCompare(b.title);
+  })
+  
+  const onlyTitle = alphOrdered.map(function(movie) {
+    return movie.title;
+  });
+  
+  const first20 = onlyTitle.slice(0,20);
+  
+  return first20;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(moviesArr) {
+  
+  const copyOfMovies = moviesArr.map(function(movie) {
+    return movie;
+  })
+  
+  for (movie of copyOfMovies) {
+    if (movie.duration.indexOf('h') !== -1) {
+      const hIndex = movie.duration.indexOf('h');     
+      const hours = movie.duration.slice(0,hIndex);       
+      const hoursInMinutes = +hours * 60;            
+      const mIndex = movie.duration.indexOf('m');       
+      const minutes = movie.duration.slice(hIndex+2, mIndex);     
+      movie.duration = +hoursInMinutes + +minutes;       
+    } else {
+      const mIndex = movie.duration.indexOf('m');       
+      movie.duration = movie.duration.slice(0, mIndex);      
+    }
+  }
+  
+  // for (let i = 0; i < copyOfMovies.length; i++) {
+  //     if (copyOfMovies[i].duration.indexOf('h') !== -1) {
+  //         const hIndex = copyOfMovies[i].duration.indexOf('h');     
+  //         const hours = copyOfMovies[i].duration.slice(0,hIndex);       
+  //         const hoursInMinutes = +hours * 60;            
+  //         const mIndex = copyOfMovies[i].duration.indexOf('m');       
+  //         const minutes = copyOfMovies[i].duration.slice(hIndex+2, mIndex);     
+  //         copyOfMovies[i].duration = +hoursInMinutes + +minutes;       
+  //     } else {
+  //         const mIndex = copyOfMovies[i].duration.indexOf('m');       
+  //         copyOfMovies[i].duration = copyOfMovies[i].duration.slice(0, mIndex);      
+  //     }
+  // }
+  
+  return copyOfMovies;
+  
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
@@ -108,3 +176,4 @@ if (typeof module !== 'undefined') {
     bestYearAvg,
   };
 }
+  
