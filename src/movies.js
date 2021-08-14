@@ -49,7 +49,7 @@ function dramaMoviesScore(moviesDatabase) {
 }
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesDatabase) {
-  let sortMovies = [...moviesDatabase]
+  let sortMovies = JSON.parse(JSON.stringify(moviesDatabase))
   const sortYear = sortMovies.sort ((a , b)  => {
     return a["year"] - b["year"]
   })
@@ -97,10 +97,47 @@ function turnHoursToMinutes(moviesDatabase) {
 }
   
 
-
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(moviesDatabase) {
 
+  if (moviesDatabase.length === 0) {
+   return null;
+ }
+ let sortMovies = JSON.parse(JSON.stringify(moviesDatabase))
+ let  orderYear = sortMovies.sort ((a , b)  => {
+  return a["year"] - b["year"]
+})
+
+
+ let indexWithDiffYear = [0];
+ 
+ for (let i = 0 ; i <orderYear.length -1; i++){
+  if (orderYear[i]["year"] !== orderYear[i+1]["year"]){
+     indexWithDiffYear.push(i+1)
+   }
+ }
+
+ let arraysWithSameYear = [];
+ for (let i = 0; i< indexWithDiffYear.length; i++){
+   arraysWithSameYear.push(orderYear.slice(indexWithDiffYear[i],indexWithDiffYear[i+1]))
+ }
+
+ let averagesArr = arraysWithSameYear.map (currentArray => {
+   return scoresAverage(currentArray)
+ })
+
+ let maxAverage = 0;
+ let maxIndex = 0;
+  
+ averagesArr.map((currentAverage, currentIndex) => {
+   if (currentAverage > maxAverage) {
+     maxAverage = currentAverage;
+     maxIndex = currentIndex;
+   }
+ })
+
+ return `The best year was ${arraysWithSameYear[maxIndex][0]["year"]} with an average score of ${maxAverage}`
+}
 
 
 // The following is required to make unit tests work.
