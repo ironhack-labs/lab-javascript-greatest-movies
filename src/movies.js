@@ -69,7 +69,8 @@ function orderByYear(moviesArray) {
       return 1;
     }else if (a.year < b.year){
       return -1;
-      // si no se cumple ninguno de los de arriba, quiere decir que son el mismo año, con lo que vamos a ordenar por el título
+
+      // si no se cumple ninguno de los de arriba, quiere decir que son el mismo año y no hace falta condición, con lo que vamos a ordenar por el título.
     }else{
       if (a.title > b.title) {
         return 1;
@@ -85,6 +86,15 @@ function orderByYear(moviesArray) {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
   
+  const moviesTitleArray = moviesArray.map(function (movie) {
+    return movie.title;
+  });
+  
+  //Remember: si queremos ordenar por orden alfabético ascendente, no necesitamos proporcionar una función de comparación
+  moviesTitleArray.sort(); 
+  
+return moviesTitleArray.slice(0,20)
+
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
