@@ -30,10 +30,22 @@ function scoresAverage(arr) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(arr) {
-  const allDramas = arr.genre.includes('Drama');
-  const AllDramaScores = allDramas.map(function(el) {
-    return el.score || 0;
-  })
+  // get all movies that include the genre "Drama"
+  const allDramas = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].genre.includes('Drama')) {
+      allDramas.push(arr[i]);
+    }
+  }
+  // get only the scores of those movies
+    const allDramaScores = allDramas.map(function(el){
+      return el.score;
+    })
+  // get the average score of all drama movies
+  const avarageDrama = allDramaScores.reduce(function(accumulator, currentValue){
+    return Math.round((accumulator + currentValue / allDramas.length) * 100) / 100;
+  }, 0)
+  return avarageDrama;
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
