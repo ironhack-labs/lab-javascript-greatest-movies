@@ -121,9 +121,7 @@ function orderAlphabetically(moviesArr) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArr) {
   
-  const copyOfMovies = moviesArr.map(function(movie) {
-    return movie;
-  })
+  const copyOfMovies = JSON.parse(JSON.stringify(moviesArr));
   
   for (movie of copyOfMovies) {
     if (movie.duration.indexOf('h') !== -1) {
@@ -135,23 +133,9 @@ function turnHoursToMinutes(moviesArr) {
       movie.duration = +hoursInMinutes + +minutes;       
     } else {
       const mIndex = movie.duration.indexOf('m');       
-      movie.duration = movie.duration.slice(0, mIndex);      
+      movie.duration = +movie.duration.slice(0, mIndex);      
     }
   }
-  
-  // for (let i = 0; i < copyOfMovies.length; i++) {
-  //     if (copyOfMovies[i].duration.indexOf('h') !== -1) {
-  //         const hIndex = copyOfMovies[i].duration.indexOf('h');     
-  //         const hours = copyOfMovies[i].duration.slice(0,hIndex);       
-  //         const hoursInMinutes = +hours * 60;            
-  //         const mIndex = copyOfMovies[i].duration.indexOf('m');       
-  //         const minutes = copyOfMovies[i].duration.slice(hIndex+2, mIndex);     
-  //         copyOfMovies[i].duration = +hoursInMinutes + +minutes;       
-  //     } else {
-  //         const mIndex = copyOfMovies[i].duration.indexOf('m');       
-  //         copyOfMovies[i].duration = copyOfMovies[i].duration.slice(0, mIndex);      
-  //     }
-  // }
   
   return copyOfMovies;
   
