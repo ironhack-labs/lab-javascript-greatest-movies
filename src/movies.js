@@ -5,7 +5,8 @@ function getAllDirectors(arr) {
   const directors = arr.map(function(movie) {
     return movie.director;
   })
-  return directors;
+  // remove duplicates 
+  return directors.filter((value, index) => directors.indexOf(value) === index);
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
