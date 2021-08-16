@@ -52,8 +52,8 @@ function dramaMoviesScore(films) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(films) {
-  const sortedByYear = [...films];
-  sortedByYear.sort((a, b) => {
+  const filmCopy = [...films];
+  const sortedByYear = filmCopy.sort((a, b) => {
     if (a.year > b.year) return 1;
     if (a.year < b.year) return -1;
     if (a.title > b.title) return 1;
@@ -66,9 +66,7 @@ function orderByYear(films) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(films) {
-  const filmsCopy = [...films];
-
-  const sortedTitles = filmsCopy
+  const sortedTitles = films
     .map((film) => film.title)
     .sort((a, b) => {
       if (a > b) return 1;
@@ -80,11 +78,10 @@ function orderAlphabetically(films) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+// too much crazy stuff down here
 
 function turnHoursToMinutes(films) {
-  const filmCopy = [...films];
-
-  const duration = filmCopy.map((film) => {
+  const duration = films.map((film) => {
     const filmDuration = film.duration.split(' ').map((time) => {
       if (time.includes('h')) {
         return Number(time.replace('h', '')) * 60;
@@ -104,6 +101,8 @@ function turnHoursToMinutes(films) {
 
   return duration;
 }
+
+// This was my initial idea on how to solve the above
 
 // function turnHoursToMinutes(films) {
 //   const filmsCopy = [...films];
@@ -126,21 +125,15 @@ function turnHoursToMinutes(films) {
 // }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(films) {
+  if (films.length === 0) return null;
 
-// The following is required to make unit tests work.
-/* Environment setup. Do not modify the below code. */
-if (typeof module !== 'undefined') {
-  module.exports = {
-    getAllDirectors,
-    howManyMovies,
-    scoresAverage,
-    dramaMoviesScore,
-    orderByYear,
-    orderAlphabetically,
-    turnHoursToMinutes,
-    bestYearAvg
-  };
+  // I need to investigate about this stuff below
+  // const sameYear = films.reduce((acc, n) => {
+  //   acc[n.year] = acc[n.year] || [];
+  //   acc[n.year].push(n);
+  //   return r;
+  // }, Object.create(null));
 }
 
 // The following is required to make unit tests work.
@@ -158,10 +151,17 @@ if (typeof module !== 'undefined') {
   };
 }
 
-// console.log('ITERATION 1 \n', getAllDirectors(movies));
-// console.log('ITERATION 2 \n', howManyMovies(movies));
-// console.log('ITERATION 3 \n', scoresAverage(movies));
-// console.log('ITERATION 4 \n', dramaMoviesScore(movies));
-// console.log('ITERATION 5 \n', orderByYear(movies));
-// console.log('ITERATION 6 \n', orderAlphabetically(movies));
-console.log('ITERATION 7  \n', turnHoursToMinutes(movies));
+// The following is required to make unit tests work.
+/* Environment setup. Do not modify the below code. */
+if (typeof module !== 'undefined') {
+  module.exports = {
+    getAllDirectors,
+    howManyMovies,
+    scoresAverage,
+    dramaMoviesScore,
+    orderByYear,
+    orderAlphabetically,
+    turnHoursToMinutes,
+    bestYearAvg
+  };
+}
