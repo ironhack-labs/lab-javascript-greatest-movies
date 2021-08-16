@@ -85,41 +85,6 @@ function orderByYear(arr) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
-// const movies = [
-//   {
-//     title: 'The Shawshank Redemption',
-//     year: 1994,
-//     director: 'Frank Darabont',
-//     duration: '2h 22min',
-//     genre: ['Crime', 'Drama'],
-//     score: 9.3
-//   },
-//   {
-//     title: 'The Godfather',
-//     year: 1972,
-//     director: 'Francis Ford Coppola',
-//     duration: '2h 55min',
-//     genre: ['Crime', 'Drama'],
-//     score: 9.2
-//   },
-//   {
-//     title: 'Ahe Godfather: Part II',
-//     year: 1974,
-//     director: 'Francis Ford Coppola',
-//     duration: '3h 22min',
-//     genre: ['Crime', 'Drama'],
-//     score: 9
-//   },
-//   {
-//     title: 'The Dark Knight',
-//     year: 2008,
-//     director: 'Christopher Nolan',
-//     duration: '2h 32min',
-//     genre: ['Action', 'Crime', 'Drama', 'Thriller'],
-//     score: 9
-//   }
-// ];
-
 function orderAlphabetically(arr) {
   const deepCopy = JSON.parse(JSON.stringify(arr));
   const sortedByTitle = deepCopy.sort((a, b) => {
@@ -138,7 +103,29 @@ function orderAlphabetically(arr) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+
+function convertTime(time) {
+  const string = time.split(' ');
+  if (time.length < 3) {
+    const hours = parseFloat(string[0][0]);
+    return (totalMinutes = hours * 60);
+  } else {
+    const hours = parseFloat(string[0][0]);
+    const minutes = parseFloat(string[1][0] + string[1][1]);
+    return (totalMinutes = hours * 60 + minutes);
+  }
+}
+
+// const movies = require('../src/data');
+
+function turnHoursToMinutes(arr) {
+  const deepCopy = JSON.parse(JSON.stringify(arr));
+  const transformedDurationArr = deepCopy.map((movie) => {
+    movie.duration = convertTime(movie.duration);
+    return movie;
+  });
+  return transformedDurationArr;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
