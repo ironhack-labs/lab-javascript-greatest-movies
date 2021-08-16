@@ -7,6 +7,9 @@ function getAllDirectors(arr) {
   })
   // remove duplicates 
   return directors.filter((value, index) => directors.indexOf(value) === index);
+  // another way to remove duplicates
+  // set
+  //const ar = [...new Set(directors)];
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -20,7 +23,7 @@ function howManyMovies(arr) {
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(arr) {
   const allScores = arr.map(function(el) {
-    return el.score || 0;
+    return el.score || 0; //<- if (movie.score === '' || movie.score === undefined){movie.score === 0}
   })
 
    const average = allScores.reduce(function(acc, val) {
@@ -66,6 +69,7 @@ function orderByYear(arr) {
     }
       if (a.title > b.title) {
         return 1;
+        // another way to do the previous: return a.title.localCompare(b.title);
       }
     }
     return sortedByYear;
@@ -97,7 +101,17 @@ function orderAlphabetically(arr) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(arr) {
+  return arr.map(function(el) {
+    let convertedDuration = 0;
+    if (el.convertedDuration.includes('h')) {
+      convertedDuration += Number(el.convertedDuration.slice(0, el.convertedDuration.indexOf('h'))) * 60;
+      if (el.convertedDuration.includes('min')) {
+        convertedDuration += Number(el.convertedDuration.slice(el.convertedDuration.indexOf(' ') + 1, el // something here is missing))
+      }
+    }
+  })
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
