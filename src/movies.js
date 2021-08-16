@@ -79,7 +79,13 @@ function orderAlphabetically(arr) {
 function turnHoursToMinutes(arr) {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(arr) {
+  const totalScore = arr.reduce((accumulator, currentValue) => {
+    return (accumulator += currentValue.score);
+  }, 0);
+
+  const avgScore = totalScore / arr.score.length;
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
