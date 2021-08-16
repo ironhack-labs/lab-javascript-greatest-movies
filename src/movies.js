@@ -110,16 +110,18 @@ function turnHoursToMinutes(arr) {
     item.duration = item.duration.split(/[^\d.-]/g)
     if (!item.duration[2]) {
 
-      return item.duration = +item.duration[0] * 60
+      item.duration = +item.duration[0] * 60
+
     } else {
 
-      return item.duration = +item.duration[0] * 60 + +item.duration[2]
+      item.duration = +item.duration[0] * 60 + +item.duration[2]
     }
 
-    return newArr
+    return { ...item, duration: item.duration }
+
   })
 
-  return newArr
+  return multiplyTime
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
