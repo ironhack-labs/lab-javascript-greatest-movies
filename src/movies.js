@@ -17,32 +17,6 @@ function howManyMovies(array) {
   return spielbergMovies.length;
 }
 
-const movies = [
-  {
-    title: 'The Dark Knight',
-    year: 2008,
-    director: 'Christopher Nolan',
-    duration: '2h 32min',
-    genre: ['Action', 'Crime', 'Drama', 'Thriller']
-  },
-  {
-    title: '12 Angry Men',
-    year: 1957,
-    director: 'Steven Spielberg',
-    duration: '1h 36min',
-    genre: ['Crime'],
-    score: 10
-  },
-  {
-    title: '12 Angry Men',
-    year: 1957,
-    director: 'Steven Spielberg',
-    duration: '1h 36min',
-    genre: ['Crime'],
-    score: 5
-  }
-];
-
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function roundDecimals(number) {
   return parseFloat(number.toFixed(2));
@@ -90,7 +64,25 @@ function dramaMoviesScore(arr) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(arr) {
+  const deepCopy = JSON.parse(JSON.stringify(arr));
+  const sortedByYear = deepCopy.sort((a, b) => {
+    return a.year - b.year;
+  });
+
+  return sortedByYear.sort((a, b) => {
+    if (a.year === b.year) {
+      if (a.title.toLowerCase() > b.title.toLowerCase()) {
+        return 1;
+      }
+      if (a.title.toLowerCase() < b.title.toLowerCase()) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
+    }
+  });
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
