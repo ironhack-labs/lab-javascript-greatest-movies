@@ -102,6 +102,7 @@ const movies = [
     duration: '2h 4min',
     genre: ['Action', 'Adventure', 'Fantasy', 'Sci-Fi'],
     score: 8.8
+
   },
   {
     title: 'Inception',

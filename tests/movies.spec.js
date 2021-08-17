@@ -1,4 +1,5 @@
 const movies = require('../src/data');
+
 const {
   getAllDirectors,
   howManyMovies,
@@ -36,6 +37,14 @@ describe('Function "getAllDirectors"', () => {
       },
       {
         title: 'Django Unchained',
+        year: 2012,
+        director: 'Quentin Tarantino',
+        duration: '2h 45min',
+        genre: ['Drama', 'Western'],
+        score: 8.4
+      },
+      {
+        title: 'Django ',
         year: 2012,
         director: 'Quentin Tarantino',
         duration: '2h 45min',
