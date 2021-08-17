@@ -193,18 +193,3 @@ scoresAverage(movies)
 //   "genre":["Crime","Drama"],
 //   "score":9.3
 // }
-
-< class="fa fa-hourglass
-
-
-" aria-hidden="tdsflakjlfdas
-dasfkjklñsdfaj
-sdakjflñkjsdkljklasd
-
-
-
-sdfk
-oiufasdkljiklscajd
-asdipùwa
-gfolñsk
-1
