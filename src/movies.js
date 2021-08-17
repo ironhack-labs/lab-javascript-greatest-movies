@@ -1,5 +1,6 @@
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
+
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(array) {
   return array.map((movie) => {
@@ -116,8 +117,6 @@ function convertTime(time) {
   }
 }
 
-// const movies = require('../src/data');
-
 function turnHoursToMinutes(arr) {
   const deepCopy = JSON.parse(JSON.stringify(arr));
   const transformedDurationArr = deepCopy.map((movie) => {
@@ -128,7 +127,42 @@ function turnHoursToMinutes(arr) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+
+function yearAverage(movies, year) {
+  const currYearMovies = movies.filter((movie) => movie.year === year);
+  const currYearAverage =
+    currYearMovies.reduce((acc, curr) => {
+      return acc + curr.score;
+    }, 0) / currYearMovies.length;
+  return currYearAverage;
+}
+
+function findUniqueYears(movies) {
+  const movieYears = movies.map((movie) => movie.year);
+  const uniqueMovieYears = movieYears.filter((year, index, movieYears) => {
+    return movieYears.indexOf(year) === index;
+  });
+  return uniqueMovieYears;
+}
+
+function bestYearAvg(movies) {
+  if (movies.length) {
+    const years = findUniqueYears(movies);
+    const perYearAverage = years.map((year) => {
+      return { year: year, score: yearAverage(movies, year) };
+    });
+    const sorted = perYearAverage.sort((a, b) => {
+      if (a.score !== b.score) {
+        return b.score - a.score;
+      } else {
+        return a.year - b.year;
+      }
+    });
+    return `The best year was ${sorted[0].year} with an average score of ${sorted[0].score}`;
+  } else {
+    return null;
+  }
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
