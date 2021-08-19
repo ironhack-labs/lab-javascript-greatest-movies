@@ -8,8 +8,8 @@ function getAllDirectors(movies) {
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies(drama) {
-  const dramaMovies = drama.filter((movie) => {
+function howManyMovies(movies) {
+  const dramaMovies = movies.filter((movie) => {
     return (
       movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')
     );
@@ -19,36 +19,32 @@ function howManyMovies(drama) {
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(scores) {
-  if (!scores.length) return 0;
+function scoresAverage(movies) {
+  if (!movies.length) return 0;
 
-  const totalScores = scores.reduce(function (acc, current) {
-    if (!current.score) {
-      return acc;
-    } else {
-      return acc + current.score;
-    }
+  const totalScores = movies.reduce((accumulator, current) => {
+    if (!current.score) return accumulator;
+    
+    return accumulator + current.score;
   }, 0);
 
-  const averageScore = totalScores / scores.length;
+  const averageScore = totalScores / movies.length;
 
   return Math.round(averageScore * 100) / 100;
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(drama) {
-  const dramaMovies = drama.filter((movie) => {
+function dramaMoviesScore(movies) {
+  const dramaMovies = movies.filter((movie) => {
     return movie.genre.includes('Drama');
   });
 
   if (!dramaMovies.length) return 0;
 
-  const totalScores = dramaMovies.reduce(function (acc, current) {
-    if (!current.score) {
-      return acc;
-    } else {
-      return acc + current.score;
-    }
+  const totalScores = dramaMovies.reduce((accumulator, current) => {
+    if (!current.score) return accumulator;
+    
+    return accumulator + current.score;
   }, 0);
 
   const averageScore = totalScores / dramaMovies.length;
@@ -57,13 +53,45 @@ function dramaMoviesScore(drama) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(movies) {
+  const newMovieArray = JSON.parse(JSON.stringify(movies));
+
+  const sortByYear = newMovieArray.sort((a, b) => {
+    if (a.year > b.year) return 1;
+    if (a.year < b.year) return -1;
+    else {
+      if (a.title > b.title) return 1;
+      if (a.title < b.title) return -1;
+    }
+  })
+
+  return sortByYear;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(movies) {
+  const newMovieArray = JSON.parse(JSON.stringify(movies));
+  const moviesTitle = newMovieArray.map((movie) => movie.title);
+
+  const sortByTitle = moviesTitle.sort((a, b) => {
+    if (a > b) return 1;
+    if (a < b) return -1;
+
+    return 0;
+  });
+
+
+  if (sortByTitle.length > 20) {
+    return sortByTitle.slice(0, 20);
+  }
+  
+  return sortByTitle;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(hours) {
+
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
