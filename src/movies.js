@@ -1,3 +1,5 @@
+const movies = require("./data");
+
 // Iteration 1: All directors? - Get the array of all directors.
 function getAllDirectors(directors) {
   // use map to get directors' names
@@ -30,29 +32,51 @@ function howManyMovies(movies) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 //to round numbers
-// Math.round((num + Number.EPSILON) * 100) / 100
-// TODO average is not calculating correctly: fix it
 function scoresAverage(movieAvg) {
-  const meanScore = movieAvg.reduce(function (sum, movieScore) {
-    return (
-      Math.round(
-        ((sum + movieScore.score) / movieAvg.length + Number.EPSILON).toFixed(
-          2
-        ) * 100
-      ) / 100
-    );
-  }, 0);
-  return meanScore;
+  if(movieAvg.length === 0) return 0;
+  const avgRate = movieAvg.reduce(function(sum, movie) {
+      // if (movie.score === '' || movie.score === undefined) {
+      //     movie.score = 0;
+      // }
+      // return sum + movie.score;
+      return sum + (movie.score || 0);
+  }, 0) / movieAvg.length; 
+  return Number(avgRate.toFixed(2));
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(dramaMovieAvg) {
+  if(dramaMovieAvg.length === 0) return 0;
+  const dramaMovies = movies.filter(function (dramas) {
+    return (
+      dramas === movies.genre.includes('Drama')
+    );
+  });
+  const dramaAvg = scoresAverage(dramaMovies);
+  return dramaAvg;
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(moviesByYear) {
+  return [...moviesByYear].sort(function (a, b) {
+    if (a.year === b.year) {
+      return a.title.localeCompare(b.title);
+    }
+    return a.year - b.year;
+  });
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(moviesToOrder) {
+  let orderedTitles = [...moviesToOrder].sort(function (a, b) {
+    if (a.title < b.title) {
+      return -1;
+    } else if (a.title > b.title) {
+      return 1;
+    }
+  });
+  return orderedTitles.slice(0, 20);
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
