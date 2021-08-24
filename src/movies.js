@@ -24,19 +24,25 @@ function howManyMovies(movies) {
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(movies) {
   
-  //  //MULTIPLE LINES
-  //  //get all the scores in a new array.
-  // let scores = movies.map(movie => movie.score);
+   //MULTIPLE LINES
+   //filter objects with score true
+  //  const withScore = movies.filter(movie => {
+  //    if (movie.score === true) {
+  //      return movie.score
+  //    }
+  //  })
+   //get all the scores in a new array.
+  let scores = movies.map(movie => movie.score);
 
-  //  //sum all scores and get the average
-  // let average = scores.reduce((acc, curr) => acc + curr) / movies.length
+   //sum all scores and get the average
+  let average = scores.reduce((acc, curr) => acc + curr) / movies.length
 
-  // //return the average with two decimals
-  // return average.toFixed(2)
+  //return the average with two decimals
+  return parseFloat(average.toFixed(2))
 
 
   //one line                                                    
-  return (movies.map(movie => movie.score).reduce((acc, curr) => acc + curr) / movies.length).toFixed(2)
+  // return parseFloat((movies.map(movie => movie.score).reduce((acc, curr) => acc + curr) / movies.length).toFixed(2))
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -108,12 +114,23 @@ function turnHoursToMinutes(movies) {
   return newMovies;
 }
 
+
+
   
 
 
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(movies) {
+  let sorted = orderByYear(movies)
+
+
+
+
+  return sorted[0]
+
+  // return `The best year was <YEAR> with an average score of <RATE>`
+}
 
 
 
