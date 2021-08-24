@@ -86,8 +86,26 @@ function orderAlphabetically(movies) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(m) {
-  
+function turnHoursToMinutes(movies) {
+  let newMovies = movies.map(movie => {
+    let newDuration = movie;
+    let hour = movie.duration.slice(0, 1) * 60
+    let minDec = Number(movie.duration.slice(3, 4))
+    let min = Number(movie.duration.slice(4, 5))
+    let total = 0;
+
+    if (isNaN(minDec)) {
+      total = hour
+    } else if (isNaN(min)){
+      total = hour + minDec     
+    } else {
+      total = hour + minDec * 10 + min
+    }
+ 
+    newDuration['duration'] = total
+    return newDuration
+  })
+  return newMovies;
 }
 
   
