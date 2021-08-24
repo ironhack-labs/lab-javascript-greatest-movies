@@ -44,9 +44,11 @@ return roundedAv
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies) {
 
-  const dramaMovies = movies.filter((movie) => movie.genre.includes('Drama'))
-
-  return scoresAverage(dramaMovies)
+  const dramaMovies = movies.filter(movie => movie.genre.includes('Drama'))
+  const totalScore = dramaMovies.reduce((acc, curr) => {
+    return acc + curr.score;
+  }, 0)
+  return parseFloat((totalScore / dramaMovies.length).toFixed(2))
 }
 
 
@@ -67,9 +69,9 @@ function orderByYear(movies) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
-  const movieTitle = movies.sort((a, b) => {
+  const movieTitle = movies.sort(a, b) => {
     return a.title.localeCompare(b.title)
-  })
+  }
   return movieTitle.slice(0,20)
 }
 
