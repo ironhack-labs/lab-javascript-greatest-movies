@@ -25,43 +25,56 @@ function howManyMovies(movies) {
 function scoresAverage(movies) {
   
    //MULTIPLE LINES
-   //filter objects with score true
-  //  const withScore = movies.filter(movie => {
-  //    if (movie.score === true) {
-  //      return movie.score
-  //    }
-  //  })
    //get all the scores in a new array.
-  let scores = movies.map(movie => movie.score);
+  if (movies.length === 0) {
+    return 0
+  }
+  let scores = movies.map(function (movie) {
+    if (isNaN(movie.score)) {
+      return 0
+    } else {return movie.score}
+  })
 
    //sum all scores and get the average
-  let average = scores.reduce((acc, curr) => acc + curr) / movies.length
+  let average = scores.reduce((acc, curr) => acc + curr) / scores.length
 
   //return the average with two decimals
   return parseFloat(average.toFixed(2))
+  
+}
+
+
+
 
 
   //one line                                                    
   // return parseFloat((movies.map(movie => movie.score).reduce((acc, curr) => acc + curr) / movies.length).toFixed(2))
-}
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies) {
   //filter drama movies
-  let dramas = movies.filter(movie => movie.genre.includes("Drama"))
-  //create a new array of drama scores
-  let scores = dramas.map(drama => drama.score)
-  //summ all drama scores and get the average
-  let scoresAvg = scores.reduce((acc, curr) => acc + curr) / dramas.length
-  return scoresAvg.toFixed(2)
+  const dramas = movies.filter(movie => movie.genre.includes("Drama"))
+  if (dramas.length === 0) {
+    return 0
+  } 
+  // //create a new array of drama scores
+  // let scores = dramas.map(drama => drama.score)
+  //sum all drama scores and get the average
+  const totalScore = dramas.reduce((acc, curr) => {
+    return acc + (curr.score || 0);
+  }, 0)
+  return parseFloat((totalScore / dramas.length).toFixed(2))
 }
+
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 
   //sort movies by year
   function orderByYear(movies) {
-  let sorted = movies.sort(function (a, b) { 
+  const sorted = movies.sort(function (a, b) { 
     if (a.year === b.year) {
       if (a.title < b.title) {
         return -1;
@@ -74,6 +87,7 @@ function dramaMoviesScore(movies) {
     return a.year - b.year
   }
 })
+
   return sorted
 }
 
@@ -94,7 +108,7 @@ function orderAlphabetically(movies) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
   let newMovies = movies.map(movie => {
-    let newDuration = movie;
+    let newDuration = Object.assign({}, movie);
     let hour = movie.duration.slice(0, 1) * 60
     let minDec = Number(movie.duration.slice(3, 4))
     let min = Number(movie.duration.slice(4, 5))
@@ -122,14 +136,43 @@ function turnHoursToMinutes(movies) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(movies) {
-  let sorted = orderByYear(movies)
+  //array of years
+  let years = movies.map(movie => movie.year)
+  
+  //clean array not to repeat years
+  const uniqueYears = [];
 
+  for (let i = 0; i < years.length; i++) {
+    if (!uniqueYears.includes(years[i])) {
+      uniqueYears.push(years[i])
+    }
+  }
 
+  //find the best year
+  let bestYear = 0;
+  let bestRate = 0;
+  let tempArr = []
+  let tempRate = 0;
 
-
-  return sorted[0]
-
-  // return `The best year was <YEAR> with an average score of <RATE>`
+  for (let i = 0; i < uniqueYears.length; i++) {
+    tempArr = movies.filter(movie => {
+      if (movie.year === uniqueYears[i]) {
+        return movie;
+      }
+    })
+    tempRate = scoresAverage(tempArr)
+    if (tempRate >= bestRate) {
+      bestRate = tempRate;
+      bestYear = uniqueYears[i];
+    }
+    tempArr = [];
+    tempRate = 0;
+  }
+  if (bestYear === 0) {
+    return null
+  } else {
+    return `The best year was ${bestYear} with an average score of ${bestRate}`
+  }
 }
 
 
