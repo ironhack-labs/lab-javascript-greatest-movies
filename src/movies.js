@@ -28,8 +28,8 @@ function scoresAverage(movies) {
 
    
    //Should return 0
-  if(!movies.length){
-    return 0;
+    if(!movies.length){
+        return 0;
   }else{
 
     //Look for the scores of each movie and sum them in the acc
@@ -104,7 +104,9 @@ function orderAlphabetically(movies) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(movies) {
+  let durationArray = movies.map(movie => movie.duration);
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
