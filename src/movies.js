@@ -14,8 +14,8 @@ function getAllDirectors(movies) {
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies(array) {
-  return array.filter((movie) => {
+function howManyMovies(movies) {
+  return movies.filter((movie) => {
     if (
       movie.director === 'Steven Spielberg' &&
       movie.genre.includes('Drama')
@@ -41,9 +41,9 @@ function scoresAverage(movie) {
     return 0;
   }
 
-  const moviesScored = movie.reduce((acc, elem) => {
-    if (elem.score) {
-      return acc + elem.score;
+  const moviesScored = movie.reduce((acc, movie) => {
+    if (movie.score) {
+      return acc + movie.score;
     } else {
       return acc;
     }
@@ -56,8 +56,8 @@ function roundto2Decimals(twoDec) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
-function dramaMoviesScore(array) {
-  const dramaScores = array.filter((movie) => {
+function dramaMoviesScore(movies) {
+  const dramaScores = movies.filter((movie) => {
     if (movie.genre.includes('Drama')) {
       return true;
     }
@@ -65,9 +65,9 @@ function dramaMoviesScore(array) {
   if (!dramaScores.length) {
     return 0;
   }
-  const avrDramaScore = dramaScores.reduce((acc, elem) => {
-    if (elem.score) {
-      return acc + elem.score;
+  const avrDramaScore = dramaScores.reduce((acc, drama) => {
+    if (drama.score) {
+      return acc + drama.score;
     } else {
       return acc;
     }
@@ -76,8 +76,8 @@ function dramaMoviesScore(array) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(ordered) {
-  const orderedYear = ordered.slice().sort((a, b) => {
+function orderByYear(movies) {
+  const orderedYear = movies.slice().sort((a, b) => {
     if (a.year === b.year) {
       return a.title.localeCompare(b.title);
     }
@@ -88,15 +88,15 @@ function orderByYear(ordered) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
-function orderAlphabetically(movieAlpha) {
-  const sortedAlphabetically = movieAlpha
+function orderAlphabetically(movies) {
+  const sortedAlphabetically = movies
     .slice()
     .sort((title1, title2) => {
       return title1.title.localeCompare(title2.title); //compare strings
     })
     .slice(0, 20);
-  const eachMovie20 = sortedAlphabetically.map((element) => {
-    return element.title;
+  const eachMovie20 = sortedAlphabetically.map((movie) => {
+    return movie.title;
   });
   return eachMovie20;
 }
