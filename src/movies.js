@@ -63,7 +63,23 @@ function dramaMoviesScore(moviesArr) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(moviesArr) {
+  let moviesSortByYear = JSON.parse(JSON.stringify(moviesArr))
+
+  // because a normal sort would just sort through a.year and ignore the title, the normal sort was added again, if the year
+  // is the same. It checks now for a/b.title and switches the obj.entry accordingly - looks like a mess though
+  moviesSortByYear.sort((a, b) => {
+    if (a.year < b.year) return -1; // a.year is less than b.year
+    if (a.year > b.year) return 1; // aa.year is greater than b.year
+    if (a.year === b.year){
+      if (a.title < b.title) return -1; // a.title is less than b.title
+      if (a.title > b.title) return 1; // a.title is greater than b.title
+      if (a.title === b.title) return 0; // a.title equals b.title
+    }
+  })
+
+  return moviesSortByYear
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
