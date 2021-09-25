@@ -84,23 +84,50 @@ function orderAlphabetically(arr) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arr) {
   return arr.map((el) => {
-    const hours = Number(el.duration.slice(0, 1)) * 60;
+    const myStr = el.duration;
+    const hours = Number(myStr.slice(0, 1)) * 60;
     const minutes =
-      el.duration.length > 2
-        ? Number(el.duration.slice(3).replace('min', ''))
-        : 0;
-    // const hoursToMinutes = +timeArr[0].replace('h', '') * 60;
+      myStr.length > 2 ? Number(myStr.slice(3).replace('min', '')) : 0;
+    // const hoursToMinutes = +timeArr[0].replace('h's, '') * 60;
     // const minutesToNum = timeArr[1] ? +timeArr[1].replace('min', '') : 0;
 
     el.duration = minutes + hours;
-    return typeof el.duration;
+    return el;
   });
 }
 
-console.log(turnHoursToMinutes(movies));
+// console.log(turnHoursToMinutes(movies));
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(arr) {
+  if (!arr.length) return null;
+  const newArr = arr.reduce(
+    (res, el, i, array) => {
+      if (!res[0].includes(el.year)) {
+        res[0].push(el.year);
+        res[1].push(el.score);
+        res[2].push(1);
+        res[3].push(el.score);
+      } else {
+        const indexOfYear = res[0].indexOf(el.year);
+        res[1][indexOfYear] += el.score;
+        res[2][indexOfYear]++;
+        res[3][indexOfYear] = res[1][indexOfYear] / res[2][indexOfYear];
+      }
+      return res;
+    },
+    [[], [], [], []]
+  );
+
+  const maxPoint = Math.max.apply(null, newArr[3]);
+  const maxYear = Math.min.apply(
+    null,
+    newArr[0].filter((el, i, arr) => newArr[3][i] === maxPoint)
+  );
+  return `The best year was ${maxYear} with an average score of ${maxPoint}`;
+}
+
+console.log(bestYearAvg(movies));
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
