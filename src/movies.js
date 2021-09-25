@@ -127,7 +127,7 @@ function bestYearAvg(arr) {
   return `The best year was ${maxYear} with an average score of ${maxPoint}`;
 }
 
-console.log(bestYearAvg(movies));
+//console.log(bestYearAvg(movies));
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
