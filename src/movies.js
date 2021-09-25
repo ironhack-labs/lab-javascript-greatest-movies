@@ -20,7 +20,7 @@ function getAllDirectors(arrOfMovies) {
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(arrOfMovies) {
   let countOfStevensDramas = []
-  
+
   countOfStevensDramas = arrOfMovies.filter(movie => movie.director === "Steven Spielberg" && movie.genre.includes("Drama"))
 
   return countOfStevensDramas.length
@@ -28,14 +28,25 @@ function howManyMovies(arrOfMovies) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(arrOfMovies) {
+  if (!arrOfMovies.length)
+    return 0
+
   let sumOfScores = 0
   let avgScore = 0
 
   // sums up all movie.score´s to sumOfScores
-  arrOfMovies.map(movieEntry => sumOfScores+=movieEntry.score)
+  //arrOfMovies.map(movieEntry => sumOfScores+=movieEntry.score)  // if all movies have a score
+  arrOfMovies.map(movieEntry => {                                 // if a movie doesnt have a score
+    if (movieEntry.score)
+      sumOfScores+=movieEntry.score
+    else
+    sumOfScores+=0
+  })
 
-  // calculate
+  // calculates avgScore
   avgScore = sumOfScores/arrOfMovies.length
+  // sets the decimal point to 2 after comma | TypeCast to Number, because toFixed returns a String
+  avgScore = Number(avgScore.toFixed(2))
 
   return avgScore
 }
