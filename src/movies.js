@@ -29,16 +29,19 @@ function howManyMovies(movies) {
 function scoresAverage(movies) {
   // check the array is empty
   if(!movies.length) return 0;
+  // Map --> create an array with only scores
+  const scoreArr = movies.map(movie => movie.score);
   // Reduce
   // initial value = 0, acc --> 0, and curr at index 0
-    const scoresAvg = movies.reduce((acc, curr) => {
-      if(!curr.score) { // if there is no score in the current item, 
-        return acc + 0; // set the value to 0
-      } else { // if there is a value, do the sum
-        return acc + curr.score;
-      }
-    }, 0); //initial value of 0
-    return Number((scoresAvg/movies.length).toFixed(2));
+  const scoresSum = scoreArr.reduce((acc, curr) => {
+    if(!curr) { // if there is no score in the current item, 
+      return acc + 0; // set the value to 0
+    } else {
+      return acc + curr;
+    }
+  }, 0); //initial value of 0
+     // with 2 decimals, and convert into a number 
+    return Number((scoresSum/scoreArr.length).toFixed(2));
 }
   
 
@@ -109,8 +112,53 @@ function turnHoursToMinutes(movies) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(movies) {
+  if (!movies.length) return null;
+  // 1 - create an empty Object to group by year =  score
+  // { year1: [score1, score2, score3...], year2: [score1]}
+  const scoreByYear = {};
+  // Iterate to assign the result to an object grouped by year and score
+  movies.forEach( movie => {
+    // set an empty object group by year--> year : [score1, score2..]
+    let year = movie.year;
+    let score = movie.score;
+    // if the property year is not in the object, at first is empty
+    // set the property and assign the score --> year = [score]
+    if (!scoreByYear[year]) { // if there is no property year, set the year = [score]
+      scoreByYear[year] = [score]; //array to push the scores
+    } else { // the year exists, so push the score to the array
+      //So, if 1980 exists, push the score--> scoreByYear[1980].push(2) --> { 1980 = [5, 2] }
+      scoreByYear[year].push(score);
+    }
+  });
+  // 2 -Iterate over each year of the object, to sum the scores and get the average
+  // to access the values, iterate over the Object.keys
+  // access the values with the property key -->scoreByYear[2015] --> [8.2, 8.1, 8.1, 8.1]
+  const result = Object.keys(scoreByYear).map(year => {
+    // assign the value of scoreByYear[year]--> to const scores
+    const scores = scoreByYear[year];  //[8.2, 8.1, 8.1, 8.1]
+    // sum the values
+    const sum = scores.reduce((accumulator, currentValue) => accumulator + currentValue); //no initial value-> acc = first value, curr= second value
+    const avg = sum/scores.length;
+    // return object with year an average
+    return {
+      year: year,
+      avg: avg,
+    }
+  });
+  // 3- Reduce - compare to get the max score
+  const finalResult = result.reduce((previous, currentValue) => {
+    if(currentValue.avg > previous.avg) { 
+      return currentValue;
+    } else if(previous.avg > currentValue.avg){
+      return previous;
+    } else { // if the year is equal, returns the oldest year
+      return previous.year < currentValue.year ? previous : currentValue;
+    }
+  });
 
+  return `The best year was ${finalResult.year} with an average score of ${finalResult.avg}`
+}
 
 
 // The following is required to make unit tests work.
