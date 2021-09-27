@@ -82,19 +82,46 @@ function orderAlphabetically(arr) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(arr) {
-  return arr.map((el) => {
-    const myStr = el.duration;
-    const hours = Number(myStr.slice(0, 1)) * 60;
-    const minutes =
-      myStr.length > 2 ? Number(myStr.slice(3).replace('min', '')) : 0;
-    // const hoursToMinutes = +timeArr[0].replace('h's, '') * 60;
-    // const minutesToNum = timeArr[1] ? +timeArr[1].replace('min', '') : 0;
+// function turnHoursToMinutes(arr) {
+//   const newArr = arr.map((el) => {
+//     const hours = Number(el.duration.slice(0, 1)) * 60;
+//     const minutes =
+//       el.duration.length > 2
+//         ? Number(el.duration.slice(3).replace('min', ''))
+//         : 0;
+//     el.duration = minutes + hours;
+//     return el;
+//   });
+//   return newArr;
+// }
 
-    el.duration = minutes + hours;
-    return el;
+// function turnHoursToMinutes(arr) {
+//   return arr.map((el) => {
+//     const hourAndMinuteArr = el.duration
+//       .replace(/(\d*)h\s(\d*)min/, '$1 $2')
+//       .split(' ');
+//     el.duration = +hourAndMinuteArr[0] * 60 + Number(hourAndMinuteArr[1]);
+//     return el;
+//   });
+// }
+
+function turnHoursToMinutes(arr) {
+  if (!arr.length) return null;
+  return arr.map((el) => {
+    const str = el.duration;
+    const hour = str.match(/\d*h/)
+      ? +str.match(/\d*h/)[0].replace('h', '') * 60
+      : 0;
+    const minutes = str.match(/\d*min/)
+      ? +str.match(/\d*min/)[0].replace('min', '')
+      : 0;
+    return { ...el, duration: hour + minutes };
   });
 }
+
+// function turnHoursToMinutes(arr) {
+//   const newArr = [...arr];
+// }
 
 // console.log(turnHoursToMinutes(movies));
 
