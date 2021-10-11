@@ -70,11 +70,80 @@ function orderAlphabetically(movies) {
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+
+function turnHoursToMinutes(movies) {
+  let convertHourstoMin = movies.map((movie) => {
+    let hoursToMinutes = movie.duration === 0 ? 0 : Number(movie.duration.split('h')[0]);
+    return hoursToMinutes * 60;
+  });
+  let convertMin = movies.map((movie) => {
+    let calculMin =
+      movie.duration === 0
+        ? 0
+        : Number(movie.duration.split('min')[0].split(' ')[1]);
+    return calculMin;
+  });
+  let totalDuration = movies.map((movie, index) => {
+    let newMovie = {};
+    newMovie.title = movie.title;
+    newMovie.year = movie.year;
+    newMovie.director = movie.director;
+    console.log('sacamos ', convertHourstoMin[index], convertMin[index]);
+    newMovie.duration = convertHourstoMin[index] +
+      (isNaN(convertMin[index]) ? 0 : convertMin[index]);
+    newMovie.genre = movie.genre;
+    newMovie.score = movie.score;
+    return newMovie;
+  });
+return totalDuration;
+
+}
+
+
+
+
+
+  /*let totalDuration = movies.map((movie, index)=> {
+    let newMovie = { } 
+    newMovie.title = movie.title;
+    newMovie.year = movie.year;
+    newMovie.director = movie.director;
+    newMovie.duration = convertHourstoMin[index]+convertMin[index] ;
+    newMovie.genre = movie.genre;
+    newMovie.score = movie.score;
+
+    return newMovie;
+  })
+
+  return totalDuration;*/
+
+    //newMovie.duration = convertHourstoMin[index] || convertMin[index] === "NaN" || 0 ? 0 : convertHourstoMin[index]+convertMin[index] ;
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(lotsOfMovies) {
+  if (!lotsOfMovies.length) return null;
 
+  let masterObject = {};
+
+  lotsOfMovies.forEach(eachMovie => {
+    if (!masterObject[eachMovie.year]) {
+      masterObject[eachMovie.year] = [eachMovie];
+    } else {
+      masterObject[eachMovie.year].push(eachMovie);
+    }
+  });
+
+  let highest = 0;
+  let theActualYear;
+  for (let theYear in masterObject) {
+    if (ratesAverage(masterObject[theYear]) > highest) {
+      highest = ratesAverage(masterObject[theYear]);
+      theActualYear = theYear;
+    }
+  }
+  return `The best year was ${theActualYear} with an average rate of ${highest}`;
+}
 
 
 // The following is required to make unit tests work.
