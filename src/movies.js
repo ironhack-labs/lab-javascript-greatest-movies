@@ -21,9 +21,8 @@ function howManyMovies(movies) {
     let count = 0
   movies.forEach(function (movie) {
     if (movie.director !== 'Steven Spielberg') {
-      return count
     } else if (movie.genre.includes('Drama')) {
-      return count++
+      count++
     }
   });
   return count
@@ -32,15 +31,11 @@ function howManyMovies(movies) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(scores) {
-
-  const scoreAverage = scores.reduce((previous, current) => ( previous / current.score ))
-
-    return +scoreAverage.toFixed(2)
+  if (scores.length === 0) {
+    return 0
+  };
   
 }
-
-// Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear() {}
