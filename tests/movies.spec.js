@@ -415,20 +415,20 @@ describe('Function "turnHoursToMinutes"', () => {
     expect(typeof turnHoursToMinutes(movies)[0].duration).toBe('number');
   });
 
-  // it('should return an array of movies with the correct duration for a 31 minute movie', () => {
-  //   const movieTry = [{ duration: '0h 31min' }];
-  //   expect(turnHoursToMinutes(movieTry)[0].duration).toBe(31);
-  // });
+  it('should return an array of movies with the correct duration for a 31 minute movie', () => {
+    const movieTry = [{ duration: '0h 31min' }];
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(31);
+  });
 
-  // it('should return an array of movies with the correct duration for a 341 minute movie', () => {
-  //   const movieTry = [{ duration: '5h 41min' }];
-  //   expect(turnHoursToMinutes(movieTry)[0].duration).toBe(341);
-  // });
+  it('should return an array of movies with the correct duration for a 341 minute movie', () => {
+    const movieTry = [{ duration: '5h 41min' }];
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(341);
+  });
 
-  // it('should return an array of movies with the correct duration for a 2 hour movie', () => {
-  //   const movieTry = [{ duration: '2h' }];
-  //   expect(turnHoursToMinutes(movieTry)[0].duration).toBe(120);
-  // });
+  it('should return an array of movies with the correct duration for a 2 hour movie', () => {
+    const movieTry = [{ duration: '2h' }];
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(120);
+  });
 });
 
 // Iteration 8
