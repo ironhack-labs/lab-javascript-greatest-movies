@@ -72,8 +72,7 @@ function orderAlphabetically(movies) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
 
-  let copyMovies = movies.map( (movie) => movie )
-  //let copyMovies = JSON.parse(JSON.stringify(movies))
+  let copyMovies = movies.map( (movie) => JSON.parse(JSON.stringify(movie)) )
 
   function toMinutes(duration) {
     // examples of duration: '3h 22min', '2h', '22min'
