@@ -1,5 +1,8 @@
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
+
+const movies = require("./data");
+
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(arrayMovies) {
   const allDirectors = arrayMovies.map((movies) => movies.director); // New array with all the directors mapped from argument
@@ -109,7 +112,27 @@ function turnHoursToMinutes(arrayMovies) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(arrayMovies) {
+  let bestYear = 0;
+  let bestAverage = 0;
+  // Check if arrayMovies is empty
+  if(arrayMovies.length === 0) return null;
+  // Loop arrayMovies and calculates average score for each year
+  // Maybe it is not the most efficiency way of doing it but it works
+  arrayMovies.forEach((movie) => {
+    const moviesInYear =  arrayMovies.filter((movieYear) => {
+      return movie.year === movieYear.year;
+    })
+    // Updates bestAverage and bestYear
+    if(scoresAverage(moviesInYear) > bestAverage) {
+      bestAverage = scoresAverage(moviesInYear);
+      bestYear = movie.year;
+    } else if (scoresAverage(moviesInYear) === bestAverage  && bestYear > movie.year){
+      bestYear = movie.year; // If there is a tie, choose old films
+    }
+  })
+  return `The best year was ${bestYear} with an average score of ${bestAverage}`
+}
 
 
 
