@@ -25,7 +25,7 @@ function scoresAverage(arr) {
   const average = scores.reduce((a, b)=>{ //Reduces to get the sum
     return (a + b)
   })
-  return average / scores.length //Calcs avg
+  return Math.round((average / scores.length) * 100) / 100 //Calcs avg rounded to two decimals
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -40,11 +40,11 @@ function dramaMoviesScore(arr) {
   const dramaAverage = dramaScores.reduce((a, b)=>{ //Reduces to get the sum
     return (a + b) 
   })
-  return dramaAverage / dramaScores.length //calcs avg
+  return Math.round((dramaAverage / dramaScores.length) * 100) / 100 //calcs avg rounded to two decimals
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(arr) {}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
