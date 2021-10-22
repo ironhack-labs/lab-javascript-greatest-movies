@@ -1,5 +1,13 @@
 const movies = [
     {
+        title: "Sunrise: A Song of Two Humans",
+        year: 1927,
+        director: "F.W. Murnau",
+        duration: "1h 34min",
+        genre: ["Drama", "Romance"],
+        score: 8.2,
+    },
+    {
         title: "The Shawshank Redemption",
         year: 1994,
         director: "Frank Darabont",
@@ -1254,14 +1262,7 @@ const movies = [
         genre: ["Drama"],
         score: 8.2,
     },
-    {
-        title: "Sunrise: A Song of Two Humans",
-        year: 1927,
-        director: "F.W. Murnau",
-        duration: "1h 34min",
-        genre: ["Drama", "Romance"],
-        score: 8.2,
-    },
+
     {
         title: "Gone with the Wind",
         year: 1939,
@@ -2015,6 +2016,41 @@ const movies = [
     },
 ]
 
-if (typeof module !== "undefined") {
-    module.exports = movies
+// function bestYearAvg(movies) {
+//     if (movies.length === 0) {
+//         return null
+//     }
+
+//     const movieYear = movies.map(function (movie) {
+//         console.log(movie.year)
+//         return movie.year
+//     })
+
+//     const movieScore = movies.map(function (movie) {
+//         return movie.score
+//     })
+
+//     if (movies.length === 1) {
+//         return `The best year was ${movieYear} with an average score of ${movieScore}`
+//     }
+
+//     const filteredYears = movieYear.map()
+// }
+
+function getAllDirectors(movies) {
+    let allDirectors = []
+
+    movies.map(function (movie) {
+        return allDirectors.push(movie.director)
+    })
+
+    let allFiltered = []
+
+    const filteredDirectors = new Map([
+        ...movies.map(movie => [movie.director])
+    ])
+
+    return filteredDirectors
 }
+
+console.log(getAllDirectors(movies))
