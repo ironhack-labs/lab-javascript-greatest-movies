@@ -12,6 +12,7 @@ function getAllDirectors(arr) {
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
+
 function howManyMovies(arr) {
   const dramaSpielbergMovies = arr.reduce((acc, movie) => {
     if (
@@ -27,6 +28,7 @@ function howManyMovies(arr) {
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
+
 function scoresAverage(arr) {
   if (arr.length === 0) {
     return 0;
@@ -41,6 +43,7 @@ function scoresAverage(arr) {
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
+
 function dramaMoviesScore(arr) {
   const dramaMovies = arr.filter((movie) => {
     return movie.genre.includes('Drama');
@@ -55,10 +58,36 @@ function dramaMoviesScore(arr) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+
+function orderByYear(movies) {
+  const orderedMovies = movies.map((item) => {
+    return item;
+  });
+  orderedMovies.sort((a, b) => {
+    if (a.year > b.year) {
+      return 1;
+    } else if (b.year > a.year) {
+      return -1;
+    } else if (a.title > b.title) {
+      return 1;
+    } else if (b.title > a.title) {
+      return -1;
+    }
+    });
+  return orderedMovies;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(arr) {
+  const moviesTitles = arr.map((movie) => {
+    return movie.title;
+  });
+  moviesTitles.sort();
+  if (moviesTitles.length > 20) {
+    return moviesTitles.slice(0, 20);
+  };
+  return moviesTitles;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
