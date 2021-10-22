@@ -22,14 +22,26 @@ function scoresAverage(arr) {
   const scores = arr.map((item)=>{ //extracts the scores into an array with map
     return item.score
   })
-  const average = scores.reduce((a, b)=>{ //reduces to get the average
-    return (a + b) / scores.length
+  const average = scores.reduce((a, b)=>{ //Reduces to get the sum
+    return (a + b)
   })
-  return average
+  return average / scores.length //Calcs avg
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(arr) {
+  const dramaMovies = arr.filter((item)=>{ //Filters movies by drama movies
+    return item.genre.includes('Drama')
+  })
+  if(dramaMovies.length === 0) return 0 //returns 0 if there's no drama movies
+  const dramaScores = dramaMovies.map((item)=>{ //Extract the score of drama movies
+    return item.score
+  })
+  const dramaAverage = dramaScores.reduce((a, b)=>{ //Reduces to get the sum
+    return (a + b) 
+  })
+  return dramaAverage / dramaScores.length //calcs avg
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear() {}
