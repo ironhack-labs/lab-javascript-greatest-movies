@@ -37,19 +37,8 @@ function scoresAverage(movies) {
 function dramaMoviesScore(movies) {
 
   let dramaMovies = movies.filter( (movie) => movie.genre.includes("Drama") ) 
-
   if (dramaMovies.length === 0) return 0
-
-  function sumScores(acc, elem) {
-    if (elem.score) acc += elem.score
-    return acc
-  } 
-
-  let sumScoresDramaMovies = dramaMovies.reduce(sumScores, 0)
-  let averageScoreDramaMovies = sumScoresDramaMovies / dramaMovies.length
-
-  return parseFloat(averageScoreDramaMovies.toFixed(2))
-
+  return scoresAverage(dramaMovies)
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
@@ -74,15 +63,15 @@ function orderByYear(movies) {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
   
-  function sortByTitle(a, b) {
-    if (a.title < b.title) return -1        
-    else if (a.title > b.title) return 1  
-    else return 0                          
-  }
+  //function sortByTitle(a, b) {
+  //  if (a.title < b.title) return -1        
+  //  else if (a.title > b.title) return 1  
+  //  else return 0                          
+  //}
 
   // sort is a destructive method, so we create a copy:
   let copyMovies = movies.slice()
-  let sortedMovies = copyMovies.sort(sortByTitle)
+  let sortedMovies = copyMovies.sort()    // we don't need to pass anything, since by default, it sorts strings by alphabetical order!!!
   let twentyFirstMovies = sortedMovies.slice(0, 20)
                                       .map( (movie) => movie.title)
 
@@ -92,8 +81,7 @@ function orderAlphabetically(movies) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
 
-
-  let copyMovies = movies.slice()
+  let copyMovies = movies.map( (movie) => movie )
 
   function toMinutes(duration) {
     // examples of duration: '3h 22min', '2h', '22min'
@@ -124,7 +112,6 @@ function turnHoursToMinutes(movies) {
   copyMovies.forEach( (movie) => { 
     //console.log("BEFORE: " + movie.duration)
     movie.duration = toMinutes(movie.duration)
-    
     //console.log(`AFTER, IN MINUTES: ${movie.duration}, datatype ${typeof movie.duration}`)
   })
   
@@ -138,17 +125,17 @@ function turnHoursToMinutes(movies) {
 function bestYearAvg(movies) {
   if (movies.length === 0 ) return null
 
+  let copyMovies = movies.slice()
 
   const groupByYear = (movies, i) => {
-    
     // Return the end result (accumulator!!!)
-    return array.reduce( (acc, currentValue) => {
-      // If an array already present for key (example: '1975'), then push it to the array. 
+    return movies.reduce( (acc, currentValue) => {
+      // Let's see ... 
+      // If an array already present for the current value (example: '1975'), then push it to the array. 
       // Otherise, create an array (example: '1990') and push the object to the array.
       if (!acc[currentValue[i]]) {
         acc[currentValue[i]] = [];
       }
-
       acc[currentValue[i]].push(currentValue);
 
       // Return the current iteration (current value, accumulator), this will be taken as next iteration 'acc' and accumulate
@@ -156,9 +143,13 @@ function bestYearAvg(movies) {
     }, {} ); // empty object is the initial value for result object
   };
 
-  const moviesGroupedByYear = groupByYear(movies, 'year');
+  let moviesGroupedByYear = groupByYear(copyMovies, 'year');
 
-  console.log(moviesGroupedByYear)
+  // Now moviesGroupedByYear are grouped by year ('1990': [], '1991': [],...)
+  //let average = scoresAverage(moviesGroupedByYear)
+  
+  //console.log(moviesGroupedByYear)
+  //return average
 
 }
 
