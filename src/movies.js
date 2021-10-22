@@ -56,7 +56,7 @@ function orderByYear(arr) {
     if(a.year < b.year) {
       return -1;
     }else{
-      return 0;
+      return a.title.localeCompare(b.title)
     }
   }) 
   return arr2
