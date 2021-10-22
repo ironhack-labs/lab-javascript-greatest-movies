@@ -58,7 +58,6 @@ function orderByYear(arr) {
       else return 0
     }
   })
-  console.log(typeof ordered)
   return ordered
 }
 
@@ -96,7 +95,26 @@ function turnHoursToMinutes(arr) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(arr) {}
+function bestYearAvg(arr) {
+  if(arr.length === 0) return null //Return null if array is empty
+  const years = arr.map((item)=>{ //Extract the years into a list
+    return item.year
+  })
+  const unqYears = []
+  for(let i = 0; i < years.length; i++){
+    if(unqYears.indexOf(years[i]) === -1){ //Checks whether the year from the year only array has been added to the unique one 
+      unqYears.push(years[i])              //and only adds it if it hasn't been, that way the new array has each year just once
+    }
+  }
+
+  //Calc avg score per year
+  for(let i = 0; i < unqYears.length; i++){
+    //Filter by the year of the iteration
+    //Map the scores after filtering
+    //Avg scores of the year then save it in the array
+  }
+
+}
 
 
 
