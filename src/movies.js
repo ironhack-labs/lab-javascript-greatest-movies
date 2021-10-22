@@ -95,19 +95,17 @@ function turnHoursToMinutes(arr) {
       }
       if(elem.indexOf("m")!==-1){
         minutes = Number(elem.replace("min",""))
-        //console.log(minutes)
+        
       }
+    }
+    return result.push(hours+minutes)
       
-
-      }
-      return result.push(hours+minutes)
-      
-    })
+  })
     for(let i=0; i< arr.length; i++){
       arr2[i].duration = result[i]
       
     }
-    console.log(arr2)
+    console.log(typeof arr2)
     return arr2
   }
   
