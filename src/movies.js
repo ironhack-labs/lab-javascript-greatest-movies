@@ -19,12 +19,15 @@ function howManyMovies(arr) {
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(arr) {
   if(arr.length === 0) return 0 //returns 0 if array is empty
+  arr.forEach((item)=>{ //Add a 0 to compute the avg to movies that don't have a score
+    if(item.score === null || item.score === undefined) item.score = 0 
+  })
   const scores = arr.map((item)=>{ //extracts the scores into an array with map
     return item.score
   })
   const average = scores.reduce((a, b)=>{ //Reduces to get the sum
     return (a + b)
-  })
+  }, 0)
   return Math.round((average / scores.length) * 100) / 100 //Calcs avg rounded to two decimals
 }
 
@@ -39,21 +42,34 @@ function dramaMoviesScore(arr) {
   })
   const dramaAverage = dramaScores.reduce((a, b)=>{ //Reduces to get the sum
     return (a + b) 
-  })
+  }, 0)
   return Math.round((dramaAverage / dramaScores.length) * 100) / 100 //calcs avg rounded to two decimals
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(arr) {}
+function orderByYear(arr) {
+  const arrayCopy = JSON.parse(JSON.stringify(arr)); //Deep copy the array
+  const ordered = arrayCopy.sort((a, b)=>{ //Sort by year
+    if(a.year < b.year) return -1
+    else if(a.year > b.year) return 1
+    else if(a.year === b.year){ //Order movies alphabetically if they were made on the same year following the same logic
+      if(a.title < b.title) return -1
+      else if(a.tile > b.title) return 1
+      else return 0
+    }
+  })
+  console.log(typeof ordered)
+  return ordered
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(arr) {}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(arr) {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(arr) {}
 
 
 
