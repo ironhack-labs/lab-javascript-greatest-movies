@@ -10,14 +10,15 @@ function getAllDirectors(array) {
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(array) {
-  const moviesSpielberg = array.filter(function(movies){
-    if(movies.director === 'Steven Spielberg' && movies.genre.includes('drama')){
-      return 
+  const moviesDramaSpielberg = array.reduce(function(acc, movie){
+    if(movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')){
+      return acc + 1
+    }else {
+      return acc
     }
-  })
-  return moviesSpielberg
+  }, 0)
+  return moviesDramaSpielberg
 }
-
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage() {}
 
