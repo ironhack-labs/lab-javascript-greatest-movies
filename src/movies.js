@@ -69,6 +69,9 @@ function orderAlphabetically(array) {
     return movie.title
   })
   filmsByOrder.sort()
+  if(filmsByOrder.length > 20){
+    return filmsByOrder.slice(0, 20)
+  }
   return filmsByOrder
 }
 

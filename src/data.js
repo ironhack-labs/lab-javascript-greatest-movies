@@ -2001,14 +2001,7 @@ const movies = [
     score: 8
   }
 ];
-const orderFilms = movies.map((movie)=>{
-  return movie
-})
-const filmsByOrder = movies.map((movie)=>{
-  return movie.title
-})
-filmsByOrder.sort()
-console.log(filmsByOrder)
+
 
 if (typeof module !== 'undefined') {
   module.exports = movies;
