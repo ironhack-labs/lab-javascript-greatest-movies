@@ -23,9 +23,7 @@ function howManyMovies(arr) {
         return movie.director === 'Steven Spielberg'
     });
 
-    if (spielbergMovies.length === 0) return 0
-
-    return spielbergMovies.filter(movie => {
+    return (spielbergMovies.length === 0) ? 0 : spielbergMovies.filter(movie => {
         return movie.genre.includes('Drama');
     }).length;
 }
@@ -33,6 +31,7 @@ function howManyMovies(arr) {
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(arr) {
     if (arr.length === 0) return 0;
+
     return +(arr.reduce((acc, movie) => {
         return acc + (movie.score || 0);
     }, 0) / arr.length).toFixed(2);
@@ -49,6 +48,7 @@ function dramaMoviesScore(arr) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arr) {
     if (arr.length === 0) return [];
+
     return arr.sort((a, b) => {
         return (a.year === b.year) ? (a.title.localeCompare(b.title)) : (a.year - b.year);
     });
@@ -83,27 +83,26 @@ function convertIntoMinute(duration) {
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(arr) {
     if (arr.length === 0) return null;
-    const allYears = removeDuplicated(arr.map(movie => {
+    const years = removeDuplicated(arr.map(movie => {
         return movie.year;
     }));
 
-    let array = [];
-    for (let year of allYears) {
-        const rateAverage = scoresAverage(arr.filter(movie => {
+    let scoreAvgPerYearArr = [];
+    for (let year of years) {
+        const scoreAvg = scoresAverage(arr.filter(movie => {
             return movie.year === year
         }));
 
-        array.push({
+        scoreAvgPerYearArr.push({
             year: year,
-            rateAverage: rateAverage,
+            scoreAvg: scoreAvg,
         })
     }
 
-    const result = array.sort((a, b) => {
-
-        return (+a.rateAverage === +b.rateAverage) ? (+a.year - +b.year) : (+b.rateAverage - +a.rateAverage);
+    const result = scoreAvgPerYearArr.sort((a, b) => {
+        return (+a.scoreAvg === +b.scoreAvg) ? (+a.year - +b.year) : (+b.scoreAvg - +a.scoreAvg);
     })[0];
-    return `The best year was ${result.year} with an average score of ${result.rateAverage}`
+    return `The best year was ${result.year} with an average score of ${result.scoreAvg}`
 }
 
 // The following is required to make unit tests work.
