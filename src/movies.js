@@ -1,21 +1,3 @@
-const movies = [
-  {
-    title: 'The Shawshank Redemption',
-    year: 1994,
-    director: 'Frank Darabont',
-    duration: '2h 22min',
-    genre: ['Crime', 'Drama'],
-    score: 9.3
-  },
-  {
-    title: 'The Godfather',
-    year: 1972,
-    director: 'Francis Ford Coppola',
-    duration: '2h 55min',
-    genre: ['Crime', 'Drama'],
-    score: 9.2
-  }
-];
 // Iteration 1: All directors? - Get the array of all directors.
 function getAllDirectors(movies) {
   let directors = movies.map((movie) => movie.director);
@@ -84,7 +66,16 @@ function orderByYear(someArray) {
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(someArray) {
+  let sortMovies = someArray.map((movie)=>movie.title);
+  sortMovies.sort();
+  if(sortMovies.length < 20){
+    return sortMovies;}else{
+      sortMovies = sortMovies.slice(0, 20);
+
+    }
+  return sortMovies;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
