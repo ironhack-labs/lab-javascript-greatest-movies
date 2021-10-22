@@ -39,6 +39,7 @@ function dramaMoviesScore(movies) {
   let dramaMovies = movies.filter( (movie) => movie.genre.includes("Drama") ) 
   if (dramaMovies.length === 0) return 0
   return scoresAverage(dramaMovies)
+
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
@@ -55,33 +56,24 @@ function orderByYear(movies) {
   }
 
   // sort is a destructive method, so we create a copy:
-  let copyMovies = movies.slice()
+  let copyMovies = movies.map( (movie) => movie )
   return copyMovies.sort(sortByYear)
 
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
-  
-  //function sortByTitle(a, b) {
-  //  if (a.title < b.title) return -1        
-  //  else if (a.title > b.title) return 1  
-  //  else return 0                          
-  //}
-
   // sort is a destructive method, so we create a copy:
-  let copyMovies = movies.slice()
+  let copyMovies = movies.map( (movie) => movie.title)
   let sortedMovies = copyMovies.sort()    // we don't need to pass anything, since by default, it sorts strings by alphabetical order!!!
-  let twentyFirstMovies = sortedMovies.slice(0, 20)
-                                      .map( (movie) => movie.title)
-
-  return twentyFirstMovies
+  return sortedMovies.slice(0, 20)
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
 
   let copyMovies = movies.map( (movie) => movie )
+  //let copyMovies = JSON.parse(JSON.stringify(movies))
 
   function toMinutes(duration) {
     // examples of duration: '3h 22min', '2h', '22min'
@@ -89,7 +81,6 @@ function turnHoursToMinutes(movies) {
     let hours = 0
 
     if (typeof duration === 'string') {
-
       if (duration.indexOf('h') != -1) {            
         hours = duration.slice(0, duration.indexOf('h'))
 
@@ -99,10 +90,7 @@ function turnHoursToMinutes(movies) {
 
       } else if (duration.indexOf('min') != -1) {                 // there is only minutes
         minutes = duration.slice(0, duration.indexOf('min'))
-      } else if (duration.indexOf('h') != -1) {                   // there is only hours
-        hours = duration.slice(0, duration.indexOf('h'))
-      }
-
+      } 
     }
 
     let totalMinutes = parseInt(hours) * 60 + parseInt(minutes)
@@ -125,7 +113,7 @@ function turnHoursToMinutes(movies) {
 function bestYearAvg(movies) {
   if (movies.length === 0 ) return null
 
-  let copyMovies = movies.slice()
+  let copyMovies = movies.map( (movie) => movie )
 
   const groupByYear = (movies, i) => {
     // Return the end result (accumulator!!!)
