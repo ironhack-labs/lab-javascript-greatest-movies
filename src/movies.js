@@ -5,6 +5,11 @@ function getAllDirectors(array) {
   const director = array.map(function(movie){
     return movie.director
   })
+  for(i = 0; i < director.length; i++){
+    if(director[i] === director[i + 1]){
+      director.splice(i, 1)
+    }
+  }
   return director
 }
 
