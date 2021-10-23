@@ -51,7 +51,7 @@ scoresAverage(movies)
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies) {
-  let dramaMovies = movies.filter(function(movie){
+  const dramaMovies = movies.filter(function(movie){
     if (movie.genre.includes('Drama')) return movie
   })
 
@@ -62,19 +62,19 @@ function dramaMoviesScore(movies) {
 
 dramaMoviesScore(movies)
 
-// FIX: doesn't sort by title if year is same
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
   if (movies.length === 0) {
     return null
   }
-  const sorted = movies.sort(function(a, b){
+  const copy = [...movies]
+  copy.sort(function(a, b){
     if (a.year === b.year) {
-      return a.title - b.title
+      return a.title.localeCompare(b.title)
     }
     return a.year - b.year
   })
-  return sorted
+  return copy
 }
 
 orderByYear(movies)
@@ -109,7 +109,7 @@ function turnHoursToMinutes(movies) {
   return minutes
 }
 
-// FIX: find better solution, this doesn't connect the right year
+// FIX: find better solution, this doesn't connect the right year with the score
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(movies) {
   let result = ''
@@ -124,15 +124,19 @@ function bestYearAvg(movies) {
     return acc;
   }, Object.create(null));
   
-  //console.log(groupByYear)
-
   const years = movies.map(function(movie){
     return groupByYear[movie.year]
   })
+  const oldestYear = Object.keys(groupByYear)[0]
+
   for (let i = 0; i < years.length; i++) {
     for (let j = 0; j < years[i].length; j++) {
-      scores.push([scoresAverage(years[i])])
-      result = `The best year was ${years[i][j].year} with an average score of ${Math.max(...scores)}`
+      let score = [scoresAverage(years[i])]
+        scores.push(score)
+        
+        if (years.length >= 1) {
+        result = `The best year was ${years[i][j]} with an average score of ${Math.max(...scores)}`
+      }
     }
     return result
   } 
