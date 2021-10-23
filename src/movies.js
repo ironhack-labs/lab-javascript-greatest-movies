@@ -109,7 +109,6 @@ function turnHoursToMinutes(movies) {
   return minutes
 }
 
-// FIX: find better solution, this doesn't connect the right year with the score
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(movies) {
   let result = ''
@@ -123,23 +122,13 @@ function bestYearAvg(movies) {
 
     return acc;
   }, Object.create(null));
-  
-  const years = movies.map(function(movie){
-    return groupByYear[movie.year]
-  })
-  const oldestYear = Object.keys(groupByYear)[0]
 
-  for (let i = 0; i < years.length; i++) {
-    for (let j = 0; j < years[i].length; j++) {
-      let score = [scoresAverage(years[i])]
-        scores.push(score)
-        
-        if (years.length >= 1) {
-        result = `The best year was ${years[i][j]} with an average score of ${Math.max(...scores)}`
-      }
-    }
-    return result
-  } 
+  for (const [year, movies] of Object.entries(groupByYear)) {
+    return `The best year was ${year} with an average score of ${scoresAverage(movies)}`
+      
+  }
+  
+  
 }
 
 bestYearAvg(movies)
