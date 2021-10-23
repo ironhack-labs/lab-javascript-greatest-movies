@@ -98,8 +98,10 @@ function turnHoursToMinutes(arr) {
 function bestYearAvg(arr) {
   if(arr.length === 0) return null //Return null if array is empty
   const years = arr.map((item)=>{ //Extract the years into a list
-    return item.year
+    const yearData = {year: item.year, score: 0} //Save data into an object before returning it to the new array
+    return yearData
   })
+
   const unqYears = []
   for(let i = 0; i < years.length; i++){
     if(unqYears.indexOf(years[i]) === -1){ //Checks whether the year from the year only array has been added to the unique one 
@@ -109,10 +111,28 @@ function bestYearAvg(arr) {
 
   //Calc avg score per year
   for(let i = 0; i < unqYears.length; i++){
-    //Filter by the year of the iteration
-    //Map the scores after filtering
-    //Avg scores of the year then save it in the array
+
+    //Filter movies by year of iteration
+    const movies = arr.filter((item)=>{
+      return item.year === unqYears[i].year
+    })
+
+    //Mapping the scores of that year after filtering and getting the avg can be done reusing the function in iteration 3
+    const averagePerYear = scoresAverage(movies)
+    unqYears[i].score = averagePerYear //Save the average score of that year inside the unique year array
   }
+
+  //Find out the highest average score and return it
+  let highestScore = 0
+  let highestScoreYear
+  for(let i = 0; i < unqYears.length; i++){
+    if(unqYears[i].score >= highestScore){
+      highestScore = unqYears[i].score
+      highestScoreYear = unqYears[i].year
+    }
+  }
+
+  return `The best year was ${highestScoreYear} with an average score of ${highestScore}`
 
 }
 
