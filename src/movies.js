@@ -108,11 +108,41 @@ function orderAlphabetically(someArr) {
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(someArr) {
+  let moviesDuration = someArr.map(function(movie){
+    // if(movie.duration.split("1h")){
+    //   return ":"
+    // }
+    // return movie.duration
+  })
+  return moviesDuration
+}
+
+// console.log(turnHoursToMinutes(movies))
+
+
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(someArr) {
+//   if(someArr.length == 0){
+//     return null
+//   }
+// let newArray = someArr.reduce(function(acc, movie){
+//     if(movie.year === movie.year){
+//      return movie.year + movie.year
+//     } 
+//   }, 0)
+//   return newArray
+}
+// console.log(bestYearAvg(movies))
 
+
+
+// let filteredByYear = someArr.filter(function(someArr){
+//   return someArr.year
+// })
+// return filteredByYear
 
 
 // The following is required to make unit tests work.
