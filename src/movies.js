@@ -12,7 +12,7 @@ function howManyMovies(movies) {
     (movie) =>
       movie.director === 'Steven Spielberg' &&
       movie.genre.indexOf('Drama') !== -1
-  );
+  ); 
   return spielbergDramas.length;
 }
 
@@ -78,7 +78,25 @@ function orderAlphabetically(someArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(movies) {
+  let cloneMovies = movies.map((movie)=>movie);
+  return cloneMovies.map((movie) => {
+    if (!movie.duration){
+      return movie;
+    }
+    movie.duration = movie.duration.replace("h", "");
+    movie.duration = movie.duration.replace("min", "");
+    movie.duration = movie.duration.split(" ");
+    movie.duration = movie.duration.reduce((acc, item, index) => {
+        item = Number(item);
+      if (index === 0) {
+        return acc + item * 60;
+      }
+      return acc +item;
+    }, 0);
+    return movie;
+  });
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
