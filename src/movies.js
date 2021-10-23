@@ -53,7 +53,23 @@ return parseFloat((scoresSum / movies.length).toFixed(2))
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(movies) {
+
+  const sortedMovies = movies.sort(function(a, b) {
+    if (a.year > b.year) return 1
+    else if (a.year < b.year) return -1
+    else /*(a.year === b.year)*/ return 0 //{ //ordenando alfabéticamente me da fallo!!!!! ¿?
+      if (a.title > b.title) return 1
+      else if (a.title < b.title) return -1
+      else /*(a.title === b.title)*/ return 0
+    // }
+  })
+
+return sortedMovies  //me dice que el objeto que recibe es =, que no es un "new array" ¿?. .sort no da un new array?
+}
+
+
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
