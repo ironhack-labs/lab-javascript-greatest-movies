@@ -36,18 +36,24 @@ function scoresAverage(movies) {
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies) {
 
-if (movies.length === 0)
-return 0
+ const dramaMovies = movies.filter((item) => {return item.genre.includes('Drama')})
 
-const scoresSum = movies.reduce(function(accu, movie) {
- if (movie.score && movie.genre.includes('Drama')) {
-     return accu + movie.score
-  } else {
-     return accu
-  }
-}, 0)
+ if (dramaMovies.length === 0)
+ return 0
 
-return parseFloat((scoresSum / movies.length).toFixed(2))
+ const scoresSum = dramaMovies.reduce(function(accu, movie) {
+  if (movie.score) return accu + movie.score
+  else return accu
+}, 0) 
+
+// mappedMovies.sort(function(a, b) {
+//   if (a.year > b.year) return 1
+//   else if (a.year < b.year) return -1
+//   else if (a.title > b.title) return 1
+//   else if (a.title < b.title) return -1
+// })
+
+return parseFloat((scoresSum / dramaMovies.length).toFixed(2))
 }
 
 
@@ -55,24 +61,27 @@ return parseFloat((scoresSum / movies.length).toFixed(2))
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
 
-  const sortedMovies = movies.sort(function(a, b) {
+  const mappedMovies = movies.map((item) => {return item})
+
+  mappedMovies.sort(function(a, b) {
     if (a.year > b.year) return 1
     else if (a.year < b.year) return -1
-    else /*(a.year === b.year)*/ return 0 //{ //ordenando alfabéticamente me da fallo!!!!! ¿?
-      if (a.title > b.title) return 1
-      else if (a.title < b.title) return -1
-      else /*(a.title === b.title)*/ return 0
-    // }
+    else if (a.title > b.title) return 1
+    else if (a.title < b.title) return -1
   })
 
-return sortedMovies  //me dice que el objeto que recibe es =, que no es un "new array" ¿?. .sort no da un new array?
+return mappedMovies
 }
 
 
-
-
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(movies) {
+  const mappedByTitle = movies.map((item) => {return item.title})  //creo lista de títulos
+
+  mappedByTitle.sort(function(a, b) {return a.localeCompare(b) })  //ordeno alfabéticamente (xq sólo me pasa el test utilizando el localeCompare??)
+  
+return mappedByTitle.slice(0, 20) //dime sólo los primeros 20
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
