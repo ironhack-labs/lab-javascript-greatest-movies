@@ -88,7 +88,19 @@ function orderAlphabetically(array) {
 function turnHoursToMinutes() {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(array) {
+  if(!array.length){
+    return null
+  }
+  array.sort((a, b)=>{
+    if(a.score > b.score){
+      return -1
+    }else if(a.score < b.score){
+      return 1
+    }
+  })
+  return `The best year was ${array[0].year} with an average score of ${array[0].score}`
+}
 
 
 
