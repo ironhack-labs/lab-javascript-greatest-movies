@@ -109,33 +109,47 @@ function turnHoursToMinutes(movies) {
   return minutes
 }
 
-// FIX: one test fails
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
+function groupBy(arr){
+  const groupByYear = arr.reduce(function (acc, item) {
+    acc[item.year] = acc[item.year] || []
+    acc[item.year].push(item)
+
+    return acc;
+  }, Object.create(null));
+  return groupByYear
+}
+
+const groupByYear = groupBy(movies)
+
+function modifyObj(arr, filterBy) {
+  for (const [key, arr] of Object.entries(filterBy)) {
+    arr.map((item) => {
+      item.key = Number(key),
+      item.avg = scoresAverage(arr)
+    })
+  } 
+  return arr
+}
+
+const modifiedMovies = modifyObj(movies, groupByYear)
+
 function bestYearAvg(movies) {
   if (movies.length === 0) {
     return null
   }
-  const groupByYear = movies.reduce(function (acc, movie) {
-    acc[movie.year] = acc[movie.year] || []
-    acc[movie.year].push(movie)
-
-    return acc;
-  }, Object.create(null));
-
-  const years = movies.map(function(movie){
-    return groupByYear[movie.year]
+  
+  const best = modifiedMovies.sort(function(a, b){
+    if (Number(a.avg) === Number(b.avg)) {
+      return a.year - b.year
+    }
+    return Number(b.avg) - Number(a.avg)
   })
-
-  for (const [year, movies] of Object.entries(groupByYear)) {
-    for (let movie of movies) {
-      return `The best year was ${movie.year} with an average score of ${scoresAverage(movies)}`
-    }    
-  } 
+  
+  return `The best year was ${best[0].year} with an average score of ${best[0].avg}`
 }
 
 bestYearAvg(movies)
-
-
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
@@ -151,3 +165,5 @@ if (typeof module !== 'undefined') {
     bestYearAvg,
   };
 }
+
+
