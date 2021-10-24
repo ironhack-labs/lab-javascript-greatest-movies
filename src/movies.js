@@ -1,4 +1,5 @@
 // Iteration 1: All directors? - Get the array of all directors.
+
 function getAllDirectors(movies) {
   const result = movies.map(({director}) => director)
   return result
@@ -27,6 +28,7 @@ howManyMovies(movies)
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 // 1) return only movies.score, 2) sum of movies.score with reduce method 3) devide by movies.length with 2 decimals 4) return Number
+
 function scoresAverage(movies) {
   let scores = movies.map(movie => movie.score)
   let totalScore = scores.reduce(function (result, score){
@@ -38,6 +40,7 @@ function scoresAverage(movies) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 // new array with only genre includes drama, then same as previous iteration but with new drama array
+
 function dramaMoviesScore(movies) {
   let dramaMovies = movies.filter(movie => movie.genre.includes('Drama'))
   let scores = dramaMovies.map(movie => movie.score)
@@ -56,21 +59,27 @@ const orderByYear = (movies) => {return movies.sort(function(a, b){
   return new Date(a.year) - new Date(b.year);
 });
 }
-orderByYear(movies)
+console.log(orderByYear(movies))
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-// we are looking at movie.title which is a string
-function orderAlphabetically(movies) {
 
+function orderAlphabetically(movies) {
+  const sorted = movies.map((item) => {
+    return item.title;
+});
+sorted.sort ((a,b) => {
+  return a.localeCompare(b);
+});
+return sorted.slice(0,20);
 }
+
+orderAlphabetically(movies)
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
-
-
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
