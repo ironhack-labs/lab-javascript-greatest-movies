@@ -49,14 +49,14 @@ function dramaMoviesScore(arr) {
 function orderByYear(arr) {
     if (arr.length === 0) return [];
 
-    return arr.sort((a, b) => {
+    return JSON.parse(JSON.stringify(arr)).sort((a, b) => {
         return (a.year === b.year) ? (a.title.localeCompare(b.title)) : (a.year - b.year);
     });
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(arr) {
-    return [...arr].sort((a, b) => {
+    return JSON.parse(JSON.stringify(arr)).sort((a, b) => {
         return (a.title.localeCompare(b.title));
     }).map(movie => {
         return movie.title;
@@ -71,12 +71,14 @@ function turnHoursToMinutes(arr) {
 }
 
 function convertIntoMinute(duration) {
-    duration = duration.split(' ').join('');
-    duration = duration.split('min').join('');
-    duration = duration.split('h');
-
-    const hours = duration[0] === '' ? 0 : +duration[0];
-    const minutes = duration[1] === '' ? 0 : +duration[1];
+    let hours = 0;
+    let minutes = 0;
+    if (duration.includes('h')) {
+        hours = +duration.slice(0, duration.indexOf('h'));
+    }
+    if (duration.includes('min')) {
+        minutes = +duration.slice(duration.indexOf(' ') + 1, duration.indexOf('min'));
+    }
     return (hours * 60) + minutes;
 }
 
