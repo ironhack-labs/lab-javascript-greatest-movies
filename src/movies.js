@@ -51,7 +51,7 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
-  const arr =  JSON.parse(JSON.stringify(movies));
+  const arr = JSON.parse(JSON.stringify(movies));
   for (let i = 0; i < arr.length; i++) {
     arr[i].duration = timeStringToMinutes(arr[i].duration);
   }
