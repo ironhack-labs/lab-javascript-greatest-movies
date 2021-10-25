@@ -136,7 +136,7 @@ function getYearly(arr) {
       currentYear.push(element);
     }
   });
-  console.log('Yearly Array', moviesPerYear);
+ 
   return moviesPerYear;
 }
 // The following is required to make unit tests work.

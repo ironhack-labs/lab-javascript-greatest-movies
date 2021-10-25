@@ -7,7 +7,7 @@ const {
   orderByYear,
   orderAlphabetically,
   turnHoursToMinutes,
-  bestYearAvg,
+  bestYearAvg
 } = require('../src/movies');
 
 // Iteration 1
@@ -455,10 +455,10 @@ describe('Function "bestYearAvg"', () => {
 
   it('should return the oldest year when there is a tie', () => {
     const newMoviesArr = [
-      { year: 2000, score: 9 },
-      { year: 2000, score: 8 },
-      { year: 1978, score: 10 },
-      { year: 1978, score: 7 }
+      { title: 'dummytitle', year: 2000, score: 9 },
+      { title: 'dummytitle', year: 2000, score: 8 },
+      { title: 'dummytitle', year: 1978, score: 10 },
+      { title: 'dummytitle', year: 1978, score: 7 }
     ];
 
     expect(bestYearAvg(newMoviesArr)).toEqual(
