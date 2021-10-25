@@ -87,19 +87,21 @@ function orderAlphabetically(arrMovies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arrMovies) {
-  let copy = [...arrMovies]
-  let copyDurations = copy.map (eachMovie => eachMovie.duration)
+  // let copy = [...arrMovies]
+  // let copyDurations = copy.map (eachMovie => eachMovie.duration)
 
-  if (copyDurations.length === 0) {
-    return 0;
-  } else {
-  copyDurations.forEach (elem => {
-    let hoursArray = []
-    let hours = elem.split('h')
-    hoursArray.push(hours)
-    let minutes
-  })
-  }
+  // if (copyDurations.length === 0) {
+  //   return 0;
+  // } else {
+  // let hoursArray = []
+  // copyDurations.forEach (elem => {
+  //   hoursArray.push(parseInt(elem.charAt(0)))
+  // })
+  // let minutesArray = []
+  // copyDurations.forEach (elem => {
+  //   if (elem.indexOf('m'))
+  // })
+  // }
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
