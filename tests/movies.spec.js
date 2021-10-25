@@ -7,7 +7,7 @@ const {
   orderByYear,
   orderAlphabetically,
   turnHoursToMinutes,
-  bestYearAvg,
+  bestYearAvg
 } = require('../src/movies');
 
 // Iteration 1
@@ -45,6 +45,55 @@ describe('Function "getAllDirectors"', () => {
     ];
     expect(getAllDirectors(testArr)).toEqual([
       'Stanley Kubrick',
+      'Quentin Tarantino'
+    ]);
+  });
+  it('should return a new array with the length as the original one minus 1', () => {
+    const testArrDuplicate = [
+      {
+        title: 'Paths of Glory',
+        year: 1957,
+        director: 'Stanley Kubrick',
+        duration: '1h 28min',
+        genre: ['Drama', 'War'],
+        score: 8.4
+      },
+      {
+        title: 'Star Wars',
+        year: 1977,
+        director: 'George Lucas',
+        duration: '2h 1min',
+        genre: ['Action', 'Adventure', 'Fantasy', 'Sci-Fi'],
+        score: 8.7
+      },
+      {
+        title: 'Star Wars',
+        year: 1977,
+        director: 'George Lucas',
+        duration: '2h 1min',
+        genre: ['Action', 'Adventure', 'Fantasy', 'Sci-Fi'],
+        score: 8.7
+      },
+      {
+        title: 'Django Unchained',
+        year: 2012,
+        director: 'Quentin Tarantino',
+        duration: '2h 45min',
+        genre: ['Drama', 'Western'],
+        score: 8.4
+      },
+      {
+        title: 'Django Unchained',
+        year: 2012,
+        director: 'Quentin Tarantino',
+        duration: '2h 45min',
+        genre: ['Drama', 'Western'],
+        score: 8.4
+      }
+    ];
+    expect(getAllDirectors(testArrDuplicate)).toEqual([
+      'Stanley Kubrick',
+      'George Lucas',
       'Quentin Tarantino'
     ]);
   });
