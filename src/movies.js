@@ -117,13 +117,12 @@ function orderAlphabetically(movies) {
 
   titleArr.sort(function (a, b) {
 
-  return a.length - b.length;
+  return a.localeCompare(b);
 
   });
 
   const shortTitleArr = titleArr.slice(0, 20);
 
-  console.log(shortTitleArr);
   return shortTitleArr;
 
   // alphaCopy.sort(function(a, b) {
@@ -137,7 +136,15 @@ function orderAlphabetically(movies) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(movies) {
+
+  const timeCopy = [...movies];
+
+  let timeArr = timeCopy.map(movies => movies.duration);
+
+  console.log(timeArr);
+
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
