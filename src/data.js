@@ -4,7 +4,7 @@ const movies = [
     year: 1994,
     director: 'Frank Darabont',
     duration: '2h 22min',
-    genre: ['Crime', 'Drama'],
+    genre: ['Crime', 'Dramea'],
     score: 9.3
   },
   {
