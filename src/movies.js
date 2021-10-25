@@ -74,6 +74,12 @@ function dramaMoviesScore(movies) {
 
   const dramaMovies = movies.filter(movie => movie.genre.includes('Drama'));
 
+  if (!dramaMovies.length) {
+
+    return 0;
+
+  }
+
   const dramaCounter = dramaMovies.reduce((counter, dramaScore) => {
     
     if (dramaScore.score) {
@@ -82,7 +88,7 @@ function dramaMoviesScore(movies) {
 
     }
 
-    return dramaCounter;
+    return counter;
 
   }, 0) / dramaMovies.length;
 
@@ -96,11 +102,17 @@ function orderByYear(movies) {
 
   const yearCopy = [...movies];
 
-  let yearArr = yearCopy.map(movies => movies.year);
+  //let yearArr = yearCopy.map(movies => movies.year);
 
-  let yearOrder = yearArr.sort(function (a, b){
+  let yearOrder = yearCopy.sort(function (a, b){
     
-    return a - b;
+    if (a.year === b.year) {
+
+      return a.title.localeCompare(b.title);
+
+    }
+
+    return a.year - b.year;
   
   });
 
