@@ -68,13 +68,62 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
-  // const moviesNewArry = JSON.parse(JSON.stringify(movies));
-  // moviesNewArry.map(eachMovie => eachMovie.duration)
-
+  const moviesToConvert = JSON.parse(JSON.stringify(movies));
+  const moviesConverted = moviesToConvert.map(eachMovie => {
+    const durationAsArray = stringToArray(eachMovie.duration);
+    const durationInMinutes = parseDurationFromStringToMinutes(durationAsArray);
+    eachMovie.duration = durationInMinutes;
+    return eachMovie;
+  })
+  return moviesConverted;
 }
 
+function stringToArray(string) {
+  const splitArry = string.split(" ");
+  return splitArry;
+}
+
+function parseDurationFromStringToMinutes(splitArry) {
+  let totalMin = 0;
+  splitArry.forEach(string => {
+    if (string.includes("h")) {
+      totalMin += hoursToMin(string);
+      return totalMin;
+    } else if (string.includes("min")) {
+      totalMin += minToMin(string);
+      return totalMin;
+    }
+  });
+  return totalMin;
+}
+
+function hoursToMin(hoursToParse) {
+  const hoursAsString = hoursToParse.substring(0, hoursToParse.length - 1);
+  const hoursAsNumber = parseInt(hoursAsString, 10);
+  const hoursAsMinute = hoursAsNumber * 60;
+  return hoursAsMinute;
+}
+
+function minToMin(minToParse) {
+  const minAsString = minToParse.substring(0, minToParse.length - 3);
+  const minAsNumber = parseInt(minAsString, 10);
+  return minAsNumber;
+}
+
+
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() { }
+function bestYearAvg(movies) {
+  if (movies.length === 0) {
+    return null;
+  } else {
+    if (movies.length === 1) {
+      const eachMovie = movies[0];
+      return `The best year was ${eachMovie.year} with an average score of ${eachMovie.score}`;
+    }
+  }
+
+
+}
 
 
 
