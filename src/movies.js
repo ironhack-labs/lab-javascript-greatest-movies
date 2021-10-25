@@ -101,7 +101,24 @@ function turnHoursToMinutes(movies) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(movies) {
+  if (movies.length === 0) return null
+
+  const moviesByYear = orderByYear(movies)
+
+  let yearCount = 0
+  let bestAvg = 0
+  let bestYear = 0
+
+  moviesByYear.forEach((movie) => {
+    if (movie.year > yearCount) {
+      const thisYearMovies = movies.filter(value => {
+        value.year === movies.year ? true : false
+      })
+      
+    }
+  })
+}
 
 
 
