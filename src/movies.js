@@ -115,50 +115,7 @@ function orderAlphabetically(data) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(data) {
-  let newsMoviesArray = data.map((film) => {
-    if (!film.duration) {
-      film.duration = '0min';
-    }
-    film.duration = transForTime(film.duration);
-    //console.log(film.duration);
-  });
-  //console.log(time);
-  function transForTime(time) {
-    let sum = 0;
-    let valueInTime;
-    //console.log('$$$$$$$$$$$', time, typeof time, time.includes(' '));
-    if (time.includes(' ')) {
-      valueInTime = time.split(' ');
-      //console.log('----->', time, valueInTime);
-      if (valueInTime.length > 1) {
-        for (k = 0; k < valueInTime.length; k++) {
-          if (valueInTime[k].includes('h')) {
-            if (!valueInTime[k + 1]) {
-              sum = parseFloat(valueInTime[k]) * 60;
-            } else {
-              sum =
-                parseFloat(valueInTime[k]) * 60 +
-                parseFloat(valueInTime[k + 1]);
-            }
-          }
-        }
-      } else {
-        sum = parseFloat(valueInTime[k]);
-      }
-    } else {
-      valueInTime = time;
-      //console.log('<-----', time, valueInTime);
-      if (valueInTime.includes('h')) {
-        sum = parseFloat(valueInTime) * 60;
-      } else {
-        sum = parseFloat(valueInTime);
-      }
-    }
-    //console.log(sum);
-    return sum;
-  }
-  //console.log(newsMoviesArray);
-  return newsMoviesArray;
+  console.log('Pizza Pary');
 }
 
 //
@@ -186,7 +143,6 @@ function bestYearAvg(data) {
         score: avg
       };
     });
-    console.log(sumScore);
     let final = sumScore.sort((a, b) => {
       if (a.score < b.score) {
         return 1;
