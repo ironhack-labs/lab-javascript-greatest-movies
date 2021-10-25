@@ -79,8 +79,17 @@ function scoresAverage(someArray) {
     return 0;
   }
   
+  // someArray.forEach(eachElement => {
+  //   if (!eachElement.score) {
+  //     eachElement.score = 0;
+  //   }
+  //   })
+  
   
   const sumScores = someArray.reduce((acc, eachScore) => {
+    if (!eachScore.score) {
+      return acc
+    }
     return acc + eachScore.score;
   },0)
   
@@ -89,8 +98,9 @@ function scoresAverage(someArray) {
   let roundedScore = Math.round((avgScore + Number.EPSILON) * 100) / 100;
 
   
+  
 
-  console.log(roundedScore);
+  //console.log(roundedScore);
   return roundedScore;
 
 }
@@ -100,10 +110,43 @@ function scoresAverage(someArray) {
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(someArray) {
+
+  
+  let dramaMovies = someArray.filter(eachMovie => {
+    return eachMovie.genre.includes('Drama');
+  });
+
+  let sumDramaScores = dramaMovies.reduce((acc, eachScore) => {
+    return acc + eachScore.score;
+  },0) ;
+
+  let avgDramaScore = sumDramaScores / dramaMovies.length;
+
+  let roundedDramaScore = Math.round((avgDramaScore + Number.EPSILON) * 100) / 100;
+
+  return roundedDramaScore;
+
+}
+
+
+
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(someArray) {
+
+  let moviesCopy = JSON.parse(JSON.stringify(someArray));
+  
+  let orderedMovies = moviesCopy.sort((a,b) => a.year - b.year);
+
+  console.log(orderedMovies)
+  return orderedMovies;
+}
+
+
+
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
