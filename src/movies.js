@@ -163,7 +163,46 @@ function turnHoursToMinutes(someArray) {
 
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(someArray) {
+
+  if (someArray.length === 0) {
+    return null;
+  }
+  let yearsArray = []
+  let avgScore = []
+  let avgScores = []
+  let sortedArray = someArray.sort((a,b) => a.year - b.year);
+
+  
+  for (let i = 0; i < sortedArray.length; i++) {
+    if (sortedArray[i].year === sortedArray[i+1].year) {
+      yearsArray.push(someArray[i].year);
+      avgScore.push(sortedArray[i].score + sortedArray[i+1]);
+      avgScore.reduce((acc, eachNumber) => {
+        return (acc + eachNumber) / avgScore.length;
+      })
+
+    } else {
+      avgScores.push(avgScore);
+      avgScore = 0;
+    }
+  }
+
+  let maxScore = avgScores.indexOf(Math.max(...avgScores));
+  let uniq = [...new Set(yearsArray)];
+
+  console.log(`The best year was ${uniq[maxScore]} with an average score of ${avgScores[maxScore]}`)
+  return `The best year was ${uniq[maxScore]} with an average score of ${avgScores[maxScore]}`;
+  
+}
+
+
+
+
+
+
+
+
 
 
 
