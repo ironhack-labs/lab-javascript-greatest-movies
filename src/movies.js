@@ -85,6 +85,7 @@ newArray.push(horas);
 newArray.forEach(function (minutos) {
 minutos.duration = Number(minutos.duration[0])*60 + Number(minutos.duration[3] + minutos.duration[4]) + " minutes";
 })
+return newArray;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
