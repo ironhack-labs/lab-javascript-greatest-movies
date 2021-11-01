@@ -20,31 +20,21 @@ function getAllDirectors(arr) {
 
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies(arr) {
-  const spielbergMovies = arr.filter((pelis) => {
-    return pelis.director === 'Steven Spielberg' && pelis.genre.includes('Drama') ? pelis : null
-  })
-  return spielbergMovies.length
+function howManyMovies(pelis) {
+  return arr.filter(mov => mov.director === 'Steven Spielberg' && mov.genre.includes('Drama')).length
 }
-console.log(howManyMovies(arrayDirectors))
-
-
-const caloriasPromedio = menu.reduce((acc, comida) => {
-  return acc + comida.calories
-},0)
-
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(arr) {
   if (!arr.length) {
     return 0
-  }
-  
+  }   
   const promedioTotal = arr.reduce((acc, valorActual) => {
   return acc + valorActual.score
   }, 0)
   return Number((promedioTotal/arr.length).toFixed(2))
 }
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(arr) {
@@ -82,7 +72,20 @@ function orderAlphabetically(arr) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(arr) {
+  if (!arr.length) {
+    return  0
+  }
+
+let newArray = [];
+arr.forEach(function (horas) {
+newArray.push(horas);
+})
+
+newArray.forEach(function (minutos) {
+minutos.duration = Number(minutos.duration[0])*60 + Number(minutos.duration[3] + minutos.duration[4]) + " minutes";
+})
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
