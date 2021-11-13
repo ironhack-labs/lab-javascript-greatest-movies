@@ -41,17 +41,42 @@ function orderByYear(arr) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(arr) {
-  let someArr = [];
+  let alphabeticallyOrderedArr = [];
 
   for(let i = 0; i < arr.length; i++){
-  someArr.push(arr[i].title);
+    alphabeticallyOrderedArr.push(arr[i].title);
   };
 
-  return someArr.sort().filter((element,index) => index < 20);
+  return alphabeticallyOrderedArr.sort().filter((element,index) => index < 20);
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(arr) {
+  let newArr = [...arr].map(function(element) {
+
+    let durationArray = element.duration.split('');
+    
+    let hours = durationArray[0]*60;
+
+    let mins = [];
+    for (let i = 0; i < durationArray.length; i++){
+      durationArray[i] = parseInt(durationArray[i]);
+      if (durationArray[i] > 0){
+        mins.push(durationArray[i]);
+      }
+    }
+
+    mins = Math.floor(mins.join(''));
+
+    let totalDuration = hours + mins;
+
+    element.duration = totalDuration;
+
+    return element;
+  });
+  
+  return newArr;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
