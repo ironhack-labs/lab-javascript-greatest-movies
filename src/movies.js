@@ -69,7 +69,9 @@ function dramaMoviesScore(movies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
-  let sortedAsc = myArrayOfObjects.sort((a, b) => {
+  let newMovies = [...movies];
+
+  let test = newMovies.sort((a, b) => {
     let dif = a.year - b.year;
     // 1995 - 1987 = 8
     // a - b will sort in ascending just like a is before b
