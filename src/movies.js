@@ -69,11 +69,22 @@ function dramaMoviesScore(movies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
-  let newMovies = [...movies];
-
-  let test = newMovies.sort((a, b) => {
+  let sortedAsc = myArrayOfObjects.sort((a, b) => {
     let dif = a.year - b.year;
+    // 1995 - 1987 = 8
+    // a - b will sort in ascending just like a is before b
+    // b - a would be backwards "think z -> a" a being last.
+
     if (dif !== 0) return dif;
+    // if 8 is not equal to 0 we short circuit
+    // and return "positive" ie: sort b before a
+
+    // If we get to here, it means they're the same
+    // and we need another sorting check.
+
+    // String length and alphabet order seems to be hit by > or <.
+    // Aalvin is less than Calvin, which means Aalvin comes first.
+
     if (a.title < b.title) {
       return -1;
     } else if (a.title > b.title) {
