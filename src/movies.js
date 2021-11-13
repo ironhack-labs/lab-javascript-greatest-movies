@@ -22,7 +22,7 @@ const dramaMoviesScore = (arr) => scoresAverage(dramaScore = arr.filter(object =
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arr) {
-  return [...arr].sort(function (a, b) {
+  return arr.slice(0).sort(function (a, b) {
     if (a.year < b.year){
       return -1;
     } else if (b.year < a.year){
@@ -41,7 +41,13 @@ function orderByYear(arr) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(arr) {
-  
+  let someArr = [];
+
+  for(let i = 0; i < arr.length; i++){
+  someArr.push(arr[i].title);
+  };
+
+  return someArr.sort().filter((element,index) => index < 20);
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
