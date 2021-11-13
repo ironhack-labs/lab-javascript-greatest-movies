@@ -55,7 +55,7 @@ function dramaMoviesScore(movies) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear( movies ) {
 
-  const copiedArray = [...movies];
+  const copiedArray =  [ ...movies ];
 
   const orderMoviesNum = copiedArray.sort( (element1, element2 ) => {
     return element1.year - element2.year;
@@ -94,8 +94,6 @@ function turnHoursToMinutes( movies ) {
 
 
   let formatMovies = movies.map( element => {
-
-    
 
     const durationArray = element.duration.split(' ')
 
