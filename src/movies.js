@@ -21,28 +21,17 @@ function filterDirectors(item){
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(countMovies) {
-  const dramaMoviesDirectedByStevenSpilberg=countMovies.filter((movie) =>{
+  const dramaMoviesByStevenSpilberg=countMovies.filter((movie) =>{
     return movie.director ==="Steven Spielberg" && movie.genre.includes("Drama");
-    const movieDirectedByStevenSpielberg=movie.director==="Steven Spielberg";
-    const movieDirectedByStevenDrama=movie.genre.includes("Drama");
-    const isMovieDrama=movie.genre.includes("Drama")>=0;
-    if(movieDirectedByStevenSpielberg&&isMovieDrama){
-      return true;
-    }else{
-      return false;
-    }
-    return movieDirectedByStevenSpielberg && isMovieDrama;
   });
-  return dramaMoviesDirectedByStevenSpilberg.length;
+  return dramaMoviesByStevenSpilberg.length;
 }
   
-
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(movies) {
   if(movies.length===0){
     return 0;
   }
-
 const sumScores=movies.reduce((accumulator, movie)=>{
 if(movie.score){
 return accumulator + movie.score;
@@ -50,29 +39,55 @@ return accumulator + movie.score;
   return accumulator;
 }
 }, 0);
-
-const averageScore = sumScores / movies.length;
+averageScore = sumScores / movies.length;
 return +(Math.round(averageScore + "e+2")  + "e-2");
 }
 
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(arr) {
-  const dramaMovies=arr.includes("Drama");
+function dramaMoviesScore(movies) {
 
 }
 
+
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear() {
+  const orderedMovies=[];
+  orderedMovies.sort((oldest, newest)=>{
+    if(oldest.year>newest.year){
+      return 1;
+    }else if (oldest.year<newest.year){
+      return -1;
+    }else{
+      return newest.title.localeCompare(oldest.title);
+    }
+  }); return orderedMovies;
+} 
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(movies) {
+  const titles= movies.map((movie)=> movie.title);
+  titles.sort((n1,n2)=>n1.localeCompare(n2));
+  first20Titles=titles.slice(0,20);
+  return first20Titles
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(movies) {
+  const moviesWithDurationInHours=movies.map((movie)=>{
+ const movieWithDurationInHours=[];
+ movieWithDurationInHours.duration=convertHoursToMinutes(
+   movie.duration
+ );
+ return movieWithDurationInHours;
+  });
+  return moviesWithDurationInHours;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(movies) {
+  const bestYearlyScorAverage=movies
+}
 
 
 
