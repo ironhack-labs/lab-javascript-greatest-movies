@@ -45,7 +45,19 @@ return +(Math.round(averageScore + "e+2")  + "e-2");
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies) {
+let sumScoresDrama=0, allDramaMovies=0; 
+movies.forEach(movie=>{
+  if(movie.genre.includes("Drama")){
+    sumScoresDrama+= Number(movie.score);
+    allDramaMovies+=1;
+  }
+});
+  if (movies.length===0 || allDramaMovies ===0){
+    return 0;
+  }
 
+const average=sumScores/allDramaMovies;
+return Number(average.toFixed(2));
 }
 
 
