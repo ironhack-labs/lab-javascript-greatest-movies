@@ -52,25 +52,29 @@ function orderAlphabetically(arr) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arr) {
-  let newArr = [...arr].map(function(element) {
+  let newArr = JSON.parse(JSON.stringify(arr)).map(function(element) {
 
-    let durationArray = element.duration.split('');
+    if(typeof element.duration === 'string'){
+      let durationArray = element.duration.split('');
     
-    let hours = durationArray[0]*60;
-
-    let mins = [];
-    for (let i = 0; i < durationArray.length; i++){
-      durationArray[i] = parseInt(durationArray[i]);
-      if (durationArray[i] > 0){
-        mins.push(durationArray[i]);
+      let hours = durationArray[0]*60;
+  
+      let mins = [];
+      for (let i = 2; i < durationArray.length; i++){
+        durationArray[i] = parseInt(durationArray[i]);
+        if (durationArray[i] > 0){
+          mins.push(durationArray[i]);
+        }
       }
+  
+      mins = Math.floor(mins.join(''));
+  
+      let totalDuration = hours + mins;
+  
+      element.duration = totalDuration;
+    } else {
+      element.duration = 0;
     }
-
-    mins = Math.floor(mins.join(''));
-
-    let totalDuration = hours + mins;
-
-    element.duration = totalDuration;
 
     return element;
   });
