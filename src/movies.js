@@ -53,37 +53,76 @@ function orderAlphabetically(arr) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arr) {
   let newArr = JSON.parse(JSON.stringify(arr)).map(function(element) {
-
     if(typeof element.duration === 'string'){
       let durationArray = element.duration.split('');
     
       let hours = durationArray[0]*60;
-  
       let mins = [];
+
       for (let i = 2; i < durationArray.length; i++){
         durationArray[i] = parseInt(durationArray[i]);
         if (durationArray[i] > 0){
           mins.push(durationArray[i]);
         }
       }
-  
       mins = Math.floor(mins.join(''));
   
-      let totalDuration = hours + mins;
-  
-      element.duration = totalDuration;
+      element.duration = hours + mins;
     } else {
       element.duration = 0;
     }
-
     return element;
   });
-  
   return newArr;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(arr) {
+  if (arr.length === 0){
+    return null;
+  }
+
+  let yearScoreArray = [];
+
+  for (let i = 1900; i < 2022; i++){
+    let yearScoreObject = {
+      year: i,
+      score: 0
+    };
+
+    let sameYearArray = arr.filter(movie => movie.year === i);
+
+    let averageScorePerYear = sameYearArray.reduce((accumulator, movie) => accumulator += movie.score || 0, 0) / sameYearArray.length;
+
+    yearScoreObject.score = averageScorePerYear;
+
+    yearScoreArray.push(yearScoreObject);
+  };
+
+  let cleanedArray = yearScoreArray.filter(element => element.score);
+
+  cleanedArray.sort(function (a, b) {
+    if(a.score > b.score){
+      return -1;
+    } else if (b.score > a.score){
+      return 1;
+    } else {
+      if (a.year < b.year){
+        return -1;
+      } else if (b.year < a.year){
+        return 1;
+      }
+      return 0
+    }
+  });
+
+  let winnerYear = {
+    year: cleanedArray[0].year,
+    score: cleanedArray[0].score
+  };
+
+  return `The best year was ${winnerYear.year} with an average score of ${winnerYear.score}`
+}
 
 
 
