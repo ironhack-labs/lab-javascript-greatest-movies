@@ -62,11 +62,23 @@ function orderByYear(movies) {
       if (titleA > titleB) return 1
       if (titleA === titleB) return 0      
     }
- 
   })
 }
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(movies) {
+  let slicedMovies = movies.slice()
+  let alphabeticallyMovies = slicedMovies.sort((a, b) => {
+      let titleA = a.title.toUpperCase()
+      let titleB = b.title.toUpperCase()
+      if (titleA < titleB) return -1
+      if (titleA > titleB) return 1
+      if (titleA === titleB) return 0      
+    }
+  )
+  let onlyTitles = alphabeticallyMovies.map(movie => movie.title)
+  let only20 = onlyTitles.slice(0, 20)
+  return only20
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
