@@ -1,13 +1,60 @@
+const movies = require('../src/data');
+
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors() {}
+function getAllDirectors(arr) {
+  const allDirectors = arr.map((movie) => movie.director);
+
+  return allDirectors;
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(arr) {
+  const directorAndGenre = arr.map((movie) => {
+    return (newArr = {
+      director: movie.director,
+      genre: movie.genre
+    });
+  });
+
+  const selectedDirectorAndGenre = directorAndGenre.filter(
+    (item) =>
+      item.director === 'Steven Spielberg' &&
+      item.genre.includes('Drama') === true
+  );
+  return selectedDirectorAndGenre.length;
+}
+
+// This to me is a better solution (passing director and genre as arguments) but it does not pass the tests :(
+function howManyMoviesMine(arr, chosenDirector, chosenGenre) {
+  const directorAndGenre = arr.map((movie) => {
+    return (newArr = {
+      director: movie.director,
+      genre: movie.genre
+    });
+  });
+  const selectedDirectorAndGenre = directorAndGenre.filter(
+    (item) =>
+      item.director === chosenDirector &&
+      item.genre.includes(chosenGenre) === true
+  );
+  return selectedDirectorAndGenre.length;
+}
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(arr) {
+  if (arr.length > 0) {
+    const hasScore = arr.filter((movie) => typeof movie.score == 'number');
+    const allScores = hasScore.map((movie) => movie.score);
+    const sumScores = allScores.reduce((sum, score) => sum + score);
+    return parseFloat((sumScores / arr.length).toFixed(2));
+  } else {
+    return 0;
+  }
+}
+
+console.log(scoresAverage(movies));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore() {}
@@ -24,8 +71,6 @@ function turnHoursToMinutes() {}
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
 
-
-
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
 if (typeof module !== 'undefined') {
@@ -37,6 +82,6 @@ if (typeof module !== 'undefined') {
     orderByYear,
     orderAlphabetically,
     turnHoursToMinutes,
-    bestYearAvg,
+    bestYearAvg
   };
 }
