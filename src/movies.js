@@ -140,6 +140,53 @@ function bestYearAvg(arr) {
   if (arr.length == 0) {
     return null;
   } else {
+    const orderMovies = arr.sort((movie1, movie2) => {
+      if (movie1.year > movie2.year) {
+        return 1;
+      } else if (movie1.year < movie2.year) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+
+    const yearAndScore = orderMovies.map((movie) => [movie.year, movie.score]);
+    let singleArr = [];
+    yearAndScore.forEach((element) => {
+      element.forEach((el) => {
+        singleArr.push(el);
+      });
+    });
+
+    let mergedArr = [];
+    for (let i = 0; i < singleArr.length; i++) {
+      if (singleArr[i] > 1900) {
+        if (singleArr[i] === singleArr[i + 2]) {
+          let avg = parseFloat(
+            ((singleArr[i + 1] + singleArr[i + 3]) / 2).toFixed(2)
+          );
+          mergedArr.push(singleArr[i], avg);
+        } else {
+          mergedArr.push(singleArr[i], singleArr[i + 1]);
+        }
+      }
+    }
+
+    // for (let i = 0; i < yearAndScore.length - 1; i++) {
+    //   if (yearAndScore[i][0] === yearAndScore[i + 1][0]) {
+    //     avg = parseFloat(
+    //       ((yearAndScore[i][1] + yearAndScore[i + 1][1]) / 2).toFixed(2)
+    //     );
+    //     if (yearAndScore[i][0] === yearAndScore[i + 1][0]) {
+    //       avg = parseFloat(
+    //         ((yearAndScore[i][1] + yearAndScore[i + 1][1]) / 2).toFixed(2)
+    //       );
+    //       mergedArr.push([yearAndScore[i][0], avg]);
+    //     }
+    //     mergedArr.push([yearAndScore[i][0], avg]);
+    //   }
+    // }
+    return mergedArr;
   }
 }
 
