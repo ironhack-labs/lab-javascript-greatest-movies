@@ -2019,14 +2019,42 @@ let cleanArray = directors.filter((item, position) => {
   return directors.indexOf(item) === position;
 });
 
-
-
-
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(wholeArray) {
+  let count = 0;
+  
+  for (let i = 0; i < wholeArray.length; i++) {
+
+    let dramaMovies = wholeArray[i].genre.filter(function(item){
+      return item === 'Drama';
+    })
+  
+    if (wholeArray[i].director === 'Steven Spielberg' && dramaMovies.length > 0){
+      count ++;
+    }
+    
+  }
+  return count;
+}
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(array) {
+
+  if (array.length === 0){
+    return 0;
+  }
+
+  let arrayOfScores = array.map(function(movie){
+    return movie.score;
+  }).filter(function(score){
+    return score;
+  })
+
+  let sum = arrayOfScores.reduce(function(acc, currentValue){
+    return acc + currentValue ;
+  }, 0)
+  return Math.round((sum / array.length)*100)/100;
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore() {}
