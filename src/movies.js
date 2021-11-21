@@ -2006,14 +2006,20 @@ const movies = [
   }
 ];
 
-function getAllDirectors() {
-  let allDirectors = movies.map(function(movieDirector){
+function getAllDirectors(arr) {
+  let allDirectors = arr.map(function(movieDirector){
     return movieDirector.director;
   });
   return allDirectors;
 }
+let directors = getAllDirectors(movies);
 
-getAllDirectors();
+// Bonus 1.1:
+let cleanArray = directors.filter((item, position) => {
+  return directors.indexOf(item) === position;
+});
+
+
 
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
