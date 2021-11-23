@@ -14,7 +14,7 @@ Function Expression - const welcomeMessage = function (message) {console.log(mes
 movies = [
   {
     title: 'B',
-    year: 2,
+    year: 1,
     director: 'Francis Ford Coppola',
     duration: '2h 22min',
     genre: ['Crime', 'Drama'],
@@ -22,7 +22,7 @@ movies = [
   },
   {
     title: 'A',
-    year: 2,
+    year: 1,
     director: 'Francis Ford Coppola',
     duration: '2h 55min',
     genre: ['Crime'],
@@ -86,14 +86,17 @@ function dramaMoviesScore(givenArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arrayOfMoviesYear) {
-  let newArray
   
-  newArray = arrayOfMoviesYear.sort((previousItem, nextItem) => {
+  let newArray = Array.from(arrayOfMoviesYear)
+  
+  newArray.sort((previousItem, nextItem) => {
   
   if (previousItem.year === nextItem.year) {
-    return previousItem.title - nextItem.title
+    return previousItem.title.localeCompare(nextItem.title)
   }
-  return  previousItem.year - nextItem.year})
+  return  previousItem.year - nextItem.year}
+  
+  )
 
   console.log(newArray[0])
   console.log(newArray[1])
