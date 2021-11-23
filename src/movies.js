@@ -114,19 +114,41 @@ function orderAlphabetically(givenArrayWithoutOrder) {
   }
 
   let arrayOfTitles = []
-
   for (let i = 0;i<newArray.length;i++){
     arrayOfTitles.push(newArray[i].title)
   }
-
+  
   return arrayOfTitles
+}
+
+
+// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(givenArrayHours) {
+
+  let newArray = Array.from(givenArrayHours)
+
+  for(let i = 0; i < newArray.length;i++) {
+    if (newArray[i].duration.length > 2){
+      let newTime = Array.from(newArray[i].duration.replace("h","").replace("min","").split(" "))
+      newArray[i].duration = parseFloat(newTime[0])*60 + parseFloat(newTime[1])
+    } else {
+        let newTime = Array.from(newArray[i].duration.replace("h",""))
+        newArray[i].duration = parseFloat(newTime[0])*60
+    }
+    
+  }
+
+  console.log(typeof newArray[0].duration)
+  console.log(typeof newArray[1].duration)
+  console.log(newArray == givenArrayHours)
+  return newArray
 
 }
 
-console.log(orderAlphabetically(movies))
+console.log(turnHoursToMinutes([{duration:"0h 3min"},{duration:"2h"}]))
 
-// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+//console.log("oi".length)
+//console.log("2h 3min".replace("h","").replace("min","").split(" "))
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
