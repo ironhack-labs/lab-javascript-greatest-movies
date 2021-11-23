@@ -180,14 +180,18 @@ function bestYearAvg(givenArrayYearAvg) {
   */
   if (givenArrayYearAvg.length == 0) {
     return null
-  }
+  } 
 
   let newArray = Array.from(givenArrayYearAvg)
   let arrayOfYears = []
 
-  for (let i = 1; i < newArray.length; i++) {
-    if (newArray[i].year !== newArray[i-1].year){
-      arrayOfYears.push(newArray[i].year)
+  if (newArray.length == 1) {
+    arrayOfYears.push(newArray[0].year)
+  } else {
+    for (let i = 1; i < newArray.length; i++) {
+      if (newArray[i].year !== newArray[i-1].year){
+        arrayOfYears.push(newArray[i].year)
+      }
     }
   }
 
@@ -212,6 +216,7 @@ function bestYearAvg(givenArrayYearAvg) {
   return `The best year was ${yearOfBestScore} with an average score of ${maxValue}`
 }
 
+console.log(bestYearAvg([{ year: 2007, score: 8 }]))
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
