@@ -18,7 +18,8 @@ movies = [
     director: 'Francis Ford Coppola',
     duration: '2h 22min',
     genre: ['Crime', 'Drama'],
-    score: 2
+    score: 4,
+    year: 1200
   },
   {
     title: 'A',
@@ -26,7 +27,25 @@ movies = [
     director: 'Francis Ford Coppola',
     duration: '2h 55min',
     genre: ['Crime'],
-    score: " "
+    score: 3,
+    year: 230
+  },{
+    title: 'B',
+    year: 1,
+    director: 'Francis Ford Coppola',
+    duration: '2h 22min',
+    genre: ['Crime', 'Drama'],
+    score: 2,
+    year: 1200
+  },
+  {
+    title: 'A',
+    year: 1,
+    director: 'Francis Ford Coppola',
+    duration: '2h 55min',
+    genre: ['Crime'],
+    score: 5,
+    year: 150
   }]
 
 function getAllDirectors(arrayOfMovies) {
@@ -141,18 +160,57 @@ function turnHoursToMinutes(givenArrayHours) {
   console.log(typeof newArray[0].duration)
   console.log(typeof newArray[1].duration)
   console.log(newArray == givenArrayHours)
+
   return newArray
 
 }
 
-console.log(turnHoursToMinutes([{duration:"0h 3min"},{duration:"2h"}]))
-
+//console.log(turnHoursToMinutes([{duration:"0h 3min"},{duration:"2h"}]))
 //console.log("oi".length)
 //console.log("2h 3min".replace("h","").replace("min","").split(" "))
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(givenArrayYearAvg) {
+  
+  /* Proposta:
+  1. Criar um array de anos
+  2. Criar um array de score com filtro por ano
+  3. Reduce (soma) dos scores no array por ano 
+  4. Dividir pelo length do ano     
+  */
+  if (givenArrayYearAvg.length == 0) {
+    return null
+  }
 
+  let newArray = Array.from(givenArrayYearAvg)
+  let arrayOfYears = []
+
+  for (let i = 1; i < newArray.length; i++) {
+    if (newArray[i].year !== newArray[i-1].year){
+      arrayOfYears.push(newArray[i].year)
+    }
+  }
+
+  let arrayOfAvgs = []
+
+  for (let i = 0; i < arrayOfYears.length; i++) {
+    let arrayOfMoviesPerYear = Array.from(newArray.filter(movie => movie.year == arrayOfYears[i]))
+    let arrayOfScoresPerYear = []
+
+    for (let k = 0; k < arrayOfMoviesPerYear.length; k++) {
+      arrayOfScoresPerYear.push(arrayOfMoviesPerYear[k].score)
+    }
+    
+    arrayOfAvgs.push(arrayOfScoresPerYear.reduce((accumulator,currentValue) => accumulator + currentValue)/arrayOfScoresPerYear.length)
+  
+  }
+
+  let maxValue = arrayOfAvgs.reduce((accumulator,currentValue) => Math.max(accumulator,currentValue))
+  let indexOfmaxValue = arrayOfAvgs.indexOf(maxValue)
+  let yearOfBestScore = arrayOfYears[indexOfmaxValue]
+
+  return `The best year was ${yearOfBestScore} with an average score of ${maxValue}`
+}
 
 
 // The following is required to make unit tests work.
