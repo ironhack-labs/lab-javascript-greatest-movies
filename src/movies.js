@@ -140,57 +140,64 @@ function bestYearAvg(arr) {
   if (arr.length == 0) {
     return null;
   } else {
-    const orderMovies = arr.sort((movie1, movie2) => {
-      if (movie1.year > movie2.year) {
+    const simpliefiedArr = arr.map((movie) => {
+      return (newArr = {
+        year: movie.year,
+        score: movie.score
+      });
+    });
+
+    // const scoresByYear = {};
+
+    // const yearAndScore = simpliefiedArr.map((movie) => {
+    //   let yearKey = movie.year;
+    //   let yearValues = [];
+    //   return (scoresByYear[yearKey] = yearValues.concat(movie.score));
+    // });
+
+    const scoresByYear = Array.from(
+      simpliefiedArr
+        .reduce((map, { year, score }) => {
+          const seen = map.get(year) || { score: 0, count: 0 };
+          const obj = {
+            year,
+            score: seen.score + score,
+            count: seen.count + 1
+          };
+          return map.set(year, obj);
+        }, new Map())
+        .values(),
+      ({ year, score, count }) => ({
+        year,
+        score: parseFloat((score / count).toFixed(2))
+      })
+    );
+
+    const orderScores = scoresByYear.sort((movie1, movie2) => {
+      if (movie1.score < movie2.score) {
         return 1;
-      } else if (movie1.year < movie2.year) {
+      } else if (movie1.score > movie2.score) {
         return -1;
       } else {
         return 0;
       }
     });
 
-    const yearAndScore = orderMovies.map((movie) => [movie.year, movie.score]);
-    let singleArr = [];
-    yearAndScore.forEach((element) => {
-      element.forEach((el) => {
-        singleArr.push(el);
-      });
-    });
-
-    let mergedArr = [];
-    for (let i = 0; i < singleArr.length; i++) {
-      if (singleArr[i] > 1900) {
-        if (singleArr[i] === singleArr[i + 2]) {
-          let avg = parseFloat(
-            ((singleArr[i + 1] + singleArr[i + 3]) / 2).toFixed(2)
-          );
-          mergedArr.push(singleArr[i], avg);
+    const olderYear = orderScores.sort((movie1Sorted, movie2Sorted) => {
+      if (movie1Sorted.score == movie2Sorted.score) {
+        if (movie1Sorted.year > movie2Sorted.year) {
+          return 1;
+        } else if (movie1Sorted.year < movie2Sorted.year) {
+          return -1;
         } else {
-          mergedArr.push(singleArr[i], singleArr[i + 1]);
+          return 0;
         }
       }
-    }
+    });
 
-    // for (let i = 0; i < yearAndScore.length - 1; i++) {
-    //   if (yearAndScore[i][0] === yearAndScore[i + 1][0]) {
-    //     avg = parseFloat(
-    //       ((yearAndScore[i][1] + yearAndScore[i + 1][1]) / 2).toFixed(2)
-    //     );
-    //     if (yearAndScore[i][0] === yearAndScore[i + 1][0]) {
-    //       avg = parseFloat(
-    //         ((yearAndScore[i][1] + yearAndScore[i + 1][1]) / 2).toFixed(2)
-    //       );
-    //       mergedArr.push([yearAndScore[i][0], avg]);
-    //     }
-    //     mergedArr.push([yearAndScore[i][0], avg]);
-    //   }
-    // }
-    return mergedArr;
+    return `The best year was ${olderYear[0].year} with an average score of ${olderYear[0].score}`;
   }
 }
-
-console.log(bestYearAvg(movies));
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
