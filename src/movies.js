@@ -13,16 +13,16 @@ Function Expression - const welcomeMessage = function (message) {console.log(mes
 
 movies = [
   {
-    title: 'The Shawshank Redemption',
-    year: 1994,
+    title: 'B',
+    year: 2,
     director: 'Francis Ford Coppola',
     duration: '2h 22min',
     genre: ['Crime', 'Drama'],
     score: 2
   },
   {
-    title: 'The Godfather',
-    year: 1972,
+    title: 'A',
+    year: 2,
     director: 'Francis Ford Coppola',
     duration: '2h 55min',
     genre: ['Crime'],
@@ -68,8 +68,6 @@ function scoresAverage(givenArray) {
   return 0
 }
 
-console.log(scoresAverage(movies))
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(givenArray) {
 
@@ -87,7 +85,22 @@ function dramaMoviesScore(givenArray) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(arrayOfMoviesYear) {
+  let newArray
+  
+  newArray = arrayOfMoviesYear.sort((previousItem, nextItem) => {
+  
+  if (previousItem.year === nextItem.year) {
+    return previousItem.title - nextItem.title
+  }
+  return  previousItem.year - nextItem.year})
+
+  console.log(newArray[0])
+  console.log(newArray[1])
+  return newArray
+}
+
+console.log(orderByYear(movies))
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
