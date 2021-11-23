@@ -6,11 +6,13 @@ Function Expression - const welcomeMessage = function (message) {console.log(mes
 
 */
 
+const movies = require("../src/data")
+
 
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-
+/*
 movies = [
   {
     title: 'B',
@@ -47,6 +49,8 @@ movies = [
     score: 5,
     year: 150
   }]
+
+  */
 
 function getAllDirectors(arrayOfMovies) {
   let arrayOfDirectors = arrayOfMovies.map(movie => movie.director)
@@ -154,13 +158,11 @@ function turnHoursToMinutes(givenArrayHours) {
         let newTime = Array.from(newArray[i].duration.replace("h",""))
         newArray[i].duration = parseFloat(newTime[0])*60
     }
-    
   }
 
-  console.log(typeof newArray[0].duration)
-  console.log(typeof newArray[1].duration)
-  console.log(newArray == givenArrayHours)
-
+  //console.log(typeof newArray[0].duration)
+  //console.log(typeof newArray[1].duration)
+  //console.log(newArray == givenArrayHours)
   return newArray
 
 }
@@ -216,7 +218,7 @@ function bestYearAvg(givenArrayYearAvg) {
   return `The best year was ${yearOfBestScore} with an average score of ${maxValue}`
 }
 
-console.log(bestYearAvg([{ year: 2007, score: 8 }]))
+//console.log(bestYearAvg([{ year: 2007, score: 8 }]))
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
