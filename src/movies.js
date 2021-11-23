@@ -18,7 +18,7 @@ movies = [
     director: 'Francis Ford Coppola',
     duration: '2h 22min',
     genre: ['Crime', 'Drama'],
-    score: 9.3
+    score: 2
   },
   {
     title: 'The Godfather',
@@ -26,7 +26,7 @@ movies = [
     director: 'Francis Ford Coppola',
     duration: '2h 55min',
     genre: ['Crime'],
-    score: 9.2
+    score: " "
   }]
 
 function getAllDirectors(arrayOfMovies) {
@@ -38,12 +38,10 @@ function getAllDirectors(arrayOfMovies) {
 function howManyMovies(arrayGiven) {
 
   let arraySpielberg = arrayGiven.filter(movie => movie.director === "Steven Spielberg")
-
   let arraySpielbergDramaMovies = []
 
   for (let i = 0; i < arraySpielberg.length; i++) {
     let arrayHasDramaGenre = arraySpielberg[i].genre.filter(genreOfMovie => genreOfMovie === "Drama")
-
     if (arrayHasDramaGenre.length > 0) {
       arraySpielbergDramaMovies.push(arraySpielberg[i])
     }
@@ -52,10 +50,25 @@ function howManyMovies(arrayGiven) {
   return arraySpielbergDramaMovies.length
 }
 
-console.log(howManyMovies(movies))
-
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(givenArray) {
+
+  let arrayOfScores = []
+
+  for (let i = 0; i < givenArray.length;i++) {
+    if (givenArray[i].score != undefined) {
+      arrayOfScores.push(givenArray[i].score)
+    }
+  }
+
+  if (arrayOfScores.length > 0) {
+    return parseFloat((arrayOfScores.reduce((accumulator,currentValue) => accumulator + currentValue) / givenArray.length).toFixed(2))
+  }
+  
+  return 0
+}
+
+console.log(scoresAverage(movies))
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore() {}
