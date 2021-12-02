@@ -12,14 +12,14 @@ function getAllDirectors(movies) {
 function howManyMovies(movies) {
   let spielbergMovies = movies.filter(
     (movie) =>
-    movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')
-    );
-    return spielbergMovies.length;
-  }
-  
-  // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-  function scoresAverage(movies) {
-    if (!movies.length) return 0;
+      movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')
+  );
+  return spielbergMovies.length;
+}
+
+// Iteration 3: All scores average - Get the average of all scores with 2 decimals
+function scoresAverage(movies) {
+  if (!movies.length) return 0;
   return parseFloat(
     (
       movies.reduce((acc, movie) => {
@@ -30,7 +30,7 @@ function howManyMovies(movies) {
       }, 0) / movies.length
     ).toFixed(2)
   );
-}
+};
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies) {
@@ -85,22 +85,43 @@ function orderAlphabetically(movies) {
 //   },]
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
-  const newArray = JSON.parse(JSON.stringify(movies))
-  const hourToMinunte = newArray.forEach(movie => {
+  const newArray = JSON.parse(JSON.stringify(movies));
+  const hourToMinunte = newArray.forEach((movie) => {
     let minutes = parseInt(movie.duration[0]) * 60;
-    let minutesCheck = parseInt(movie.duration.slice(3, 5)); 
-    if (minutesCheck){
+    let minutesCheck = parseInt(movie.duration.slice(3, 5));
+    if (minutesCheck) {
       minutes += minutesCheck;
-    };
-    movie.duration = minutes;  
-  })
-  return newArray
+    }
+    movie.duration = minutes;
+  });
+  return newArray;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(movies) {
   if (!movies.length) return null;
-  
+  const moviesByYear = {};
+movies.forEach(movie => {
+    moviesByYear[movie.year] = [];
+});
+
+movies.forEach(movie => {
+    moviesByYear[movie.year].push(movie)
+});
+
+const scoresByYear = [];
+
+for (let year in moviesByYear){
+    const yearScore = {
+        year: year,
+        score: scoresAverage(moviesByYear[year]),
+    }
+    scoresByYear.push(yearScore)
+}
+
+scoresByYear.sort((a, b) => b.score - a.score);
+
+return `The best year was ${scoresByYear[0].year} with an average score of ${scoresByYear[0].score}`
 }
 
 // The following is required to make unit tests work.
