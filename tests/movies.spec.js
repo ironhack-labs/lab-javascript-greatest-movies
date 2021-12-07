@@ -412,7 +412,7 @@ describe('Function "turnHoursToMinutes"', () => {
   });
 
   it('should return an array of movies with duration as a number', () => {
-    expect(typeof turnHoursToMinutes(movies)[0].duration).toBe('number');
+    expect(typeof turnHoursToMinutes(movies)[10].duration).toBe('number');
   });
 
   it('should return an array of movies with the correct duration for a 31 minute movie', () => {

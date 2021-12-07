@@ -1,9 +1,22 @@
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
+
+// function getAllDirectors(data) {
+//   const directors = data.map((movie) => movie.director);
+//   return directors;
+// }
+
+// BONUS
 function getAllDirectors(data) {
   const directors = data.map((movie) => movie.director);
-  return directors;
+  let cleanDirectors = [];
+  directors.forEach((director) => {
+    if (!cleanDirectors[director]) {
+      cleanDirectors.push(director);
+    }
+  });
+  return cleanDirectors;
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -53,37 +66,53 @@ function dramaMoviesScore(movies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
-  if(movies.length == 1) {
-    const singleMovieArray = movies.map( movie => movie);
+  if (movies.length == 1) {
+    const singleMovieArray = movies.map((movie) => movie);
     return singleMovieArray;
   }
-  const orderedMovies = movies.sort((a,b) => {
-    if(a.year == b.year) {
-      return a.title.localeCompare(b.title)
+  const orderedMovies = movies.sort((a, b) => {
+    if (a.year == b.year) {
+      return a.title.localeCompare(b.title);
     } else {
-      return a.year - b.year
+      return a.year - b.year;
     }
-  })
-  const mappedMovies = orderedMovies.map( movie => movie )
+  });
+  const mappedMovies = orderedMovies.map((movie) => movie);
   return mappedMovies;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
-  if(movies.length == 1) {
-    const singleMovieArray = movies.map( movie => movie.title);
+  if (movies.length == 1) {
+    const singleMovieArray = movies.map((movie) => movie.title);
     return singleMovieArray;
   }
-  const mappedMovies = movies.map( movie => movie.title)
-  const orderedMovies = mappedMovies.sort((a,b) => {
-      return a.localeCompare(b)
-  }) 
-  const splicedMovies = orderedMovies.splice(0,20);
+  const mappedMovies = movies.map((movie) => movie.title);
+  const orderedMovies = mappedMovies.sort((a, b) => {
+    return a.localeCompare(b);
+  });
+  const splicedMovies = orderedMovies.splice(0, 20);
   return splicedMovies;
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(movies) {
+  let newArray = movies.map(a => {return {...a}})
+  let result = [];
+  newArray.forEach((movie) => {
+    const hours = movie.duration.split('h')[0];
+    if(movie.duration.charAt(3) === '') {
+      const zeroMins = ' 0min'
+      const newDuration = movie.duration.concat(zeroMins)
+      movie.duration = newDuration
+    }
+    const mins = movie.duration.split(' ')[1].split('min')[0]; 
+    const totalMinutes = Number(mins) + Number(hours * 60);
+    movie.duration = totalMinutes;
+    result.push(movie);
+  });
+  return result;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
