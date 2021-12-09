@@ -114,8 +114,50 @@ function turnHoursToMinutes(movies) {
   return result;
 }
 
-// BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+// BONUS - Iteration 8: Best yearly score average - Best yearly score average. 
+
+// Copied from Aljosja. 
+
+// Notes:
+// - created empty object
+// - used the for... in to see if it the year that's being analysed in the loop is in the new object created
+// - if it's already there, push the movie's score into that year using the object[index] way. 
+// THEN, we loop through the completed new object (years and scores). Variable scores equals the value of object[index], so will result in an array of scores of that year that we're looping through.  
+// We use reduce to then get that average.
+// We re-assign each years value to be the average, so we now have the years and their average scores
+// Object.entries of that object will give us an array of arrays, with this structure: [[1991, 8.0],[1992, 7.4]]
+// then, simply sort the array by the score of the year, select the first in the array and return your findings.
+
+
+function bestYearAvg(movies) {
+  if (movies.length === 0) {
+    return null;
+  }
+  const yearlyAvg = {};
+  movies.forEach(movie => {
+    if(movie.year in yearlyAvg) {
+      yearlyAvg[movie.year].push(movie.score);
+    } else {
+      yearlyAvg[movie.year] = [movie.score];
+    }
+  });
+  for (let year in yearlyAvg) {
+    const scores = yearlyAvg[year];
+    const average = scores.reduce((a, b) => a + b) / scores.length;
+    yearlyAvg[year] = average;
+  }
+  const yearlyAvgArr = Object.entries(yearlyAvg);
+  const sortedAvg = yearlyAvgArr.sort((a, b) => {
+    return b[1] - a[1];
+  })
+  const bestYear = sortedAvg[0];
+  const result = {
+    year: bestYear[0],
+    score: bestYear[1]
+  };
+
+  return `The best year was ${result.year} with an average score of ${result.score}`
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
