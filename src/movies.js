@@ -5,7 +5,7 @@ const movies = require('./data');
 
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(movies) {
-  const directors = [...new Set(movies.map((director) => director.director))]; // [... xxxx ] - will select only unique values
+  const directors = [...movies.map((director) => director.director)]; // [... xxxx ] - will select only unique values
   return directors;
 }
 
@@ -34,13 +34,41 @@ function scoresAverage(arr) {
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(arr) {
+  let arrLength = arr.length;
+  const avgScore = arr.reduce((accumulator, current) => {
+    if (current.genre.includes('Drama')) {
+      return accumulator + current.score;
+    } else {
+      arrLength--;
+      return accumulator;
+    }
+  }, 0);
+  if (arrLength !== 0) {
+    return Math.round((avgScore / arrLength) * 1e2) / 1e2;
+  } else {
+    return 0;
+  }
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(array) {
+  const sorted = [...array].sort((a, b) => {
+    if (a.year < b.year) return -1;
+    if (a.year > b.year) return 1;
+    if (a.title < b.title) return -1;
+    if (a.title > b.title) return 1;
+    if (a.year === b.year) return 0;
+  });
+  return sorted;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(arr) {
+  const titles = [...arr.map((title) => title.title)];
+  const sorted = [...titles].sort();
+  return sorted.slice(0, 20);
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
