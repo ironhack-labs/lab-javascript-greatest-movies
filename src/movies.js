@@ -11,13 +11,15 @@ let allDirectors = movies.map(function(movie){
     return movie.director;
    });
 
-// let allUniqueDirectors = allDirectors.map(function(director, index){
-//     if (allDirectors.indexOf(director, index ) === -1) {
-//       return director;
-//     }
+let allUniqueDirectors =[];
+ for (let i=0;i<allDirectors.length;i++) {
+     if (allDirectors.indexOf(allDirectors[i],i+1)===-1) {
+         allUniqueDirectors.push(allDirectors[i]);
+     }
+ }
 
-// })
-return allDirectors;
+
+return allUniqueDirectors;
 }
 
 
@@ -113,24 +115,39 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
-  let moviesCopy = movies
+ 
+  let moviesCopy = movies;
+  let durationString, hour, minutes, totalMinutes;
+
     for (let i=0; i<moviesCopy.length; i++) {
-      let string = moviesCopy[i].duration;
-       let hour = parseInt(string.slice(0,string.indexOf("h")));
-       let minutes;
-       if (string.indexOf("m")===-1) {
+      durationString = moviesCopy[i].duration;
+       hour = parseInt(durationString.slice(0,durationString.indexOf("h")));
+       if (durationString.indexOf("m")===-1) {
          minutes = 0;
        } else {
-         minutes = parseInt(string.slice((string.indexOf(" ")+1),-3));
+         minutes = parseInt(durationString.slice((durationString.indexOf(" ")+1),-3));
        };
-       let totalMinutes = hour*60+minutes;
+       totalMinutes = hour*60+minutes;
        moviesCopy[i].duration = totalMinutes;
     }
     return moviesCopy;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(movies) {
+
+  //create an obj with year
+  //find a year
+  //add property score as array to the object
+  //add property avg score which use the reduce on the array/array length
+
+  //store pair year/avg score
+  //find highest
+
+       
+  }   
+
+
 
 
 
