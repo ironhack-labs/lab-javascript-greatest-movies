@@ -2,7 +2,6 @@
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 
-const movies = require("./data");
 
 
 function getAllDirectors(movies) {
