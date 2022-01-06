@@ -64,7 +64,7 @@ function orderAlphabetically() {
      }
   return moviesSorted;
 }
-console.log(orderAlphabetically(movies));
+//console.log(orderAlphabetically(movies));
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
