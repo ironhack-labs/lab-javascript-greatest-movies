@@ -70,7 +70,18 @@ function orderByYear(movies) {
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(movies) {
+  let moviesCopy = movies;
+  const movieTitles = moviesCopy.map((movie) => {
+    return movie.title;
+  });
+  const movieTitlesAlphabetically = movieTitles.sort();
+  if (movieTitlesAlphabetically.length < 20) {
+    return movieTitlesAlphabetically;
+  } else {
+    return movieTitlesAlphabetically.slice(0, 20);
+  }
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
