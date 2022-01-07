@@ -46,16 +46,42 @@ function dramaMoviesScore(movies) {
   const dramaMovies = movies.filter(function (filmElem) {
     return filmElem.genre.indexOf('Drama') >= 0;
   });
-  console.log(scoresAverage(dramaMovies));
   return scoresAverage(dramaMovies);
 }
-dramaMoviesScore(movies);
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(movies) {
+  if (movies.length === 0) {
+    movies = [];
+  }
+  //sort array by year
+  const moviesByYear = movies.sort((a, b) => a.year - b.year);
+  //if two movies have the same year, order them alphabetically by title
+  const moviesByTitle = moviesByYear.sort((a,b) => {
+    if (a.year > b.year) {
+      return 1;
+    } else if (a.year < b.year) {
+      return -1;
+    } else {
+      return a.title.localeCompare(b.title);
+    }
+  })
+  return moviesByTitle;
+  };
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(movies) { 
+  //first sort movies by their title
+  const alphabArray = movies; 
+  alphabArray = moviesByTitle(movies);
+  //only show first 20 movies
+  if (alphabArray.lenght < 20){
+    return alphabArray;
+  } else {
+    return alphabArray.slice(0,20);
+  }
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
