@@ -77,7 +77,7 @@ function orderByYear(movies) {
   if (movies.length===0) {
     return [];
   }
-  let moviesCopy = movies;
+  let moviesCopy =Array.from(movies);
 
   let sortedMovies = moviesCopy.sort(function(a,b){
     if (a.year < b.year) return -1; 
@@ -101,7 +101,7 @@ return sortedMovies;
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
-   let moviesCopy =movies;
+   let moviesCopy =Array.from(movies);
    let moviesTitle = moviesCopy.map (function (movie){
       return movie.title;
    })
@@ -120,24 +120,28 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
-  if (movies.length===0) {
-    return [];
-  };
+  
+  let moviesCopy =Array.from(movies);
 
-  let moviesCopy = movies;
   let durationString, hour, minutes, totalMinutes;
 
     for (let i=0; i<moviesCopy.length; i++) {
-      durationString = moviesCopy[i].duration;
-       hour = parseInt(durationString.slice(0,durationString.indexOf("h")));
-       if (durationString.indexOf("m")===-1) {
-         minutes = 0;
-       } else {
-         minutes = parseInt(durationString.slice((durationString.indexOf(" ")+1),-3));
-       };
-       totalMinutes = hour*60+minutes;
-       moviesCopy[i].duration = totalMinutes;
-    }
+
+        durationString = moviesCopy[i].duration;
+        if (typeof durationString!=="string") {
+          durationString = JSON.stringify(durationString);
+        }
+        hour = parseInt(durationString.slice(0,durationString.indexOf("h")));
+        if (durationString.indexOf("m")===-1) {
+          minutes = 0;
+        } else {
+          minutes = parseInt(durationString.slice((durationString.indexOf(" ")+1),-3));
+        };
+        totalMinutes = hour*60+minutes;
+        moviesCopy[i].duration = totalMinutes;
+
+      }
+   
     return moviesCopy;
 }
 
@@ -147,19 +151,39 @@ function bestYearAvg(movies) {
      return null;
    }
 
-  //create an obj with year
-  //find a year
-  //add property score as array to the object
-  //add property avg score which use the reduce on the array/array length
+let copiedMovies = Array.from(movies);
+let moviesSameYear,totalScore,yearAvgScore;
+let bestYear = {
+      year:"",
+      avgScore:0
+    }
 
-  //store pair year/avg score
-  //find highest
 
+    for (let i=0;i<copiedMovies.length;i++) {
+      moviesSameYear = copiedMovies.filter(function(eachMovie){
+        return eachMovie.year===movies[i].year; 
+      })
+      
+      totalScore = moviesSameYear.reduce(function(sum,eachMovie){
+          return sum+eachMovie.score;
+      },0)
+      
+      
+      yearAvgScore = parseFloat((totalScore/moviesSameYear.length).toFixed(1));
+      
+      if (yearAvgScore>bestYear.avgScore) {
+         bestYear.year = moviesSameYear[0].year;
+         bestYear.avgScore = yearAvgScore;
+      }  else if (yearAvgScore===bestYear.avgScore) {
+          if (moviesSameYear[0].year<bestYear.year) {
+              bestYear.year = moviesSameYear[0].year
+          }
+      }
        
   }   
 
-
-
+  return `The best year was ${bestYear.year} with an average score of ${bestYear.avgScore}`
+}
 
 
 // The following is required to make unit tests work.
