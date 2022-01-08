@@ -121,7 +121,7 @@ function orderAlphabetically(movies) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
   
-  let moviesCopy =Array.from(movies);
+  let moviesCopy =  JSON.parse(JSON.stringify(movies));
 
   let durationString, hour, minutes, totalMinutes;
 
