@@ -103,7 +103,55 @@ function orderAlphabetically(array) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(array) {
+  if (array.length === 0) {
+    return null;
+  }
+  let converted = array.map((e) => {
+    e.duration = getDuration(e.duration);
+    return e;
+  });
+  return converted;
+}
+
+function getDuration(string) {
+  let minutesString;
+  let hoursString;
+  if (string.length === 0) {
+    return null;
+  }
+  if (string.indexOf("h") === -1) {
+    hoursString = "0";
+  } else {
+    hoursString = string.slice(0, string.indexOf("h"));
+  }
+  if (string.indexOf("min") === -1) {
+    minutesString = "0";
+  } else {
+    minutesString = string.slice(string.indexOf(" ") + 1, string.indexOf("min"));
+  }
+  let hours = Number(hoursString);
+  let minutes = Number(minutesString);
+  let duration = hours*60 + minutes;
+  return duration;
+}
+
+// console.log(turnHoursToMinutes(movies));
+
+// const movieTry = [{ duration: '0h 31min' }];
+// const movieTry2 = [{ duration: '5h 41min' }]
+// const movieTry3 = [{ duration: '2h' }];
+
+// console.log(`
+  
+//     ${typeof turnHoursToMinutes(movies)[0].duration} \n
+//     ${turnHoursToMinutes(movieTry)[0].duration} \n
+//     ${turnHoursToMinutes(movieTry2)[0].duration} \n
+//     ${turnHoursToMinutes(movieTry3)[0].duration} \n
+// `);
+
+// ${turnHoursToMinutes(movies) instanceof Array}\n
+ 
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
