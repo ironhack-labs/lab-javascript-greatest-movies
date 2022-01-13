@@ -108,8 +108,9 @@ function turnHoursToMinutes(array) {
     return null;
   }
   let converted = array.map((e) => {
-    e.duration = getDuration(e.duration);
-    return e;
+    let changedMovie = JSON.parse(JSON.stringify(e));
+    changedMovie.duration = getDuration(changedMovie.duration);
+    return changedMovie;
   });
   return converted;
 }
@@ -154,9 +155,53 @@ function getDuration(string) {
  
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(array) {
+  if (array.length === 0) {
+    return null;
+  }
+  let bestAverage = 0;
+  let message = "";
+  let scoresInEachYear = getScoresInEachYear(array);
+  let avgInEachYear = getAverageInEachYear(scoresInEachYear);
+  console.log(avgInEachYear);
+  for (let key in avgInEachYear) {
+    if (avgInEachYear[key] > bestAverage) {
+      bestAverage = avgInEachYear[key];
+    
+    message = `The best year was ${key} with an average score of ${bestAverage}`;
+    }
+  }
+  console.log(message)
+  return message;
+}
 
+function getScoresInEachYear(array) {
+  let scoresInEachYear = {};
+  array.forEach((e)=>{
+    if (!scoresInEachYear[`${e.year}`]) {
+      scoresInEachYear[`${e.year}`] = [e.score];
+    } else {
+      scoresInEachYear[`${e.year}`].push(e.score);
+    }
+  });
+  console.log("Object: ", scoresInEachYear);
+  return scoresInEachYear;
+}
 
+function getAverageInEachYear(scoresInEachYear) {
+  let avgInEachYear = {};
+  let sumOfScores;
+  let average;
+  for (let key in scoresInEachYear) {
+    sumOfScores = scoresInEachYear[key].reduce((acc, curr)=> acc + curr);
+    average = sumOfScores / scoresInEachYear[key].length;
+    avgInEachYear[`${key}`] = average;
+  }
+  console.log("AvgObject: ", avgInEachYear);
+  return avgInEachYear;
+}
+
+bestYearAvg(movies);
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
