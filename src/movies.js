@@ -24,7 +24,13 @@ function scoresAverage(allMovies) {
 
   if (allMovies.length == 0) return 0;
 
-  const sumOfScores = allMovies.reduce((value, movie) => value + movie.score, 0);
+  const sumOfScores = allMovies.reduce((value, movie) => {
+    if ('score' in movie && typeof movie.score == 'number') {
+      return value + movie.score
+    } else {
+      return value
+    }
+  }, 0);
   const avgScore = Math.round(sumOfScores * 100 / allMovies.length) / 100;
 
   return avgScore;
@@ -98,7 +104,6 @@ function bestYearAvg(allMovies) {
   const maxScore = avgScoresByYear.reduce((acc, cv) => Math.max(acc, cv.avg_score), 0);
 
   let bestYear = avgScoresByYear.filter(el => el.avg_score === maxScore);
-  console.log(bestYear)
 
   if (bestYear.length > 1) {
     bestYear = bestYear.filter(el => el.year == bestYear.reduce((acc, cv) => Math.min(acc, cv.year), 3000));
