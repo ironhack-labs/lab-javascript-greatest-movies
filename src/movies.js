@@ -76,25 +76,46 @@ function orderAlphabetically(movieArray) {
 function turnHoursToMinutes(movieArray) {
   let copyArray = JSON.parse(JSON.stringify(movieArray));
   copyArray.forEach((movie, index) => {
-    // console.log(movie.duration);
-    console.log(copyArray);
     let results = String(movie.duration).match(/\d+/g);
-    // console.log(results);
+
     if (results.length === 1) {
       copyArray[index].duration = Number(results[0]) * 60;
-      // console.log(Number(results[0]) * 60);
     } else {
       copyArray[index].duration = Number(results[0]) * 60 + Number(results[1]);
-      // console.log('hr min', results[0], '   ', results[1]);
-      // console.log(Number(results[0]) * 60 + Number(results[1]));
     }
   });
-  //console.log(copyArray);
+
   return copyArray;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(movieArray) {
+  if (movieArray.length > 0) {
+    let yearScoreObj = {};
+    movieArray.forEach((movie) => {
+      if (!yearScoreObj.hasOwnProperty(movie.year)) {
+        yearScoreObj[movie.year] = [];
+        yearScoreObj[movie.year].push(movie.score);
+      } else {
+        yearScoreObj[movie.year].push(movie.score);
+      }
+    });
+    console.log(yearScoreObj);
+    let highestAvg = 0;
+    let yearOfHighestAvg = 0;
+    for (key in yearScoreObj) {
+      let yearAvg =
+        yearScoreObj[key].reduce((a, b) => a + b) / yearScoreObj[key].length;
+      if (yearAvg > highestAvg) {
+        highestAvg = yearAvg;
+        yearOfHighestAvg = key;
+      }
+    }
+    return `The best year was ${yearOfHighestAvg} with an average score of ${highestAvg}`;
+  } else {
+    return null;
+  }
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
