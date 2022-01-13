@@ -1,13 +1,51 @@
 // Iteration 1: All directors? - Get the array of all directors.
-// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
+// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up
+// multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors() {}
+
+const movies = require('./data');
+
+function getAllDirectors(movies) {
+  const directors = movies.map(function (element) {
+    return element.director;
+  });
+  return directors;
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+  if (!arr.includes('Steven Spielberg')) {
+    return 0;
+  }
+  const moviesSteven = movies.filter(function (element) {
+    let counter = 0; //is the counter unecessary?
+    if (
+      element.director === 'Steven Spielberg' &&
+      element.genre.includes('Drama')
+    ) {
+      counter++;
+      return element; // return true; ??
+    }
+  });
+  return moviesSteven;
+}
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+  const averageScore = arr.reduce(function (acc, other) {
+    if (typeof element === 'undefined' || typeof element === 0) {
+      return 0;
+    }
+    let sumAverage = (acc + other.score) / arr.length;
+  }, 0);
+  return averageScore.toFixed(2);
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore() {}
@@ -24,8 +62,6 @@ function turnHoursToMinutes() {}
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
 
-
-
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
 if (typeof module !== 'undefined') {
@@ -37,6 +73,6 @@ if (typeof module !== 'undefined') {
     orderByYear,
     orderAlphabetically,
     turnHoursToMinutes,
-    bestYearAvg,
+    bestYearAvg
   };
 }
