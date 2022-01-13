@@ -75,7 +75,38 @@ function orderAlphabetically(allMovies) {
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(allMovies) {
+
+  function convertToMinutes(string) {
+
+    const splitPlainNumbers = string.replace('h', '').replace('min', '').split(" ");
+
+    console.log(splitPlainNumbers)
+
+    if (splitPlainNumbers.length > 1) {
+      totalMinutes = parseInt(splitPlainNumbers[0]) * 60 + parseInt(splitPlainNumbers[1]);
+    } else {
+      totalMinutes = parseInt(splitPlainNumbers[0]) * 60
+    }
+
+    // this will be wrong if duration is '51min'
+
+    return totalMinutes;
+  }
+
+  const result = allMovies.map(movie => { 
+    
+    const clone = Object.assign({}, movie)
+    if ('duration' in movie && typeof movie.duration === 'string' && movie.duration.length > 0) {
+      clone.duration = parseInt(convertToMinutes(movie.duration));
+    }
+
+    return clone;
+
+  });
+
+  return result;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(allMovies) {
