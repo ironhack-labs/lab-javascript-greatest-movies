@@ -49,17 +49,14 @@ dramaMoviesScore(movies)
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(yearArr) {
-
-
-
-  let year = yearArr.map((mov) => {
-    return {year: mov.year}
+  const year = yearArr.map(mov => mov);
+  year.sort(function(a, b) {
+    if(a.year > b.year) return 1;
+    if(a.year < b.year) return -1;
+    if(a.title > b.title) return 1;
+    if(a.title < b.title) return -1;
   });
-
-
-
-  year.sort();
-  console.log(year);
+  return year;
 }
 
 orderByYear(movies)
