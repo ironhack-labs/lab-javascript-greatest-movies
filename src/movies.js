@@ -2,8 +2,8 @@
 const movies = require("./data");
 //let Data = fs.readFileSync("./data.js", "utf-8");
 
-const test = orderByYear();
-
+const test = turnHoursToMinutes();
+let i=0
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
@@ -62,10 +62,10 @@ function orderAlphabetically() {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {
-  const newArray = movies.map(function (movie) {
-    return movie.duration * 60;  
-  }
-  )
+    const newArray = movies.map(function (movie) {
+      return parseFloat(movie.duration) * 60;  
+    });
+    return newArray;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
