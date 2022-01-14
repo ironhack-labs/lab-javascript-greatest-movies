@@ -3,9 +3,7 @@ const movies = require("./data");
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(data) {
-  const directors = data.map((person) => {
-    return person.director;
-  })
+  const directors = data.map(person => person.director);
   return directors;
 }
 
@@ -25,27 +23,55 @@ howManyMovies(movies)
 function scoresAverage(data) {
   if(data.length === 0) return 0;
   const scores = data.map((num) => {
+    if(!num.score) {
+      num.score = 0
+    }
     return num.score
   });
   const averageScore = scores.reduce((acc, val) => {
     return acc + val;
   })
   let average = (averageScore / scores.length);
-  return Number(average.toFixed(2))
+  return Number(average.toFixed(2));
 }
 
 scoresAverage(movies)
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(dramaArr) {
+  let drama = dramaArr.filter((mov) => {
+    return mov.genre.includes('Drama');
+  })
+  return scoresAverage(drama)
+}
 
 dramaMoviesScore(movies)
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(yearArr) {
+
+
+
+  let year = yearArr.map((mov) => {
+    return {year: mov.year}
+  });
+
+
+
+  year.sort();
+  console.log(year);
+}
+
+orderByYear(movies)
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(titleArr) {
+  let title = titleArr.map(mov => mov.title)
+    
+  return title
+}
+
+orderAlphabetically(movies)
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
