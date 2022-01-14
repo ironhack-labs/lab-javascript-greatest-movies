@@ -2,7 +2,7 @@
 const movies = require("./data");
 //let Data = fs.readFileSync("./data.js", "utf-8");
 
-console.log(getAllDirectors())
+console.log(scoresAverage())
 
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
@@ -31,7 +31,7 @@ function howManyMovies() {
 function scoresAverage() {
   let Average = 0;
   movies.forEach(element => {
-      Average += element.scoresAverage;
+      Average += element.score;
   });
   return (Average / movies.length).toFixed(2);
 }
