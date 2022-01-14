@@ -2,7 +2,7 @@
 const movies = require("./data");
 //let Data = fs.readFileSync("./data.js", "utf-8");
 
-console.log(scoresAverage())
+const test = orderByYear();
 
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
@@ -41,7 +41,7 @@ function dramaMoviesScore() {
   let Average = 0;
   let Counter = 0;
   movies.forEach(element => {
-      if (element.genre.find("Drama"))
+      if (element.genre.find('Drama'))
       {
         Average += element.score;
         Counter++;
@@ -52,7 +52,7 @@ function dramaMoviesScore() {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear() {
-  return movies.sort((a) => a.score);
+  return movies.sort((a) => a.year);
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
