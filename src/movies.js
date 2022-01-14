@@ -2,7 +2,7 @@
 const movies = require("./data");
 //let Data = fs.readFileSync("./data.js", "utf-8");
 
-console.log(howManyMovies())
+console.log(getAllDirectors())
 
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
@@ -10,7 +10,7 @@ console.log(howManyMovies())
 function getAllDirectors() {
   let Directors = []
   movies.forEach(element => {
-    Directors.push(element.Directors)
+    Directors.push(element.director)
   });
   return Directors;
 }
