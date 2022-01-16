@@ -160,10 +160,6 @@ function bestYearAvg(moviesArr) {
     const currentTotalMovieRating = sortedMoviesByRate.filter(function (movie) {
       return movie.year === sortedMoviesByRate[i].year
     })
-
-    if (currentTotalMovieRating.length === 1) {
-      console.log(`The best year was ${currentTotalMovieRating[0].year} with an average score of ${currentTotalMovieRating[0].score}`)
-    }
     const currentAverageMovieRating = currentTotalMovieRating.reduce(function (accum, currentScore) {
       return accum + currentScore.score
     }, 0) / currentTotalMovieRating.length
