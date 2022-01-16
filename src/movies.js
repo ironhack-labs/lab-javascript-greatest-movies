@@ -75,11 +75,8 @@ function orderByYear(moviesArr) {
 function orderAlphabetically(moviesArr) {
   let sortedArr = moviesArr.slice(0);
   return sortedArr.sort(function (a, b) {
-    if (a.title < b.title) {
-      return -1
-    } else if (a.title > b.title) {
-      return 1
-    }
+    if (a.title < b.title) return -1
+    else if (a.title > b.title) return 1
     return 0
   }).filter(function (movie) {
     return sortedArr.indexOf(movie) < 20
@@ -89,12 +86,78 @@ function orderAlphabetically(moviesArr) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() { }
+function turnHoursToMinutes(moviesArr) {
+  return moviesArr.map(function (movie) {
+    const durationArr = movie.duration.split(' ')
+    for (let i = 0; i < durationArr.length; i++) {
+      if (durationArr.length < 2) {
+        durationArr.push(0)
+      }
+      durationArr[i] = parseInt(durationArr[i])
+    }
+    const duration = durationArr.reduce(function (accum, duration) {
+      return accum * 60 + duration
+    })
+    return {
+      title: movie.title,
+      year: movie.year,
+      director: movie.director,
+      duration: duration,
+      genre: movie.genre,
+      score: movie.score
+    }
+  })
+}
+
+// Solved iteration 7 in another way
+
+// function turnHoursToMinutes(moviesArr) {
+//   return moviesArr.map(function (movie) {
+//     const durationArr = movie.duration.split(' ')
+//     for (let i = 0; i < durationArr.length; i++) {
+//       durationArr[i] = parseInt(durationArr[i])
+//       console.log(durationArr[i])
+//     }
+//     if (durationArr.length === 2) {
+//       return {
+//         title: movie.title,
+//         year: 1972,
+//         director: movie.director,
+//         duration: durationArr[0] * 60 + durationArr[1],
+//         genre: movie.genre,
+//         score: movie.score
+//       }
+//     } else if (durationArr.length === 1) {
+//       return {
+//         title: movie.title,
+//         year: movie.year,
+//         director: movie.director,
+//         duration: durationArr[0] * 60,
+//         genre: movie.genre,
+//         score: movie.score
+//       }
+//     }
+//   })
+// }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() { }
+function bestYearAvg(moviesArr) {
+  sortedMoviesByRate = moviesArr.slice(0).sort((a, b) => a.score - b.score || a.year - b.year)
+  function filterByYear(moviesArr, year) {
+    moviesArr.filter(function (movie) {
+      return movie.year === year
+    })
+  }
+  for (let i = 0; i < moviesArr.length; i++) {
+    filterByYear(moviesArr, moviesArr[i].year)
+  }
+  // sortedMoviesyYear.filter(function (movie) {
+  //   return movie.year === 1925
+  // })
+  console.log(sortedMoviesByRate)
+}
 
-
+// filter by year, then find average by reduce, then sort by average
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
