@@ -1,3 +1,5 @@
+const { getAllDirectors } = require("./movies");
+
 const movies = [
   {
     title: 'The Shawshank Redemption',
@@ -2002,6 +2004,15 @@ const movies = [
   }
 ];
 
+
+
+  
 if (typeof module !== 'undefined') {
   module.exports = movies;
 }
+
+
+ 
+  
+
+
