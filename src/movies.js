@@ -154,23 +154,25 @@ function turnHoursToMinutes(movies) {
 
   let Minutes = copyOfMoviesArr.map(function(movie){
 
-    // let currentMovieDuration = movie.duration;
-
-    // let indexOfh = currentMovieDuration.indexOf('h');
-
-    // let indexOfSpacePlus1 = currentMovieDuration.indexOf(" ") + 1;
-
-    // let indexOfm = currentMovieDuration.indexOf('m');
-
-    // let hours = +currentMovieDuration.slice(0, indexOfh);
     
-    // let mins = +currentMovieDuration.slice(indexOfSpacePlus1, indexOfm);
+    let hours = +movie.duration.slice(0, movie.duration.indexOf('h'));
+
+    if(movie.duration.indexOf('m') > 0){
+      
+      let mins = +movie.duration.slice(movie.duration.indexOf(" ") + 1, movie.duration.indexOf('m'));
+    
+      let totalMins = hours * 60 + mins;
+
+      movie.duration = totalMins;
+
+      return movie;
+    }
+
+    let totalMins = hours *;
    
-    // let totalMins = (hours * 60) + mins;
+    movie.duration = totalMins;
    
-    // movie.duration = totalMins;
-   
-    // return movie;
+    return movie;
   })
   return Minutes;
 }
