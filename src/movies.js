@@ -141,23 +141,45 @@ function turnHoursToMinutes(moviesArr) {
 // }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
+
+// filter by year, then find average by reduce
 function bestYearAvg(moviesArr) {
+
   sortedMoviesByRate = moviesArr.slice(0).sort((a, b) => a.score - b.score || a.year - b.year)
-  function filterByYear(moviesArr, year) {
-    moviesArr.filter(function (movie) {
-      return movie.year === year
+  let currentHighestAverageMovieRating = 0
+  let highestYearAverage = 0;
+  // if moviesArr had one element
+  if (moviesArr.length === 1) {
+    return `The best year was ${moviesArr[0].year} with an average score of ${moviesArr[0].score}`
+  } else if (moviesArr.length === 0) {
+    return null
+  }
+  // for loop to iterate over the movies and filter each year then I used reduce to find the average score of that year
+  for (let i = sortedMoviesByRate.length - 1; i >= 0; i--) {
+
+    const currentTotalMovieRating = sortedMoviesByRate.filter(function (movie) {
+      return movie.year === sortedMoviesByRate[i].year
     })
+
+    if (currentTotalMovieRating.length === 1) {
+      console.log(`The best year was ${currentTotalMovieRating[0].year} with an average score of ${currentTotalMovieRating[0].score}`)
+    }
+    const currentAverageMovieRating = currentTotalMovieRating.reduce(function (accum, currentScore) {
+      return accum + currentScore.score
+    }, 0) / currentTotalMovieRating.length
+
+    if (currentAverageMovieRating > currentHighestAverageMovieRating) {
+      currentHighestAverageMovieRating = currentAverageMovieRating
+      highestYearAverage = sortedMoviesByRate[i].year
+    } else if (currentAverageMovieRating === currentHighestAverageMovieRating && sortedMoviesByRate[i].year < highestYearAverage) {
+      highestYearAverage = sortedMoviesByRate[i].year
+    }
+
   }
-  for (let i = 0; i < moviesArr.length; i++) {
-    filterByYear(moviesArr, moviesArr[i].year)
-  }
-  // sortedMoviesyYear.filter(function (movie) {
-  //   return movie.year === 1925
-  // })
-  console.log(sortedMoviesByRate)
+  return `The best year was ${highestYearAverage} with an average score of ${currentHighestAverageMovieRating}`
 }
 
-// filter by year, then find average by reduce, then sort by average
+
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
