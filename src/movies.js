@@ -20,12 +20,12 @@ function howManyMovies(movies) {const filterSpil = movies.filter(eachMovie => {
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(movies) {
   if (movies.length === 0) {return 0}
-  const aveScores = movies.reduce((acc, eachScore) => {
-  let getScore = acc + eachScore.score
+  const aveScores = movies.reduce((acc, movie) => {
+  const getScore = acc + movie.score
   return getScore
 }, 0)
-let calcScore = aveScores / movies.length 
-  console.log( Number(calcScore.toFixed(2)))
+const calcScore = aveScores / movies.length 
+  return Number(calcScore.toFixed(2))
 }
 
 
