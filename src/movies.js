@@ -114,7 +114,7 @@ function orderAlphabetically(array) {
     return eachValue.title
   })
 
-  firstTwenty = onlyTitle.slice(0, 20)
+  let firstTwenty = onlyTitle.splice(0, 20)
 
   return firstTwenty
 }
