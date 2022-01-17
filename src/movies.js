@@ -136,11 +136,64 @@ function orderAlphabetically(arr) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() { }
+function turnHoursToMinutes(arr) {
+
+  const clonedArr = [...arr];
+  function hoursToMin(str) {
+    const newArr = str.split(" ")
+    const hoursInMin = parseInt(newArr[0]) * 60
+    if (newArr[1]) {
+      const min = parseInt(newArr[1])
+      return hoursInMin + min
+    }
+    return hoursInMin
+  }
+
+  clonedArr.forEach(eachMovie => {
+    if (eachMovie.duration) {
+      return eachMovie.duration = hoursToMin(eachMovie.duration)
+    }
+  })
+  console.log(clonedArr)
+  return clonedArr
+
+
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() { }
+function bestYearAvg(arr) {
+  if (!arr.length) return null
+  let yearArr = []
+  for (let i = 1800; i < 2100; i++) {
+    yearArr.push(i)
+  }
+  const arrOfArrs = []
+  yearArr = yearArr.forEach(eachYear => {
+    const createArr = arr.filter(eachMovie => eachMovie.year === eachYear)
+    if (createArr.length) {
+      arrOfArrs.push(createArr)
+    }
+  }
 
+  )
+  let yearAndAvgScore = []
+  arrOfArrs.forEach(eachYearOfMovies => {
+    yearAndAvgScore.push({ avgScore: scoresAverage(eachYearOfMovies), year: eachYearOfMovies[0].year })
+
+
+  })
+  yearAndAvgScore.sort((a, b) => b.year - a.year)
+  yearAndAvgScore.sort((a, b) => a.avgScore - b.avgScore)
+
+
+
+  return `The best year was ${yearAndAvgScore[yearAndAvgScore.length - 1].year} with an average score of ${yearAndAvgScore[yearAndAvgScore.length - 1].avgScore}`
+
+
+
+
+
+}
 
 
 // The following is required to make unit tests work.
