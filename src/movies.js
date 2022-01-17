@@ -97,9 +97,6 @@ function turnHoursToMinutes(arrOfmovies = []) {
   let newMovies = JSON.parse(JSON.stringify(arrOfmovies));
 
   newMovies.map(function (movie) {
-    if (movie.duration === undefined) {
-      return { ...movie, duration: 0 };
-    }
     const hoursToMinutes = Number(movie.duration[0]) * 60;
     const minutesFirstIndex = movie.duration.indexOf(' ');
     const minutesSecondIndex = movie.duration.indexOf('m');
@@ -117,6 +114,7 @@ function bestYearAvg(arrOfmovies = []) {
   if (arrOfmovies.length === 0) {
     return 0;
   }
+  arrOfmovies.map();
 }
 
 // The following is required to make unit tests work.
