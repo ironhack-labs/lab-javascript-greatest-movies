@@ -23,9 +23,7 @@ function scoresAverage(movies) {
     return 0;
   } else {
     let totalScore = movies.reduce((sum, movie) => {
-      if (movie.score === undefined) {
-        return sum;
-      } else if (!movie.score) {
+      if (movie.score === undefined || !movie.score) {
         return sum;
       } else {
         return (sum += movie.score);
@@ -46,13 +44,7 @@ function orderByYear(array) {
   const sortedAsc = [];
   array.sort((a, b) => {
     if (a.year === b.year) {
-      if (a.title.toLowerCase() > b.title.toLowerCase()) {
-        return 1;
-      } else if (a.title.toLowerCase() < b.title.toLowerCase()) {
-        return -1;
-      } else {
-        return 0;
-      }
+      return a.title.localeCompare(b.title);
     }
     return a.year - b.year;
   });
