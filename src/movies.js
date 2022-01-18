@@ -109,10 +109,125 @@ function orderAlphabetically(arr) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() { }
+function turnHoursToMinutes(arr) {
+
+  const arrCopy = JSON.parse(JSON.stringify(arr)) //copia original
+
+  const arrFormatted = arrCopy.map(arrCopyElement => {             //trasformación de string a número
+
+    //magia negra que no entiendo de donde viene. Aunte los test pasen, si el formato de duracion es " Y minutos" o "Y minutos Z segundos"
+    // los valores no serían los correcto. el unico formato con el que funciona es con " X horas(aunque X=0) Y minutos Z segundos"
+    let duration = arrCopyElement.duration.match(/\d+/g)
+
+    let hours = 0
+    let minutes = 0
+    let seconds = 0
+
+    hours = Number(duration[0]) * 60
+
+    if (duration[1]) {
+      minutes = Number(duration[1])
+    }
+    if (duration[2]) {
+      seconds = number(duration[3]) / 60
+    }
+
+    let length = hours + minutes + seconds
+
+
+
+    arrCopyElement.duration = length
+
+    return arrCopyElement
+  })
+  return arrFormatted
+
+}
+
+
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() { }
+function bestYearAvg(arr) {
+
+
+  /* const arrOrdered = JSON.parse(JSON.stringify(arr))
+   arrOrdered.sort(function (a, b) {
+     if (a.year > b.year) { return 1 }
+     if (a.year < b.year) { return -1 }
+     if (a.year === b.year) { return 0 }
+   })
+   let yearsArr = []
+   arrOrdered.map((arrOrderedElement) => {
+     yearsArr.push(arrOrderedElement.year)
+ 
+   })
+ 
+   const minYear = arrOrdered[0].year
+   console.log(minYear)
+ 
+   const maxYear = arrOrdered[arrOrdered.length - 1].year
+   console.log(maxYear)
+ 
+   yearsArr = [...new Set(yearsArr)]
+   console.log(yearsArr)
+ 
+   let finalArray = []
+   for (i = 0; i < yearsArr.length; i++) {
+     arrOrdered.filter(arrOrderedElement => {
+ 
+       if (arrOrderedElement.year === yearsArr[i]) {
+ 
+       }
+ 
+       return averageArray
+ 
+     })
+ 
+ 
+ 
+     //hacer la media e insertar
+     //yearsArr.splice(i+1,0, arrOrderedElement.score)
+ 
+   }
+   console.log(finalArray)
+ }
+ 
+ bestYearAvg(movies)
+ 
+ 
+ 
+   console.log(arrOrdered)
+  const minYear = arrOrdered[0].year
+ console.log(minYear)
+   
+   const maxYear = arrOrdered[arrOrdered.length-1].year
+ console.log(maxYear)
+   
+   let yearsArr = []
+     arrOrdered.map((arrOrderedElement) =>{
+     yearsArr.push(arrOrderedElement.year)
+     
+   })
+   
+   console.log(yearsArr)
+     yearsArr = [...new Set(yearsArr)]
+   console.log(yearsArr)
+ 
+   function splitArrayIntoChunksOfLen(arr, len) {
+   var chunks = [], i = 0, n = arr.length;
+   while (i < n) {
+     chunks.push(arr.slice(i, i += len));
+   }
+   return chunks;
+ }
+   const yearsArrSingle = splitArrayIntoChunksOfLen(yearsArr,1)
+   
+   console.log(yearsArrSingle)
+   */
+
+
+}
 
 
 
