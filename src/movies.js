@@ -104,8 +104,6 @@ function orderAlphabetically(movies) {
   } else {
     return orderByTitle;
   }
-
-  return orderByTitle;
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
