@@ -72,9 +72,15 @@ orderByYear(movies);
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
 function orderAlphabetically(arr) {
-  
+  let newMovies = [...arr];
+  let movieTitles = newMovies.map((movie) => {
+    return (movie.title)
+  }
+  );
+  let sortedTitles = movieTitles.sort();
+  let top20 = sortedTitles.slice(0,20);
+  return top20;
 }
-
 
 orderAlphabetically(movies)
 
