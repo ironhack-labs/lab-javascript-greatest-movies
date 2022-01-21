@@ -44,7 +44,25 @@ function scoresAverage(arr) {
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(arr) {
+
+  const getMovies = movie => {
+    const {genre} = movie
+    return (
+      genre.includes('Drama')
+    )
+  }
+
+  const movies = arr.filter(getMovies)
+
+  const avg = movies.reduce((acc,current) => {
+    const {score} = current
+
+    return acc+= score
+  },0)
+
+  return movies.length === 0 ? 0 : Number((avg / movies.length).toFixed(2))
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear() {}
@@ -61,7 +79,7 @@ function bestYearAvg() {}
 
 // console.log(getAllDirectors(movies))
 // console.log(howManyMovies(movies))
-console.log(scoresAverage(movies))
+// console.log(scoresAverage(movies))
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
