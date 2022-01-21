@@ -9,7 +9,7 @@ function getAllDirectors(arr) {
   const uniqueArray = (item, index) => directors.indexOf(item) === index
 
   const directors = arr.map(getDirector)
-  
+
   return directors.filter(uniqueArray)
 }
 
@@ -17,7 +17,7 @@ function getAllDirectors(arr) {
 function howManyMovies(arr) {
 
   const getMovies = movie => {
-    const {genre, director} = movie
+    const { genre, director } = movie
     return (
       genre.includes('Drama') && director === 'Steven Spielberg'
     )
@@ -36,9 +36,9 @@ function scoresAverage(arr) {
   }
 
   const avg = arr.reduce((acc, current) => {
-    const score = current.score === '' ? 0:  Object.keys(current).length === 0 ? 0:current.score
-    return acc += score 
-  },0)
+    const score = current.score === '' ? 0 : Object.keys(current).length === 0 ? 0 : current.score
+    return acc += score
+  }, 0)
 
   return Number((avg / arr.length).toFixed(2))
 }
@@ -47,7 +47,7 @@ function scoresAverage(arr) {
 function dramaMoviesScore(arr) {
 
   const getMovies = movie => {
-    const {genre} = movie
+    const { genre } = movie
     return (
       genre.includes('Drama')
     )
@@ -55,11 +55,11 @@ function dramaMoviesScore(arr) {
 
   const movies = arr.filter(getMovies)
 
-  const avg = movies.reduce((acc,current) => {
-    const {score} = current
+  const avg = movies.reduce((acc, current) => {
+    const { score } = current
 
-    return acc+= score
-  },0)
+    return acc += score
+  }, 0)
 
   return movies.length === 0 ? 0 : Number((avg / movies.length).toFixed(2))
 }
@@ -67,12 +67,12 @@ function dramaMoviesScore(arr) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arr) {
 
-  if (arr.length === 0){
+  if (arr.length === 0) {
     return
   }
 
-  const sortedByYear = arr.sort((a,b) => {
-    return a.year - b.year === 0? a.title.localeCompare(b.title):a.year - b.year
+  const sortedByYear = arr.sort((a, b) => {
+    return a.year - b.year === 0 ? a.title.localeCompare(b.title) : a.year - b.year
   })
 
 
@@ -80,19 +80,41 @@ function orderByYear(arr) {
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(arr) {
+
+  const onlyTitles = arr.map(movie => movie.title)
+
+  const sortedByName = onlyTitles.sort((a, b) => {
+    return a.localeCompare(b)
+  })
+  console.log(sortedByName)
+
+  return sortedByName.length >= 20 ? sortedByName.slice(0, 20) : sortedByName
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(obj) {
+  const newArr = obj.map(movie => {
+    const onlyNumbers = movie.duration.replace(/[^-.0-9]/g, '')
+    const [hours, ...minutes] = onlyNumbers.split('')
+    const durationMinutes = (Number(hours) * 60) + Number(minutes.join(''))
+
+    return ({...movie, duration:durationMinutes})
+  })
+
+  return newArr
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg() { }
 
 
 // console.log(getAllDirectors(movies))
 // console.log(howManyMovies(movies))
 // console.log(scoresAverage(movies))
 // console.log(typeof(movies))
+// console.log(orderAlphabetically(movies).length)
+turnHoursToMinutes(movies)
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
