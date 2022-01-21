@@ -65,7 +65,19 @@ function dramaMoviesScore(arr) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(arr) {
+
+  if (arr.length === 0){
+    return
+  }
+
+  const sortedByYear = arr.sort((a,b) => {
+    return a.year - b.year === 0? a.title.localeCompare(b.title):a.year - b.year
+  })
+
+
+  return sortedByYear
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
@@ -80,6 +92,7 @@ function bestYearAvg() {}
 // console.log(getAllDirectors(movies))
 // console.log(howManyMovies(movies))
 // console.log(scoresAverage(movies))
+// console.log(typeof(movies))
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
