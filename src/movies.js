@@ -26,13 +26,35 @@ function scoresAverage(movies) {
     if (!movie.score && movie.score !== '') {
       return acc
     }
-    
+
     return acc + movie.score 
   }, 0) / movies.length) * 100) / 100
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(movies) {
+  // ¯\_(ツ)_/¯
+  // return scoresAverage(movies.filter((movie) => {
+  //   return movie.genre.includes('Drama')
+  // }))
+
+  const dramaMovies = movies.filter((movie) => {
+    return movie.genre.includes('Drama')
+  })
+
+  if (dramaMovies.length === 0) {
+    return 0
+  }
+
+  return Math.round((dramaMovies.reduce((acc, movie) => {
+    if (!movie.score && movie.score !== '') {
+      return acc
+    }
+
+    return acc + movie.score 
+  }, 0) / dramaMovies.length) * 100) / 100
+
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear() {}
