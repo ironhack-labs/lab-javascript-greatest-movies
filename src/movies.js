@@ -6,7 +6,7 @@ const movies = require('./data')
 function getAllDirectors(arr) {
 
   const getDirector = element => element.director
-  const uniqueArray = (item, index) => directors.indexOf(item) === index
+  const uniqueArray = (item, index,arr) => arr.indexOf(item) === index
 
   const directors = arr.map(getDirector)
 
@@ -36,7 +36,7 @@ function scoresAverage(arr) {
   }
 
   const avg = arr.reduce((acc, current) => {
-    const score = current.score === '' ? 0 : Object.keys(current).length === 0 ? 0 : current.score
+    const score = current.score === '' || Object.keys(current).length === 0 ? 0 :  current.score
     return acc += score
   }, 0)
 
@@ -106,7 +106,38 @@ function turnHoursToMinutes(obj) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() { }
+function bestYearAvg(arr) { 
+
+  if(arr.length === 0){
+    return null
+  }
+
+  const getYears = movie => movie.year
+  const uniqueArray = (item, index,arr) => arr.indexOf(item) === index
+
+  const years = arr.map(getYears).filter(uniqueArray)
+  const avgPerYear = []
+  years.forEach(yearToCalc => {
+    const moviesPerYear = arr.filter( movie => movie.year === yearToCalc)
+    avgPerYear.push(
+      {
+        year: yearToCalc,
+        average: moviesPerYear.reduce((acc,current) => {
+          return  Number( (acc += current.score).toFixed(2) )
+        },0) / moviesPerYear.length
+      }
+    )
+  })
+
+  const sortedAvg = avgPerYear.sort((a,b) =>{ 
+    return b.average - a.average === 0 ? a.year - b.year : b.average - a.average
+  })
+
+  console.log(sortedAvg)
+
+  const {year,average} = sortedAvg[0]
+  return `The best year was ${year} with an average score of ${average}`
+}
 
 
 // console.log(getAllDirectors(movies))
@@ -114,7 +145,8 @@ function bestYearAvg() { }
 // console.log(scoresAverage(movies))
 // console.log(typeof(movies))
 // console.log(orderAlphabetically(movies).length)
-turnHoursToMinutes(movies)
+// turnHoursToMinutes(movies)
+console.log(bestYearAvg(movies));
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
