@@ -76,7 +76,33 @@ function orderAlphabetically(movies) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(movies) {
+
+  // Como o spread na array faz uma shallow copy precisei ajustar o objeto também.
+  // Não tenho certeza como isso funcionou...
+  const clonedMoviesArray = movies.map(movie => {return {...movie}})
+
+  return clonedMoviesArray.map((movie) => {
+
+    let duration = movie.duration.split(' ')
+    let hour = 0
+    let min = 0
+
+    if (duration.length > 1) {
+      hour = Number(duration[0].split('h')[0])
+      min = Number(duration[1].split('min')[0])
+    } else {
+      if(duration[0].split('min').length > 1) {
+        min = Number(duration[0].split('min')[0])
+      } else {
+        hour = Number(duration[0].split('h')[0])
+      }
+    }
+
+    movie.duration = hour * 60 + min
+    return movie
+  })
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
