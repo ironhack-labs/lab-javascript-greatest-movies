@@ -78,9 +78,8 @@ function orderAlphabetically(movies) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
 
-  // Como o spread na array faz uma shallow copy precisei ajustar o objeto também.
-  // Não tenho certeza como isso funcionou...
-  const clonedMoviesArray = movies.map(movie => {return {...movie}})
+  // Fazemos uma deep copy
+  const clonedMoviesArray = JSON.parse(JSON.stringify(movies))
 
   return clonedMoviesArray.map((movie) => {
 
@@ -88,6 +87,7 @@ function turnHoursToMinutes(movies) {
     let hour = 0
     let min = 0
 
+    // Se o length for igual a 1 temos ou apenas minutos ou apenas horas
     if (duration.length > 1) {
       hour = Number(duration[0].split('h')[0])
       min = Number(duration[1].split('min')[0])
