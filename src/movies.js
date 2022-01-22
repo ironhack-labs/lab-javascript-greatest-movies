@@ -120,7 +120,7 @@ function bestYearAvg(movies) {
     yearScores[movie.year].push(movie.score)
   }))
 
-  // Calculamos a média para cado ano
+  // Calculamos a média para cado ano no formato [ano, média]
   let sortableYearScores = []
   Object.keys(yearScores).forEach(year => {
     const scoreSum = yearScores[year].reduce((acc, score) => {
@@ -130,6 +130,7 @@ function bestYearAvg(movies) {
   })
 
   sortableYearScores.sort((a, b) => {
+    // Se o score for igual damos preferência ao menor ano
     if (a[1] === b[1]) {
       if (a[0] > b[0]) {
         return a[0] - b[0]
