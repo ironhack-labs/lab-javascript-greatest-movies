@@ -91,22 +91,42 @@ function orderAlphabetically(MoviesList) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(MoviesList) {
+  let output = [];
+  let hours = 0;
+  let minutes = 0;
 
-  let temp = MoviesList.map((x) => x);
-
-  let newArray = temp.map(function (movieTemp) {
-    let minutes = (isNaN(parseFloat(movieTemp.duration.split(' ')[1])))?0:parseFloat(movieTemp.duration.split(' ')[1]);
-    let hours = (isNaN(parseFloat(movieTemp.duration.split(' ')[0])))?0:parseFloat(movieTemp.duration.split(' ')[0]);
-
-
-    movieTemp.duration = minutes + hours * 60;
-  if (movieTemp.duration != 'number')
+  MoviesList.forEach((element) => {
+    if ((typeof element.duration) === 'string')
     {
-      movieTemp.duration = parseFloat(movieTemp.duration);
+      [hours, minutes] = parseMinutesHours(element.duration);
+
+      element.duration = minutes + hours * 60;
+      if (typeof element.duration != 'number')
+        {
+          element.duration = parseFloat(element.duration);
+        }
     }
-    return movieTemp;  
+    else
+    {
+      element.duration = 0;
+    }
+      output.push({duration: element.duration});
   });
-    return newArray;
+  return output;
+}
+
+function parseMinutesHours(duration)
+{
+  let minutesRegx= /([0-9]?[0-9]?)min/g;
+  let hoursRegx = /([0-9]?[0-9]?)h/g;
+
+  let minutes = minutesRegx.exec(duration);
+  let hours = hoursRegx.exec(duration);
+
+  minutes = ((minutes == null) || (minutes.length != 2)) ? 0 : parseFloat(minutes[1]);
+  hours = ((minutes == null) ||(hours.length != 2)) ? 0 : parseFloat(hours[1]);
+
+  return [hours, minutes]
 }
 
 
@@ -116,8 +136,21 @@ function bestYearAvg(MovieList) {
     return null;
   }
   if (MovieList.length == 1) {
-    return MovieList;
+    return BestMovieString(MovieList[0].year, MovieList[0].score);
   }
+
+  MovieList.filter(bestMovies);
+
+}
+
+function sameYear(value, index, arrayObject)
+{
+
+}
+
+function BestMovieString(year, score)
+{
+  return "The best year was " + year + " with an average score of " + score;
 }
 
 // The following is required to make unit tests work.
