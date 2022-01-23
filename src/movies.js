@@ -139,13 +139,35 @@ function bestYearAvg(MovieList) {
     return BestMovieString(MovieList[0].year, MovieList[0].score);
   }
 
-  MovieList.filter(bestMovies);
+  let test = [];
+  let max = 0;
+  let maxYear = 0;
 
+  MovieList.forEach(element => {
+    let current = MovieList.filter(sameYear, element.year);
+    test.push(current);
+
+    let tempScoresAvg = scoresAverage(current);
+    if (max < tempScoresAvg)
+    {
+      max = tempScoresAvg;
+      maxYear = element.year;
+    } 
+    else if (max == tempScoresAvg)
+    {
+      if (maxYear > element.year)
+      {
+        max = tempScoresAvg;
+        maxYear = element.year;
+      }
+    }
+  });
+  return BestMovieString(maxYear, max);
 }
 
 function sameYear(value, index, arrayObject)
 {
-
+  return (value.year == this);
 }
 
 function BestMovieString(year, score)
