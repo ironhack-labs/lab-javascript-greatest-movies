@@ -2,7 +2,12 @@
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(arr) {
-  return arr.map((currentElement) => currentElement.director)
+  const repetidos = arr.map((currentElement) => { 
+    return currentElement.director
+  })
+ return repetidos.filter((currentElement) => {
+    return repetidos.indexOf(currentElement) === repetidos.lastIndexOf(currentElement)
+  })
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -70,7 +75,15 @@ function orderAlphabetically(arr) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(arr) {
+  arr.map((currentElement) => {
+    const duration = currentElement.duration
+    const convert = duration.split('h').join('').split('min').join('').split(' ').join('')
+    const minutes = (+convert[0] * 60) + +convert[1]
+    return currentElement.duration = minutes
+  })
+  return arr
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
