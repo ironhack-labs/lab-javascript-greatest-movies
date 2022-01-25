@@ -35,7 +35,7 @@ function scoresAverage(movies) {
 
   if (!movies.length) {
     return 0;
-}
+  }
 
   let onlyScores = movies.map(element => {
     if (element.score) {
@@ -55,13 +55,69 @@ function scoresAverage(movies) {
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(movies) {
+
+  let onlyDrama = movies.filter((currentMovie) => {
+    return currentMovie.genre.find(element => element === 'Drama')  
+  });
+
+  if (!onlyDrama.length) {
+    return 0;
+}
+
+  let onlyScores = onlyDrama.map(element => {
+    if (element.score) {
+      return element.score;
+    }else{
+      return 0;
+    }
+  });
+  
+  let sum = onlyScores.reduce((accumulator, currentNumber) => {
+    return accumulator + currentNumber
+  });
+
+  let result = sum / onlyScores.length;
+ 
+  return +result.toFixed(2);
+
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(movies) {
+  let yearsArr = movies.filter(function(element){
+    return element.year;
+  });
+  
+  yearsArr.sort(function(a, b){
+    if (a.year === b.year) {
+      return a.title.localeCompare(b.title); // comparação da ordem alfabética
+      }else{
+        return a.year - b.year; // ordem crescente
+      };
+  });
+
+  return yearsArr;
+}  
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(movies) {
+ let titlesArr = movies.filter(function(element){
+    element.title;
+  });
+
+  titlesArr.sort(function(a, b) {
+    return a.title.localeCompare(b.title);
+  });
+
+  let titlesArrSliced = titlesArr.slice(0, 20);
+
+  let twentyTitlesOnly = titlesArrSliced.map(function(element){
+    return element.title;
+  });
+  return twentyTitlesOnly;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
