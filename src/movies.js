@@ -83,7 +83,34 @@ function orderAlphabetically(movies) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+
+// title: 'American Beauty',
+// year: 1999,
+// director: 'Sam Mendes',
+// duration: '2h 2min',
+// genre: ['Drama', 'Romance'],
+// score: 8.4
+
+function turnHoursToMinutes(movies) {
+  // let copyOfMovies = [...movies];
+  // function timeConvert(d) {
+  //   let hour;
+  //   let min;
+  //   let totalMin;
+  //   if (d.indexOf('h') != -1) {
+  //     d = d.split(' ');
+  //     hour = parseInt(d[0]) * 60;
+  //     min = parseInt(d[1]);
+  //     return (totalMin = hour + min);
+  //   } else {
+  //     return (totalMin = parseInt(d));
+  //   }
+  //   return totalMin;
+  // }
+  // return copyOfMovies.forEach((movie) => {
+  //   movie.duration = timeConvert(movie.duration);
+  // });
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
