@@ -115,28 +115,32 @@ function turnHoursToMinutes(arr) {
   
   const time = newArr.map ( element => {
   
-  let durationStr = element.duration.replace(/[a-z]/g, '').split();
+  let durationStr = element.duration.match(/\d+/g)
   
   //console.log(durationStr)
   
-  let durationHours = Number(durationStr[0] * 60)
+  let hours = 0 ; hours = Number((durationStr[0]) * 60)
   
-  let durationMinutes = Number( durationStr[2]+ durationStr[3])
+  let minutes = 0
+
+  if (durationStr[1]) {
+    minutes = Number(durationStr[1])
+  }
   
-  //console.log(durationMinutes)
+
+  let sum = hours + minutes //Total minutes
   
-  let durationTotal = durationHours + durationMinutes
+  //console.log(duration)
   
-  element.duration = durationTotal
+  element.duration = sum
   
-  return element
   
   });
   
+ return newArr
+
+  };
   
-  return newArr
-  
-  }
   
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
