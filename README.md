@@ -16,7 +16,6 @@ Best way to practice is to work with real data. In the **`src/data.js`** file yo
 
 - Fork this repo.
 - Clone this repo.
-- Visit the "Actions" tab in your fork, and enable workflows.
 - Practice JavaScript advanced methods (`map`, `reduce`, `filter` and `sort` to manipulate arrays).
 
 <br>
