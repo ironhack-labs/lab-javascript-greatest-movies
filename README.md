@@ -36,7 +36,7 @@ $ git push origin master
 
 ## Introduction
 
-The `src/data.js` contains an array of 250 movies. We are talking about the array of 250 _objects_ containing the info about each movie. Here is one example of how the data is displayed:
+The `src/data.js` contains an array of 250 movies. It is an array of 250 _objects_ containing the info about each movie. Here is an example of how the data is displayed:
 
 ```javascript
 {
