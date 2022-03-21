@@ -181,7 +181,9 @@ Create `bestYearAvg()` function that receives an array of movies and gives us an
 
 ## Test Your Code
 
-Ohh yes! We have our tests, and you already know how this works. Open your terminal, change directories into the root of the lab, and run `npm install` to install the test runner. Next, run the tests by running the command `npm run test:watch`. In summary, the steps are:
+Ohh yes! We have our tests, and you already know how this works. Open your terminal, change directories into the root of the lab, and run `npm install` to install the test runner. Next, run the tests by running the command `npm run test:watch`. 
+
+In summary, the steps are:
 
 ```shell
 $ cd lab-javascript-greatest-movies
