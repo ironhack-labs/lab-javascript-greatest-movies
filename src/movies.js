@@ -33,11 +33,10 @@ function scoresAverage(arr) {
   return accumulator + movie.score;
   }, 0);
  
- let average = totalScore / movieCount
+ let average = totalScore / movieCount  // return Number((arr.reduce((accumulator, movie) => accumulator + movie.score, 0) / arr.length).toFixed(2)) // also another way the above could have been represented. 
  let roundedAverage = average.toFixed(2)
  let averageToNumber = Number(roundedAverage);
  return averageToNumber;
- // return Number((arr.reduce((accumulator, movie) => accumulator + movie.score, 0) / arr.length).toFixed(2)) // also another way the above could have been represented. 
 }
 scoresAverage(movies);
 
@@ -56,19 +55,41 @@ dramaMoviesScore(movies);
 // ITERATION 5: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(inputArray) {
- 
+  inputArray.sort((a, b) => {
+    if (a.year === b.year){
+      return a.title < b.title ? -1 : 1
+    }else{
+      return a.year < b.year ? -1 : 1
+    }
+  });  
+ const orderedByYear = JSON.parse(JSON.stringify(inputArray));
+ return(orderedByYear);
+}
+
+/* OR... APPLYING WHAT I LEARNED ABOVED TO MY ORIGINAL APPROACH. 
+function orderByYear(inputArray) {
   inputArray.sort(function (a, b) {
    if (a.year < b.year) return -1;  
    if (a.year > b.year) return 1; 
-   if (a.year === b.year) return 0
+   if (a.year === b.year) {
+     return a.title < b.title ? -1 : 1
+   }
  });  
   const orderedByYear = JSON.parse(JSON.stringify(inputArray));
   return(orderedByYear);
 }
-
+*/
 
 // ITERATION 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+
+function orderAlphabetically(arr) {
+  const allMovieTitles = arr.map(movies => movies.title);
+
+  const sortedMovieTitles = allMovieTitles.sort();
+  
+  firstTwenty = sortedMovieTitles.filter((title,idx) => idx < 20);
+  return(firstTwenty);
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
