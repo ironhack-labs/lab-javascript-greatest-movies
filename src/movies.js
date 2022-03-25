@@ -74,7 +74,8 @@ function orderAlphabetically(arr) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(arr) {
-  const newArr = [...arr];
+  //const newArr = [...arr];
+  const newArr = JSON.parse(JSON.stringify(arr));
 
   const hToMin = str => {
     let h = str.split("h")
