@@ -1,20 +1,51 @@
 // The `movies` array from the file `src/data.js`.
-console.log('movies: ', movies);
+//console.log('movies: ', movies);
+
+// const movies = require("./data");
 
 
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors() {}
+function getAllDirectors(peli) {
+  let totalDirectores = peli.map(function(total){
+    return total.director
+  })
+  return totalDirectores
+}
+
+
+console.log (getAllDirectors(movies))
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(peli2) {
+  let pelisSpielberg = peli2.filter(p1 => {
+    return p1.director.includes("Steven") && p1.genre.includes("Drama")
+  })
+  return pelisSpielberg
+}
+
+console.log(howManyMovies(movies))
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(avg) {
+
+  const totalScore = avg.reduce((acc, current) => current.score + acc, 0)
+  const avgScore = totalScore / avg.length
+  console.log((avgScore).toFixed(2))
+
+}
+scoresAverage(movies);
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(drama) {
+  
+  let finalDramas = drama.reduce((acc, current) => current.score.includes("Drama") + acc, 0)
+  let totalDramas = finalDramas / drama.score.includes("Drama").length
+  console.log(totalDramas.toFixed(2))
+}
+
+dramaMoviesScore(movies)
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear() {}
