@@ -63,13 +63,24 @@ const Pelis = peliculas.map(pelicula=>{
       ArrayMovies.push(movie)
   })
 })
-console.log(Pelis)
 const MoviesDrama = ArrayMovies.filter(pelicula=>{
   return pelicula === "Drama"
 })
 const averageMoviesDrama = Math.round((MoviesDrama.length * 100)/ArrayMovies.length) + "%"
 console.log(averageMoviesDrama) 
+
+//Entendí mal la iteración, no se por que entendí que tenía que sacar el porcentaje de las peliculas de drama de las 250 peliculas que hay jeje
+
+
+const DramaMovies = movies.filter(movies => movies.genre.includes('Drama'));
+const AverageScore = (DramaMovies.reduce((total,movie)=>{
+  return total+=movie.score
+},0))/DramaMovies.length
+
+console.log(AverageScore)
+
 }
+
 
 dramaMoviesScore(movies)
 
@@ -124,7 +135,9 @@ for (let i = 0; i < OrderScores.length; i++) {
 
 console.log(OrderScores)
 }
+
 bestYearAvg(movies)
+
 
 
 
