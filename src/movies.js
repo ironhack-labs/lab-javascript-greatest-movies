@@ -10,8 +10,32 @@ function getAllDirectors(movies) {
   const allDirectors = movies.map(function(movie) {
     return movie.director
   })
-  return allDirectors
+  // 1.1 order directors
+  const orderedDirectors = allDirectors.sort(function(a,b) {
+    a.localeCompare(b)
+  })
+  // 1.1 iterate over, if next value is the same as current, set ''
+  for (i = 0; i < orderedDirectors.length - 1; i++) {
+    if (orderedDirectors[i] === orderedDirectors[i+1]) {
+      orderedDirectors[i] = ''
+    }
+  }
+  // 1.1 remove empty strings
+  orderedDirectors.filter(function(director) {
+    director !== ''
+  })
+  return orderedDirectors
 }
+
+// Iteration 1.1 - cleaning the array from duplicates
+
+// sort array
+
+
+// iterate and compare to the previous
+// if previous is the same, set empty string
+
+// filter all empty strings out
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(movies) {
@@ -72,7 +96,19 @@ function orderAlphabetically(movies) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+
+function turnHoursToMinutes(movies) {
+  moviesCopy = [...movies]
+  const timeInMin = moviesCopy.map(function(movie) {
+    //console.log(Number(movie.duration.substr(0, 1)) * 60 + Number(movie.duration.substring(movie.duration.indexOf(' ')+1, movie.duration.indexOf('min'))))
+    return Number(movie.duration.substr(0, 1)) * 60 + Number(movie.duration.substr(3, 2))
+  })
+  moviesTimeInMin = moviesCopy.map(function(movie, i) {
+    movie.duration = timeInMin[i]
+    return movie
+  })
+  return moviesTimeInMin
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
