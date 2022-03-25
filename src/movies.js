@@ -30,13 +30,17 @@ function scoresAverage(arr) {
   let movieCount = arr.length;
  
   const totalScore = arr.reduce((accumulator, movie) => {
-  return accumulator + movie.score;
+    if (movie.score === '' || movie.score == null) {
+      return accumulator + 0; 
+    } else {
+      return accumulator + movie.score
+    }
   }, 0);
  
- let average = totalScore / movieCount  // return Number((arr.reduce((accumulator, movie) => accumulator + movie.score, 0) / arr.length).toFixed(2)) // also another way the above could have been represented. 
- let roundedAverage = average.toFixed(2)
+ let average = totalScore / movieCount;
+ let roundedAverage = average.toFixed(2);
  let averageToNumber = Number(roundedAverage);
- return averageToNumber;
+ return(averageToNumber);
 }
 scoresAverage(movies);
 
