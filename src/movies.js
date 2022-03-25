@@ -111,7 +111,65 @@ function turnHoursToMinutes(movies) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+
+/* 1. */
+// create an array with one item per year -> each item is the unique year number
+function getEachYear(movies) {
+  const eachYear = movies.map(function(movie) {
+    return movie.year
+  })
+  // 1.1 order years
+  const orderedYears = eachYear.sort(function(a,b) {
+    a.year - b.year
+  })
+  // 1.1 iterate over, if next value is the same as current, set ''
+  for (i = 0; i < orderedYears.length - 1; i++) {
+    if (orderedYears[i] === orderedYears[i+1]) {
+      orderedYears[i] = 0
+    }
+  }
+  // 1.1 remove empty strings
+  orderedYears.filter(function(year) {
+    year !== 0
+  })
+  return orderedYears
+}
+
+
+
+/* 3. */
+function avgScore(arr, year) {
+  // create array filtered that year matches year of current iteration
+  const moviesSelectedYear = arr.filter(function(el) {
+    return el.year === year
+  })
+  // reduce to avg score
+  const avgScore = scoresAverage(moviesSelectedYear)
+  // return object {year: <current iteration year>, avgScore: <avg score>}
+  return {year: year, avgScore: avgScore}
+}
+
+
+
+function bestYearAvg(movies) {
+  if(movies.length === 0) {return null}
+  const avgScorePerYear = []
+  // create an array with one item per year -> each item is the unique year number
+  const years = getEachYear(movies)
+  // loop through this years array
+  for (year of years) {
+    // create array filtered that year matches year of current iteration
+    // reduce to avg score, return object {year: <current iteration year>, avgScore: <avg score>}
+    // push this object to new array avgScorePerYear
+    avgScorePerYear.push(avgScore(movies, year))
+  }
+  // sort avgScorePerYear by avgScore
+  avgScorePerYear.sort(function(a,b) {
+    return b.avgScore - a.avgScore || a.year - b.year
+  })
+  const bestYear = avgScorePerYear[0]
+  return `The best year was ${bestYear.year} with an average score of ${bestYear.avgScore}`
+}
 
 
 
@@ -129,3 +187,4 @@ if (typeof module !== 'undefined') {
     bestYearAvg,
   };
 }
+
