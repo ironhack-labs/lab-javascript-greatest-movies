@@ -1,23 +1,91 @@
 // The `movies` array from the file `src/data.js`.
-console.log('movies: ', movies);
+// console.log('movies: ', movies);
 
+//const movies = require("./data");
+
+ // <script src = "data.js" ></script>
 
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors() {}
+
+function getAllDirectors(movies) {
+
+const mappedArray = movies.map(function (movie) {
+ return movie.director ;
+}
+) 
+
+console.log(mappedArray);
+
+return mappedArray
+}
+
+// getAllDirectors(movies)
+
+// console.log(getAllDirectors(movies))
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(movies) {
+
+
+let dramaStev = movies.filter(function(movie) {
+  if ( movie.genre.includes("Drama") &&  movie.director === "Steven Spielberg")
+  { return movies.filter } else { return 0 }
+}
+)
+return dramaStev.length
+}
+
+
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(movies) {
+
+
+const sum = movies.map(function(mov) {
+  return mov.score ;
+}
+)
+
+let aver = sum.reduce(function(a, b) {
+   return a + b 
+}
+)
+
+return (aver/movies.length).toFixed(2)
+
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore() {
+
+  let dramaMo = movies.filter((movie) {
+  movie.genre.includes("Drama")
+  }
+  );
+
+  return scoresAverage(dramaMo);
+}
+
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear() {
+
+  const syear = movies.map(function(movie) {
+    return movie.year;
+  }
+  )
+
+  let newArr = syear.sort(function(a, b) {
+   if ( a < b) { return 1} ;
+   else if ( a > b ) { return -1} ; 
+   else if (a === 0 ) { return 0} ;
+}
+  )
+  return newArr
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
