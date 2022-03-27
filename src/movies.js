@@ -53,21 +53,52 @@ function orderAlphabetically(movies) {
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
 function turnHoursToMinutes(movies) {
-  const moviesCopy = movies.slice();
+  const moviesCopy = JSON.parse(JSON.stringify(movies));
   
   let newDuration = moviesCopy.map(function (movie) {
-    const durationSplit = movie.duration.split(' ');
-    const hours = +durationSplit[0].slice(0,-1);
-    const mins = +durationSplit[1].slice(0,-3);
-    movie.duration = hours * 60 + mins;
+    if(typeof movie.duration === "number") {return movie}
+
+    if (movie.duration.includes('h') && movie.duration.includes('min')){
+      const durationSplit = movie.duration.split(' ');
+      const hours = +durationSplit[0].slice(0,-1);
+      const mins = +durationSplit[1].slice(0,-3);
+      movie.duration = hours * 60 + mins;
+    return movie
+    } else if (movie.duration.includes('h') && !movie.duration.includes('min')) {
+      const durationSplit = movie.duration.split(' ');
+      const hours = +durationSplit[0].slice(0,-1);
+      movie.duration = hours * 60 ; 
+    } else {
+      
+    }
     return movie
   });
   return newDuration
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(movies) {
+  // if yaer is similar calculate avrage rating and stor it in annav
+  // filter similar years in array
+  // reduce to get avvv
+  // map add new prop
+  // sort by avr
+  // string template
+  if (movies.length === 0){return null}
+  const moviesCopy = JSON.parse(JSON.stringify(movies));
+  const moviesAvrYear = moviesCopy.map( movie => {
+    let x = movie.year;
+    let yearOfMovie = moviesCopy.filter (ymovie => ymovie.year === x);
+    movie.yearAvr = scoresAverage(yearOfMovie);
+    return movie
+  })
+  const sortedMovies = moviesAvrYear.sort( (a, b)=> b.yearAvr - a.yearAvr || a.year - b.year)
+
+  return `The best year was ${sortedMovies[0].year} with an average score of ${sortedMovies[0].yearAvr}`
+  
+}
 
 
 
