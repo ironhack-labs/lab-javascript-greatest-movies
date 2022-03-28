@@ -101,7 +101,7 @@ function turnHoursToMinutes(movies) {
   moviesCopy = [...movies]
   const timeInMin = moviesCopy.map(function(movie) {
     //console.log(Number(movie.duration.substr(0, 1)) * 60 + Number(movie.duration.substring(movie.duration.indexOf(' ')+1, movie.duration.indexOf('min'))))
-    return Number(movie.duration.substr(0, 1)) * 60 + Number(movie.duration.substr(3, 2))
+    return Number(movie.duration.substr(0, 1)) * 60 + Number(movie.duration.substring(movie.duration.indexOf(' ')+1, movie.duration.indexOf('min')))
   })
   moviesTimeInMin = moviesCopy.map(function(movie, i) {
     movie.duration = timeInMin[i]
