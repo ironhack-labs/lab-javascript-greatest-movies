@@ -135,8 +135,6 @@ function getEachYear(movies) {
   return orderedYears
 }
 
-
-
 /* 3. */
 function avgScore(arr, year) {
   // create array filtered that year matches year of current iteration
