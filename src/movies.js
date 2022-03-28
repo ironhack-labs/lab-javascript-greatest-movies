@@ -52,7 +52,7 @@ function dramaMoviesScore(movies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
-  const moviesCopy = JSON.parse(JSON.stringify(movies))
+  let moviesCopy = JSON.parse(JSON.stringify(movies))
   moviesCopy.sort((a, b) => {
     if (a.year > b.year) {
       return 1;
@@ -147,32 +147,6 @@ function bestYearAvg(movies) {
 
   }
 }
-const moviess = [
-  {
-    title: 'The Shawshank Redemption',
-    year: 1994,
-    director: 'Frank Darabont',
-    duration: '2h 22min',
-    genre: ['Crime', 'Drama'],
-    score: 9.3
-  },
-  {
-    title: 'The Godfather',
-    year: 1972,
-    director: 'Francis Ford Coppola',
-    duration: '2h 55min',
-    genre: ['Crime', 'Drama'],
-    score: 9.2
-  },
-  {
-    title: 'The Godfather: Part II',
-    year: 1974,
-    director: 'Francis Ford Coppola',
-    duration: '3h 22min',
-    genre: ['Crime', 'Drama'],
-    score: 9
-  }]
-console.log(bestYearAvg(moviess))
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
