@@ -67,7 +67,7 @@ function orderByYear(movies) {
       return -1;
     }
     if (a.year === b.year) {
-      
+
       if (a.title > b.title) {
         return 1;
       }
@@ -120,7 +120,18 @@ function orderAlphabetically(movies) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(movies) {
+  const hoursArr = movies.map((eachMovie) => {
+    return movies.duration;
+  });
+
+  hoursArr.forEach(hour => {
+
+    const hourInt = hour.charAt(0)
+    
+    
+  });
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
