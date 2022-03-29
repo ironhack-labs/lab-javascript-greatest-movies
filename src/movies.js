@@ -59,7 +59,21 @@ function scoresAverage(arr) {
 function dramaMoviesScore(arr) {
 
   const dramaMovies = arr.filter((movie) => movie.genre.includes('Drama'))
-  const averageDramaMovieScore = scoresAverage(dramaMovies)
+  const averageDramaMovieScore = scoresAverage(dramaMovies => {
+    if (arr.length === 0) {
+      return 0
+
+    } else {
+      const filteredScore = arr.filter((movie) => typeof movie.score == 'number')
+
+      const total = filteredScore.reduce((acc, value) => {
+        return acc + value.score
+      }, 0)
+
+      const averageScore = total / arr.length
+      return Number(averageScore.toFixed(2))
+    }
+  })
 
   
   return averageDramaMovieScore
