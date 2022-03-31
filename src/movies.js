@@ -8,27 +8,19 @@ const movies = require("./data");
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
-  let directors = [];
-  let directorsFiltered = [];
 
-  moviesArray.map(element => directors.push(element.director));
+  const directorsArray = moviesArray.map(name => name.director);
 
-  directors.filter((directorName, index) =>{
-    if (directors.indexOf(directorName) === index){
-      directorsFiltered.push(directorName);
-    }
-  });
-
-  return directorsFiltered;
+  return directorsArray;
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
   let counter = 0;
 
-  moviesArray.filter(element => {
-    if (element.director === "Steven Spielberg"){
-      element.genre.filter(genreElement =>{
+  moviesArray.filter(movie => {
+    if (movie.director === "Steven Spielberg"){
+      movie.genre.filter(genreElement =>{
         if (genreElement === "Drama") counter ++;
       });
     }
@@ -82,17 +74,9 @@ function orderByYear(moviesArray) {
   
   sorted.sort((a,b)=>{
     if(a.year !== b.year) {
-     return a.year - b.year;
+      return a.year - b.year;
     } else {
-      const nameA = a.title.toLowerCase();
-      const nameB = b.title.toLowerCase();
-
-       if (nameA < nameB) {
-         return -1;
-       }
-       if (nameA > nameB) {
-        return 1;
-      }
+      return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
     }
   });
 
@@ -101,40 +85,34 @@ function orderByYear(moviesArray) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-  let counter = 0;
-  let moviesArrayToSort = [...moviesArray];
-  let topTwentyMovies = [];
 
-  moviesArrayToSort.sort((a, b) => {
-    return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
-  });
+    const movieTitles = moviesArray.map(movieTitle => movieTitle.title.toLowerCase());
 
-    moviesArrayToSort.filter((element) => {
-      if (counter < 20) {
-      topTwentyMovies.push(element.title);
-      counter ++;
-      }
-    });
+    const sortedArray = movieTitles.sort();
 
-  topTwentyMovies.sort((a, b) => {
-    return a.toLowerCase().localeCompare(b.toLowerCase());
-  });
+    if (sortedArray.length > 20) sortedArray.splice(20);
 
- return topTwentyMovies;
+    return sortedArray;
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-  let arrayToUpdate = [...moviesArray];
-  let durationInMinutes = 0;
+  let moviesArrayCopy = [...moviesArray];
 
-  const timeInMinutesArray = arrayToUpdate.map((element) => {
-    let timeArray = [...element.duration];
+  const changedArrayToMin = moviesArrayCopy.map(movieName =>{
 
-    
+    if (movieName.duration.includes('min')){
+      if(parseFloat(movieName.duration[4])){
+        movieName.duration = parseFloat(movieName.duration[0]) * 60 + parseFloat(movieName.duration[3]) * 10 + parseFloat(movieName.duration[4]);
+      } else {
+        movieName.duration = parseFloat(movieName.duration[0]) * 60 + parseFloat(movieName.duration[3]);
+      }
+    } else if (movieName.duration.indexOf('min') < 0){
+      movieName.duration = parseFloat(movieName.duration[0] * 60);
+    }
   });
 
-  return timeInMinutesArray;
+  return changedArrayToMin;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
