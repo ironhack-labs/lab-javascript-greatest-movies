@@ -40,14 +40,15 @@ function dramaMoviesScore(array) {
   const dramas = array.reduce(function(accumulator, currentValue){
     return accumulator + currentValue.genre.includes('Drama')},0);
     return dramas;
-
   const dramasAvg = dramas.reduce(function(accumulator, currentValue){
     return accumulator + currentValue.score},0);
+    const dramaFilt = array.filter(function(movie){return movie.genre.includes('Drama')})
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(array) {
-  const ordNew = array.sort(function(a,b){
+  arrayCopy = [...array];
+  const ordNew = arrayCopy.sort(function(a,b){
     return a.year - b.year;
   })
   return ordNew;
