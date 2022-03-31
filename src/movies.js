@@ -47,15 +47,27 @@ function dramaMoviesScore(array) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(array) {
-  arrayCopy = [...array];
-  const ordNew = arrayCopy.sort(function(a,b){
-    return a.year - b.year;
-  })
-  return ordNew;
+ 
+
+  const ordYear = [...array];
+  ordYear.sort((a,b)=>{
+    if(a.year - b.year == 0) return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
+    else return a.year - b.year;
+  });
+  return ordYear;
 }
 
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(array) {
+  arrayCopy = [...array];
+  const alphOrd = arrayCopy.sort(function(a,b){
+    if(a.title < b.title){return -1;} if(a.title > b.title){return 1;}
+    return 0;
+  });
+
+}
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
