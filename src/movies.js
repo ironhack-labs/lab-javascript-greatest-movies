@@ -34,7 +34,8 @@ function scoresAverage(movies) {
     }, 0);
 
     const averageScore = Sum / allScores;
-    return averageScore;
+    const roundedScore = averageScore.toFixed(2);
+    return roundedScore;
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
