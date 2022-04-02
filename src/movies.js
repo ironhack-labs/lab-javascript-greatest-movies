@@ -21,14 +21,28 @@ function getAllDirectors(movies) {
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
-// if I could not use right method I used the pseudo code instead to show I am trying to implement the goal/concept of the iteration.***
 
-function howManyMovies(movies) {
-   // used .filter to find the directors of the movies.
+
+function howManyMovies(movie,Director,Genre) {
+   const dramaMovies = movie.filter(movie => {
+    movie.director===Director && movie.genre===Genre; 
+      
+    
+  });
+    {
+       return dramaMovies.length;
+    };
+    
+  };
   
+  
+    
+  
+  let Director = "Steven Spielberg";
+  let Genre = "Drama";
        
-     }
-   ;
+  
+  
    
 
 
