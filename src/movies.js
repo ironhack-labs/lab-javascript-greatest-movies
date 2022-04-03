@@ -40,18 +40,18 @@ function howManyMovies(movies) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(movies) {  
-  let result = movies.map(movie => movie.score);
+ 
+const avg = arr => arr.reduce((a,b) => a + b,0) / arr.length;
+    const movieScores=movies.map(movie => movie.score);
+    const scoreAvg=avg(movieScores);
+   return parseFloat(scoreAvg.toFixed(2));
+   
+   
+};
 
-  
-    const avg = movies.map(movie => {
-        const sum = arrayAverage.reduce((acc, cur) => acc + cur);
-        const average = sum / arrayAverage.length;
-       
-
-      })
-      return parseFloat(average.toFixed(2));
+    
       
-    };
+    
   
 
  
