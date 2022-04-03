@@ -23,37 +23,58 @@ function getAllDirectors(movies) {
 
 
 
-function howManyMovies(movie,Director,Genre) {
-   const dramaMovies = movie.filter(movie => {
-    movie.director===Director && movie.genre===Genre; 
-      
-    
-  });
-    {
-       return dramaMovies.length;
-    };
+function howManyMovies(movies) {
+   
+  
+  const certainMovies = movies.filter(movie => {
+                                  
+    return (movie.director=== 'Steven Spielberg' && movie.genre.indexOf('Drama') !== -1);
+  })
+     
+    return certainMovies.length;
+   
+ 
     
   };
-  
-  
-    
-  
-  let Director = "Steven Spielberg";
-  let Genre = "Drama";
-       
-  
-  
-   
-
-
-
 
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(movies) {  
+  let result = movies.map(movie => movie.score);
+
+  
+    const avg = movies.map(movie => {
+        const sum = arrayAverage.reduce((acc, cur) => acc + cur);
+        const average = sum / arrayAverage.length;
+       
+
+      })
+      return parseFloat(average.toFixed(2));
+      
+    };
+  
+
+ 
+
+ 
+ 
+   
+   
+   
+ 
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(movies) {
+  
+    const avg = arr => arr.reduce((a,b) => a + b,0) / arr.length;
+    const dramaMovies = movies.filter(movie => movie.genre.includes('Drama'));
+    const dramaScores=dramaMovies.map(movie => movie.score);
+    const dramaAvg=avg(dramaScores);
+   return parseFloat(dramaAvg.toFixed(2));
+   
+   
+};
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear() {}
