@@ -6,9 +6,9 @@
 
 ## Introduction
 
-We have just learned some super useful methods, that will help us a lot to manipulate **objects and arrays**. In this exercise, we will focus on practicing them, and this being said, it is mandatory to implement at least one of them in each iteration.
+We have just learned some useful methods, that will help us manipulate **objects and arrays**. In this exercise, we will practice working with these methods, and you are required to use at least one of them in each iteration.
 
-Best way to practice is to work with real data. In the **`src/data.js`** file you will find an array of info about **the best 250 movies of all times** according to [IMDB Ranking](http://www.imdb.com/chart/top?ref_=nv_mv_250_6) and you have to process it to display what each iteration asks! :muscle:
+The best way to practice is to work with real data. In the **`src/data.js`** file, you will find an array of info about **the best 250 movies of all times** according to [IMDB Ranking](http://www.imdb.com/chart/top?ref_=nv_mv_250_6) that you will use to display what each iteration asks! :muscle:
 
 <br>
 
@@ -16,7 +16,6 @@ Best way to practice is to work with real data. In the **`src/data.js`** file yo
 
 - Fork this repo.
 - Clone this repo.
-- Visit the "Actions" tab in your fork, and enable workflows.
 - Practice JavaScript advanced methods (`map`, `reduce`, `filter` and `sort` to manipulate arrays).
 
 <br>
@@ -31,13 +30,13 @@ $ git commit -m "Solved lab"
 $ git push origin master
 ```
 
-- Create Pull Request so your TAs can check up your work.
+- Create a Pull Request so that your TAs can check your work.
 
 <br>
 
 ## Introduction
 
-The `src/data.js` contains an array of 250 movies. We are talking about the array of 250 _objects_ containing the info about each movie. Here is one example of how the data is displayed:
+The `src/data.js` contains an array of 250 movies. It is an array of 250 _objects_ containing the info about each movie. Here is an example of how the data is displayed:
 
 ```javascript
 {
@@ -50,32 +49,40 @@ The `src/data.js` contains an array of 250 movies. We are talking about the arra
 }
 ```
 
-In the next a couple of iterations, you will be using your JS knowledge to manipulate with this data.
+
+
+You will be digging deeper into some "facts" that this data set has. For example, we can use this data set to find which is the most popular movie, what is the average duration of the movie, the list of movies by some director, etc. 
+Well, there comes your challenge. In the next couple of iterations, you will be using your JS knowledge to manipulate this data.
+
+Remember to read each iteration description carefully before working on the solution.
 
 <br>
 
-## Tests!
 
-Ohh yes! We have our beloved tests, and you already know how this works. Open your terminal, change directories into the root of the lab, and run `npm install` to install the test runner. Next, run the tests by running the command `npm run test:watch`. In summary, the steps are:
-
-```shell
-$ cd lab-javascript-greatest-movies
-$ npm install
-$ npm run test:watch
-```
-
-And last, open the generated `lab-solution.html` file with the "Live Server" VSCode extension to see test results.
-
-Remember to focus on one test at a time and read carefully the instructions to understand what you have to do. The tests can be found in the `tests/movies.spec.js` file.
-
-<br>
 
 ## Instructions
 
-You will be digging deeper into some "facts" that this set of data has in it. We see all this raw data, but that doesn't tell us a lot. For example, if we want to see which is the most popular movie, what is the average duration of the movie, list of movies by some director, etc. we wouldn't find the answers just by observing this array.
-Well, there comes your challenge. Read each iteration description carefully and let's start working on the solutions.
+You will work on the `src/movies.js` file, which is already loaded in the `index.html` file.
 
-You have to work on the `src/movies.js` file.
+The `src/data.js` file containing the array of movies is also loaded in the `index.html` file.
+
+To run the JavaScript code, open the `index.html` file using the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) VSCode extension.
+
+To see the output of your JavaScript code, open the [Console in the Developer Tools](https://developer.chrome.com/docs/devtools/open/#console).
+
+
+
+<br>
+
+<hr>
+
+### Note about tests
+
+This LAB is equipped with unit tests to provide automated feedback on your lab progress.
+
+**After completing the basic iterations**, go to the **"Test Your Code"** section at the bottom. There you'll be asked to install the testing dependencies and run the tests to check how many tests your code is passing. Once you run the tests, correct your code to pass the failing tests.
+
+<hr>
 
 <br>
 
@@ -187,6 +194,30 @@ Create `bestYearAvg()` function that receives an array of movies and gives us an
 **The best year was \<YEAR\> with an average score of \<RATE\>**
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_dfc3fe557576abca4dba274e3aabe9a3.gif)
+
+
+
+<br>
+
+## Test Your Code
+
+Ohh yes! We have our tests, and you already know how this works. Open your terminal, change directories into the root of the lab, and run `npm install` to install the test runner. Next, run the tests by running the command `npm run test:watch`. 
+
+In summary, the steps are:
+
+```shell
+$ cd lab-javascript-greatest-movies
+$ npm install
+$ npm run test:watch
+```
+
+And last, open the generated `lab-solution.html` file with the "Live Server" VSCode extension to see test results.
+
+Remember to focus on one test at a time and read carefully the instructions to understand what you have to do. 
+
+The tests can be found in the `tests/movies.spec.js` file.
+
+
 
 <br>
 
