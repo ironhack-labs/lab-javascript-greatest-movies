@@ -11,9 +11,9 @@ const data = [
   },
   {
     title: 'The Godfather',
-    year: 1972,
+    year: 1994,
     director: 'Francis Ford Coppola',
-    duration: '2h 55min',
+    duration: '2h',
     genre: ['Crime', 'Drama'],
     score: 9.2
   },
@@ -86,14 +86,27 @@ function orderAlphabetically(arr) {
     }
     return 0;
   });
-  return newArr.slice(0, 20).map((e) => e.title);
+  return newArr.map((e) => e.title).slice(0, 20);
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
-
+function turnHoursToMinutes(arr) {
+  arr.map((e) => {
+    let newArr = e.duration.split(' ');
+    e.duration =
+      parseFloat(newArr[0]) * 60 + parseFloat(newArr[1] ? newArr[1] : 0);
+  });
+  return arr;
+}
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(arr) {
+  if (arr.length === 0) return null;
+  const yearsArr = arr.map((e) => e.year);
+  const uniqueYears = [...new Set(yearsArr)];
+
+  return uniqueYears;
+}
+//console.log(bestYearAvg(data));
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
