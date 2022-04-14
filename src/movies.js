@@ -1,3 +1,6 @@
+[FTLIS042022] matildeCosta
+
+
 // The `movies` array from the file `src/data.js`.
 //console.log('movies: ', movies);
 const movies = require('./data.js');
@@ -15,6 +18,33 @@ function getAllDirectors(array) {
   const directors = array.map((element) => element.director);
   return directors;
 }
+
+/* Bonus - Iteration 1.1: Clean the array of directors
+It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. 
+How could you "clean" a bit this array and make it unified (meaning, without duplicates)? */
+
+const directors = getAllDirectors(movies);
+let unifiedDirectors = directors.filter(
+  (element, index) => directors.indexOf(element) === index
+);
+
+//console.log(unifiedDirectors);
+/* getAllDirectors(movies).filter(element) => const soloProjects = 
+let wordsArray= [];
+  array.forEach (function (element, index){
+    if (!wordsArray.includes(element)) {
+      wordsArray.push(element);
+    }
+  })
+  return wordsArray;
+}
+console.log() 
+ wordsArray.forEach (function (element){
+    if (!wordsArray.includes(element)) {
+      wordsArray.push(element);
+    }
+    return wordsArray;
+  }) */
 
 /* It seems some of the directors had directed multiple movies so they will pop up multiple times in the 
 array of directors. How could you "clean" a bit this array and make it unified (meaning, without duplicates)?
@@ -123,13 +153,64 @@ function orderAlphabetically(array) {
   }
 }
 
-console.log(orderAlphabetically(movies));
+//console.log(orderAlphabetically(movies));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+/* We get the info from the IMDB web page, but the duration info was saved in a format that difficult us a lot to compare movies.
+
+Finding the longest movie is almost impossible using that format, so let's change it!
+
+Create a turnHoursToMinutes() function that receives an array as parameter, and with some magic implemented by you - 
+replaces the duration info of each of the movies for its equivalent in minutes. For example: */
+
+function turnHoursToMinutes(array) {
+  const duration = array.map((element) => element.duration);
+  //return duration;
+  //const durationHours= duration.forEach((element) => element.replace(/h/, ''))
+  /*   let durationNumbers = duration.forEach((element) => 
+  {if (element.includes("numbers")) {
+    durationNumbers.push()
+  }
+}
+    ) */
+  /* const sum = duration.reduce(function (accumulator, value) {
+    return accumulator + value;
+  }, 0);
+  return sum */
+  //return durationHours
+}
+//console.log(turnHoursToMinutes(movies));
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+/* We always hear so much about classic movies, but we want to know which year has the best average score, 
+so we can declare the BEST YEAR FOR CINEMA officially!
+
+Go ahead and find which year have the best average score for the movies that were released on that year! 
+Create bestYearAvg() function that receives an array of movies and gives us an answer which year was the best year 
+for cinema 
+and what was its average score. The bestYearAvg() should return a string with the following structure:
+
+The best year was <YEAR> with an average score of <RATE> */
+
+function bestYearAvg(array) {
+  if (array.length === 0) {
+    return null;
+  }
+  const sortedScores = array.sort((a, b) => a.score - b.score);
+  const bestYears = sortedScores.sort((a, b) => {
+    if (array.year === b.year) {
+      return a.score > b.score;
+    }
+  })
+  const bestYear= bestYears.slice(0, 1);
+  if (array.year === bestYear.year) {
+    return array.score.reduce((acc,element){})
+  };
+
+  return bestYear;
+}
+
+console.log(bestYearAvg(movies));
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
@@ -145,3 +226,4 @@ if (typeof module !== 'undefined') {
     bestYearAvg
   };
 }
+
