@@ -55,7 +55,12 @@ function orderByYear(moviesParam) {
 //console.log(movies)
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(moviesParam) {
+  moviesParam.sort((movie1, movie2)=>{
+    return movie1.title.localeCompare(movie2.title)
+  })
+  return moviesParam(0, 20)
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
