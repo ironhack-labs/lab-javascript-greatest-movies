@@ -1,5 +1,7 @@
 //const movies = require("./data");
 
+//const movies = require("./data");
+
 // The `movies` array from the file `src/data.js`.
 console.log('movies: ', movies);
 
@@ -122,8 +124,66 @@ function turnHoursToMinutes2(moviesParam) {
 console.log(turnHoursToMinutes2(movies))
 console.log(movies)
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(moviesParam) {
 
+  /*
+  let years={}
+  let yearWithAvgScore = moviesParam.reduce((acc,movie) => {
+    acc[movie.year]["score"]+movie.score
+    acc[movie.year]["amountOfMovies"]++
+
+  },{})*/
+
+  let years=moviesParam.map(movie => movie.year)
+  let filteredYears=moviesParam.filter(({year}, index)=> !years.includes(year, index+1))
+  
+  
+  //console.log(filteredYears)
+  /*
+  let uniqueYears = moviesParam.filter((movie, index) => {
+    return moviesParam.indexOf(movie) === index;
+  })
+
+  console.log(uniqueYears)
+*/
+/*
+
+
+  let yearScores={}
+
+  for(movie of moviesParam){
+    if(movie.year in yearScores){
+      //console.log("year:"+movie.year)
+
+      //check the score
+      yearScores[movie.year]+=movie.score
+
+      //yearScores[movie.year]['amountOfMovies']++
+
+      yearScores[movie.year]['amountOfMovies']++
+    }
+    else{
+      //yearScores[movie.year]['score']=movie.score
+      //yearScores[movie.year]['amountOfMovies']=1
+      let year=movie.year
+      let score=movie.score
+      newYear={[year]: score, amount: 1, avg:movie.score}
+      yearScores=Object.assign(newYear, yearScores)
+      //console.log(yearScores)
+    }
+  }
+  //console.log(yearScores)
+
+  for (let year of Object.keys(yearScores)){
+    //year['avg']=year['year']/year['amountOfMovies']
+    obj[year]=obj[year]/obj[year].amountOfMovies
+  }
+  console.log(yearScores)
+
+
+*/
+}
+//console.log(bestYearAvg(movies))
 
 
 // The following is required to make unit tests work.
