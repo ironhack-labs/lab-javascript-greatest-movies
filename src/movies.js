@@ -66,11 +66,61 @@ function orderAlphabetically(moviesParam) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesParam) {
-  moviesParam.forEach(movie=>{
-    movie.duration = (movie.duration.charAt(0)*60)
-  })
-}
+  let moviesArr=moviesParam.map((movie)=>{
 
+    let hours=0;
+    let minutes=0;
+    let separator=0;
+    for(let i=0, separator=0; i<movie.duration.length; i++){
+      character=movie.duration.charAt(i)
+      if(character==='h'){
+        hours=movie.duration.slice(0, i)
+      }
+      if(character===' ') separator=i;
+      if(character==='m'){
+        minutes=movie.duration.slice(separator,i)
+        minutes=parseInt(minutes)
+      }
+
+    }
+
+    //console.log("hours:"+hours+"minutes:"+minutes)
+    //console.log(typeof(minutes))
+    movie.duration = (hours*60+minutes)+"min"
+    console.log(movie.duration)
+    return movie
+  })
+  return moviesArr
+}
+turnHoursToMinutes(movies)
+//console.log(turnHoursToMinutes(movies))
+
+function turnHoursToMinutes2(moviesParam) {
+  moviesParam.forEach(movie=>{
+
+    let hours=0;
+    let minutes=0;
+    let separator=0;
+    for(let i=0, separator=0; i<movie.duration.length; i++){
+      character=movie.duration.charAt(i)
+      if(character==='h'){
+        hours=movie.duration.slice(0, i)
+      }
+      if(character===' ') separator=i;
+      if(character==='m'){
+        minutes=movie.duration.slice(separator,i)
+        minutes=parseInt(minutes)
+      }
+
+    }
+
+    //console.log("hours:"+hours+"minutes:"+minutes)
+    //console.log(typeof(minutes))
+    movie.duration = (hours*60+minutes)+"min"  })
+  
+}
+console.log(turnHoursToMinutes2(movies))
+console.log(movies)
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
 
