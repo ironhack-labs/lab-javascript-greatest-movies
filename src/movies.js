@@ -20,9 +20,28 @@ function getAllDirectors(array) {
 It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. 
 How could you "clean" a bit this array and make it unified (meaning, without duplicates)? */
 
-/* getAllDirectors(movies).filter(element) => const soloProjects = 
+const directors = getAllDirectors(movies);
+let unifiedDirectors = directors.filter(
+  (element, index) => directors.indexOf(element) === index
+);
 
-console.log() */
+//console.log(unifiedDirectors);
+/* getAllDirectors(movies).filter(element) => const soloProjects = 
+let wordsArray= [];
+  array.forEach (function (element, index){
+    if (!wordsArray.includes(element)) {
+      wordsArray.push(element);
+    }
+  })
+  return wordsArray;
+}
+console.log() 
+ wordsArray.forEach (function (element){
+    if (!wordsArray.includes(element)) {
+      wordsArray.push(element);
+    }
+    return wordsArray;
+  }) */
 
 /* It seems some of the directors had directed multiple movies so they will pop up multiple times in the 
 array of directors. How could you "clean" a bit this array and make it unified (meaning, without duplicates)?
@@ -155,9 +174,9 @@ function turnHoursToMinutes(array) {
     return accumulator + value;
   }, 0);
   return sum */
-  /return durationHours
+  //return durationHours
 }
-console.log(turnHoursToMinutes(movies));
+//console.log(turnHoursToMinutes(movies));
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 /* We always hear so much about classic movies, but we want to know which year has the best average score, 
@@ -174,8 +193,17 @@ function bestYearAvg(array) {
   if (array.length === 0) {
     return null;
   }
+  const sortedScores = array.sort((a, b) => a.score - b.score);
+  const bestYears = sortedScores.sort((a, b) => {
+    if (array.year === b.year) {
+      return a.score > b.score;
+    }
+  });
 
+  return bestYears.slice(0, 1);
 }
+
+console.log(bestYearAvg(movies));
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
