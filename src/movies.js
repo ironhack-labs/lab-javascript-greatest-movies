@@ -16,6 +16,14 @@ function getAllDirectors(array) {
   return directors;
 }
 
+/* Bonus - Iteration 1.1: Clean the array of directors
+It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. 
+How could you "clean" a bit this array and make it unified (meaning, without duplicates)? */
+
+/* getAllDirectors(movies).filter(element) => const soloProjects = 
+
+console.log() */
+
 /* It seems some of the directors had directed multiple movies so they will pop up multiple times in the 
 array of directors. How could you "clean" a bit this array and make it unified (meaning, without duplicates)?
  Don't prioritize the bonus part now, you can come back to it when you are done with the mandatory iterations. 😉 */
@@ -123,13 +131,51 @@ function orderAlphabetically(array) {
   }
 }
 
-console.log(orderAlphabetically(movies));
+//console.log(orderAlphabetically(movies));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+/* We get the info from the IMDB web page, but the duration info was saved in a format that difficult us a lot to compare movies.
+
+Finding the longest movie is almost impossible using that format, so let's change it!
+
+Create a turnHoursToMinutes() function that receives an array as parameter, and with some magic implemented by you - 
+replaces the duration info of each of the movies for its equivalent in minutes. For example: */
+
+function turnHoursToMinutes(array) {
+  const duration = array.map((element) => element.duration);
+  //return duration;
+  //const durationHours= duration.forEach((element) => element.replace(/h/, ''))
+  /*   let durationNumbers = duration.forEach((element) => 
+  {if (element.includes("numbers")) {
+    durationNumbers.push()
+  }
+}
+    ) */
+  /* const sum = duration.reduce(function (accumulator, value) {
+    return accumulator + value;
+  }, 0);
+  return sum */
+  /return durationHours
+}
+console.log(turnHoursToMinutes(movies));
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+/* We always hear so much about classic movies, but we want to know which year has the best average score, 
+so we can declare the BEST YEAR FOR CINEMA officially!
+
+Go ahead and find which year have the best average score for the movies that were released on that year! 
+Create bestYearAvg() function that receives an array of movies and gives us an answer which year was the best year 
+for cinema 
+and what was its average score. The bestYearAvg() should return a string with the following structure:
+
+The best year was <YEAR> with an average score of <RATE> */
+
+function bestYearAvg(array) {
+  if (array.length === 0) {
+    return null;
+  }
+
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
