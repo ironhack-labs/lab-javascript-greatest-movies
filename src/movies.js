@@ -19,7 +19,6 @@ function howManyMovies(arr) {
   let stevenMovies = arr.filter((movie) => movie.genre.includes('Drama') && movie.director === "Steven Spielberg");
   return stevenMovies.length
 }
-
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(arr) {
   if (arr.length === 0) {
@@ -37,23 +36,17 @@ function scoresAverage(arr) {
 console.log(scoresAverage(movies))
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(arr) {}
-//   let dramaCheck = arr.filter((movie) => movie.genre.includes('Drama'))
-//   if(dramaCheck){
-//     arr.reduce(function(acc, value){
-//       return acc + value.dramaCheck;
-//     }, 0)
-//   }
-//   return Number((dramaCheck / arr.length)).toFixed(2)
-// }
- // I don't want to send like this, but I can't find a solution to solve this
-//console.log(dramaMoviesScore(movies))
+function dramaMoviesScore(arr) {
+  let dramaMovies = arr.filter((movie) => movie.genre.includes('Drama'));
+  return scoresAverage(dramaMovies);
+}
 
 
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arr) {
+  let newArr = [];
   const ordered = arr.sort(function(a, b) {
   if (a.year < b.year) return -1;
   if (a.year > b.year) return 1;
@@ -62,6 +55,7 @@ function orderByYear(arr) {
   })
   return ordered
 }
+
 
 
 //console.log(orderByYear(movies))
