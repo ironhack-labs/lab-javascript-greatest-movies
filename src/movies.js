@@ -1,3 +1,5 @@
+//const movies = require("./data");
+
 // The `movies` array from the file `src/data.js`.
 console.log('movies: ', movies);
 
@@ -34,15 +36,15 @@ function dramaMoviesScore(moviesParam) {
   let counter=0;
   let scores = moviesParam.reduce((acc, elem)=>{
     if(elem.genre.includes("Drama") && typeof(elem.score === "number")) {
+      //console.log(counter, acc)
       counter++
-      console.log(counter, acc)
-      console.log(elem)
+      //console.log(elem)
       return acc+elem.score;
-    }
+    } else return acc
   },0)
   return parseFloat((scores/counter).toFixed(2))
 }
-//console.log(dramaMoviesScore(movies))
+console.log(dramaMoviesScore(movies))
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesParam) {
@@ -63,7 +65,11 @@ function orderAlphabetically(moviesParam) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(moviesParam) {
+  moviesParam.forEach(movie=>{
+    movie.duration = (movie.duration.charAt(0)*60)
+  })
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
