@@ -1,32 +1,68 @@
 // The `movies` array from the file `src/data.js`.
-console.log('movies: ', movies);
+const movies = require("./data")
 
 
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors() {}
+function getAllDirectors(movieArr) {
+  const AllDirectors = movieArr.map(function(element){
+    return element.director
+  })
+  return AllDirectors;
+  }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(movieArr) {
+  const SpielbergDrama = movieArr.filter(function(movie){
+    return movie.director === "Steven Spielberg" && movie.genre.includes("Drama");
+  })
+  return SpielbergDrama.length;
+  }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(movieArr) {
+  if(!movieArr.length) {return 0;}
+  const averageScore = movieArr.reduce(function(total, eachMovie) {
+    if(!eachMovie.score) {
+      eachMovie.score = 0 };
+  return total+eachMovie.score;
+  },0 );
+  const average = averageScore / movieArr.length
+  return Math.round (average *100 + Number.EPSILON) / 100;
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(movieArr) {
+  const dramafilter = movieArr.filter(function(movie){
+    return movie.genre.includes("Drama");
+  })
+  return scoresAverage(dramafilter);
+  }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(movieArr) {
+  movieArrCopy = [...movieArr];
+  const newOrder = movieArrCopy.sort(function(a,b){
+  return a.year - b.year;
+  })
+return newOrder;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(movieArr) {
+  movieArrCopy = [...movieArr]
+  const abcOrder = movieArrCopy.sort(function(a, b){
+    return a.title - b.title;
+  }) 
+  return abcOrder
+  }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(movieArr) {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(movieArr) {}
 
 
 
