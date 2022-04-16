@@ -51,6 +51,9 @@ function scoresAverage(scores) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(avgMovies) {
+  if( avgMovies.length === 0){
+    return 0
+  }
   let dramaMovie = avgMovies.filter((eachMovie)=>{
     return eachMovie.genre.includes('Drama')
   })
@@ -67,18 +70,23 @@ function dramaMoviesScore(avgMovies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movieYear) {
+  if( movieYear.length === 0){
+    return 0
+  }
   let movieByYear = movieYear.map((movie)=>{
     return movie
   })
-  movieByYear.sort((movie1, movie2)=>{
+  movieByYear.sort((movie1, movie2) => {
     if(movie1.year > movie2.year){
       return 1
     }else if(movie1.year < movie2.year){
       return -1
-    }else if(movie1.title > movie2.title){
-      return 1
-    }else if(movie1.title < movie2.title){
-      return -1
+    }else{ 
+        if(movie1.title > movie2.title){
+        return 1
+        }else if(movie1.title < movie2.title){
+        return -1
+    }
     }
   })
   return movieByYear
@@ -88,9 +96,11 @@ function orderByYear(movieYear) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movieAlpha) {
-  
+  if( movieAlpha.length === 0){
+    return 0
+  }
   let movieOrder = movieAlpha.map((movie)=>{
-    return movie.title
+    return movie
   })
   movieOrder.sort()
   if(movieOrder.length > 20){
@@ -105,9 +115,40 @@ function orderAlphabetically(movieAlpha) {
 function turnHoursToMinutes() {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(avgYear) {
+  if( avgYear.length === 0){
+    return 0
+  };
+
+  let yearMovieAvg = avgYear.map((movie) => {
+    return { year: movie.year, score: movie.score};
+  });
+
+  yearMovieAvg.sort((movie1, movie2) => { // yearMovieAvg tiene ordenadas las peliculas por año
+    if ( movie1.year > movie2.year ){
+      return 1;
+    }else if ( movie1.year < movie2.year ){
+      return -1;
+    }else{
+      return 0;
+    }
+  });
+   
+  /*let sumScore = 0; //sumador
+  let yearWin = 0;
+
+  for ( let i = 0; i < yearMovieAvg.length; i++ ){
+    if ( yearWin === yearMovieAvg[i] ){
+      sumScore += yearMovieAvg.score
+    }
+  }*/
+
+}
+
+bestYearAvg(movies)
 
 
+//console.log(`The best year was ${bestYear} with an average score of ${avgScore}`)
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
