@@ -68,8 +68,7 @@ function orderByYear(movieYear) {
   if( !movieYear.length ) return 0;
   let movieByYear = movieYear.map((movie)=>{
     return movie
-  })
-  movieByYear.sort((movie1, movie2) => {
+  }).sort((movie1, movie2) => {
     if(movie1.year > movie2.year){
       return 1
     }else if(movie1.year < movie2.year){
@@ -90,11 +89,7 @@ function orderByYear(movieYear) {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movieAlpha) {
   if( !movieAlpha.length ) return;
-  let movieOrder = [...movieAlpha]
-  // let movieOrder = movieAlpha.map((movie)=>{
-  //   return movie
-  // })
-  movieOrder.sort((movie1, movie2) => {
+  let movieOrder = [...movieAlpha].sort((movie1, movie2) => {
     if ( movie1.tittle > movie2.title ){
       return 1;
     }else if ( movie1.title < movie2.title ){
@@ -103,14 +98,13 @@ function orderAlphabetically(movieAlpha) {
       return 0;
     }
   });
-
   if( movieOrder.length > 20 ){
     return movieOrder.slice(0, 20)
   }
   return movieOrder
 }
 
-//console.log (orderAlphabetically(movies))
+console.log (orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
@@ -121,9 +115,7 @@ function bestYearAvg(avgYear) {
 
   let yearMovieAvg = avgYear.map((movie) => {
     return { year: movie.year, score: movie.score};
-  });
-
-  yearMovieAvg.sort((movie1, movie2) => { // yearMovieAvg tiene ordenadas las peliculas por año
+  }).sort((movie1, movie2) => { // yearMovieAvg tiene ordenadas las peliculas por año
     if ( movie1.year > movie2.year ){
       return 1;
     }else if ( movie1.year < movie2.year ){
