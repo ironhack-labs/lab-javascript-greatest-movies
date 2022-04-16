@@ -6,6 +6,7 @@
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesPara) {
+  if( !moviesPara.length ) return;
   let directors = moviesPara.map ((eachMovie) => {
     return eachMovie.director
   })
@@ -16,9 +17,7 @@ function getAllDirectors(moviesPara) {
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(stevenMovies) {
-  if( stevenMovies.length === 0){
-    return 0
-  }
+  if( !stevenMovies.length ) return;
   let bestMovies = stevenMovies.filter ((eachMovie) => {
     return ( eachMovie.genre.includes("Drama")  && eachMovie.director === "Steven Spielberg" )
   })
@@ -30,9 +29,7 @@ function howManyMovies(stevenMovies) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(scores) {
-  if( scores.length === 0){
-    return 0
-  }
+  if( !scores.length ) return;
   let totalScore = scores.reduce((acc, elem) => {
     if (elem.score === undefined) {
       return acc
@@ -51,9 +48,7 @@ function scoresAverage(scores) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(avgMovies) {
-  if( avgMovies.length === 0){
-    return 0
-  }
+  if( !avgMovies.length ) return;
   let dramaMovie = avgMovies.filter((eachMovie)=>{
     return eachMovie.genre.includes('Drama')
   })
@@ -70,9 +65,7 @@ function dramaMoviesScore(avgMovies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movieYear) {
-  if( movieYear.length === 0){
-    return 0
-  }
+  if( !movieYear.length ) return 0;
   let movieByYear = movieYear.map((movie)=>{
     return movie
   })
@@ -96,14 +89,22 @@ function orderByYear(movieYear) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movieAlpha) {
-  if( movieAlpha.length === 0){
-    return 0
-  }
-  let movieOrder = movieAlpha.map((movie)=>{
-    return movie
-  })
-  movieOrder.sort()
-  if(movieOrder.length > 20){
+  if( !movieAlpha.length ) return;
+  let movieOrder = [...movieAlpha]
+  // let movieOrder = movieAlpha.map((movie)=>{
+  //   return movie
+  // })
+  movieOrder.sort((movie1, movie2) => {
+    if ( movie1.tittle > movie2.title ){
+      return 1;
+    }else if ( movie1.title < movie2.title ){
+      return -1;
+    }else{
+      return 0;
+    }
+  });
+
+  if( movieOrder.length > 20 ){
     return movieOrder.slice(0, 20)
   }
   return movieOrder
@@ -116,9 +117,7 @@ function turnHoursToMinutes() {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(avgYear) {
-  if( avgYear.length === 0){
-    return 0
-  };
+  if( !avgYear.length ) return;
 
   let yearMovieAvg = avgYear.map((movie) => {
     return { year: movie.year, score: movie.score};
