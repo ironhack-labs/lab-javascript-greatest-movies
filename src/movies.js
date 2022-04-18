@@ -2008,16 +2008,15 @@ if (typeof module !== 'undefined') {
   module.exports = movies;
 }
 
-
-
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(arr) {
-  const allDirectors = arr.map(movie =>  movie.director)
-  return allDirectors
-};
+  let allDirectors = arr.map(movie => movie.director)
 
+  let uniqueDirector = [...new Set(allDirectors)]  // 1.1 Bonus
+  return uniqueDirector
+};
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(arr) {
@@ -2030,64 +2029,70 @@ function howManyMovies(arr) {
 };
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(arr) {
-  if (arr.length === 0){return 0}
 
-  const average = arr.reduce((acc, curr) =>{
-    acc += curr.score
-    return acc
-  },0)
-  
- return Number((average/arr.length).toFixed(2))
-}
+
+function scoresAverage(arr) {
+
+  let filter1 = arr.map(number => number.score)
+
+  let filter2 = filter1.filter(element => {
+    if (typeof element === 'number'){
+      return element
+    }
+  })
+
+  let sum = filter2.reduce((acc,curr)=>{
+    acc += curr 
+    return acc },0)
+
+  let result = sum/filter1.length
+
+  if (result > 0) {
+    return Number(result.toFixed(2))
+  } else {return 0}
+
+};
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
+
 function dramaMoviesScore(arr) {
-let filterArr = arr.filter(algunasPeliculas => {
-  if(algunasPeliculas.genre.includes('Drama')){
-    return algunasPeliculas
+  let filteredList = arr.filter(movie => movie.genre.includes('Drama'));
+  
+  let score = filteredList.reduce((acc,curr) => {
+    acc += curr.score
+    return acc
+  },0);
+
+  if(score > 0){
+    let avg = Number((score/filteredList.length).toFixed(2))
+    return avg
+  } else {
+    return 0
   }
-})
-
-let sum = filterArr.reduce((acc, curr) =>{
-  acc += curr.score
-  return acc
-},0);
-
-let avg = (sum/filterArr.length);
-
-avg = Number(avg.toFixed(2));
-return avg
- }
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arr) {
 
-let copia = arr.map(movie => movie)
+  let copia = arr.map(movie => movie)
 
-let byYear = copia.sort((a,b) => {
-  if(a.year === b.year){
+  let byYear = copia.sort((a,b) => {
+    if(a.year === b.year){
     return -1
-  } else {return a.year - b.year}
-})
-return byYear
+    } else {return a.year - b.year}
+  })
+  return byYear
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(array) {
- let copia = array.map(movie => movie)
+  let copia = array.map(movie => movie)
   
   let byName = copia.sort((a,b) => {
-    if(a.title < b.title){
-      return -1
-    }
-  })
+    if(a.title < b.title) {return -1}
+  });
 
-  let soloTitulos = byName.map(movie=>{
-    return movie.title
-  })
-
-  let result = soloTitulos.slice(0,20);
+  let result = byName.map(movie=> movie.title).slice(0,20);
   return result
 };
 
@@ -2100,8 +2105,6 @@ function turnHoursToMinutes() {
 function bestYearAvg() {
 
 }
-
-
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
