@@ -1,7 +1,7 @@
 // The `movies` array from the file `src/data.js`.
 //console.log('movies: ', movies);
 
-//const movies = require("./data");
+const movies = require("./data");
 
 
 
@@ -45,13 +45,18 @@ function howManyMovies(arrayMovies) {
 function scoresAverage(array) {
   if(array.length===0) return 0;
     else {
+      let numberOfScores=0;
       const sumScores = array.reduce (function (accumulator, movie) {
-        return accumulator + movie.score;
+        if(movie.score) {
+          numberOfScores++;
+          return accumulator + movie.score;
+        } else return accumulator;
       }, 0);
-      return (sumScores / array.length).toFixed(2);
+      return (sumScores / numberOfScores).toFixed(2);
     }
 }
-  //console.log (scoresAverage(movies))
+
+//console.log (scoresAverage(movies))
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
