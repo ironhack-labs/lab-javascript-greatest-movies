@@ -1,9 +1,8 @@
-// The `movies` array from the file `src/data.js`.
-//console.log('movies: ', movies);
-const movies = require("../src/data.js")
-// Iteration 1: All directors? - Get the array of all directors.
-// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
-// How could you "clean" a bit this array and make it unified (without duplicates)?
+
+const movies = require('../src/data.js');
+// turnHoursToMinutes(movies2);
+//console.log( bestYearAvg(movies2));
+
 function getAllDirectors(arr) 
 {
   const AllDirectors = arr.map(function(element)
@@ -48,22 +47,66 @@ function dramaMoviesScore(arr) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+//a.title.toLowerCase().localeCompare(b.title.toLowerCase())
 function orderByYear(arr) {
-  const sortMoviesByYear =[arr]
+  const sortMoviesByYear =[arr];
   sortMoviesByYear.sort((a,b)=>{
-    if(a.year - b.year == 0) return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
+    if(a.year - b.year == 0){
+      if(a.title.toLowerCase() < b.title.toLowerCase()) {return -1;}
+      if(a.title.toLowerCase() > b.title.toLowerCase()) {return 1;}
+      return 0;
+    } 
     else return a.year - b.year;
   });
   return sortMoviesByYear;
 }
+
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(arr) {
+  const titles = arr.map(function(element)
+  {
+  return element.title
+  }
+  ) 
+  return titles.sort().slice(0,20);
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(arr) {
+  const n = arr.map( p =>
+    p.title == p.title ? { ...p,duration:convert2min(p.duration.replace("h",":").replace("min",":0"))} : p
+  );
+  return n;
+}
+
+function convert2min(time){
+  var a = time.split(":");
+  var mins = (+a[0])*60
+  let count = (time.match(/:/g) || []).length;
+  if (count == 2) {mins = (+a[0])*60+(+a[1]);}
+  return parseInt(mins);
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(arr) {
+  if (arr.length == 0) return null
+  //const n = arr.reduce((a,e) => a = a > e.score ? a : e.score,0);
+
+  const years = arr.map(object => {
+    return object.year;
+  });
+  
+  let scores = arr.map(object => {
+    return object.score;
+  });
+  
+
+  const max = Math.max.apply(null, scores);
+  var o = new Array();
+  o.push("");
+  return "The best year was "+years[scores.indexOf(max)]+ " with an average score of " + max;
+}
 
 
 
