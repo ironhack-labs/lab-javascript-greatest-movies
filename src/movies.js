@@ -46,14 +46,18 @@ function scoresAverage(array) {
     return 0;
   }else{
     let averages = array.map((avg,i)=>{ //iteramos en el array movies
+      if (array[i].score){
       score += array[i].score; // 1---1+2---1+2+3 acumular los scores
       cont = cont + 1;
+    }
     })
-    value = score / cont; //asignamos a value la operacion para obtener el promedio
+    value = score / array.length; //asignamos a value la operacion para obtener el promedio
     average = Number(value.toFixed(2));// .toFixed retorna una string ('9.34')por eso aplicamos en metodo Number()--->9.34 
+    console.log(score)
     return average; 
   }  
 }
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(array) {
 
