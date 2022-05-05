@@ -80,7 +80,6 @@ function orderByYear(movies) {
 function orderAlphabetically(movies) {
   const moviesAlph =[...movies]
   //let moviesAlph = JSON.parse(JSON.stringify(movies));
-  //const sortable = moviesAlph.sort(a => a.title)
   moviesAlph.sort(function (a, b) {
     if (a.title < b.title) return -1; //  1 here (instead of -1 for ASC)
     if (a.title > b.title) return 1; // -1 here (instead of  1 for ASC)
@@ -90,17 +89,27 @@ function orderAlphabetically(movies) {
 
   const firstTwenty=moviesAlph.map(el => el.title)
   firstTwenty.splice(20, (firstTwenty.length) - 20)
-  
-    
-    // {if (typeof moviesAlph[i].title === 'string') 
-    //   {firstTwenty.push(moviesAlph[i].title)}}
-  console.log(firstTwenty)
+  //console.log(firstTwenty)
   return firstTwenty
 }
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(movies) {
+  let toMinutesConvArr = JSON.parse(JSON.stringify(movies));
+  // console.log(toMinutesConvArr[0].duration)
+  // console.log(toMinutesConvArr.length)
+  for (i=0;i<toMinutesConvArr.length;i+=1) {
+    const oldFormat = (toMinutesConvArr[i].duration).toString()
+    let string = oldFormat.replace(/[^0-9]/g, "")
+    let hours = Number(string[0])
+    let minutes = 0
+    if (string.length > 1) 
+      {minutes = Number(string[1]+string[2])}
+    toMinutesConvArr[i].duration = Number((hours * 60) + minutes)
+  }
+  return toMinutesConvArr
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
