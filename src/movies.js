@@ -1,5 +1,5 @@
 // The `movies` array from the file `src/data.js`.
-console.log('movies: ', movies);
+//console.log('movies: ', movies);
 
 
 // Iteration 1: All directors? - Get the array of all directors.
