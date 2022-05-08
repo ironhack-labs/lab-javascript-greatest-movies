@@ -54,11 +54,12 @@ function howManyMovies(allMovies) {
 howManyMovies(movies)
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(allScores) {
-  return allScores.reduce((scoresAccumulator, actualScore) => {
-    return scoresAccumulator + actualScore
+  const averageOfScores = allScores.reduce((scoresAccumulator, actualScore) => {
+    return (scoresAccumulator + actualScore) / allScores.lenght
   }, 0)
+  return averageOfScores
 }
-
+scoresAverage(movies)
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore() {}
 
