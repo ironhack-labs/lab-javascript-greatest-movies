@@ -42,27 +42,39 @@ getAllDirectors(movies);
   }
 } */
 function howManyMovies(allMovies) {
-  let spielbergsCounter = 0
- 
+  let spielbergsCounter = 0;
+
   for (let movie of allMovies) {
-    if (movie.director === 'Steven Spielberg' && movie.genre.includes("Drama")) {
-      spielbergsCounter++
+    if (
+      movie.director === 'Steven Spielberg' &&
+      movie.genre.includes('Drama')
+    ) {
+      spielbergsCounter++;
     }
   }
-  return spielbergsCounter
+  return spielbergsCounter;
 }
-howManyMovies(movies)
+howManyMovies(movies);
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(allScores) {
+  if (allScores.length === 0) {
+    return 0
+  };
   const averageOfScores = allScores.reduce((scoresAccumulator, actualScore) => {
-    return (scoresAccumulator + actualScore) / allScores.lenght
-  }, 0)
-  return averageOfScores
+    if (typeof actualScore.score !== "number") {
+      return scoresAccumulator
+    }
+    return scoresAccumulator + actualScore.score;
+  }, 0);
+  return parseFloat((averageOfScores / allScores.length).toFixed(2));
 }
-scoresAverage(movies)
+scoresAverage(movies);
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(dramaAverages) {
+   const filteredMovies = dramaAverages.filter(dramaMovies => dramaAverages.genre.includes('Drama'))
+}
 
+dramaMoviesScore(movies)
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear() {}
 
