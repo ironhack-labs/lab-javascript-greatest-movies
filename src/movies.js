@@ -50,7 +50,33 @@ function scoresAverage(movies) {
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(movies) {
+  let newLength = 0 
+  
+  let averageScoreMovies = movies.reduce ((averageScore, movie) => {
+  averageScore = averageScore
+
+    if (movie.genre.includes('Drama')){
+          newLength += 1 
+          averageScore = movie.score + averageScore
+    } else {
+      newLength += 0
+    }
+    return averageScore   
+            }, 0 ) / newLength  
+return Math.round(averageScoreMovies * 100) / 100 || 0
+}
+
+// function howManyMovies(movies) {
+//   movies.reduce ((totalMovies, movie) => {
+//     if (movie.genre.includes('Drama') && movie.director === `Steven Spielberg`) {
+//       totalMovies += 1 ;
+//     } else {
+//       totalMovies + 1 ;
+//     }
+//     return totalMovies
+//   }, 0)
+// }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear() {}
