@@ -59,13 +59,6 @@ const bestYearAvg = (movies) => isEmpty(movies) ? null :
       ))
       .sort((a, b) => b.score - a.score));
 
-console.log(bestYearAvg([
-  { year: 2000, score: 9 },
-  { year: 2000, score: 8 },
-  { year: 1978, score: 10 },
-  { year: 1978, score: 7 }
-]));
-
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
 if (typeof module !== 'undefined') {
