@@ -1,5 +1,5 @@
 // The `movies` array from the file `src/data.js`.
-const averageOperation = (number) => Math.round(number * 100) / 100;
+const decimalOperation = (number) => Math.round(number * 100) / 100;
 
 const isEmpty = (movies) => !movies.length ? true : false;
 
@@ -28,10 +28,10 @@ const getAllDirectors = (movies) => movies.map((obj) => obj.director).filter((di
 const howManyMovies = (movies) => movies.filter((object) => object.director === 'Steven Spielberg').filter((object) => object.genre.indexOf('Drama') !== -1).length
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-const scoresAverage = (movies) => isEmpty(movies) ? 0 : averageOperation(movies.map((obj) => obj.score).filter((score) => typeof score === 'number').reduce((acc, cur) => acc + (cur / movies.length), 0))
+const scoresAverage = (movies) => isEmpty(movies) ? 0 : decimalOperation(movies.map((obj) => obj.score).filter((score) => typeof score === 'number').reduce((acc, cur) => acc + (cur / movies.length), 0))
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-const dramaMoviesScore = (movies) => !movies.length || !movies.filter((object) => object.genre.indexOf('Drama') !== -1).length ? 0 : averageOperation(movies.filter((object) => object.genre.indexOf('Drama') !== -1).reduce((acc, cur, index, array) => acc + (cur.score / array.length), 0))
+const dramaMoviesScore = (movies) => !movies.length || !movies.filter((object) => object.genre.indexOf('Drama') !== -1).length ? 0 : decimalOperation(movies.filter((object) => object.genre.indexOf('Drama') !== -1).reduce((acc, cur, index, array) => acc + (cur.score / array.length), 0))
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 const orderByYear = (movies) => isEmpty(movies) ? null : movies.sort(() => -1).sort((a,b) => a.year - b.year);
@@ -49,7 +49,7 @@ const bestYearAvg = (movies) => isEmpty(movies) ? null :
       .map((year) => (
         {
           year: year, 
-          score: averageOperation(getScoreYear(movies, year).reduce((acc, cur, index, array) => acc + (cur / array.length), 0))
+          score: decimalOperation(getScoreYear(movies, year).reduce((acc, cur, index, array) => acc + (cur / array.length), 0))
         }
       ))
       .sort((a, b) => b.score - a.score));
