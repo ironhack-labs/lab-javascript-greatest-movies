@@ -22,12 +22,12 @@ function howManyMovies(list) {
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 
 function scoresAverage(list){
-let newList = list.filter(scored => scored.score.)
-let scoreAvg = newList.reduce((scores, movie) => scores + movie.score, 0) /list.length;
-return scoreAvg = Math.round(scoreAvg*100)/100 || 0
+const scoreAvg = list.reduce(function (scores, movie){
+  if (!movie.score){ movie.score = 0}
+  return scores + movie.score;
+}, 0) /list.length;
+return Math.round(scoreAvg*100)/100 || 0
 }
-console.log(scoresAverage(movies))
-//si pongo return scoreAvg.toFixed(2) me devuelve mas fallos!!! pero en console.log lo devuelve bien!
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(list) {
@@ -36,17 +36,28 @@ function dramaMoviesScore(list) {
   return scoresAverage(dramaList);   
 }
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(list) {
- return list.sort(function (mov, numb) {
-    if (mov.year > numb.year) {
-      return 1;
-    }
-    if (mov.year < numb.year) {
-      return -1;
-    }
-    return 0;
-  });
-}
+// function orderByYear(list) {
+//  return list.sort(function (mov, numb) {
+//     if (mov.year > numb.year) {
+//       return 1;
+//     }
+//     if (mov.year < numb.year) {
+//       return -1;
+//     }
+//     return 0;
+//   });
+// }
+
+function orderByYear(arr) {
+  let yearArr = [...arr];
+  return yearArr.sort((a, b) => {
+      if(a.year === b.year) {
+        return a.title.localeCompare(b.title);
+      } else  {
+         return a.year - b.year;
+      }
+     });
+ }  
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(list) {
   const newList = list.map(titles => titles.title)
@@ -68,7 +79,10 @@ function orderAlphabetically(list) {
 // }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(mu) {
+  const bulala =[] 
+  return bulala
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
