@@ -50,7 +50,7 @@ function orderByYear(arrayOfMovies) {
   return newArray
 }
 
-console.log(orderByYear(movies));
+// console.log(orderByYear(movies));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(arrayOfMovies) {
