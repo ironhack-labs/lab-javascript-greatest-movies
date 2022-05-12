@@ -79,8 +79,6 @@ function bestYearAvg(movies) {
       statObj[movie.year].qty=1
     }
   })
-  //console.log(statObj)
-  //Object.keys(statObj).forEach(yearKey => console.log(yearKey , statObj[yearKey].score, statObj[yearKey].qty, statObj[yearKey].score/statObj[yearKey].qty))
   const topYear = Object.keys(statObj).sort((b,a)=> (statObj[a].score/statObj[a].qty)  - (statObj[b].score/statObj[b].qty) )[0]
   return `The best year was ${topYear} with an average score of ${statObj[topYear].score/statObj[topYear].qty}`
 }
