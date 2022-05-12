@@ -1,9 +1,6 @@
 // The `movies` array from the file `src/data.js`.
 // console.log('movies: ', movies);
 
-// const movies = require("./data");
-
-
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
@@ -24,37 +21,51 @@ function howManyMovies(list) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 
-function scoresAverage(movies) {
-  let averageScoreMovies = movies.reduce ((score, movie) => {
-    if (typeof movie.score !== 'number'){
-      score = score
-    } else {
-      score += movie.score
-    }
-    return score
-            }, 0 ) / movies.length;  
-  return Math.round(averageScoreMovies * 100) / 100
+function scoresAverage(list){
+let newList = list.filter(scored => scored.score.)
+let scoreAvg = newList.reduce((scores, movie) => scores + movie.score, 0) /list.length;
+return scoreAvg = Math.round(scoreAvg*100)/100 || 0
 }
-
-// function scoresAverage(list) {
-// let scoreAvg = list.reduce((scores, movie) => scores + movie.score, 0) /list.length;
-// return scoreAvg = Math.round(scoreAvg*100)/100;
-
-// }
+console.log(scoresAverage(movies))
 //si pongo return scoreAvg.toFixed(2) me devuelve mas fallos!!! pero en console.log lo devuelve bien!
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(list) {
-  let listOfDramas = list.filter(genre => genre.genre.includes("Drama") === "Drama")
-
-   
+  let dramaList = {}
+  dramaList = list.filter(movie => movie.genre.includes("Drama"));
+  return scoresAverage(dramaList);   
 }
-
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
-
+function orderByYear(list) {
+ return list.sort(function (mov, numb) {
+    if (mov.year > numb.year) {
+      return 1;
+    }
+    if (mov.year < numb.year) {
+      return -1;
+    }
+    return 0;
+  });
+}
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(list) {
+  const newList = list.map(titles => titles.title)
+  let newList20 =  newList.sort();
+  return newList20.slice(0, 20)
+}
+// function orderAlphabetically(list) {
+//   const newList = list.map(titles => titles.title)
+//   let newList20 =  newList.sort(function(one, two){
+//     if(one > two){
+//       return 1
+//     }
+//     if (one < two){
+//       return -1
+//     } 
+//     return 0
+//   })
+//   return newList20.slice(1, 21)
+// }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
