@@ -2005,3 +2005,5 @@ const movies = [
 if (typeof module !== 'undefined') {
   module.exports = movies;
 }
+for ( let i = 0; i<movies.length; i++)
+console.log(movies[i].director)
