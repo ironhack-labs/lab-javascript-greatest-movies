@@ -34,7 +34,7 @@ const scoresAverage = (movies) => isEmpty(movies) ? 0 : decimalOperation(movies.
 const dramaMoviesScore = (movies) => !movies.length || !movies.filter((object) => object.genre.indexOf('Drama') !== -1).length ? 0 : decimalOperation(movies.filter((object) => object.genre.indexOf('Drama') !== -1).reduce((acc, cur, index, array) => acc + (cur.score / array.length), 0))
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-const orderByYear = (movies) => isEmpty(movies) ? null : movies.sort(() => -1).sort((a,b) => a.year - b.year);
+const orderByYear = (movies) => isEmpty(movies) ? null : movies.slice().sort(() => -1).sort((a,b) => a.year - b.year);
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 const orderAlphabetically = (movies) => movies.map((obj) => obj.title).sort().filter((obj, index) => index < 20);
