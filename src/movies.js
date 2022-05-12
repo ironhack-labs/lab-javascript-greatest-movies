@@ -92,15 +92,6 @@ function orderByYear(movies) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
-// function orderAlphabetically(movies) {
-//   movies.sort((a,b) => a[`tittle`] - b[`tittle`])
-//   let newMoviesArr = [] 
-//     for (let i=0; i < 20; i++){
-//      newMoviesArr.push(movies[i])
-//   }
-//   return newMoviesArr.map (movie => movie)  
-// }
-
 function orderAlphabetically(movies) {
   movies.sort((a,b) => {
   const movieByTittle = a.title
@@ -114,11 +105,19 @@ function orderAlphabetically(movies) {
   }
     return 0
 })
-  let newMoviesArr = [] 
-    for (let i=0; i < 20; i++){
-      newMoviesArr.push(movies[i])
+  const newMoviesArr = [] 
+  
+  if (movies.length >= 20) {
+      for (let i=0; i < 20; i++){
+        newMoviesArr.push(movies[i].title)
+      }
+       return newMoviesArr.map (movie => movie)  
+  } else if (movies.length < 20) {
+       for (let i=0; i < movies.length; i++){
+          newMoviesArr.push(movies[i].title)
+        }
+       return newMoviesArr.map (movie => movie)     
   }
-  return newMoviesArr.filter (movie => movie)  
 }
 
 
