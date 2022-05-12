@@ -102,12 +102,23 @@ function orderByYear(movies) {
 // }
 
 function orderAlphabetically(movies) {
-  movies.sort((a,b) => a[`tittle`] - b[`tittle`])
+  movies.sort((a,b) => {
+  const movieByTittle = a.title
+  const nextMovieByTittle = b.title
+  
+  if (movieByTittle > nextMovieByTittle) {
+    return 1;
+  }
+  if (movieByTittle < nextMovieByTittle) {
+    return -1;
+  }
+    return 0
+})
   let newMoviesArr = [] 
     for (let i=0; i < 20; i++){
-     newMoviesArr.push(movies[i])
+      newMoviesArr.push(movies[i])
   }
-  return newMoviesArr.map (movie => movie)  
+  return newMoviesArr.filter (movie => movie)  
 }
 
 
