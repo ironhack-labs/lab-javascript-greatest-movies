@@ -127,7 +127,28 @@ function orderAlphabetically(movies) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+
+// function turnHoursToMinutes(movies) {
+//   return movies.map ((movie) => {     
+//     let totalDuration = movie.duration.split(' ')
+//     let hours = parseInt(totalDuration[0])*60
+//     let totalMinutes = parseInt(totalDuration[1]) + hours || parseInt(totalDuration[0])*60
+//     movie.duration = totalMinutes
+//     return movie
+//   })  
+// }
+
+function turnHoursToMinutes(movies) {
+  const calculateTheMinutes = movies.map ((movie) => {     
+     const totalDuration = movie.duration.split(' ')
+     const hours = parseInt(totalDuration[0])*60
+     const totalMinutes = parseInt(totalDuration[1]) + hours || parseInt(totalDuration[0])*60
+     const moviesWithDurationInMinutes = {...movie, duration: totalMinutes}
+     return moviesWithDurationInMinutes
+   }) 
+   return calculateTheMinutes
+ }
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() {}
