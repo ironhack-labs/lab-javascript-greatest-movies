@@ -19,16 +19,18 @@ function howManyMovies(allMovies) {
   return spielbergMovies.length;
 }
 
+howManyMovies(movies);
+
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(allMovies) {
   if (allMovies.length === 0) {
     return 0;
   }
-  const allScores = allMovies.reduce((count, score) => {
-    if (typeof score.score !== 'number') {
-      return count;
+  const allScores = allMovies.reduce((previousDrama, nextDrama) => {
+    if (typeof nextDrama.score !== 'number') {
+      return previousDrama;
     } else {
-      return count + score.score;
+      return previousDrama + nextDrama.score;
     }
   }, 0);
 
@@ -44,8 +46,8 @@ function dramaMoviesScore(allMovies) {
   if (scoresDrama.length === 0) {
     return 0;
   }
-  const avgDramas = scoresDrama.reduce((dramas, score) => {
-      return dramas + score.score;
+  const avgDramas = scoresDrama.reduce((previousDrama, nextDrama) => {
+      return previousDrama + nextDrama.score;
     }, 0);
 
   return Number.parseFloat((avgDramas / scoresDrama.length).toFixed(2));
@@ -54,12 +56,12 @@ dramaMoviesScore(movies);
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(allMovies) {
-  const moviesSorted = allMovies.slice(0).sort((a, b) => {
-    if (a.year > b.year) {
+  const moviesSorted = allMovies.slice(0).sort((initialMovie, nextMovie) => {
+    if (initialMovie.year > nextMovie.year) {
       return 1;
-    } else if (a.year < b.year) {
+    } else if (initialMovie.year < nextMovie.year) {
       return -1;
-    } else if (a.title > b.title) {
+    } else if (initialMovie.title > nextMovie.title) {
       return 1;
     } else {
       return -1;
@@ -73,7 +75,9 @@ orderByYear(movies);
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(allMovies) {
   const moviesAlphabetically = allMovies.map((movie) => movie.title);
+  
   moviesAlphabetically.sort();
+  
   const twentyMoviesAlphabetically = moviesAlphabetically.slice(0, 20);
 
   return twentyMoviesAlphabetically;
