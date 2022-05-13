@@ -5,34 +5,49 @@
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors(movies) {
+/*function getAllDirectors(movies) {
   const directors = [];
   for (let i = 0; i<movies.length ; i++) {
     directors.push(movies[i].director);
   }
   return directors;
 }
-console.log(getAllDirectors(movies));
+console.log(getAllDirectors(movies));*/
 
-function getAllDirectors(movies) {      
+/*function getAllDirectors(movies) {      
   const directors = [];
   for (let movie of movies) {
     directors.push(movie.director);
   }
   return directors;
 }
-console.log(getAllDirectors(movies));
+console.log(getAllDirectors(movies));*/
 
-const directors = movies.map(function(movie) {
+function getAllDirectors(movies) { 
+  return movies.map(function(movie) {
   return movie.director;
 });
-console.log(directors);
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(movies) {
+  const spielbergDramaMovies = movies.filter ((movie) =>
+  movie.director === "Steven Spielberg" && movie.genre.includes("Drama"));
+  return spielbergDramaMovies.length;
+}
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(averageMovies) {
+  const newArray = averageMovies.map(function (movie) {
+    return movie.score;
+  })
+
+  const totalAverage = newArray.reduce(function (acumulador, valorActual) {
+    return acumulador + valorActual;
+  }, 0)
+
+  return Math.round(totalAverage / newArray.length * 100) / 100;
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore() {}
