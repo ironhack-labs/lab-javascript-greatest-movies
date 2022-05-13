@@ -1,7 +1,8 @@
 // The `movies` array from the file `src/data.js`.
 //console.log('movies: ', movies);
 
-//const movies = require('./data');
+//const movies = require("/data");
+
 
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
@@ -70,16 +71,23 @@ function scoresAverage(allScores) {
 }
 //scoresAverage(movies);
 // Iteration 4: Drama movies - Get the average of Drama Movies
+
 function dramaMoviesScore(dramaAverages) {
-  /*if ( dramaAverages.genre.includes('Drama')) {
-      const averageOfScores = dramaAverages.reduce((scoresAccumulator, actualScore) => {
-        return scoresAccumulator + actualScore;
-      }, 0)
-    }*/
+  const filterMovies = dramaAverages.filter((filter) =>  filter.genre.includes('Drama'));
+  if (filterMovies.length === 0) {
+    return 0;
+  }
+
+  const filteredAverage = filterMovies.reduce((scoresAccumulator, actualScore) => {
+     return scoresAccumulator + actualScore.score;
+  } ,0);
+
+  return Number((filteredAverage / filterMovies.length).toFixed(2));
 }
 
 //dramaMoviesScore(movies);
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+
 function orderByYear(years) {
   return years.slice(0).sort((a, b) => {
     if (a.year > b.year) {
@@ -89,19 +97,11 @@ function orderByYear(years) {
     } else if (a.year === b.year) {
       if (a.title > b.title) {
         return 1;
-      } else return -1
+      } else return -1;
     }
-  })
+  });
 }
 
-/* function orderByYear(years) {
-  return years.sort(function (a, b) {
-    if (a.year === b.year) {
-      return a.title - b.title;
-    } else return a.year - b.year;
-  });
-} */
-//orderByYear(movies);
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
 
