@@ -3,7 +3,6 @@
 
 //const movies = require("/data");
 
-
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
@@ -16,8 +15,7 @@
   }
   console.log(directors);
   return directors;
-}
-getAllDirectors(movies) */
+}*/
 
 //*********OK********
 /* function getAllDirectors(allMovies) {
@@ -26,23 +24,17 @@ getAllDirectors(movies) */
     directors.push(movie.director)
   }
   return directors;
-}
-getAllDirectors(movies) */
+}*/
 
 function getAllDirectors(allMovies) {
   return allMovies.map(function (movie) {
     return movie.director;
   });
 }
-//console.log(getAllDirectors(movies));
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-/* function howManyMovies(allMovies) {
-  if (allMovies.length === 0) {
-    return 0;
-  }
-} */
-function howManyMovies(allMovies) {
+
+/*function howManyMovies(allMovies) {
   let spielbergsCounter = 0;
 
   for (let movie of allMovies) {
@@ -54,8 +46,16 @@ function howManyMovies(allMovies) {
     }
   }
   return spielbergsCounter;
+}*/
+
+function howManyMovies(allMovies) {
+  const filteredMovies = allMovies.filter(
+    (filter) =>
+      filter.director === 'Steven Spielberg' && filter.genre.includes('Drama')
+  );
+  return filteredMovies.length;
 }
-//howManyMovies(movies);
+
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(allScores) {
   if (allScores.length === 0) {
@@ -73,14 +73,19 @@ function scoresAverage(allScores) {
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 function dramaMoviesScore(dramaAverages) {
-  const filterMovies = dramaAverages.filter((filter) =>  filter.genre.includes('Drama'));
+  const filterMovies = dramaAverages.filter((filter) =>
+    filter.genre.includes('Drama')
+  );
   if (filterMovies.length === 0) {
     return 0;
   }
 
-  const filteredAverage = filterMovies.reduce((scoresAccumulator, actualScore) => {
-     return scoresAccumulator + actualScore.score;
-  } ,0);
+  const filteredAverage = filterMovies.reduce(
+    (scoresAccumulator, actualScore) => {
+      return scoresAccumulator + actualScore.score;
+    },
+    0
+  );
 
   return Number((filteredAverage / filterMovies.length).toFixed(2));
 }
@@ -103,7 +108,12 @@ function orderByYear(years) {
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(titles) {
+  const orderMovies = titles.map((movie) => movie.title);
+  orderMovies.sort();
+  const twtyMovies = orderMovies.slice(0, 20);
+  return twtyMovies;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
