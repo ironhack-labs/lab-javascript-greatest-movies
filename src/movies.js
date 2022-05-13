@@ -7,9 +7,10 @@ const movies = require('./data');
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(movies) {
   return movies.map((movie) => movie.director);
+}
+
   // BONUS
   //  return movies.filter((movie, index) => movie.indexOf(movie.director) === index)
-}
 
 function getAllDirectorsFiltered(movies) {
   let moviesByTittle = movies.map((movie) => movie.director);
@@ -129,29 +130,43 @@ function orderAlphabetically(movies) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 // function turnHoursToMinutes(movies) {
-//   return movies.map ((movie) => {     
+//   return movies.map ((movie) => {
 //     let totalDuration = movie.duration.split(' ')
 //     let hours = parseInt(totalDuration[0])*60
 //     let totalMinutes = parseInt(totalDuration[1]) + hours || parseInt(totalDuration[0])*60
 //     movie.duration = totalMinutes
 //     return movie
-//   })  
+//   })
 // }
 
 function turnHoursToMinutes(movies) {
-  const calculateTheMinutes = movies.map ((movie) => {     
-     const totalDuration = movie.duration.split(' ')
-     const hours = parseInt(totalDuration[0])*60
-     const totalMinutes = parseInt(totalDuration[1]) + hours || parseInt(totalDuration[0])*60
-     const moviesWithDurationInMinutes = {...movie, duration: totalMinutes}
-     return moviesWithDurationInMinutes
-   }) 
-   return calculateTheMinutes
- }
-
+  const calculateTheMinutes = movies.map((movie) => {
+    const totalDuration = movie.duration.split(' ');
+    const hours = parseInt(totalDuration[0]) * 60;
+    const totalMinutes = parseInt(totalDuration[1]) + hours || parseInt(totalDuration[0]) * 60;
+    const moviesWithDurationInMinutes = { ...movie, duration: totalMinutes };
+    return moviesWithDurationInMinutes;
+  });
+  return calculateTheMinutes;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(movies) {
+  let moviesByYear = movies.map((movie, index) => newArrayOfMoviesByYear = {year: movie.year, score: movie.score})   
+  let reducedMoviesByYear = moviesByYear.reduce((count,year)=>{
+  if (count[year.year] === undefined) {
+    count[year.year] = 1;
+    count[year.year+' SumOfAverage'] = year.score;
+  } else {
+    count[year.year] += 1;
+    count[year.year+' SumOfAverage'] += year.score;
+  }
+    
+  return count
+  },{});
+  
+  return reducedMoviesByYear
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
