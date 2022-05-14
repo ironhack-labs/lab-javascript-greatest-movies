@@ -1,6 +1,4 @@
 // The `movies` array from the file `src/data.js`.
-const decimalOperation = (number) => Math.round(number * 100) / 100;
-
 const isEmpty = (movies) => !movies.length ? true : false;
 
 const calculateDateToMinutes = (time) => time.duration.toLowerCase().replace('h','').replace('min','')
@@ -15,7 +13,6 @@ const getAllYears = (movies) => movies
 
 const getScoreYear = (movies, year) =>  movies
   .filter((movie) => movie.year === year)
-  .map((movie) => movie.score)
 
 const getMessageYear = (movies) => `The best year was ${movies[0].year} with an average score of ${movies[0].score}`
 
@@ -41,30 +38,15 @@ function howManyMovies(movies) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(movies){
-  return decimalOperation(movies.reduce((avg, movie) => {
-    if(movie.score){
-      avg += (movie.score / movies.length)
-    }
-    return avg
-  }, 0))
+  return movies.reduce((avg, movie, index) => {
+    avg += movie.score ? (movie.score / movies.length) : 0;
+    return movies.length - 1 === index ? parseFloat(avg.toFixed(2)) : avg;
+  }, 0)
 }
-
-[
-  { genre: ['Drama'], score: 8 },
-  { genre: ['Romance'], score: 9 },
-  { genre: ['Drama'], score: 7 }
-]
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies){
-  return decimalOperation(movies.filter((movie) => movie.genre.includes('Drama'))
-    .reduce((dramaMovie, movie, index, moviesWithDrama) => {
-      if(movie.score){
-        dramaMovie += (movie.score / moviesWithDrama.length);
-      }
-      return dramaMovie;
-    }, 0)
-  )
+  return scoresAverage(movies.filter((movie) => movie.genre.includes('Drama')))
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
@@ -90,10 +72,11 @@ function bestYearAvg(movies) {
         .map((year) => (
           {
             year: year, 
-            score: decimalOperation(getScoreYear(movies, year).reduce((acc, cur, index, array) => acc + (cur / array.length), 0))
+            score: scoresAverage(getScoreYear(movies, year))
           }
         ))
-        .sort((a, b) => b.score - a.score));
+        .sort((a, b) => b.score - a.score)
+    );
 }
 
 // The following is required to make unit tests work.
