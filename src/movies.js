@@ -13,14 +13,6 @@ function calculateDateToMinutes(movie){
     }, 0)
 }
 
-const getAllYears = (movies) => movies
-  .map((obj) => obj.year)
-  .filter((years, index) => movies.map((obj) => obj.year).indexOf(years) === index)
-  .sort()
-
-const getScoreYear = (movies, year) =>  movies
-  .filter((movie) => movie.year === year)
-
 const getMessageYear = (movies) => `The best year was ${movies[0].year} with an average score of ${movies[0].score}`
 
 // Iteration 1: All directors? - Get the array of all directors.
@@ -84,17 +76,26 @@ function turnHoursToMinutes(movies) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(movies) {
-  return isEmpty(movies) ? null : 
-    getMessageYear(
-      getAllYears(movies)
-        .map((year) => (
-          {
-            year: year, 
-            score: scoresAverage(getScoreYear(movies, year))
-          }
-        ))
-        .sort((a, b) => b.score - a.score)
-    );
+  if(isEmpty(movies)) {
+    return null
+  }
+
+  const moviesByYear = movies.reduce((moviesByYear, movie) => {
+    if (moviesByYear[movie.year]) {
+      moviesByYear[movie.year].push(movie.score)
+    } else {
+      moviesByYear[movie.year] = [movie.score]
+    }
+    return moviesByYear
+  }, {});
+
+  return getMessageYear(Object.keys(moviesByYear)
+        .map((movie) =>
+          ({
+              year: movie,
+              score: moviesByYear[movie].reduce((avg, score) => avg + (score / moviesByYear[movie].length), 0)
+          }))
+        .sort((a, b) => b.score - a.score));
 }
 
 // The following is required to make unit tests work.
