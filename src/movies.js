@@ -51,7 +51,15 @@ function dramaMoviesScore(movies){
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
-  return isEmpty(movies) ? null : movies.slice().sort(() => -1).sort((a,b) => a.year - b.year);
+  return isEmpty(movies) ? null : [...movies].sort((a,b) => {
+    if(a.year > b.year){
+      return 1;
+    } else if(a.year < b.year) {
+      return -1;
+    } else {
+      return a.title.localeCompare(b.title);
+    }
+  });
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
