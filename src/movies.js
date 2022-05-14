@@ -1,10 +1,17 @@
 // The `movies` array from the file `src/data.js`.
 const isEmpty = (movies) => !movies.length ? true : false;
 
-const calculateDateToMinutes = (time) => time.duration.toLowerCase().replace('h','').replace('min','')
-  .split(' ')
-  .map((objNum, index) => !index ? objNum * 60 : objNum * 1)
-  .reduce((acc,cur) => acc + cur, 0);
+function calculateDateToMinutes(movie){
+  return movie.duration.split(' ')
+    .reduce((duration, time) => {
+      if(time.includes('min')) {
+        duration += parseInt(time.replace('min', ''));
+      } else if (time.includes('h')) {
+        duration += parseInt(time.replace('h', '')) * 60;
+      }
+      return duration;
+    }, 0)
+}
 
 const getAllYears = (movies) => movies
   .map((obj) => obj.year)
@@ -71,7 +78,8 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
-  return movies.map((obj) => ({duration: calculateDateToMinutes(obj)}))
+  return JSON.parse(JSON.stringify(movies))
+    .map((movie) => ({duration: calculateDateToMinutes(movie)}))
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
