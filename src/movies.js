@@ -49,10 +49,21 @@ function scoresAverage(movies){
   }, 0))
 }
 
+[
+  { genre: ['Drama'], score: 8 },
+  { genre: ['Romance'], score: 9 },
+  { genre: ['Drama'], score: 7 }
+]
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies){
-  return !movies.length || !movies.filter((object) => object.genre.indexOf('Drama') !== -1).length ? 0 : decimalOperation(movies.filter((object) => object.genre.indexOf('Drama') !== -1)
-    .reduce((acc, cur, index, array) => acc + (cur.score / array.length), 0)
+  return decimalOperation(movies.filter((movie) => movie.genre.includes('Drama'))
+    .reduce((dramaMovie, movie, index, moviesWithDrama) => {
+      if(movie.score){
+        dramaMovie += (movie.score / moviesWithDrama.length);
+      }
+      return dramaMovie;
+    }, 0)
   )
 }
 
