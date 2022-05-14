@@ -41,10 +41,12 @@ function howManyMovies(movies) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(movies){
-  return isEmpty(movies) ? 0 : decimalOperation(movies.map((obj) => obj.score)
-    .filter((score) => typeof score === 'number')
-    .reduce((acc, cur) => acc + (cur / movies.length), 0)
-  )
+  return decimalOperation(movies.reduce((avg, movie) => {
+    if(movie.score){
+      avg += (movie.score / movies.length)
+    }
+    return avg
+  }, 0))
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
