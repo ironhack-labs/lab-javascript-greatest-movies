@@ -15,29 +15,99 @@ function getAllDirectors(arr) {
   return listOfDirectors
 }
 
-console.log('getAllDirectors:', getAllDirectors(movies))
+// console.log('getAllDirectors:', getAllDirectors(movies))
+
+
 
 
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
+
+
 function howManyMovies(array) {
   const filteredMovies = array.map(movie => movie).filter(movie => movie.director === 'Steven Spielberg' && movie.genre.includes('Drama'))
   return filteredMovies.length
 }
 
-
-
 console.log('howManyMovies:', howManyMovies(movies))
 
 
+
+
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+
+
+function scoresAverage(array) {
+
+  if (array.length === 0) {
+    return 0
+  }
+  
+  const sum = array.reduce((acc, movie) => acc + movie.score, 0)
+  const avg = sum/array.length
+  return parseFloat(avg.toFixed(2))
+}
+
+
+console.log('scoresAverage:', scoresAverage(movies))
+
+
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+
+
+function dramaMoviesScore(array) {
+  const filteredMovies = array.filter(movie => movie.genre.includes('Drama'))
+  const sum = filteredMovies.reduce((acc, movie) => acc + movie.score, 0)
+  const avg = sum/filteredMovies.length
+  return parseFloat(avg.toFixed(2))
+}
+
+
+
+console.log('dramaMoviesScore:', dramaMoviesScore(movies))
+
+// let test = array.map() 
+// créer un array avec tous les genres et faire .includes
+
+//   for ( let i = 0; i < array.length; i++){
+//     if (!array[i].genre.includes('Drama')){
+//       return 0
+//     }
+//   }
+
+
+
+
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+
+
+function orderByYear(array) {
+  const newArray = JSON.parse(JSON.stringify(array))
+  return newArray.sort((a, b) => {
+    return a.year - b.year;
+  });
+}
+
+console.log('orderByYear:', orderByYear(movies))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically() {}
