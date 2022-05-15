@@ -76,15 +76,6 @@ function dramaMoviesScore(array) {
 
 console.log('dramaMoviesScore:', dramaMoviesScore(movies))
 
-// let test = array.map() 
-// créer un array avec tous les genres et faire .includes
-
-//   for ( let i = 0; i < array.length; i++){
-//     if (!array[i].genre.includes('Drama')){
-//       return 0
-//     }
-//   }
-
 
 
 
