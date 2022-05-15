@@ -59,6 +59,13 @@ console.log('scoresAverage:', scoresAverage(movies))
 
 
 function dramaMoviesScore(array) {
+  const allGenres = array.map((item) => item.genre)
+  const dramaGenre = allGenres.filter(genre => genre.includes ('Drama'))
+
+  if (dramaGenre.length === 0) {
+    return 0
+  }
+
   const filteredMovies = array.filter(movie => movie.genre.includes('Drama'))
   const sum = filteredMovies.reduce((acc, movie) => acc + movie.score, 0)
   const avg = sum/filteredMovies.length
