@@ -7,7 +7,7 @@ const {
   orderByYear,
   orderAlphabetically,
   turnHoursToMinutes,
-  bestYearAvg,
+  bestYearAvg
 } = require('../src/movies');
 
 // Iteration 1
@@ -149,7 +149,7 @@ describe('Function "scoresAverage"', () => {
 });
 
 // Iteration 4
-describe('Function "dramaMoviesScore"', () => {
+describe.only('Function "dramaMoviesScore"', () => {
   it('should be declared', () => {
     expect(typeof dramaMoviesScore).toBe('function');
   });
