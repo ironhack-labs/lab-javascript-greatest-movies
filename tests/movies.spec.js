@@ -432,7 +432,7 @@ describe.skip('Function "turnHoursToMinutes"', () => {
 });
 
 // Iteration 8
-describe.skip('Function "bestYearAvg"', () => {
+describe('Function "bestYearAvg"', () => {
   it('should be declared', () => {
     expect(typeof bestYearAvg).toBe('function');
   });

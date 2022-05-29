@@ -89,11 +89,58 @@ function orderAlphabetically(arr) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes(arr) {
+  if (!arr.length) {
+    return null;
+  }
+  const modifyTimeFormat = arr.map(function (item) {
+    const duration = item.duration;
+
+    const hours = Number(duration.slice(0, duration.indexOf('h')));
+    const minutes = Number(
+      duration.slice(duration.indexOf(' '), duration.indexOf('m'))
+    );
+
+    item.duration = hours * 60 + minutes;
+    return item;
+  });
+
+  return modifyTimeFormat;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(arr) {
+  if (!arr.length) {
+    return null;
+  }
+  const allYears = arr.reduce(function (acc, movie) {
+    if (acc[movie.year]) {
+      acc[movie.year].count++;
+      acc[movie.year].score += movie.score;
+    } else {
+      acc[movie.year] = {
+        count: 1,
+        score: movie.score
+      };
+    }
+    return acc;
+  }, []);
 
+  const avgYears = allYears.reduce(function (acc, movie, index) {
+    acc[index] = {
+      year: index,
+      average: movie.score / movie.count
+    };
+    return acc;
+  }, []);
+
+  const bestYear = avgYears.sort(function (a, b) {
+    return b.average - a.average;
+  })[0];
+
+  return `The best year was ${bestYear.year} with an average score of ${bestYear.average}`;
+}
+// console.log(bestYearAvg(movies));
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
 if (typeof module !== 'undefined') {
