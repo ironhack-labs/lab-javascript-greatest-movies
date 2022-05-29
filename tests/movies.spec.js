@@ -7,7 +7,7 @@ const {
   orderByYear,
   orderAlphabetically,
   turnHoursToMinutes,
-  bestYearAvg,
+  bestYearAvg
 } = require('../src/movies');
 
 // Iteration 1
@@ -244,7 +244,7 @@ describe('Function "orderByYear"', () => {
 });
 
 // Iteration 6
-describe('Function "orderAlphabetically"', () => {
+describe.only('Function "orderAlphabetically"', () => {
   it('should be declared', () => {
     expect(typeof orderAlphabetically).toBe('function');
   });
