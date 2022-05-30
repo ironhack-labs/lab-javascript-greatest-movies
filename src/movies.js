@@ -38,28 +38,30 @@ function scoresAverage(arr) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(arr) {
-  
   let moviesDrama = arr.filter(movie => movie.genre.includes('Drama'))
   if (moviesDrama.length === 0) {
     return 0
   } 
-    console.log(moviesDrama)
     let dramaScores = moviesDrama.map(movie => movie.score)
-    console.log(dramaScores)
     return Number((dramaScores.reduce((accumulator, currentValue) => {
       if(currentValue === '' || currentValue === undefined) {
         currentValue = 0
       } 
       return accumulator + currentValue
     }) / dramaScores.length).toFixed(2))
-
 }
-
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(arr) {
-  let newOrder = arr.sort((a, b) => {
-    return a.year - b.year
+  const newOrder = arr.map(movie => movie)
+  newOrder.sort((a, b) => {
+    if(a.year > b.year) {
+      return 1
+    } else if (a.year < b.year) {
+      return -1
+    } else {
+      return a.title.localeCompare(b.title)
+    }
   })
   return newOrder
 }
@@ -69,23 +71,23 @@ console.log(orderByYear(movies))
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(arr) {
   let orderByName = arr.map(movie => movie.title)
-  console.log(orderByName)
   orderByName.sort()
   if(orderByName.length === 20) {
     return orderByName
   } else {
     return orderByName.slice(0, 20)
-  } 
+  }
 }
-// console.log(orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+function turnHoursToMinutes() {
+
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg() {
 
-
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
