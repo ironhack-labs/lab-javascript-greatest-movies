@@ -72,7 +72,7 @@ function orderAlphabetically(movies) {
      movieTitles.push(movie.title);
    });
 
-   const sortedAlphabetically = movieTitles.slice().sort(function (a, b) {
+   const sortedAlphabetically = movieTitles.sort(function (a, b) {
      return a.localeCompare(b);
    });
    return sortedAlphabetically.slice(0, 20);
