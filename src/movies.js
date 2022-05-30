@@ -87,7 +87,7 @@ function orderByYear(movies) {
     return movie
   })
 
-return movies.sort((m1, m2)=>{
+return moviesCopy.sort((m1, m2)=>{
   if ( m1.year > m2.year) {
     return 1;
  } else if (m1.year < m2.year) {
@@ -100,7 +100,7 @@ return movies.sort((m1, m2)=>{
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() { 
+function orderAlphabetically(movies) { 
 return movies.map(movie => movie.title)
 .sort((t1, t2) => {
   return t1.localeCompare(t2)
