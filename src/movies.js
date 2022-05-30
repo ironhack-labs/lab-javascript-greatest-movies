@@ -24,19 +24,26 @@ function scoresAverage(movies) {
      return 0;
    }
 
-  let totalScore = movies.reduce(function (accumulated, currentMovie) {
-    if (typeof currentMovie.score != 'number') {
-      return accumulated;
+  /*let totalScore = movies.reduce((acc, movie) => {
+    if (typeof movie.score != 'number') {
+      return acc;
     } else {
-      return accumulated + currentMovie.score;
+      return acc + movie.score;
     }
-  }, 0);
+  }, 0);*/
+
+  const totalScore = movies.reduce((acc, movie) =>  {
+    if (movie.score) {
+      acc =  acc + movie.score
+    }
+    return acc
+  }, 0)
   return Number((totalScore / movies.length).toFixed(2));
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies) {
-  const dramaMovies = movies.filter(function (movie) {
+  /*const dramaMovies = movies.filter((movie) => {
     if (movie.genre.includes('Drama')) {
       return movie;
     }
@@ -44,30 +51,48 @@ function dramaMoviesScore(movies) {
   if (dramaMovies.length === 0) {
     return 0;
   }
-  const dramaScore = dramaMovies.reduce(function (acc, movie) {
+  const dramaScore = dramaMovies.reduce((acc, movie) => {
     if (movie.score) {
       return acc + movie.score;
     }
     return acc;
   }, 0);
 
-  return Number((dramaScore / dramaMovies.length).toFixed(2));
+  return Number((dramaScore / dramaMovies.length).toFixed(2));*/
+
+  const dramaMovies  = movies.filter((movie) => {
+    return movie.genre.includes  ('Drama')
+  })
+  return scoresAverage(dramaMovies)
+
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
-  const sorted = movies.slice().sort(function (a, b) {
+  /*const sorted = movies.slice().sort(function (a, b) {
     if (a.year === b.year) {
       return a.title.localeCompare(b.title);
     }
     return a.year - b.year;
   });
-  return sorted;
+  return sorted;*/
+
+  const moviesCopy  = movies.map(movie => {
+    return movie
+  })
+  
+  return  moviesCopy.sort((a, b) => {
+    if (a.year === b.year) {
+      return a.title.localeCompare(b.title);
+    }
+    return a.year - b.year;
+  })
+
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
-  let movieTitles = [];
+  /*let movieTitles = [];
    movies.map(function (movie) {
      movieTitles.push(movie.title);
    });
@@ -75,7 +100,12 @@ function orderAlphabetically(movies) {
    const sortedAlphabetically = movieTitles.sort(function (a, b) {
      return a.localeCompare(b);
    });
-   return sortedAlphabetically.slice(0, 20);
+   return sortedAlphabetically.slice(0, 20);*/
+
+   return movies.map(movie  => movie.title)
+    .sort((a, b) => a.localeCompare(b))
+    .slice(0, 20)
+
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
