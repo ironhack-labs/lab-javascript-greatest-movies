@@ -8,14 +8,11 @@ const movies = require("./data");
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(arr) {
-
    return arr.map(movie => movie.director)
-
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(arr) {
-  
   return arr.filter(movie => movie.genre.includes('Drama') && movie.director === 'Steven Spielberg').length
 }
 
@@ -25,30 +22,27 @@ function howManyMovies(arr) {
 function scoresAverage(arr) {
   if(arr.length === 0) {
     return 0
-  } else {
-    let allScores = arr.map(movie => movie.score)
-    return Number((allScores.reduce((accumulator, currentValue) => {
-      if(currentValue === '' || currentValue === undefined) {
-        currentValue = 0
-      }
-      return accumulator + currentValue
-    }) / arr.length).toFixed(2))
   }
+
+  const allScores = arr.reduce((acc, movie) => {
+    if(movie.score) {
+      acc = acc + movie.score
+    } else {
+      acc = acc + 0
+    }
+    return acc
+  }, 0)
+
+  const scoreAvg = Number((allScores / arr.length).toFixed(2))
+  return scoreAvg
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(arr) {
-  let moviesDrama = arr.filter(movie => movie.genre.includes('Drama'))
-  if (moviesDrama.length === 0) {
-    return 0
-  } 
-    let dramaScores = moviesDrama.map(movie => movie.score)
-    return Number((dramaScores.reduce((accumulator, currentValue) => {
-      if(currentValue === '' || currentValue === undefined) {
-        currentValue = 0
-      } 
-      return accumulator + currentValue
-    }) / dramaScores.length).toFixed(2))
+  const moviesDrama = arr.filter(movie => {
+    return movie.genre.includes('Drama')
+  })
+  return scoresAverage(moviesDrama)
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
