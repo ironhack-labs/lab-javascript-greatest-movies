@@ -20,8 +20,8 @@ function getAllDirectors(anArrOfObj) {
   })
 }*/
 function howManyMovies(data) {
-  const spielbergDrama = data.filter(element =>{
-    element.director === "Steven Spielberg" && element.genres.includes("Drama")});
+  const spielbergDrama = data.filter(element => (
+    element.director === "Steven Spielberg" && element.genre.includes("Drama")));
   return spielbergDrama.length;
 }
 
@@ -55,7 +55,10 @@ function orderByYear(data) {
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(data) {
+  answer = data.sort(data.title)
+  return answer.slice(0,20)
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes() {}
