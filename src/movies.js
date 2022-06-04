@@ -100,31 +100,30 @@ function orderAlphabetically(arr) {
   return title.slice(0, 20);
 }
 
+// ###############################################################################
+// ############################# DONE!!! #########################################
+// ###############################################################################
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(arr) {}
-//   const toMinutes = arr.map(function (obj) {
-//     const minutes = (obj.duration
-//     return
-//   })
-// }
-//   function hoursTominutes() {
-//     if
-//   }
-//   const toMinutes = arr.map(function (all) {
-//     return {title: all.title, year: all.year, director: all.director, duration:
-//   });
-
-// {
-//   "title":"The Shawshank Redemption",
-//   "year":1994,
-//   "director":"Frank Darabont",
-//   "duration":"2h 22min",
-//   "genre":["Crime","Drama"],
-//   "score":9.3
-// }
+function turnHoursToMinutes(arr) {
+  const newArr = arr.map(function (obj) {
+    const hoursToMinutes = Number(obj.duration.slice(0,obj.duration.indexOf('h')) * 60)
+    const minutes = Number(obj.duration.slice(obj.duration.indexOf('h') +1, obj.duration.indexOf('min')))
+    return {
+      title: obj.title,
+      year: obj.year,
+      director: obj.director,
+      duration: Number(hoursToMinutes) + Number(minutes),
+      genre: obj.genre,
+      score: obj.score
+    }; 
+   })
+  return newArr
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg() {
+  
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
