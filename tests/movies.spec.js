@@ -7,11 +7,11 @@ const {
   orderByYear,
   orderAlphabetically,
   turnHoursToMinutes,
-  bestYearAvg,
+  bestYearAvg
 } = require('../src/movies');
 
 // Iteration 1
-describe('Function "getAllDirectors"', () => {
+describe.skip('Function "getAllDirectors"', () => {
   it('should be declared', () => {
     expect(typeof getAllDirectors).toBe('function');
   });
@@ -52,7 +52,7 @@ describe('Function "getAllDirectors"', () => {
 
 // Iteration 2
 
-describe('Function "howManyMovies"', () => {
+describe.skip('Function "howManyMovies"', () => {
   it('should be declared', () => {
     expect(typeof howManyMovies).toBe('function');
   });
@@ -120,7 +120,7 @@ describe('Function "howManyMovies"', () => {
 });
 
 // Iteration 3
-describe('Function "scoresAverage"', () => {
+describe.skip('Function "scoresAverage"', () => {
   it('should be declared', () => {
     expect(typeof scoresAverage).toBe('function');
   });
@@ -149,7 +149,7 @@ describe('Function "scoresAverage"', () => {
 });
 
 // Iteration 4
-describe('Function "dramaMoviesScore"', () => {
+describe.only('Function "dramaMoviesScore"', () => {
   it('should be declared', () => {
     expect(typeof dramaMoviesScore).toBe('function');
   });
