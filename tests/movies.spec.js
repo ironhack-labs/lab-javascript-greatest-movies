@@ -210,7 +210,7 @@ describe('Function "orderByYear"', () => {
   });
 
   it('should return an array', () => {
-    expect(typeof orderByYear(movies)).toBe('object');
+    expect(orderByYear(movies) instanceof Array).toBe(true);
   });
 
   it('should return a new array', () => {
