@@ -121,8 +121,34 @@ function turnHoursToMinutes(arr) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {
-  
+function bestYearAvg(arr) {
+  if (arr.length === 0) {
+    return null;
+  }
+  if (arr.length === 1) {
+    return `The best year was ${arr[0].year} with an average score of ${arr[0].score}`;
+  }
+  const newArr = arr.map(function (obj) {
+    return [obj.year, obj.score]
+  })
+  let years =[]
+  for (str of newArr)
+  if (!years.includes(str[0])) {
+    years.push(`${str[0]}, ${0}`)
+  } 
+
+//   const newArr2 = years.map(function (year) {
+//     for (arr of newArr) {
+//       if (arr.includes(year)) {
+//          return [`${year[0]}`, `${year[1] += arr[1]}`]
+//     }
+//   }
+//  })
+  // let newYear = {}
+  // for (let i = 0; i < newArr.length; i++) {
+  //   if (newYear.includes())
+  // }
+  return newArr2
 }
 
 // The following is required to make unit tests work.
