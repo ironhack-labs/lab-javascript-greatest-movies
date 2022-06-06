@@ -7,14 +7,11 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 
 function getAllDirectors(movies) {
-
-  const mappedArray = movies.map(function (dir) {
-    return dir.director
-
+  const mappedArray = movies.map(function (movie) {
+    return movie.director
   })
   return mappedArray
 }
-
 
 //==================================
 // function numberDouble(array){
@@ -136,22 +133,27 @@ function orderAlphabetically(movies) {
 }
 
 
-
-
-
-
-
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() { 
-
-duration = '4h 33min'
-firstStep = duration.split('h')
-hrNum = Number(firstStep[0]) * 60
-secondStep = firstStep[1].split('m')
-minNum = Number(secondStep[0])
-totleMin = hrNum + minNum
-
+function turnHoursToMinutes(movies) { 
+  let newDuration = 0
+    let minDuration = 0
+    let hrDuration = 0
+  return movies.map(function(movie){
+    for (let movie of movies){
+      if (movie.duration.includes('h')){
+        hrDuration = Number(movie.duration.slice(0,movie.duration.indexOf('h')-1)) * 60
+      }
+      if (movie.duration.includes('min')){
+        minDuration = Number(movie.duration.slice(movie.duration.indexOf(' ')+1, movie.duration.indexOf('m')))
+      }
+    }
+      
+   return  {...movie, duration: newDuration = hrDuration + minDuration }
+  })
 }
+
+
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg() { }
