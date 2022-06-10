@@ -7,7 +7,7 @@ const {
   orderByYear,
   orderAlphabetically,
   turnHoursToMinutes,
-  bestYearAvg,
+  bestYearAvg
 } = require('../src/movies');
 
 // Iteration 1
@@ -119,7 +119,7 @@ describe('Function "howManyMovies"', () => {
   });
 });
 
-// Iteration 3
+// // Iteration 3
 describe('Function "scoresAverage"', () => {
   it('should be declared', () => {
     expect(typeof scoresAverage).toBe('function');
@@ -148,7 +148,7 @@ describe('Function "scoresAverage"', () => {
   });
 });
 
-// Iteration 4
+// // Iteration 4
 describe('Function "dramaMoviesScore"', () => {
   it('should be declared', () => {
     expect(typeof dramaMoviesScore).toBe('function');
@@ -203,7 +203,7 @@ describe('Function "dramaMoviesScore"', () => {
   });
 });
 
-// Iteration 5
+// // Iteration 5
 describe('Function "orderByYear"', () => {
   it('should be declared', () => {
     expect(typeof orderByYear).toBe('function');
@@ -243,7 +243,7 @@ describe('Function "orderByYear"', () => {
   });
 });
 
-// Iteration 6
+// // Iteration 6
 describe('Function "orderAlphabetically"', () => {
   it('should be declared', () => {
     expect(typeof orderAlphabetically).toBe('function');
@@ -393,11 +393,11 @@ describe('Function "orderAlphabetically"', () => {
   });
 });
 
-// ******************************************************************************************
-// *************************************** BONUS ********************************************
-// ******************************************************************************************
+// // ******************************************************************************************
+// // *************************************** BONUS ********************************************
+// // ******************************************************************************************
 
-// Iteration 7
+Iteration 7
 describe('Function "turnHoursToMinutes"', () => {
   it('should be declared', () => {
     expect(typeof turnHoursToMinutes).toBe('function');
@@ -431,38 +431,38 @@ describe('Function "turnHoursToMinutes"', () => {
   });
 });
 
-// Iteration 8
-describe('Function "bestYearAvg"', () => {
-  it('should be declared', () => {
-    expect(typeof bestYearAvg).toBe('function');
-  });
+// // Iteration 8
+// describe('Function "bestYearAvg"', () => {
+//   it('should be declared', () => {
+//     expect(typeof bestYearAvg).toBe('function');
+//   });
 
-  it('should return null if the array is empty', () => {
-    expect(bestYearAvg([])).toBe(null);
-  });
+//   it('should return null if the array is empty', () => {
+//     expect(bestYearAvg([])).toBe(null);
+//   });
 
-  it('should return the correct answer to a single element array', () => {
-    expect(bestYearAvg([{ year: 2007, score: 8 }])).toEqual(
-      'The best year was 2007 with an average score of 8'
-    );
-  });
+//   it('should return the correct answer to a single element array', () => {
+//     expect(bestYearAvg([{ year: 2007, score: 8 }])).toEqual(
+//       'The best year was 2007 with an average score of 8'
+//     );
+//   });
 
-  it('should return the correct answer to a multiple elements array', () => {
-    expect(bestYearAvg(movies)).toEqual(
-      'The best year was 1972 with an average score of 9.2'
-    );
-  });
+//   it('should return the correct answer to a multiple elements array', () => {
+//     expect(bestYearAvg(movies)).toEqual(
+//       'The best year was 1972 with an average score of 9.2'
+//     );
+//   });
 
-  it('should return the oldest year when there is a tie', () => {
-    const newMoviesArr = [
-      { year: 2000, score: 9 },
-      { year: 2000, score: 8 },
-      { year: 1978, score: 10 },
-      { year: 1978, score: 7 }
-    ];
+//   it('should return the oldest year when there is a tie', () => {
+//     const newMoviesArr = [
+//       { year: 2000, score: 9 },
+//       { year: 2000, score: 8 },
+//       { year: 1978, score: 10 },
+//       { year: 1978, score: 7 }
+//     ];
 
-    expect(bestYearAvg(newMoviesArr)).toEqual(
-      'The best year was 1978 with an average score of 8.5'
-    );
-  });
-});
+//     expect(bestYearAvg(newMoviesArr)).toEqual(
+//       'The best year was 1978 with an average score of 8.5'
+//     );
+//   });
+// });
