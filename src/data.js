@@ -1,3 +1,5 @@
+const { scoresAverage } = require("./movies");
+
 const movies = [
   {
     title: 'The Shawshank Redemption',
@@ -2005,3 +2007,16 @@ const movies = [
 if (typeof module !== 'undefined') {
   module.exports = movies;
 }
+
+
+  //function getAllDirectors(anArray) {
+    //const mappedArray = anArray.map(element => element.director)
+    //return mappedArray;
+    //traditional function formatts:
+    // const mappedArray = movies.map(function(element) {
+    //   return element.director;
+    // }) 
+  
+  //}
+  //getAllDirectors(movies)
+  
