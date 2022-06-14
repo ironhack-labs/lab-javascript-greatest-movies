@@ -2,12 +2,13 @@
 const movies = require("./data.js");
 //console.log('movies: ', movies);
 
-
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(movies) {
-  return movies.map(movie => movie.director);
+  let directors = movies.map(movie => movie.director);
+  //Bonus:
+  return [...new Set(directors)];
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -57,13 +58,33 @@ function orderAlphabetically(movies) {
   let sortedTitles = (byTitle.map(movie => movie.title)).slice(0, 20);
   return sortedTitles;
 }
-//orderAlphabetically(movies)
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
-
+function turnHoursToMinutes(movies) {
+  let arrayWithTime = movies;
+  let time = arrayWithTime.map(movie => {
+    //console.log(typeof movie.duration);
+    let timeComps = movie.duration.split(' ');
+    let arrayTime = timeComps.map(element => {
+      return parseInt(element);
+    });
+    return arrayTime;
+  });
+   time.map((time, index) =>{
+    let hours = 0;
+    if(!isNaN(time[0])) {hours = time[0]};
+    let minutes = 0;
+    if(!isNaN(time[1])) {minutes = time[1]};
+    return arrayWithTime[index].duration = (hours*60) + minutes;
+  });
+  console.log(arrayWithTime);
+  return arrayWithTime;
+}
+turnHoursToMinutes(movies);
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+function bestYearAvg(movies) {
+  if (movies.length === 0) return null;
+}
 
 
 
