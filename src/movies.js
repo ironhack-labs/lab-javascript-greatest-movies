@@ -61,9 +61,8 @@ function orderAlphabetically(movies) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
-  let arrayWithTime = movies;
+  let arrayWithTime = JSON.parse(JSON.stringify(movies));
   let time = arrayWithTime.map(movie => {
-    //console.log(typeof movie.duration);
     let timeComps = movie.duration.split(' ');
     let arrayTime = timeComps.map(element => {
       return parseInt(element);
@@ -77,10 +76,9 @@ function turnHoursToMinutes(movies) {
     if(!isNaN(time[1])) {minutes = time[1]};
     return arrayWithTime[index].duration = (hours*60) + minutes;
   });
-  console.log(arrayWithTime);
   return arrayWithTime;
 }
-turnHoursToMinutes(movies);
+//turnHoursToMinutes(movies);
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(movies) {
   if (movies.length === 0) return null;
