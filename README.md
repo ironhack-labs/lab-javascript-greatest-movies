@@ -122,7 +122,7 @@ Drama is the genre that repeats the most on our `array`. Apparently, people love
 
 Create a `dramaMoviesScore()` function that receives an array as a parameter to get the average score of all drama movies! Let's see if it is better than the general average.
 
-Again, rounded to 2 decimals!
+Again, rounded to 2 decimals! .fixed method
 
 <br>
 
