@@ -78,29 +78,31 @@ function turnHoursToMinutes(moviesArray) {
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 
 function bestYearAvg(moviesArray) {
-
-  const years = moviesArray.map(element => element.year);
-  let uniqueYears = [...new Set(years)]
-  let yearAverScores = [];
-  for (let i=0; i<uniqueYears.length; i++) {
-    console.log(uniqueYears[i]);
-    let scoresYear=[];
-    for (let j=0; j<moviesArray.length; j++) {
-      if (uniqueYears[i] == moviesArray[j].year) {
-        scoresYear.push(moviesArray[j].score);
+  if (moviesArray.length >0 ) {
+    const years = moviesArray.map(element => element.year);
+    let uniqueYears = [...new Set(years)]
+    let yearAverScores = [];
+    for (let i=0; i<uniqueYears.length; i++) {
+      let scoresYear=[];
+      for (let j=0; j<moviesArray.length; j++) {
+        if (uniqueYears[i] == moviesArray[j].year) {
+          scoresYear.push(moviesArray[j].score);
+        }
       }
-    const scoreSumYear = scoresYear.reduce(
-        (accumulator, currentValue) => accumulator + currentValue, 0
-      );
-    yearAverScores.push(scoreSumYear/scoreSumYear.length)
+      const scoreSumYear = scoresYear.reduce(
+          (accumulator, currentValue) => accumulator + currentValue, 0
+        );
+      const averScore = scoreSumYear/scoresYear.length;
+      yearAverScores.push(averScore)
     }
-    console.log(yearAverScores);
-  }
-  console.log(yearAverScores);
-  let highest = (Math.max(yearAverScores))
-  let bestYear = uniqueYears[yearAverScores.indexOf(highest)];
+    let highest = (Math.max(...yearAverScores))
+    let bestYear = uniqueYears[yearAverScores.indexOf(highest)];
 
-  return 'The best year was ' + bestYear + ' with an average score of ' + highest
+    return 'The best year was ' + bestYear + ' with an average score of ' + highest
+  }
+  else {
+    return null;
+  }
 }
 
 
