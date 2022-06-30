@@ -14,4 +14,15 @@ describe('All Directors', () => {
   test('should not modify the input array', () => {
     expect(getAllDirectors(movies)).not.toBe(movies);
   });
+
+  test('array of only one movie should return an array with the director', () => {
+    expect(
+      getAllDirectors([
+        {
+          anotherProperty: 'this is not the director',
+          director: 'the actual director'
+        }
+      ])
+    ).toStrictEqual(['the actual director']);
+  });
 });
