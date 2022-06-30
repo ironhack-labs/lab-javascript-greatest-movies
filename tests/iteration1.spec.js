@@ -15,7 +15,7 @@ describe('All Directors', () => {
     expect(getAllDirectors(movies)).not.toBe(movies);
   });
 
-  test('array of only one movie should return an array with the director', () => {
+  test('should return an array with the director when parameter is an array of only one movie', () => {
     expect(
       getAllDirectors([
         {
@@ -24,5 +24,43 @@ describe('All Directors', () => {
         }
       ])
     ).toStrictEqual(['the actual director']);
+  });
+
+  test('should return an array with the directors when paramter is array of several movies ', () => {
+    expect(
+      getAllDirectors([
+        {
+          anotherProperty: 'UninterestedMovieProperty1',
+          director: 'director1'
+        },
+        {
+          anotherProperty: 'UninterestedMovieProperty2',
+          director: 'director2'
+        },
+        {
+          anotherProperty: 'UninterestedMovieProperty3',
+          director: 'director3'
+        }
+      ])
+    ).toStrictEqual(['director1', 'director2', 'director3']);
+  });
+
+  test('should return the same number of directors as received movies ', () => {
+    expect(
+      getAllDirectors([
+        {
+          anotherProperty: 'UninterestedMovieProperty1',
+          director: 'director1'
+        },
+        {
+          anotherProperty: 'UninterestedMovieProperty2',
+          director: 'director2'
+        },
+        {
+          anotherProperty: 'UninterestedMovieProperty3',
+          director: 'director3'
+        }
+      ]).length
+    ).toBe(3);
   });
 });
