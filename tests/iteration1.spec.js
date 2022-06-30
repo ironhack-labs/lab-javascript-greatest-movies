@@ -6,4 +6,8 @@ describe('All Directors', () => {
   test('should be implemented by a function called getAllDirectors()', () => {
     expect(typeof getAllDirectors).toBe('function');
   });
+
+  test('should return an array', () => {
+    expect(Array.isArray(getAllDirectors())).toBe(true);
+  });
 });
