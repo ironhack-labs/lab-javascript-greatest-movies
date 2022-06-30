@@ -10,4 +10,8 @@ describe('All Directors', () => {
   test('should return an array', () => {
     expect(Array.isArray(getAllDirectors())).toBe(true);
   });
+
+  test('should not modify the input array', () => {
+    expect(getAllDirectors(movies)).not.toBe(movies);
+  });
 });
