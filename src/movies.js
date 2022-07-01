@@ -18,7 +18,21 @@ function scoresAverage(moviesArray = []) {
     return 0;
   }
 
-  return moviesArray.reduce((acc, curr) => acc + curr.score, 0) / moviesArray.length;
+  return round(
+    moviesArray.reduce((acc, curr) => acc + curr.score, 0) / moviesArray.length,
+    2
+  );
+}
+
+/**
+ * Round half away from zero ('commercial' rounding)
+ * Uses correction to offset floating-point inaccuracies.
+ * Works symmetrically for positive and negative numbers.
+ */
+function round(num, decimalPlaces = 0) {
+  var p = Math.pow(10, decimalPlaces);
+  var n = num * p * (1 + Number.EPSILON);
+  return Math.round(n) / p;
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
