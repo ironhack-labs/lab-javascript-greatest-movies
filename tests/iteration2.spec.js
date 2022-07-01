@@ -47,43 +47,43 @@ describe('Iteration 2: Steven Spielberg. The best?', () => {
     expect(howManyMovies(input)).toBe(1);
   });
 
-//   test('should return the all drama movies when all movies are dramas', () => {
-//     const input = [
-//       {
-//         title: 'Indiana Jones and the Last Crusade',
-//         year: 1989,
-//         director: 'Steven Spielberg',
-//         duration: '2h 7min',
-//         genre: ['Action', 'Adventure', 'Drama'],
-//         score: 8.3
-//       },
-//       {
-//         title: 'Raiders of the Lost Ark',
-//         year: 1981,
-//         director: 'Steven Spielberg',
-//         duration: '1h 55min',
-//         genre: ['Action', 'Drama'],
-//         score: 8.5
-//       },
-//       {
-//         title: 'Saving Private Ryan',
-//         year: 1998,
-//         director: 'Steven Spielberg',
-//         duration: '2h 49min',
-//         genre: ['Drama', 'War'],
-//         score: 8.6
-//       },
-//       {
-//         title: 'Schindler"s List',
-//         year: 1993,
-//         director: 'Steven Spielberg',
-//         duration: '3h 15min',
-//         genre: ['Biography', 'Drama', 'History'],
-//         score: 8.9
-//       }
-//     ];
-//     expect(howManyMovies(input).length).toBe(4);
-//   });
+  test('should return the all drama movies when all movies are dramas', () => {
+    const input = [
+      {
+        title: 'Indiana Jones and the Last Crusade',
+        year: 1989,
+        director: 'Steven Spielberg',
+        duration: '2h 7min',
+        genre: ['Action', 'Adventure', 'Drama'],
+        score: 8.3
+      },
+      {
+        title: 'Raiders of the Lost Ark',
+        year: 1981,
+        director: 'Steven Spielberg',
+        duration: '1h 55min',
+        genre: ['Action', 'Drama'],
+        score: 8.5
+      },
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      },
+      {
+        title: 'Schindler"s List',
+        year: 1993,
+        director: 'Steven Spielberg',
+        duration: '3h 15min',
+        genre: ['Biography', 'Drama', 'History'],
+        score: 8.9
+      }
+    ];
+    expect(howManyMovies(input)).toBe(4);
+  });
 
 //   test('should no modify the input movies array', () => {
 //     const input = [
