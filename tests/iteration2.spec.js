@@ -11,7 +11,7 @@ describe('Iteration 2: Steven Spielberg. The best?', () => {
     expect(typeof howManyMovies([])).toBe('number');
   });
 
-  test('should return only drama movies when there are only one movies and is a drama', () => {
+  test('should return 1 when there are only one movies and is a drama', () => {
     const input = [
       {
         title: 'Saving Private Ryan',
@@ -25,7 +25,7 @@ describe('Iteration 2: Steven Spielberg. The best?', () => {
     expect(howManyMovies(input)).toBe(1);
   });
 
-  test('should return only drama movies when only one movie is drama', () => {
+  test('should return 1 when only one movie is drama', () => {
     const input = [
       {
         title: 'Saving Private Ryan',
@@ -47,7 +47,7 @@ describe('Iteration 2: Steven Spielberg. The best?', () => {
     expect(howManyMovies(input)).toBe(1);
   });
 
-  test('should return the all drama movies when all movies are dramas', () => {
+  test('should return 4  when all 4 movies are dramas', () => {
     const input = [
       {
         title: 'Indiana Jones and the Last Crusade',
@@ -126,39 +126,39 @@ describe('Iteration 2: Steven Spielberg. The best?', () => {
     expect(filteredMovies.length).not.toBe(input.length);
   });
 
-    test('should return only Spilberg movies when there are only one movies and is a Spielberg drama movie', () => {
-      const input = [
-        {
-          title: 'Schindler"s List',
-          year: 1993,
-          director: 'Steven Spielberg',
-          duration: '3h 15min',
-          genre: ['Biography', 'Drama', 'History'],
-          score: 8.9
-        }
-      ];
-      expect(howManyMovies(input)).toBe(1);
-    });
+  test('should return 1 when there are only one movies and is a Spielberg drama movie', () => {
+    const input = [
+      {
+        title: 'Schindler"s List',
+        year: 1993,
+        director: 'Steven Spielberg',
+        duration: '3h 15min',
+        genre: ['Biography', 'Drama', 'History'],
+        score: 8.9
+      }
+    ];
+    expect(howManyMovies(input)).toBe(1);
+  });
 
-  //   test('should return a empty array when only one movie is drama but is not directed by Spielberg', () => {
-  //     const input = [
-  //       {
-  //         title: 'The Shawshank Redemption',
-  //         year: 1994,
-  //         director: 'Frank Darabont',
-  //         duration: '2h 22min',
-  //         genre: ['Crime', 'Drama'],
-  //         score: 9.3
-  //       },
-  //       {
-  //         title: 'Raiders of the Lost Ark',
-  //         year: 1981,
-  //         director: 'Steven Spielberg',
-  //         duration: '1h 55min',
-  //         genre: ['Action', 'Adventure'],
-  //         score: 8.5
-  //       }
-  //     ];
-  //     expect(howManyMovies(input).length).toBe(0);
-  //   });
+  test('should return zero when only one movie is drama but is not directed by Spielberg', () => {
+    const input = [
+      {
+        title: 'The Shawshank Redemption',
+        year: 1994,
+        director: 'Frank Darabont',
+        duration: '2h 22min',
+        genre: ['Crime', 'Drama'],
+        score: 9.3
+      },
+      {
+        title: 'Raiders of the Lost Ark',
+        year: 1981,
+        director: 'Steven Spielberg',
+        duration: '1h 55min',
+        genre: ['Action', 'Adventure'],
+        score: 8.5
+      }
+    ];
+    expect(howManyMovies(input)).toBe(0);
+  });
 });
