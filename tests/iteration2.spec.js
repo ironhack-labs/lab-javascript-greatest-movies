@@ -139,4 +139,26 @@ describe('Iteration 2: Steven Spielberg. The best?', () => {
     ];
     expect(howManyMovies(input)).toStrictEqual(input);
   });
+
+  test('should return a empty array when only one movie is drama but is not directed by Spielberg', () => {
+    const input = [
+      {
+        title: 'The Shawshank Redemption',
+        year: 1994,
+        director: 'Frank Darabont',
+        duration: '2h 22min',
+        genre: ['Crime', 'Drama'],
+        score: 9.3
+      },
+      {
+        title: 'Raiders of the Lost Ark',
+        year: 1981,
+        director: 'Steven Spielberg',
+        duration: '1h 55min',
+        genre: ['Action', 'Adventure'],
+        score: 8.5
+      }
+    ];
+    expect(howManyMovies(input).length).toBe(0);
+  });
 });
