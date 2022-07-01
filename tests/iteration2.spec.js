@@ -125,4 +125,18 @@ describe('Iteration 2: Steven Spielberg. The best?', () => {
 
     expect(filteredMovies.length).not.toBe(input.length);
   });
+
+  test('should return only Spilberg movies when there are only one movies and is a Spilberg drama movie', () => {
+    const input = [
+      {
+        title: 'Schindler"s List',
+        year: 1993,
+        director: 'Steven Spielberg',
+        duration: '3h 15min',
+        genre: ['Biography', 'Drama', 'History'],
+        score: 8.9
+      }
+    ];
+    expect(howManyMovies(input)).toStrictEqual(input);
+  });
 });
