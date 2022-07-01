@@ -9,7 +9,7 @@ function getAllDirectors(moviesArray = []) {
 function howManyMovies(moviesArray = []) {
   return moviesArray
     .filter((m) => m.genre.includes('Drama'))
-    .filter((m) => m.director.includes('Spielberg'));
+    .filter((m) => m.director.includes('Spielberg')).length;
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
