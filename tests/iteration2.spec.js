@@ -14,12 +14,12 @@ describe('Iteration 2: Steven Spielberg. The best?', () => {
   test('should return only drama movies when there are only one movies and is a drama', () => {
     const input = [
       {
-        title: 'The Shawshank Redemption',
-        year: 1994,
-        director: 'Frank Darabont',
-        duration: '2h 22min',
-        genre: ['Crime', 'Drama'],
-        score: 9.3
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
       }
     ];
     expect(howManyMovies(input)).toStrictEqual(input);
@@ -28,20 +28,20 @@ describe('Iteration 2: Steven Spielberg. The best?', () => {
   test('should return only drama movies when only one movie is drama', () => {
     const input = [
       {
-        title: 'The Shawshank Redemption',
-        year: 1994,
-        director: 'Frank Darabont',
-        duration: '2h 22min',
-        genre: ['Crime', 'Drama'],
-        score: 9.3
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
       },
       {
-        title: 'The Godfather',
-        year: 1972,
-        director: 'Francis Ford Coppola',
-        duration: '2h 55min',
-        genre: ['Crime'],
-        score: 9.2
+        title: 'Raiders of the Lost Ark',
+        year: 1981,
+        director: 'Steven Spielberg',
+        duration: '1h 55min',
+        genre: ['Action', 'Adventure'],
+        score: 8.5
       }
     ];
     expect(howManyMovies(input).length).toBe(1);
@@ -50,36 +50,36 @@ describe('Iteration 2: Steven Spielberg. The best?', () => {
   test('should return the all drama movies when all movies are dramas', () => {
     const input = [
       {
-        title: 'The Shawshank Redemption',
-        year: 1994,
-        director: 'Frank Darabont',
-        duration: '2h 22min',
-        genre: ['Crime', 'Drama'],
-        score: 9.3
+        title: 'Indiana Jones and the Last Crusade',
+        year: 1989,
+        director: 'Steven Spielberg',
+        duration: '2h 7min',
+        genre: ['Action', 'Adventure', 'Drama'],
+        score: 8.3
       },
       {
-        title: 'The Godfather',
-        year: 1972,
-        director: 'Francis Ford Coppola',
-        duration: '2h 55min',
-        genre: ['Crime', 'Drama'],
-        score: 9.2
+        title: 'Raiders of the Lost Ark',
+        year: 1981,
+        director: 'Steven Spielberg',
+        duration: '1h 55min',
+        genre: ['Action', 'Drama'],
+        score: 8.5
       },
       {
-        title: 'The Godfather: Part II',
-        year: 1974,
-        director: 'Francis Ford Coppola',
-        duration: '3h 22min',
-        genre: ['Crime', 'Drama'],
-        score: 9
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
       },
       {
-        title: 'The Dark Knight',
-        year: 2008,
-        director: 'Christopher Nolan',
-        duration: '2h 32min',
-        genre: ['Action', 'Crime', 'Drama', 'Thriller'],
-        score: 9
+        title: 'Schindler"s List',
+        year: 1993,
+        director: 'Steven Spielberg',
+        duration: '3h 15min',
+        genre: ['Biography', 'Drama', 'History'],
+        score: 8.9
       }
     ];
     expect(howManyMovies(input).length).toBe(4);
@@ -88,36 +88,36 @@ describe('Iteration 2: Steven Spielberg. The best?', () => {
   test('should no modify the input movies array', () => {
     const input = [
       {
-        title: 'The Shawshank Redemption',
-        year: 1994,
-        director: 'Frank Darabont',
-        duration: '2h 22min',
-        genre: ['Crime', 'Drama'],
-        score: 9.3
+        title: 'Indiana Jones and the Last Crusade',
+        year: 1989,
+        director: 'Steven Spielberg',
+        duration: '2h 7min',
+        genre: ['Action', 'Adventure', 'Fantasy'],
+        score: 8.3
       },
       {
-        title: 'The Godfather',
-        year: 1972,
-        director: 'Francis Ford Coppola',
-        duration: '2h 55min',
-        genre: ['Crime', 'Drama'],
-        score: 9.2
+        title: 'Raiders of the Lost Ark',
+        year: 1981,
+        director: 'Steven Spielberg',
+        duration: '1h 55min',
+        genre: ['Action', 'Adventure'],
+        score: 8.5
       },
       {
-        title: 'The Godfather: Part II',
-        year: 1974,
-        director: 'Francis Ford Coppola',
-        duration: '3h 22min',
-        genre: ['Crime', 'Drama'],
-        score: 9
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
       },
       {
-        title: 'The Dark Knight',
-        year: 2008,
-        director: 'Christopher Nolan',
-        duration: '2h 32min',
-        genre: ['Action', 'Crime', 'Drama', 'Thriller'],
-        score: 9
+        title: 'Schindler"s List',
+        year: 1993,
+        director: 'Steven Spielberg',
+        duration: '3h 15min',
+        genre: ['Biography', 'Drama', 'History'],
+        score: 8.9
       }
     ];
     const filteredMovies = howManyMovies(input);
@@ -126,7 +126,7 @@ describe('Iteration 2: Steven Spielberg. The best?', () => {
     expect(filteredMovies.length).not.toBe(input.length);
   });
 
-  test('should return only Spilberg movies when there are only one movies and is a Spilberg drama movie', () => {
+  test('should return only Spilberg movies when there are only one movies and is a Spielberg drama movie', () => {
     const input = [
       {
         title: 'Schindler"s List',
