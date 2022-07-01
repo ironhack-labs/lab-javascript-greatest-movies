@@ -11,19 +11,19 @@ describe('Iteration 2: Steven Spielberg. The best?', () => {
     expect(typeof howManyMovies([])).toBe('number');
   });
 
-//   test('should return only drama movies when there are only one movies and is a drama', () => {
-//     const input = [
-//       {
-//         title: 'Saving Private Ryan',
-//         year: 1998,
-//         director: 'Steven Spielberg',
-//         duration: '2h 49min',
-//         genre: ['Drama', 'War'],
-//         score: 8.6
-//       }
-//     ];
-//     expect(howManyMovies(input)).toStrictEqual(input);
-//   });
+  test('should return only drama movies when there are only one movies and is a drama', () => {
+    const input = [
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      }
+    ];
+    expect(howManyMovies(input)).toBe(1);
+  });
 
 //   test('should return only drama movies when only one movie is drama', () => {
 //     const input = [
