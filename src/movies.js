@@ -17,7 +17,8 @@ function scoresAverage(moviesArray = []) {
   if (!moviesArray || moviesArray.length === 0) {
     return 0;
   }
-  return moviesArray[0].score;
+
+  return moviesArray.reduce((acc, curr) => acc + curr.score, 0) / moviesArray.length;
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
