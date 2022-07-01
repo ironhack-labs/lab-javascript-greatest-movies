@@ -25,27 +25,27 @@ describe('Iteration 2: Steven Spielberg. The best?', () => {
     expect(howManyMovies(input)).toBe(1);
   });
 
-//   test('should return only drama movies when only one movie is drama', () => {
-//     const input = [
-//       {
-//         title: 'Saving Private Ryan',
-//         year: 1998,
-//         director: 'Steven Spielberg',
-//         duration: '2h 49min',
-//         genre: ['Drama', 'War'],
-//         score: 8.6
-//       },
-//       {
-//         title: 'Raiders of the Lost Ark',
-//         year: 1981,
-//         director: 'Steven Spielberg',
-//         duration: '1h 55min',
-//         genre: ['Action', 'Adventure'],
-//         score: 8.5
-//       }
-//     ];
-//     expect(howManyMovies(input).length).toBe(1);
-//   });
+  test('should return only drama movies when only one movie is drama', () => {
+    const input = [
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      },
+      {
+        title: 'Raiders of the Lost Ark',
+        year: 1981,
+        director: 'Steven Spielberg',
+        duration: '1h 55min',
+        genre: ['Action', 'Adventure'],
+        score: 8.5
+      }
+    ];
+    expect(howManyMovies(input)).toBe(1);
+  });
 
 //   test('should return the all drama movies when all movies are dramas', () => {
 //     const input = [
