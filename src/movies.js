@@ -14,7 +14,7 @@ function howManyMovies(moviesArray = []) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray = []) {
-  if (!moviesArray || moviesArray.length === 0) {
+  if (moviesArray.length === 0) {
     return 0;
   }
 
@@ -44,21 +44,23 @@ function dramaMoviesScore(moviesArray = []) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray = []) {
-  return [...moviesArray].sort((a, b) => sorByYear(a, b) | sortByTitle(a, b));
+  return [...moviesArray].sort(
+    (a, b) => compareByYear(a, b) | compareByTitle(a, b)
+  );
 }
 
-function sorByYear(a, b) {
+function compareByYear(a, b) {
   return a.year - b.year;
 }
 
-function sortByTitle(a, b) {
+function compareByTitle(a, b) {
   return a.title.localeCompare(b.title);
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray = []) {
   return [...moviesArray]
-    .sort((a, b) => sortByTitle(a, b))
+    .sort((a, b) => compareByTitle(a, b))
     .map((m) => m.title)
     .slice(0, 20);
 }
