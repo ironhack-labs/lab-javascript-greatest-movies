@@ -43,8 +43,9 @@ function dramaMoviesScore(moviesArray = []) {
     return 0;
   }
 
-  return (
-    dramaMovies.reduce((acc, curr) => acc + curr.score, 0) / dramaMovies.length
+  return round(
+    dramaMovies.reduce((acc, curr) => acc + curr.score, 0) / dramaMovies.length,
+    2
   );
 }
 

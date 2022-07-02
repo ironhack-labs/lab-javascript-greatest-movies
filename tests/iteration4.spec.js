@@ -50,5 +50,41 @@ describe('Iteration 4: Drama movies', () => {
     expect(dramaMoviesScore(input)).toBe(8.6);
   });
 
-
+  test('should return a result rounded to two decimals of 8.58 when all 4 movies are dramas, and their scores are [8.3] [8.5] [8.6] [8.9]', () => {
+    const input = [
+      {
+        title: 'Indiana Jones and the Last Crusade',
+        year: 1989,
+        director: 'Steven Spielberg',
+        duration: '2h 7min',
+        genre: ['Action', 'Adventure', 'Drama'],
+        score: 8.3
+      },
+      {
+        title: 'Raiders of the Lost Ark',
+        year: 1981,
+        director: 'Steven Spielberg',
+        duration: '1h 55min',
+        genre: ['Action', 'Drama'],
+        score: 8.5
+      },
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      },
+      {
+        title: 'Schindler"s List',
+        year: 1993,
+        director: 'Steven Spielberg',
+        duration: '3h 15min',
+        genre: ['Biography', 'Drama', 'History'],
+        score: 8.9
+      }
+    ];
+    expect(dramaMoviesScore(input)).toBe(8.58);
+  });
 });
