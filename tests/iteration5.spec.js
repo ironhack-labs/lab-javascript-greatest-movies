@@ -151,4 +151,47 @@ describe('Iteration 5: Order by year', () => {
     ];
     expect(orderByYear(input).length).toBe(3);
   });
+
+  test('should no modify the input array when function is executed multiple times', () => {
+    const input = [
+      {
+        title: 'Indiana Jones and the Last Crusade',
+        year: 1989,
+        director: 'Steven Spielberg',
+        duration: '2h 7min',
+        genre: ['Action', 'Adventure', 'Fantasy'],
+        score: 8.3
+      },
+      {
+        title: 'Raiders of the Lost Ark',
+        year: 1981,
+        director: 'Steven Spielberg',
+        duration: '1h 55min',
+        genre: ['Action', 'Adventure'],
+        score: 8.5
+      },
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      },
+      {
+        title: 'Schindler"s List',
+        year: 1993,
+        director: 'Steven Spielberg',
+        duration: '3h 15min',
+        genre: ['Biography', 'Drama', 'History'],
+        score: 8.9
+      }
+    ];
+
+    orderByYear(input);
+    orderByYear(input);
+    orderByYear(input);
+
+    expect(input).toStrictEqual(input);
+  });
 });
