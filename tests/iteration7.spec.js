@@ -48,4 +48,27 @@ describe('BONUS - Iteration 7: Time format', () => {
     expect(turnHoursToMinutes(input)[0].duration).not.toBe('2h 49min');
     expect(turnHoursToMinutes(input)[0].duration).toBe(169);
   });
+
+  test('should return an array with the modified date for all the elements of the array', () => {
+    const input = [
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      },
+      {
+        title: 'Once Upon a Time in America',
+        year: 1984,
+        director: 'Sergio Leone',
+        duration: '3h 49min',
+        genre: ['Crime', 'Drama'],
+        score: 8.4
+      }
+    ];
+    expect(turnHoursToMinutes(input)[0].duration).toBe(169);
+    expect(turnHoursToMinutes(input)[1].duration).toBe(229);
+  });
 });

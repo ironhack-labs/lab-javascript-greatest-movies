@@ -75,7 +75,20 @@ function turnHoursToMinutes(moviesArray = []) {
 }
 
 function toMinutes(time) {
-  return 169;
+  const hoursRegexp = /(\d+h)/g;
+  const minsRegexp = /(\d+min)/g;
+
+  let hoursToMinutes = hoursRegexp.test(time)
+    ? parseInt(time.match(hoursRegexp)[0].replaceAll('h', '') * 60)
+    : 0;
+
+  let minutes = minsRegexp.test(time)
+    ? parseInt(time.match(minsRegexp)[0].replaceAll('min', ''))
+    : 0;
+
+  let totalMinutes = hoursToMinutes + minutes;
+
+  return totalMinutes ? totalMinutes : time;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
