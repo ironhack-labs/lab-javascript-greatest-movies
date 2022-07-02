@@ -12,7 +12,9 @@ describe('All Directors', () => {
   });
 
   test('should not modify the input array', () => {
-    expect(getAllDirectors(movies)).not.toBe(movies);
+    const result = getAllDirectors(movies);
+    movies.pop(1);
+    expect(result).not.toBe(movies);
   });
 
   test('should return an array with the director when parameter is an array of only one movie', () => {
