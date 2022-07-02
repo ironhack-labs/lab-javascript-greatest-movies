@@ -33,4 +33,19 @@ describe('BONUS - Iteration 7: Time format', () => {
     movies.pop(1);
     expect(result).not.toBe(movies);
   });
+
+  test('should return an array with the modified date', () => {
+    const input = [
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      }
+    ];
+    expect(turnHoursToMinutes(input)[0].duration).not.toBe('2h 49min');
+    expect(turnHoursToMinutes(input)[0].duration).toBe(169);
+  });
 });
