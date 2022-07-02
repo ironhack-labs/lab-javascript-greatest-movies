@@ -195,7 +195,7 @@ describe('Iteration 5: Order by year', () => {
     expect(input).toStrictEqual(input);
   });
 
-  test('should no modify the input array when function is executed multiple times', () => {
+  test('should no modify the input array when function is executed', () => {
     const result = orderByYear(movies);
     movies.pop(1);
     expect(result).not.toBe(movies);
