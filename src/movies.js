@@ -87,9 +87,7 @@ function toMinutes(time) {
   let minutes = containTimeInMinutes
     ? parseInt(time.match(minsRegexp)[0].trim().replaceAll('min', ''))
     : 0;
-  let totalMinutes = hoursToMinutes + minutes;
-
-  return totalMinutes;
+  return hoursToMinutes + minutes;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
