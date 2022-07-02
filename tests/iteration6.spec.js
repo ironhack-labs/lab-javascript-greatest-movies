@@ -51,4 +51,10 @@ describe('Iteration 6: Alphabetic order', () => {
     expect(orderAlphabetically(input)[0]).toBe("Once Upon a Time in America");
     expect(orderAlphabetically(input)[1]).toBe("Saving Private Ryan");
   });
+
+  test('should no modify the input array when function is executed multiple times', () => {
+    const result = orderAlphabetically(movies);
+    movies.pop(1);
+    expect(result).not.toBe(movies);
+  });
 });
