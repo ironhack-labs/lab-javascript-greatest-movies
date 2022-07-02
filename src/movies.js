@@ -57,7 +57,7 @@ function sortByTitle(title, anotherTitle) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray = []) {
-  return moviesArray;
+  return [...moviesArray].map((m) => m.title).sort((a, b) => sortByTitle(a, b));
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
