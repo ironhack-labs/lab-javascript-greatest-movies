@@ -42,7 +42,7 @@ function dramaMoviesScore(moviesArray = []) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray = []) {
-  return moviesArray;
+  return moviesArray.sort((a,b) => a.year - b.year);
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
