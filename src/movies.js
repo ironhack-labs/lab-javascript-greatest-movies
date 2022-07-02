@@ -44,14 +44,14 @@ function dramaMoviesScore(moviesArray = []) {
 function orderByYear(moviesArray = []) {
   return moviesArray.sort((a, b) => {
     if (a.year - b.year === 0) {
-      return orderByTitle(a.title, b.title);
+      return sortByTitle(a.title, b.title);
     } else {
       return a.year - b.year;
     }
   });
 }
 
-function orderByTitle(title, anotherTitle) {
+function sortByTitle(title, anotherTitle) {
   return title.localeCompare(anotherTitle);
 }
 
