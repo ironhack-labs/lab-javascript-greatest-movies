@@ -91,7 +91,9 @@ function toMinutes(time) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  return `The best year was <YEAR> with an average score of <RATE>`;
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */

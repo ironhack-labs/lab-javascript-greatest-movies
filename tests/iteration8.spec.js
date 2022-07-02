@@ -5,4 +5,8 @@ describe('BONUS - Iteration 8: Best yearly score average', () => {
   test('should be implemented by a function named bestYearAvg()', () => {
     expect(typeof bestYearAvg).toBe('function');
   });
+
+  test('should return a string', () => {
+    expect( typeof bestYearAvg()).toBe('string');
+  });
 });
