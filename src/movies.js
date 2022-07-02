@@ -54,7 +54,7 @@ function compareByYear(a, b) {
 }
 
 function compareByTitle(a, b) {
-  return a.title.localeCompare(b.title);
+  return a.title?.localeCompare(b.title);
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles

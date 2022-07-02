@@ -200,4 +200,35 @@ describe('Iteration 5: Order by year', () => {
     movies.pop(1);
     expect(result).not.toBe(movies);
   });
+
+  test('should return an ordered array by year only when input array contains years but not titles', () => {
+    const input = [
+      {
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      },
+      {
+        title: 'Raiders of the Lost Ark',
+        year: 1981,
+        director: 'Steven Spielberg',
+        duration: '1h 55min',
+        genre: ['Action', 'Adventure'],
+        score: 8.5
+      },
+      {
+        title: 'Das Boot',
+        year: 1981,
+        director: 'Wolfgang Petersen',
+        duration: '2h 29min',
+        genre: ['Adventure', 'Drama', 'Thriller', 'War'],
+        score: 8.4
+      }
+    ];
+    expect(orderByYear(input)[0].year).toBe(1981);
+    expect(orderByYear(input)[1].year).toBe(1981);
+    expect(orderByYear(input)[2].year).toBe(1998);
+  });
 });
