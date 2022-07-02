@@ -78,17 +78,18 @@ function toMinutes(time) {
   const hoursRegexp = /(\d+h)/g;
   const minsRegexp = /(\d+min)/g;
 
-  let hoursToMinutes = hoursRegexp.test(time)
-    ? parseInt(time.match(hoursRegexp)[0].replaceAll('h', '') * 60)
-    : 0;
+  const containTimeInHours = time.match(hoursRegexp);
+  const containTimeInMinutes = time.match(minsRegexp);
 
-  let minutes = minsRegexp.test(time)
-    ? parseInt(time.match(minsRegexp)[0].replaceAll('min', ''))
+  let hoursToMinutes = containTimeInHours
+    ? parseInt(time.match(hoursRegexp)[0].trim().replaceAll('h', '')) * 60
     : 0;
-
+  let minutes = containTimeInMinutes
+    ? parseInt(time.match(minsRegexp)[0].trim().replaceAll('min', ''))
+    : 0;
   let totalMinutes = hoursToMinutes + minutes;
 
-  return totalMinutes ? totalMinutes : time;
+  return totalMinutes;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average

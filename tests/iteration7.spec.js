@@ -71,4 +71,74 @@ describe('BONUS - Iteration 7: Time format', () => {
     expect(turnHoursToMinutes(input)[0].duration).toBe(169);
     expect(turnHoursToMinutes(input)[1].duration).toBe(229);
   });
+
+  test('should return the duration of 60min a movie of 1h', () => {
+    const input = [
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '1h',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      }
+    ];
+    expect(turnHoursToMinutes(input)[0].duration).toBe(60);
+  });
+
+  test('should return the duration of 59min a movie of 59min', () => {
+    const input = [
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '59min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      }
+    ];
+    expect(turnHoursToMinutes(input)[0].duration).toBe(59);
+  });
+
+  test('should return the duration of 0 min a movie of 0min', () => {
+    const input = [
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '0min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      }
+    ];
+    expect(turnHoursToMinutes(input)[0].duration).toBe(0);
+  });
+
+  test('should return the duration of 0min a movie of 0h', () => {
+    const input = [
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '0h',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      }
+    ];
+    expect(turnHoursToMinutes(input)[0].duration).toBe(0);
+  });
+
+  test('should return the duration of 0min a movie of 0h 0min', () => {
+    const input = [
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '0h 0min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      }
+    ];
+    expect(turnHoursToMinutes(input)[0].duration).toBe(0);
+  });
 });
