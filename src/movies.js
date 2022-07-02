@@ -19,7 +19,9 @@ function scoresAverage(moviesArray = []) {
   }
 
   return round(
-    moviesArray.filter(m => m.score).reduce((acc, curr) => acc + curr.score, 0) / moviesArray.length,
+    moviesArray
+      .filter((m) => m.score)
+      .reduce((acc, curr) => acc + curr.score, 0) / moviesArray.length,
     2
   );
 }
@@ -42,22 +44,23 @@ function dramaMoviesScore(moviesArray = []) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray = []) {
-  return [...moviesArray].sort(
-    (a, b) => sorByYear(a.year, b.year) || sortByTitle(a.title, b.title)
-  );
+  return [...moviesArray].sort((a, b) => sorByYear(a, b) | sortByTitle(a, b));
 }
 
-function sorByYear(year, anotherYear) {
-  return year - anotherYear;
+function sorByYear(a, b) {
+  return a.year - b.year;
 }
 
-function sortByTitle(title, anotherTitle) {
-  return title.localeCompare(anotherTitle);
+function sortByTitle(a, b) {
+  return a.title.localeCompare(b.title);
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray = []) {
-  return [...moviesArray].map((m) => m.title).sort((a, b) => sortByTitle(a, b)).slice(0,20);
+  return [...moviesArray]
+    .sort((a, b) => sortByTitle(a, b))
+    .map((m) => m.title)
+    .slice(0, 20);
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
