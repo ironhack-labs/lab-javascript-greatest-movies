@@ -91,8 +91,47 @@ function toMinutes(time) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {
-  return `The best year was <YEAR> with an average score of <RATE>`;
+function bestYearAvg(moviesArray = []) {
+  let averagesPerYear = averageScoresPerYear(mapYearToScores(moviesArray));
+  const besYear = findMax(averagesPerYear);
+  return `The best year was ${besYear.year} with an average score of ${besYear.score}`;
+}
+
+function findMax(averagesPerYear) {
+  let max = {
+    year: '',
+    score: ''
+  };
+  Object.keys(averagesPerYear).forEach((year) => {
+    if (averagesPerYear[year] > max.score) {
+      max = {
+        year: year,
+        score: averagesPerYear[year]
+      };
+    }
+  });
+  return max;
+}
+
+function averageScoresPerYear(input) {
+  let averagePerYear = {};
+  Object.keys(input).forEach(
+    (year) =>
+      (averagePerYear[year] =
+        input[year].reduce((acc, a) => acc + a, 0) / input[year].length)
+  );
+  return averagePerYear;
+}
+
+function mapYearToScores(moviesArray) {
+  const yearMap = {};
+  moviesArray.forEach(
+    (movie) =>
+      (yearMap[movie.year] = yearMap[movie.year]
+        ? [...yearMap[movie.year], movie.score]
+        : [movie.score])
+  );
+  return yearMap;
 }
 
 // The following is required to make unit tests work.

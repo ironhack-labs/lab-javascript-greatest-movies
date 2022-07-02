@@ -14,4 +14,20 @@ describe('BONUS - Iteration 8: Best yearly score average', () => {
     expect(bestYearAvg()).toContain('The best year was');
     expect(bestYearAvg()).toContain('with an average score of');
   });
+
+  test('should return "The best year was 1998 with an average score of 8.6" when input is a only one movie array of year 1998 and score 8.6', () => {
+    const input = [
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      }
+    ];
+    expect(bestYearAvg(input)).toBe(
+      'The best year was 1998 with an average score of 8.6'
+    );
+  });
 });
