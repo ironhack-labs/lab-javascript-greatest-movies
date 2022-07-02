@@ -48,13 +48,52 @@ describe('Iteration 6: Alphabetic order', () => {
       }
     ];
     expect(orderAlphabetically(input).length).toBe(2);
-    expect(orderAlphabetically(input)[0]).toBe("Once Upon a Time in America");
-    expect(orderAlphabetically(input)[1]).toBe("Saving Private Ryan");
+    expect(orderAlphabetically(input)[0]).toBe('Once Upon a Time in America');
+    expect(orderAlphabetically(input)[1]).toBe('Saving Private Ryan');
   });
 
   test('should no modify the input array when function is executed multiple times', () => {
     const result = orderAlphabetically(movies);
     movies.pop(1);
     expect(result).not.toBe(movies);
+  });
+
+  test('should return an array "Das Boot" as first element, and "Raiders of the Lost Ark" when input array is "Saving Private Ryan", "Raiders of the Lost Ark" and "Das Boot" ', () => {
+    const input = [
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      },
+      {
+        title: 'Raiders of the Lost Ark',
+        year: 1981,
+        director: 'Steven Spielberg',
+        duration: '1h 55min',
+        genre: ['Action', 'Adventure'],
+        score: 8.5
+      },
+      {
+        title: 'Das Boot',
+        year: 1981,
+        director: 'Wolfgang Petersen',
+        duration: '2h 29min',
+        genre: ['Adventure', 'Drama', 'Thriller', 'War'],
+        score: 8.4
+      }
+    ];
+    expect(orderAlphabetically(input)[0]).toBe('Das Boot');
+    expect(orderAlphabetically(input)[1]).toBe('Raiders of the Lost Ark');
+  });
+
+
+  it('If there are more than 20 elements, return only 20 of them.', () => {
+    const moviesArr = [...movies];
+    
+    expect(moviesArr.length).toBeGreaterThanOrEqual(20);
+    expect(orderAlphabetically(moviesArr)).toHaveLength(20);
   });
 });
