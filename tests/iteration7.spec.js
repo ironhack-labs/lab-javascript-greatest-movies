@@ -26,4 +26,11 @@ describe('BONUS - Iteration 7: Time format', () => {
     ];
     expect(turnHoursToMinutes(input).length).toBe(1);
   });
+
+  test('should no modify the input array when function is executed', () => {
+    let result = turnHoursToMinutes(movies);
+    movies.pop(1);
+    movies.pop(1);
+    expect(result).not.toBe(movies);
+  });
 });
