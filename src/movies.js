@@ -92,6 +92,9 @@ function toMinutes(time) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray = []) {
+  if (!moviesArray || moviesArray.length === 0) {
+    return null;
+  }
   let averagesPerYear = averageScoresPerYear(mapYearToScores(moviesArray));
   const besYear = findMax(averagesPerYear);
   return `The best year was ${besYear.year} with an average score of ${besYear.score}`;
