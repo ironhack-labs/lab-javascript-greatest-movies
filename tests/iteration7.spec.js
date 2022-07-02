@@ -5,12 +5,25 @@ describe('BONUS - Iteration 7: Time format', () => {
   test('should be implemented by a function named turnHoursToMinutes()', () => {
     expect(typeof turnHoursToMinutes).toBe('function');
   });
-
   test('should return an array', () => {
     expect(Array.isArray(turnHoursToMinutes())).toBe(true);
   });
 
   test('should return an empty array if an empty array is passed as parameter', () => {
     expect(turnHoursToMinutes([])).toStrictEqual([]);
+  });
+
+  test('should return an array with the same length when there is only one movie in the array', () => {
+    const input = [
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      }
+    ];
+    expect(turnHoursToMinutes(input).length).toBe(1);
   });
 });
