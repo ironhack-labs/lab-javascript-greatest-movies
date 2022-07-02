@@ -7,6 +7,11 @@ describe('BONUS - Iteration 8: Best yearly score average', () => {
   });
 
   test('should return a string', () => {
-    expect( typeof bestYearAvg()).toBe('string');
+    expect(typeof bestYearAvg()).toBe('string');
+  });
+
+  test('should return string containing The best year was <YEAR> with an average score of <RATE> ', () => {
+    expect(bestYearAvg()).toContain('The best year was');
+    expect(bestYearAvg()).toContain('with an average score of');
   });
 });
