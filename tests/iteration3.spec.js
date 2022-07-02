@@ -77,4 +77,33 @@ describe('Iteration 3: All scores average', () => {
 
     expect(scoresAverage(input)).toBe(8.67);
   });
+
+  test('should return average even if one of the movies does not have score', () => {
+    const input = [
+      {
+        title: 'Raiders of the Lost Ark',
+        year: 1981,
+        director: 'Steven Spielberg',
+        duration: '1h 55min',
+        genre: ['Action', 'Adventure']
+      },
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: ''
+      },
+      {
+        title: 'Schindler"s List',
+        year: 1993,
+        director: 'Steven Spielberg',
+        duration: '3h 15min',
+        genre: ['Biography', 'Drama', 'History'],
+        score: 8.9
+      }
+    ];
+    expect(scoresAverage(input)).toBe(2.97);
+  });
 });

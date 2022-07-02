@@ -19,7 +19,7 @@ function scoresAverage(moviesArray = []) {
   }
 
   return round(
-    moviesArray.reduce((acc, curr) => acc + curr.score, 0) / moviesArray.length,
+    moviesArray.filter(m => m.score).reduce((acc, curr) => acc + curr.score, 0) / moviesArray.length,
     2
   );
 }
