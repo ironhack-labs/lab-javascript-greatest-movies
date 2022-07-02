@@ -87,6 +87,7 @@ describe('Iteration 5: Order by year', () => {
     ];
     expect(orderByYear(input)[0].year).toBe(1981);
     expect(orderByYear(input)[1].year).toBe(1989);
+    expect(orderByYear(input).length).toBe(4);
   });
 
   test('should return the array in alphabetical order: with 1981 movie "Das Boot" as first element when the input array has two movies from 1981 and titles are "Das Boot" and "Raiders of the Lost Ark"', () => {
@@ -118,5 +119,36 @@ describe('Iteration 5: Order by year', () => {
     ];
     expect(orderByYear(input)[0].title).toBe('Das Boot');
     expect(orderByYear(input)[1].title).toBe('Raiders of the Lost Ark');
+    expect(orderByYear(input).length).toBe(3);
+  });
+
+  test('should return an array with the same size as input', () => {
+    const input = [
+      {
+        title: 'Saving Private Ryan',
+        year: 1998,
+        director: 'Steven Spielberg',
+        duration: '2h 49min',
+        genre: ['Drama', 'War'],
+        score: 8.6
+      },
+      {
+        title: 'Raiders of the Lost Ark',
+        year: 1981,
+        director: 'Steven Spielberg',
+        duration: '1h 55min',
+        genre: ['Action', 'Adventure'],
+        score: 8.5
+      },
+      {
+        title: 'Das Boot',
+        year: 1981,
+        director: 'Wolfgang Petersen',
+        duration: '2h 29min',
+        genre: ['Adventure', 'Drama', 'Thriller', 'War'],
+        score: 8.4
+      }
+    ];
+    expect(orderByYear(input).length).toBe(3);
   });
 });
