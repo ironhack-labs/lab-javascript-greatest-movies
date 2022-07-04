@@ -1,15 +1,3 @@
-const movies = require('../src/data');
-const {
-  getAllDirectors,
-  howManyMovies,
-  scoresAverage,
-  dramaMoviesScore,
-  orderByYear,
-  orderAlphabetically,
-  turnHoursToMinutes,
-  bestYearAvg,
-} = require('../src/movies');
-
 // Iteration 1
 describe('Function "getAllDirectors"', () => {
   it('should be declared', () => {
@@ -21,6 +9,8 @@ describe('Function "getAllDirectors"', () => {
   });
 
   it('should return a new array, not update the original one', () => {
+    const returnValue = getAllDirectors(movies);
+    expect(returnValue instanceof Array).toBe(true);        
     expect(getAllDirectors(movies)).not.toEqual(movies);
   });
 
@@ -215,6 +205,8 @@ describe('Function "orderByYear"', () => {
 
   it('should return a new array', () => {
     const arr = [];
+    const returnValue = orderByYear(arr);
+    expect(returnValue instanceof Array).toBe(true);    
     expect(orderByYear(arr)).not.toBe(arr);
   });
 
@@ -255,7 +247,8 @@ describe('Function "orderAlphabetically"', () => {
 
   it('should not mutate the original array', () => {
     const arr = [{ title: 'xyz' }, { title: 'abc' }];
-    orderAlphabetically(arr);
+    const returnValue = orderAlphabetically(arr);
+    expect(returnValue instanceof Array).toBe(true);
     expect(arr[0].title).toEqual('xyz');
   });
 
@@ -265,7 +258,7 @@ describe('Function "orderAlphabetically"', () => {
 
   it('should return all of items when the array passed has fewer than 20 items', () => {
     const moviesArr = [{ title: 'aab' }, { title: 'bab' }, { title: 'acb' }];
-    expect(orderAlphabetically(moviesArr)).toHaveLength(3);
+    expect(orderAlphabetically(moviesArr).length).toBe(3);
   });
 
   it('If there are more than 20 elements, return only 20 of them.', () => {
@@ -307,7 +300,7 @@ describe('Function "orderAlphabetically"', () => {
       { title: 'bab' },
       { title: 'acb' }
     ];
-    expect(orderAlphabetically(moviesArr)).toHaveLength(20);
+    expect(orderAlphabetically(moviesArr).length).toBe(20);
   });
 
   it('should order them alphabetically.', () => {
@@ -408,6 +401,8 @@ describe('Function "turnHoursToMinutes"', () => {
   });
 
   it('should return a new array, not update the original one', () => {
+    const returnValue = turnHoursToMinutes(movies);
+    expect(returnValue instanceof Array).toBe(true);
     expect(turnHoursToMinutes(movies)).not.toEqual(movies);
   });
 
