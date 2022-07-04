@@ -103,7 +103,7 @@ function orderAlphabetically(moviesArray) {
 function turnHoursToMinutes(moviesArray) {
   const moviesClone = JSON.parse(JSON.stringify(moviesArray));
 
-  moviesClone.map((movie) => {
+  moviesClone.forEach((movie) => {
     const splittedDuration = movie.duration.split(' ');
 
     let hoursToMin;
@@ -119,11 +119,49 @@ function turnHoursToMinutes(moviesArray) {
 
     movie.duration = hoursToMin + minStrToNum;
   });
+
   return moviesClone;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  const moviesClone = JSON.parse(JSON.stringify(moviesArray));
+  // 1. filter by years
+  const yearMemorie = [];
+  const scorePerYear = {};
+
+  if (moviesArray.length === 0) {
+    return null;
+  }
+
+  moviesClone.forEach((movie) => {
+    const setYear = movie.year;
+    if (!yearMemorie.includes(setYear)) {
+      yearMemorie.push(setYear);
+      // Añado a variable yearMemorie los años que vamos recorriendo y los filtramos para no repetir movie en un nuevo arr
+      // filteredMovies para asi poder extraer el avgScore
+      const filteredMovies = moviesClone.filter(
+        (movie) => setYear === movie.year
+      );
+      // avgScore con reduce y sacamos la media de cada año, todo en un mismo If para ahorrar proceso
+      const avgScore = (
+        filteredMovies.reduce((acc, movie) => acc + movie.score, 0) /
+        filteredMovies.length
+      ).toFixed(2);
+
+      scorePerYear[setYear] = parseFloat(avgScore);
+    }
+  });
+  const scoresNumbers = Object.values(scorePerYear);
+  const maxAvg = Math.max(...scoresNumbers);
+  const getYear = Object.keys(scorePerYear).find(
+    (key) => scorePerYear[key] === maxAvg
+  );
+
+  return `The best year was ${getYear} with an average score of ${maxAvg}`;
+}
+
+
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
