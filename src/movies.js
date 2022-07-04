@@ -83,7 +83,7 @@ function orderByYear(moviesArray) {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
   const moviesClone = JSON.parse(JSON.stringify(moviesArray));
- 
+
   const sortedMovies = moviesClone.sort((movie1, movie2) => {
     return movie1.title.localeCompare(movie2.title);
   });
@@ -101,48 +101,29 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-  const moviesClone = JSON.parse(JSON.stringify(moviesArray)); 
+  const moviesClone = JSON.parse(JSON.stringify(moviesArray));
 
-  // 1. Recorrer array
-  moviesClone.map( movie => {
-    // 2. Acceder a duration
-    const newArr = movie.duration.split(' ');
-    // 3. parse hours to min
-    let hoursToMin = 0;
+  moviesClone.map((movie) => {
+    const splittedDuration = movie.duration.split(' ');
+
+    let hoursToMin;
     let minStrToNum = 0;
 
-
-    if (newArr[0] && newArr[0].includes('h')) {
-    hoursToMin += parseFloat(newArr[0].slice(0, -1)) * 60  
-    } 
-
-    if (newArr[1] && newArr[1].includes('min')) {
-      minStrToNum += parseFloat(newArr[1].slice(0, -3));
-    } else {
-      minStrToNum = 0;
+    if (splittedDuration[0] && splittedDuration[0].includes('h')) {
+      hoursToMin = parseFloat(splittedDuration[0].slice(0, -1)) * 60;
     }
-    
-    // 4. devolver a colección con cambios
-    let newTime = hoursToMin + minStrToNum;
-    
 
-    console.log(newTime)
+    if (splittedDuration[1] && splittedDuration[1].includes('min')) {
+      minStrToNum = parseFloat(splittedDuration[1].slice(0, -3));
+    }
 
-    movie.duration = newTime
-  })
-  console.log(moviesClone)
-return moviesClone
-  
-
-  
-
+    movie.duration = hoursToMin + minStrToNum;
+  });
+  return moviesClone;
 }
-turnHoursToMinutes(movies)
+
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {
-
-
-}
+function bestYearAvg(moviesArray) {}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
