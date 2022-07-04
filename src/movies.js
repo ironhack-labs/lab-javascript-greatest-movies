@@ -12,8 +12,6 @@ function getAllDirectors(moviesArray) {
   return allDirectors;
 }
 
-console.log(getAllDirectors(movies));
-
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
   let count = 0;
@@ -89,12 +87,11 @@ function orderAlphabetically(moviesArray) {
   const sortedMovies = moviesClone.sort((movie1, movie2) => {
     return movie1.title.localeCompare(movie2.title);
   });
-  console.log(sortedMovies);
 
   const first20 = sortedMovies.slice(0, 20);
 
   let titles = [];
-  
+
   first20.forEach((movie) => {
     titles.push(movie.title);
   });
@@ -104,10 +101,43 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
+  const moviesClone = JSON.parse(JSON.stringify(moviesArray)); 
 
+  // 1. Recorrer array
+  moviesClone.map( movie => {
+    // 2. Acceder a duration
+    const newArr = movie.duration.split(' ');
+    // 3. parse hours to min
+    let hoursToMin = 0;
+    let minStrToNum = 0;
+
+
+    if (newArr[0] && newArr[0].includes('h')) {
+    hoursToMin += parseFloat(newArr[0].slice(0, -1)) * 60  
+    } 
+
+    if (newArr[1] && newArr[1].includes('min')) {
+      minStrToNum += parseFloat(newArr[1].slice(0, -3));
+    } else {
+      minStrToNum = 0;
+    }
+    
+    // 4. devolver a colección con cambios
+    let newTime = hoursToMin + minStrToNum;
+    
+
+    console.log(newTime)
+
+    movie.duration = newTime
+  })
+  console.log(moviesClone)
+return moviesClone
+  
+
+  
 
 }
-
+turnHoursToMinutes(movies)
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
 
