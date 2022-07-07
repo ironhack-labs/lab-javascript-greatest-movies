@@ -160,7 +160,7 @@ Create a `orderAlphabetically()` function, that receives an array and returns an
 
 
 
-:warning: **Important:** Your function should *return a new array*, containing formated movie objects. Your function should not modify (mutate) the original array. You may need to do some research on how to make a "copy" or "clone" an array.
+:warning: **Important:** Your function should *return a new array*, containing movie objects sorted alphabetically. Your function should not modify (mutate) the original array. You may need to do some research on how to make a "copy" or "clone" an array.
 
 
 
@@ -191,16 +191,16 @@ Should be:
 
 ```javascript
 {
-  "title":"The Shawshank Redemption",
-  "year":1994,
-  "director":"Frank Darabont",
-  "duration":142,
-  "genre":["Crime","Drama"],
-  "score":9.3
+  "title": "The Shawshank Redemption",
+  "year": 1994,
+  "director": "Frank Darabont",
+  "duration": 142,
+  "genre": ["Crime","Drama"],
+  "score": 9.3
 }
 ```
 
-:warning: **Important:** Your function should return a new array, containing formated movie objects. Your function should not modify (mutate) the original array.
+:warning: **Important:** Your function should *return a new array*, containing movie objects with the duration time in minutes. Your function should not modify (mutate) the original array.
 
 <br>
 
