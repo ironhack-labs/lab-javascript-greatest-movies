@@ -104,7 +104,7 @@ describe('Function "howManyMovies"', () => {
     ).toBe(2);
   });
 
-  it('should return 4 when called with the array of movies exported from "movies.js"', () => {
+  it('should return 4 when called with the array of movies exported from "data.js"', () => {
     expect(howManyMovies(movies)).toBe(4);
   });
 });
@@ -203,7 +203,7 @@ describe('Function "orderByYear"', () => {
     expect(typeof orderByYear(movies)).toBe('object');
   });
 
-  it('should return a new array', () => {
+  it('should return a new array, not mutate the original one', () => {
     const arr = [];
     const returnValue = orderByYear(arr);
     expect(returnValue instanceof Array).toBe(true);    
@@ -245,11 +245,11 @@ describe('Function "orderAlphabetically"', () => {
     expect(typeof orderAlphabetically([])).toBe('object');
   });
 
-  it('should not mutate the original array', () => {
+  it('should return a new array, not mutate the original one', () => {
     const arr = [{ title: 'xyz' }, { title: 'abc' }];
     const returnValue = orderAlphabetically(arr);
     expect(returnValue instanceof Array).toBe(true);
-    expect(arr[0].title).toEqual('xyz');
+    expect(orderByYear(arr)).not.toBe(arr);    
   });
 
   it('should only return the title of the movies, each value should be a string', () => {
@@ -400,10 +400,10 @@ describe('Function "turnHoursToMinutes"', () => {
     expect(turnHoursToMinutes(movies) instanceof Array).toBe(true);
   });
 
-  it('should return a new array, not update the original one', () => {
+  it('should return a new array, not mutate the original one', () => {
     const returnValue = turnHoursToMinutes(movies);
     expect(returnValue instanceof Array).toBe(true);
-    expect(turnHoursToMinutes(movies)).not.toEqual(movies);
+    expect(turnHoursToMinutes(movies)).not.toBe(movies);    
   });
 
   it('should return an array of movies with duration as a number', () => {
