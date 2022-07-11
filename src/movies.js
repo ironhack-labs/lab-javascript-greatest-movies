@@ -35,10 +35,36 @@ if (moviesArray.length === 0) {
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+
+/// I DON´T FULLY UNDERSTAND HOW THE ELEMENT THING WORKS AND WHY WE DIDN´T HAVE TO AVERAGE THE SUM ???
+      function dramaMoviesScore(moviesArray) {
+        const dramaMovies = moviesArray.filter(element => element.genre.includes('Drama'));
+        return scoresAverage(dramaMovies);
+      }
+      //Const score = dramaAvgScore.reduce((acc, val) => acc + val.score) - are we suppose to use this to average the score, why is this passing???
+      
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    
+        let yearArr =[...moviesArray];
+        yearArr.sort((a,b) => {
+          if (a.year > b.year){
+            return 1;
+          } else if (a.year < b.year) {
+            return -1
+          }
+          if (a.title > b.title) {
+            return 1;
+          } else if (a.title < b.title){
+            return -1
+          } else{ 
+            return 0;
+          }
+      
+        }); return yearArr;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
