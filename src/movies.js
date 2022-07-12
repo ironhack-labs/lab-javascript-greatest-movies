@@ -41,13 +41,59 @@ function dramaMoviesScore(moviesArray) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+//const arrayYear = moviesArray.sort((a,b) => a.year - b.year);
+const arrayYear = moviesArray.map((element)=> element).sort((keyA,keyB) => {
+
+if (keyA.year < keyB.year) {
+  return -1;
+} else if (keyA.year > keyB.year) {
+  return 1;
+} else { // keyA == keyB
+  if (keyA.title < keyB.title) {
+      return -1;
+  } else if (keyA.title > keyB.title) {
+      return 1;
+  } else {
+      return 0;
+  }
+}})
+
+return arrayYear;
+
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  const orderArray = [...moviesArray];
+
+	orderArray.sort(function (a, b) {
+		if (a.title < b.title) return -1;
+		if (a.title === b.title) return 0;
+		if (a.title > b.title) return 1;
+	});
+	const titles = orderArray.map((order) => order.title).slice(0, 20);
+	return titles;
+
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+
+const convertToMinutes = (timeStr) => {
+  const [ , hours, mins ] = timeStr.match(/(?:(\d)h )?(\d+)min/)
+    .map(v => parseInt(v, 10));
+  return hours * 60 + mins;
+}
+
+const filmsWithNewDurations = moviesArray.map(film => ({
+  ...film,
+  duration: convertToMinutes(moviesArray.duration)
+}));
+
+
+
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
