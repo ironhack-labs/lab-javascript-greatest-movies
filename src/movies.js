@@ -41,14 +41,15 @@ if (moviesArray.length === 0) {
         const dramaMovies = moviesArray.filter(element => element.genre.includes('Drama'));
         return scoresAverage(dramaMovies);
       }
-      //Const score = dramaAvgScore.reduce((acc, val) => acc + val.score) - are we suppose to use this to average the score, why is this passing???
-      
+      //notes: call the code from iteration 3 to average the drama movie scores! that is why there is no average formula here!!!
+
+
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
     
-        let yearArr =[...moviesArray];
+        let yearArr = [...moviesArray];
         yearArr.sort((a,b) => {
           if (a.year > b.year){
             return 1;
@@ -65,6 +66,25 @@ function orderByYear(moviesArray) {
       
         }); return yearArr;
 }
+///// notes from corrections in class: 
+/* 
+let yearArr = [...moviesArray];
+let moviesCopy.sort ((a, b) =>  {
+   
+   compare by year:
+    if (a.year - b.year) return -1;
+    else if (a.year === b.year); {
+
+   if have same year, compare by title:
+        if (a.title.toLowerCase() > b.title.toLowerCase()) return -1;
+        if (a.title.toLowerCase() < b.title.toLowerCase()) return 1;
+    }
+        else if {return 1;
+        } else {
+            return 0;
+        }
+});
+*/
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
