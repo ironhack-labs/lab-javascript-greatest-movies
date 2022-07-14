@@ -18,11 +18,15 @@ function howManyMovies(movies) {
 function scoresAverage(movies) {
   let finalAvg = movies.reduce((acumulator, elem, index, array) => {
     acumulator += elem.score / movies.length;
-    
+    // if (elem.score / movies.length === 0){
+    //   return acumulator;
+    // }
     return acumulator;
   }, 0)
+  
   return finalAvg = Math.round(finalAvg * 100) / 100;
-} 
+}
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies) {
   let dramaFilms = movies.filter((movie) => {
