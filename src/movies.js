@@ -17,12 +17,6 @@ console.log(getAllDirectors);
 
 const howManyMovies =(arr)=> (arr.filter(movie => movie.director === "Steven Spielberg" && movie.genre.includes("Drama")).length)
 
-/*
-const howManyMovies =(arr)=>  { 
-let x = arr.filter(movie => movie.director === "Steven Spielberg" && movie.genre.includes("Drama"))
-return x.length
-}
-*/
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
 
