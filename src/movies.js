@@ -52,7 +52,19 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  let newArr = JSON.parse(JSON.stringify(moviesArray))
+  for (let i = 0; i < newArr.length; i++){
+    let splitDuration = newArr[i].duration.split(' ')
+    splitDuration[0] = parseInt(splitDuration[0].replace(/[^0-9]/g, ''), 10)
+    if (splitDuration[1]){
+      splitDuration[1] = parseInt(splitDuration[1].replace(/[^0-9]/g, ''), 10)
+      newArr[i].duration = (splitDuration[0] * 60) + splitDuration[1]
+    }
+    else {newArr[i].duration = (splitDuration[0] * 60)}
+  }
+  return newArr
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
