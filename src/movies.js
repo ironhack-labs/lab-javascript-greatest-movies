@@ -3,7 +3,15 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
     const allDirectors = moviesArray.map(movie => movie.director);
-    return allDirectors;
+    
+    //BONUS-----
+    let uniqDirectors = [];
+    allDirectors.forEach(function (element) {
+        if(!uniqDirectors.includes(element)) {
+            uniqDirectors.push(element);
+        }
+    });
+    return uniqDirectors; //before BONUS this returned allDirectors
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -34,7 +42,7 @@ function scoresAverage(moviesArray) {
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
     //filter for drama movies
-    dramas = moviesArray.filter(movie => movie.genre.includes('Drama'));
+    const dramas = moviesArray.filter(movie => movie.genre.includes('Drama'));
     //reuse the previous function
     return scoresAverage(dramas);
 }
@@ -68,4 +76,39 @@ function orderAlphabetically(moviesArray) {
 function turnHoursToMinutes(moviesArray) {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+    //filter out ...nah
+    //const byavg = moviesArray.filter()
+    //for each year, calculate the average score, store them and compare them
+    //NOPE
+    //moviesArray.forEach(function (elem) {
+    //store years in an array, and scores in another
+    moviesArray.sort((a,b) => a.year - b.year);
+    console.log(moviesArray)
+    const avgYrScore = moviesArray.reduce( function (acc, movie) {
+        const yr = movie.year;
+        const scr= movie.score;
+        
+        if (typeof acc[yr] === 'undefined') {
+          acc[yr] = [scr];
+        } else {
+          acc[yr].push(scr);
+        }
+        return acc;
+    }, {});
+
+    console.log(avgYrScore);
+    /*
+    moviesArray.forEach( function (movie) {
+        arrYearScore.push(movie.year, movie.score);
+        
+    });
+     for(i=0;i<arrYearScore.length;i+=2) {
+
+    }
+    const  = moviesArray;
+    
+    
+    
+    //return "The best year was ${year} with an average score of ${score}";*/
+}
