@@ -16,52 +16,47 @@ function howManyMovies(movies) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(movies) {
-  let finalAvg = movies.reduce((acumulator, elem, index, array) => {
-    acumulator += elem.score / movies.length;
-    // if (elem.score / movies.length === 0){
-    //   return acumulator;
-    // }
-    return acumulator;
-  }, 0)
-  
+  let finalAvg = movies.reduce((acumulator, current) => {
+    if (!current.score) {
+      return acumulator += 0; 
+    } else {
+   return acumulator += current.score / movies.length;
+  }}, 0)
   return finalAvg = Math.round(finalAvg * 100) / 100;
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(movies) {
-  let dramaFilms = movies.filter((movie) => {
-    return movie.genre.includes("Drama")
-  })
-  let dramaAvg = dramaFilms.reduce((acc, el, index, arr) => {
-    acc += el.rate / dramaFilms.length;
-    return acc;
-  }, 0)
-  return dramaAvg = Math.round(dramaAvg * 100) / 100;
+  let dramaMovies = movies.filter(function(movie){
+    if (movie.genre.includes("Drama")) {
+    return movie;
+    }}); 
+    if (dramaMovies.length === 0) { return 0}
+    let averageDramaScore = dramaMovies.reduce(function(sum, movie){
+    return sum += movie.score;
+    }, 0); let average = averageDramaScore / dramaMovies.length
+    return Math.round(average * 100) / 100;
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
-  let orderedList = movies.map((movie) => {
-    return movie;
-  });
-  let sortedYears = orderedList.sort((el1, el2) => {
-    if (el1.year < el2.year) {
-      return -1;
-    } else if (el1.year > el2.year) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
-  return sortedYears;
-}
+  let sortedYears = [];
+  for (let i=0; i < movies.length; i++) {
+  sortedYears.push(movies[i])}
+  sortedYears.sort(function(el1, el2){
+  if (el1.year === el2.year) {
+  if (el1.title < el2.title) {
+  return -1;} 
+  else if (el1.title > el2.title) {
+  return 1;}}
+  return el1.year - el2.year;
+  }); return sortedYears;} 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies){
   let movArr = movies.map((movie)=> {
       return movie.title;
   });
-  
   let first20 = movArr.sort((mov1, mov2)=>{
       if(mov1<mov2){
           return -1;
