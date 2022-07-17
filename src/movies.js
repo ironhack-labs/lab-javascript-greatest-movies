@@ -36,30 +36,84 @@ function scoresAverage(moviesArray) {
 
 // Iteration 4: Drama movies - Get the score average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-  let counter = 1;
+  if (moviesArray == "") {
+    return 0;
+  }
   const dramaMovies = moviesArray.filter((movie) =>
-    movie.genre.inclues("Drama")
+    movie.genre.includes("Drama")
   ); // get all the drama movies
+  if (dramaMovies.length === 0) {
+    return 0;
+  }
   const totalScore = dramaMovies.reduce((accumulator, movie) => {
     if (typeof movie.score === "number") {
       return accumulator + movie.score;
     }
-    return accumulator + 0;
+    return accumulator + 0; // if it's not a number just return accumulator without adding anything
   }, 0);
 
-  let result = Number(totalScore) / dramaMovies.length;
+  let result = totalScore / dramaMovies.length;
 
-  return result.toFixed(2);
+  return Number(result.toFixed(2));
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  let orderedMovies = [...moviesArray]; // array cloned
+  orderedMovies.sort((a, b) => {
+    if (a.year === b.year) {
+      return a.title < b.title ? -1 : 1; // ASCENDING order
+    }
+    return a.year - b.year;
+  });
+  return orderedMovies;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  const orderedArray = moviesArray.map((movie) => movie.title).sort(); // it will sort asc.
+  if (orderedArray.length >= 20) {
+    return orderedArray.slice(0, 20); // last item not inclued
+  }
+  return orderedArray;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  const horsToMinutes = moviesArray.map((movie) => {
+    let time = movie.duration.split("h");
+    let hour = time[0];
+    let min = time[1].split("min")[0];
+    time = Number(hour * 60) + Number(min);
+    // movie.duration = `${time} min`; // it modifies the original array :(
+    // is there any better way to do this?
+    return {
+      director: movie.director,
+      duration: time,
+      genre: movie.genre,
+      score: movie.score,
+      title: movie.title,
+      year: movie.year,
+    };
+  });
+  return horsToMinutes;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  if (moviesArray.length == 0) return null;
+  let resAvg = 0;
+  let resYear = 0;
+  moviesArray.forEach((element, index) => {
+    const arrayYear = moviesArray.filter(
+      (movie) => movie.year === element.year
+    ); // get all the movies with the same year
+    const avgYear = scoresAverage(arrayYear); // get the avg of those movies
+    if (avgYear > resAvg || (resAvg == avgYear && resYear > element.year)) {
+      // greatest avg or greatest year in case of same avgs
+      resAvg = avgYear;
+      resYear = element.year;
+    }
+  });
+  return `The best year was ${resYear} with an average score of ${resAvg}`;
+}
