@@ -26,17 +26,41 @@ function scoresAverage(moviesArray) {
     .filter((element) => element.score)
     .map((element) => element.score)
     .reduce((previousValue, currentValue) => previousValue + currentValue);
-  
-    let decimal = average / moviesArray.length;
+
+  let decimal = average / moviesArray.length;
   return Math.round(decimal * 100) / 100;
 }
 scoresAverage(movies);
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+  const allDramaMovies = moviesArray.filter(
+    (element) => element.genre == "Drama"
+  );
+  const dramaScores = allDramaMovies
+    .map((element) => element.score)
+    .reduce((previousValue, currentValue) => previousValue + currentValue);
+  let decimal = dramaScores / allDramaMovies.length;
+  return Math.round(decimal * 100) / 100;
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    const directorSort = [] 
+    const sorting = moviesArray.sort((a, b) => {
+      const nameA = a.title;
+      const nameB = b.title;
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    }).sort((a, b) => a.year - b.year)
+    directorSort.push(...sorting)
+    return directorSort;
+  }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
