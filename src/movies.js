@@ -35,6 +35,7 @@ return Number(average.toFixed(2));
 function dramaMoviesScore(moviesArray) {
   const dramaMovies = moviesArray.filter((movie) => {
     return movie.genre.includes('Drama')}); 
+    if(!dramaMovies.length) return 0;
 
   const sumScore = dramaMovies.reduce((sum, movie) => {
     return sum + movie.score;
@@ -46,15 +47,27 @@ function dramaMoviesScore(moviesArray) {
   }; 
  
 
-
-
-
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
  
-function orderByYear(movies) {
-  
-  }
+function orderByYear(moviesArray) {
+  let yearArr =[...moviesArray];
+  yearArr.sort((a,b) => {
+    if (a.year > b.year){
+      return 1;
+    } else if (a.year < b.year) {
+      return -1
+    }
+    if (a.title > b.title) {
+      return 1;
+    } else if (a.title < b.title){
+      return -1
+    } else{ 
+      return 0;
+    }
 
+  }); return yearArr;
+}
+ 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
