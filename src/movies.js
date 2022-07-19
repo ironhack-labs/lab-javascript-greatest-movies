@@ -30,17 +30,21 @@ function scoresAverage(moviesArray) {
   let decimal = average / moviesArray.length;
   return Math.round(decimal * 100) / 100;
 }
-scoresAverage(movies);
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
+
 function dramaMoviesScore(moviesArray) {
   const allDramaMovies = moviesArray.filter(
     (element) => element.genre == "Drama"
   );
+  if (allDramaMovies.length === 0) {
+    return 0;
+  }
   const dramaScores = allDramaMovies
     .map((element) => element.score)
     .reduce((previousValue, currentValue) => previousValue + currentValue);
   let decimal = dramaScores / allDramaMovies.length;
+
   return Math.round(decimal * 100) / 100;
 }
 
@@ -91,8 +95,7 @@ function turnHoursToMinutes(moviesArray) {
   for (let i = 0; i < duration.length; i++) {
     let clearString = duration[i].replace(/([hmin])/g, "");
     let min =
-      parseInt(clearString.slice(0)) * 0.6 * 100 +
-      parseInt(clearString.slice(-2));
+      parseInt(clearString.slice(0)) * 60 + parseInt(clearString.slice(-2));
     timeFormat[i].duration = min;
   }
   return timeFormat;
