@@ -24,7 +24,7 @@ function scoresAverage(moviesArray) {
     } else {
       return accumulator;
     }
-  }, 0  );
+  }, 0  ); //initialValue to 0 - Objects const people example - Week 4 Day 1
   return Number ((scores / moviesArray.length).toFixed(2));
 }
 
@@ -41,7 +41,7 @@ function orderByYear(moviesArray) {
     if (a.year > b.year) {return 1}
     return 0;
   });
-  console.log(sortedByYear);
+  console.log(sortedByYear(moviesArray));
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
@@ -51,7 +51,7 @@ function orderAlphabetically(moviesArray) {
     if (a.title > b.title) {return 1}
     return 0;
   });
-  console.log(sortedByTitle);
+  console.log(sortedByTitle(moviesArray));
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
