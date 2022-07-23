@@ -49,9 +49,10 @@ function orderAlphabetically(moviesArray) {
   let sortedByTitle = moviesArray.sort((a, b) => {
     if (a.title < b.title) {return -1}
     if (a.title > b.title) {return 1}
-    return 0;
+    if (a.title === b.title) {return 0;}
   });
-  console.log(sortedByTitle(moviesArray));
+  let first20Movies = sortedByTitle.sort();
+  return first20Movies.slice(0, 20);
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
