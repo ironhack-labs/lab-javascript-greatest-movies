@@ -31,33 +31,61 @@ function scoresAverage(moviesArray) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-    const dramaMovies = moviesArray.filter(movie => movie.genre.includes('Drama'))
-    return scoresAverage(dramaMovies)
+    const dramaMoviesArr = moviesArray.filter(movie => movie.genre.includes('Drama'));
+    return scoresAverage(dramaMoviesArr);
 }
 
-
-/* Mi soluciñon a este problema hace que pete jasmin
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-    // para crear arrau nuevo y no modificar el original
-    const newArrMovies = moviesArray.map((x) => x);
-    const orderedMovies = {
-        // si el año es igual, entonces ordenar por el título
-        if newArrMovies.sort((a.year, b.year) => a === b){
-            return orderedMovies.sort((a.title, b.title) => b - a)
+    const newArray = [...moviesArray];
+    return newArray.sort((a, b) => {
+        if (a.year === b.year) {
+          if (a.title > b.title) {
+            return 1;
+          } else if (a.title == b.title) {
+            return 0;
+          } else if (a.title < b.title) {
+            return -1;
+          }
+        } else {
+          return a.year - b.year;
         }
-        // si no son iguales, pues ordenar por el año
-        else newArrMovies.sort((a.year, b.year) => b - a);
+      });
+      return orderedMovies;
+}
+
+/*
+function orderByYear(moviesArray) {
+  const orderedMovies = moviesArray.slice();
+  orderedMovies.sort((a, b) => {
+    if (a.year === b.year) {
+      if (a.title > b.title) {
+        return 1;
+      } else if (a.title == b.title) {
+        return 0;
+      } else if (a.title < b.title) {
+        return -1;
+      }
+    } else {
+      return a.year - b.year;
     }
-    return orderedMovies
+  });
+  return orderedMovies;
 }
 */
-
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) { 
-    const newArray = moviesArray.map(movie => ({value: movie.title}));
-    
-    return newArray 
+function orderAlphabetically(moviesArray) {
+    const top20OrderedMovies = moviesArray.sort((a, b) => {
+        if (a.title > b.title) {
+            return 1;
+        } else if (a.title == b.title) {
+            return 0;
+        } else if (a.title < b.title) {
+            return -1;
+        }
+    })
+        .map((element) => element.title);
+    return top20OrderedMovies.slice(0, 20);
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
