@@ -245,7 +245,7 @@ describe('Function "orderAlphabetically"', () => {
     expect(typeof orderAlphabetically([])).toBe('object');
   });
 
-  it('should return a new array, not mutate the original one', () => {
+  it('should return a new array, not mutate the orgiinal one', () => {
     const arr = [{ title: 'xyz' }, { title: 'abc' }];
     const returnValue = orderAlphabetically(arr);
     expect(returnValue instanceof Array).toBe(true);
