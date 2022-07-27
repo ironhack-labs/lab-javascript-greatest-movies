@@ -34,13 +34,14 @@ function scoresAverage(moviesArray) {
 function dramaMoviesScore(moviesArray) {
   if (moviesArray.length === 0) return 0;
   let dramaNum = 0;
-  dramaNum = moviesArray.filter((ele) =>
+  moviesArray.filter((ele) =>
     ele.genre.includes("Drama") ? dramaNum++ : null
   );
   let points = moviesArray.reduce((acc, cur) => {
     return cur.score && cur.genre.includes("Drama") ? acc + cur.score : acc;
   }, 0);
-  return +(points / dramaNum.length).toFixed(2);
+  if (dramaNum === 0) return 0;
+  return +(points / dramaNum).toFixed(2);
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
