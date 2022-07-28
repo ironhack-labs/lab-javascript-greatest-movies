@@ -2101,12 +2101,27 @@ console.log(orderByYear(movies));
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {
-  let lis = (moviesArray.sort((a,b) => a.title - b.title));
+// function orderAlphabetically(moviesArray) {
+//   let lis = (moviesArray.sort((a, b) => {
+//     if( a.title === b.title) {
+//       return -1
+//     }
+//     if (a.title < b.title) {
+//       return 1
+//     }
+//     return 0
+//   })
+ function orderAlphabetically(moviesArray) {
+  const orderAlpc= moviesArray.sort((a, b) => a.title === b.title ? 0 : a.title < b.title ? -1 : 1).splice(0, 20)
   
-  return lis;
+
+  //  .filtred(20)?????????????'
+  ////      WHY KEEP RETURNING MOVIES ORDERED BY YEAR
+return orderAlpc
 }
 console.log(orderAlphabetically(movies))
+
+
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
 
