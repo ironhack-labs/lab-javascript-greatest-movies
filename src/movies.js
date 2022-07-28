@@ -87,7 +87,6 @@ function orderByYear(moviesArray){
       year: movie.year
     }
   })
-
   const arrayYear = checkDuplicate(listTitleAndYear.map(nameAndYear => nameAndYear.year))
 
   if (arrayYear){
@@ -95,7 +94,6 @@ function orderByYear(moviesArray){
   }
   
   const yearList = listTitleAndYear.map(nameAndYear=> {return {year: nameAndYear.year}})
-  
   
   return yearList
 }
@@ -112,7 +110,20 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  const hours = moviesArray.map(movie => {return {duration: movie.duration}})
+  let minutes = []
+
+  hours.forEach((element, index) => {
+    let rep = element.duration.replace('h', '').replace('min', '')
+    let hoursToMinutes = Number(rep[0])*60
+    let newRep = eval(rep.replace(rep[0], hoursToMinutes).replace(" ", "+"))
+    minutes.push({duration: newRep})
+    
+  })
+
+  return minutes
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
