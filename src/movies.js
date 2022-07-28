@@ -45,13 +45,77 @@ function dramaMoviesScore(moviesArray) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  let temp = JSON.stringify(moviesArray);
+  let newArr = JSON.parse(temp);
+  newArr.sort((a, b) => {
+    if (a.year === b.year) {
+      if (a.title.toLowerCase() < b.title.toLowerCase()) {
+        return -1;
+      }
+    }
+    if (a.year !== b.year) {
+      if (a.year < b.year) {
+        return -1;
+      }
+    }
+  });
+  return newArr;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+   let temp = JSON.stringify(moviesArray);
+   let newArr = JSON.parse(temp);
+   newArr.sort((a, b) => {
+     if (a.title.toLowerCase() < b.title.toLowerCase()) {
+       return -1;
+     }
+   });
+  return newArr.map(ele=> ele.title).slice(0,20)
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  
+    let temp = JSON.stringify(moviesArray);
+    let newArr = JSON.parse(temp);
+    newArr.forEach((ele) => {
+      ele.duration = ele.duration.split("h");
+      ele.duration =
+        !ele.duration[1]
+          ? ele.duration[0] * 60
+          : ele.duration[0] * 60 + parseInt(ele.duration[1]);
+    });
+  
+  return newArr;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+   let temp = JSON.stringify(moviesArray);
+   let newArr = JSON.parse(temp);
+
+   let temp2 = newArr
+     .map((ele) => {
+       let year = ele["year"].toString();
+       let score = ele["score"].toString();
+       return year + " " + score;
+     })
+     .map((ele) => {
+       return ele.split(" ");
+     });
+
+   let caseArr = [];
+
+   temp2.forEach((ele) => {
+     ele[1] = Number(ele[1]);
+     if (caseArr.indexOf(ele[0]) === -1) {
+       caseArr.push(ele);
+     }
+   });
+
+   console.log(temp2);
+
+   return `The best year was <YEAR> with an average score of <RATE>`;
+}
