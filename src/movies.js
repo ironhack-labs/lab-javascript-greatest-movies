@@ -126,4 +126,23 @@ function turnHoursToMinutes(moviesArray) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  if (moviesArray.length == 0){
+    return null
+  }
+
+  const yearAndScore = moviesArray.map(movie => {return {year: movie.year, score: movie.score}})
+  const sortedData = yearAndScore.sort(sorted('year'))
+  const map = new Map()
+
+  for(const {year, score} of sortedData) {
+    let currSum = map.get(year) || 0
+    map.set(year, 10*(currSum + score)/sortedData.length)
+  }
+  const bestYear = Array.from(map, ([year, score]) => ({year, score})).sort(sorted('score')).reverse()[0]
+  const listBestYear = moviesArray.filter(movie => movie.year === bestYear.year).map(score => score.score)
+  const sumBest = listBestYear.reduce(sumFunction)
+  const midBest = mid(sumBest, listBestYear.length)
+
+  return `The best year was ${bestYear.year} with an average score of ${midBest}`
+}
