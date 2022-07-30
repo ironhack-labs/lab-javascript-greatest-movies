@@ -93,29 +93,33 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
-   let temp = JSON.stringify(moviesArray);
-   let newArr = JSON.parse(temp);
+  let temp = JSON.stringify(moviesArray);
+  let movies = JSON.parse(temp);
 
-   let temp2 = newArr
-     .map((ele) => {
-       let year = ele["year"].toString();
-       let score = ele["score"].toString();
-       return year + " " + score;
-     })
-     .map((ele) => {
-       return ele.split(" ");
-     });
+  let scoresByYear = {};
 
-   let caseArr = [];
+  movies.forEach((movie, i, arr) => {
+    if (scoresByYear[movie.year]) {
+      scoresByYear[movie.year].push(movie.score);
+    } else {
+      scoresByYear[movie.year] = [movie.score];
+    }
+  });
 
-   temp2.forEach((ele) => {
-     ele[1] = Number(ele[1]);
-     if (caseArr.indexOf(ele[0]) === -1) {
-       caseArr.push(ele);
-     }
-   });
+  let maxScoreArr = [];
+  for (let [year, scores] of Object.entries(scoresByYear)) {
+    let num = scores.reduce((acc, score) => {
+      acc += score;
+      return acc;
+    }, 0);
+    const averageNum = +(num / scores.length).toFixed(2);
+    maxScoreArr.push(averageNum);
+  }
 
-   console.log(temp2);
+  let maxIndex = maxScoreArr.indexOf(Math.max(...maxScoreArr));
+  let yearArr = Object.keys(scoresByYear);
 
-   return `The best year was <YEAR> with an average score of <RATE>`;
+  return `The best year was ${
+    yearArr[maxIndex]
+  } with an average score of ${Math.max(...maxScoreArr)}`;
 }
