@@ -11,10 +11,10 @@
 
 function getAllDirectors(moviesArray) {
 
-  const allDirectors = moviesArray.map(function(movie){
-    return movie.director
-  })
-  return allDirectors
+  const allDirectors = moviesArray.map( (movie) => {
+    return movie.director;
+  });
+  return allDirectors;
 }
 
 
@@ -31,7 +31,7 @@ function howManyMovies(moviesArray) {
     if(movie.director ==='Steven Spielberg' && movie.genre.includes('Drama')){
       return movie;
     }
-   })
+   });
   
    return spielbergMovies.length;
    
@@ -46,9 +46,9 @@ function scoresAverage(moviesArray) {
       return 0;
     }
 
-    let total = moviesArray.reduce(function(acc,curr){
+    let total = moviesArray.reduce( (acc,curr) => {
       return acc + curr.score;
-    },0)
+    },0);
 
       const average = total/moviesArray.length;
       const convertedNumber = Number(average.toFixed(2));
@@ -66,8 +66,8 @@ function dramaMoviesScore(moviesArray) {
       if(movie.genre.includes('Drama')){
          return movie;
       }
-    })
-         const DramaMoviesAverage = scoresAverage(dramaMovies)
+    });
+         const DramaMoviesAverage = scoresAverage(dramaMovies);
       return DramaMoviesAverage;
 
 }
@@ -75,10 +75,51 @@ function dramaMoviesScore(moviesArray) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
   
+  if(moviesArray.length === 1){
+    return moviesArray[0];
+   }
+
+
+   let newArray = moviesArray.slice();
+     
+    newArray.sort( ( a , b) => {
+      if( a < b){
+        return -1;
+      } else if( a > b){
+        return 1;
+      } else if(a.title < b.tittle){
+        return -1;
+      } else if( a.title > b.title){
+        return 1;
+      }
+      return 0 ;
+    });
+    return newArray;
+   
+
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+
+
+
+  let newArray = [...moviesArray];
+
+  newArray.sort( ( a, b ) => {
+   
+    if(a.title < b.title){
+      return -1;
+    } else if( a > b){
+      return 1;
+    } else {
+      return 0 ;
+    }
+  }).map(movie =>{
+    return movie.title;
+  }).slice(0,20);
+  return newArray;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
