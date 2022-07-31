@@ -16,7 +16,6 @@ function getAllDirectors(moviesArray) {
 function getAllDirectors2(moviesArray) {
 
 	const rawList = moviesArray.map(movie => movie.director);
-	
 	const cleanList = rawList.filter(
 		(director, index) => rawList.indexOf(director) === index);
 
@@ -62,16 +61,27 @@ function dramaMoviesScore(moviesArray) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
 	const orderedList = moviesArray.sort((movie1, movie2) => {
-		if(movie1.year === movie2.year)
-			return movie1.title.toLowerCase() - movie2.title.toLowerCase();
+		if(movie1.year === movie2.year){
+			if (movie1.title > movie2.title)
+				return 1;
+			else if (movie1.title < movie2.title)
+				return -1;
+			return 0;
+		}
 		return movie1.year - movie2.year});
 	return orderedList;
 }
 
-console.log(orderByYear(movies));
+//console.log(orderByYear(movies));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+	const titlesArray = moviesArray.map(movie => movie.title);
+	titlesArray.sort();
+	return titlesArray.slice(0, 20);
+}
+
+//console.log(orderAlphabetically(movies));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
