@@ -84,16 +84,50 @@ function orderAlphabetically(moviesArray) {
       return 1;
     }
   });
-
-  for (let i = 0; i < 21; i++) {
-    res.push(sortAlpha[i].title);
+  let tmp20 = [];
+  if (sortAlpha.length > 20) {
+    tmp20 = sortAlpha.slice(0, 20);
+    console.log(tmp20);
+    for (let i = 0; i < 20; i++) {
+      res.push(tmp20[i].title);
+    }
+  } else {
+    sortAlpha.forEach((element) => {
+      res.push(element.title);
+    });
   }
   //console.log(res);
   return res;
 }
 //console.log(orderAlphabetically(movies));
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  let hour = 0;
+  let min = 0;
+  let res = 0;
+  const tabHour = [];
+  const resTime = [];
+  const newMoviesArray = moviesArray.map((movie) => movie);
+  moviesArray.forEach((movie) => tabHour.push(movie.duration));
+  for (let i = 0; i < tabHour.length; i++) {
+    for (let j = 0; j < tabHour[i].length; j++) {
+      if (tabHour[i][j] === "h") {
+        hour += parseInt(tabHour[i][j - 1]);
+      } else if (tabHour[i][j] === "m") {
+        if (isNaN(tabHour[i][j - 2])) {
+          min += parseInt(tabHour[i][j - 1]);
+        } else {
+          min += parseInt(tabHour[i][j - 2] + tabHour[i][j - 1]);
+        }
+      }
+      res = hour * 60 + min;
+      resTime.push(res);
+    }
+    newMoviesArray[i].duration = res;
+  }
+
+  return newMoviesArray;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
