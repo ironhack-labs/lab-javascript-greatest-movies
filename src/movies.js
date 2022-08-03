@@ -2,15 +2,6 @@
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 
-// const movies = [
-//     {
-//       title: 'The Shawshank Redemption',
-//       year: 1994,
-//       director: 'Frank Darabont',
-//       duration: '2h 22min',
-//       genre: ['Crime', 'Drama'],
-//       score: 9.3
-//     },
 function getAllDirectors(movies) {
   const allDirectors = movies.map((movie) => movie.director);
   return allDirectors;
@@ -30,21 +21,38 @@ function howManyMovies(moviesArray) {
 
 //is there a way to do this with only 1 method? I couldn't figure it out. How to skip array if empty. "Continue" broke everything.
 function scoresAverage(moviesArray) {
-const filtered = moviesArray.filter((movie) => {
- return (typeof movie.score === "number")
-})
+  const filtered = moviesArray.filter((movie) => {
+    return typeof movie.score === "number";
+  });
   const average = filtered.reduce((acc, movie) => {
-      return acc + movie.score / moviesArray.length;
+    return acc + movie.score / moviesArray.length;
   }, 0);
   let num = average.toFixed(2);
   return parseFloat(num);
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+
+//doesn't pass the tests but returns 8.34
+function dramaMoviesScore(moviesArray) {
+  const dramafilter = moviesArray.filter((movie) => {
+    return movie.genre.includes("Drama", 1);
+  });
+  const average = dramafilter.reduce((acc, movie) => {
+    return acc + movie.score / dramafilter.length;
+  }, 0);
+  let num = average.toFixed(2);
+  return parseFloat(num);
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  moviesArray.sort((movie) => {
+    let newArr = [];
+    movie.year.push(newArr);
+    return newArr;
+  });
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}

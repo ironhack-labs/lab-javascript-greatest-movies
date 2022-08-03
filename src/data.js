@@ -2002,21 +2002,15 @@ const movies = [
   },
 ];
 
-function scoresAverage(moviesArray) {
-  const average = moviesArray.reduce((acc, movie) => {
-    if (typeof movie.score === "number") {
-    return acc + movie.score / moviesArray.length;
-  }}, 0);
+function dramaMoviesScore(moviesArray) {
+  const dramafilter = moviesArray.filter((movie) => {
+    return movie.genre.includes("Drama", 1);
+  });
+  const average = dramafilter.reduce((acc, movie) => {
+    return acc + movie.score / dramafilter.length;
+  }, 0);
   let num = average.toFixed(2);
-  console.log(typeof num);
   console.log(parseFloat(num));
 }
 
-scoresAverage(movies);
-
-let number = 89.2445;
-console.log(number.toFixed());
-
-let un = ''
-
-console.log(typeof un)
+dramaMoviesScore(movies);
