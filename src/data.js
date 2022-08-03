@@ -2004,10 +2004,19 @@ const movies = [
 
 function scoresAverage(moviesArray) {
   const average = moviesArray.reduce((acc, movie) => {
+    if (typeof movie.score === "number") {
     return acc + movie.score / moviesArray.length;
-  }, 0);
-  let num = Number.parseFloat(average).toFixed(2);
-  console.log(num);
+  }}, 0);
+  let num = average.toFixed(2);
+  console.log(typeof num);
+  console.log(parseFloat(num));
 }
 
 scoresAverage(movies);
+
+let number = 89.2445;
+console.log(number.toFixed());
+
+let un = ''
+
+console.log(typeof un)

@@ -27,13 +27,19 @@ function howManyMovies(moviesArray) {
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
+
+//is there a way to do this with only 1 method? I couldn't figure it out. How to skip array if empty. "Continue" broke everything.
 function scoresAverage(moviesArray) {
-  const average = moviesArray.reduce((acc, movie) => {
-    return acc + movie.score / moviesArray.length;
+const filtered = moviesArray.filter((movie) => {
+ return (typeof movie.score === "number")
+})
+  const average = filtered.reduce((acc, movie) => {
+      return acc + movie.score / moviesArray.length;
   }, 0);
-  let num = Number.parseFloat(average).toFixed(2);
-  return num;
+  let num = average.toFixed(2);
+  return parseFloat(num);
 }
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {}
 
