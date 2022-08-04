@@ -45,14 +45,15 @@ function dramaMoviesScore(moviesArray) {
 function orderByYear(moviesArray) {
   return moviesArray.map((elem) => elem).sort((a, b) => a.year - b.year || a.title.localeCompare(b.title));
   // return [...moviesArray].sort((a, b) => a.year - b.year || a.title.localeCompare(b.title));
-  // That really took me some time to find "localCompare" ;D
+  // Here was my problem with .sort: I want to sort by year or title. So first sort(a, b) => a.year - b.year
+  // and then .sort() ??
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
   return moviesArray
     .map((a) => a.title)
-    .sort((a, b) => a.localeCompare(b))
+    .sort()
     .slice(0, 20);
 }
 
@@ -74,7 +75,8 @@ function turnHoursToMinutes(moviesArray) {
 // That was really fun :)
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-// Idea how to do it: Create new object with year: 2007, scores [8.2, 8.4, 7.9,], than reduce the score arrays and sort. then use [0] for result
+// Idea how to do it: Create new object with year: 2007, scores [8.2, 8.4, 7.9,],
+// than reduce the score arrays and sort. then use [0] for result
 
 function bestYearAvg(arr) {
   const firstStep = arr.map((a) => {
