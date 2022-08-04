@@ -43,10 +43,9 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-  return moviesArray.map((elem) => elem).sort((a, b) => a.year - b.year || a.title.localeCompare(b.title));
+  return moviesArray.map((elem) => elem).sort((a, b) => a.year - b.year || (a.title - b.title ? 1 : -1));
+  // return moviesArray.map((elem) => elem).sort((a, b) => a.year - b.year || a.title.localeCompare(b.title));
   // return [...moviesArray].sort((a, b) => a.year - b.year || a.title.localeCompare(b.title));
-  // Here was my problem with .sort: I want to sort by year or title. So first sort(a, b) => a.year - b.year
-  // and then .sort() ??
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
