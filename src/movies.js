@@ -76,8 +76,6 @@ function scoresAverage(moviesArray) {
     return Math.round(averageRating * 100) / 100;           
 }
 
-console.log(scoresAverage(movies))
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
     const filteredByDrama = moviesArray.filter((_value, index) => moviesArray[index].genre.includes("Drama"));
@@ -86,13 +84,53 @@ function dramaMoviesScore(moviesArray) {
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    const copyOfMoviesArray = JSON.parse(JSON.stringify(moviesArray));
+    const orderedByYear = copyOfMoviesArray.sort((a,b) => {
+        if (a.year !== b.year){
+            return a.year - b.year
+        };
+        return (a.title > b.title) ? 1 : -1})       
+    return orderedByYear;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+    const copyOfMoviesArray = JSON.parse(JSON.stringify(moviesArray));
+    const movieTitles = copyOfMoviesArray.map((_value, index) => moviesArray[index].title).sort();
+    return movieTitles.splice(0,20);
+}
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+
+function transformDuration(str) {
+    const arr = str.split(" ");
+    return (arr.length === 1) ? 60 * parseInt(arr[0]) : 60 * parseInt(arr[0]) + parseInt(arr[1]);
+}
+
+function turnHoursToMinutes(moviesArray) {
+    const copyOfMoviesArray = JSON.parse(JSON.stringify(moviesArray));
+    const transformedArray = copyOfMoviesArray.map((movie) => {
+        movie.duration = transformDuration(movie.duration);
+        return movie});
+    return transformedArray;
+}
+
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+    if (moviesArray.length === 0){
+        return null;
+    }
+    const orderedByYearArray = orderByYear(moviesArray);
+    let moviesPerYear = 0;
+    let scorePerYear = 0;
+    orderedByYearArray.reduce((a,b) => {
+        if (a.year === b.year) {
+            moviesPerYear += 1;
+            scorePerYear += b.score;
+        }
+    }
+}
