@@ -18,12 +18,17 @@ function howManyMovies(moviesArray) {
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 
 function scoresAverage(moviesArray) {
-  const everyScore = [];
-
-  moviesArray.map((movie) => {
-    if (movie.score) everyScore.push(movie.score);
+  // const everyScore = [];
+  // moviesArray.map((movie) => {
+  //   if (movie.score) everyScore.push(movie.score);
+  // });
+  // return !moviesArray.length ? 0 : reduced(everyScore, moviesArray.length, 100);
+  // Better:
+  const onlyScores = moviesArray.map((movie) => {
+    if (movie.score) return movie.score;
+    else return 0;
   });
-  return !moviesArray.length ? 0 : reduced(everyScore, moviesArray.length, 100);
+  return !onlyScores.length ? 0 : reduced(onlyScores, moviesArray.length, 100);
 }
 
 function reduced(input, originalInputLength, x) {
