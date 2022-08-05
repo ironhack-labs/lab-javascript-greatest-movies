@@ -118,14 +118,65 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 
-function selectFewerProps(show){
-    const {year, score} = show;
-    return {year, score};
-  }
+function selectFewerProps(show) {
+  const { year, score } = show;
+  return { year, score };
+}
+
+function groupByYear(array) {
+  return array.reduce((obj, value) => {
+
+    if (!obj[value.year]) {
+      obj[value.year] = [value.score];
+    }
+    else {
+      obj[value.year].push(value.score);
+    }
+    return obj;
+  }, {})
+}
+
+function groupBy(array, key) {
+  return Array.from(
+      array.reduce((m, o) => {
+          var temp = m.get(o[key]);
+          if (!temp) {
+              m.set(o[key], temp = {});
+          }
+          Object.entries(o).forEach(([k, v]) => {
+              if (k === key) {
+                  return;
+              }
+              temp[k] = temp[k]  || { sum: 0, count: 0 };
+              temp[k].sum += v;
+              temp[k].count++;
+          });
+          return m;
+      }, new Map),
+      ([k, v]) => Object.assign({ [key]: k }, ...Object.entries(v).map(([l, { sum, count }]) => ({ [l]: +(sum / count).toFixed(1) })))
+  );
+}
 
 function bestYearAvg(moviesArray) {
   if (!moviesArray.length) return null;
   const dataSet = JSON.parse(JSON.stringify(orderByYear(moviesArray)));
-  const d1=dataSet.map(selectFewerProps);
+  const d1 = dataSet.map(selectFewerProps);
+
+  // const yearScores = groupByYear(d1);
+  const yearScores2 = groupBy(d1,'year');
+  console.log(yearScores2);
+  yearScores2.sort( (a, b) =>  b.score - a.score //? 1 : -1
+  );
+//? -1 : (a.score - b.score ? 1 : (a.year - b.year ? 1 : -1 ))
+  // console.log(yearScores);
+  // console.log(typeof (yearScores));
+  // console.log(yearScores['1978']);
+
+   console.log(`The best year was ${yearScores2[0].year} with an average score of ${yearScores2[0].score}`);
+  // console.log(typeof (yearScores2));
+  // console.log(yearScores2['1978']);
+
+
+  return `The best year was ${yearScores2[0].year} with an average score of ${yearScores2[0].score}`;
 
 }
