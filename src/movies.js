@@ -151,5 +151,5 @@ function bestYearAvg(moviesArray) {
 		}
 	}
 
-	return greatYear;
+	return `The best year was ${greatYear} with an average score of ${greatAvg}`;
 }
