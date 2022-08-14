@@ -21,7 +21,7 @@ const movies = [
     director: 'Francis Ford Coppola',
     duration: '3h 22min',
     genre: ['Crime', 'Drama'],
-    score: 9
+    score: 9 
   },
   {
     title: 'The Dark Knight',
@@ -29,7 +29,7 @@ const movies = [
     director: 'Christopher Nolan',
     duration: '2h 32min',
     genre: ['Action', 'Crime', 'Drama', 'Thriller'],
-    score: 9
+    score: 9 
   },
   {
     title: '12 Angry Men',
@@ -2001,3 +2001,6 @@ const movies = [
     score: 8
   }
 ];
+
+
+
