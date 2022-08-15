@@ -16,18 +16,16 @@ function howManyMovies(moviesArray) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {  
-    if  (moviesArray.length !== 0) {
-
-        
+    if  (moviesArray.length === 0) {
+        return 0;
+    } 
         const scoreSum = moviesArray.reduce(function(sum, movie){
-            if (!movie.score === '') {
-                return sum + 0
+            if (!movie.score) {
+                return sum 
             }
             return sum + movie.score
         },0) 
         return parseFloat((scoreSum / moviesArray.length).toFixed(2))
-    }
-    return 0
 
 }
 
@@ -105,7 +103,26 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
-    
+    if (!moviesArray.length) return null;    
+    const newMovieList = JSON.parse(JSON.stringify(moviesArray))
 
+    const moviesByYearObject = newMovieList.reduce(function (result, movie) {
+        result[movie.year] = result[movie.year] || [];
+        result[movie.year].push(movie);
+        return result;
+    }, {}) // object with keys as the years and values -> array with 
+  
+    const moviesByYearArray = Object.entries(moviesByYearObject) // returns an Array 
+ 
+  const  YearAverageArray = moviesByYearArray.map(function(yearlymovies){
+    const average = scoresAverage(yearlymovies[1])
+    return {year: yearlymovies[0] , average: average}
+  }).sort(function(a,b){
+    return b.average - a.average 
+  })
 
+ return `The best year was ${YearAverageArray[0].year} with an average score of ${YearAverageArray[0].average}`
 }
+
+
+
