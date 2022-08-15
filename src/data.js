@@ -1470,7 +1470,7 @@ const movies = [
     director: 'Frank Capra',
     duration: '1h 45min',
     genre: ['Comedy', 'Romance'],
-    score: 8.2
+    // score: 8.2
   },
   {
     title: 'Life of Brian',
