@@ -5,6 +5,7 @@ function getAllDirectors(moviesArray) {
     return moviesArray
     .filter ((moviesArray) => moviesArray.director)
     .map ((moviesArray) => moviesArray.director)
+console.log ("1st it" + moviesArray)
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -120,5 +121,30 @@ function bestYearAvg(moviesArray) {
         // iterar total por año y conseguir cantidad del array
         // conseguir la media
     // reduce el mayor año con la mayor media u ordenar por media
+    if (moviesArray.length === 0){
+        return null
+    }
+
+    let movieYear = {}
+
+    moviesArray.forEach(movie => {
+        if (!(movie.year in movieYear)){
+            movieYear[movie.year]= []
+        }
+
+        movieYear[movie.year].push(movie)
+    })
+
+    let avg = []
+    Object.keys(movieYear).forEach(year =>{
+        avg.push({year: year,scrAvg: scoresAverage(movieYear[year])})
+    })
     
+    avg.sort((a, b) => {
+        if (b.scrAvg !== a.scrAvg){
+            return b.scrAvg - a.scrAvg
+        }
+        return a.year - b.year
+    })
+    return `The best year was ${avg[0].year} with an average score of ${avg[0].scrAvg}`
 }
