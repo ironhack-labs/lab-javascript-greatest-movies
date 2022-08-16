@@ -7,7 +7,14 @@ function getAllDirectors(moviesArray) {
   directors.map(
     (el) => !cleanDirectors.includes(el) && cleanDirectors.push(el)
   );
-  // const cleanDirectors = directors.filter(el => )
+  // function getAllDirectors(moviesArray) {
+  //   const directors = moviesArray.map((movie) => movie.director);
+  //   const cleanDirectors = directors.filter((director) => {
+  //     let count = directors.filter((v) => v === director).length;
+  //     return count === 1 && director;
+  //   });
+  //   return cleanDirectors;
+  // }
   return cleanDirectors;
 }
 
@@ -73,16 +80,13 @@ function turnHoursToMinutes(moviesArray) {
     let hours = 0;
     let mins = 0;
     hours = duration.split("h");
-    if (hours[1] !== "") {
+    let total = hours[0] * 60;
+    if (!hours[1]) {
       mins = hours[1].split("min");
-      const total = parseInt(hours[0]) * 60 + parseInt(mins[0]);
-      el.duration = total;
-      console.log(total);
-    } else {
-      const total = parseInt(hours[0]) * 60;
-      el.duration = total;
-      console.log(total);
+      total += parseInt(mins[0]);
     }
+    el.duration = total;
+    console.log(total);
     return el;
   });
   return minutes;
