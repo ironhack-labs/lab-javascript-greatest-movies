@@ -89,17 +89,6 @@ function turnHoursToMinutes(moviesArray) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function scoresAverage(moviesArray) {
-  const cleanArray = moviesArray.filter((el) => {
-    if (typeof el.score === "number") return el;
-  });
-  if (cleanArray.length === 0) return 0;
-  const average = cleanArray.reduce((acc, curr) => {
-    return acc + curr.score / moviesArray.length;
-  }, 0);
-  const average2dec = parseFloat(average.toFixed(2));
-  return average2dec;
-}
 
 function bestYearAvg(moviesArray) {
   if (moviesArray.length === 0) return null;
