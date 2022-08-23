@@ -112,7 +112,73 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+
+    let adjusted = [];
+
+    moviesArray.forEach(function(movie){
+        adjusted.push(movie);
+
+        let min = 0;
+        min += parseInt(movie.duration[0])*60;
+
+        if(movie.duration.length == 8){
+            min += parseInt(movie.duration[3]+movie.duration[4]);
+        }
+        
+        if(movie.duration.length == 7){
+            min += parseInt(movie.duration[3]);
+        }
+
+        movie.duration = min;
+    })
+
+    return adjusted;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+
+    if(moviesArray.length == 0){
+        return null;
+    }
+
+    let orderedMovies = orderByYear(moviesArray);
+
+    let current = orderedMovies[0].year;
+
+    let yearScoreMatrix = [current][''];
+
+    let yearIndex = 0;
+
+    for(let i = 0; i < orderedMovies.length; i++){
+        if(current == orderedMovies[i].year){
+            yearScoreMatrix[yearIndex].push(orderedMovies[i].score);
+        }
+        else{
+            let current = orderedMovies[i].year;
+            yearScoreMatrix.push(current);
+            yearIndex++;
+            yearScoreMatrix[yearIndex].push(orderedMovies[i].score);
+        }
+    }
+
+    let maxScore = 0;
+    let maxYear;
+
+    for(let i = 0; i < yearScoreMatrix.length; i++){
+        let sum = 0;
+        for(let j = 0; j < yearScoreMatrix[i].length; j++){
+            sum += yearScoreMatrix[i][j];
+        }
+
+        if(sum > maxScore){
+            maxScore = sum;
+            maxYear = i;
+        }
+        sum = 0;
+    }
+
+
+    return `The best year was ${maxYear} with an average score of ${maxScore}`;
+}
