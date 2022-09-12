@@ -50,28 +50,42 @@ function dramaMoviesScore(moviesArray) {
 
 
     
-    // let countDramas = 0;
-    // const dramaScore = moviesArray.reduce(function(accumulator, currentValue){
-    //     if (currentValue.genre === "Drama"){
-    //         countDramas++;
 
-    //         return accumulator + currentValue.score;
-    //     }
-
-    // }, 0);
-
-    //     // const dramaMovies = moviesArray.reduce(function(accumulator, currentValue){
-            
-    //     // })
-    
-    // console.log(dramaScore/ countDramas);
-    // return dramaScore/ countDramas;
   }
     
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    //.sort
+    // const moviesArrayCopy = [...moviesArray];
+    //
+    const moviesArrayCopy = [];
+    console.log("Empty: "+ moviesArrayCopy)
+    moviesArray.forEach(function(movie){
+        moviesArrayCopy.push(movie);
+    });
 
+    console.log("Copy: "+ moviesArrayCopy);
+
+    moviesArrayCopy.sort(function (a, b){
+        if(a.year < b.year){
+            return -1;
+        } else if(a.year > b.year){
+            return 1;
+        } else {
+            if(a.title < b.title){
+                return -1;
+            }
+
+            return 0;
+        }
+    });
+
+    console.log("Sorted: "+ moviesArrayCopy);
+
+    return moviesArrayCopy;
+
+}
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
 
