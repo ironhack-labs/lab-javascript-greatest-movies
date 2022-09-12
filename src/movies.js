@@ -19,23 +19,53 @@ function howManyMovies(moviesArray) {
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
     if (moviesArray.length === 0){
-        return 0
-        }
-        const sumScore = moviesArray.reduce(function (accumulator, currentValue){       
-             if (currentValue.score !== undefined){
+        return 0;
+    }
+    const sumScore = moviesArray.reduce(function (accumulator, currentValue){
+        if (currentValue.score !== undefined){
           return accumulator + currentValue.score;
-    }else {
-        return accumulator + 0;
-    }}, 0);
-   console.log(sumScore / moviesArray.length)
-      return sumScore / moviesArray.length
+        }else {
+            return accumulator;
+        }
+    }, 0);
+//    console.log(sumScore / moviesArray.length);
+    // return sumScore / moviesArray.length;
+    return Number((sumScore / moviesArray.length).toFixed(2));
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-        const dramaMovies = moviesArray.reduce(function(accumulator, currentValue){
+    if(moviesArray.length === 1){
+        return moviesArray[0].score;
+    }
+    
+
+    const dramaMovies = moviesArray.filter(function(movie){
+        
+        return movie.genre.includes("Drama");
+
+    });
+
+    return scoresAverage(dramaMovies);
+
+
+    
+    // let countDramas = 0;
+    // const dramaScore = moviesArray.reduce(function(accumulator, currentValue){
+    //     if (currentValue.genre === "Drama"){
+    //         countDramas++;
+
+    //         return accumulator + currentValue.score;
+    //     }
+
+    // }, 0);
+
+    //     // const dramaMovies = moviesArray.reduce(function(accumulator, currentValue){
             
-        })
+    //     // })
+    
+    // console.log(dramaScore/ countDramas);
+    // return dramaScore/ countDramas;
   }
     
 
