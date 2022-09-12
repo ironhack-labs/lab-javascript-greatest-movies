@@ -57,15 +57,14 @@ function dramaMoviesScore(moviesArray) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
     //.sort
-    // const moviesArrayCopy = [...moviesArray];
+    const moviesArrayCopy = [...moviesArray];
     //
-    const moviesArrayCopy = [];
-    console.log("Empty: "+ moviesArrayCopy)
-    moviesArray.forEach(function(movie){
-        moviesArrayCopy.push(movie);
-    });
+    // const moviesArrayCopy = [];
+    // console.log("Empty: "+ moviesArrayCopy)
+    // moviesArray.forEach(function(movie){
+    //     moviesArrayCopy.push(movie);
+    // });
 
-    console.log("Copy: "+ moviesArrayCopy);
 
     moviesArrayCopy.sort(function (a, b){
         if(a.year < b.year){
@@ -81,13 +80,46 @@ function orderByYear(moviesArray) {
         }
     });
 
-    console.log("Sorted: "+ moviesArrayCopy);
 
     return moviesArrayCopy;
 
 }
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+    const moviesArrayCopy = [];
+    // return moviesArrayCopy;
+
+    
+    
+        
+    for(let i=0; i<20; i++){
+        moviesArrayCopy[i] = {
+            title: moviesArray[i].title
+        }
+        // moviesArrayCopy.push(create a new object 
+        //     and all objects have: 
+        //     title = moviesArray[i].title)
+
+        // moviesArrayCopy.push(moviesArray[i].title);
+        // return moviesArrayCopy;
+    }
+
+
+    console.log(moviesArrayCopy);
+    return moviesArrayCopy;
+    
+    
+
+ 
+
+
+    moviesArrayCopy.sort(function (a, b){
+        return (a.localeCompare(b) === -1);
+    });
+    console.log(moviesArrayCopy);
+    // return moviesArrayCopy;
+    
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
