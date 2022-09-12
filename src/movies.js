@@ -11,25 +11,43 @@ function getAllDirectors(moviesArray) {
 
 
 function howManyMovies(moviesArray) {
-  const spielbergMovies = moviesArray.filter (function(movie){
-    for (let i = 0; 
-    if (movies.director === "Steven Spielberg") {
-      return i++;
-    });
-  return spielbergMovies
-}
+  let count = 0;
+  for (const element of moviesArray) {
+    if {
+      moviesArray.director.indexOf("Steven Spielberg")}
+       && {moviesArray.genre.indexOf("Drama")}
+      count += 1;
+    }
+    
+  return count
+  } 
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+  const average = moviesArray.reduce(function(acc, currentValue){
+  return acc + currentValue.score / moviesArray.title;
+  },0);
+  return average.toFixed(2);
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+ function dramaMoviesScore(moviesArray) {
+  const averageDrama = movies.genre.reduce(function(acc, currentValue){
+    return acc + currentValue.score / moviesArray;
+    },0);
+    return averageDrama;
+  }
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  moviesCopy1 = [...movies]
+}
+  
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
