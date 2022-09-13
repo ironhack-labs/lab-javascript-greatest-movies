@@ -51,8 +51,28 @@ function dramaMoviesScore(moviesArray) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
     const moviesCopy = [...moviesArray];
-    const moviesCopy1 = moviesCopy.sort((a,b) => a.year - b.year);
-    return moviesCopy1
+  const moviesCopy1 = moviesCopy.sort((a,b) => a.year - b.year);
+  const moviesCopy2 = [];
+  for (let i = 0; i < moviesCopy1.length; i++) {
+    if (!moviesCopy1[i+1]) {
+      moviesCopy2.push(moviesCopy1[i]);
+      break;
+    }
+      if (moviesCopy1[i].year === moviesCopy1[i+1].year) {
+        
+          if (moviesCopy1[i]['title'].localeCompare(moviesCopy1[i+1]['title'])>0) {
+              moviesCopy2.push(moviesCopy1[i+1]);
+              moviesCopy2.push(moviesCopy1[i]);
+          } else {
+              moviesCopy2.push(moviesCopy1[i]);
+          }
+      } else {
+          if (!moviesCopy2.includes(moviesCopy2[i])) {
+              moviesCopy2.push(moviesCopy1[i]);
+          }
+      }
+  }
+  return moviesCopy2;
 }
 
    
