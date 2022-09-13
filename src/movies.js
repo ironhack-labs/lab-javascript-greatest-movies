@@ -98,7 +98,18 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+    const durationInMinutes = moviesArray.map((muvie) => {
+        if (`${muvie.duration}`.split(' ')[1]) {
+        muvie.duration = Number(`${muvie.duration}`.split(' ')[0].replace('h', ''))*60 
+        + Number(`${muvie.duration}`.split(' ')[1].replace('min', ''));
+       } else {
+        muvie.duration = Number(`${muvie.duration}`.split(' ')[0].replace('h', ''))*60;
+       }
+        return muvie;
+    });
+    return durationInMinutes;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
