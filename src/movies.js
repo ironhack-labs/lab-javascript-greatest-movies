@@ -81,7 +81,20 @@ console.log(
 );
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  // 1st -> spread operator to clone original array so original array doesn´t mutate it if we change the new array
+  const cloneMovieArray = [...moviesArray];
+  // 2nd -> concatenate 2 array.sort() methods -> 1st to classify movies by their titles from A to Z (aaa, aab, abb, abc, acb...) and the second sort to arrange them in ascending order by year
+  return cloneMovieArray
+    .sort((a, b) => {
+      if (a.title < b.title) return -1;
+    })
+    .sort((a, b) => a.year - b.year);
+}
+
+console.log(` `);
+console.log(`<----------------- Iteration 5  ------------------>`);
+console.log(`Order movies array by ascending year --> `, orderByYear(movies));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
