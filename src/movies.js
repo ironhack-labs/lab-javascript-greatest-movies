@@ -46,10 +46,11 @@ console.log(
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
+  const initialValue = 0;
   //1st array w/just scores
   const scoresArray = moviesArray.map((movies) => movies.score);
   //2nd total scores
-  const totalScoresValue = scoresArray.reduce((a, b) => a + b);
+  const totalScoresValue = scoresArray.reduce((a, b) => a + b, initialValue);
   // find avg w/2 dec points
   return (totalScoresValue / scoresArray.length).toFixed(2);
 }
@@ -100,7 +101,28 @@ console.log(`Order movies array by ascending year --> `, orderByYear(movies));
 function orderAlphabetically(moviesArray) {}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  /* 1st -> Deep cloning original array so that "duration" sub values are disconnected from original array. First, I
+  stringify [] and parse it right after.This method allows deep cloning w/out knowing its structure */
+  const cloneMoviesArray = JSON.parse(JSON.stringify(moviesArray));
+  // 2nd -> Replace cloneMovieArray.duration from "#h #min" to "#" (minutes)
+  return cloneMoviesArray.map((movie) => {
+    // Regex exp to remove letters from value
+    movie.duration = movie.duration.replace(/\D+/gi, "");
+    movie.duration =
+      // string.charAt to target the hours value & slice(1) to select the minutes value
+      movie.duration.charAt(0) * 60 + Number(movie.duration.slice(1));
+
+    return movie;
+  });
+}
+
+console.log(` `);
+console.log(`<----------------- Iteration 7  ------------------>`);
+console.log(
+  `Convert duration from hours to minutes --> `,
+  turnHoursToMinutes(movies)
+);
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
