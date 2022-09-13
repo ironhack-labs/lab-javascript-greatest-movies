@@ -1,10 +1,20 @@
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
+
+
 function getAllDirectors(moviesArray) {
   const directors = moviesArray.map(function (obj) {
     return obj.director;
   });
+
+// Remove repetitive values (Bonus)
+ /* for(let i = 0; i < directors.length; i++){
+    let director = directors[i]; 
+    if (directors.indexOf(director) !== lastIndexOf(director)){
+        directors.splice(directors[i], 1);
+    }
+  } */
   return directors;
 }
 
@@ -66,7 +76,6 @@ function orderAlphabetically(moviesArray) {
     let getTitle = moviesCopy.map(function (obj) {
       return obj.title;
     });
-    console.log(getTitle);
     let titlesSort = getTitle.sort();
     if (titlesSort.length < 20){
         return titlesSort;
@@ -78,7 +87,40 @@ function orderAlphabetically(moviesArray) {
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+    let movies =  JSON.parse(JSON.stringify(moviesArray));
+
+    // let movies = moviesArray.slice();
+
+    for (let i = 0; i < movies.length; i++){
+        let time = movies[i].duration.match(/[a-zA-Z]+|[0-9]+/g);
+        if (time[1] === "h" && time[3] === "min"){
+            movies[i].duration = Number(time[0]) * 60 + Number(time[2]);
+        }
+        else if (time[1] === "h" && time[3] !== "min"){
+            movies[i].duration = Number(time[0]) * 60;
+        }
+        else if (time[1] !== "h" && time[3] === "min"){
+            movies[i].duration = Number(time[2]);
+        }
+        else{
+            movies[i].duration = 0;
+        }  
+    }
+    return movies;
+}
+    /*
+    arrayCopy.forEach((element) => {
+        let arrTime = element.duration.split(" ");
+        element.duration = Number(arrTime[0].replace("h", "")) * 60 + Number(arrTime[1].replace("min", ""));
+      });
+    */
+
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  
+    
+}
+
