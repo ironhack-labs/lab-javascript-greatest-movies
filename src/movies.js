@@ -59,7 +59,27 @@ console.log(`<----------------- Iteration 3  ------------------>`);
 console.log(`The average of the movies array is ${scoresAverage(movies)}`);
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray, Drama) {
+  const initialValue = 0;
+
+  const dramaMovies = moviesArray.filter((movies) =>
+    movies.genre.includes("Drama")
+  );
+  // 2nd -> array.reduce() method to reduce down [] to just one total score & math.round() to return total of a director´s movies score w/only 2 decimals,
+  return (
+    dramaMovies.reduce((total, next) => total + next.score, initialValue) /
+    dramaMovies.length
+  ).toFixed(2);
+}
+
+console.log(` `);
+console.log(`<----------------- Iteration 4  ------------------>`);
+console.log(
+  `The average of the drama movies array is ${dramaMoviesScore(
+    movies,
+    "Drama"
+  )}`
+);
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {}
