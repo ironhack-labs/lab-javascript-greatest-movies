@@ -6,10 +6,28 @@ function getAllDirectors(moviesArray) {
   // array.map() method to iterate [] & create a new [] w/just the directors
   return moviesArray.map((movies) => movies.director);
 }
-console.log(getAllDirectors(movies));
+console.log(` `);
+console.log(`<---------------- Iteration 1 -------------------------->`);
+console.log(`The array of all directors is ${getAllDirectors(movies)}`);
 
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
+function removeDuplicateDirectors(moviesArray) {
+  // array.map() method to iterate [] & create a new [] w/just the directors
+  const allDirectors = moviesArray.map((movies) => movies.director);
+  const cleanListDirectors = allDirectors.filter((director, index) => {
+    return allDirectors.indexOf(director) === index;
+  });
+  return cleanListDirectors;
+}
+
+console.log(` `);
+console.log(`<--------------- Iteration 1.1 Bonus ------------------>`);
+console.log(
+  `The array of all directors w/out duplicates is ${removeDuplicateDirectors(
+    movies
+  )}`
+);
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray, director) {
@@ -19,10 +37,26 @@ function howManyMovies(moviesArray, director) {
   );
 }
 
-console.log(`2nd -->`, howManyMovies(movies, "Steven Spielberg"));
+console.log(` `);
+console.log(`<----------------- Iteration 2  ------------------>`);
+console.log(
+  `This is Steven Spielberg's drama movies array --->`,
+  howManyMovies(movies, "Steven Spielberg")
+);
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+  //1st array w/just scores
+  const scoresArray = moviesArray.map((movies) => movies.score);
+  //2nd total scores
+  const totalScoresValue = scoresArray.reduce((a, b) => a + b);
+  // find avg w/2 dec points
+  return (totalScoresValue / scoresArray.length).toFixed(2);
+}
+
+console.log(` `);
+console.log(`<----------------- Iteration 3  ------------------>`);
+console.log(`The average of the movies array is ${scoresAverage(movies)}`);
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {}
