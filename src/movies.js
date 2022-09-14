@@ -112,12 +112,12 @@ function orderAlphabetically(moviesArray) {
   return moviesTitles.slice(0, 20);
 }
 
-console.log(` `);
-console.log(`<----------------- Iteration 6  ------------------>`);
-console.log(
-  `Order movies alphabetically by title --> `,
-  orderAlphabetically(movies)
-);
+// console.log(` `);
+// console.log(`<----------------- Iteration 6  ------------------>`);
+// console.log(
+//   `Order movies alphabetically by title --> `,
+//   orderAlphabetically(movies)
+// );
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
@@ -136,12 +136,47 @@ function turnHoursToMinutes(moviesArray) {
   });
 }
 
-console.log(` `);
-console.log(`<----------------- Iteration 7  ------------------>`);
-console.log(
-  `Convert duration from hours to minutes --> `,
-  turnHoursToMinutes(movies)
-);
+// console.log(` `);
+// console.log(`<----------------- Iteration 7  ------------------>`);
+// console.log(
+//   `Convert duration from hours to minutes --> `,
+//   turnHoursToMinutes(movies)
+// );
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  if (moviesArray.length === 0) {
+    return null;
+  } else {
+    const moviesByYear = orderByYear(moviesArray);
+
+    // control variables
+    let lastCheckedYear = 0;
+    let highestAvg = 0;
+    let bestYear = 0;
+
+    for (i = 0; i < moviesByYear.length; i++) {
+      if (moviesByYear[i].year > lastCheckedYear) {
+        // Filter by the year we are at
+        const justThisYearMovies = moviesByYear.filter((value) => {
+          if (value.year === moviesByYear[i].year) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+        // calculate average of the year and save rate and year
+        if (scoresAverage(justThisYearMovies) > highestAvg) {
+          highestAvg = scoresAverage(justThisYearMovies);
+          bestYear = moviesByYear[i].year;
+        }
+        lastCheckedYear = moviesByYear[i].year;
+      }
+    }
+    return `The best year was ${bestYear} with an average rate of ${highestAvg}`;
+  }
+}
+console.log(` `);
+console.log(`<----------------- Iteration 8  ------------------>`);
+console.log(bestYearAvg(movies));
+console.log(` `);
