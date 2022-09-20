@@ -56,7 +56,7 @@ function dramaMoviesScore(moviesArray) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
   let newArray = moviesArray;
-  let aux= newArray
+  let aux= 0
   moviesArray.map((aux) => aux)
   moviesArray.sort((a, b) => {
       if (a.year === b.year) {
