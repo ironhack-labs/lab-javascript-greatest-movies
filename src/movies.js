@@ -42,7 +42,7 @@ function scoresAverage(moviesArray) {
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
     let filterDrama = moviesArray.filter ((eachElem) => {
-        if (eachElem.genre[0] === "Drama" || eachElem.genre[1] === "Drama" || eachElem.genre[2] === "Drama" || eachElem.genre[3] === "Drama") {
+        if (eachElem.genre.includes("Drama")) {
             return true
         } else {
             return false
