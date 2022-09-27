@@ -29,7 +29,6 @@ function scoresAverage(moviesArray) {
     if(moviesArray.length === 0){
         return 0
     }
-    // console.log(moviesArray.score)
     let sumScore = moviesArray.reduce((acc,eachMovie)=>{
         if(eachMovie.score === undefined){
             return acc;
@@ -42,7 +41,30 @@ function scoresAverage(moviesArray) {
     return Number (averageTotal.toFixed(2))
 }
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+    if(moviesArray.length === 0){
+        return 0
+    }
+    //encontrar solo peliculas de drama!!!
+    let dramaMovies = []
+    let newArr = moviesArray.filter((eachMovie)=>{
+        // console.log(eachMovie.genre)
+        if(eachMovie.genre.includes ('Drama')){
+            dramaMovies.push(eachMovie)
+        }
+    })
+
+    let sumScore = dramaMovies.reduce((acc,eachMovie)=>{
+        if(eachMovie.score === undefined){
+            return acc;
+        } else {
+            let num = Number(eachMovie.score)
+            return acc + num
+        }
+    },0)
+    let averageTotal = sumScore / moviesArray.length
+    return Number (averageTotal.toFixed(2))
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {}
