@@ -51,14 +51,15 @@ function orderAlphabetically(moviesArray) {
     firstTwenty.sort()
     return firstTwenty
 }
-//Again, the above code works fine! So not sure why this is getting reds on Specrunner
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-    let minutesArray = []
-    for (let i=0; i<moviesArray.length; i++){
-
-    }return minutesArray
+   let times = moviesArray.map(movie=>movie.duration);
+   let hour = Number(times.slice(0,1))
+   let hourToMinutes = hour*60
+   let minutes = Number(times.slice(3,5))
+   let totalMinutes = hourToMinutes+minutes
+   return totalMinutes
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
