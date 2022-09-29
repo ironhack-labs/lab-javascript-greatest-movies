@@ -32,7 +32,10 @@ function scoresAverage(moviesArray) {
     const scoresAvg = (moviesArray.reduce((accumulator,currentValue) => {
         if (currentValue.score) {
             return accumulator + currentValue.score;
+        } else if (!currentValue.score) {
+            return accumulator
         }
+
     }, 0)/moviesArray.length).toFixed(2);
 
     return parseFloat(scoresAvg);
@@ -62,10 +65,27 @@ function dramaMoviesScore(moviesArray) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    const movies = moviesArray.map((movie) => movie)
+    return movies.sort((a,b) => {
+        if (a.year === b.year){
+            return a.title.localeCompare(b.title);
+        } else {
+         return a.year - b.year 
+        } 
+    })   
+
+   
+};
+console.log(orderByYear(allMovies))
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+    const moviesAlph = moviesArray.map((movie) => movie.title)
+    moviesAlph.sort();
+    return moviesAlph.slice(0,20);
+}
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
