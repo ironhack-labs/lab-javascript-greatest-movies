@@ -97,9 +97,7 @@ function dramaMoviesScore(moviesArray) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
     let yearArray = moviesArray.map(movie => movie.year);
-    console.log("yearArray:"+yearArray);
     let orderedArr = yearArray.sort((a,b) => a-b);
-    console.log(orderedArr);
     return orderedArr;
     // let orderedArray = [];
     // for (i=0;i<moviesArray.length;i++){
@@ -116,10 +114,69 @@ function orderByYear(moviesArray) {
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+    let titleArray = [];
+    let orderedArray = [];
+    let workingArr = [];
+    titleArray =  moviesArray.map(movie => movie.title);
+    orderedArray = titleArray.sort();
+    if (orderedArray.length > 20){
+        for (i=0;i<20;i++){
+            workingArr.push(orderedArray[i]);
+        }
+    return workingArr;
+}   else if (orderedArray.length <= 20){
+    return orderedArray;
+}
+}
+
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+
+    let workingArr = JSON.parse(JSON.stringify(moviesArray));
+  let newArr2 = workingArr.map(movie => movie.duration);
+  console.log(newArr2.length);
+
+ let splitedArr2 = newArr2.map(movie => movie.split(' '));
+  
+  for (i=0;i<splitedArr2.length;i++){ 
+
+      let sumed = splitedArr2[i].reduce ((a,b) => parseInt(a)*60 + parseInt(b));
+    console.log(sumed);
+    if (typeof sumed !== 'number'){
+      sumed = parseInt(sumed)*60;
+    }
+      workingArr[i].duration = parseInt(sumed);
+  }
+     return workingArr;
+}
+
+// for (i=0;i<clonedArr.length;i++){
+// 
+//   newArr = clonedArr[i].duration.split(" ");
+//   
+//   if (clonedArr.length > 0){
+//     firstValue = parseInt(newArr[0], 10) *60;
+//     secondValue = parseInt(newArr[1],10);
+//     minutesDuration = firstValue + secondValue;
+// 
+//     clonedArr[i].duration = minutesDuration;
+// 
+//   }
+// 
+//   firstValue = parseInt(newArr[0], 10) *60;
+// 
+//   
+// 
+//   minutesDuration = firstValue;
+// 
+//   clonedArr[i].duration = minutesDuration;
+// }
+// 
+//   return clonedArr;
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+    function bestYearAvg(moviesArray) {
+       }
