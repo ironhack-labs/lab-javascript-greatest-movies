@@ -35,26 +35,47 @@ function scoresAverage(moviesArray) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-    const dramaMovies = moviesArray.filter((item) => { if (item['genre'].includes('Drama')) { return item['score'] } });
-    console.log(dramaMovies)
-    const scoreSum = dramaMovies.reduce((accumulator, currentValue) => {
-        if (!currentValue.score) {
-            return accumulator
-        }
-        return accumulator + currentValue.score
+    const dramaMovies = moviesArray.filter((item) => item.genre.includes("Drama"));
+    if (dramaMovies == '') return 0;
+    const scoreDrama = dramaMovies.map((item) => {if (!item.score) item.score = 0;
+    return item.score
     })
-    console.log(scoreSum)
-    const average = Math.round(scoreSum * 100) / 100;
-    console.log(average)
-    return average
-}
-dramaMoviesScore(allMovies)
+    let totalScore = scoreDrama.reduce((a, b) => a + b)
+    let averageScore = totalScore / dramaMovies.length;
+    return parseFloat(averageScore.toFixed(2))
+    }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) { }
+function orderByYear(moviesArray) {
+    let yearOrder = Array.from(moviesArray);
+    yearOrder.sort((a,b) => 
+    {
+        if(a.year>b.year) return 1;
+        if(a.year<b.year) return -1;
+        if(a.year === b.year) {
+            if(a.title>b.title) return 1;
+            if(a.title<b.title) return -1;
+        }
+    })
+    return yearOrder;
+    }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) { }
+function orderAlphabetically(moviesArray) {
+    let alphOrder = Array.from(moviesArray);
+    alphOrder.sort((a,b) => {
+            if(a.title>b.title) return 1;
+            if(a.title<b.title) return -1;
+    })
+    let twenty = alphOrder.slice(0,20);
+    let arrayFinal = [];
+    for (let i = 0; i < twenty.length; i++) {
+        const title = twenty[i].title;
+        arrayFinal.push(title);
+    }
+    return arrayFinal;
+    }
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) { }
