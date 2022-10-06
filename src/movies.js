@@ -19,32 +19,40 @@ function howManyMovies(moviesArray) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
-  if(moviesArray.length === 0){
-    return 0;
-  } else {
-    const average = moviesArray.reduce((acc, val) => {
-          return acc + val.score;}, 0)/moviesArray.length
-        let around = parseFloat(average.toFixed(2)); {
-            return around;
-        }
-    
-}
+    if(moviesArray.length === 0) {
+        return 0;
+    } else{
+    const result = 
+    moviesArray.reduce((acc, val) => {
+        return acc + val.score;
+      }, 0) / moviesArray.length;
+      return Math.round(result*100)/100;
+    }
 };
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-let dramaTotal = 0
-let 
+
 function dramaMoviesScore(moviesArray) {
-    if(moviesArray.length === 0){
-        return moviesArray.score
+    if (moviesArray.length === 0) {
+      return 0;
+    } else if (
+      moviesArray.filter((movie) => movie.genre.includes("Drama")).length === 0
+    ) {
+      return 0;
+    } else {
+      let isDrama = moviesArray.filter((movie) => movie.genre.includes("Drama"));
+      const avgScore =
+        isDrama.reduce((acc, val) => {
+          return acc + val.score;
+        }, 0) / isDrama.length;
+      return avgScore;
     }
-   else if(moviesArray.genre.includes("Drama")){
-      dramaTotal+= moviesArray.score
-      return drama
-}
+  };
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
