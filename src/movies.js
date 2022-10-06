@@ -71,6 +71,25 @@ function orderAlphabetically(moviesArray) {
 
     const newArr = moviesArray.map((elem) => elem);
 
+    const orderMovies = newArr.sort((a, b) => {
+        if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+        if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
+        if (a.title.toLowerCase() === b.title.toLowerCase()) return 0;
+    });
+    
+    let smallArr = [];
+    
+    for (let i = 0; i < 20; i++) {
+      smallArr.push(orderMovies[i].title);
+    }
+
+    return smallArr;
+}
+
+/* function orderAlphabetically(moviesArray) {
+
+    const newArr = moviesArray.map((elem) => elem);
+
     let smallArr = [];
     
     for (let i = 0; i < 20; i++) {
@@ -87,7 +106,7 @@ function orderAlphabetically(moviesArray) {
     
     return order20Movies;
     
-}
+} */
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
