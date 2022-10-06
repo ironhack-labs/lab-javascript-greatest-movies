@@ -2001,7 +2001,7 @@ const movies = [
     score: 8,
   },
 ];
-
+/*
 function scoresAverage(moviesArray) {
   if (moviesArray.length === 0) {
     return 0;
@@ -2045,7 +2045,7 @@ function orderAlphabetically(moviesArray) {
 
 //console.log(orderAlphabetically(movies));
 
-/*function orderByYear(moviesArray) {
+function orderByYear(moviesArray) {
   let cloneYearArray = moviesArray.map((movie) => movie);
   let sortedMovies = cloneYearArray.sort((a, b) => {
     if (a.year === b.year) {
@@ -2059,7 +2059,7 @@ function orderAlphabetically(moviesArray) {
     }
   });
   return sortedMovies;
-}*/
+}
 
 function orderByYear(moviesArray) {
   let cloneYearArray = moviesArray.map((movie) => movie);
@@ -2082,4 +2082,4 @@ function turnHoursToMinutes(moviesArray) {
   return hoursToMinutes(timeParts[0]) * 60 + Number(timeParts[1]);
   return hoursToMinutes;
 }
-console.log(turnHoursToMinutes(movies));
+console.log(turnHoursToMinutes(movies));*/
