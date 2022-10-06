@@ -2001,3 +2001,38 @@ const movies = [
     score: 8
   }
 ];
+
+function dramaMoviesScore(moviesArray) {
+  if (!moviesArray.length) {
+      return 0;
+  }
+  let summedScore = moviesArray.reduce((acc, val) => {
+      if (val.score === 0) {
+          return acc + 0;
+      }
+      if (!val.score) {
+          return acc + 0;
+      }
+      return acc + val.score;
+  }, 0);
+  summedScore = summedScore / moviesArray.length;
+  summedScore = summedScore * 100;
+  summedScore = Math.round(summedScore);
+  summedScore = summedScore / 100;
+  return summedScore;
+}
+
+console.log(dramaMoviesScore(movies));
+
+console.log(movies[249].genre[1]);
+
+/* console.log(pets.includes('cat'));
+expected output: true */
+
+// forEach Loop
+
+/* namesArray = ["André", "Lucas", "Diogo"]
+
+namesArray.forEach(function (element, index){ // accepts Functions, it does something (Function) with every interation / it goes over EVERY element in the array
+    console.log(`${element} is in position ${(index + 1)}, but at index ${index}.`);
+}); */
