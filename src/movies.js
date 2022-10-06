@@ -17,24 +17,40 @@ function howManyMovies(moviesArray) {
     return numbMovies;
 }
 
-    
-/*     const stevenMovies = moviesArray.filter((movie) => {
-        if (movie.director === 'Steven Spielberg') {
-            if (movie.genre.includes('Drama')) {
-                return movie;
-            }
-        }
-    })
-    return stevenMovies; */
-
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+    
+    if (moviesArray.length === 0) return 0;
+
+    const avgScore = moviesArray.reduce((acc, val) => {
+        if (val.score > 0) {
+            return acc + val.score;
+        } else {
+            return acc;
+        }  
+    }, 0);
+
+    return Math.round(avgScore/moviesArray.length * 100) / 100;
+  }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+    
+    if (moviesArray.length === 0) return 0;
+
+    const dramaMovies = moviesArray.filter((movies) => movies.genre.includes('Drama'));
+
+    return scoresAverage(dramaMovies);   
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    const newArr = moviesArray.map((elem) => elem);
+    console.log(newArr);
+}
+
+//identity = (x) => x;
+//numbers.map(identity);
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
