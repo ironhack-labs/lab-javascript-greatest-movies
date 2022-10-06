@@ -2034,10 +2034,44 @@ function orderByYear(moviesArray) {
   const newArr = moviesArray.map((elem) => elem);
   
   const orderedMovies = newArr.sort((a, b) => {
-    if (a.year - b.year)
-  })
+    if (a.year > b.year) {
+      return 1;
+    } else if (a.year < b.year) {
+      return -1;
+    } else {
+      if (a.title.toLowerCase() < b.title.toLowerCase()) {
+        return -1;
+      } else {
+        return 1;
+      }
+    }
+  });
+
+  return orderedMovies;
 
 }
 
-console.log(orderByYear(movies))
+
+function orderAlphabetically(moviesArray) {
+
+  const newArr = moviesArray.map((elem) => elem);
+
+  let smallArr = [];
+  
+  for (let i = 0; i < 20; i++) {
+    smallArr.push(newArr[i]);
+  }
+
+  const orderMovies = smallArr.sort((a,b) => {
+    if (a.title.toLowerCase() < b.title.toLowerCase()) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+  console.log(typeof orderMovies)
+  return orderMovies;
+}
+
+console.log(orderAlphabetically(movies))
 /* console.log(movies.length) */
