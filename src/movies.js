@@ -25,18 +25,6 @@ function scoresAverage(moviesArray) {
   return Math.round((average / moviesArray.length) * 100) / 100;
 }
 
-/* const total = numbers.reduce(function (accumulator, currentValue) {
-  console.log(
-    "accumulator is: ",
-    accumulator,
-    "and current value is: ",
-    currentValue
-  );
-  return accumulator + currentValue;
-});
-
-console.log("total is: ", total); */
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {}
 
@@ -44,7 +32,30 @@ function dramaMoviesScore(moviesArray) {}
 function orderByYear(moviesArray) {}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  //const moviesCopy = moviesArray.splice(moviesArray)
+  const moviesCopy = [...moviesArray]; //this method replicates the array without mutating the original array
+
+  moviesCopy.sort(function (a, b) {
+    if (a.title.toLowerCase < b.title.toLowerCase) {
+      return -1;
+    } else if (a.title.toLowerCase > b.title.toLowerCase) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+
+  let titlesArray = moviesCopy.map((movie) => movie.title);
+  //console.log(titlesArray);
+
+  if (titlesArray.length < 20) return titlesArray;
+  else return titlesArray.slice(0, 20);
+
+  const first20 = titlesArray.slice(0, 20);
+}
+
+orderAlphabetically(movies);
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
