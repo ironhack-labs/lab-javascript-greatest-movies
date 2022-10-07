@@ -1,10 +1,23 @@
-
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
     return moviesArray.map((films) => films.director)
 }
+
+// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
+// How could you "clean" a bit this array and make it unified (without duplicates)?
+function getAllDirectorsNoRepeat(moviesArray) {
+    let allDirectors = moviesArray.map(films => films.director);
+    let allDirectorsNoRepeat = [];
+  
+    for(let director of allDirectors){
+      if(!allDirectorsNoRepeat.includes(director)){
+         allDirectorsNoRepeat.push(director);
+      }
+    }
+    return allDirectorsNoRepeat;
+  };
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
@@ -82,5 +95,52 @@ return copiedMoviesArray;
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
-    
-}
+    let theYear = 0;
+    let bestAvg = 0;
+    let theScore = 0;
+    let count = 0;
+  
+    let copiedMoviesArray = moviesArray.sort( (a, b) =>
+    a.year - b.year)
+
+    if(moviesArray.length === 0){
+        return null;
+    }
+
+    if(moviesArray.length === 1){
+        return `The best year was ${moviesArray[0].year} with an average score of ${moviesArray[0].score}`
+    }
+  
+  
+    for(let i = 0; i < copiedMoviesArray.length - 1; i++){
+  
+        if(copiedMoviesArray[i].year === copiedMoviesArray[i+1].year && !(copiedMoviesArray[i+1].title === copiedMoviesArray[copiedMoviesArray.length-1].title)){
+            theScore += copiedMoviesArray[i].score;
+            count ++
+  
+        } else if(copiedMoviesArray[copiedMoviesArray.length-2].year === copiedMoviesArray[i].year){
+            theScore += copiedMoviesArray[copiedMoviesArray.length-1].score + copiedMoviesArray[i].score;
+            count+=2;
+
+            if(bestAvg < theScore/3){
+            theYear = copiedMoviesArray[copiedMoviesArray.length-2].year;
+            bestAvg = theScore/count;
+            }
+            
+  
+        } else if(copiedMoviesArray[i].year !== copiedMoviesArray[i+1].year){
+            theScore += copiedMoviesArray[i].score;
+            count ++;
+
+            if(bestAvg < theScore/count){
+            bestAvg = theScore/(count);
+            theYear = copiedMoviesArray[i].year;
+            count = 0;
+            }
+        count = 0;
+        theScore = 0;
+        }
+     
+    }
+    return `The best year was ${theYear} with an average score of ${bestAvg}`
+  }
