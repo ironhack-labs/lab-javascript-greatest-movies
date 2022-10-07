@@ -50,37 +50,42 @@ function dramaMoviesScore(moviesArray) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-   /* function orderByYear(moviesArray) {
-    let sortArray = moviesArray.sort((a,b) => {
-    return a.score - b.score;
-    });
-    let sortMovies = sortArray.filter((movie) => movie.genre.includes("Drama"));
-
-    return sortMovies;
-    } */
-    function orderByYear(moviesArray) {
-        let yearOrder = Array.from(moviesArray);
-        yearOrder.sort((a,b) => 
-        {
-            if(a.year>b.year) return 1;
-            if(a.year<b.year) return -1;
-            if(a.year === b.year) {
-                if(a.title>b.title) return 1;
-                if(a.title<b.title) return -1;
-            }
-        })
-        return yearOrder;
+function orderByYear(moviesArray) {
+    const yearOrder = [...moviesArray];
+    yearOrder.sort((a,b) => 
+    {
+        if(a.year>b.year) return 1;
+        if(a.year<b.year) return -1;
+        if(a.year === b.year) {
+             if(a.title>b.title) return 1;
+            if(a.title<b.title) return -1;
         }
+    });
+    return yearOrder;
+}
     
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-    
+    const moviesCopy = [...moviesArray];
+
+    moviesCopy.sort(function(a,b) {
+        if(a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+        if(a.title.toLowerCase() > b.title.toLowerCase()) return 1;
+        else {
+            return 0;
+        }
+    })
+        let titlesArray = moviesCopy.map((movie) => movie.title);
+
+        const first20 = titlesArray.slice(0, 20);
+        return first20;
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
