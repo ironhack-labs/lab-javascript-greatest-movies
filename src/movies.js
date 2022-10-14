@@ -2,7 +2,7 @@
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 
-// const movies = require("./data");
+const movies = require("./data");
 
 function getAllDirectors(moviesArray) {
   const newTabDirector = moviesArray.map((element) => {
@@ -67,7 +67,14 @@ function orderByYear(moviesArray) {
 console.log(orderByYear(movies));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  const order = moviesArray.map((element) => {
+    return (newArray = [...element.slice(0, 21)]);
+  });
+  return order;
+}
+
+console.log(orderAlphabetically(movies)); // ça ne marche pas
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
