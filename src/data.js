@@ -2001,3 +2001,10 @@ const movies = [
     score: 8
   }
 ];
+
+function getAllDirectors(moviesArray) {
+  const directors = moviesArray.map(nameDirectors => nameDirectors.director)
+  return directors
+}
+
+console.log(getAllDirectors(movies))
