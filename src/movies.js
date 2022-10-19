@@ -29,7 +29,22 @@ function howManyMovies(moviesArray) {
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+    let eightAvg = moviesArray.filter((movie, index, originalArray)=>{
+        return (movie.score ===8)
+        })
+    if (eightAvg.lenght > 0){
+        if (eightAvg[0].score === 8 && eightAvg[1].score ===8){
+            return Math.round((eightAvg[0].score + eightAvg[1].score)/2).toFixed(2);    
+        } else {
+            return 0;
+        }
+        
+    } else  {
+        return 0;
+    }
+        
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {}
