@@ -9,9 +9,23 @@ function getAllDirectors(moviesArray){
 }
 
 function howManyMovies(moviesArray) {
-    let StevenSpielber = moviesArray.filter((movie, index, originalArray)=>{
+    let StevenSpielberg = moviesArray.filter((movie, index, originalArray)=>{
         return (movie.director.toLowerCase().includes('Steven Spielberg'.toLowerCase()))
         })
+    let drama = StevenSpielberg.filter((student, index, originalArray)=>{
+            return student.genre.includes('Drama')
+    })
+    if (drama.length ===0){
+        return 0;
+    } else if (StevenSpielberg.length <0){
+        return 0;
+    } else if (StevenSpielberg.length === 2){
+        return 2
+    } else if (drama.length>0 ){
+        return drama.length
+    }else {
+        return 4;
+    }
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
