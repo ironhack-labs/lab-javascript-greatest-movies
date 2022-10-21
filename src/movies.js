@@ -51,13 +51,99 @@ function dramaMoviesScore(moviesArray) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    let resultado = [];
+        if(!moviesArray.length == 0){
+            resultado = moviesArray.sort((a,b) => {
+                if( a.year < b.year ){
+                    return -1
+                }else if( a.year > b.year ){
+                    return 1
+                }else{
+                    return a.title.localeCompare(b.title)
+                }
+            })
+        }
+    return resultado;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+    let resultado = [];
+    let newArray = [];
+    if(!moviesArray.length == 0){
+        resultado = moviesArray.sort((a,b) => a.title.localeCompare(b.title))
+        resultado.forEach((element, index) => {
+            if(index < 20){
+                newArray[index] = element.title;
+            }else{
+                return newArray;
+            }
+        });
+    }
+    return newArray;
+}
+
+function duracionEnMinutos(duracion){
+    let regex = /\d+h\s\d+min/
+    let regexHr= /(\d+)(h)/
+    let regexMin= /(\d+)(min)/
+    let totalMin = 0;
+    if(regex.test(duracion)){
+        let duracionHoras = regexHr.exec(duracion);
+        let duracionMinutos = regexMin.exec(duracion);
+        return totalMin = parseInt(duracionHoras[1])*60 + parseInt(duracionMinutos[1]);
+    }else if(regexHr.test(duracion)){
+        let duracionHoras = regexHr.exec(duracion);
+        return totalMin = parseInt(duracionHoras[1])*60;
+    }else{
+        let duracionMinutos = regexMin.exec(duracion);
+        return totalMin = parseInt(duracionMinutos[1]);
+    }
+
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+    let resultado = [];
+    moviesArray.forEach((item, index) => {
+        let duracionMovie = duracionEnMinutos(item.duration);
+        item.duration = duracionMovie;
+        resultado[index] = item;
+    })
+    return resultado;
+}
+
+function removeWithFilter(arr) {
+    let outputArray = arr.filter(( av , i ) => i == arr.indexOf(av));
+    return outputArray.sort( ( a , b )=> a - b );
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+    let resultado = []
+    if(moviesArray.length == 0){
+        return null
+    }else if(moviesArray.length == 1){
+        return `The best year was ${moviesArray[0].year} with an average score of ${moviesArray[0].score}`
+    }else {
+        let years = []
+        let uniqueYears = []
+        let resultado = []
+        moviesArray.forEach((item, index) => {
+            years[index] = item.year;
+        })
+        uniqueYears = removeWithFilter(years);
+        uniqueYears.forEach((item) => {
+            let arreglo = moviesArray.filter( ( av ) => av.year == item)
+            if(arreglo.length == 1){
+                resultado.push({year:item, avg_score:arreglo[0].score })
+            }else{
+                let resultadoAvg = (arreglo.map( obj => obj.score ).reduce((ac, va)=> ac + va))/arreglo.length;
+                resultado.push({year:item, avg_score:parseFloat(resultadoAvg.toFixed(1))})
+            }
+        })
+        resultado.sort(( a , b ) => b.avg_score - a.avg_score );
+        return `The best year was ${resultado[0].year} with an average score of ${resultado[0].avg_score}`
+    }
+}
