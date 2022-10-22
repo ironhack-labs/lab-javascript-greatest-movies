@@ -14,17 +14,44 @@ function howManyMovies(moviesArray) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
-    
+    if (moviesArray.length === 0){
+        return 0;
+    } else{ 
+        const sum = moviesArray.reduce((acc,value) => acc + value.score,0)
+        const avg = (sum / moviesArray.length).toFixed(2);
+        return parseFloat(avg);
+    }
+   
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+    const dramaMovies = moviesArray.filter((movie) => movie.genre.includes("Drama"));
+    const sum = dramaMovies.reduce((acc,value)=> acc + value.score,0)
+    const avg = (sum / dramaMovies.length).toFixed(2);
+    return parseFloat(avg);
+
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    const array = [...moviesArray];
+    const ascendingOrder = array.sort((a,b)=> a.year - b.year);
+    return ascendingOrder;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+    const array = [...moviesArray];
+    const alphabeticalOrder = array.sort((a,b)=>{a.title - b.title});
+    console.log(alphabeticalOrder);
+    if(alphabeticalOrder.length>20){
+        return alphabeticalOrder.slice(0, 20);
+    } else {
+        return alphabeticalOrder;
+    }
+    
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
