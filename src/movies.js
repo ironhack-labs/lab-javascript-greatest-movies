@@ -35,7 +35,7 @@ function scoresAverage(moviesArray) {
         })
     if (eightAvg.lenght > 0){
         if (eightAvg[0].score === 8 && eightAvg[1].score ===8){
-            return Math.round((eightAvg[0].score + eightAvg[1].score)/2).toFixed(2);    
+            return parseFloat((Math.round((eightAvg[0].score + eightAvg[1].score)/2).toFixed(2)));
         } else {
             return 0;
         }
@@ -47,7 +47,22 @@ function scoresAverage(moviesArray) {
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+    let drama = moviesArray.filter((student, index, originalArray)=>{
+        return student.genre.includes('Drama')})
+    
+    const total = drama.reduce((acc, cv) =>{
+        return arr = (cv.score  + acc)
+    },0)
+    let dramaOBJ = {generalArray :drama, 
+                    averageScore: total/drama.length}
+    if (drama.lenght > 0){
+        return 0
+    } else {
+        return dramaOBJ.averageScore
+    }
+    
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {}
@@ -60,3 +75,7 @@ function turnHoursToMinutes(moviesArray) {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
+
+
+
+// const repetidosno = movies.flter(movie, indice) =>{ indice == movie.indexOf(movie) return repetidosno.sort(a,b) => a-b}
