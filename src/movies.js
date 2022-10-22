@@ -43,12 +43,11 @@ function orderByYear(moviesArray) {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
     const array = [...moviesArray];
-    const alphabeticalOrder = array.sort((a,b)=>{a.title - b.title});
-    console.log(alphabeticalOrder);
-    if(alphabeticalOrder.length>20){
-        return alphabeticalOrder.slice(0, 20);
+    const alphabeticalOrder = array.sort((a, b) => a.title.localeCompare(b.title));
+    if(alphabeticalOrder.length > 20){
+        return alphabeticalOrder.slice(0, 20).map((movie)=> movie.title);
     } else {
-        return alphabeticalOrder;
+        return alphabeticalOrder.map((movie)=> movie.title);
     }
     
 }
