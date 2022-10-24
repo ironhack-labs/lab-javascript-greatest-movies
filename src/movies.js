@@ -5,9 +5,12 @@ function getAllDirectors(moviesArray) {
    const allDirectors = moviesArray.map((movie) => {
       return movie.director
    })
-   //console.log(allDirectors)
-   return allDirectors
+
+   let uniques = [...new Set(allDirectors)]
+   return uniques
 }
+
+// let uniques = [ ...new Set([1, 2, 3, 1, 1]) ]; // [1, 2, 3]
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
@@ -81,12 +84,11 @@ function orderAlphabetically(moviesArray) {
 
    const top20 = moviesTitle.splice(0, 20)
 
-   return  top20
+   return top20
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-
 
 }
 
