@@ -8,7 +8,7 @@ function getAllDirectors(moviesArray) {
 	// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 	return [...new Set(allDirectors)];
 }
-console.log(getAllDirectors(movies));
+// console.log(getAllDirectors(movies));
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
@@ -71,7 +71,6 @@ function orderAlphabetically(moviesArray) {
 		} else {
 			return 0;
 		}
-		3;
 	});
 	const newMoviesArrayTitle = newMoviesArray.map((movie) => {
 		return movie.title;
@@ -82,24 +81,25 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-	let minutedMovies = JSON.parse(JSON.stringify(moviesArray));
+	const minutedMovies = JSON.parse(JSON.stringify(moviesArray));
 
 	minutedMovies.map((movie) => {
-		let array = [];
 		let totalMinutes = 0;
+		let splitsArray = [];
 
 		if (movie.duration.includes("h")) {
 			if (movie.duration.includes("min")) {
-				array = movie.duration.split("min");
-				array = array[0].split("h ");
-				totalMinutes = array[0] * 60 + parseInt(array[1]);
+				splitsArray = movie.duration.split("min");
+				splitsArray = splitsArray[0].split("h ");
+				totalMinutes = splitsArray[0] * 60 + parseInt(splitsArray[1]);
 			} else {
-				array = movie.duration.split("h");
-				totalMinutes = array[0] * 60;
+				splitsArray = movie.duration.split("h");
+				totalMinutes = splitsArray[0] * 60;
+				console.log("");
 			}
 		} else {
-			array = movie.duration.split("min");
-			totalMinutes = parseInt(array[0]);
+			splitsArray = movie.duration.split("min");
+			totalMinutes = parseInt(splitsArray[0]);
 		}
 
 		movie.duration = totalMinutes;
@@ -110,7 +110,7 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
-	let bestMoviesByYear = [...moviesArray];
+	const bestMoviesByYear = [...moviesArray];
 
 	if (bestMoviesByYear.length === 0) {
 		return null;
@@ -129,9 +129,9 @@ function bestYearAvg(moviesArray) {
 			score: scoresAverage(filterByYear),
 		});
 	}
-	console.log("yearScore", scoreByYear);
+	// console.log("Score of the year", scoreByYear);
 
-	let sortByScoreByYear = scoreByYear.sort((a, b) => {
+	const sortByScoreByYear = scoreByYear.sort((a, b) => {
 		if (a.score < b.score) {
 			return 1;
 		} else if (a.score > b.score) {
