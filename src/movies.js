@@ -5,6 +5,7 @@ function getAllDirectors(moviesArray) {
     const directors = moviesArray.map(movie => {
         return movie.director
     })
+
     return directors
 }
 
@@ -13,6 +14,7 @@ function howManyMovies(moviesArray) {
     const spielbergMovies = moviesArray.filter(movie => {
         return movie.director === "Steven Spielberg" && movie.genre.includes("Drama")
     })
+
     return spielbergMovies.length
 }
 
@@ -27,9 +29,9 @@ function scoresAverage(moviesArray) {
         let ratingSum = onlyNumbers.reduce((acc, movie) => {
             return acc + movie.score
         }, 0)
+
         return parseFloat((ratingSum / moviesArray.length).toFixed(2))
     }
-
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -37,6 +39,7 @@ function dramaMoviesScore(moviesArray) {
     const dramaMovies = moviesArray.filter(movie => {
         return movie.genre.includes("Drama")
     })
+
     return scoresAverage(dramaMovies)
 }
 
@@ -51,6 +54,7 @@ function orderByYear(moviesArray) {
         }
 
     })
+
     return clonedArray
 }
 
@@ -62,8 +66,8 @@ function orderAlphabetically(moviesArray) {
     movieTitles.sort((a, b) => {
         return a.localeCompare(b)
     })
-    return movieTitles.slice(0, 20)
 
+    return movieTitles.slice(0, 20)
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
