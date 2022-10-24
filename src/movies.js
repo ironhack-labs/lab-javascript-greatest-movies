@@ -57,7 +57,7 @@ function howManyMovies(moviesArray) {
 function scoresAverage(moviesArray) {
 
     const avgRate = moviesArray.reduce(function(arr,val){
-        return arr + val.score
+        return arr + (val.score || 0)
     },0)
 
     if (!avgRate){
@@ -88,6 +88,7 @@ function dramaMoviesScore(moviesArray) {
     })
     
     const avgRate = dramaMovies.reduce(function(arr,val){
+        
         return arr + val.score
     },0)
     
@@ -130,7 +131,7 @@ console.log(orderAlphabetically(movie))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-    
+
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
