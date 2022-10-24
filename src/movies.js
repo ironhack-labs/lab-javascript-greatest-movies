@@ -83,7 +83,11 @@ function turnHoursToMinutes(moviesArray) {
             console.log(totalMin)
             return totalMin
         })
-        elem.replace(elem.duration, elem.totalMin)
+        return {
+            ...elem,
+            duration: totalMin
+        }
+
     })
 
     return result
