@@ -84,26 +84,26 @@ function orderAlphabetically(moviesArray) {
 function turnHoursToMinutes(moviesArray) {
 	let minutedMovies = JSON.parse(JSON.stringify(moviesArray));
 
-	minutedMovies.map((elem) => {
+	minutedMovies.map((movie) => {
 		let array = [];
 		let totalMinutes = 0;
 
-		if (elem.duration.includes("h")) {
-			if (elem.duration.includes("min")) {
-				array = elem.duration.split("min");
+		if (movie.duration.includes("h")) {
+			if (movie.duration.includes("min")) {
+				array = movie.duration.split("min");
 				array = array[0].split("h ");
 				totalMinutes = array[0] * 60 + parseInt(array[1]);
 			} else {
-				array = elem.duration.split("h");
+				array = movie.duration.split("h");
 				totalMinutes = array[0] * 60;
 			}
 		} else {
-			array = elem.duration.split("min");
+			array = movie.duration.split("min");
 			totalMinutes = parseInt(array[0]);
 		}
 
-		elem.duration = totalMinutes;
-		return elem;
+		movie.duration = totalMinutes;
+		return movie;
 	});
 	return minutedMovies;
 }
@@ -120,7 +120,7 @@ function bestYearAvg(moviesArray) {
 
 	let scoreByYear = [];
 
-	for (let i = 1900; i < 2017; i++) {
+	for (let i = 1900; i < 2050; i++) {
 		let filterByYear = bestMoviesByYear.filter((movie) => {
 			return movie.year === i;
 		});
