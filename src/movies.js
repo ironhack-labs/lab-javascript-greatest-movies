@@ -18,17 +18,16 @@ function scoresAverage(moviesArray) {
     if (moviesArray.length === 0) {
         return 0;
     }
-    const sumScore = moviesArray.reduce(((el, val) => el + (val.score || 0)), 0);
-    const avv = sumScore / moviesArray.length;
-    return Number(avv.toFixed(2));
+    const sumScore = moviesArray.reduce((val, el) => val + (el.score || 0), 0);
+    const average = sumScore / moviesArray.length;
+    return Number(average.toFixed(2));
 }
 console.log(scoresAverage(movi));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
     const drama = moviesArray.filter(movies => movies.genre.includes('Drama'));
-
-    const sumDrama = drama.reduce((el, val) => el + (val.score || 0), 0);
+    const sumDrama = drama.reduce((val, el) => val + (el.score || 0), 0);
 
     const avvDrama =  sumDrama / drama.length;
     return drama.length === 0 ? 0 : Number(avvDrama.toFixed(2));
@@ -44,7 +43,7 @@ console.log(orderByYear(movi));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-    const titles = moviesArray.map(movies => movies.title).sort();
+    const titles = moviesArray.map(movies => movies.title);
     const orderedTitles = titles.sort();
     return orderedTitles.slice(0, 20);
 }
@@ -59,9 +58,8 @@ function turnHoursToMinutes(moviesArray) {
             const number = Number(timeComponent.replace(/[^0-9]/g, ''));
             return timeComponent.includes('h') ? (number * 60) : number;
         });
-        // [120, 39]
         return { ...movie, duration: onlyDigitsOfTime.reduce((totalDuration, minComponent) => totalDuration + minComponent, 0)};
-        //return { ...movie, duration: numberOfMinutes }; // return the copy of your arr, modify only duration
+        //return { ...movie, duration: ...}; // --> return the copy of your arr, modify only duration
     })
     return moviesMinutes;
 }
@@ -75,20 +73,26 @@ function bestYearAvg(moviesArray) {
     else if (moviesArray.length === 1) {
         return `The best year was ${moviesArray[0].year} with an average score of ${moviesArray[0].score}`;
       }
-    const grouppedMovies = moviesArray.reduce((groups, el) => { //to group all movies by year
-        if (el.year in groups) {
-            groups[el.year].push(el); // groups: {2010: [{...}, {...}], 1999: [...], ...}
+    //first group all movies by year, in the end you'll get {} with years as keys and [{},{}...] as values :
+    const grouppedMovies = moviesArray.reduce((groups, el) => { 
+         //el.year bellow is our future key => 1999 / 2000 / 2004 / 1972 etc...
+        if (el.year in groups) { 
+            //if the year(of el) is already in the groups -> don't need to creare a new key,
+            //just push object in the "groups, under the appropriate key"
+            groups[el.year].push(el); 
         }
-        else {
+        //if the year(of el) is not in the "group" yet -> create a new key
+        else { 
             groups[el.year] = [el];
         }
-        return groups;
+        //now groups looks like this: {2010: [{...}, {...}], 1999: [...], ...}
+        return groups; 
     },
     {});
-    let bestYear = undefined;
-    let bestScore = 0;
-    for (let year in grouppedMovies) { //loop and 
-        if (grouppedMovies.hasOwnProperty(year)) {
+    let bestYear = undefined; // make a var to store and update the best year
+    let bestScore = 0; // make a var to store and update the best score
+    for (let year in grouppedMovies) {  //year is a key; groouppedMovies is an object
+        if (grouppedMovies.hasOwnProperty(year)) { //google how to loop through an object :_)
             const sumScore = grouppedMovies[year].reduce(((val, el) => val + (el.score || 0)), 0);
             const avg = sumScore / grouppedMovies[year].length;
             if (avg > bestScore) {
