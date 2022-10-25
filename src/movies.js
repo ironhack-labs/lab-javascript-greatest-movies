@@ -66,10 +66,25 @@ function scoresAverage(moviesArray) {
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    return moviesArray
+    .slice()
+    .sort(function(a,b) {
+    return a.year -b.year || a.title.localCompare(b.title)
+    })
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+    return moviesArray
+    .map(function(movie){
+        return movie.title
+    })
+    .sort(function(a,b){
+        return a.localCompare(b)
+    })
+    .slice(0,20)
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
