@@ -74,31 +74,29 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 
-// function bestYearAvg(moviesArray) {
-//   if (moviesArray.length) {
-//     let bestAverage = 0;
-//     const sortedByYear = moviesArray.sort((a,b) => { return a.year - b.year})
-//     let minYear = sortedByYear[0].year;
-//     let maxYear = sortedByYear.at(-1).year;
-//     let years = []
-//     for (let i = minYear; i <= maxYear; i++) {
-//       years.push(i);
-//     }
-//     years.forEach(year => {
-//       const oneYearMovies = moviesArray.filter(movie => movie.year === year)
-//       if (oneYearMovies.length > 1) {
-//         let sum = oneYearMovies.reduce((acc, movie) => {
-//           return acc + movie.score
-//         }, oneYearMovies[0].score )
-//         let avg = sum / oneYearMovies.length
-//         if (avg > bestAverage) { bestAverage = avg}
-//       } else if (oneYearMovies.length === 1) {
-//         if (oneYearMovies[0].score > bestAverage) { bestAverage = oneYearMovies[0].score}
-//       } else {
-//         return null
-//       }
-//     })
-//     return bestAverage
-//   } else if (moviesArray.length === 1) {
-//       bestAverage = moviesArray[0].score
-//   }
+function bestYearAvg(moviesArray) {
+  if (moviesArray.length > 1) {
+    const sortedByYear = moviesArray.sort((a,b) => { return a.year - b.year})
+    let minYear = sortedByYear[0].year;
+    let maxYear = sortedByYear.at(-1).year;
+    let years = []
+    for (let i = minYear; i <= maxYear; i++) {years.push(i)};
+    let objects = []
+
+    years.forEach(year => {
+      let ratings = moviesArray.filter(movie => movie.year === year).map(movie => movie.score)
+      let object = {
+        year: year,
+        ratings: ratings.length ? Math.floor(ratings.reduce((acc, rating) => { return acc + rating }) / ratings.length *10) /10  : null
+      }
+      objects.push(object)
+    })
+    const result = objects.sort((a,b) => { return b.ratings - a.ratings })
+    return `The best year was ${result[0].year} with an average score of ${result[0].ratings}`
+
+  } else if (moviesArray.length === 1) {
+    return `The best year was ${moviesArray[0].year} with an average score of ${moviesArray[0].score}`
+  } else {
+    return null
+  }
+}
