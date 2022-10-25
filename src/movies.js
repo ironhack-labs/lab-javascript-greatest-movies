@@ -60,43 +60,53 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-    let newOrder = [];
-    let ordered = moviesArray.sort(function (a, b) {
+    const newOrder = moviesArray.splice(0, moviesArray.length)
+    return newOrder.sort(function (a, b) {
         if (a.year === b.year) {
-            return a.title < b.title;
-        } else if (a.year < b.year) {
-            return -1
-        } else {
-            return 0;
-        }
+            if (a.title < b.title) {
+                return -1
+            } else if (a.title > b.title) {
+                return 1
+            } else {
+                return 0;
+            }
+
+        } return a.year - b.year
     })
-    return ordered
+    return newOrder
 }
+// const yearOrderArray = moviesArray.map(movie => movie).sort((a, b) => a.year !== b.year ? a.year - b.year : a.title.localeCompare(b.title))
+// return yearOrderArray
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+
 function orderAlphabetically(moviesArray) {
-    let firstTwenyArrays = []
-    let ordered = moviesArray.map(function(title) {
-        return title
-      });
-    // let ordered = moviesArray.sort(function (a, b) {
-    //     if (a.title < b.title) {
-    //         return 1
-    //     } else {
-    //         return -1
-    //     }
+
+    const movieTitles = moviesArray.map(function (movie) {
+        return movie.title;
+    })
+    const alphabeticalArr = movieTitles.sort().slice(0, 20);
+    return alphabeticalArr
+
+
+    // const titles = moviesArray.map(function (movie) {
+    //     return movie.title;
     // })
-
-    return ordered.slice(0, 20)
-
+    // const new2 = titles.sort().slice(0, 20);
+    // return new2;
 }
+
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
     const hoursTime = moviesArray.filter(function (time) {
-        if (movie.duration.includes( 0)) {
+        if (movie.duration.includes(0)) {
             return Math.floor(timeInHour * 60);
-        }})
+        }
+    })
 }
 
 
