@@ -8,13 +8,6 @@ function getAllDirectors(moviesArray) {
     })
     return allDirectors
 }
-
-// const totalRatings = product.reviews.reduce(function(acc,val) {}
-    //     return acc + val.rate;
-    //   },0)
-    
-    // console.log(totalRatings/product.reviews.length)
-
     
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
