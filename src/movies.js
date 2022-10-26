@@ -6,8 +6,8 @@ function getAllDirectors(moviesArray) {
       return movie.director
    })
 
-   let uniques = [...new Set(allDirectors)]
-   return uniques
+   return [...new Set(allDirectors)]
+
 }
 
 // let uniques = [ ...new Set([1, 2, 3, 1, 1]) ]; // [1, 2, 3]
@@ -36,8 +36,7 @@ function scoresAverage(moviesArray) {
    }, 0)
 
    let media = scoreAverageMovies / moviesArray.length
-   return Math.round(media * 100) / 100
-
+   return Number(media.toFixed(2))
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -74,17 +73,8 @@ function orderAlphabetically(moviesArray) {
       return movie.title
    })
 
-   moviesTitle.sort((a, b) => {
-      if (a > b) {
-         return 1
-      } else if (a < b) {
-         return -1
-      }
-   })
+   return moviesTitle.sort().splice(0, 20)
 
-   const top20 = moviesTitle.splice(0, 20)
-
-   return top20
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
