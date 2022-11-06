@@ -10,7 +10,7 @@ describe('Function "getAllDirectors"', () => {
 
   it('should return a new array, not update the original one', () => {
     const returnValue = getAllDirectors(movies);
-    expect(returnValue instanceof Array).toBe(true);        
+    expect(returnValue instanceof Array).toBe(true);
     expect(getAllDirectors(movies)).not.toEqual(movies);
   });
 
@@ -22,7 +22,7 @@ describe('Function "getAllDirectors"', () => {
         director: 'Stanley Kubrick',
         duration: '1h 28min',
         genre: ['Drama', 'War'],
-        score: 8.4
+        score: 8.4,
       },
       {
         title: 'Django Unchained',
@@ -30,12 +30,12 @@ describe('Function "getAllDirectors"', () => {
         director: 'Quentin Tarantino',
         duration: '2h 45min',
         genre: ['Drama', 'Western'],
-        score: 8.4
-      }
+        score: 8.4,
+      },
     ];
     expect(getAllDirectors(testArr)).toEqual([
       'Stanley Kubrick',
-      'Quentin Tarantino'
+      'Quentin Tarantino',
     ]);
   });
 });
@@ -60,8 +60,8 @@ describe('Function "howManyMovies"', () => {
       howManyMovies([
         {
           director: 'James McTeigue',
-          genre: ['Action', 'Drama', 'Thriller']
-        }
+          genre: ['Action', 'Drama', 'Thriller'],
+        },
       ])
     ).toBe(0);
   });
@@ -71,12 +71,12 @@ describe('Function "howManyMovies"', () => {
       howManyMovies([
         {
           director: 'Steven Spielberg',
-          genre: ['Action', 'Drama', 'Thriller']
+          genre: ['Action', 'Drama', 'Thriller'],
         },
         {
           director: 'Steven Spielberg',
-          genre: ['Action']
-        }
+          genre: ['Action'],
+        },
       ])
     ).toBe(1);
   });
@@ -86,20 +86,20 @@ describe('Function "howManyMovies"', () => {
       howManyMovies([
         {
           director: 'Steven Spielberg',
-          genre: ['Action', 'Drama', 'Thriller']
+          genre: ['Action', 'Drama', 'Thriller'],
         },
         {
           director: 'James McTeigue',
-          genre: ['Action', 'Drama']
+          genre: ['Action', 'Drama'],
         },
         {
           director: 'Karl Moses',
-          genre: ['Thriller', 'Drama']
+          genre: ['Thriller', 'Drama'],
         },
         {
           director: 'Steven Spielberg',
-          genre: ['Drama', 'Thriller']
-        }
+          genre: ['Drama', 'Thriller'],
+        },
       ])
     ).toBe(2);
   });
@@ -157,7 +157,7 @@ describe('Function "dramaMoviesScore"', () => {
       dramaMoviesScore([
         { genre: ['Drama'], score: 8 },
         { genre: ['Drama'], score: 9 },
-        { genre: ['Drama'], score: 7 }
+        { genre: ['Drama'], score: 7 },
       ])
     ).toBe(8);
   });
@@ -167,7 +167,7 @@ describe('Function "dramaMoviesScore"', () => {
       dramaMoviesScore([
         { genre: ['Drama'], score: 9 },
         { genre: ['Drama'], score: 9 },
-        { genre: ['Drama'], score: 7 }
+        { genre: ['Drama'], score: 7 },
       ])
     ).toBe(8.33);
   });
@@ -177,7 +177,7 @@ describe('Function "dramaMoviesScore"', () => {
       dramaMoviesScore([
         { genre: ['Drama'], score: 8 },
         { genre: ['Romance'], score: 9 },
-        { genre: ['Drama'], score: 7 }
+        { genre: ['Drama'], score: 7 },
       ])
     ).toBe(7.5);
   });
@@ -187,7 +187,7 @@ describe('Function "dramaMoviesScore"', () => {
       dramaMoviesScore([
         { genre: ['Action'], score: 8 },
         { genre: ['Romance'], score: 9 },
-        { genre: ['Sci-Fi'], score: 7 }
+        { genre: ['Sci-Fi'], score: 7 },
       ])
     ).toBe(0);
   });
@@ -206,7 +206,7 @@ describe('Function "orderByYear"', () => {
   it('should return a new array, not mutate the original one', () => {
     const arr = [];
     const returnValue = orderByYear(arr);
-    expect(returnValue instanceof Array).toBe(true);    
+    expect(returnValue instanceof Array).toBe(true);
     expect(orderByYear(arr)).not.toBe(arr);
   });
 
@@ -225,12 +225,12 @@ describe('Function "orderByYear"', () => {
       orderByYear([
         { title: 'abc', year: 2002 },
         { title: 'bac', year: 1982 },
-        { title: 'aab', year: 1982 }
+        { title: 'aab', year: 1982 },
       ])
     ).toEqual([
       { title: 'aab', year: 1982 },
       { title: 'bac', year: 1982 },
-      { title: 'abc', year: 2002 }
+      { title: 'abc', year: 2002 },
     ]);
   });
 });
@@ -249,7 +249,7 @@ describe('Function "orderAlphabetically"', () => {
     const arr = [{ title: 'xyz' }, { title: 'abc' }];
     const returnValue = orderAlphabetically(arr);
     expect(returnValue instanceof Array).toBe(true);
-    expect(orderByYear(arr)).not.toBe(arr);    
+    expect(orderByYear(arr)).not.toBe(arr);
   });
 
   it('should only return the title of the movies, each value should be a string', () => {
@@ -298,7 +298,7 @@ describe('Function "orderAlphabetically"', () => {
       { title: 'acb' },
       { title: 'aab' },
       { title: 'bab' },
-      { title: 'acb' }
+      { title: 'acb' },
     ];
     expect(orderAlphabetically(moviesArr).length).toBe(20);
   });
@@ -309,7 +309,7 @@ describe('Function "orderAlphabetically"', () => {
       { title: 'aaa' },
       { title: 'abc' },
       { title: 'acb' },
-      { title: 'abb' }
+      { title: 'abb' },
     ];
 
     expect(orderAlphabetically(moviesArr)).toEqual([
@@ -317,7 +317,7 @@ describe('Function "orderAlphabetically"', () => {
       'aab',
       'abb',
       'abc',
-      'acb'
+      'acb',
     ]);
   });
 
@@ -358,7 +358,7 @@ describe('Function "orderAlphabetically"', () => {
       { title: 'ert' },
       { title: 'tex' },
       { title: 'zas' },
-      { title: 'pol' }
+      { title: 'pol' },
     ];
 
     expect(orderAlphabetically(moviesArr)).toEqual([
@@ -381,7 +381,7 @@ describe('Function "orderAlphabetically"', () => {
       'ert',
       'frt',
       'gda',
-      'gha'
+      'gha',
     ]);
   });
 });
@@ -403,7 +403,7 @@ describe('Function "turnHoursToMinutes"', () => {
   it('should return a new array, not mutate the original one', () => {
     const returnValue = turnHoursToMinutes(movies);
     expect(returnValue instanceof Array).toBe(true);
-    expect(turnHoursToMinutes(movies)).not.toBe(movies);    
+    expect(turnHoursToMinutes(movies)).not.toBe(movies);
   });
 
   it('should return an array of movies with duration as a number', () => {
@@ -453,7 +453,7 @@ describe('Function "bestYearAvg"', () => {
       { year: 2000, score: 9 },
       { year: 2000, score: 8 },
       { year: 1978, score: 10 },
-      { year: 1978, score: 7 }
+      { year: 1978, score: 7 },
     ];
 
     expect(bestYearAvg(newMoviesArr)).toEqual(
