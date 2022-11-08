@@ -16,15 +16,14 @@ function getUniqueDirectors(moviesArray){
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
     return moviesArray.filter(
-      movie => movie.director ==="Steven Spielberg")
-      .filter( movie => movie.genre.includes("Drama")
+      movie => movie.director ==="Steven Spielberg" && movie.genre.includes("Drama")
     ).length
   }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 
 function scoresAverage(moviesArray) {
-    if(moviesArray.length == 0) return 0
+    if(moviesArray.length == 0) return parseFloat("0")
     return Math.ceil(
         moviesArray.filter(movie => movie.score)
         .reduce((cumul, movie) => cumul += +movie.score, 0)/moviesArray.length
@@ -33,21 +32,27 @@ function scoresAverage(moviesArray) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-    if(moviesArray.length == 0) return 0
-    return Math.floor(
-        moviesArray
-        .filter(movie => movie.genre.includes("Drama"))
-        .reduce((cumul, movie) => cumul += +movie.score, 0)/moviesArray.length
-        *100)/100
+  if(moviesArray.length ===0) return 0
+  return scoresAverage(moviesArray.filter(movie => movie.genre.includes("Drama"))) 
 }
+/* function dramaMoviesScore(moviesArray) {
+  const dramaArray = moviesArray.filter(movie => movie.genre.includes("Drama"))
+  if(dramaArray.length ===0) return 0
+  return dramaArray.reduce((cumul, movie) => cumul += +movie.score, 0)/dramaArray.length
+} */
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
     // make a copy before sort()
     const workArray = [...moviesArray]
-    workArray.sort((a,b) => a.year - b.year)
-    return workArray
+    return workArray.sort(function(a,b){
+      if( a.year != b.year) return a.year - b.year
+      if(a.title < b.title) return -1
+      if(a.title > b.title) return 1
+      return 0
+    } )
 }
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
@@ -67,4 +72,6 @@ function turnHoursToMinutes(moviesArray) {
   } 
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  if(moviesArray.length ===0) return null
+}
