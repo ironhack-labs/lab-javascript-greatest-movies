@@ -87,22 +87,21 @@ function orderAlphabetically(moviesArray) {
     }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-// because my solution put the arranged movies in a new object , so not array 
-// methods are used in the process. I will try to find a way to use array
-// methods too when I have the time
+
 function bestYearAvg(moviesArray) {
   if(moviesArray.length ===0) return null
   const yearAverageObj = arrangeMoviesByYear(moviesArray)
-  const bestYear = {year:0, score:0}
+  let bestYear = {year:2022, score:0}
+  console.log(yearAverageObj)
+  //get score averages
   for (key in yearAverageObj){
-    let averageScore = scoresAverage(yearAverageObj[key])
-    yearAverageObj[key] = averageScore
-    if(averageScore == bestYear.score && parseInt +key < bestYear.year){
-      bestYear.year = +key
-      bestYear.score = averageScore
-    }else if(averageScore > bestYear.score){
-      bestYear.year = +key
-      bestYear.score = averageScore}
+    yearAverageObj[key] = 
+    scoresAverage(yearAverageObj[key])
+    if(yearAverageObj[key] == bestYear.score && key < bestYear.year) bestYear.year = key
+    if(yearAverageObj[key] > bestYear.score) {
+      bestYear.year = key
+      bestYear.score = yearAverageObj[key]
+    }
   }
   return `The best year was ${bestYear.year} with an average score of ${bestYear.score}`
 }
@@ -110,24 +109,24 @@ function bestYearAvg(moviesArray) {
 function arrangeMoviesByYear(moviesArray){
   const yearAverageObj = {}
   let year = 0
-  for(i in moviesArray){
-    year = moviesArray[i].year
-    let yearlyMovieArray = []
-    yearAverageObj[year] = yearlyMovieArray
-    yearlyMovieArray.push(moviesArray[i])
-  }
+  //the map here is actualy a simple for each loop
+  moviesArray.map(function(movie){
+    let year = movie.year
+    if(year in yearAverageObj){
+      yearAverageObj[movie.year].push(movie)
+    }else{
+      yearAverageObj[movie.year] = []
+      yearAverageObj[movie.year].push(movie)
+    }
+    return movie
+  })
   return yearAverageObj
 }
 
 
-//testing object
-const tMovies =[
-  {title:"movie a", year:1990, score: 9},
-  {title:"movie b", year:1990, score: 8},
-  {title:"movie d", year:1991, score: 8},
-  {title:"movie e", year:1991, score: 9},
-]
 
-console.log(bestYearAvg(tMovies))
+
+
+
 
 
