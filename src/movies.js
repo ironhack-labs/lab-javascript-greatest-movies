@@ -23,18 +23,21 @@ function howManyMovies(moviesArray) {
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 
 function scoresAverage(moviesArray) {
-    if(moviesArray.length == 0) return parseFloat("0")
-    return Math.ceil(
+    if(moviesArray.length == 0) return 0
+    return Math.round(
         moviesArray.filter(movie => movie.score)
         .reduce((cumul, movie) => cumul += +movie.score, 0)/moviesArray.length
         *100)/100
 }
 
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-  if(moviesArray.length ===0) return 0
-  return scoresAverage(moviesArray.filter(movie => movie.genre.includes("Drama"))) 
+  let newArray = moviesArray.filter(movie => movie.genre.includes("Drama"))
+  if(newArray.length ===0) return 0
+  return scoresAverage(newArray) 
 }
+
 /* function dramaMoviesScore(moviesArray) {
   const dramaArray = moviesArray.filter(movie => movie.genre.includes("Drama"))
   if(dramaArray.length ===0) return 0
@@ -44,7 +47,7 @@ function dramaMoviesScore(moviesArray) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
     // make a copy before sort()
-    const workArray = [...moviesArray]
+    const workArray = [].concat(moviesArray)
     return workArray.sort(function(a,b){
       if( a.year != b.year) return a.year - b.year
       if(a.title < b.title) return -1
@@ -64,14 +67,67 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {
-    moviesArray.map(function (movie){
-      const hoursAndMinutes = movie.duration.split(" ").map(member => member.match(/\d+/)[0])
-      movie.duration = hoursAndMinutes[0]*60 + +hoursAndMinutes[1]
-    })
-  } 
+
+  function turnHoursToMinutes(moviesArray) {
+    return moviesArray.map(function(movie){
+        let hoursAndMinutes = 0
+        let newMovie =  Object.assign({}, movie);
+        if(!newMovie.duration.includes("h")) {
+          hoursAndMinutes = newMovie.duration.match(/\d+/)[0]
+          newMovie.duration = +hoursAndMinutes
+        }else if(!newMovie.duration.includes("min")){
+          hoursAndMinutes = newMovie.duration.match(/\d+/)[0]
+          newMovie.duration = hoursAndMinutes[0]*60
+        }else{
+          hoursAndMinutes = newMovie.duration.split(" ").map(member => member.match(/\d+/)[0])
+          newMovie.duration = hoursAndMinutes[0]*60 + +hoursAndMinutes[1]
+        }
+        return newMovie
+      })
+    }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
+// because my solution put the arranged movies in a new object , so not array 
+// methods are used in the process. I will try to find a way to use array
+// methods too when I have the time
 function bestYearAvg(moviesArray) {
   if(moviesArray.length ===0) return null
+  const yearAverageObj = arrangeMoviesByYear(moviesArray)
+  const bestYear = {year:0, score:0}
+  for (key in yearAverageObj){
+    let averageScore = scoresAverage(yearAverageObj[key])
+    yearAverageObj[key] = averageScore
+    if(averageScore == bestYear.score && parseInt +key < bestYear.year){
+      bestYear.year = +key
+      bestYear.score = averageScore
+    }else if(averageScore > bestYear.score){
+      bestYear.year = +key
+      bestYear.score = averageScore}
+  }
+  return `The best year was ${bestYear.year} with an average score of ${bestYear.score}`
 }
+
+function arrangeMoviesByYear(moviesArray){
+  const yearAverageObj = {}
+  let year = 0
+  for(i in moviesArray){
+    year = moviesArray[i].year
+    let yearlyMovieArray = []
+    yearAverageObj[year] = yearlyMovieArray
+    yearlyMovieArray.push(moviesArray[i])
+  }
+  return yearAverageObj
+}
+
+
+//testing object
+const tMovies =[
+  {title:"movie a", year:1990, score: 9},
+  {title:"movie b", year:1990, score: 8},
+  {title:"movie d", year:1991, score: 8},
+  {title:"movie e", year:1991, score: 9},
+]
+
+console.log(bestYearAvg(tMovies))
+
+
