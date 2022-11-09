@@ -80,7 +80,77 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
-
+function turnHoursToMinutes(moviesArray) {
+    const newArray = [...moviesArray]
+    const minutesArray = newArray.map((movie) => {
+        if (movie.duration.includes("min")) {
+            const durationArr = movie.duration.split(" ")
+            const hours = durationArr[0].replace("h", "")
+            const minutes = durationArr[1].replace("min","")
+            movie.duration = Number(hours * 60) + Number(minutes)
+            return movie.duration
+        } else {
+            movie.duration[0].replace("h", "")
+            movie.duration = Number(movie.duration[0] * 60)
+            return movie.duration
+        }
+    })
+    newArray.forEach((movie, i) => {
+        movie.duration = minutesArray[i]
+    })
+    return newArray
+}
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+/*function bestYearAvg(moviesArray) {
+    if (moviesArray.length === 0) {
+        return null
+    }
+    let bestScore = 0
+    let bestYear = 0
+    const nonRepeatedYears = Set(moviesArray.year)
+    const sortedYears = nonRepeatedYears.sort((year1, year2) => {
+        if (year1 > year2) {
+            return 1
+        } else if (year1 < year2) {
+            return -1
+        } else {
+            return 0
+        }
+    })
+    for(let i = 0; i < sortedYears.length; i++) {
+        const yearMovies = moviesArray.filter((movies) => movies.year === sortedYears[i])
+        const scoreAvg = yearMovies.reduce((acc, movie) => {
+            acc += movie.score
+        },0) / yearMovies.length
+        if (scoreAvg > bestScore) {
+            bestScore = scoreAvg
+            bestYear = sortedYears[i]
+        }
+    }
+    return (`The best year was ${bestYear} with an average score of ${bestScore}`)
+}
+*/
+function bestYearAvg(moviesArray) {
+    if (moviesArray.length === 0) {
+        return null
+    }
+    let bestYear = 0
+    let bestScore = 0
+    for (let index = 0; index < moviesArray.length; index++) {
+        let sameYearMovies = moviesArray.filter(function(movie) {
+            return movie.year === moviesArray[index].year
+        })
+        let avgScore = sameYearMovies.reduce(function(count, movie) {
+            return count += movie.score 
+        }, 0) / sameYearMovies.length
+
+        if (bestScore === avgScore) {
+            bestYear = Math.min(bestYear, moviesArray[index].year)
+        } else if (avgScore > bestScore) {
+            bestScore = avgScore
+            bestYear = moviesArray[index].year
+        } 
+        
+    }
+    return `The best year was ${bestYear} with an average score of ${bestScore}`
+}
