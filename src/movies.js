@@ -60,16 +60,61 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-  return [...moviesArray].sort((a, b) => {
-    return a.year === b.year ? a.title.localeCompare(b.title) : a.year - b.year;
-  });
+  return [...moviesArray].sort((a, b) =>
+    a.year === b.year ? a.title.localeCompare(b.title) : a.year - b.year
+  );
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  const arrSortedAlphabetically = moviesArray
+    .map((movie) => movie.title)
+    .sort((a, b) => a.localeCompare(b));
+
+  return arrSortedAlphabetically.length < 20
+    ? arrSortedAlphabetically
+    : arrSortedAlphabetically.slice(0, 20);
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  return moviesArray.map((movie) => {
+    const splitHoursAndMins = movie.duration.replace(/[a-z]/gi, "").split(" ");
+
+    const hours = +splitHoursAndMins[0] * 60;
+    const minutes = splitHoursAndMins[1] ? +splitHoursAndMins[1] : 0;
+
+    return { ...movie, duration: hours + minutes };
+  });
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  if (!moviesArray.length) return null;
+
+  const scoresPerYear = {};
+
+  for (const movie of moviesArray) {
+    if (!scoresPerYear[movie.year]) {
+      scoresPerYear[movie.year] = [movie.score];
+    } else {
+      scoresPerYear[movie.year].push(movie.score);
+    }
+  }
+
+  let highestAvg = 0;
+  let bestYear;
+
+  for (const year in scoresPerYear) {
+    const avgForYear =
+      scoresPerYear[year].reduce((total, curr) => total + curr, 0) /
+      scoresPerYear[year].length;
+
+    if (avgForYear > highestAvg) {
+      highestAvg = avgForYear;
+      bestYear = year;
+    }
+  }
+
+  return `The best year was ${bestYear} with an average score of ${highestAvg}`;
+}
