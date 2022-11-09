@@ -95,8 +95,7 @@ function bestYearAvg(moviesArray) {
   console.log(yearAverageObj)
   //get score averages
   for (key in yearAverageObj){
-    yearAverageObj[key] = 
-    scoresAverage(yearAverageObj[key])
+    yearAverageObj[key] = scoresAverage(yearAverageObj[key])
     if(yearAverageObj[key] == bestYear.score && key < bestYear.year) bestYear.year = key
     if(yearAverageObj[key] > bestYear.score) {
       bestYear.year = key
