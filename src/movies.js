@@ -81,7 +81,7 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-    const newArray = [...moviesArray]
+    const newArray = structuredClone(moviesArray)
     const minutesArray = newArray.map((movie) => {
         if (movie.duration.includes("min")) {
             const durationArr = movie.duration.split(" ")
