@@ -72,7 +72,7 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) { 
-    let newMovieArray = moviesArray.slice()
+    let newMovieArray = JSON.parse(JSON.stringify(moviesArray))
     newMovieArray = newMovieArray.map(function(movie) {
       
        let indexHour= movie.duration.indexOf('h') 
