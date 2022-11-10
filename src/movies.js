@@ -9,35 +9,49 @@ function getAllDirectors(moviesArray) {
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
 
-    const dramaBySpielberg = moviesArray.filter(function(director,genre){
-         for (let i=0; i<genre.length; i++){
-            return director === "Steven Spielberg" && genre[i] === "Drama";
-         }
-    })
-    return dramaBySpielberg.length;
+    const spielbergFilms = moviesArray.filter(function(index){
+        return index.director === "Steven Spielberg" && index.genre.includes("Drama");
+      });
+      return spielbergFilms.length;
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
-    const averageScore = Math.round(moviesArray.reduce(function (total,currentValue) {
-         return (total + currentValue) / moviesArray.length}));
-     return averageScore;
+    if (moviesArray.length > 0){
+        const averageScore = moviesArray.reduce(function (total,currentValue) {
+            return (total.score + currentValue.score)/moviesArray.length;
+          });
+          return(Math.round((averageScore*100)/100));
+    }
+    else return 0;
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-    const dramaArray = moviesArray.filter(function(genre){
-        return genre === "Drama";
-    })
-    dramaAverage = scoresAverage(dramaArray);
-    return dramaAverage;
+    const dramaFilms = moviesArray.filter(function(index){
+        return index.genre.includes("Drama");
+      });
+
+      return scoresAverage(dramaFilms);
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    const newArray = moviesArray.map((value) => value);
+    newArray.sort(function (a, b) {
+        return a.year - b.year;
+      }
+      );
+      return newArray;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+    const shortArray = moviesArray;
+    shortArray.sort();
+    return shortArray.slice(0,20);
+
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
