@@ -25,7 +25,8 @@ function howManyMovies(moviesArray) {
   });
 
   return result.length;
-}
+} 
+
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
