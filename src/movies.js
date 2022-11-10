@@ -17,7 +17,11 @@ getAllDirectors(movies)
 // that receives an array as a parameter
 // filter 👀 the array 
 // so we can have only the drama movies where Steven Spielberg is the director.
-function howManyMovies(moviesArray) {}
+function howManyMovies(moviesArray) {
+    
+    const dramaMoviesOfSteven = moviesArray.filter(movie => movie.director === 'Steven Spielberg' && movie.genre === 'Drama');
+    return dramaMoviesOfSteven.length
+}
 
 
 
