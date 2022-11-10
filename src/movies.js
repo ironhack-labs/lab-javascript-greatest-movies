@@ -96,8 +96,34 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-    
+    newMoviesArray = moviesArray.splice(0, moviesArray.length)
+
+    durationInMinutes = newMoviesArray.map((movie) => {
+    const hIndex = movie.duration.indexOf('h')
+    const mIndex = movie.duration.indexOf('m')
+
+    const hourTominutes = +movie.duration.slice(0, hIndex)*60
+    const minutes = +movie.duration.slice(hIndex + 1, mIndex)
+
+    movie.duration = hourTominutes + minutes 
+
+    return movie.duration
+    })
+
+    newMoviesArray.forEach((movie, index) => movie.duration = durationInMinutes[index])
+
+    return newMoviesArray
+
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+
+    if (moviesArray.length === 0) {
+        return null
+    }
+
+
+    //return `The best year was ${} with an average score of ${}´
+    
+}
