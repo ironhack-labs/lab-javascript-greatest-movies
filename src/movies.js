@@ -103,33 +103,27 @@ function bestYearAvg(moviesArray) {
   if (moviesArray.length === 0) return null;
   const yearAverageObj = arrangeMoviesByYear(moviesArray);
   let bestYear = { year: 2022, score: 0 };
-  console.log(yearAverageObj);
   //get score averages
-  for (key in yearAverageObj) {
+  Object.keys(yearAverageObj).map((key) => {
     yearAverageObj[key] = scoresAverage(yearAverageObj[key]);
-    if (yearAverageObj[key] == bestYear.score && key < bestYear.year)
-      bestYear.year = key;
-    if (yearAverageObj[key] > bestYear.score) {
+    if (
+      yearAverageObj[key] > bestYear.score ||
+      (yearAverageObj[key] == bestYear.score && key < bestYear.year)
+    ) {
       bestYear.year = key;
       bestYear.score = yearAverageObj[key];
     }
-  }
+  });
+
   return `The best year was ${bestYear.year} with an average score of ${bestYear.score}`;
 }
 
 function arrangeMoviesByYear(moviesArray) {
-  const yearAverageObj = {};
-  let year = 0;
-  //the map here is actualy a simple for each loop
-  moviesArray.map(function (movie) {
-    let year = movie.year;
-    if (year in yearAverageObj) {
-      yearAverageObj[movie.year].push(movie);
-    } else {
-      yearAverageObj[movie.year] = [];
-      yearAverageObj[movie.year].push(movie);
-    }
-    return movie;
-  });
-  return yearAverageObj;
+  const moviesByYearObj = {};
+  const years = [...new Set(moviesArray.map((movie) => movie.year))];
+  for (i in years) {
+    moviesByYearObj[years[i]] = [];
+  }
+  moviesArray.map((movie) => moviesByYearObj[movie.year].push(movie));
+  return moviesByYearObj;
 }
