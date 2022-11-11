@@ -30,16 +30,12 @@ function howManyMovies(moviesArray) {
 function scoresAverage(moviesArray) {
   if (!moviesArray.length) return 0;
 
-  const avgScore =
-    moviesArray.reduce((total, curr) => {
-      if (typeof curr.score !== "number") {
-        curr.score = 0;
-      }
-
-      return total + curr.score;
-    }, 0) / moviesArray.length;
-
-  return +avgScore.toFixed(2);
+  return +(
+    moviesArray.reduce(
+      (total, curr) => total + (curr.score ? curr.score : 0),
+      0
+    ) / moviesArray.length
+  ).toFixed(2);
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -81,10 +77,11 @@ function turnHoursToMinutes(moviesArray) {
   return moviesArray.map((movie) => {
     const splitHoursAndMins = movie.duration.replace(/[a-z]/gi, "").split(" ");
 
-    const hours = +splitHoursAndMins[0] * 60;
-    const minutes = splitHoursAndMins[1] ? +splitHoursAndMins[1] : 0;
+    const duration =
+      +splitHoursAndMins[0] * 60 +
+      (splitHoursAndMins[1] ? +splitHoursAndMins[1] : 0);
 
-    return { ...movie, duration: hours + minutes };
+    return { ...movie, duration };
   });
 }
 
@@ -118,3 +115,5 @@ function bestYearAvg(moviesArray) {
 
   return `The best year was ${bestYear} with an average score of ${highestAvg}`;
 }
+
+//
