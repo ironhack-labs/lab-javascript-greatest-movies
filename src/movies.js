@@ -13,10 +13,6 @@ getAllDirectors(movies)
 
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-// Go ahead and create a howManyMovies() function 
-// that receives an array as a parameter
-// filter 👀 the array 
-// so we can have only the drama movies where Steven Spielberg is the director.
 function howManyMovies(moviesArray) {
     const dramaMoviesOfSteven = moviesArray.filter(movie => movie.director === 'Steven Spielberg' && movie.genre.includes('Drama') === true);
     return dramaMoviesOfSteven.length;
@@ -32,10 +28,12 @@ function howManyMovies(moviesArray) {
 // The score must be returned rounded to 2 decimals!
 // 💡 Maybe you want to "reduce" the data to a single value. 😉
 function scoresAverage(moviesArray) {
-    const movieAvg = moviesArray.reduce(function (a,b) {
-        return (a + b.score)/moviesArray.length;
+
+    // use if else 
+    const movieAvg = moviesArray.reduce(function (total,currentValue) {
+        return total.score + currentValue.score
       }, 0);
-return +(movieAvg.toFixed(2))
+return +(movieAvg/moviesArray.length).toFixed(2)
 }
   
 
@@ -44,13 +42,52 @@ return +(movieAvg.toFixed(2))
 // to get the average score of all drama movies! 
 // Let's see if it is better than the general average.
 // Again, rounded to 2 decimals!
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+    const dramaMovieAvg = moviesArray.reduce((accumulator, currentValue) => accumulator + currentValue);
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+
+const sortedArr = moviesArray.map(function(value){
+    return value
+})
+   const newSortedArr = sortedArr.sort(function(a,b) {
+        return a.year - b.year
+    })
+
+    // need guidance on localeCompare - do not get
+   // if (a.title.localeCompare(b.title) === 0) {
+     //   return a.title - b.title
+   // }
+
+    // const finalArr = newSortedArr.sort(function(a,b) {
+        // return a.title - b.title
+    // })
+return newSortedArr
+
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+
+// first put all the titles into an array from the object 
+// then use sort to sort the titles
+// then splice the first 20 titles 
+function orderAlphabetically(moviesArray) {
+    const titleArr = [];
+    for (let value of Object.values(moviesArray)) {
+        titleArr.push(value.title);
+        titleArr.sort()
+    }
+    const arrayOfTwenty = titleArr.splice(0,20)
+    return arrayOfTwenty.sort()
+}
+
+/* const alphabeticArr = moviesArray.sort(function(a,b) {
+    return a.title - b.title
+})
+return Object.values(alphabeticArr)
+*/
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
