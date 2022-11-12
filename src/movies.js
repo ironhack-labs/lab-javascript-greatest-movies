@@ -1,19 +1,11 @@
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors(moviesArray) {
-  return moviesArray.map((movie) => movie.director);
-}
+const getAllDirectors = moviesArray =>moviesArray.map((movie) => movie.director);
 
 //Iteration 1.1: no duplicates.
-function getUniqueDirectors(moviesArray) {
-  const allDirectors = moviesArray.map((movie) => movie.director);
-  // when the filter arrived at the seconde occurence, the index of the
-  //duplicates won't be the same as the result of indexOf, so it will return false
-  return allDirectors.filter(
-    (director, index) => allDirectors.indexOf(director) !== index
-  );
-}
+const getUniqueDirectors = moviesArray => moviesArray.map((movie) => movie.director).filter(
+    (director, index) => allDirectors.indexOf(director) !== index)
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
@@ -26,16 +18,14 @@ function howManyMovies(moviesArray) {
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 
 function scoresAverage(moviesArray) {
-  if (moviesArray.length == 0) return 0;
-  return (
-    Math.round(
-      (moviesArray
-        .filter((movie) => movie.score)
-        .reduce((cumul, movie) => (cumul += +movie.score), 0) /
-        moviesArray.length) *
-        100
-    ) / 100
-  );
+  //we need this for my solution because I did't make two steps for calculation. 
+  //in fact the array methods can treat empty arrays without problem
+  //but we can not divide a number by zeo, that's why we should do the empty array check. 
+  if (moviesArray.length === 0) return 0;
+  return parseFloat((moviesArray
+         .filter((movie) => movie.score)
+         .reduce((cumul, movie) => (cumul += +movie.score), 0)
+         /moviesArray.length).toFixed(2))
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -55,14 +45,9 @@ function dramaMoviesScore(moviesArray) {
 function orderByYear(moviesArray) {
   // make a copy before sort()
   const workArray = [].concat(moviesArray);
-  return workArray.sort(function (a, b) {
-    if (a.year != b.year) return a.year - b.year;
-    //if the years are the same, we verify the title
-    //letters can be compared, a < b
-    if (a.title < b.title) return -1;
-    if (a.title > b.title) return 1;
-    return 0;
-  });
+  return workArray.sort((a,b)=> {
+    if(a.year === b.year) return a.title.localeCompare(b.title) 
+    return a.year - b.year})
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
@@ -77,14 +62,12 @@ function orderAlphabetically(moviesArray) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
 function turnHoursToMinutes(moviesArray) {
-  return moviesArray.map(function (movie) {
+  return moviesArray.map((movie) => {
     let hoursAndMinutes = 0;
     // shawlow copy of an object
     let newMovie = Object.assign({}, movie);
-    if (!newMovie.duration.includes("h")) {
-      hoursAndMinutes = newMovie.duration.match(/\d+/)[0];
-      newMovie.duration = +hoursAndMinutes;
-    } else if (!newMovie.duration.includes("min")) {
+
+if (!newMovie.duration.includes("min")) {
       hoursAndMinutes = newMovie.duration.match(/\d+/)[0];
       newMovie.duration = hoursAndMinutes[0] * 60;
     } else {
