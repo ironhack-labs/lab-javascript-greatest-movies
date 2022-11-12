@@ -28,12 +28,18 @@ function howManyMovies(moviesArray) {
 // The score must be returned rounded to 2 decimals!
 // 💡 Maybe you want to "reduce" the data to a single value. 😉
 function scoresAverage(moviesArray) {
-
-    // use if else 
-    const movieAvg = moviesArray.reduce(function (total,currentValue) {
-        return total.score + currentValue.score
-      }, 0);
-return +(movieAvg/moviesArray.length).toFixed(2)
+    // pull scores into a new array 
+    const scoresArr = [];
+    for (let value of Object.values(moviesArray)) {
+        scoresArr.push(value.score);
+    }
+    // use reduce to arrive at a sum of the array 
+    const sum = scoresArr.reduce(function (a,b) {
+        return a + b;
+    })
+    // divide the sum by moviesArray.length
+    // round to two decimals 
+if (sum > 0) return +(sum / moviesArray.length).toFixed(2);
 }
   
 
@@ -43,7 +49,15 @@ return +(movieAvg/moviesArray.length).toFixed(2)
 // Let's see if it is better than the general average.
 // Again, rounded to 2 decimals!
 function dramaMoviesScore(moviesArray) {
-    const dramaMovieAvg = moviesArray.reduce((accumulator, currentValue) => accumulator + currentValue);
+    const dramaMovies = moviesArray.filter(movie => movie.genre.includes('Drama') === true);
+    const dramaScoresArr = [];
+    for(let value of Object.values(moviesArray)) {
+        dramaScoresArr.push(value.score);
+    }
+    const sum = dramaScoresArr.reduce(function (a,b){
+        return a+b;
+    })   
+    if (sum > 0) return +(sum /moviesArray.length).toFixed(2);
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
