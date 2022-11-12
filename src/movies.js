@@ -44,7 +44,7 @@ const scoresAverage = (moviesArray) => {
       0
     );
     return Number((scoresSum / moviesArray.length).toFixed(2));
-    // return Math.round(scoresSum / moviesArray.length * 100) / 100 // another approach
+    // return Math.round((scoresSum / moviesArray.length) * 100) / 100; // another approach
   }
 };
 
@@ -66,9 +66,15 @@ const dramaMoviesScore = (moviesArray) => {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 const orderByYear = (moviesArray) => {
-  const copyMovieArray = [...moviesArray];
-  const sortedArray = copyMovieArray.sort((a, b) => {
+  const copyMoviesArray = [...moviesArray];
+  // another approach, but how to write here a arrow function??
+  //   const copyMoviesArray = moviesArray.map(function (movies) {
+  //     return movies;
+  //   });
+  const sortedArray = copyMoviesArray.sort((a, b) => {
     if (a.year === b.year) {
+      // another approach with localCampare --> doesn't work with all tests, why??
+      //   return a.title.localCompare(b.title);
       if (a.title < b.title) {
         return -1;
       }
@@ -84,7 +90,14 @@ const orderByYear = (moviesArray) => {
 };
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+orderAlphabetically = (moviesArray) => {
+  const copyMoviesArray = [...moviesArray];
+  const first20Movies = copyMoviesArray.slice(0, 21);
+  const sortedFirst20Movies = first20Movies.sort((a, b) => {
+    return a.title - b.title;
+  });
+  return sortedFirst20Movies;
+};
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
