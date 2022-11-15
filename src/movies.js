@@ -6,7 +6,7 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 
 function getAllDirectors(moviesArray) {
-  return moviesArray.map((elem) => elem.director).filter(() => {});
+  return moviesArray.map((elem) => elem.director);
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -61,14 +61,7 @@ function dramaMoviesScore(moviesArray) {
 function orderByYear(moviesArray) {
   let newArray = [...moviesArray];
   newArray = newArray.sort((a, b) => {
-    if (a.year > b.year) return 1;
-    if (a.year < b.year) return -1;
-    if (a.year === b.year) {
-      if (a.title > b.title) return 1;
-      if (a.title < b.title) return -1;
-      return 0;
-    }
-    return 0;
+    return a.year - b.year || a.title.localeCompare(b.title);
   });
 
   return newArray;
@@ -78,20 +71,11 @@ function orderByYear(moviesArray) {
 function orderAlphabetically(moviesArray) {
   let newArray = [...moviesArray];
   newArray = newArray
-    .sort((a, b) => {
-      if (a.title > b.title) return 1;
-      if (a.title < b.title) return -1;
-
-      return 0;
+    .map(function (movie) {
+      return movie.title;
     })
-    .map((elem, index) => {
-      //   console.log(index);
-      if (index >= 20) return null;
-      return elem.title;
-    })
-    .filter((elem) => {
-      return elem != null;
-    });
+    .sort()
+    .slice(0, 20);
 
   return newArray;
 }
@@ -138,17 +122,14 @@ function bestYearAvg(moviesArray) {
 
   moviesArray = moviesArray.reduce((prev, curr) => {
     prev[curr.year] = prev[curr.year] || {};
-    // prev[curr.year].movies = prev[curr.year].movies || [];
-    // prev[curr.year].movies.push(curr);
     prev[curr.year].numOfMovies = prev[curr.year].numOfMovies + 1 || 1;
     prev[curr.year].scoreSum =
-      Number((prev[curr.year].scoreSum + curr.score).toFixed(2)) || curr.score;
+      +(prev[curr.year].scoreSum + curr.score).toFixed(2) || curr.score;
     prev[curr.year].avgRating =
-      Number(
-        (prev[curr.year].scoreSum / prev[curr.year].numOfMovies).toFixed(2)
-      ) || curr.score;
+      +(prev[curr.year].scoreSum / prev[curr.year].numOfMovies).toFixed(2) ||
+      curr.score;
     return prev;
-  }, Object.create(null));
+  }, {});
 
   for (year in moviesArray) {
     if (highRating < moviesArray[year].avgRating) {
