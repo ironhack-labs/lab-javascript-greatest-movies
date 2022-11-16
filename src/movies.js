@@ -15,18 +15,39 @@ function howManyMovies(moviesArray) {
     });
     
     let count = arrDrama.length;
-    console.log(arrDrama);
+    
     return count;
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+    if (moviesArray.length === 0){
+        return 0;
+    }
+    
+    const scoresArr = moviesArray.reduce(function(acc, movie){
+        if (movie.score === undefined){
+            return acc;
+        }else{
+            return  acc += movie.score;
+        }
+       
+    },0);
+    let avg = scoresArr/moviesArray.length;
+    let avgRounded = Math.round(avg * 100)/100;
+    console.log(avg);
+    
+    return avgRounded;
+  
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
