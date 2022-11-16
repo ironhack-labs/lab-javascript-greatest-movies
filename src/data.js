@@ -1,4 +1,3 @@
-
 const movies = [
   {
     title: 'The Shawshank Redemption',
@@ -2002,4 +2001,3 @@ const movies = [
     score: 8
   }
 ];
-
