@@ -3,8 +3,11 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
     let directorsArr = moviesArray.map( movie=> movie.director);
+    let result = directorsArr.filter((item,index)=>{
+        return directorsArr.indexOf(item) === index;
+      })
     
-    return directorsArr;
+    return result;
 };
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -117,7 +120,10 @@ function orderAlphabetically(moviesArray) {
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+    const copy = [...moviesArray];
+    const newArr = copy.map()
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
