@@ -117,12 +117,14 @@ function bestYearAvg(moviesArray) {
   const history = []
   const years = [] // [[year, rate], [year, rate]]
 
+  // first array ordering to use history array to store by year
   moviesArray.sort((a, b) => {
     if( a.year > b.year ) return 1
     else if( a.year < b.year ) return -1
     else return 0
   })
 
+  // if the movie.year same value of actualYear, push to history[x].movies[...]
   let actualYear = 0
   moviesArray.map(movie => {
     if( movie.year === actualYear ){
@@ -131,6 +133,8 @@ function bestYearAvg(moviesArray) {
           year.movies.push(movie)
         }
       }
+    
+    // otherwise create a new History element inside de Array
     } else {
       actualYear = movie.year
       history.push({ 
@@ -140,14 +144,14 @@ function bestYearAvg(moviesArray) {
     }
   })
 
-  // CALC EVERY YEAR AVERAGE
+  // calc every year average of history[x].movies[...]
   history.map((year) => {
     const sum = year.movies.reduce((acc, cur) => acc + cur.score, 0)
     const yearAverage = sum / year.movies.length
     years.push([year.date, yearAverage])
   }) 
   
-  // GET THE MAX VALUE
+  // get the best years by score average
   let bestYear = [0, 0]
   years.map(year => {
     if( year[1] > bestYear[1]){
