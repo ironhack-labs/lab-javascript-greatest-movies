@@ -37,10 +37,12 @@ function scoresAverage(moviesArray) {
        
     },0);
     let avg = scoresArr/moviesArray.length;
-    let avgRounded = Math.round(avg * 100)/100;
     
+    //let avgRounded = Math.round(avg * 100)/100; I first did it like this but you could also do it with toFixed, but you need to make sure to be returning a number and not a string
+    let avgRounded = avg.toFixed(2);
+    console.log(avgRounded)
     
-    return avgRounded;
+    return parseFloat(avgRounded);
   
 }
 
@@ -124,25 +126,30 @@ function orderAlphabetically(moviesArray) {
 function loop(newArr){
     for(let duration of newArr){
     if(duration.charAt(1) === "h" && duration.charAt(5) === "m"){
+
         let hours = duration.slice(0,1);
         let minutes = duration.slice(3,5);
         let numberHours = parseInt(hours);
         let numberMinutes = parseInt(minutes);
         duration = numberHours*60 + numberMinutes;
         
+        
+        
     }
     else if(duration.charAt(1) === "h" && !duration.includes("min")){
         let hours = duration.slice(0,1);
         let numberHours = parseInt(hours);
         duration = numberHours* 60;
+       
+        
     }}
-    console.log(newArr)
+   
     return newArr
 }
 function turnHoursToMinutes(moviesArray) {
     const copy = [...moviesArray];
     const newArr = copy.map(movie=> movie.duration);
-    loop(newArr);
+    return loop(newArr);
 
      
 
