@@ -128,13 +128,13 @@ function loop(newArr){
         let minutes = duration.slice(3,5);
         let numberHours = parseInt(hours);
         let numberMinutes = parseInt(minutes);
-        duration = numberHours + " " + numberMinutes
+        duration = numberHours*60 + numberMinutes;
         
     }
     else if(duration.charAt(1) === "h" && !duration.includes("min")){
         let hours = duration.slice(0,1);
         let numberHours = parseInt(hours);
-        duration = numberHours;
+        duration = numberHours* 60;
     }}
     console.log(newArr)
     return newArr
