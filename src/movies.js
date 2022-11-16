@@ -64,7 +64,7 @@ function dramaMoviesScore(moviesArray) {
 
     let avg = allDrama/arrDrama.length;
     let avgRounded = Math.round(avg * 100)/100;
-    console.log(avgRounded)
+    
     if(arrDrama.length === 0){
         return 0;
     }
@@ -113,16 +113,39 @@ function orderAlphabetically(moviesArray) {
     });
 
     const twenty = sortedArr.slice(0, 20);
-    console.log(twenty);
+    
     return twenty;
     
  }
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+function loop(newArr){
+    for(let duration of newArr){
+    if(duration.charAt(1) === "h" && duration.charAt(5) === "m"){
+        let hours = duration.slice(0,1);
+        let minutes = duration.slice(3,5);
+        let numberHours = parseInt(hours);
+        let numberMinutes = parseInt(minutes);
+        duration = numberHours + " " + numberMinutes
+        
+    }
+    else if(duration.charAt(1) === "h" && !duration.includes("min")){
+        let hours = duration.slice(0,1);
+        let numberHours = parseInt(hours);
+        duration = numberHours;
+    }}
+    console.log(newArr)
+    return newArr
+}
 function turnHoursToMinutes(moviesArray) {
     const copy = [...moviesArray];
-    const newArr = copy.map()
+    const newArr = copy.map(movie=> movie.duration);
+    loop(newArr);
+
+     
+
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
