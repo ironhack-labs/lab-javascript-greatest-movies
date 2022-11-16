@@ -101,8 +101,36 @@ function turnHoursToMinutes(moviesArray) {
     let durations;
     durations = moviesArray.map(movie => stringToMins(movie.duration));
     return moviesArray.map((movie, index) => ({...movie, duration: durations[index]}))
-
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+    if (moviesArray.length === 0) {
+        return null;
+    } else { 
+        let uniqueYears, moviesByYear, scores, avgScores, biggestScore, idxScores, bestYears, bestYear;
+        uniqueYears = [...new Set(moviesArray.map(movie=>movie.year))];
+        
+        moviesByYear = [];
+        uniqueYears.forEach(year => {moviesByYear.push(moviesArray.filter(movie => movie.year === year))})
+
+        scores = [];
+        moviesByYear.forEach(yearMovies => scores.push(yearMovies.map(movie => movie.score)))
+        
+        avgScores = scores.map(scoresArr => scoresArr.reduce((score1,score2) => score1+score2,0)/scoresArr.length);
+
+        biggestScore = Math.max(...avgScores)
+
+        idxScores = avgScores.reduce(function(accum,score,currentIndex) {
+            if (score === biggestScore) {
+                accum.push(currentIndex)
+            };
+            return accum;
+        }, []);
+
+        bestYears = idxScores.map(index => uniqueYears[index]);
+        bestYear = Math.min(...bestYears);
+
+        return `The best year was ${bestYear} with an average score of ${biggestScore}`
+    }
+}
