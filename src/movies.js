@@ -2,8 +2,6 @@
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
-    // let newArr = moviesArray.map((elemt) => elemt.director);
-    // console.log(newArr);
     return moviesArray.map((elemt) => elemt.director)
 }
 
@@ -19,7 +17,6 @@ function howManyMovies(moviesArray) {
 function scoresAverage(moviesArray) {
     if (!moviesArray.length) return 0;
     const totalScore = moviesArray.reduce((total, movie) => {
-        //return total + movie.score 
         return movie.score ? total + movie.score : total;
     }, 0);
     const average = (totalScore / moviesArray.length);
@@ -38,9 +35,6 @@ function dramaMoviesScore(moviesArray) {
 function orderByYear(moviesArray) {
     const orderByYear = moviesArray.sort((a, b) => {
         if (a.year == b.year) {
-            // var titleA = a.title.toUpperCase();
-            // var titleB = b.title.toUpperCase();
-            // return (titleA < titleB) ? -1 : (titleA > titleB) ? 1 : 0;
             return (a.title < b.title) ? -1 : (a.title > b.title) ? 1 : 0;
         }
         return a.year - b.year
@@ -91,7 +85,7 @@ function bestYearAvg(moviesArray) {
         let average = sum / scoreArray.length;
         if (average > bestAverage) {
             bestAverage = average;
-            bestYear = key
+            bestYear = key;
         }
     }
     return `The best year was ${bestYear} with an average score of ${Number(bestAverage.toFixed(1))}`
