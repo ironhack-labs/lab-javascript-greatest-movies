@@ -73,10 +73,10 @@ const copyMovies = [
 function orderAlphabetically(moviesArray) {
   return [...moviesArray]
     .sort((movieA, movieB) => {
-      if (movieA.title.toLowerCase() < movieB.title.toLowerCase()) {
+      if (movieA.title < movieB.title) {
         return -1;
       }
-      if (movieA.title.toLowerCase() > movieB.title.toLowerCase()) {
+      if (movieA.title > movieB.title) {
         return 1;
       }
       return 0;
@@ -86,7 +86,25 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  minutes = 0;
+  let hour = moviesArray.map((movie) => {
+    // console.log(movie.duration.split(" "));
+    let time = movie.duration.split(" ");
+    for (let i = 0; i < time.length; i++) {
+      if (time.length === 1) {
+        return (minutes += Number(time[0].replace("h", "")) * 60);
+      } else {
+        return (minutes +=
+          Number(time[0].replace("h", "")) * 60 +
+          Number(time[1].replace("min", "")));
+      }
+    }
+    return movie;
+  });
+  console.log(hour);
+  return hour;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
