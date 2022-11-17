@@ -1,4 +1,3 @@
-
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
@@ -69,8 +68,33 @@ function turnHoursToMinutes(moviesArray) {
         return { ...movie, duration: mins };
     })
     return moviesInMinutes;
-
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) { }
+function bestYearAvg(moviesArray) {
+    if (!moviesArray.length) return null;
+
+    /* Creating a object with array of scores, the keys are the year*/
+    let dictionary = {};
+    for (const movie of moviesArray) {
+        !Object.keys(dictionary).includes(movie.year.toString())
+            ? dictionary[movie.year] = [movie.score]
+            : dictionary[parseInt(movie.year)].push(movie.score);
+    }
+    let bestYear = 0;
+    let bestAverage = 0;
+    for (const key in dictionary) {
+        let scoreArray = dictionary[key];
+        let sum = scoreArray.reduce((accumulator, value) => {
+            return value ? accumulator + value : value;
+        }, 0);
+        let average = sum / scoreArray.length;
+        if (average > bestAverage) {
+            bestAverage = average;
+            bestYear = key
+        }
+    }
+    return `The best year was ${bestYear} with an average score of ${Number(bestAverage.toFixed(1))}`
+};
+
+
