@@ -89,8 +89,92 @@ function orderAlphabetically(moviesArray) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
 
+    // I`m aware this is not the best way to change the time, but it works XD
+    function changeTime(hora) {
+        let time = 0;
+        for (let i = 0; i < hora.length; i++) {
+          if (hora[i] === `h`) {
+            time = hora[i - 1] * 60;
+          }
+          if (hora[i] === `m`) {
+            if (hora[i - 2] === ` `) {
+              time += hora[i - 1] * 1;
+            } else {
+              time += 1 * (hora[i - 2] + hora[i - 1]);
+            }
+          }
+        }
+        return time;
+      }
+    newMovies = moviesArray.map((movies) => movies);
+   
+   
+    // this works
+    const timeChange = newMovies.map(function (movie) {
+      let time = changeTime(movie.duration);
+      
+      // i couldnt find a way to change only one key in a simpler way than this.
+      return {
+        title: movie.title,
+        year: movie.year,
+        director: movie.director,
+        duration: time,
+        genre: movie.genre,
+        score: movie.score,
+      };
+    });
+
+   
+  
+
+
+
+    return timeChange;
     
+
+
+
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+    if(!moviesArray.length){ return null}
+    let moviesYear = [];
+  
+    newMovies = moviesArray.map((movies) => movies);
+
+
+    // max and min year for iteration
+    const yearsArray = newMovies.map((movies) => movies.year);
+    const minYear = Math.min(...yearsArray);
+    const maxYear = Math.max(...yearsArray);
+
+  // iteration to find the average every year
+  for (let i = minYear; i <= maxYear; i++) {
+    let average = 0;
+    let counter = 0;
+    average = newMovies.reduce(function (acc, curr, index) {
+      if (newMovies[index].year === i) {
+        counter++;
+        return acc + curr.score;
+      } else {
+        return acc;
+      }
+    }, 0);
+    // to avoid NaN
+    if (average !== 0) {
+      average = average / counter;
+    }
+    moviesYear.push({ year: i, score: average });
+  }
+
+  const years = moviesYear.map((movie) => movie.year);
+  const score = moviesYear.map((movie) => movie.score);
+
+  const indexSol = score.indexOf(Math.max(...score));
+
+  console.log(indexSol);
+
+  const sol = `The best year was ${years[indexSol]} with an average score of ${score[indexSol]}`;
+  return sol;
+}
