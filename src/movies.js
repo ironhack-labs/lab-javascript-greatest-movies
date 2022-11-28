@@ -37,13 +37,60 @@ function dramaMoviesScore(moviesArray) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    ////solution 1 --------------------------------------------------------without ordering alphabetically
+    // let moviesOrdered = moviesArray;
+    // moviesOrdered.sort((a, b) => a.year - b.year);  
+    ////---------------------I dont understand why this 2 lines of code also change moviesArray
+   
+
+    ////solution2 --------------------------------------------------without ordering alphabetically
+    // const  moviesOrdered = moviesArray.map(movies=> movies)
+    // moviesOrdered.sort((a,b) =>  a.year - b.year)
+
+
+    
+    //solution 3 ------------------------- to be honest i dont really understand why it works
+    const  moviesOrdered = moviesArray.map(movies=> movies)
+    moviesOrdered.sort(function(a,b) { 
+        
+        if(a.year===b.year){
+           return a.title.localeCompare(b.title)
+        }   
+                
+        return a.year - b.year
+    })
+    
+
+   
+  return moviesOrdered;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+
+    const  moviesOrdered = moviesArray.map(movies=> movies)
+    
+    moviesOrdered.sort((a,b)=> a.title.localeCompare(b.title))
+    const movieTitles = moviesOrdered.map(movies => movies.title)
+
+    if(movieTitles.length>20){
+        for (let i = 0; i < 20; i++) {
+             movieTitles.splice(20,Infinity)
+    }
+    }
+
+
+    return movieTitles;
+
+    
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+
+    
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
