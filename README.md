@@ -8,11 +8,7 @@
 
 We have just learned some useful methods, that will help us manipulate **objects and arrays**. In this exercise, we will practice working with these methods, and you are required to use at least one of them in each iteration.
 
-
-
 <br>
-
-
 
 ## Requirements
 
@@ -36,27 +32,15 @@ $ git push origin master
 
 <br>
 
-
-
 ## Test Your Code
 
 This LAB is equipped with unit tests to provide automated feedback on your lab progress. In case you want to check the tests, they are in the `tests/movies.spec.js` file.
 
-
-
 To run the tests and your JavaScript code, open the `SpecRunner.html` file using the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) VSCode extension.
-
-
 
 To see the outputs of the `console.log` in your JavaScript code, open the [Console in the Developer Tools](https://developer.chrome.com/docs/devtools/open/#console).
 
 <br>
-
-
-
-
-
-
 
 ## Instructions
 
@@ -64,13 +48,11 @@ You will work on the `src/movies.js` file, which is already loaded in the `SpecR
 
 The `src/data.js` file containing the array of movies is also loaded in the `SpecRunner.html` file.
 
-
-
 <br>
 
 ## Iteration 0: Movies array
 
-The best way to practice is to work with real data. In the **`src/data.js`** file, you will find an array of info about **the best 250 movies of all times** according to [IMDB Ranking](http://www.imdb.com/chart/top?ref_=nv_mv_250_6) that you will use to display what each iteration asks! 
+The best way to practice is to work with real data. In the **`src/data.js`** file, you will find an array of info about **the best 250 movies of all times** according to [IMDB Ranking](http://www.imdb.com/chart/top?ref_=nv_mv_250_6) that you will use to display what each iteration asks!
 
 Here is an example of how the data is displayed:
 
@@ -85,13 +67,9 @@ Here is an example of how the data is displayed:
 }
 ```
 
-
-
-You will be digging deeper into some "facts" that this data set has. For example, we can use this data set to find which is the most popular movie, what is the average duration of the movie, the list of movies by some director, etc. 
+You will be digging deeper into some "facts" that this data set has. For example, we can use this data set to find which is the most popular movie, what is the average duration of the movie, the list of movies by some director, etc.
 
 In this iteration, no action is required, but here comes your challenge: In the following iterations, you will use your JS knowledge to manipulate this data.
-
-
 
 Remember to read each iteration description carefully before working on the solution.
 
@@ -146,9 +124,7 @@ Create a function `orderByYear()` that receives an array as parameter and return
 
 If two movies have the same year, order them in alphabetical order by their title! :heavy_check_mark:
 
-
-
-:warning: **Important:** Your function should *return a new array*, containing the movies ordered by the year. Your function should not modify (mutate) the original array. You may need to do some research on how to make a "copy" or "clone" an array.
+:warning: **Important:** Your function should _return a new array_, containing the movies ordered by the year. Your function should not modify (mutate) the original array. You may need to do some research on how to make a "copy" or "clone" an array.
 
 <br>
 
@@ -158,15 +134,9 @@ Another popular way to order the movies is to sort them alphabetically using the
 
 Create a `orderAlphabetically()` function, that receives an array and returns an array of first 20 titles, alphabetically ordered. Return only the title of each movie, and if the array you receive has less than 20 movies, return all of them.
 
-
-
-:warning: **Important:** Your function should *return a new array*, containing movie objects sorted alphabetically. Your function should not modify (mutate) the original array. You may need to do some research on how to make a "copy" or "clone" an array.
-
-
+:warning: **Important:** Your function should _return a new array_, containing movie objects sorted alphabetically. Your function should not modify (mutate) the original array. You may need to do some research on how to make a "copy" or "clone" an array.
 
 <br>
-
-
 
 ### BONUS - Iteration 7: Time format
 
@@ -200,7 +170,7 @@ Should be:
 }
 ```
 
-:warning: **Important:** Your function should *return a new array*, containing movie objects with the duration time in minutes. Your function should not modify (mutate) the original array.
+:warning: **Important:** Your function should _return a new array_, containing movie objects with the duration time in minutes. Your function should not modify (mutate) the original array.
 
 <br>
 
@@ -215,8 +185,6 @@ Create `bestYearAvg()` function that receives an array of movies and gives us an
 **The best year was \<YEAR\> with an average score of \<RATE\>**
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_dfc3fe557576abca4dba274e3aabe9a3.gif)
-
-
 
 <br>
 
