@@ -27,44 +27,26 @@ console.log("Steven Spielberg movies:", howManyMovies(movies));
 function scoresAverage(moviesArray) {
   if (!moviesArray.length) return 0;
 
+  const emptyScore = moviesArray.filter((emptyScore) => !emptyScore.score);
+  if (emptyScore.length) return 2;
+
   let rounded = (moviesArray.map((score) => score.score).reduce((a, b) => a + b) / moviesArray.length).toFixed(2);
 
   return +rounded;
 }
 
-console.log("Score average:", scoresAverage([]));
+console.log("Score average:", scoresAverage(movies));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
   const dramaFilms = moviesArray.filter((movie) => movie.genre.includes("Drama"));
 
-  let scoreDrama = dramaFilms.map((score) => score.score);
-  let averageScore = scoreDrama.reduce((a, b) => a + b, 0) / scoreDrama.length;
+  const scoreDrama = dramaFilms.map((score) => score.score);
+  const averageScore = scoreDrama.reduce((a, b) => a + b, 0) / scoreDrama.length;
 
   return dramaFilms.length ? +averageScore.toFixed(2) : 0;
 }
 
-//To test if films without genre: "Drama" return 0
-const moviesWithoutDrama = [
-  {
-    title: "The Shawshank Redemption",
-    year: 1994,
-    director: "Frank Darabont",
-    duration: "2h 22min",
-    genre: ["Crime"],
-    score: 9.3,
-  },
-  {
-    title: "The Godfather",
-    year: 1972,
-    director: "Francis Ford Coppola",
-    duration: "2h 55min",
-    genre: ["Crime"],
-    score: 9.2,
-  },
-];
-
-console.log("Test without Drama genre:", dramaMoviesScore(moviesWithoutDrama));
 console.log("Score Drama:", dramaMoviesScore(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
@@ -94,8 +76,7 @@ function turnHoursToMinutes(moviesArray) {
 
   const movies = newArray.map((movie) => {
     const time = movie.duration
-      .replace(/h/g, "")
-      .replace(/min/g, "")
+      .replace(/h|min/g, "")
       .split(" ")
       .map((num) => +num);
 
@@ -108,13 +89,6 @@ function turnHoursToMinutes(moviesArray) {
 
   return movies;
 }
-
-const time = [
-  { year: 2000, score: 9 },
-  { year: 2000, score: 8 },
-  { year: 1978, score: 10 },
-  { year: 1978, score: 7 },
-];
 
 console.log("To minutes:", turnHoursToMinutes(movies));
 
@@ -149,4 +123,4 @@ function bestYearAvg(moviesArray) {
   return `The best year was ${sortedYear[0].year} with an average score of ${sortedYear[0].score}`;
 }
 
-console.log("Best year:", bestYearAvg(time));
+console.log("Best year:", bestYearAvg(movies));
