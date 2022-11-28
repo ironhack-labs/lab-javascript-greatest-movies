@@ -71,7 +71,7 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-  //make a deep copy
+  // make a deep copy
   const orderedByYear = JSON.parse(JSON.stringify(moviesArray));
   orderedByYear.sort(function (firstMovie, secondMovie) {
     return (
@@ -84,7 +84,7 @@ function orderByYear(moviesArray) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-  //make a deep copy
+  // make a deep copy
   const orderedAlphabet = JSON.parse(JSON.stringify(moviesArray));
   orderedAlphabet.sort(function (firstMovie, secondMovie) {
     return firstMovie.title.localeCompare(secondMovie.title);
@@ -98,14 +98,15 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
+  // make a deep copy
   const inMinutes = JSON.parse(JSON.stringify(moviesArray));
   inMinutes.forEach(function (movie) {
+    // get duration as string and convert into a number
     let hours = Number(movie.duration.charAt(0));
     let minutes = Number(movie.duration.slice(3, 5).replace('m', ''));
     let durationInMinutes = hours * 60 + minutes;
-    console.log(durationInMinutes);
     movie.duration = durationInMinutes;
-  })
+  });
   return inMinutes;
 }
 
