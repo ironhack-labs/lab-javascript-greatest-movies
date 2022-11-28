@@ -21,8 +21,14 @@ function howManyMovies(moviesArray) {
   if (moviesArray.length === 0) {
     return 0;
   }
+  let allDramas = [];
+  moviesArray.forEach(movie => {
+    if (movie.genre.includes('Drama')) {
+      allDramas.push(movie);
+    }
+  })
 
-  const ofSpielberg = moviesArray.filter(function (movie) {
+  const ofSpielberg = allDramas.filter(function (movie) {
       if (movie.director === "Steven Spielberg") {
         console.log(movie.title);
         return true;
@@ -40,19 +46,28 @@ function howManyMovies(moviesArray) {
 function scoresAverage(moviesArray) {
   const average = moviesArray.reduce(function (acc, curr) {
     if (isNaN(curr.score)) {
-      console.log("in here");
       curr.score = 0;
     }
     return (acc + curr.score / moviesArray.length);
   }, 0);
   const rounded = Math.round(average * 100 + Number.EPSILON) / 100;
-  console.log(average);
   return rounded;
 }
-//faulty data: 9.2 0 undefined still divide throubgh 3
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+  let allDramas = [];
+  moviesArray.forEach(movie => {
+    if (movie.genre.includes('Drama')) {
+      allDramas.push(movie);
+    }
+  })
+  const averDramas = allDramas.reduce(function (acc, curr) {
+    return (acc + curr.score / allDramas.length)
+  }, 0);
+  const rounded = Math.round(averDramas * 100 + Number.EPSILON) / 100;
+  return rounded;
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {}
