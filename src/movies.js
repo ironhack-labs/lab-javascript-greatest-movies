@@ -10,14 +10,31 @@
 //     score: 9.3
 //   },
 function getAllDirectors(moviesArray) {
-    const directors = moviesArray.map(function (movie){
-        return movie.director;
-    });
-    return directors;
+  const directors = moviesArray.map(function (movie) {
+    return movie.director;
+  });
+  return directors;
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies(moviesArray) {}
+function howManyMovies(moviesArray) {
+  if (moviesArray.length === 0) {
+    return 0;
+  }
+
+  const ofSpielberg = moviesArray.filter(function (movie) {
+      if (movie.director === "Steven Spielberg") {
+        console.log(movie.title);
+        return true;
+      } else {
+        return false;
+      }
+  });
+  if(ofSpielberg.length === 2) {
+    return 2;
+  }
+  return ofSpielberg.length;
+}
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {}
