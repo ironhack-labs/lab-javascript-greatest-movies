@@ -22,21 +22,21 @@ function howManyMovies(moviesArray) {
     return 0;
   }
   let allDramas = [];
-  moviesArray.forEach(movie => {
-    if (movie.genre.includes('Drama')) {
+  moviesArray.forEach((movie) => {
+    if (movie.genre.includes("Drama")) {
       allDramas.push(movie);
     }
-  })
+  });
 
   const ofSpielberg = allDramas.filter(function (movie) {
-      if (movie.director === "Steven Spielberg") {
-        console.log(movie.title);
-        return true;
-      } else {
-        return false;
-      }
+    if (movie.director === "Steven Spielberg") {
+      console.log(movie.title);
+      return true;
+    } else {
+      return false;
+    }
   });
-  if(ofSpielberg.length === 2) {
+  if (ofSpielberg.length === 2) {
     return 2;
   }
   return ofSpielberg.length;
@@ -48,7 +48,7 @@ function scoresAverage(moviesArray) {
     if (isNaN(curr.score)) {
       curr.score = 0;
     }
-    return (acc + curr.score / moviesArray.length);
+    return acc + curr.score / moviesArray.length;
   }, 0);
   const rounded = Math.round(average * 100 + Number.EPSILON) / 100;
   return rounded;
@@ -57,13 +57,13 @@ function scoresAverage(moviesArray) {
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
   let allDramas = [];
-  moviesArray.forEach(movie => {
-    if (movie.genre.includes('Drama')) {
+  moviesArray.forEach((movie) => {
+    if (movie.genre.includes("Drama")) {
       allDramas.push(movie);
     }
-  })
+  });
   const averDramas = allDramas.reduce(function (acc, curr) {
-    return (acc + curr.score / allDramas.length)
+    return acc + curr.score / allDramas.length;
   }, 0);
   const rounded = Math.round(averDramas * 100 + Number.EPSILON) / 100;
   return rounded;
@@ -73,14 +73,28 @@ function dramaMoviesScore(moviesArray) {
 function orderByYear(moviesArray) {
   //make a deep copy
   const orderedByYear = JSON.parse(JSON.stringify(moviesArray));
-  orderedByYear.sort(function(firstMovie, secondMovie) { 
-    return firstMovie.year - secondMovie.year  ||  firstMovie.title.localeCompare(secondMovie.title);
+  orderedByYear.sort(function (firstMovie, secondMovie) {
+    return (
+      firstMovie.year - secondMovie.year ||
+      firstMovie.title.localeCompare(secondMovie.title)
+    );
   });
   return orderedByYear;
-};
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  //make a deep copy
+  const orderedAlphabet = JSON.parse(JSON.stringify(moviesArray));
+  orderedAlphabet.sort(function (firstMovie, secondMovie) {
+    return firstMovie.title.localeCompare(secondMovie.title);
+  });
+  const titlesAlphabet = [];
+    orderedAlphabet.forEach(function (movie) {
+      titlesAlphabet.push(movie.title);
+    });
+    return titlesAlphabet.slice(0, 20);
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
