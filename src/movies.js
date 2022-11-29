@@ -134,4 +134,8 @@ function turnHoursToMinutes(moviesArray) {
 //console.log(turnHoursToMinutes(movies));
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+    if (moviesArray.length === 0) {
+        return null;
+    }
+}
