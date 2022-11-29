@@ -21,7 +21,7 @@ function scoresAverage(moviesArray) {
   if (moviesArray.length === 0) {
     return 0;
   }
-  const avgScores = moviesArray.reduce((acc, movie) => acc + movie.score, 0)
+  const avgScores = moviesArray.reduce((acc, movie) => acc + (movie.score || 0), 0)
     return Math.round((avgScores / moviesArray.length) * 100) / 100;
 }
 
@@ -43,6 +43,11 @@ function dramaMoviesScore(moviesArray) {
 function orderByYear(moviesArray) {
   const sortedMoviesByYear = moviesArray.map((movie) => movie).sort((year1, year2) => {
     let result = year1.year - year2.year;
+/*     if (year1.year === year2.year && year1.title > year2.title ) {
+      return year1.year;
+    } else if (year1.year === year2.year && year1.title < year2.title) {
+      return year2.year;
+    } */
     return result;
   });
   return sortedMoviesByYear;
@@ -50,12 +55,46 @@ function orderByYear(moviesArray) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-  const sortedMovies = moviesArray.map((movie) => movie.title).sort()
+  const sortedMovies = moviesArray.map((movie) => movie.title).sort().splice(0, 20);
   return sortedMovies;
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+   const HoursToMinutes = moviesArray.map((movie) => {
+     if (movie.duration.includes("h") && movie.duration.includes("min")) {
+       let newDurationArr = movie.duration.split(" ");
+       let hours = parseInt(newDurationArr[0]);
+       let minutes = parseInt(newDurationArr[1]);
+       movie.duration = (hours * 60) + minutes;
+       return movie;
+     } else if (movie.duration.includes("h") && !movie.duration.includes("min")){
+       movie.duration = parseInt(movie.duration) * 60;
+       return movie;
+     }
+   })
+  return HoursToMinutes;
+}
+
+console.log(turnHoursToMinutes(movies))
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+  function bestYearAvg(moviesArray) {
+  if (moviesArray.length === 0) {
+    return null;
+    } 
+
+  const sortedByScore = orderByYear(moviesArray).sort((scoreOne, scoreTwo) => {
+    result =  scoreTwo.score - scoreOne.score;
+    return result
+  })
+  return `The best year was ${sortedByScore[0].year} with an average score of ${sortedByScore[0].score}`
+}
+
+
+console.log(bestYearAvg(movies))
+
+// ordenar por año
+// por cada año sacar el avg
+// compararlos
+// dar el resultado
