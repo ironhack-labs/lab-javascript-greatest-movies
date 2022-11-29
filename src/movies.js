@@ -55,36 +55,42 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-  const orderedByYear = [];
-  for (let i = 0; i < moviesArray.length; i++) {
-    orderedByYear.push(moviesArray[i]);
-  }
-  return orderedByYear.sort().reverse();
+  const orderedByYear = JSON.parse(JSON.stringify(moviesArray));
+
+  orderedByYear.sort(function (a, b) {
+    if (a.year !== b.year) {
+      return a.year - b.year;
+    } else {
+      return a.title.localeCompare(b.title);
+    }
+  });
+  return orderedByYear;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-  const orderedByScore = [];
+  const dupArray = JSON.parse(JSON.stringify(moviesArray));
+  const titles = [];
+  const finalArray = [];
   for (let i = 0; i < moviesArray.length; i++) {
-    if (i < 20) {
-      orderedByScore.push(moviesArray[i].title);
-    }
-    orderedByScore.sort();
-    let order = orderedByScore;
+    titles.push(dupArray[i].title);
   }
-  const dupArray = orderedByScore.slice(0, moviesArray.length);
-  dupArray.sort();
-  return dupArray;
+  const titlesSorted = titles.sort(function (a, b) {
+    return a.localeCompare(b);
+  });
+
+  if (titlesSorted.length > 20) {
+    return titlesSorted.splice(0, 20);
+  } else {
+    return titlesSorted;
+  }
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-  const origArray = moviesArray;
-  const modifiedArray = origArray.slice(0, moviesArray.length);
-  const newArray = modifiedArray;
-  //console.log(dupArray)
-  for (let i = 0; i < newArray.length; i++) {
-    const durationString = newArray[i].duration;
+  const orderedByYear = JSON.parse(JSON.stringify(moviesArray));
+  for (let i = 0; i < orderedByYear.length; i++) {
+    const durationString = orderedByYear[i].duration;
     const hour = Number(durationString.slice(0, 1)) * 60;
     const indexOfm = durationString.indexOf("m");
     let minutes = 0;
@@ -92,9 +98,9 @@ function turnHoursToMinutes(moviesArray) {
       minutes = Number(durationString.slice(indexOfm - 2, indexOfm));
     }
     const durationMinutes = hour + minutes;
-    newArray[i].duration = durationMinutes;
+    orderedByYear[i].duration = durationMinutes;
   }
-  return newArray;
+  return orderedByYear;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
