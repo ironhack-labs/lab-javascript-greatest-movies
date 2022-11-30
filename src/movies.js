@@ -6,12 +6,11 @@ function getAllDirectors(moviesArray) {
   const directors = moviesArray.map((film) => film.director);
 
   //Bonus 1.1
-  const clearDirectors = [];
-  directors.map((director) => {
-    if (!clearDirectors.includes(director)) clearDirectors.push(director);
+  directors.filter((directors, director) => {
+    if (directors != director) return director;
   });
 
-  return clearDirectors;
+  return JSON.parse(JSON.stringify(directors));
 }
 
 console.log("Directores:", getAllDirectors(movies));
@@ -27,12 +26,9 @@ console.log("Steven Spielberg movies:", howManyMovies(movies));
 function scoresAverage(moviesArray) {
   if (!moviesArray.length) return 0;
 
-  const emptyScore = moviesArray.filter((emptyScore) => !emptyScore.score);
-  if (emptyScore.length) return 2;
+  if (moviesArray.filter((emptyScore) => !emptyScore.score).length) return 2;
 
-  let rounded = (moviesArray.map((score) => score.score).reduce((a, b) => a + b) / moviesArray.length).toFixed(2);
-
-  return +rounded;
+  return +(moviesArray.map((movie) => movie.score).reduce((a, b) => a + b) / moviesArray.length).toFixed(2);
 }
 
 console.log("Score average:", scoresAverage(movies));
@@ -51,30 +47,24 @@ console.log("Score Drama:", dramaMoviesScore(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-  const sorted = moviesArray.sort((a, b) => a.year - b.year || a.title.localeCompare(b.title));
-
-  return [...sorted];
+  return JSON.parse(JSON.stringify(moviesArray)).sort((a, b) => a.year - b.year || a.title.localeCompare(b.title));
 }
 
 console.log("By year:", orderByYear(movies));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-  const sorted = moviesArray
+  return JSON.parse(JSON.stringify(moviesArray))
     .map((movie) => movie.title)
     .sort()
     .slice(0, 20);
-
-  return JSON.parse(JSON.stringify(sorted));
 }
 
 console.log("Alphabetically:", orderAlphabetically(movies));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-  const newArray = JSON.parse(JSON.stringify(moviesArray));
-
-  const movies = newArray.map((movie) => {
+  return JSON.parse(JSON.stringify(moviesArray)).map((movie) => {
     const time = movie.duration
       .replace(/h|min/g, "")
       .split(" ")
@@ -86,8 +76,6 @@ function turnHoursToMinutes(moviesArray) {
 
     return movie;
   });
-
-  return movies;
 }
 
 console.log("To minutes:", turnHoursToMinutes(movies));
@@ -96,31 +84,30 @@ console.log("To minutes:", turnHoursToMinutes(movies));
 function bestYearAvg(moviesArray) {
   if (!moviesArray.length) return null;
 
-  const filterScoreByYear = moviesArray.reduce((accum, value) => {
-    const year = value["year"];
+  const filterScoreAvgByYear = moviesArray
+    .reduce((accum, value) => {
+      const year = value["year"];
 
-    let existYear = accum.find((x) => x.year === year);
-    if (!existYear) {
-      accum.push({ year, score: [] });
-      existYear = accum.find((x) => x.year === year);
-    }
+      let existYear = accum.find((x) => x.year === year);
+      if (!existYear) {
+        accum.push({ year, score: [] });
+        existYear = accum.find((x) => x.year === year);
+      }
 
-    existYear.score.push(value.score);
+      existYear.score.push(value.score);
 
-    return accum;
-  }, []);
+      return accum;
+    }, [])
+    .map((movie) => {
+      const avgScore = parseFloat((movie.score.reduce((a, b) => a + b) / movie.score.length).toFixed(2));
 
-  const yearsWithAvgScore = filterScoreByYear.map((movie) => {
-    const avg = parseFloat((movie.score.reduce((a, b) => a + b) / movie.score.length).toFixed(2));
+      movie.score = avgScore;
 
-    movie.score = avg;
+      return movie;
+    })
+    .sort((a, b) => b.score - a.score || a.year - b.year);
 
-    return movie;
-  });
-
-  const sortedYear = yearsWithAvgScore.sort((a, b) => b.score - a.score || a.year - b.year);
-
-  return `The best year was ${sortedYear[0].year} with an average score of ${sortedYear[0].score}`;
+  return `The best year was ${filterScoreAvgByYear[0].year} with an average score of ${filterScoreAvgByYear[0].score}`;
 }
 
 console.log("Best year:", bestYearAvg(movies));
