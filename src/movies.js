@@ -45,13 +45,23 @@ function orderByYear(moviesArray) {
         .sort((a, b) => {
             if (a.title > b.title) return 1;
             if (a.title < b.title) return -1;
-            if (a.title === 0) return 0;
+            return 0;
         })
         .sort((a, b) => a.year - b.year)
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) { }
+function orderAlphabetically(moviesArray) {
+    sortedMovies = moviesArray
+        .map((movie) => movie.title)
+        .sort((a, b) => {
+            if (a > b) return 1;
+            if (a < b) return -1;
+            return 0;
+        })
+        .filter((title, index) => index < 20)
+    return sortedMovies;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) { }
