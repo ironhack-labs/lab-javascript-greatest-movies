@@ -91,10 +91,10 @@ function bestYearAvg(moviesArray) {
         }, {})
     const yearAvg = { year: '', score: 0 };
     for (let key in yearScore) {
-        yearScore[key] /= moviesArray.filter((movie) => movie.year === +key).length;
-        if (yearScore[key] > yearAvg.score) {
+        const currentAvg = yearScore[key] / moviesArray.filter((movie) => movie.year === +key).length;
+        if (currentAvg > yearAvg.score) {
             yearAvg.year = key,
-            yearAvg.score = yearScore[key];
+            yearAvg.score = currentAvg;
         }
     }
 
