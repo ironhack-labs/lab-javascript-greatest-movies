@@ -41,7 +41,7 @@ function dramaMoviesScore(moviesArray) {
             return acumulator + currentValue.score 
     }, 0);
     const averageRate = totalReviews / moviesArray.filter(movies => movies.genre.includes(`Drama`)).length;
-    console.log(parseFloat(averageRate.toFixed(2)))
+ 
     return parseFloat(averageRate.toFixed(2))
         }
 
@@ -65,10 +65,19 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-    
-    return moviesArray.map(movies => movies.duration.split(' ', 2))
-}
+    return JSON.parse(JSON.stringify(moviesArray))
+      .map(film => {
+        const minsHours = film.duration.replace('h', '').replace('min', '').split(' ').map(time => +time)
+        const toMins = (minsHours.length > 1 ? [minsHours[0] * 60, minsHours[1]] : [minsHours[0] * 60]).reduce((acc, el) => acc + el, 0)
+        film.duration = toMins
+        return film
+      })
+  }
+
 
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+    
+}
+
