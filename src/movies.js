@@ -37,10 +37,9 @@ console.log("Score average:", scoresAverage(movies));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-  const dramaFilms = moviesArray.filter((movie) => movie.genre.includes("Drama"));
+  const dramaFilms = moviesArray.filter((movie) => movie.genre.includes("Drama")).map((score) => score.score);
 
-  const scoreDrama = dramaFilms.map((score) => score.score);
-  const averageScore = scoreDrama.reduce((a, b) => a + b, 0) / scoreDrama.length;
+  const averageScore = dramaFilms.reduce((a, b) => a + b, 0) / dramaFilms.length;
 
   return dramaFilms.length ? +averageScore.toFixed(2) : 0;
 }
@@ -67,14 +66,14 @@ console.log("Alphabetically:", orderAlphabetically(movies));
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
   return JSON.parse(JSON.stringify(moviesArray)).map((movie) => {
-    const time = movie.duration
+    const timeToNum = movie.duration
       .replace(/h|min/g, "")
       .split(" ")
       .map((num) => +num);
 
-    const timeNum = (time.length > 1 ? [time[0] * 60, time[1]] : [time[0] * 60]).reduce((a, b) => a + b, 0);
+    const timeSum = (timeToNum.length > 1 ? [timeToNum[0] * 60, timeToNum[1]] : [timeToNum[0] * 60]).reduce((a, b) => a + b, 0);
 
-    movie.duration = timeNum;
+    movie.duration = timeSum;
 
     return movie;
   });
@@ -87,23 +86,19 @@ function bestYearAvg(moviesArray) {
   if (!moviesArray.length) return null;
 
   const filterScoreAvgByYear = moviesArray
-    .reduce((accum, value) => {
-      const year = value["year"];
+    .reduce((accum, film) => {
+      const existYear = accum.find((x) => x.year === film.year);
 
-      let existYear = accum.find((x) => x.year === year);
       if (!existYear) {
-        accum.push({ year, score: [] });
-        existYear = accum.find((x) => x.year === year);
+        accum.push({ year: film.year, score: [film.score] });
+      } else {
+        existYear.score.push(film.score);
       }
-
-      existYear.score.push(value.score);
 
       return accum;
     }, [])
     .map((movie) => {
-      const avgScore = parseFloat((movie.score.reduce((a, b) => a + b) / movie.score.length).toFixed(2));
-
-      movie.score = avgScore;
+      movie.score = parseFloat((movie.score.reduce((a, b) => a + b) / movie.score.length).toFixed(2));
 
       return movie;
     })
