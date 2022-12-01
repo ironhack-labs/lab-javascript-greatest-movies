@@ -33,40 +33,45 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-    const moviesArrayCopie = moviesArray.map(movie => movie);
-    const orderedByYear = moviesArrayCopie.sort(function(aMovie,bMovie) {
+    const moviesArrayCopy = moviesArray.map(movie => movie);
+    moviesArrayCopy.sort(function(aMovie,bMovie) {
         if (aMovie.year > bMovie.year) {
             return 1;
         } else if (aMovie.year < bMovie.year) {
             return -1;
-        } else if (aMovie.year === bMovie.year && aMovie.title.toLowerCase().localCompare(bMovie.title) < 0) {
+        } else if (aMovie.year === bMovie.year && aMovie.title.toLowerCase().localeCompare(bMovie.title) < 0) {
             return -1;
-        } else if (aMovie.year === bMovie.year && aMovie.title.toLowerCase().localCompare(bMovie.title) > 0) {
+        } else if (aMovie.year === bMovie.year && aMovie.title.toLowerCase().localeCompare(bMovie.title) > 0) {
             return 1;
         } else {
             return 0;
         }
     });
-    return orderedByYear;
+
+    return moviesArrayCopy;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-    const moviesArrayCopie = moviesArray.map(movie => movie.title);
-    const orderedByTitle = moviesArrayCopie.sort(function(aMovie,bMovie) {
-       if (aMovie.toLowerCase().localCompare(bMovie) < 0) {
+    const moviesArrayCopy = moviesArray.map(movie => movie.title);
+    moviesArrayCopy.sort(function(aMovie,bMovie) {
+       if (aMovie.toLowerCase().localeCompare(bMovie) < 0) {
             return -1;
-        } else if (aMovie.toLowerCase().localCompare(bMovie) > 0) {
+        } else if (aMovie.toLowerCase().localeCompare(bMovie) > 0) {
             return 1;
         } else {
             return 0;
         }
     });
-    return orderedByTitle.slice(0, 20);
+    return moviesArrayCopy.slice(0, 20);
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+    
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+    
+}
