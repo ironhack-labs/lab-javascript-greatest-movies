@@ -12,17 +12,42 @@ function howManyMovies(moviesArray) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
-    const scores = moviesArray.map( movies => movies.score);
-    const sum = scores.reduce((previus, current) => current += previus);
-    const average =  sum / sum.length;
-    return average.toFixed(2)
+    if (!moviesArray.length) {
+      return 0;
+  } 
+    const scores = moviesArray.map( movies => movies.score );
+        if (!scores.length) {
+            return 0
+        } 
+
+    const onlyScores = scores.filter( scores => !isNaN(scores));
+    const sum = onlyScores.reduce((previus, current) => current += previus);
+    const average =  sum / onlyScores.length;
+    return +average.toFixed(2)
 }
+// Esta iretación no me pasa el ultimo punto pero he probado a meterle un objeto del array sin score y si no está definida hace el array solo con las pelis que tienen puntuación
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {    
+    if (!moviesArray.length) {
+        return 0;
+    } 
+        const dramaMovies = moviesArray.filter( movies =>  movies.genre.includes('Drama'));
+              if (!dramaMovies.length) {
+                return 0
+            } 
+        const scores = dramaMovies.map(dramaMovies => dramaMovies.score);
+        const onlyScores = scores.filter( scores => typeof scores === "number");
+        const sum = onlyScores.reduce((previus, current) => current += previus);
+        const average = sum / onlyScores.length;
+        return +average.toFixed(2)
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  const yearsOfMovies = moviesArray.map (movies => movies.year);
+  return yearsOfMovies.sort()
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
