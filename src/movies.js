@@ -87,90 +87,32 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
-  const moviesByYearWithScore = orderByYear(moviesArray).map(movie => {
-    return {
-      year: movie.year,
-      score: movie.score
-    }      
-  })
+  if (moviesArray.length === 0) {
+    return null;
+  } else {
+    const moviesByYearWithScore = moviesArray.map(movie => {
+      return {
+          year: movie.year,
+          score: movie.score
+        }      
+    });
 
-  const a = moviesByYearWithScore.reduce((acc, elem) => {
-    let yearString = elem.year.toString()
-    if (acc[yearString]) {
-      const average = (acc[yearString] + elem.score) / 2;
-      acc[yearString] = Math.round(average * 10) / 10;
-    } else {
-      let score = elem.score;
-      acc[yearString] = score;
-    } 
-    return acc
-  }, {})
-  
-console.log('-------result-------');
-console.log(a);
+    const scoresByYear = moviesByYearWithScore.reduce((acc, elem) => {
+      let yearString = elem.year.toString();
+      if (acc[yearString]) {
+        const average = (acc[yearString] + elem.score) / 2;
+        acc[yearString] = Math.round(average * 10) / 10;
+      } else {
+        let score = elem.score;
+        acc[yearString] = score;
+      } 
+      return acc;
+    }, {});
 
+    let yearScorePairs = Object.entries(scoresByYear);
 
-  /*
+    yearScorePairs.sort((yearScoreA, yearScoreB) => yearScoreB[1] - yearScoreA[1]);
 
-{
-  "1994": [9.2,8,7],
-  "1974": [7],
-  "1975": [9, 8]
-
-  
-
-
-  //return "The best year was ${YEAR} with an average score of ${RATE}"
-  */
+    return `The best year was ${yearScorePairs[0][0]} with an average score of ${yearScorePairs[0][1]}`;
+  }
 }
-const moviesCopy = [
-    {
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      director: 'Frank Darabont',
-      duration: '2h 22min',
-      genre: ['Crime', 'Drama'],
-      score: 9.3
-    },
-    {
-      title: 'The Godfather',
-      year: 1957,
-      director: 'Francis Ford Coppola',
-      duration: '2h 55min',
-      genre: ['Crime', 'Drama'],
-      score: 9.2
-    },
-    {
-      title: 'The Godfather: Part II',
-      year: 1957,
-      director: 'Francis Ford Coppola',
-      duration: '3h 22min',
-      genre: ['Crime', 'Drama'],
-      score: 9
-    },
-    {
-      title: 'The Dark Knight',
-      year: 2008,
-      director: 'Christopher Nolan',
-      duration: '2h 32min',
-      genre: ['Action', 'Crime', 'Drama', 'Thriller'],
-      score: 9
-    },
-    {
-      title: '12 Angry Men',
-      year: 1957,
-      director: 'Sidney Lumet',
-      duration: '1h 36min',
-      genre: ['Crime', 'Drama'],
-      score: 8.9
-    },
-    {
-      title: 'Schindler"s List',
-      year: 1994,
-      director: 'Steven Spielberg',
-      duration: '3h 15min',
-      genre: ['Biography', 'Drama', 'History'],
-      score: 8.9
-    }
-  ]
-bestYearAvg(moviesCopy);
