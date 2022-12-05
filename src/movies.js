@@ -59,7 +59,7 @@ function orderByYear(moviesArray) {
 function orderAlphabetically(moviesArray) {
   const moviesTitle = moviesArray.map((movie) => movie.title);
   const alphabeticOrder = moviesTitle.sort()
-  return alphabeticOrder
+  return alphabeticOrder.slice(0,20)
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
