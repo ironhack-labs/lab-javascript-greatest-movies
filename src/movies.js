@@ -7,11 +7,13 @@ function getAllDirectors(moviesArray) {
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
+    
     return moviesArray.filter( movies => movies.director === 'Steven Spielberg' && movies.genre.includes('Drama')).length
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
+
     if (!moviesArray.length) {
       return 0;
   } 
@@ -25,10 +27,11 @@ function scoresAverage(moviesArray) {
     const average =  sum / onlyScores.length;
     return +average.toFixed(2)
 }
-// Esta iretación no me pasa el ultimo punto pero he probado a meterle un objeto del array sin score y si no está definida hace el array solo con las pelis que tienen puntuación
+// Esta iretación no me pasa el último punto pero he probado a meterle un objeto del array sin score y si no está definida hace el array solo con las pelis que tienen puntuación
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {    
+
     if (!moviesArray.length) {
         return 0;
     } 
@@ -45,12 +48,21 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-  const yearsOfMovies = moviesArray.map (movies => movies.year);
-  return yearsOfMovies.sort()
+
+    return moviesOrderedByYear = moviesArray.map(x => x).sort((a,b) => {
+        if (b.year === a.year) {
+            return a.title.localeCompare(b.title);
+        }
+            return (a.year - b.year); 
+        
+    });
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+    return moviesArray.map (movies => movies.title).sort().splice(0,20)
+
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
