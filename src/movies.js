@@ -41,13 +41,21 @@ const dramaMoviesScore = (moviesArray) => {
 
 
 const orderByYear = (moviesArray) => {
-   let sorted = moviesArray.sort((a, b) => b.year - a.year).map(e => e.year)
-   let sortedArr = sorted.map(i => {year: i})
-   return sortedArr
+   let sorted = moviesArray.sort((a, b) => b.year - a.year).reverse()
+   return sorted
 }
 
+
+
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+
+const orderAlphabetically = (moviesArray) => {
+    let sorted = moviesArray.sort((a, b) => b.title - a.title)
+    return sorted
+ }
+
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
