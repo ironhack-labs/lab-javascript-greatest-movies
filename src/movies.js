@@ -37,9 +37,13 @@ const dramaMoviesScore = (moviesArray) => {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 const orderByYear = (moviesArray) => {
-    let ordered = moviesArray.year.sort((a, b) => b - a)
-    return ordered
+  if (!moviesArray.length) {return 0}
+  const copy = [...moviesArray]
+  let ordered = copy.map(element => element.year)
+  let newOrdered = ordered.sort()
+  return newOrdered
 }
+console.log(orderByYear(movies))
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
