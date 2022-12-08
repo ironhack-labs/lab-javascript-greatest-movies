@@ -8,7 +8,10 @@ function getAllDirectors(moviesArray) {
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
     
-    return moviesArray.filter( movies => movies.director === 'Steven Spielberg' && movies.genre.includes('Drama')).length
+    return moviesArray.filter( 
+        (movies) => 
+        movies.director === 'Steven Spielberg' && movies.genre.includes('Drama')
+    ).length
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
@@ -25,7 +28,7 @@ function scoresAverage(moviesArray) {
     const onlyScores = scores.filter( scores => !isNaN(scores));
     const sum = onlyScores.reduce((previus, current) => current += previus);
     const average =  sum / onlyScores.length;
-    return +average.toFixed(2)
+    return Math.round(average*100)/100
 }
 // Esta iretación no me pasa el último punto pero he probado a meterle un objeto del array sin score y si no está definida hace el array solo con las pelis que tienen puntuación
 
@@ -78,7 +81,7 @@ function turnHoursToMinutes(moviesArray) {
             }
             
         })
-  console.log (turnHoursArray);
+  return turnHoursArray;
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
