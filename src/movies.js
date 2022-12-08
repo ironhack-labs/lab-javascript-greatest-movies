@@ -49,10 +49,35 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  return moviesArray.map((movie) => {
+    const hh = +movie.duration.split(" ")[0].replace("h", "");
+    const mm = +(movie.duration.split(" ")[1] || "0min").replace("min", "");
+
+    return {
+      ...movie,
+      duration: hh * 60 + mm,
+    };
+  })
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+if (moviesArray.length === 0){
+  return null;
+}
+
+  const map = {};
+  for (let i = 0; i < moviesArray.length; i++) {
+    const movie = moviesArray[i];
+
+    if (map[movie.year]) {
+      map[movie.year].push(movie.score);
+    } else {
+      map [movie.year] = [movie.score]
+    }
+  }
+}
 
 
 
