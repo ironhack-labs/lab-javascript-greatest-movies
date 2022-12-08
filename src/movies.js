@@ -53,6 +53,14 @@ function scoresAverage(moviesArray) {
     .reduce((a, b) => a + b, 0);
   return +(scoresArray / moviesArray.length).toFixed(2);
 }
+// Julio's version using .reduce
+// if (!moviesArray.length) {
+//   return 0;
+// }
+// function scoresAverage(moviesArray) {
+// const sum = moviesArray.reduce((acc, el) => acc + (el.score || 0), 0)
+// return Marth.round((sum / moivesArray.length) * 100) / 100 
+//}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
@@ -75,7 +83,7 @@ function dramaMoviesScore(moviesArray) {
 function orderByYear(moviesArray) {
   // b.year === a.year ? b.title.localeCompare(a.title) : b.year - a.year
   return moviesArray
-    .map((x) => x)
+    .map((movie) => movie)
     .sort((b, a) => {
       if (b.year === a.year) {
         return b.title.localeCompare(a.title);
@@ -87,23 +95,26 @@ function orderByYear(moviesArray) {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
   return moviesArray
-    .map((x) => x.title)
+    .map((movie) => movie.title)
     .sort()
     .splice(0, 20);
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+
+//I cannot make it work by cloning the array
 function turnHoursToMinutes(moviesArray) {
   return JSON.parse(JSON.stringify(moviesArray))
-    .map(film => {
-      const minsHours = film.duration.replace('h', '').replace('min', '').split(' ').map(time => +time)
+    .map(movie => {
+      const minsHours = movie.duration.replace('h', '').replace('min', '').split(' ').map(time => +time)
       const toMins = (minsHours.length > 1 ? [minsHours[0] * 60, minsHours[1]] : [minsHours[0] * 60]).reduce((acc, el) => acc + el, 0)
-      film.duration = toMins
+      movie.duration = toMins
 
-      return film
+      return movie
     })
 }
 console.log(turnHoursToMinutes(moviesTest));
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) { }
+function bestYearAvg(moviesArray) { 
+}
