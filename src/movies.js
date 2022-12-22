@@ -36,11 +36,6 @@ const dramaMoviesScore = (moviesArray) => {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-/*const orderByYear = (moviesArray) => {
-  const moviesCopy = moviesArray.map(e => e)
-  const ordered = moviesCopy.sort((a, b) => a.year - b.year)
-  return ordered
-}*/
 
 const orderByYear = (movies) => {
   const moviesCopy = movies.map(e => e)
@@ -58,10 +53,44 @@ const orderByYear = (movies) => {
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  const moviesByYear = moviesArray.map(e => e)
+  const moviesTitle = moviesByYear.map(e => e.title)
+  const moviesTitleOrdered = moviesTitle.sort()
+  let max20 = []
+  if (moviesTitleOrdered.length > 19) {
+  for (let i = 0; i<20; i++) {
+    max20.push(moviesTitleOrdered[i])
+  }
+  return max20
+} else {
+  return moviesTitleOrdered
+}
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  const newMovies = moviesArray.map(e => e)
+  for (let i = 0; i<newMovies.length; i++) {
+    newMovies[i].duration = newMovies[i].duration.replace('h', '')
+    newMovies[i].duration = newMovies[i].duration.replace('min', '')
+    newMovies[i].duration = newMovies[i].duration.replace(' ', '.')
+    newMovies[i].duration = Number(newMovies[i].duration)
+    let x = 0
+    let y = 0
+    let z = 0
+    if (newMovies[i].duration >= 1) {
+      x = Math.floor(newMovies[i].duration)*60
+      y = Math.round((newMovies[i].duration - Math.floor(newMovies[i].duration))*100)
+      z = x + y
+      newMovies[i].duration = z
+    } else {
+      x = (newMovies[i].duration) * 100
+      newMovies[i].duration = x
+    }
+  }
+  return newMovies
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
