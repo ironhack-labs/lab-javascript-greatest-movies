@@ -101,4 +101,21 @@ function bestYearAvg(moviesArray) {
 		lastMovie[currentMovie.year].count++;
 		return lastMovie;
 	}, {});
+
+	let newArray = [];
+
+	for (let year in bestYearScore) {
+		let average = Math.round((bestYearScore[year].score / bestYearScore[year].count) * 10) / 10;
+		newArray.push([year, average]);
+	}
+
+	newArray.sort((a, b) => {
+		if (a[1] === b[1]) {
+			return a[0] - b[0];
+		} else {
+			return b[1] - a[1];
+		}
+	});
+
+	return `The best year was ${newArray[0][0]} with an average score of ${newArray[0][1]}`;
 }
