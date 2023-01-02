@@ -101,6 +101,4 @@ function bestYearAvg(moviesArray) {
 		lastMovie[currentMovie.year].count++;
 		return lastMovie;
 	}, {});
-
-	const bestYearAverage = bestYearScore.map(year);
 }
