@@ -95,11 +95,12 @@ function bestYearAvg(moviesArray) {
 
 	const bestYearScore = moviesArray.reduce((lastMovie, currentMovie) => {
 		if (!lastMovie[currentMovie.year]) {
-			lastMovie[currentMovie.year] = { count: 1, total: currentMovie.score };
+			lastMovie[currentMovie.year] = { score: 0, count: 0 };
 		}
-		lastMovie[currentMovie.year] += { count: 1, total: currentMovie.score };
+		lastMovie[currentMovie.year].score += currentMovie.score;
+		lastMovie[currentMovie.year].count++;
 		return lastMovie;
 	}, {});
 
-	return `The best year was ${moviesArray[0].year} with an average score of ${moviesArray[0].score}`;
+	const bestYearAverage = bestYearScore.map(year);
 }
