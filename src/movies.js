@@ -77,9 +77,9 @@ function turnHoursToMinutes(moviesArray) {
 		const durationString = movieClone.duration.replace('h', '').replace('min', '').split(' ');
 		let allMinutes;
 		if (durationString.length === 1) {
-			allMinutes = durationString[0] * 60;
+			allMinutes = parseInt(durationString[0]) * 60;
 		} else {
-			allMinutes = durationString[0] * 60 + durationString[1];
+			allMinutes = parseInt(durationString[0]) * 60 + parseInt(durationString[1]);
 		}
 		movieClone.duration = allMinutes;
 		return movieClone;
