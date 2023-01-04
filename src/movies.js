@@ -74,7 +74,7 @@ function orderAlphabetically(moviesArray) {
 function turnHoursToMinutes(moviesArray) {
 	const moviesArrayCopy = moviesArray.map((movie) => {
 		const movieClone = { ...movie }; //so that the original array is not modified
-		const durationString = movieClone.duration.replace('h', '').replace('min', '').split(' ');
+		const durationString = movieClone.duration.replace('h', '').replace('min', '').split(' '); //basically turn "2h 22mib" into ["2", "22"]
 		let allMinutes;
 		if (durationString.length === 1) {
 			allMinutes = parseInt(durationString[0]) * 60;
