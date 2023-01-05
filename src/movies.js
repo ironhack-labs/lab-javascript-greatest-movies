@@ -61,45 +61,4 @@ function turnHoursToMinutes(moviesArray) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-//function bestYearAvg(moviesArray) {}
-
-
-
-
-// !!!!!!!!!!!!!!!!!!! Following code shamelessly stolen from someone else, attempting to understand how it works
-
-function bestYearAvg(movies) {
-    if (!movies.length) { //this is the null check
-        return null;
-    }
-    
-    const movieRatesByYear = movies.reduce((accumulator, movie) => { //reduction over IMDB movies array
-        const { year, rate } = movie;
-
-        if (!accumulator[year]) { //if one of the movies has no year????
-            accumulator[year] = []; //give is an empty array for the year key???
-        }
-        
-        accumulator[year].push(rate);
-        return accumulator;
-    }, {}); //initial value is empty object???
-
-    const bestYearRateCombo = Object.entries(movieRatesByYear)
-      .map(item => {
-        const year = item[0];
-        const rateArray = item[1];
-        const averageRate = rateArray.reduce((sum, value) => {
-          return sum + value / rateArray.length;
-        }, 0);
-        return { year, averageRate };
-      })
-      .reduce((bestItem, item) => {
-        if (typeof bestItem === 'undefined' || item.averageRate > bestItem.averageRate) {
-          return item;
-        } else {
-          return bestItem;
-        }
-      });
-    return `The best year was ${bestYearRateCombo.year} with an average rate of ${bestYearRateCombo.averageRate}`;
-
-}
+function bestYearAvg(moviesArray) {}
