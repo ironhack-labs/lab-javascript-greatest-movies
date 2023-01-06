@@ -1,4 +1,30 @@
+let mArray = [
+    {
+      title: 'The Shawshank Redemption',
+      year: 1994,
+      director: 'Frank Darabont',
+   
+    },
+    {
+      title: 'The Godfather',
+      year: 1972,
+      director: 'Francis Ford Coppola',
+     
+    },
+    {
+      title: 'The Godfather: Part II',
+      year: 1974,
+      director: 'Francis Ford Coppola',
+      
+    },
+    {
+      title: 'The Dark Knight',
+      year: 2008,
+      director: 'Christopher Nolan',
+     
+    },]
 
+//-------------------------------------------------------------------------------------------------------
 
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
@@ -11,12 +37,27 @@ function getAllDirectors(moviesArray) {
         return directorsArray
 }
 
-//BONUS 1.1:
+console.log(getAllDirectors(mArray));
 
-function UniquifyArray(arrayWithRepeats){
-   
+//BONUS 1.1:---------------------------------------------------------------------------------------------
+
+function uniquifyArray(arrayToEnter){
+
+  let directorsArr = arrayToEnter
+    
+   let uniqueArr = [];
+   for (let i = 0; i<directorsArr.length; i++){
+       if (directorsArr.indexOf(directorsArr[i])===i){
+           uniqueArr.push (directorsArr[i]);
+       }
+   }
+   return uniqueArr;
+       
 }
 
+console.log(JSON.stringify(uniquifyArray(getAllDirectors(mArray))));
+
+//-------------------------------------------------------------------------------------------------------
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
@@ -25,6 +66,7 @@ function howManyMovies(moviesArray) {
         return noOfMovies.length     
 }
 
+//-------------------------------------------------------------------------------------------------------
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 
@@ -39,6 +81,8 @@ function scoresAverage(moviesArray) {
         return parseFloat(roundedNumber)
         }
 }
+
+//-------------------------------------------------------------------------------------------------------
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
@@ -57,6 +101,8 @@ function dramaMoviesScore(moviesArray) {
     }
 }
 
+//-------------------------------------------------------------------------------------------------------
+
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
 function orderByYear(moviesArray) {
@@ -74,6 +120,7 @@ function orderByYear(moviesArray) {
    
 }
 
+//-------------------------------------------------------------------------------------------------------
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 
@@ -91,6 +138,8 @@ function orderAlphabetically(moviesArray) {
         return titlesArr
     }
 }
+
+//-------------------------------------------------------------------------------------------------------
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 
@@ -118,6 +167,8 @@ function turnHoursToMinutes(moviesArray) {
     return cloneArr
     
 }
+
+//-------------------------------------------------------------------------------------------------------
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 
@@ -177,33 +228,10 @@ function bestYearAvg(moviesArray) {
         }
                        
     }
-        
-            
-    console.log(JSON.stringify(bestYearAvg(movArr)));
+                 
+console.log(JSON.stringify(bestYearAvg(movArr)));
           
-    
-                            
-
-        
-        
-        
-        
-    
-           
-
-
- 
-
-
-
-
-
-
-
 bestYearAvg(newMoviesArr);
 
 
-
-/*const onlyOnePool = []
-  onlyOnePool.push(places.filter(pool => pool.pool === true))*/
 
