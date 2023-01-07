@@ -3,23 +3,21 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
 
+    let directorsArray = moviesArray.map((element) => element.director);
+
     let directorsNotRepeated = [];
 
-    const directors = moviesArray.map((moviesArray) => moviesArray.director);
-    
-    directors.forEach((element) => {
+    directorsArray.forEach((element) => {
 
         if(!directorsNotRepeated.includes(element))
         {
             directorsNotRepeated.push(element)
         }
-    });
+    }); 
 
-    return directorsNotRepeated;
+    return directorsArray;
     
 }
-
-
 
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -78,24 +76,84 @@ function dramaMoviesScore(moviesArray) {
 
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
 
+    let sortedArray = moviesArray.sort((a,b) => { 
 
+        if (a.year > b.year) return 1; 
+        
+        if (a.year < b.year) return -1;
+    
+        if (a.year == b.year) 
+        {
+            if (a.title > b.title) return 1; 
+        
+            if (a.title < b.title) return -1;
+        
+            if (a.title == b.title) return 0;
+        }
+    
+    })
 
+    return sortedArray;
+
+}
 
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
 
+    let sortedArray = moviesArray.sort((a,b) => { 
 
+        if (a.title > b.title) return 1; 
+        
+        if (a.title < b.title) return -1;
+    
+        if (a.title == b.title) return 0;
 
+    })
+
+    let twentyArray = sortedArray.splice(0, 20)
+    
+    let twentyTitles = twentyArray.map((element) => element.title);
+
+    return twentyTitles;
+    
+}
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
 
+    let minutesArray = moviesArray.map((element) => {
 
+        let hours = element.duration.split("h")[0].trim()
+        let minutes;
 
+        if(element.duration.includes('min')) 
+        {
+            minutes = element.duration.split("h")[1].trim()
+
+        } else 
+        {
+            minutes = 0
+        }
+
+        let totalMinutes = parseInt(minutes) + hours * 60;
+
+        return {
+            title: element.title,
+            year: element.year,
+            director: element.director,
+            duration: totalMinutes,
+            genre: element.genre,
+            score: element.score
+        }
+    })
+    
+    return minutesArray;
+
+}
 
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
@@ -103,7 +161,9 @@ function bestYearAvg(moviesArray) {
 
     //newset let newYearArray = […new Set(yearArray)]
 
+    
 
+    return `The best year was <YEAR> with an average score of <RATE>`
 }
 
 
