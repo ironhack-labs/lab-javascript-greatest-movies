@@ -1,4 +1,4 @@
-const movies = [
+const moviesArray = [
   {
     title: 'The Shawshank Redemption',
     year: 1994,
