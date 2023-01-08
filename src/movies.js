@@ -78,7 +78,9 @@ function dramaMoviesScore(moviesArray) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
 
-    let sortedArray = moviesArray.sort((a,b) => { 
+    let sortedArray = moviesArray.map((element) => element)
+    
+    sortedArray.sort((a,b) => { 
 
         if (a.year > b.year) return 1; 
         
@@ -159,11 +161,73 @@ function turnHoursToMinutes(moviesArray) {
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
 
-    //newset let newYearArray = […new Set(yearArray)]
+    if ( moviesArray.length == 0) return null
+    
+    let years = []
+    let resultArray = []
+    
+    moviesArray.forEach((element) => {
+        if(!years.includes(element.year)) years.push(element.year)
+    })
 
+    resultArray = years.map((element) => {
+
+        return {
+            year: element,
+            totalScore: 0,
+            count: 0,
+            average: 0
+        }
+        
+    });
+
+    let simpleArray = moviesArray.map((element) =>
+    { 
+        return {
+            year: element.year,
+            score: element.score,
+        }
+    })
+
+
+    // Reference - Goncalo 
+    for(let i = 0; i < years.length; i++) 
+    {    
+        for(let j = 0; j < simpleArray.length; j++) 
+        {
+            if(years[i] = simpleArray[j].year) 
+            {
+                resultArray[i].totalScore += simpleArray[j].score
+                resultArray[i].count ++
+            }
+        }
+
+        if(!resultArray[i].count == 0)
+        {
+        resultArray[i].average = resultArray[i].totalScore / resultArray[i].count
+        }
+
+    }
+
+    resultArray.sort((a,b) => {
+
+        if (a.average < b.average) return 1; 
+        
+        if (a.average > b.average) return -1;
+    
+        if (a.average == b.average) 
+        {
+            if (a.year > b.year) return 1; 
+        
+            if (a.year < b.year) return -1;
+        
+            if (a.year == b.year) return 0;
+        }
+    })
     
 
-    return `The best year was <YEAR> with an average score of <RATE>`
+    return `The best year was ${resultArray[0].year} with an average score of ${Number(resultArray[0].average.toFixed(2))}`
+
 }
 
 
