@@ -1,5 +1,3 @@
-
-
 ![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
 # LAB | Greatest Movies of All Time
@@ -10,11 +8,7 @@
 
 We have just learned some useful methods, that will help us manipulate **objects and arrays**. In this exercise, we will practice working with these methods, and you are required to use at least one of them in each iteration.
 
-
-
 <br>
-
-
 
 ## Requirements
 
@@ -38,35 +32,21 @@ $ git push origin master
 
 <br>
 
-
-
 ## Test Your Code
 
 This LAB is equipped with unit tests to provide automated feedback on your lab progress. In case you want to check the tests, they are in the `tests/movies.spec.js` file.
 
-
-
 To run the tests and your JavaScript code, open the `SpecRunner.html` file using the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) VSCode extension.
-
-
 
 To see the outputs of the `console.log` in your JavaScript code, open the [Console in the Developer Tools](https://developer.chrome.com/docs/devtools/open/#console).
 
 <br>
-
-
-
-
-
-
 
 ## Instructions
 
 You will work on the `src/movies.js` file, which is already loaded in the `SpecRunner.html` file.
 
 The `src/data.js` file containing the array of movies is also loaded in the `SpecRunner.html` file.
-
-
 
 <br>
 
@@ -78,22 +58,18 @@ Here is an example of how the data is displayed:
 
 ```javascript
 {
-  "title":"The Shawshank Redemption",
-  "year":1994,
-  "director":"Frank Darabont",
-  "duration":"2h 22min",
-  "genre":["Crime","Drama"],
-  "score":9.3
+  "title": "The Shawshank Redemption",
+  "year": 1994,
+  "director": "Frank Darabont",
+  "duration": "2h 22min",
+  "genre": ["Crime","Drama"],
+  "score": 9.3
 }
 ```
-
-
 
 You will be digging deeper into some "facts" that this data set has. For example, we can use this data set to find which is the most popular movie, what is the average duration of the movie, the list of movies by some director, etc. 
 
 In this iteration, no action is required, but here comes your challenge: In the following iterations, you will use your JS knowledge to manipulate this data.
-
-
 
 Remember to read each iteration description carefully before working on the solution.
 
@@ -142,13 +118,11 @@ Again, rounded to 2 decimals!
 ### Iteration 5: Order by year
 
 We need to sort the movies in ascending order by their release year. This should be easy using one of the **methods** we have just learned. :wink:
-Create a function `orderByYear()` that receives an array as parameter and returns a _new sorted array_.
+Create a function `orderByYear()` that receives an array as a parameter and returns a _new sorted array_.
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_3db351079827c0acba42cf1e397dd8a3.gif)
 
 If two movies have the same year, order them in alphabetical order by their title! :heavy_check_mark:
-
-
 
 :warning: **Important:** Your function should *return a new array*, containing the movies ordered by the year. Your function should not modify (mutate) the original array. You may need to do some research on how to make a "copy" or "clone" an array.
 
@@ -158,17 +132,13 @@ If two movies have the same year, order them in alphabetical order by their titl
 
 Another popular way to order the movies is to sort them alphabetically using the `title` key. However, in this case, we only need to print the title of the first 20. Easy peasy for an expert like you. :wink:
 
-Create a `orderAlphabetically()` function, that receives an array and returns an array of first 20 titles, alphabetically ordered. Return only the title of each movie, and if the array you receive has less than 20 movies, return all of them.
+Create an `orderAlphabetically()` function, that receives an array and returns an array of the first 20 titles, alphabetically ordered. Return only the title of each movie, and if the array you receive has less than 20 movies, return all of them.
 
 
 
 :warning: **Important:** Your function should *return a new array*, containing movie objects sorted alphabetically. Your function should not modify (mutate) the original array. You may need to do some research on how to make a "copy" or "clone" an array.
 
-
-
 <br>
-
-
 
 ### BONUS - Iteration 7: Time format
 
@@ -176,16 +146,16 @@ We get the info from the **IMDB** web page, but the duration info was saved in a
 
 Finding the longest movie is almost impossible using that format, so let's change it!
 
-- Create a `turnHoursToMinutes()` function that receives an array as parameter, and with some _magic_ implemented by you - replaces the duration info of each of the movies for its equivalent in minutes. For example:
+- Create a `turnHoursToMinutes()` function that receives an array as a parameter, and with some _magic_ implemented by you - replaces the duration info of each of the movies for its equivalent in minutes. For example:
 
 ```javascript
 {
-  "title":"The Shawshank Redemption",
-  "year":1994,
-  "director":"Frank Darabont",
-  "duration":"2h 22min",
-  "genre":["Crime","Drama"],
-  "score":9.3
+  "title": "The Shawshank Redemption",
+  "year": 1994,
+  "director": "Frank Darabont",
+  "duration": "2h 22min",
+  "genre": ["Crime","Drama"],
+  "score" :9.3
 }
 ```
 
@@ -202,6 +172,8 @@ Should be:
 }
 ```
 
+<br>
+
 :warning: **Important:** Your function should *return a new array*, containing movie objects with the duration time in minutes. Your function should not modify (mutate) the original array.
 
 <br>
@@ -210,25 +182,25 @@ Should be:
 
 We always hear so much about classic movies, but we want to know which year has the best average score, so we can declare the **BEST YEAR FOR CINEMA** officially!
 
-Go ahead and find which year have the best average score for the movies that were released on that year!
-Create `bestYearAvg()` function that receives an array of movies and gives us an answer which year was the best year for cinema and what was its average score. The `bestYearAvg()` should return a **string** with the following structure:
+Go ahead and find which year have the best average score for the movies that were released in that year!
+Create `bestYearAvg()` function that receives an array of movies and gives us an answer to which year was the best year for cinema and what was its average score. The `bestYearAvg()` should return a **string** with the following structure:
 <br>
 
 **The best year was \<YEAR\> with an average score of \<RATE\>**
 
+<br>
+
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_dfc3fe557576abca4dba274e3aabe9a3.gif)
-
-
 
 <br>
 
 **Happy coding!** :blue_heart:
 
-
+<br>
 
 ## FAQs
 
-
+<br>
 
 <details>
   <summary>I am stuck in the exercise and don't know how to solve the problem or where to start.</summary>
@@ -238,15 +210,14 @@ Create `bestYearAvg()` function that receives an array of movies and gives us an
   If you are stuck in your code and don't know how to solve the problem or where to start, you should take a step back and try to form a clear question about the specific issue you are facing. This will help you narrow down the problem and come up with potential solutions.
 
 
-For example, is it a concept that you don't understand, or are you receiving an error message that you don't know how to fix? It is usually helpful to try to state the problem as clearly as possible, including any error messages you are receiving. This can help you communicate the issue to others and potentially get help from classmates or online resources. 
+  For example, is it a concept that you don't understand, or are you receiving an error message that you don't know how to fix? It is usually helpful to try to state the problem as clearly as possible, including any error messages you are receiving. This can help you communicate the issue to others and potentially get help from classmates or online resources. 
 
 
-Once you have a clear understanding of the problem, you will be able to start working towards the solution.
+  Once you have a clear understanding of the problem, you will be able to start working toward the solution.
 
   [Back to top](#faqs)
+
 </details>
-
-
 
 <details>
   <summary>All of the Jasmine tests are failing and in red. Why did this happen?</summary>
@@ -255,21 +226,13 @@ Once you have a clear understanding of the problem, you will be able to start wo
 
   One possible reason why all of the Jasmine tests are failing is that there is a syntax error in the code being tested. If the code contains a syntax error, it will not be loaded properly and none of the tests will be able to run. This will cause all of the tests to fail.
 
+  To troubleshoot this issue, you will need to examine the code being tested for syntax errors. Look for missing brackets, semicolons, or other syntax issues that could be causing the problem. If you find a syntax error, correct it and try running the tests again.
 
-
-To troubleshoot this issue, you will need to examine the code being tested for syntax errors. Look for missing brackets, semicolons, or other syntax issues that could be causing the problem. If you find a syntax error, correct it and try running the tests again.
-
-
-
-
-Another possibility is that there is an issue with the tests. It is possible that you may have modified the test file and caused an issue. If you have made changes to the test file, try copying and pasting the original test file and running the tests again to see if this resolves the issue.
-
-
+  Another possibility is that there is an issue with the tests. It is possible that you may have modified the test file and caused an issue. If you have made changes to the test file, try copying and pasting the original test file and running the tests again to see if this resolves the issue.
 
   [Back to top](#faqs)
+
 </details>
-
-
 
 <details>
   <summary>How do I loop over an array using the <code>forEach()</code> method?</summary>
@@ -278,319 +241,276 @@ Another possibility is that there is an issue with the tests. It is possible tha
 
   The `forEach()` method executes a provided function once for each array element. It does not return a new array, but rather executes the function on each element in the array.
 
-The syntax of the `forEach()` method is as follows:
+  The syntax of the `forEach()` method is as follows:
 
-```js
-array.forEach( function(element) {
-  // code to be executed for each element
-});
-```
+  ```js
+  array.forEach( function(element) {
+    // code to be executed for each element
+  });
+  ```
 
+  Here is an example that uses the `forEach()` method to log each element and its index in an array to the console:
 
+  ```js
+  const fruits = ["apple", "banana", "cherry"];
 
-Here is an example that uses the `forEach()` method to log each element and its index in an array to the console:
+  fruits.forEach( function(element, index) {
+    console.log(`${index}: ${element}`);
+  });
+  ```
 
-```js
-const fruits = ['apple', 'banana', 'cherry'];
+  You can also use an arrow function as the callback function for `forEach()`:
 
-fruits.forEach( function(element, index) {
-  console.log(`${index}: ${element}`);
-});
-```
-
-
-
-You can also use an arrow function as the callback function for `forEach()`:
-
-```js
-fruits.forEach((element, index) => {
-  console.log(`${index}: ${element}`);
-});
-```
-
-
+  ```js
+  fruits.forEach((element, index) => {
+    console.log(`${index}: ${element}`);
+  });
+  ```
 
   [Back to top](#faqs)
+
 </details>
-
-
-
-
 
 <details>
   <summary>How to use the <code>filter()</code> array method?</summary>
   <br>
 
-The `filter()` method is used for iteratating through an array and selecting only certain elements to include in a new array.
+  The `filter()` method is used for iterating through an array and selecting only certain elements to include in a new array.
 
+  The `filter()` method returns a new array with all elements that pass a certain condition. The `filter()` method takes a callback function as an argument.
 
+  The callback function should return a boolean value (`true` / `false`) or a *truthy*/*falsy* value:
 
-The `filter()` method returns a new array with all elements that pass a certain condition. The `filter()` method in takes a callback function as an argument.
+  - If the callback function returns `true` for a particular element, that element will be included in the new array.
+  - If the callback function returns `false` for a particular element, that element will be excluded from the new array.
 
+  Here is an example of filtering an array to get a new array containing only students that have a course property of `"Web Dev"`:
 
+  ```js
+  const students = [
+    { name: "Anna", course: "Web Dev" },
+    { name: "Bill", course: "UX/UI" },
+    { name: "Cori", course: "Data" },
+    { name: "Dave", course: "Web Dev" },
+    { name: "Erin", course: "UX/UI" }
+  ];
 
-The callback function should return a boolean value (`true` / `false`) or a *truthy*/*falsy* value:
+  const webDevStudents = students.filter( function(el) {
+    return el.course === "Web Dev";
+  });
 
-- If the callback function returns `true` for a particular element, that element will be included in the new array.
-- If the callback function returns `false` for a particular element, that element will be excluded from the new array.
-
-
-
-Here is an example of filtering an array to get a new array containing only students that have a course property of `"Web Dev"`:
-
-```js
-const students = [
-  { name: "Anna", course: "Web Dev" },
-  { name: "Bill", course: "UX/UI" },
-  { name: "Cori", course: "Data" },
-  { name: "Dave", course: "Web Dev" },
-  { name: "Erin", course: "UX/UI" }
-];
-
-const webDevStudents = students.filter( function(el) {
-  return el.course === "Web Dev";
-});
-
-console.log(webDevStudents);
-// Output: 
-// [ 
-//   {name: 'Anna', course: 'Web Dev'},
-//   {name: 'Dave', course: 'Web Dev'}
-// ]
-```
+  console.log(webDevStudents);
+  // Output: 
+  // [ 
+  //   {name: "Anna", course: "Web Dev"},
+  //   {name: "Dave", course: "Web Dev"}
+  // ]
+  ```
 
 <br>
 
-
   [Back to top](#faqs)
+
 </details>
-
-
-
-
 
 <details>
   <summary>How to use the <code>map()</code> array method?</summary>
   <br>
 
-The `map()` method is used to create a new array by returning a value for each element in an array.
+  The `map()` method is used to create a new array by returning a value for each element in an array.
+
+  The `filter()` method takes a callback function as an argument. The `map()` method returns a new array containing the values returned from the callback function.
+
+  Here is an example of using the `map()` method to extract the `grade` property from each student object in the `students` array and create a new array with the grades:
+
+  ```js
+  const students = [
+    { name: "Anna", grade: 8 },
+    { name: "Bill", grade: 9 },
+    { name: "Cloe", grade: 7 }
+  ];
+
+  // Use map() to extract the 'grade' from each student object
+  const studentGrades = students.map(function (student) {
+    // Return the value to be included in the new array
+    return student.grade;
+  });
 
 
+  console.log(studentGrades); // Output: [8, 9, 7]
+  ```
 
-The `filter()` method in takes a callback function as an argument. The `map()` method returns a new array containing the values returned from the callback function.
-
-
-
-
-Here is an example of using the `map()` method to extract the `grade` property from each student object in the `students` array and create a new array with the grades:
-
-```js
-const students = [
-  { name: 'Anna', grade: 8 },
-  { name: 'Bill', grade: 9 },
-  { name: 'Cloe', grade: 7 }
-];
-
-// Use map() to extract the 'grade' from each student object
-const studentGrades = students.map(function (student) {
-  // Return the value to be included in the new array
-  return student.grade;
-});
-
-
-console.log(studentGrades); // Output: [8, 9, 7]
-```
-
-<br>
-
-
+  <br>
 
   [Back to top](#faqs)
+
 </details>
-
-
 
 <details>
   <summary>How to use the <code>sort()</code> array method?</summary>
   <br>
 
-The `sort()` method is used to sort the elements of an array in place. This means that the original array is mutated and the sorted elements are rearranged within the same array.
+  The `sort()` method is used to sort the elements of an array in place. This means that the original array is mutated and the sorted elements are rearranged within the same array.
 
+  The default sort order is based on converting the elements into strings and then comparing their sequences of UTF-16 Unicode values. This means that the `sort()` method can be used directly to sort an array of strings in alphabetical order.  However, when working with numbers, the default sort order may not produce the desired result and it is necessary to provide a sorting function as an argument to the `sort()` method.
 
+  #### Sorting numbers - ascending order
 
-The default sort order is based on converting the elements into strings and then comparing their sequences of UTF-16 Unicode values. This means that the `sort()` method can be used directly to sort an array of strings in alphabetical order.  However, when working with numbers, the default sort order may not produce the desired result and it is necessary to provide a sorting function as an argument to the `sort()` method.
+  Here is an example of using the `sort()` method to sort an array of numbers in ascending order:
 
+  ```js
+  const numbers = [5, 2, 3, 1, 4];
 
+  numbers.sort((a, b) => a - b);
 
-##### Sorting numbers - ascending order
+  console.log(numbers); // Output: [1, 2, 3, 4, 5]
+  ```
 
-Here is an example of using the `sort()` method to sort an array of numbers in ascending order:
+  <br>
 
-```js
-const numbers = [5, 2, 3, 1, 4];
+  #### Sorting numbers - ascending order
 
-numbers.sort((a, b) => a - b);
+  Here is an example of using the `sort()` method to sort an array of numbers in descending order:
 
-console.log(numbers); // Output: [1, 2, 3, 4, 5]
-```
+  ```js
+  const numbers = [5, 2, 3, 1, 4];
 
+  numbers.sort((a, b) => b - a);
 
+  console.log(numbers); // Output: [5, 4, 3, 2, 1]
+  ```
 
-##### Sorting numbers - ascending order
+  <br>
 
-Here is an example of using the `sort()` method to sort an array of numbers in descending order:
+  #### Sorting strings - ascending order A-Z
 
-```js
-const numbers = [5, 2, 3, 1, 4];
+  Here is an example of using the `sort()` method to sort an array of strings in ascending order (A-Z):
 
-numbers.sort((a, b) => b - a);
+  ```js
+  const words = ["cherry", "apple", "blueberry"];
 
-console.log(numbers); // Output: [5, 4, 3, 2, 1]
-```
+  words.sort((a, b) => a.localeCompare(b));
 
+  console.log(words); // Output: ["apple", "blueberry", "cherry"]
+  ```
 
+  The `localeCompare()` method is used to compare the strings in alphabetical order. In the above example `localeCompare()` method returns a negative value if `a` comes before `b` in the sort order, a positive value if `a` comes after `b`, and 0 if they are equal. This causes the strings to be sorted in ascending order (A-Z).
 
-##### Sorting strings - ascending order A-Z
+  <br>
 
-Here is an example of using the `sort()` method to sort an array of strings in ascending order (A-Z):
+  #### Sorting strings - descending order Z-A
 
-```js
-const words = ['cherry', 'apple', 'blueberry'];
+  Alternatively, you can use the default sort order by simply calling the `sort()` method without a compare function:
 
-words.sort((a, b) => a.localeCompare(b));
+  ```js
+  const words = ["cherry", "apple", "blueberry"];
 
-console.log(words); // Output: ['apple', 'blueberry', 'cherry']
-```
+  words.sort();
 
-The `localeCompare()` method is used to compare the strings in alphabetical order. In the above example `localeCompare()` method returns a negative value if `a` comes before `b` in the sort order, a positive value if `a` comes after `b`, and 0 if they are equal. This causes the strings to be sorted in ascending order (A-Z).
+  console.log(words); // Output: ["apple", "blueberry", "cherry"]
+  ```
 
+  <br>
 
+  [Back to top](#faqs)
 
-##### Sorting strings - descending order Z-A
-
-Alternatively, you can use the default sort order by simply calling the `sort()` method without a compare function:
-
-```js
-const words = ['cherry', 'apple', 'blueberry'];
-
-words.sort();
-
-console.log(words); // Output: ['apple', 'blueberry', 'cherry']
-```
-
-<br>
-
-
-
-[Back to top](#faqs)
 </details>
-
-
-
-
 
 <details>
   <summary>How to use the <code>reduce()</code> array method?</summary>
   <br>
 
-The `reduce()` method is used to reduce an array of values to a single value by adding each element to the accumulator.
+  The `reduce()` method is used to reduce an array of values to a single value by adding each element to the accumulator.
 
-<br>
+  <br>
 
-##### Syntax:
+  #### Syntax
 
-The `reduce()` method takes two arguments: a *callback function* and the *initial value*.
+  The `reduce()` method takes two arguments: a *callback function* and the *initial value*.
 
-```js
-array.reduce((accumulator, element, index, array) => {}, initialValue);
-```
+  ```js
+  array.reduce((accumulator, element, index, array) => {}, initialValue);
+  ```
 
+  The callback function takes four arguments:
 
+  - `accumulator`: the accumulated value. The `accumulator` is initialized with the value passed as the second argument: `initialValue`.
+  - `element`: the current element being processed in the array
+  - `index`: *(optional)* the index of the current element being processed in the array
+  - `array`: *(optional)* the original array
 
-The callback function takes four arguments:
+  <br>
 
-- `accumulator`: the accumulated value. The `accumulator` is initialized with the value passed as the second argument: `initialValue`.
-- `element`: the current element being processed in the array
-- `index`: *(optional)* the index of the current element being processed in the array
-- `array`: *(optional)* the original array
+  #### Example
 
-<br>
+  Here is an example of using the `reduce()` method to calculate the sum of all `grade` values in an array:
 
+  ```js
+  const students = [
+    { name: "John", grade: 8 },
+    { name: "Jane", grade: 9 },
+    { name: "Bob", grade: 7 }
+  ];
 
+  const gradesTotal = students.reduce((accumulator, element) {
+    // For each array element, add its 'grade' to the accumulator 
+    const newAccumulator = accumulator + element.grade;
+    // Return the new accumulator value for the next iteration
+    return newAccumulator;                              
+  }, 0);
 
-##### Example:
+  console.log(gradesTotal); // Output: 24
+  ```
 
-Here is an example of using the `reduce()` method to calculate the sum of all `grade` values in an array:
+  In the above example, the accumulator was initialized with the initial value of `0`.
 
-```js
-const students = [
-  { name: 'John', grade: 8 },
-  { name: 'Jane', grade: 9 },
-  { name: 'Bob', grade: 7 }
-];
+  The callback function adds the `grade` of the current element to the accumulator on each iteration. The returned value becomes the new accumulator value for the next iteration. The `reduce()` method returns the final value of the accumulator, which is the sum of all elements in the array.
 
-
-const gradesTotal = students.reduce((accumulator, element) {
-  // For each array element, add its 'grade' to the accumulator 
-  const newAccumulator = accumulator + element.grade;
-  // Return the new accumulator value for the next iteration
-  return newAccumulator;                              
-}, 0);
-
-console.log(gradesTotal); // Output: 24
-```
-
-In the above example, the accumulator was initialized with the initial value of `0`.
-
-The callback function adds the `grade` of the current element to the accumulator on each iteration. The returned value becomes the new accumulator value for the next iteration. The `reduce()` method returns the final value of the accumulator, which is the sum of all elements in the array.
-
-<br>
+  <br>
 
   [Back to top](#faqs)
+
 </details>
-
-
 
 <details>
   <summary>How to use the <code>slice()</code> array method?</summary>
   <br>
 
-The `slice()` method is used to copy a portion of an array and return it as a new array. The  `slice()` method doesn't mutate the original array.
+  The `slice()` method is used to copy a portion of an array and return it as a new array. The  `slice()` method doesn't mutate the original array.
 
-<br>
+  <br>
 
-##### Syntax
+  #### Syntax
 
-```js
-const newArray = array.slice(start, end);
-```
+  ```js
+  const newArray = array.slice(start, end);
+  ```
 
-- `start` is the index at which the slice begins.
-- `end` is the index at which the slice ends.
+  - `start` is the index at which the slice begins.
+  - `end` is the index at which the slice ends.
 
-<br>
+  <br>
 
-The `slice()` method extracts elements from the original array and includes them in the new array up to, but not including, the `end` index. If the `end` index is not provided, the `slice()` method will extract elements from the `start` index to the *end of the original array*.
+  The `slice()` method extracts elements from the original array and includes them in the new array up to, but not including, the `end` index. If the `end` index is not provided, the `slice()` method will extract elements from the `start` index to the *end of the original array*.
 
 
 
-Here is an example of using the `slice()` method to copy array elements:
+  Here is an example of using the `slice()` method to copy array elements:
 
-```js
-const strings = ["a", "b", "c", "d", "e"];
+  ```js
+  const strings = ["a", "b", "c", "d", "e"];
 
-// Extract elements from index 1 to index 3
-const slice = strings.slice(1, 3);
+  // Extract elements from index 1 to index 3
+  const slice = strings.slice(1, 3);
 
-console.log(slice); // Output: ["b", "c"]
-```
+  console.log(slice); // Output: ["b", "c"]
+  ```
 
-<br>
+  <br>
 
   [Back to top](#faqs)
+
 </details>
-
-
 
 <details>
   <summary>I am unable to push changes to the repository. What should I do?</summary>
@@ -599,7 +519,7 @@ console.log(slice); // Output: ["b", "c"]
 
   There are a couple of possible reasons why you may be unable to *push* changes to a Git repository:
 
-1. **You have not committed your changes:** Before you can push your changes to the repository, you need to commit them using the `git commit` command. Make sure you have committed your changes and try pushing again. To do this, run the following terminal commands from the project folder:
+  1. **You have not committed your changes:** Before you can push your changes to the repository, you need to commit them using the `git commit` command. Make sure you have committed your changes and try pushing again. To do this, run the following terminal commands from the project folder:
 
    ```bash
    git add .
@@ -607,17 +527,17 @@ console.log(slice); // Output: ["b", "c"]
    git push
    ```
 
-
-2. **You do not have permission to push to the repository:** If you have cloned the repository directly from the main Ironhack repository without making a *Fork* first, you do not have write access to the repository.
+  2. **You do not have permission to push to the repository:** If you have cloned the repository directly from the main Ironhack repository without making a *Fork* first, you do not have write access to the repository.
    To check which remote repository you have cloned, run the following terminal command from the project folder:
 
    ```bash
    git remote -v
    ```
 
-If the link shown is the same as the main Ironhack repository, you will need to fork the repository to your Github account first, and then clone your fork to your local machine to be able to push the changes.
+  If the link shown is the same as the main Ironhack repository, you will need to fork the repository to your GitHub account first, and then clone your fork to your local machine to be able to push the changes.
 
-Note: You may want to make a copy of the code your have locally, to avoid losing it in the process.
+  Note: You may want to make a copy of the code you have locally, to avoid losing it in the process.
 
   [Back to top](#faqs)
+  
 </details>
