@@ -61,4 +61,14 @@ function turnHoursToMinutes(moviesArray) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+    if (moviesArray.length === 0) {
+        return null;
+    }
+
+    let scores = moviesArray.reduce ((acc, movie) => {
+        if (!acc.movie.year) { //at first call the acc is an emtpy object, and current value is array[0]. this line checks if this object (which will be an object of objects) 
+            
+        }
+    }, {total});
+}
