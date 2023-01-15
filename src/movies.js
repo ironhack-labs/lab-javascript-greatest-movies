@@ -118,7 +118,7 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
-  //map to yearScore
+  // map year and score to new array
   const yearScore = moviesArray.map((movie) => ({
     year: movie.year,
     score: movie.score,
@@ -129,21 +129,52 @@ function bestYearAvg(moviesArray) {
     if (group[movie.year] == null) {
       group[movie.year] = [];
     }
-    group[movie.year].push(movie);
+    group[movie.year].push(movie.score);
     return group;
   }, {});
 
-  //get average score per year
+  // get average score per year
   for (let key in groupByYear) {
-    if (groupByYear[key] === 0) {
-      return null;
-    } else {
-      let rowSum =
-        groupByYear[key].reduce((rowSum, row) => rowSum + row, 0) /
-        groupByYear[key].length;
-      groupByYear[key] = rowSum;
-    }
+    let rowSum =
+      groupByYear[key].reduce((rowSum, row) => rowSum + row, 0) /
+      groupByYear[key].length;
+    groupByYear[key] = rowSum;
   }
-  console.log(groupByYear);
-  return groupByYear;
+
+  // convert object into array
+  let arr = [];
+  for (let movie in groupByYear) {
+    arr.push([movie, groupByYear[movie]]);
+  }
+
+  // sort array
+  let sortedArr = arr.sort((a, b) => {
+    if (a[1] < b[1]) {
+      return -1;
+    } else if (a[1] > b[1]) {
+      return 1;
+    } else if (a[1] === b[1]) {
+      if (a[0] < b[0]) {
+        return 1;
+      } else {
+        return -1;
+      }
+    }
+  });
+
+  // reverse array
+  let reversedArr = sortedArr.reverse();
+
+  // conditional return
+  if (reversedArr.length === 0) {
+    return null;
+  } else {
+    // get highest rated year
+    let highestRated = reversedArr[0];
+
+    // return message
+    let message = `The best year was ${highestRated[0]} with an average score of ${highestRated[1]}`;
+    console.log(message);
+    return message;
+  }
 }
