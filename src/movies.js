@@ -48,18 +48,29 @@ function scoresAverage(moviesArray) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
+  // filter drama movies only
+  const dramaMovies = moviesArray.filter((movie) =>
+    movie.genre.includes("Drama")
+  );
+
+  // map to new array containing drama scores only
+  const dramaScores = dramaMovies.map((movie) => movie.score);
+
+  // get total of drama scores
+  const totalDramaScore = dramaScores.reduce(
+    (total, score) => total + score,
+    0
+  );
+
+  // get average drama score
+  const average = totalDramaScore / dramaScores.length;
+
+  // apply rounding to drama score
+  const roundedAverage = Math.round(average * 100) / 100; //rounding solution from stackoverflow
+
+  // conditional return
   for (let movie of moviesArray) {
     if (movie.genre.includes("Drama")) {
-      const dramaMovies = moviesArray.filter((movie) =>
-        movie.genre.includes("Drama")
-      );
-      const dramaScores = dramaMovies.map((movie) => movie.score);
-      const totalDramaScore = dramaScores.reduce(
-        (total, score) => total + score,
-        0
-      );
-      const average = totalDramaScore / dramaScores.length;
-      const roundedAverage = Math.round(average * 100) / 100; //rounding solution from stackoverflow
       return roundedAverage;
     } else {
       return 0;
