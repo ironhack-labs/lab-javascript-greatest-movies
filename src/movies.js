@@ -3,7 +3,7 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
    
-    const allDirectors = movies.map (function(dir){
+    const allDirectors = moviesArray.map (function(dir){
         return dir.director
       })
       return allDirectors
@@ -17,7 +17,7 @@ function howManyMovies(moviesArray) {
     if (moviesArray.length === 0){
         return 0
     }
-    const movieSpielb = movies.filter (function(movie){
+    const movieSpielb = moviesArray.filter (function(movie){
         if(movie.director === "Steven Spielberg" && movie.genre.includes("Drama")){
           return true
         }
@@ -30,40 +30,59 @@ function scoresAverage(moviesArray) {
     if (moviesArray.length === 0){
         return 0
     }
-    const averageScore = movies.reduce(function(acc, val){
+    const averageScore = moviesArray.reduce(function(acc, val){
+        if(val.score == undefined){
+        return acc}
         return acc + val.score
       },0)
-      const score = Math.round(averageScore/movies.length).toFixed(2)
-      let num = Number.parseFloat(score)
+
+      const score = (averageScore/moviesArray.length).toFixed(2)
+      let num = Number(score)
       return num 
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
+    const averageScore = moviesArray.reduce(function(acc, val){
+        return acc + val.score
+      },0)
     
+    for (let movie of moviesArray){
+    if (movie.genre.includes('Drama')){
+      const score = (averageScore/moviesArray.length).toFixed(2)
+      let num = Number(score)
+      return num 
+    }
+    else {
+        return 0
+    }
+    }
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-    const orderedMovies = movies.slice().sort(function(a,b){
-        if (b.year > a.year) {
+    const orderedMovies = moviesArray.slice().sort(function(a,b){
+        if (b.year < a.year) {
           return 1
         }
-        if (b.year < a.year) {
+        if (b.year > a.year) {
           return -1
         }
         if (a.year === b.year)
-          return (a.title - b.title)
+          return (a.title.localeCompare(b.title))
         
       })
      return orderedMovies
    }
 
-
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-
-}
+    const allTitles = moviesArray.map(function(movie){
+     return movie.title
+    })
+    const sortedTitles = allTitles.sort()
+    return sortedTitles.slice(0,20)
+    }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
