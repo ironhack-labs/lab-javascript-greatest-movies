@@ -75,7 +75,25 @@ function orderAlphabetically(moviesArray) {
     return titles.splice(0,20)
 }
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+    let newMovies = moviesArray.map(function(movie){
+        let time = movie.duration
+        
+        time = time.split("h")
+        let hours = Number(time[0])*60
+        let minutes = time[1]
+        
+        if(minutes[1] === ""){
+        minutes=0
+        }
+        minutes = Number(time[1].slice(0,-3))
+    
+        newTime= hours+ minutes
+        movie.duration = newTime
+        return movie 
+        })
+        return newMovies
+    }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
