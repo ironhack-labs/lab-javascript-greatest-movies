@@ -77,7 +77,7 @@ function orderAlphabetically(moviesArray) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
     let newMovies = moviesArray.map(function(movie){
-        let time = movie.duration
+        let time =  movie.duration
         
         time = time.split("h")
         let hours = Number(time[0])*60
@@ -89,8 +89,8 @@ function turnHoursToMinutes(moviesArray) {
         minutes = Number(time[1].slice(0,-3))
     
         newTime= hours+ minutes
-        movie.duration = newTime
-        return movie 
+        
+        return {...movie, duration:newTime} 
         })
         return newMovies
     }
