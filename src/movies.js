@@ -34,15 +34,13 @@ function scoresAverage(moviesArray) {
   if (moviesArray.length === 0) {
     return 0;
   }
-  //   const scoresArray = moviesArray.map((movie) => movie.score);
-  //   const validScores = scoresArray.filter((movie) => movie != undefined);
-  //   const totalScore = validScores.reduce((total, score) => total + score, 0);
   const totalScore = moviesArray
     .map((movie) => movie.score) //create new array containing scores only
     .filter((movie) => movie != undefined) //filter out empty objects
     .reduce((total, score) => total + score, 0); //get total score of valid objects
   const average = totalScore / moviesArray.length;
-  const roundedAverage = Math.round(average * 100) / 100;
+  // const roundedAverage = Math.round(average * 100) / 100;
+  const roundedAverage = Number(average.toFixed(2));
   return roundedAverage;
 }
 
@@ -53,29 +51,8 @@ function dramaMoviesScore(moviesArray) {
     movie.genre.includes("Drama")
   );
 
-  // map to new array containing drama scores only
-  const dramaScores = dramaMovies.map((movie) => movie.score);
-
-  // get total of drama scores
-  const totalDramaScore = dramaScores.reduce(
-    (total, score) => total + score,
-    0
-  );
-
-  // get average drama score
-  const average = totalDramaScore / dramaScores.length;
-
-  // apply rounding to drama score
-  const roundedAverage = Math.round(average * 100) / 100; //rounding solution from stackoverflow
-
-  // conditional return
-  for (let movie of moviesArray) {
-    if (movie.genre.includes("Drama")) {
-      return roundedAverage;
-    } else {
-      return 0;
-    }
-  }
+  // call the scoresAverage function
+  return scoresAverage(dramaMovies);
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
@@ -140,7 +117,8 @@ function turnHoursToMinutes(moviesArray) {
       }
     }
   }
-  return [...new Set(moviesArray)];
+  // return [...new Set(moviesArray)];
+  return [...moviesArray];
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
