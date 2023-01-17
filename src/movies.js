@@ -22,9 +22,11 @@ const ratesAverage = (array) => {
     }, 0)
     if (promedios === 0) {
         return 0
+
     }
     let puntuacion = (promedios / array.length)
     return parseInt(puntuacion.toFixed(2))
+} 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 const dramaMoviesRate = (arr) => {
     let newArr = [];
