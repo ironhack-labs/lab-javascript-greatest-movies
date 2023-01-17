@@ -2001,3 +2001,11 @@ const movies = [
     score: 8
   }
 ];
+
+
+function getAllDirectors(moviesArray) {
+  return moviesArray.map(function (movie) {
+      return movie.director;
+  });
+}
+console.log(getAllDirectors(movies));
