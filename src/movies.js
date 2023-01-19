@@ -10,6 +10,16 @@ function getAllDirectors(moviesArray) {
     return allDirectors;
 };
 
+/* --------------------------------BONUS
+
+    let uniqueDirectors = [];
+        moviesArray.forEach((element) => {
+            if (!uniqueDirectors.includes(element)) {
+                uniqueDirectors.push(element);
+            }
+}); */
+
+
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
@@ -40,14 +50,10 @@ function dramaMoviesScore(moviesArray) {
     const justDrama = moviesArray.filter((movie) => {
         return movie.genre.includes('Drama');
     });
-    const totalNumber = justDrama.reduce((acc, val) =>{
-        if (!val.score) return acc + 0
-        else return acc + val.score;
-    }, 0)
-    const totalAvg = +(totalNumber / justDrama.length).toFixed(2);
-    if (!justDrama.length) return 0
-    else return totalAvg
+
+    return scoresAverage(justDrama);
 }
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
@@ -55,7 +61,7 @@ function orderByYear(moviesArray) {
 
     moviesCopy.sort((a, b) => {
 
-        if (!(a.year - b.year)) {
+        if (a.year === b.year) {
 
             if (a.title.toLowerCase() > b.title.toLowerCase()) return 1
             else if (a.title.toLowerCase() < b.title.toLowerCase()) return -1
@@ -80,7 +86,17 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+    const moviesCopy = moviesArray.map((movie) => movie);
+    for (let i = 0; i < moviesCopy.length; i++) {
+      for (let j in moviesCopy[i]) {
+        let timeParts = moviesCopy[i].duration.split(/h| |min/);
+        moviesCopy[i].duration = (Number(timeParts[0]) * 60 + Number(timeParts[1]));
+      }
+    };
+    return moviesCopy;
+  } 
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
