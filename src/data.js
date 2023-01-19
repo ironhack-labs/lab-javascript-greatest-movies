@@ -1996,8 +1996,26 @@ const movies = [
     title: 'Dead Poets Society',
     year: 1989,
     director: 'Peter Weir',
-    duration: '2h 8min',
+    duration: '2h 9min',
     genre: ['Comedy', 'Drama'],
     score: 8
   }
 ];
+
+function turnHoursToMinutes(moviesArray) {
+
+  const duration = moviesArray.map((movie) => {
+
+      let hours = movie.duration.split(' ');
+      return hours;
+  });
+  
+  const hour = duration[0][0].slice(0,1)*60;
+  const min = duration[0][1].slice(0,2);
+  
+  let total = hour + min;
+
+return total;
+}
+
+console.log(turnHoursToMinutes(movies))
