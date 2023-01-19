@@ -2002,23 +2002,3 @@ const movies = [
   }
 ];
 
-function scoresAverage(movies) {
-
-  if(!movies.length) {
-      return 0; }
-
-
-  const totalmovies = movies.reduce((a, b) => {
-      if (b.score) {
-          return a + b.score;
-      }
-      else {
-          return a;
-      }
-      
-  }, 0);
-
-  return Math.round((totalmovies * 100) / movies.length) / 100;
-  
-};
-console.log(scoresAverage(movies));
