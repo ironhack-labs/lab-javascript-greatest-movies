@@ -8,6 +8,7 @@ function getAllDirectors(moviesArray) {
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
+    const spielbergDrama =  moviesArray.filter((movie) => movie.genre.includes("Drama") && movie.director === "Steven Spielberg");
     return spielbergDrama.length;
 };
 
@@ -49,7 +50,7 @@ function orderByYear(moviesArray) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-    
+
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
