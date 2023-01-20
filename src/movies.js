@@ -89,12 +89,12 @@ function orderAlphabetically(moviesArray) {
 function turnHoursToMinutes(moviesArray) {
     const moviesCopy = moviesArray.map((movie) => movie);
     for (let i = 0; i < moviesCopy.length; i++) {
-        let timeParts = moviesCopy[i].duration.split(/h| |min/);
+        let timeParts = moviesCopy[i].duration.split(/h|' '|min/);
         moviesCopy[i].duration = (Number(timeParts[0]) * 60 + Number(timeParts[1]));
     };
     return moviesCopy;
   } 
-
+  
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
