@@ -89,10 +89,8 @@ function orderAlphabetically(moviesArray) {
 function turnHoursToMinutes(moviesArray) {
     const moviesCopy = moviesArray.map((movie) => movie);
     for (let i = 0; i < moviesCopy.length; i++) {
-      for (let j in moviesCopy[i]) {
         let timeParts = moviesCopy[i].duration.split(/h| |min/);
         moviesCopy[i].duration = (Number(timeParts[0]) * 60 + Number(timeParts[1]));
-      }
     };
     return moviesCopy;
   } 
