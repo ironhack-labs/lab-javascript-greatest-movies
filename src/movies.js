@@ -61,7 +61,7 @@ function orderAlphabetically(moviesArray) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
   //ca marche! mais le checker ne passe pas....pourqoi?
-  const newArr = moviesArray.slice()
+  const newArr = structuredClone(moviesArray)
    newArr.map(movie => {
      movie.duration = movie.duration.replace(/[^0-9]/g, '')
      let hour = Number(movie.duration[0] * 60)
