@@ -14,8 +14,41 @@ describe('Function "getAllDirectors"', () => {
     expect(getAllDirectors(movies)).not.toEqual(movies);
   });
 
-  it('should return a new array with the same length as the original one', () => {
+  // it('should return a new array with the same length as the original one', () => {
+  //   const testArr = [
+  //     {
+  //       title: 'Paths of Glory',
+  //       year: 1957,
+  //       director: 'Stanley Kubrick',
+  //       duration: '1h 28min',
+  //       genre: ['Drama', 'War'],
+  //       score: 8.4
+  //     },
+  //     {
+  //       title: 'Django Unchained',
+  //       year: 2012,
+  //       director: 'Quentin Tarantino',
+  //       duration: '2h 45min',
+  //       genre: ['Drama', 'Western'],
+  //       score: 8.4
+  //     }
+  //   ];
+  //   expect(getAllDirectors(testArr)).toEqual([
+  //     'Stanley Kubrick',
+  //     'Quentin Tarantino'
+  //   ]);
+  // });
+
+  it('should return a new array with no repeated director names', () => {
     const testArr = [
+      {
+        title: 'Paths of Glory',
+        year: 1957,
+        director: 'Stanley Kubrick',
+        duration: '1h 28min',
+        genre: ['Drama', 'War'],
+        score: 8.4
+      },
       {
         title: 'Paths of Glory',
         year: 1957,
