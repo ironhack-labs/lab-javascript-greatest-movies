@@ -58,58 +58,22 @@ function scoresAverage(moviesArray) {
   return roundedAverageScore;
 }
 
-
-
-
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {
-  // Initialize a sum variable to 0
-  let sum = 0;
+function dramaMoviesScore(movies) {
+  let dramaMovies = movies.filter(movie => movie.genre === "Drama");
+  if (dramaMovies.length === 0) return 0;
+  
+  let dramaRatings = 0;
+  let dramaMoviesCount = 0;
 
-  // Initialize a count variable to 0
-  let count = 0;
-
-  // Iterate through the moviesArray
-  function dramaMoviesScore(moviesArray) {
-    // Initialize a sum variable to 0
-    let sum = 0;
-  
-    // Initialize a count variable to 0
-    let count = 0;
-  
-    // Iterate through the moviesArray
-    for (let i = 0; i < moviesArray.length; i++) {
-      // Get the current movie
-      const movie = moviesArray[i];
-  
-      // Check if the movie is a drama
-      if (movie.genre.includes('Drama')) {
-        // If so, add the rating of the movie to the sum
-        sum += movie.rating;
-  
-        // Increment the count
-        count++;
-      }
-    }
-  
-    // If there are no drama movies, return 0
-    if (count === 0) {
-      return 0;
-    }
-  
-    // If there is only one drama movie, return its rating
-    if (count === 1) {
-      return moviesArray[0].rating;
-    }
-  
-    // Calculate the average rating of the drama movies
-    const average = sum / count;
-  
-    // Return the average
-    return average;
+  for (let i = 0; i < dramaMovies.length; i++) {
+    dramaRatings += dramaMovies[i].rating;
+    dramaMoviesCount++;
   }
+
+  return (dramaRatings/dramaMoviesCount).toFixed(2);
 }
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
