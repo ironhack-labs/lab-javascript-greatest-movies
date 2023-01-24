@@ -101,9 +101,24 @@ function orderAlphabetically(moviesArray) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
 
-    const copyOfMovies = JSON.parse(JSON.stringify(moviesArray))
+    let copy = [...moviesArray]
+    let duration = copy.map(elm => {
+        const copyElm = {
+            ...elm
+        }
 
-    return copyOfMovies
+        if (elm.duration.includes("h") && elm.duration.includes("min")) {
+            copyElm.duration = parseInt(elm.duration.substr(0, 1)) * 60 + parseInt(elm.duration.substr(3, 5))
+            return copyElm
+        } else if (elm.duration.includes("h")) {
+            copyElm.duration = parseInt(elm.duration.substr(0, 1)) * 60
+            return copyElm
+        } else if (elm.duration.includes("min")) {
+            copyElm.duration = parseInt(elm.duration.substr(-5, 2))
+            return copyElm
+        }
+    })
+    return duration
 
 
 }
