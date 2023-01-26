@@ -14,9 +14,7 @@ function howManyMovies(moviesArray) {
     return 0;
   }
 
-  const arrayClone = structuredClone(moviesArray);
-
-  const result = arrayClone.filter((movie) => {
+  const result = moviesArray.filter((movie) => {
     if (
       movie.director === "Steven Spielberg" &&
       movie.genre.includes("Drama")
@@ -36,9 +34,7 @@ function scoresAverage(moviesArray) {
     return 0;
   }
 
-  const arrayClone = structuredClone(moviesArray);
-
-  let totalScore = arrayClone.reduce((acc, elem) => {
+  let totalScore = moviesArray.reduce((acc, elem) => {
     if (elem.score > 0) {
       return (acc += elem.score);
     } else {
@@ -55,9 +51,7 @@ function dramaMoviesScore(moviesArray) {
     return 0;
   }
 
-  const arrayClone = structuredClone(moviesArray);
-
-  let totalDramas = arrayClone.filter((movie) => {
+  let totalDramas = moviesArray.filter((movie) => {
     if (movie.genre.includes("Drama")) {
       return 1;
     } else {
@@ -154,6 +148,19 @@ function bestYearAvg(moviesArray) {
 
   //sort para ordenar y luego pillar el mejor score con find.
   //Tengo que filtrar por año y generar el score medio de ese año y compararlo con el de los otros.
+ /*  let bestYear = "";
+  let bestRate = "";
+  
+  let tested = arrayClone.reduce ((acc, movie, index) => {
+
+    if ( movie.score > acc.score) {
+        bestYear = movie.year;
+        bestRate = movie.score; 
+        return movie;
+    }
+    
+  });
+  console.log(tested) */
 
 /* Funciona pero no estoy filtrando por año
 
