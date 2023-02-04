@@ -63,18 +63,26 @@ function dramaMoviesScore(moviesArray) {
 function orderByYear(moviesArray) {
   //const copyMoviesArray = moviesArray.map(movie => movie); // cópia rasa | shallow copy
   //console.log(copyMoviesArray);
-   newMovieArray = [...moviesArray];
+  newMovieArray = [...moviesArray];
 
-  let order = newMovieArray.sort((a, b) => {a.year - b.year //RESPOSTA CERTA
-  if(order === 0)
-  {order = a.title.localeCompare(b.title)
-  }
-  return order;
-  });
-  return order;
+   newMovieArray.sort((a, b) => {
+     let order = a.year - b.year;
+     if (order === 0) {
+       return a.title.localeCompare(b.title);
+     }
+     return order;
+   });
+
+  //  newMovieArray
+  //    .sort((a,b) => a.title.localeCompare(b.title))
+  //   .sort((a,b) => a.year - b.year)
+
+  // newMovieArray.sort((a,b) => a.title.localeCompare(b.title))
+  // newMovieArray.sort((a,b) => a.year - b.year)
+   return newMovieArray
 }
-  
- //return newMovieArray;
+
+//return newMovieArray;
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 //function orderAlphabetically(moviesArray) {
 //  const newMovieArray = [...moviesArray];
@@ -83,20 +91,20 @@ function orderByYear(moviesArray) {
 
 //  return newMovieArray;
 //}
-  //let newMovieArray.sort((a, b) => a.title.localeCompare(b.title))
-  //let orderByName = a.year.localeCompare(b.year);
-  // (orderByName === 0) {
-    // return a.title - b.title;
+//let newMovieArray.sort((a, b) => a.title.localeCompare(b.title))
+//let orderByName = a.year.localeCompare(b.year);
+// (orderByName === 0) {
+// return a.title - b.title;
 
-   //}
+//}
 
-  //const orderByName = a.title.localeCompare(b.title);
-  //if (orderByName === 0) {
-  //  a.title - b.title;
-  //}
+//const orderByName = a.title.localeCompare(b.title);
+//if (orderByName === 0) {
+//  a.title - b.title;
+//}
 
-  //newMovieArray.sort((a, b) => a.title.localeCompare(b.title))
-  //newMovieArray.sort((a, b) => b.length - a.length);
+//newMovieArray.sort((a, b) => a.title.localeCompare(b.title))
+//newMovieArray.sort((a, b) => b.length - a.length);
 //}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
