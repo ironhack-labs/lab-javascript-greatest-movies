@@ -60,13 +60,47 @@ function dramaMoviesScore(moviesArray) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  //const copyMoviesArray = moviesArray.map(movie => movie); // cópia rasa | shallow copy
+  //console.log(copyMoviesArray);
+   newMovieArray = [...moviesArray];
 
+  let order = newMovieArray.sort((a, b) => {a.year - b.year //RESPOSTA CERTA
+  if(order === 0)
+  {order = a.title.localeCompare(b.title)
+  }
+  return order;
+  });
+  return order;
+}
+  
+ //return newMovieArray;
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+//function orderAlphabetically(moviesArray) {
+//  const newMovieArray = [...moviesArray];
+
+//  newMovieArray.sort((a, b) => a.title - b.title);
+
+//  return newMovieArray;
+//}
+  //let newMovieArray.sort((a, b) => a.title.localeCompare(b.title))
+  //let orderByName = a.year.localeCompare(b.year);
+  // (orderByName === 0) {
+    // return a.title - b.title;
+
+   //}
+
+  //const orderByName = a.title.localeCompare(b.title);
+  //if (orderByName === 0) {
+  //  a.title - b.title;
+  //}
+
+  //newMovieArray.sort((a, b) => a.title.localeCompare(b.title))
+  //newMovieArray.sort((a, b) => b.length - a.length);
+//}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+//function turnHoursToMinutes(moviesArray) {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+//function bestYearAvg(moviesArray) {}
