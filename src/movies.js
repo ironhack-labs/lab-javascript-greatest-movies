@@ -50,7 +50,20 @@ function dramaMoviesScore(moviesArray) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    const moviesByYear = moviesArray.map((item) => item);
+    moviesByYear.sort((firstMovie, secondMovie) => {
+        if(firstMovie.year === secondMovie.year){
+           return firstMovie.title.localeCompare(secondMovie.title);
+        }else{
+            return firstMovie.year - secondMovie.year;
+        }
+    }) 
+    return moviesByYear;  
+    //We need to decide with year is greater
+      //if both are equal
+       //We will need to use sort to order the alphabetically if has the sam year
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
