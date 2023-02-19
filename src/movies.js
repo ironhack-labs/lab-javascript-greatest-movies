@@ -70,7 +70,6 @@ function orderAlphabetically(moviesArray) {
     let newMoviesArray = [...moviesArray];
     let onlyTitle = [];
     if(newMoviesArray.length < 20){
-        console.log(onlyTitle)
         newMoviesArray.forEach((item) => {
             onlyTitle.push(item.title);
         })
@@ -91,7 +90,24 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+    const newArray = [...moviesArray];
+    newArray.forEach((item) => {
+        let hourToMinute = 0;
+        let minutes = 0;
+        for(let i = 0; i < item.duration.length; i++){
+            if(item.duration[i] === 'h'){
+                  hourToMinute = item.duration[i - 1];
+            }
+            if(item.duration[i] === 'm'){
+                minutes = item.duration[i -2] + item.duration[i -1];
+            }
+        }
+        let totalMinutes = (Number(hourToMinute) * 60) + Number(minutes);
+        item.duration = totalMinutes;
+    })
+    return newArray;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
