@@ -51,12 +51,10 @@ function orderByYear(moviesArray) {
     let sortedMovies = moviesArray.slice(0);
   
   sortedMovies.sort(function (a, b) {
-      return a.year - b.year;
+    return a.year - b.year || a.title.localeCompare(b.title)
   });
-    return sortedMovies
-    
+  return sortedMovies
   }
-
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
