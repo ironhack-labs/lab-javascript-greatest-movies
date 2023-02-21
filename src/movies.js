@@ -22,6 +22,15 @@ function howManyMovies(moviesArray) {
 function scoresAverage(moviesArray) {
     let totalScore = 0;
     let totalAvgScore = 0;
+
+    if (moviesArray.length > 0) {
+        for(let i = 0; i < moviesArray.length; i++) {
+            if (moviesArray[i].score )
+            totalScore += moviesArray[i].score;
+        }
+        totalAvgScore = (Math.round((totalScore / moviesArray.length + Number.EPSILON) * 100) / 100) ;
+    }
+    return totalAvgScore;
 }
 
 
