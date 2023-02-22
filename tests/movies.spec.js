@@ -40,8 +40,57 @@ describe('Function "getAllDirectors"', () => {
   });
 });
 
-// Iteration 2
+// Iteration 1 Bonus
+describe('Function "getAllDirectorsWithOutDuplicates"', () => {
+  it('should be declared', () => {
+    expect(typeof getAllDirectorsWithOutDuplicates).toBe('function');
+  });
 
+  it('should return an array', () => {
+    expect(getAllDirectorsWithOutDuplicates(movies) instanceof Array).toBe(true);
+  });
+
+  it('should return a new array, not update the original one', () => {
+    const returnValue = getAllDirectorsWithOutDuplicates(movies);
+    expect(returnValue instanceof Array).toBe(true);        
+    expect(getAllDirectorsWithOutDuplicates(movies)).not.toEqual(movies);
+  });
+
+  it('should return a new array without duplicates', () => {
+    const testArr = [
+      {
+        title: 'The Shawshank Redemption',
+        year: 1994,
+        director: 'Frank Darabont',
+        duration: '2h 22min',
+        genre: ['Crime', 'Drama'],
+        score: 9.3
+      },
+      {
+        title: 'The Godfather',
+        year: 1972,
+        director: 'Francis Ford Coppola',
+        duration: '2h 55min',
+        genre: ['Crime', 'Drama'],
+        score: 9.2
+      },
+      {
+        title: 'The Godfather: Part II',
+        year: 1974,
+        director: 'Francis Ford Coppola',
+        duration: '3h 22min',
+        genre: ['Crime', 'Drama'],
+        score: 9
+      }
+    ];
+    expect(getAllDirectorsWithOutDuplicates(testArr)).toEqual([
+      'Frank Darabont',
+      'Francis Ford Coppola'
+    ]);
+  });
+});
+
+// Iteration 2
 describe('Function "howManyMovies"', () => {
   it('should be declared', () => {
     expect(typeof howManyMovies).toBe('function');
@@ -240,7 +289,7 @@ describe('Function "orderAlphabetically"', () => {
   it('should be declared', () => {
     expect(typeof orderAlphabetically).toBe('function');
   });
-
+  
   it('should return an array', () => {
     expect(typeof orderAlphabetically([])).toBe('object');
   });
@@ -260,7 +309,7 @@ describe('Function "orderAlphabetically"', () => {
     const moviesArr = [{ title: 'aab' }, { title: 'bab' }, { title: 'acb' }];
     expect(orderAlphabetically(moviesArr).length).toBe(3);
   });
-
+  
   it('If there are more than 20 elements, return only 20 of them.', () => {
     const moviesArr = [
       { title: 'aab' },
