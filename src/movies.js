@@ -4,7 +4,6 @@
 function getAllDirectors(moviesArray) {
     const newMoviesArray = moviesArray.map((item) => item.director);
     const uniqueDirectors = [...new Set(newMoviesArray)];
-    console.log(uniqueDirectors);
     return uniqueDirectors;
 }
 
@@ -35,7 +34,7 @@ function scoresAverage(moviesArray) {
         const movieScore = moviesWithScore.map(movie => movie.score);
         let sumScore = movieScore.reduce((sum, score) => {
             return sum += score;
-        });
+        }, 0);
         return Math.round((sumScore / moviesArray.length) * 100) / 100;
     }
 }
@@ -120,9 +119,10 @@ function bestYearAvg(moviesArray) {
             const year = movie.year;
             if(!groupedMovies[year]){
                 groupedMovies[year] = {score: movie.score, count: 1};
-            }
-            groupedMovies[movie.year].score += movie.score;
+            }else if(groupedMovies.hasOwnProperty(year) === true){
+               groupedMovies[movie.year].score += movie.score;
             groupedMovies[movie.year].count++;
+            }
             return groupedMovies;
         }, {});
         
@@ -132,7 +132,7 @@ function bestYearAvg(moviesArray) {
                 let average = Math.round((scoreByYear[year].score / scoreByYear[year].count) * 10) / 10;
                 avgScores.push([year, average]);
             }
-        
+
             avgScores.sort((a, b) => {
                 if (a[1] === b[1]) {
                     return a[0] - b[0];
