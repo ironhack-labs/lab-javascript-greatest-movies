@@ -2019,9 +2019,7 @@ function getUniuqueDirectors(allDirectorsArray) {
   }, []);
   return uniqueDirectors;
 }
-let directors = getAllDirectors(movies);
-let resultado = getUniuqueDirectors(directors);
-console.log(resultado);
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
   const howManyMovies = moviesArray.filter(
