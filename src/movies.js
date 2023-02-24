@@ -28,17 +28,16 @@ function scoresAverage(moviesArray) {
 
  //return moviesArray.length === 0 ? 0 : parseFloat(roundedScore);  
  //const numMovies = moviesArray.length;
+ 
  const numMovies = moviesArray.length;
-  if (numMovies === 0) {
-    return 0;
-  }
+  
 
   const ratedMovies = moviesArray.filter(movie => typeof movie.score === 'number');
 
   const numRatedMovies = ratedMovies.length;
 
-  if (numRatedMovies === null) {
-    return null;
+  if (numRatedMovies === 0) {
+    return 0;
   }
 
   const sumScores = ratedMovies.reduce((total, movie) => {
@@ -51,13 +50,69 @@ function scoresAverage(moviesArray) {
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+// filter function to get all drama movies
+
+const dramas = moviesArray.filter(movie=>movie.genre.includes(`Drama`));
+
+if (dramas.length ===0){
+  return 0;
+}
+//dramas with score
+  const dramaWithScore = dramas.filter(movies => movies.score);
+  
+  // get average score of those movies
+  
+  const scores= dramaWithScore.map(movie=> movie.score);
+  const tot = scores.reduce((accumulator, currentValue) => accumulator + currentValue);
+  const average = Number((tot / dramas.length).toFixed(2));
+return average;
+
+
+}
+
+
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  arrCopy = JSON.parse(JSON.stringify(moviesArray));
+   return arrCopy.sort((a,b) => {
+     if (a.year> b.year){
+       return 1;
+     }else if( a.year< b.year){
+       return -1;
+     }else {
+       return a.title>b.title ? 1:-1;
+     }
+     
+   });
+  
+  
+
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  arr = JSON.parse(JSON.stringify(moviesArray));
+  const titles = arr.map(x => x.title);
+  const sorted=  titles.sort();
+  let twentie= [];
+  if( sorted.length >20){
+    for (i = 0; i < 20; i++){
+    twentie.push(sorted[i]);
+    }
+  }else {
+    for (i = 0; i < sorted.length; i++){
+    twentie.push(sorted[i]);
+    
+  }
+  }
+  return twentie;
+  
+
+
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
