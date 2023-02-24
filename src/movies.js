@@ -2063,13 +2063,75 @@ function dramaMoviesScore(moviesArray) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  const sortMovies = moviesArray.slice().sort((movie1, movie2) => {
+    if (movie1.year === movie2.year) {
+      const firstMovie = movie1.title.toLowerCase();
+      const secondMovie = movie2.title.toLowerCase();
+      let i = 0;
+      while (firstMovie[i] && secondMovie[i]) {
+        if (firstMovie[i] < secondMovie[i]) return -1;
+        if (firstMovie[i] > secondMovie[i]) return 1;
+        i++;
+      }
+      return firstMovie.length - secondMovie.length;
+    }
+    return movie1.year - movie2.year;
+  });
+  return sortMovies;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray)  {
+  const sortedMovies = moviesArray.slice().sort((a, b) => a.title.localeCompare(b.title));
+  
+  const titles = sortedMovies.map(movie => movie.title).slice(0, 20);
+  
+  return titles;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  return moviesArray.map(movie => {
+    const timeConversion = movie.duration.split(" ");
+    let totalMin = 0;
+    timeConversion.forEach(conversion => {
+      if (conversion.endsWith("h")) {
+        const hours = parseInt(conversion, 10);
+        totalMin += hours * 60;
+      }
+      else if (conversion.endsWith("min")) {
+        const minutes = parseInt(conversion, 10);
+        totalMin += minutes;
+      }
+    });
+    return { ...movie, duration: totalMin };
+  });
+}
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  if (movies.length === 0) {
+      return null;
+    }
+    const moviesByYear = {};
+  movies.forEach(movie => {
+    const year = movie.year;
+    if (!moviesByYear[year]) {
+      moviesByYear[year] = [];
+    }
+    moviesByYear[year].push(movie);
+  });
+  let bestYear = null;
+
+  for (let year in moviesByYear) {
+    const movies = moviesByYear[year];
+    const totalScore = movies.reduce((acc, movie) => acc + movie.score, 0);
+    const avgScore = totalScore / movies.length;
+    
+  }
+  return `The best year was ${bestYear} with an average score of ${avgscore}`;
+  
+}
+
