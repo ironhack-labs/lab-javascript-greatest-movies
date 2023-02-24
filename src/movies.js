@@ -8,14 +8,28 @@ function getAllDirectors(moviesArray) {
     return allDirectorsArr;
 }
 
-
 // Bonus Iteration 1.1: clean the array of directors
-// function getAllDirectorsOnlyOnce(moviesArray) {
-//     const allDirectorsOnlyOnceArr = moviesArray.map((movie, index) => {
-//         if (movie.indexOf(movie.director))
-//     })
-// }
+function getAllDirectorsOnlyOnce(moviesArray) {
+    
+    // use the function before to get an array with a list of all directors
+    let listOfDirectors = getAllDirectors(moviesArray);
 
+    // i-counter: loop through each item in the array
+    for (let i=0; i < listOfDirectors.length; i++) {
+        let currentDirector = listOfDirectors[i].director;
+
+        // j-counter: for each item in the array, check if any subsequent items are the same
+        // if so, remove said item and reset the j-counter -1
+        // (because an item that we didn’t check before has moved up to the position where we just removed something)
+        for (let j=0; j < listOfDirectors.length - 1; j++) {
+            if (listOfDirectors[i] == listOfDirectors[i+j]) {
+                listOfDirectors.splice(i+j,1);
+                -j;
+            }
+        }
+    }
+    return listOfDirectors;
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
@@ -26,7 +40,6 @@ function howManyMovies(moviesArray) {
     })
     return spielbergDramaMovies.length;
 }
-
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
@@ -43,24 +56,20 @@ function scoresAverage(moviesArray) {
     return totalAvgScore;
 }
 
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
     let totalDramaMovieScore = 0;
     let totalAvgDramaScore = 0;
-
     const allDramaMovies = moviesArray.filter((movie) => {
         if (movie.genre.includes('Drama') == true) {
             totalDramaMovieScore += movie.score;
             return movie;
         }
     })
-    
     if (allDramaMovies.length <= 0) {
         totalAvgDramaScore = 0;
     } else {
-        totalAvgDramaScore = (Math.round((totalDramaMovieScore / allDramaMovies.length + Number.EPSILON) * 100) / 100) ;
+        totalAvgDramaScore = scoresAverage(allDramaMovies);
     }
-
     return totalAvgDramaScore;
 }
