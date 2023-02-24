@@ -68,7 +68,7 @@ function orderByYear(moviesArray) {
   if (moviesArray.length === 0) {
     return [];
   }
-  const NewOrderYear = moviesArray.sort((a, b) => {
+  const NewOrderYear = [...moviesArray].sort((a, b) => {
     if (a.year === b.year) {
       return a.title > b.title ? 1 : -1;
     }
@@ -94,29 +94,41 @@ function orderAlphabetically(moviesArray) {
 function turnHoursToMinutes(moviesArray) {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function YearScore(moviesArray, year) {
-  const year = moviesArray.filter((movie) => {
-    return movie.year.includes(year);
-  });
-  if (year.length === 0) {
+function bestYearAvg(moviesArray) {
+  if (moviesArray.length === 0) {
     return null;
   }
-  const sumScore = year.reduce((accumulator, movie) => {
-    if (movie.score) {
-      return accumulator + movie.score;
-    }
-    return accumulator;
-  }, 0);
 
-  return Math.round((sumScore / year.length) * 100) / 100;
-  //compare score of each year...
-  // bestYearAvg(moviesArray)sort(a, b) => {return a.sumScore - b.sumScore})
+  const yearScore = moviesArray.reduce((accumulator, movie) => {
+    if (!accumulator[movie.year]) {
+      accumulator[movie.year] = [];
+    }
+
+    accumulator[movie.year].push(movie.score);
+
+    return accumulator;
+  }, {});
+
+  // { 2016: [0.8, 1.0, 1.2], 1998: [1.1, ] }
+
+  // Object.keys(yearScore) = [2016, 1998, ...]
+
+  let highestScore = 0;
+  let bestYear = 0;
+
+  Object.keys(yearScore).forEach((year) => {
+    const length = yearScore[year].length;
+    const sum = yearScore[year].reduce((accumulator, score) => {
+      return accumulator + score;
+    }, 0);
+
+    const average = sum / length;
+
+    if (highestScore < average) {
+      highestScore = average;
+      bestYear = year;
+    }
+  });
+
+  return `The best year was ${bestYear} with an average score of ${highestScore}`;
 }
-/*
-funtion bestYearAvg(moviesArray) {
-for (let i = 0; i < 2023; i++ ) {
-  YearScore
-};
-return bestYearAvg;
-};
-*/
