@@ -65,3 +65,26 @@ function dramaMoviesScore(moviesArray) {
     }
     return totalAvgDramaScore;
 }
+
+
+// Iteration 5: Ordering by year - Order by year, ascending (in growing order)
+function orderByYear(moviesArray) {
+
+    // make a new array by copying the original one
+    let moviesOrderedByYear = [...moviesArray];
+    
+    // sort the array by year
+    moviesOrderedByYear.sort(
+        function(a,b) {
+            if (a.year < b.year) return -1;
+            if (a.year > b.year) return 1;
+            if (a.year === b.year) {
+                // if the same year, sort by title
+                if (a.title < b.title) return -1;
+                if (a.title > b.title) return 1;
+                if (a.title === b.title) return 0;
+            };
+        }
+    )
+    return moviesOrderedByYear;
+}
