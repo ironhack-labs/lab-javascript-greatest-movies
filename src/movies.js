@@ -1,8 +1,6 @@
 // Iteration 1: All directors? - Get the array of all directors.
 function getAllDirectors(moviesArray) {
-    const listOfDirectors = moviesArray.map((movie) => {
-        return movie.director;
-    })
+    const listOfDirectors = moviesArray.map((movie) => movie.director);
 
     // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
     // How could you "clean" a bit this array and make it unified (without duplicates)?
@@ -69,10 +67,8 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-
     // make a new array by copying the original one
     let moviesOrderedByYear = [...moviesArray];
-    
     // sort the array by year
     moviesOrderedByYear.sort(
         function(a,b) {
