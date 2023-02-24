@@ -1,30 +1,22 @@
 // Iteration 1: All directors? - Get the array of all directors.
-// _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
-// How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
-    const allDirectorsArr = moviesArray.map((movie) => {
+    const listOfDirectors = moviesArray.map((movie) => {
         return movie.director;
     })
-    return allDirectorsArr;
-}
 
-// Bonus Iteration 1.1: clean the array of directors
-function getAllDirectorsOnlyOnce(moviesArray) {
-    
-    // use the function before to get an array with a list of all directors
-    let listOfDirectors = getAllDirectors(moviesArray);
+    // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
+    // How could you "clean" a bit this array and make it unified (without duplicates)?
 
     // i-counter: loop through each item in the array
     for (let i=0; i < listOfDirectors.length; i++) {
-        let currentDirector = listOfDirectors[i].director;
 
-        // j-counter: for each item in the array, check if any subsequent items are the same
-        // if so, remove said item and reset the j-counter -1
-        // (because an item that we didn’t check before has moved up to the position where we just removed something)
-        for (let j=0; j < listOfDirectors.length - 1; j++) {
+        // j-counter: loop through all subsequent items and check if any are the same
+        for (let j=1; j < listOfDirectors.length; j++) {
             if (listOfDirectors[i] == listOfDirectors[i+j]) {
+                // if so, remove said item and reset the j-counter -1
+                // (we need to check this position again because the removal caused an item we didn’t check before to move up)
                 listOfDirectors.splice(i+j,1);
-                -j;
+                j -= 1;
             }
         }
     }
