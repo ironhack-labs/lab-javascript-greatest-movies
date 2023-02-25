@@ -61,41 +61,49 @@ function dramaMoviesScore(moviesArray) {
 dramaMoviesScore(movies);
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {
-  const moviesCopy = [...moviesArray];
-  const arraySorted = moviesCopy.filter(
-    (a, b) => {
-      if (a.year !== b.year) {
-        return a.year - b.year;
-      } else {
-        a.title.localeCompare(b.title);
-      }
-    }
-  );
-  console.log(arraySorted);
-  return arraySorted;
-}
-
-orderByYear(movies);
-
-// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-// function orderAlphabetically(moviesArray) {
+// function orderByYear(moviesArray) {
 //   const moviesCopy = [...moviesArray];
-//   const sortedArray = moviesArray.filter(
-//     (a, b) => {
-//       if (a.title !== b.title) {
-//         return a.title - b.year;
-//       }
-//     }
-//   );
-//   console.log(sortedArray.slice(0, 20));
-//   return sortedArray.slice(0, 20);
+//   const arraySorted = moviesCopy.sort((a, b) => {
+//     if (a.year > b.year) {
+//       return 1;
+//     } else if (a.year < b.year) {
+//       return -1;
+//     } else return 0;
+//   });
+//   console.log(arraySorted);
+//   return arraySorted;
 // }
 
-// orderAlphabetically(movies);
+// orderByYear(movies);
+
+// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+
+function orderAlphabetically(moviesArray) {
+  const moviesCopy = [...moviesArray];
+  const arraySorted = moviesCopy.sort((a, b) => {
+    if (a.title > b.title) {
+      return 1;
+    } else if (a.title < b.title) {
+      return -1;
+    } else return 0;
+  });
+  console.log(arraySorted.slice(0, 20));
+  return arraySorted.slice(0, 10);
+}
+
+orderAlphabetically(movies);
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  const copyArray = [...moviesArray];
+  // add all movie scores per year and divide by total amount of movies per year
+  const ScorePerYear = moviesArray.reduce(
+    (movieScores, movie) => {
+      return movieScores + movie.score;
+    },
+    0
+  );
+}
