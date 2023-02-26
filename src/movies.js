@@ -72,18 +72,6 @@ function turnHoursToMinutes(moviesArray) {
     });
     return newArray;
 }
-/*
-
-    return moviesArray.map(movie => {
-        const [hours, minutes] = movie.duration.split(' ');
-        return {
-          ...movie,
-          duration: (parseInt(hours)) * 60 + (parseInt(minutes))
-        };
-      });
-}*/
-
-
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
