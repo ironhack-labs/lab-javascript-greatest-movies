@@ -62,7 +62,28 @@ function orderAlphabetically(moviesArray){
 
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+    const newArray = JSON.parse(JSON.stringify(moviesArray));
+    
+    newArray.forEach(movie => {
+        let twoElements = movie.duration.split(' '); 
+        let totalMins = parseInt(twoElements[0] || 0) * 60 + (parseInt(twoElements[1]) || 0);
+        movie.duration = totalMins;
+    });
+    return newArray;
+}
+/*
+
+    return moviesArray.map(movie => {
+        const [hours, minutes] = movie.duration.split(' ');
+        return {
+          ...movie,
+          duration: (parseInt(hours)) * 60 + (parseInt(minutes))
+        };
+      });
+}*/
+
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
