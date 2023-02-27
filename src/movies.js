@@ -113,12 +113,24 @@ function bestYearAvg(moviesArray) {
   if (moviesArray.length === 0) {
     return null;
   } else {
-    let year;
-    const rate = moviesArray.forEach((element) => {
-      if (year === element.year) {
+    let arrayYears = {};
+    moviesArray.forEach((element) => {
+      if (arrayYears[element.year]) {
+        arrayYears[element.year].total += element.score;
+        arrayYears[element.year].count += 1;
+      } else {
+        arrayYears[element.year] = { total: element.score, count: 1 };
       }
     });
-
-    return `The best year was ${year} with an average score of ${rate}`;
+    let bestYear;
+    let bestRate;
+    for (let year in arrayYears) {
+      let rate = arrayYears[year].total / arrayYears[year].count;
+      if (!bestRate || rate > bestRate) {
+        bestRate = rate;
+        bestYear = year;
+      }
+    }
+    return `The best year was ${bestYear} with an average score of ${bestRate}`;
   }
 }
