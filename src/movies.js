@@ -16,7 +16,34 @@ function howManyMovies(moviesArray) {
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+  if (moviesArray.length === 0) {
+    return 0;
+  }
+
+  let sum = moviesArray.reduce((acc, curr) => {
+    if (!curr.score) {
+      return acc;
+    }
+    switch (typeof curr.score) {
+      case "number":
+        return acc + curr.score;
+      case "string":
+        return acc + parseFloat(curr.score);
+      default:
+        return acc;
+    }
+  }, 0);
+
+  const result = +(sum / moviesArray.length).toFixed(2);
+
+  //  found this solution on stackoverflow
+  //  Number.toFixed(number) returns a string
+  //  the + sign turns it into a number
+  //  Dunno how legimit this is???
+
+  return result;
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {}
