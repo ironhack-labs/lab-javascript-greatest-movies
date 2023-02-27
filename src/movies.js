@@ -47,9 +47,10 @@ return Math.round(averageScore * 100) / 100;
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-     const dramaMovies = moviesArray.filter(function(element){
-        return element.genre.includes('Drama');
-    });
+    const dramaNewArray = [...moviesArray];
+    const drama = dramaNewArray.filter(element => element.genre.includes('Drama'));
+    return scoresAverage(drama);
+
   }
 
 
