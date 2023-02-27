@@ -41,8 +41,9 @@ console.log(scoresAverage(movies));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-    
+    if (moviesArray.length <= 0) return 0;
 }
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {}
