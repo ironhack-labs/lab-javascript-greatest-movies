@@ -79,14 +79,35 @@ function orderAlphabetically(moviesArray) {
     })
     const first20 = []
     sortedAbc.forEach(element => {
-        first20.push(element.title)  
+        if (first20.length < 20){
+            first20.push(element.title)
+        } else 
+        return
+          
     });
-    console.log(first20)
+    
     return first20
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) { }
+function turnHoursToMinutes(moviesArray) {
+    const copy5 = [...moviesArray]
+    copy5.forEach(function (movie) {
+        const splitted = movie.duration.split('');
+        if (typeof splitted[0] !== "number"){
+            const inMinutes = Number(splitted[3] + splitted[4]);
+        } else if (typeof splitted[4] !== "number"){
+            const inMinutes = Number(splitted[0]) * 60 + Number(splitted[3]);
+        } else if (typeof splitted[3] !== "number" && typeof splitted[4] !== "number"){
+            const inMinutes = Number(splitted[0]) * 60 ;
+        return (copy5.duration = inMinutes);
+      }})
+    ;
+      console.log(copy5)
+ return copy5
+}
+
+console.log(turnHoursToMinutes(moviesArray))
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) { }
