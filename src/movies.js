@@ -17,9 +17,15 @@ function howManyMovies(moviesArray) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
-  return +moviesArray
-    .reduce((acc, curr) => acc + curr.score / moviesArray.length, 0)
-    .toFixed(2);
+  if (!moviesArray.length) return 0;
+  return Number(
+    (
+      moviesArray.reduce(
+        (acc, curr) => acc + (curr.score ? Number(curr.score) : 0),
+        0
+      ) / moviesArray.length
+    ).toFixed(2)
+  );
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
