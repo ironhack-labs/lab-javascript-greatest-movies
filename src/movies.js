@@ -8,20 +8,6 @@ function getAllDirectors(moviesArray) {
   return director;
 }
 
-/*function getAllDirectors(moviesArray) {
-  const director = moviesArray.map(function (el) {
-    return el.director ;
-  }),
-  const uniqueDirector = [];
-  for(element of director){
-    if(uniqueDirector.indexOf(element)===0){
-      uniqueDirector.push(element)
-    }
-    else{continue}
-  }
-return uniqueDirector;
-};*/
-
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
     if (moviesArray.length ===0){
@@ -39,7 +25,7 @@ function scoresAverage(moviesArray) {
     return 0
   }
   const scoreTotal = moviesArray.reduce(function (acc, el){
-return acc + (el.score||0) / moviesArray.length
+return acc + (el.score || 0) / moviesArray.length
 },0)
 return Math.round(scoreTotal*100)/100;
 }
@@ -70,9 +56,18 @@ function orderByYear(moviesArray) {
   return moviesOrder;
 }
 
-
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  
+  let moviesOrderAl = moviesArray.slice();
+  moviesOrderAl = moviesOrderAl.sort(function (a, b) {
+    if (a.title < b.title) return -1; // a is less than b
+    if (a.title > b.title) return 1; // a is greater than b
+    if (a.title === b.title)
+    return moviesOrderAl.splice(0,moviesOrderal.length-20); 
+  });
+  return moviesOrderAl;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
