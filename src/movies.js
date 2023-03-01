@@ -63,11 +63,17 @@ function orderAlphabetically(moviesArray) {
   moviesOrderAl = moviesOrderAl.sort(function (a, b) {
     if (a.title < b.title) return -1; // a is less than b
     if (a.title > b.title) return 1; // a is greater than b
-    if (a.title === b.title)
-    return moviesOrderAl.splice(0,moviesOrderal.length-20); 
+    if (a.title === b.title) return 0
+    //return moviesOrderAl; 
   });
-  return moviesOrderAl;
+  moviesOrderAl.splice(20,moviesOrderAl.length-20)
+  const autre  = moviesOrderAl.map(function (el) {
+    return el.title;
+  });
+  return autre;
 }
+
+console.log(orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
