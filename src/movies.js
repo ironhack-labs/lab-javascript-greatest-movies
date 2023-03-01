@@ -20,28 +20,35 @@ function howManyMovies(moviesArray) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
+
+  if (moviesArray.length === 0) {
+    return 0;
+  }
+
   const scoresArray = moviesArray.map(function (element) {
     return element.score;
   });
 
   const sumOfScores = scoresArray.reduce((acc, element) => {
-    return acc + element;
+    return acc + (element || 0);
   });
 
   const average = Number((sumOfScores / scoresArray.length).toFixed(2));
 
-  if (moviesArray.length === 0) {
-    return "0";
-  } else {
     return average;
   }
-}
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
+
   const dramaArray = moviesArray.filter(function (element) {
     return element.genre.includes("Drama");
   });
+
+  if (dramaArray.length === 0) {
+    return 0;
+  }
 
   const dramaScores = dramaArray.map(function (element) {
     return element.score;
@@ -53,12 +60,9 @@ function dramaMoviesScore(moviesArray) {
 
   const average = Number((dramaScoreSum / dramaScores.length).toFixed(2));
 
-  if (dramaArray.length === '0') {
-    return "0";
-  } else {
     return average;
   }
-}
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
@@ -93,26 +97,24 @@ function orderByYear(moviesArray) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-    const cuttedArray = moviesArray.splice(20);
-    
-    const titlesArray = cuttedArray.map(function(element){
-        return element.title
+
+    const titlesArray = moviesArray.map((element) => element.title
+    )
+
+    titlesArray.sort((a,b) => {
+      const clearedA = a.toLowerCase().replace(" ","")
+      const clearedB = b.toLowerCase().replace(" ","")
+
+      if(clearedA > clearedB) {
+        return 1;
+      }
+      if (clearedA < clearedB) {
+        return -1
+      }
+      return 0;
+
     })
-
-    const orderedArray = titlesArray.sort((title1, title2)=>{
-        if (title1 < title2){
-            return -1;
-        }
-
-        else if (title1 > title2){
-            return 1;
-        }
-
-        else {return 0}
-    })
-
-    return orderedArray
-}
+    return titlesArray.slice(0, 20)}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
