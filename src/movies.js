@@ -20,7 +20,6 @@ function howManyMovies(moviesArray) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
-
   if (moviesArray.length === 0) {
     return 0;
   }
@@ -35,13 +34,11 @@ function scoresAverage(moviesArray) {
 
   const average = Number((sumOfScores / scoresArray.length).toFixed(2));
 
-    return average;
-  }
-
+  return average;
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-
   const dramaArray = moviesArray.filter(function (element) {
     return element.genre.includes("Drama");
   });
@@ -60,64 +57,123 @@ function dramaMoviesScore(moviesArray) {
 
   const average = Number((dramaScoreSum / dramaScores.length).toFixed(2));
 
-    return average;
-  }
-
+  return average;
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-    const clonedArray = moviesArray.map(function(element){
-        return element})
-    
-    
-    const orderedArray = clonedArray.sort((mov1, mov2)=>{
-        if (mov1.year < mov2.year){
-            return -1;
-        }
+  const clonedArray = moviesArray.map(function (element) {
+    return element;
+  });
 
-        else if (mov1.year > mov2.year){
-            return 1;
-        }
+  const orderedArray = clonedArray.sort((mov1, mov2) => {
+    if (mov1.year < mov2.year) {
+      return -1;
+    } else if (mov1.year > mov2.year) {
+      return 1;
+    } else if (mov1.year === mov2.year) {
+      if (mov1.title < mov2.title) {
+        return -1;
+      } else if (mov1.title < mov2.title) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  });
 
-        else if (mov1.year === mov2.year) {
-            if (mov1.title < mov2.title){
-                return -1
-            }
-
-            else if (mov1.title < mov2.title){
-                return 1
-            }
-
-            else {return 0}
-        }
-    })
-
-    return orderedArray;
+  return orderedArray;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
+  const titlesArray = moviesArray.map((element) => element.title);
 
-    const titlesArray = moviesArray.map((element) => element.title
-    )
+  titlesArray.sort((a, b) => {
+    const clearedA = a.toLowerCase().replace(" ", "");
+    const clearedB = b.toLowerCase().replace(" ", "");
 
-    titlesArray.sort((a,b) => {
-      const clearedA = a.toLowerCase().replace(" ","")
-      const clearedB = b.toLowerCase().replace(" ","")
-
-      if(clearedA > clearedB) {
-        return 1;
-      }
-      if (clearedA < clearedB) {
-        return -1
-      }
-      return 0;
-
-    })
-    return titlesArray.slice(0, 20)}
+    if (clearedA > clearedB) {
+      return 1;
+    }
+    if (clearedA < clearedB) {
+      return -1;
+    }
+    return 0;
+  });
+  return titlesArray.slice(0, 20);
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  let minDuration = 0;
+
+  const duplicatedArray = JSON.parse(JSON.stringify(moviesArray))
+  duplicatedArray.forEach(function (value) {
+    let newDuration = value.duration.split(" ");
+    if (newDuration.length === 2) {
+      newDuration[0] = newDuration[0].replace("h", "");
+      newDuration[1] = newDuration[1].replace("min", "");
+
+      minDuration = Number(newDuration[0]) * 60 + Number(newDuration[1]);
+      value.duration = minDuration;
+    }
+
+    if (newDuration.length === 1) {
+      if (newDuration[0].contains("h")) {
+        newDuration[0].replace("h", "");
+
+        minDuration = Number(newDuration[0]) * 60;
+        value.duration = minDuration;
+      }
+
+      if (newDuration[0].contains("min")) {
+        newDuration[0].replace("min", "");
+
+        minDuration = Number(newDuration[0]);
+        value.duration = minDuration;
+      }
+    }
+  });
+
+  return duplicatedArray;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  let finalArray = []
+  
+  if (moviesArray.length === 0) {
+    return null
+  }
+
+  moviesArray.sort(((a,b) => a.year - b.year))
+
+
+  for (let i=0; i<moviesArray.length; i++){
+    let sum = moviesArray[0].score
+    let counter = 1
+
+    if (moviesArray[i].year === moviesArray[i+1].year){
+      sum += moviesArray[i+1].score
+      counter ++
+    }
+  }
+
+  if (moviesArray[i].year !== moviesArray[i+1].year){
+    finalArray.push([moviesArray[i].year,sum/counter])
+    sum = moviesArray[i+1].score
+    counter = 1
+  }
+
+  let bestYear = finalArray[0][0];
+  let bestAvg = finalArray[0][1]
+
+  for (let j=0; j<finalArray.length; j++){
+    if (finalArray[j][1]>bestAvg){
+      bestAvg = finalArray[j][1]
+      bestYear = finalArray [j][0]
+    }
+  }
+  return `The best year was ${bestYear} with an average score of ${bestAvg}`
+}
