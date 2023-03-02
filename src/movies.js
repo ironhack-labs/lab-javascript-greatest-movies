@@ -121,9 +121,9 @@ function turnHoursToMinutes(moviesArray) {
 
     if (arrayDuration.length === 1) {
       if (arrayDuration[0].includes("h")) {
-        arrayDuration[0].replace("h", "");
+        let onlyNumberHour = arrayDuration[0].replace('h','')
 
-        minDuration = Number(arrayDuration[0]) * 60;
+        minDuration = Number(onlyNumberHour[0]) * 60;
         value.duration = minDuration;
       }
 
