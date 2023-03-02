@@ -163,6 +163,10 @@ function bestYearAvg(moviesArray) {
       sum = moviesArray[i + 1].score;
       counter = 1;
     }
+
+    if (i===moviesArray.length-1 && moviesArray[i-1].year!==moviesArray[i].year){
+      finalArray.push([moviesArray[i].year, moviesArray[i].score])
+    }
   }
 
   let bestYear = finalArray[0][0];
