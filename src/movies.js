@@ -87,24 +87,22 @@ function turnHoursToMinutes(moviesArray) {
 function bestYearAvg(moviesArray) {
   if (!moviesArray.length) return null;
 
-  let averages = {};
+  let scoresPerYear = {};
   let bestAvg = 0;
   let bestYear = 0;
-  //1 - Complete l'objet averages avec le tableau de score par année
+  //1 - Complete l'objet scoresPerYear avec le tableau de score par année
   moviesArray.forEach((el) => {
-    const scores = averages[el.year] || [];
-    scores.push(el.score);
-    averages[el.year] = scores;
+    const scores = scoresPerYear[el.year] || [];
+    scores.push({ score: el.score });
+    scoresPerYear[el.year] = scores;
   });
-  //2 - Fait la moyenne par année
-  for (let year in averages) {
-    averages[year] = +averages[year]
-      .reduce((acc, cur, i, arr) => acc + cur / arr.length, 0)
-      .toFixed(2);
+  for (let year in scoresPerYear) {
+    //2 - Fait la moyenne par année
+    const average = scoresAverage(scoresPerYear[year]);
     //3 - Trouve la meilleure année
-    if (averages[year] > bestAvg) {
+    if (average > bestAvg) {
       bestYear = year;
-      bestAvg = averages[year];
+      bestAvg = average;
     }
   }
   return `The best year was ${bestYear} with an average score of ${bestAvg}`;
