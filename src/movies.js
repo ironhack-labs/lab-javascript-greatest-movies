@@ -108,29 +108,29 @@ function orderAlphabetically(moviesArray) {
 function turnHoursToMinutes(moviesArray) {
   let minDuration = 0;
 
-  const duplicatedArray = JSON.parse(JSON.stringify(moviesArray));
+  let duplicatedArray = JSON.parse(JSON.stringify(moviesArray));
   duplicatedArray.forEach(function (value) {
-    let newDuration = value.duration.split(" ");
-    if (newDuration.length === 2) {
-      newDuration[0] = newDuration[0].replace("h", "");
-      newDuration[1] = newDuration[1].replace("min", "");
+    let arrayDuration = value.duration.split(" ");
+    if (arrayDuration.length === 2) {
+      arrayDuration[0] = arrayDuration[0].replace("h", "");
+      arrayDuration[1] = arrayDuration[1].replace("min", "");
 
-      minDuration = Number(newDuration[0]) * 60 + Number(newDuration[1]);
+      minDuration = Number(arrayDuration[0]) * 60 + Number(arrayDuration[1]);
       value.duration = minDuration;
     }
 
-    if (newDuration.length === 1) {
-      if (newDuration[0].contains("h")) {
-        newDuration[0].replace("h", "");
+    if (arrayDuration.length === 1) {
+      if (arrayDuration[0].includes("h")) {
+        arrayDuration[0].replace("h", "");
 
-        minDuration = Number(newDuration[0]) * 60;
+        minDuration = Number(arrayDuration[0]) * 60;
         value.duration = minDuration;
       }
 
-      if (newDuration[0].contains("min")) {
-        newDuration[0].replace("min", "");
+      if (arrayDuration[0].includes("min")) {
+        arrayDuration[0].replace("min", "");
 
-        minDuration = Number(newDuration[0]);
+        minDuration = Number(arrayDuration[0]);
         value.duration = minDuration;
       }
     }
