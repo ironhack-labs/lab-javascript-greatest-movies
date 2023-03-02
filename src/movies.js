@@ -108,7 +108,7 @@ function orderAlphabetically(moviesArray) {
 function turnHoursToMinutes(moviesArray) {
   let minDuration = 0;
 
-  const duplicatedArray = JSON.parse(JSON.stringify(moviesArray))
+  const duplicatedArray = JSON.parse(JSON.stringify(moviesArray));
   duplicatedArray.forEach(function (value) {
     let newDuration = value.duration.split(" ");
     if (newDuration.length === 2) {
@@ -141,39 +141,38 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
-  let finalArray = []
-  
+  let finalArray = [];
+
   if (moviesArray.length === 0) {
-    return null
+    return null;
   }
 
-  moviesArray.sort(((a,b) => a.year - b.year))
+  moviesArray.sort((a, b) => a.year - b.year);
 
+  for (let i = 0; i < moviesArray.length; i++) {
+    let sum = moviesArray[0].score;
+    let counter = 1;
 
-  for (let i=0; i<moviesArray.length; i++){
-    let sum = moviesArray[0].score
-    let counter = 1
-
-    if (moviesArray[i].year === moviesArray[i+1].year){
-      sum += moviesArray[i+1].score
-      counter ++
+    if (moviesArray[i].year === moviesArray[i + 1].year) {
+      sum += moviesArray[i + 1].score;
+      counter++;
     }
-  }
 
-  if (moviesArray[i].year !== moviesArray[i+1].year){
-    finalArray.push([moviesArray[i].year,sum/counter])
-    sum = moviesArray[i+1].score
-    counter = 1
+    if (moviesArray[i].year !== moviesArray[i + 1].year) {
+      finalArray.push([moviesArray[i].year, sum / counter]);
+      sum = moviesArray[i + 1].score;
+      counter = 1;
+    }
   }
 
   let bestYear = finalArray[0][0];
-  let bestAvg = finalArray[0][1]
+  let bestAvg = finalArray[0][1];
 
-  for (let j=0; j<finalArray.length; j++){
-    if (finalArray[j][1]>bestAvg){
-      bestAvg = finalArray[j][1]
-      bestYear = finalArray [j][0]
+  for (let j = 0; j < finalArray.length; j++) {
+    if (finalArray[j][1] > bestAvg) {
+      bestAvg = finalArray[j][1];
+      bestYear = finalArray[j][0];
     }
   }
-  return `The best year was ${bestYear} with an average score of ${bestAvg}`
+  return `The best year was ${bestYear} with an average score of ${bestAvg}`;
 }
