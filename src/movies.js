@@ -94,8 +94,15 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-  const clonedArray = structuredClone(moviesArray);
-  console.log(moviesArray);
+  //const clonedArray = structuredClone(moviesArray);
+
+  const clonedArray = moviesArray.map((movie) => {
+    let obj = {};
+    for (const prop in movie) {
+      obj[prop] = movie[prop];
+    }
+    return obj;
+  });
 
   const moviesInMinutes = clonedArray.map((movie) => {
     const hours = movie.duration.split("h", 1);
@@ -104,7 +111,6 @@ function turnHoursToMinutes(moviesArray) {
       const hoursAndMinutes = movie.duration.split("h ");
       minutes[0] = hoursAndMinutes[1].split("min", 1);
     }
-
     movie.duration = parseInt(hours[0]) * 60 + parseInt(minutes[0]);
 
     return movie;
@@ -113,4 +119,41 @@ function turnHoursToMinutes(moviesArray) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function orderByAverage(yearAverage) {
+  const moviesByAverage = yearAverage
+    .map((year) => year)
+    .sort((a, b) => {
+      if (a[1] === b[1]) {
+        if (a[0] > b[0]) {
+          return -1;
+        }
+        if (a[0] < b[0]) {
+          return 1;
+        }
+        return 0;
+      }
+      return b[1] - a[1];
+    });
+
+  return moviesByAverage;
+}
+
+function bestYearAvg(moviesArray) {
+  if (moviesArray.length === 0) {
+    return null;
+  }
+  const moviesByYear = orderByYear(moviesArray);
+  let year = moviesByYear[0].year;
+  let yearAverage = [];
+  moviesByYear.forEach((el) => {
+    const yearScore = moviesByYear.filter((movie) => {
+      return movie.year === year;
+    });
+    if (yearScore.length > 0) {
+      yearAverage.push([year, scoresAverage(yearScore)]);
+    }
+    year++;
+  });
+  const yearByAverage = orderByAverage(yearAverage);
+  return `The best year was ${yearByAverage[0][0]} with an average score of ${yearByAverage[0][1]}`;
+}
