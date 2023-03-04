@@ -46,19 +46,76 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-    let yearArr = moviesArray.map(function(movie) {
-        return movie
-    })
+    let yearArr = moviesArray.slice()
 
+    return yearArr.sort(function (a, b) {
+        if (a.year<b.year) return -1
+        if (a.year>b.year) return 1
+        if (a.year===b.year) {
+            
+                if (a.title<b.title) return -1
+                if (a.title>b.title) return 1
+                if (a.title===b.title) return 0
+            
+        }
+    })
     
 
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+    let titleArr = moviesArray.map(function (movie) {
+        return movie.title
+    })
+
+    titleArr.sort()
+
+    if (titleArr.length>20) {
+        return titleArr.slice(0, 20)
+    } else {
+        return titleArr
+    }
+
+
+
+
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+    let minuteArr = moviesArray.slice()
+
+    
+    minuteArr.forEach(function (movie) {
+        if (typeof movie.duration === 'string') {
+            if (movie.duration.includes('min')) {
+                const splittedDuration = movie.duration.split(" ")
+                
+                let minuteDuration = Number(splittedDuration[0].substring(0,splittedDuration[0].length-1))*60 + Number(splittedDuration[1].substring(0,splittedDuration[1].length-3))
+                movie.duration = minuteDuration
+            } else {
+                movie.duration = Number(movie.duration.substring(0,movie.duration.length-1))*60
+            }
+            
+        }
+        
+    })
+
+    console.log("minuteArr=", minuteArr)
+    return minuteArr
+
+
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+
+// Create bestYearAvg() function that receives an array of movies and gives us an answer to know which year has the best average score
+function bestYearAvg(moviesArray) {
+    
+
+
+
+
+    
+}
