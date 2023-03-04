@@ -44,11 +44,30 @@ function howManyMovies(moviesArray) {
 function scoresAverage(moviesArray) {}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) 
+let clonedArray = JSON.parse(JSON.stringify(movies))
 
+const ascendingYear = clonedArray.sort((a,b) => {
+    if (a.year < b.year) {return 1}
+    if (a.year > b.year) {return -1 }
+    if (a.year === b.year) {return 0 }
+    })
+
+    return ascendingYear
+
+ }
+
+
+(a, b) {
+    if (a < b) return -1; // a is less than b
+    if (a > b) return 1; // a is greater than b
+    if (a === b) return 0; // a equals b
+  }
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
 
