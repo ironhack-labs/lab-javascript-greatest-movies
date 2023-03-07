@@ -9,18 +9,18 @@
    <h2>Learning Goals</h2>
   </summary>
 
-  This exercise is designed to allow you practice and apply the concepts and techniques taught in class. 
+   This exercise allows you to practice and apply the concepts and techniques taught in class. 
 
   Upon completion of this exercise, you will be able to:
 
-  - Declare functions using the function expression and arrow function syntax
-  - Pass functions as arguments to other functions (callbacks)
+  - Declare functions using the function expression and arrow function syntax.
+  - Pass functions as arguments to other functions (callbacks).
   - Pass arrays and objects to functions as arguments.
   - Iterate over arrays using the `forEach()` method.
-  - Manipulate arrays using the `map()`  method
-  - Filter array elements using the `filter()`  method
-  - Reduce array values using the `reduce()`  method
-  - Sort arrays using the `sort()`  method
+  - Manipulate arrays using the `map()`  method.
+  - Filter array elements using the `filter()`  method.
+  - Reduce array values using the `reduce()`  method.
+  - Sort arrays using the `sort()`  method.
   - Explore and apply different ways to copy an array (`slice()` and spread operator `...`).
 
   <br>
@@ -30,7 +30,7 @@
 
 ## Introduction
 
-We have just learned some useful methods, that will help us manipulate **objects and arrays**. In this exercise, we will practice working with these methods, and you are required to use at least one of them in each iteration.
+We have just learned some useful methods that will help us manipulate **objects and arrays**. In this exercise, we will practice working with these methods, and you are required to use at least one of them in each iteration.
 
 <br>
 
@@ -46,9 +46,9 @@ We have just learned some useful methods, that will help us manipulate **objects
 - Upon completion, run the following commands:
 
 ```bash
-$ git add .
-$ git commit -m "Solved lab"
-$ git push origin master
+git add .
+git commit -m "Solved lab"
+git push origin master
 ```
 
 - Create a Pull Request so that your TAs can check your work.
@@ -90,7 +90,7 @@ Here is an example of how the data is displayed:
 }
 ```
 
-You will be digging deeper into some "facts" that this data set has. For example, we can use this data set to find which is the most popular movie, what is the average duration of the movie, the list of movies by some director, etc. 
+You will be digging deeper into some "facts" that this data set has. For example, we can use this data set to find the most popular movie, the average duration of the movie, the list of movies by some director, etc. 
 
 In this iteration, no action is required, but here comes your challenge: In the following iterations, you will use your JS knowledge to manipulate this data.
 
@@ -106,7 +106,7 @@ We need to get the array of all directors. Since this is a warm up, we will give
 
 #### Bonus - Iteration 1.1: _Clean_ the array of directors
 
-It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors. How could you "clean" a bit this array and make it unified (meaning, without duplicates)? _Don't prioritize the bonus part now, you can come back to it when you are done with the mandatory iterations._ :wink:
+Some of the directors had directed multiple movies, so they will pop up multiple times in the array of directors. How could you "clean" this array and make it unified (meaning, without duplicates)? _Don't prioritize the bonus part now. You can return to it when you finish the mandatory iterations._ :wink:
 
 <br>
 
@@ -114,13 +114,13 @@ It seems some of the directors had directed multiple movies so they will pop up 
 
 One of the most famous directors in cinema is **[Steven Spielberg](https://en.wikipedia.org/wiki/Steven_Spielberg)**, and he has some really awesome drama movies that are on our list, but we want to know how many of them are there.
 
-Go ahead and create a `howManyMovies()` function that receives an array as a parameter and `filter` :eyes: the array so we can have only the **drama** movies where **Steven Spielberg** is the director.
+Create a `howManyMovies()` function that receives an array as a parameter and `filter` :eyes: the array so we can have only the **drama** movies where **Steven Spielberg** is the director.
 
 <br>
 
 ### Iteration 3: All scores average
 
-These are the best movies based on their scores, so supposedly all of them have a remarkable score. In this iteration, we want to know the average score of all of them and display it on the console. Create a `scoresAverage()` function that receives an array as a parameter and solves the challenge.
+These are the best movies based on their scores, so they all have remarkable scores. In this iteration, we want to know the average score of all of them and display it on the console. Create a `scoresAverage()` function that receives an array as a parameter and solves the challenge.
 
 The score must be returned rounded to 2 decimals!
 
@@ -147,7 +147,7 @@ Create a function `orderByYear()` that receives an array as a parameter and retu
 
 If two movies have the same year, order them in alphabetical order by their title! :heavy_check_mark:
 
-:warning: **Important:** Your function should *return a new array*, containing the movies ordered by the year. Your function should not modify (mutate) the original array. You may need to do some research on how to make a "copy" or "clone" an array.
+:warning: **Important:** Your function should *return a new array*, containing the movies ordered by the year. Your function should not modify (mutate) the original array. You may need to research how to make a "copy" or "clone" an array.
 
 <br>
 
@@ -155,21 +155,21 @@ If two movies have the same year, order them in alphabetical order by their titl
 
 Another popular way to order the movies is to sort them alphabetically using the `title` key. However, in this case, we only need to print the title of the first 20. Easy peasy for an expert like you. :wink:
 
-Create an `orderAlphabetically()` function, that receives an array and returns an array of the first 20 titles, alphabetically ordered. Return only the title of each movie, and if the array you receive has less than 20 movies, return all of them.
+Create an `orderAlphabetically()` function that receives an array and returns an array of the first 20 titles, alphabetically ordered. Return only the title of each movie, and if the array you receive has less than 20 movies, return all of them.
 
 
 
-:warning: **Important:** Your function should *return a new array*, containing movie objects sorted alphabetically. Your function should not modify (mutate) the original array. You may need to do some research on how to make a "copy" or "clone" an array.
+:warning: **Important:** Your function should *return a new array*, containing movie objects sorted alphabetically. Your function should not modify (mutate) the original array. You may need to research how to make a "copy" or "clone" an array.
 
 <br>
 
 ### BONUS - Iteration 7: Time format
 
-We get the info from the **IMDB** web page, but the duration info was saved in a format that difficult us a lot to compare movies.
+We got the info from the **IMDB** web page, but the duration info was saved in a format that is difficult for us to compare movies.
 
 Finding the longest movie is almost impossible using that format, so let's change it!
 
-- Create a `turnHoursToMinutes()` function that receives an array as a parameter, and with some _magic_ implemented by you - replaces the duration info of each of the movies for its equivalent in minutes. For example:
+- Create a `turnHoursToMinutes()` function that receives an array as a parameter and, with some _magic_ implemented by you - replaces the duration info of each of the movies for its equivalent in minutes. For example:
 
 ```javascript
 {
@@ -203,9 +203,9 @@ Should be:
 
 ### BONUS - Iteration 8: Best yearly score average
 
-We always hear so much about classic movies, but we want to know which year has the best average score, so we can declare the **BEST YEAR FOR CINEMA** officially!
+We always hear so much about classic movies, but we want to know which year has the best average score so that we can declare the **BEST YEAR FOR CINEMA** officially!
 
-Go ahead and find which year have the best average score for the movies that were released in that year!
+Go ahead and find which year has the best average score for the movies released that year!
 Create `bestYearAvg()` function that receives an array of movies and gives us an answer to which year was the best year for cinema and what was its average score. The `bestYearAvg()` should return a **string** with the following structure:
 <br>
 
@@ -233,7 +233,7 @@ Create `bestYearAvg()` function that receives an array of movies and gives us an
   If you are stuck in your code and don't know how to solve the problem or where to start, you should take a step back and try to form a clear question about the specific issue you are facing. This will help you narrow down the problem and come up with potential solutions.
 
 
-  For example, is it a concept that you don't understand, or are you receiving an error message that you don't know how to fix? It is usually helpful to try to state the problem as clearly as possible, including any error messages you are receiving. This can help you communicate the issue to others and potentially get help from classmates or online resources. 
+  For example, is it a concept you don't understand, or are you receiving an error message you don't know how to fix? It is usually helpful to state the problem as clearly as possible, including any error messages you receive. This can help you communicate the issue to others and potentially get help from classmates or online resources. 
 
 
   Once you have a clear understanding of the problem, you will be able to start working toward the solution.
@@ -262,7 +262,7 @@ Create `bestYearAvg()` function that receives an array of movies and gives us an
   <br>
 
 
-  The `forEach()` method executes a provided function once for each array element. It does not return a new array, but rather executes the function on each element in the array.
+  The `forEach()` method executes a provided function once for each array element. It does not return a new array but rather executes the function on each element in the array.
 
   The syntax of the `forEach()` method is as follows:
 
@@ -373,7 +373,7 @@ Create `bestYearAvg()` function that receives an array of movies and gives us an
   <summary>How to use the <code>sort()</code> array method?</summary>
   <br>
 
-  The `sort()` method is used to sort the elements of an array in place. This means that the original array is mutated and the sorted elements are rearranged within the same array.
+  The `sort()` method is used to sort the elements of an array in place. This means the original array is mutated and the sorted elements are rearranged within the same array.
 
   The default sort order is based on converting the elements into strings and then comparing their sequences of UTF-16 Unicode values. This means that the `sort()` method can be used directly to sort an array of strings in alphabetical order.  However, when working with numbers, the default sort order may not produce the desired result and it is necessary to provide a sorting function as an argument to the `sort()` method.
 
@@ -539,28 +539,23 @@ Create `bestYearAvg()` function that receives an array of movies and gives us an
   <summary>I am unable to push changes to the repository. What should I do?</summary>
   <br>
 
+There are a couple of possible reasons why you may be unable to *push* changes to a Git repository:
 
-  There are a couple of possible reasons why you may be unable to *push* changes to a Git repository:
+1. **You have not committed your changes:** Before you can push your changes to the repository, you need to commit them using the `git commit` command. Make sure you have committed your changes and try pushing again. To do this, run the following terminal commands from the project folder:
+  ```bash
+  git add .
+  git commit -m "Your commit message"
+  git push
+  ```
+2. **You do not have permission to push to the repository:** If you have cloned the repository directly from the main Ironhack repository without making a *Fork* first, you do not have write access to the repository.
+To check which remote repository you have cloned, run the following terminal command from the project folder:
+  ```bash
+  git remote -v
+  ```
+If the link shown is the same as the main Ironhack repository, you will need to fork the repository to your GitHub account first and then clone your fork to your local machine to be able to push the changes.
 
-  1. **You have not committed your changes:** Before you can push your changes to the repository, you need to commit them using the `git commit` command. Make sure you have committed your changes and try pushing again. To do this, run the following terminal commands from the project folder:
-
-   ```bash
-   git add .
-   git commit -m "Your commit message"
-   git push
-   ```
-
-  2. **You do not have permission to push to the repository:** If you have cloned the repository directly from the main Ironhack repository without making a *Fork* first, you do not have write access to the repository.
-   To check which remote repository you have cloned, run the following terminal command from the project folder:
-
-   ```bash
-   git remote -v
-   ```
-
-  If the link shown is the same as the main Ironhack repository, you will need to fork the repository to your GitHub account first, and then clone your fork to your local machine to be able to push the changes.
-
-  Note: You may want to make a copy of the code you have locally, to avoid losing it in the process.
+**Note**: You should make a copy of your local code to avoid losing it in the process.
 
   [Back to top](#faqs)
-  
+
 </details>
