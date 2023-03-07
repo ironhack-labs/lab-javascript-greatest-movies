@@ -4,6 +4,30 @@
 
 ![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_1561a196c2e3852533bad64d9b0d4e9f.gif)
 
+<details>
+  <summary>
+   <h2>Learning Goals</h2>
+  </summary>
+
+  This exercise is designed to allow you practice and apply the concepts and techniques taught in class. 
+
+  Upon completion of this exercise, you will be able to:
+
+  - Declare functions using the function expression and arrow function syntax
+  - Pass functions as arguments to other functions (callbacks)
+  - Pass arrays and objects to functions as arguments.
+  - Iterate over arrays using the `forEach()` method.
+  - Manipulate arrays using the `map()`  method
+  - Filter array elements using the `filter()`  method
+  - Reduce array values using the `reduce()`  method
+  - Sort arrays using the `sort()`  method
+  - Explore and apply different ways to copy an array (`slice()` and spread operator `...`).
+
+  <br>
+  <hr> 
+
+</details>
+
 ## Introduction
 
 We have just learned some useful methods, that will help us manipulate **objects and arrays**. In this exercise, we will practice working with these methods, and you are required to use at least one of them in each iteration.
@@ -14,7 +38,6 @@ We have just learned some useful methods, that will help us manipulate **objects
 
 - Fork this repo.
 - Clone this repo.
-- Practice JavaScript advanced methods (`map`, `reduce`, `filter` and `sort` to manipulate arrays).
 
 <br>
 
