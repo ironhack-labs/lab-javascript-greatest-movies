@@ -7,6 +7,9 @@ const movies = [
     genre: ['Crime', 'Drama'],
     score: 9.3
   },
+
+
+
   {
     title: 'The Godfather',
     year: 1972,
@@ -15,6 +18,11 @@ const movies = [
     genre: ['Crime', 'Drama'],
     score: 9.2
   },
+
+
+
+
+
   {
     title: 'The Godfather: Part II',
     year: 1974,
@@ -23,6 +31,11 @@ const movies = [
     genre: ['Crime', 'Drama'],
     score: 9
   },
+
+
+
+
+  
   {
     title: 'The Dark Knight',
     year: 2008,
