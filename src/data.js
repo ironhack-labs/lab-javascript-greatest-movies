@@ -35,7 +35,7 @@ const movies = [
 
 
 
-  
+
   {
     title: 'The Dark Knight',
     year: 2008,
@@ -2014,3 +2014,4 @@ const movies = [
     score: 8
   }
 ];
+
