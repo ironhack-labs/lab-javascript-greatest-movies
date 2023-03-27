@@ -33,21 +33,27 @@ function dramaMoviesScore(moviesArray) {
     return movie.genre.includes("Drama")
   })
   if(dramaMovies.length === 0) return 0
-  console.log("DramaMovies: " + dramaMovies)
   let dramaScore = dramaMovies.reduce(function(acc, movie){
     if(movie.score === undefined){
       return acc
     }
     return acc + movie.score
   }, 0)
-  console.log("Drama Score: " + dramaScore)
   let average = dramaScore / dramaMovies.length
-  console.log("Average: " + average)
   return parseFloat(average.toFixed(2))
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  let sortedArray = [...moviesArray]
+  sortedArray = sortedArray.sort(function(a, b){
+    if (a.year === b.year) {
+      return a.title.localeCompare(b.title);
+    }
+    return a.year - b.year;
+  });
+  return sortedArray
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
