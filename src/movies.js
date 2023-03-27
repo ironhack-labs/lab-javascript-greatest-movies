@@ -60,7 +60,8 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-  const newArr = structuredClone(moviesArray)
+  // const newArr = structuredClone(moviesArray)
+  const newArr = moviesArray.slice()
    newArr.map(movie => {
      movie.duration = movie.duration.replace(/[^0-9]/g, '')
      let hour = Number(movie.duration[0] * 60)
@@ -80,6 +81,29 @@ function turnHoursToMinutes(moviesArray) {
    })
    return newArr
 }
+
+// Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+// Solution 2
+function turnHoursToMinutes(movies) {
+  return movies.map((m) => {
+    const copy = { ...m };
+    let durationStr = m.duration.split(' ');
+    let hours = 0;
+    let minutes = 0;
+    if (durationStr.length === 1) {
+      if (durationStr[0].includes('h')) {
+        hours = parseFloat(durationStr[0]);
+      } else {
+        minutes = parseFloat(durationStr[0]);
+      }
+    } else {
+      hours = parseFloat(durationStr[0]);
+      minutes = parseFloat(durationStr[1]);
+    }
+    const durationInMinutes = hours * 60 + minutes;
+    copy.duration = durationInMinutes;
+    return copy;
+  });
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
@@ -102,3 +126,40 @@ function bestYearAvg(moviesArray) {
    return `The best year was ${bestYear} with an average score of ${bestScoreAverage}`
 }
 
+
+// BONUS Iteration: Best yearly rate average - Best yearly rate average
+// Solution 2
+function bestYearAvg(movies) {
+  if (!movies.length) return null;
+  const ratesPerYear = movies.reduce((acc, movie) => {
+    if (movie.year in acc) {
+      acc[movie.year].push({ score: movie.score });
+    } else {
+      acc[movie.year] = [{ score: movie.score }];
+    }
+    return acc;
+  }, {}); 
+  let bestYear = 0;
+  let bestAvg = 0;
+
+  for (const year in ratesPerYear) {
+    const avg = scoresAverage(ratesPerYear[year]);
+    if (avg > bestAvg) {
+      bestYear = year;
+      bestAvg = avg;
+    }
+  }
+  return `The best year was ${bestYear} with an average score of ${bestAvg}`;
+}
+if (typeof module !== 'undefined') {
+  module.exports = {
+    howManyMovies,
+    getAllDirectors,
+    dramaMoviesScore,
+    scoresAverage,
+    orderByYear,
+    orderAlphabetically,
+    turnHoursToMinutes,
+    bestYearAvg
+  };
+}
