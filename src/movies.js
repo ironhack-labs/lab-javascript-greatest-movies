@@ -1,4 +1,5 @@
-// const { movies } = require("./data");
+// const { movies } = require("./data.js");
+// console.log(movies);
 
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
@@ -91,15 +92,20 @@ function orderByYear(moviesArray) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
+  console.log("orderAlphabetically", moviesArray);
   const sortedAlphaMoviesArray = [...moviesArray];
 
   sortedAlphaMoviesArray.sort(function (a, b) {
     const aTitleToUpperCase = a.title.toUpperCase();
     const bTitleToUpperCase = b.title.toUpperCase();
+    console.log("TITLES", aTitleToUpperCase, bTitleToUpperCase);
     if (aTitleToUpperCase < bTitleToUpperCase) return -1;
     if (aTitleToUpperCase > bTitleToUpperCase) return 1;
     return 0;
+    // return bTitleToUpperCase.localCompare(aTitleToUpperCase);
   });
+
+  console.log("SORTED", sortedAlphaMoviesArray);
 
   const sortedAlphaTitlesArray = sortedAlphaMoviesArray.map(function (movie) {
     return movie.title;
@@ -110,8 +116,38 @@ function orderAlphabetically(moviesArray) {
   return twentyTitlesArray;
 }
 
-// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes ---------------------
+function convertMovie(movie) {
+  const splitTime = movie.duration.split("h ");
+  console.log(movie);
+  const hours = splitTime[0];
+  const hoursToMInutes = parseInt(hours) * 60;
+  let minutes = 0;
+  if (splitTime[1]) {
+    minutes = parseInt(splitTime[1].split("min")[0]);
+  }
+  const totalMinutes = minutes + hoursToMInutes;
+  //console.log({splitTime, hours, hMin: parseInt(hours), hoursToMInutes, minutes, totalMinutes})
+  const newMovie = {
+    // ...movie,
+    tilte: movie.tilte,
+    year: movie.year,
+    director: movie.director,
+    duration: totalMinutes,
+    genre: movie.genre,
+    score: movie.score,
+  };
+  return newMovie;
+}
 
-// BONUS - Iteration 8: Best yearly score average - Best yearly score average
+// convertMovie(movies[0])
+
+function turnHoursToMinutes(moviesArray) {
+  const movieListMInutes = moviesArray.map(convertMovie);
+  return movieListMInutes;
+}
+
+console.log(turnHoursToMinutes(movies));
+
+// BONUS - Iteration 8: Best yearly score average - Best yearly score average -------------------------
 function bestYearAvg(moviesArray) {}
