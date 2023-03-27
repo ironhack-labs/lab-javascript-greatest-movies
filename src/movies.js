@@ -68,7 +68,7 @@ function orderByYear(moviesArray) {
 
     dupMoviesArray.sort(function(a, b) {
         if (a.year === b.year) {
-            return title - b.title
+            return a.title.localeCompare(b.title);
         } 
         return a.year - b.year
     })
