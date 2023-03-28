@@ -3,7 +3,7 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 const allMovies = require("./data.js");
 
-console.log(allMovies);
+
 
 function getAllDirectors(moviesArray) {
     const directors = moviesArray.map((item) => {
