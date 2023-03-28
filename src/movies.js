@@ -2010,11 +2010,15 @@ function getAllDirectors(moviesArray) {
     return moviesArray.map( (movie) => movie.director );
 }
 
+// Bonus - Iteration 1.1: Clean the array of directors
+function getAllUniqueDirectors(moviesArray) {
+    return [...new Set( getAllDirectors(moviesArray) )]
+}
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
     return moviesArray
-        .filter( (movie) => movie.director === "Steven Spielberg" )
-        .filter( (movie) => movie.genre.includes("Drama") )
+        .filter( (movie) => movie.director === "Steven Spielberg" && movie.genre.includes("Drama") )
         .length;
 }
 
@@ -2046,6 +2050,7 @@ function dramaMoviesScore(moviesArray) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
     // this clones an array: [...moviesArray]
+    // using .slice() [without any argument] as first method would also work, since it returns a new array
     return [...moviesArray].sort( (a, b) => a.year === b.year ? a.title.localeCompare(b.title) : a.year - b.year );
 }
 
