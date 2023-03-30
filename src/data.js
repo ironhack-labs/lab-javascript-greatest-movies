@@ -1,3 +1,5 @@
+// export { topFive };
+
 const movies = [
   {
     title: 'The Shawshank Redemption',
@@ -2001,3 +2003,47 @@ const movies = [
     score: 8
   }
 ];
+
+
+// const topFive = [
+//   {
+//       title: 'The Shawshank Redemption',
+//       year: 1994,
+//       director: 'Frank Darabont',
+//       duration: '2h 22min',
+//       genre: ['Crime', 'Drama'],
+//       score: 9.3
+//   },
+//   {
+//       title: 'The Godfather',
+//       year: 1972,
+//       director: 'Francis Ford Coppola',
+//       duration: '2h 55min',
+//       genre: ['Crime', 'Drama'],
+//       score: 9.2
+//   },
+//   {
+//       title: 'The Godfather: Part II',
+//       year: 1974,
+//       director: 'Francis Ford Coppola',
+//       duration: '3h 22min',
+//       genre: ['Crime', 'Drama'],
+//       score: 9
+//   },
+//   {
+//       title: 'Schindler"s List',
+//       year: 1993,
+//       director: 'Steven Spielberg',
+//       duration: '3h 15min',
+//       genre: ['Biography', 'Drama', 'History'],
+//       score: 8.9
+//     },
+//     {
+//       title: 'Saving Private Ryan',
+//       year: 1998,
+//       director: 'Steven Spielberg',
+//       duration: '2h 49min',
+//       genre: ['Drama', 'War'],
+//       score: 8.6
+//     }
+// ];
