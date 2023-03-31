@@ -2001,3 +2001,10 @@ const movies = [
     score: 8
   }
 ];
+
+function howManyMovies(moviesArray) {
+  const spielbergDramas = movies.filter(film => film.director === 'Steven Spielberg' && film.genre === 'Drama');
+  return spielbergDramas;
+};
+
+console.log(howManyMovies(movies));
