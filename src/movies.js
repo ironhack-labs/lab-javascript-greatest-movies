@@ -49,22 +49,27 @@ const topFive = [
 // import { topFive } from "./data";
 
 function getAllDirectors(moviesArray) {
-    const newArray = moviesArray.map(e => {
-        let director = e.director;
-      
-        if (director.includes(' ')) {
-            const joinedStringArr = director.split(' ').join(' ')
-            console.log(joinedStringArr);
-            return joinedStringArr;
+
+    const uniqArrOfDirectors = [];
+  
+    
+    const directorsOnly = moviesArray
+    .map(movie => {
+        return movie.director;
+    }).forEach(el => {
+        if(!uniqArrOfDirectors.includes(el)){
+        uniqArrOfDirectors.push(el);
         }
-        return director;
     })
 
+      console.log(directorsOnly)
+      
+    return uniqArrOfDirectors;
+  
 
-    return newArray.filter((e, index) => newArray.indexOf(e) === index);
-}
-
-console.log(getAllDirectors(topFive))
+  }
+  
+  console.log(getAllDirectors(topFive))
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
@@ -102,7 +107,7 @@ function scoresAverage(moviesArray) {
         scoresArr.push(score);
     })
     console.log(scoresArr);
-    const initialValue = 0;
+    
 
     const newScoresArr = scoresArr.filter(function( element ) {
         return element !== undefined;
@@ -112,7 +117,7 @@ function scoresAverage(moviesArray) {
 
     const sumWithInitial = newScoresArr.reduce(
         (accumulator, currentValue) => accumulator + currentValue,
-        initialValue
+        0
     );
 
 
