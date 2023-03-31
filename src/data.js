@@ -2001,3 +2001,8 @@ const movies = [
     score: 8
   }
 ];
+ // Iteration 1
+
+function getAllDirectors(movies) {
+  return movies.map(movie.director);
+}
