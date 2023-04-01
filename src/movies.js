@@ -11,13 +11,13 @@ const topFive = [
         score: 9.3
     },
     {
-        title: 'The Godfather',
-        year: 1972,
-        director: 'Francis Ford Coppola',
-        duration: '2h 55min',
+        title: 'American History X',
+        year: 1998,
+        director: 'Tony Kaye',
+        duration: '1h 59min',
         genre: ['Crime', 'Drama'],
-        score: 9.2
-    },
+        score: 8.5
+      },
     {
         title: 'The Godfather: Part II',
         year: 1974,
@@ -160,11 +160,39 @@ function dramaMoviesScore(moviesArray) {
 
 // // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
+    const sortedAscAge = [...moviesArray].sort(function (a, b) {
+        if (a.year > b.year) return 1; 
+        if (a.year < b.year) return -1; 
+        if (a.year === b.year) return 0;
+      });
 
+    return sortedAscAge;
+ 
 }
 
+console.log(orderByYear(topFive));
+
 // // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-// function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+    const sortedAsc = [...moviesArray].sort(function (a, b) {
+        if (a.title > b.title) return 1; 
+        if (a.title < b.title) return -1; 
+        if (a.title === b.title) return 0;
+      });
+
+      const sortAscTitleArr = sortedAsc.map(movie => movie.title);
+
+      const first20 = sortAscTitleArr.slice(0, 20);
+
+    if (moviesArray.length < 20){
+        return sortAscTitleArr
+    } else if (moviesArray.length > 20) {
+        return first20;
+    }
+ 
+}
+
+console.log(orderAlphabetically(topFive))
 
 // // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 // function turnHoursToMinutes(moviesArray) {}
