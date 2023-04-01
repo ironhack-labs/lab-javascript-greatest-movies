@@ -204,14 +204,14 @@ function orderAlphabetically(moviesArray) {
         if (a.title === b.title) return 0;
       });
 
-      const sortAscTitleArr = sortedAsc.map(movie => movie.title);
+    const sortAscTitleArr = sortedAsc.map(movie => movie.title);
 
-      const first20 = sortAscTitleArr.slice(0, 20);
+    const firstTwenty = sortAscTitleArr.slice(0, 20);
 
     if (moviesArray.length < 20){
         return sortAscTitleArr
     } else if (moviesArray.length > 20) {
-        return first20;
+        return firstTwenty;
     }
  
 }
