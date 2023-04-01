@@ -166,7 +166,13 @@ function orderByYear(moviesArray) {
         if (a.year === b.year) return 0;
       });
 
-    return sortedAscAge;
+      const finalSortedArr = sortedAscAge.sort(function (a, b){
+        if (a.year === b.year) {
+            return a.title.localeCompare(b.title);
+        }
+      })
+
+    return finalSortedArr;
  
 }
 
