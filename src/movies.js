@@ -88,41 +88,6 @@ function howManyMovies(moviesArray) {
 console.log(howManyMovies(topFive));
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
-    // let scoresArr = [];
-    
-    // let noScoreCount = 0;
-    // moviesArray.forEach(e => {
-    //     if (e.score === undefined) {
-    //         noScoreCount++
-    //     }
-    //     const score = e.score;
-    //     scoresArr.push(score);
-    // })
-    // console.log(scoresArr);
-    
-
-    // const newScoresArr = scoresArr.filter(function( element ) {
-    //     return element !== undefined;
-    //  });
-
-    //  console.log(newScoresArr)
-
-    // const sumWithInitial = newScoresArr.reduce(
-    //     (accumulator, currentValue) => accumulator + currentValue,
-    //     0
-    // );
-
-
-    // const scoresAvg = sumWithInitial / newScoresArr.length;
-    // const altScoresAvg =   sumWithInitial / scoresArr.length;  
-
-    // if (moviesArray.length === 0) {
-    //     return 0;
-    // } else if (noScoreCount > 0) {
-    //     return Number(altScoresAvg.toFixed(2));
-    // } else {
-    //     return Number(scoresAvg.toFixed(2));
-    // }
 
     let avgScore = moviesArray.reduce((accumulator, currentValue) => {
         if(!currentValue.score) {
@@ -140,32 +105,6 @@ console.log(scoresAverage(topFive))
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-    // let dramaScoresArr = [];
-    // let dramaCount = 0;
-    // moviesArray.forEach(e => {
-    //     if (e.genre.includes('Drama')){
-    //         const score = e.score;
-    //         dramaScoresArr.push(score);
-    //         dramaCount++;
-    //     } 
-    // console.log(dramaScoresArr);
-    // })
-
-    // const initialValue = 0;
-    // const sumWithInitial = dramaScoresArr.reduce(
-    //   (accumulator, currentValue) => accumulator + currentValue,
-    //   initialValue
-    // );
-    
-    // const scoresAvg = sumWithInitial / dramaScoresArr.length;
-    
-    // if (moviesArray.length === 0) {
-    //     return 0;
-    // } else if (dramaCount === 0) {
-    //     return 0;
-    // } else if (dramaScoresArr) {
-    //     return Number(scoresAvg.toFixed(2));
-    // }
 
     let dramaMovies = moviesArray.filter(movie => {
             return movie.genre.includes('Drama')
