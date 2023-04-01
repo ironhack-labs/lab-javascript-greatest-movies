@@ -88,41 +88,51 @@ function howManyMovies(moviesArray) {
 console.log(howManyMovies(topFive));
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
-    let scoresArr = [];
+    // let scoresArr = [];
     
-    let noScoreCount = 0;
-    moviesArray.forEach(e => {
-        if (e.score === undefined) {
-            noScoreCount++
+    // let noScoreCount = 0;
+    // moviesArray.forEach(e => {
+    //     if (e.score === undefined) {
+    //         noScoreCount++
+    //     }
+    //     const score = e.score;
+    //     scoresArr.push(score);
+    // })
+    // console.log(scoresArr);
+    
+
+    // const newScoresArr = scoresArr.filter(function( element ) {
+    //     return element !== undefined;
+    //  });
+
+    //  console.log(newScoresArr)
+
+    // const sumWithInitial = newScoresArr.reduce(
+    //     (accumulator, currentValue) => accumulator + currentValue,
+    //     0
+    // );
+
+
+    // const scoresAvg = sumWithInitial / newScoresArr.length;
+    // const altScoresAvg =   sumWithInitial / scoresArr.length;  
+
+    // if (moviesArray.length === 0) {
+    //     return 0;
+    // } else if (noScoreCount > 0) {
+    //     return Number(altScoresAvg.toFixed(2));
+    // } else {
+    //     return Number(scoresAvg.toFixed(2));
+    // }
+
+    let avgScore = moviesArray.reduce((accumulator, currentValue) => {
+        if(!currentValue.score) {
+            return accumulator;
+        } else {
+            return accumulator + currentValue.score / moviesArray.length
         }
-        const score = e.score;
-        scoresArr.push(score);
-    })
-    console.log(scoresArr);
-    
+    }, 0)
 
-    const newScoresArr = scoresArr.filter(function( element ) {
-        return element !== undefined;
-     });
-
-     console.log(newScoresArr)
-
-    const sumWithInitial = newScoresArr.reduce(
-        (accumulator, currentValue) => accumulator + currentValue,
-        0
-    );
-
-
-    const scoresAvg = sumWithInitial / newScoresArr.length;
-    const altScoresAvg =   sumWithInitial / scoresArr.length;  
-
-    if (moviesArray.length === 0) {
-        return 0;
-    } else if (noScoreCount > 0) {
-        return Number(altScoresAvg.toFixed(2));
-    } else {
-        return Number(scoresAvg.toFixed(2));
-    }
+    return Number(avgScore.toFixed(2));
  }
 
 
@@ -130,32 +140,40 @@ console.log(scoresAverage(topFive))
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-    let dramaScoresArr = [];
-    let dramaCount = 0;
-    moviesArray.forEach(e => {
-        if (e.genre.includes('Drama')){
-            const score = e.score;
-            dramaScoresArr.push(score);
-            dramaCount++;
-        } 
-    console.log(dramaScoresArr);
+    // let dramaScoresArr = [];
+    // let dramaCount = 0;
+    // moviesArray.forEach(e => {
+    //     if (e.genre.includes('Drama')){
+    //         const score = e.score;
+    //         dramaScoresArr.push(score);
+    //         dramaCount++;
+    //     } 
+    // console.log(dramaScoresArr);
+    // })
+
+    // const initialValue = 0;
+    // const sumWithInitial = dramaScoresArr.reduce(
+    //   (accumulator, currentValue) => accumulator + currentValue,
+    //   initialValue
+    // );
+    
+    // const scoresAvg = sumWithInitial / dramaScoresArr.length;
+    
+    // if (moviesArray.length === 0) {
+    //     return 0;
+    // } else if (dramaCount === 0) {
+    //     return 0;
+    // } else if (dramaScoresArr) {
+    //     return Number(scoresAvg.toFixed(2));
+    // }
+
+    let dramaMovies = moviesArray.filter(movie => {
+            return movie.genre.includes('Drama')
     })
 
-    const initialValue = 0;
-    const sumWithInitial = dramaScoresArr.reduce(
-      (accumulator, currentValue) => accumulator + currentValue,
-      initialValue
-    );
-    
-    const scoresAvg = sumWithInitial / dramaScoresArr.length;
-    
-    if (moviesArray.length === 0) {
-        return 0;
-    } else if (dramaCount === 0) {
-        return 0;
-    } else if (dramaScoresArr) {
-        return Number(scoresAvg.toFixed(2));
-    }
+    console.log(dramaMovies);
+
+    return scoresAverage(dramaMovies);
 }
 
 // // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
@@ -201,7 +219,22 @@ function orderAlphabetically(moviesArray) {
 console.log(orderAlphabetically(topFive))
 
 // // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-// function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+
+
+    const newArr = moviesArray.map(movie => {
+      const splitArr = movie.duration.split(" ");
+    
+      if (splitArr[0].includes('h')) {
+        return parseInt(splitArr[0]) * 60 + parseInt(splitArr[1]);
+      } 
+        
+    })
+
+    return newArr;
+}
+
+console.log(turnHoursToMinutes(topFive));
 
 // // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 // function bestYearAvg(moviesArray) {}
