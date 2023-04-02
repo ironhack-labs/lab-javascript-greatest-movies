@@ -40,7 +40,7 @@ const topFive = [
         director: 'Steven Spielberg',
         duration: '2h 49min',
         genre: ['Drama', 'War'],
-        // score: 8.6
+        score: 8.6
       }
   ];
 
@@ -181,4 +181,53 @@ function turnHoursToMinutes(moviesArray) {
 console.log(turnHoursToMinutes(topFive));
 
 // // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-// function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  
+  if (!moviesArray.length) {
+    return null;
+  }
+
+  const scoresByYear = {};
+
+  moviesArray.forEach(movie => {
+    const year = movie.year;
+    const score = movie.score;
+
+    console.log(scoresByYear)
+
+    if (!scoresByYear[year]) {
+      scoresByYear[year] = [score];
+    } 
+    else {
+      scoresByYear[year].push(score);
+    }
+  });
+
+  console.log(scoresByYear);
+  
+  let bestYear;
+  let bestAvgScore = 0;
+
+  Object.keys(scoresByYear).forEach(year => {
+    const scoresSummed = scoresByYear[year].reduce((acc, score) => acc + score, 0);
+    console.log(scoresSummed);
+    
+    const avgScore = scoresSummed / scoresByYear[year].length;
+
+    console.log(avgScore)
+
+    if (avgScore > bestAvgScore) {
+      bestYear = year;
+      bestAvgScore = avgScore;
+    }
+  });
+
+  console.log(bestYear)
+  console.log(bestAvgScore);
+
+
+  return `The best year was ${bestYear} with an average score of ${bestAvgScore}`;
+
+}
+
+console.log(bestYearAvg(topFive));
