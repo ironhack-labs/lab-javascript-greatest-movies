@@ -1,54 +1,53 @@
 // // Iteration 1: All directors? - Get the array of all directors.
 // // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // // How could you "clean" a bit this array and make it unified (without duplicates)?
-// function getAllDirectors(moviesArray) {
-//     const directors = movies
-//     .map((movie) => {
-//       return movie.director;
-//     })
-//     .filter((value, index, originalArray) => {
-//       return originalArray.indexOf(value) === index;
-//     });
-//   return directors;
-// }
-
+function getAllDirectors(moviesArray) {
+    const directors = movies
+    .map((movie) => {
+      return movie.director;
+    })
+    .filter((value, index, originalArray) => {
+      return originalArray.indexOf(value) === index;
+    });
+  return directors;
+}
 
 // // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-// function howManyMovies(movies) {
-//     const dramaMoviesDirectedByStevenSpielberg = movies.filter((movie) => {
-//       // return movie.director === 'Steven Spielberg' && movie.genre.includes('Drama');
-//       const isMovieDirectedByStevenSpielberg =
-//         movie.director === 'Steven Spielberg';
-//       // const isMovieDirectedADrama = movie.genre.includes('Drama');
-//       const isMovieADrama = movie.genre.indexOf('Drama') >= 0;
-//       // if (isMovieDirectedByStevenSpielberg && isMovieADrama) {
-//       //   return true;
-//       // } else {
-//       //   return false;
-//       // }
-//       return isMovieDirectedByStevenSpielberg && isMovieADrama;
-//     });
-//     return dramaMoviesDirectedByStevenSpielberg.length;
-//   }
+function howManyMovies(movies) {
+    const dramaMoviesDirectedByStevenSpielberg = movies.filter((movie) => {
+      // return movie.director === 'Steven Spielberg' && movie.genre.includes('Drama');
+      const isMovieDirectedByStevenSpielberg =
+        movie.director === 'Steven Spielberg';
+      // const isMovieDirectedADrama = movie.genre.includes('Drama');
+      const isMovieADrama = movie.genre.indexOf('Drama') >= 0;
+      // if (isMovieDirectedByStevenSpielberg && isMovieADrama) {
+      //   return true;
+      // } else {
+      //   return false;
+      // }
+      return isMovieDirectedByStevenSpielberg && isMovieADrama;
+    });
+    return dramaMoviesDirectedByStevenSpielberg.length;
+  }
   
-//   const round = (value, digits) =>
-//     Math.round(value * 10 ** digits) / 10 ** digits;
+  const round = (value, digits) =>
+    Math.round(value * 10 ** digits) / 10 ** digits;
 
 // // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-// function scoresAverage(movies) {
-//     if (movies.length === 0) {
-//       return 0;
-//     }
-//     const sumOfScores = movies.reduce((accumulator, movie) => {
-//       if (movie.score) {
-//         return accumulator + movie.score;
-//       } else {
-//         return accumulator;
-//       }
-//     }, 0);
-//     const averageScore = sumOfScores / movies.length;
-//     return round(averageScore, 2);
-//   }
+function scoresAverage(movies) {
+    if (movies.length === 0) {
+      return 0;
+    }
+    const sumOfScores = movies.reduce((accumulator, movie) => {
+      if (movie.score) {
+        return accumulator + movie.score;
+      } else {
+        return accumulator;
+      }
+    }, 0);
+    const averageScore = sumOfScores / movies.length;
+    return round(averageScore, 2);
+  }
 
 // // Iteration 4: Drama movies - Get the average of Drama Movies
 function scoresAverage(movies) {
