@@ -42,7 +42,7 @@ function dramaMoviesScore(moviesArray) {
     }
     let avgDrama = dramaMovie.reduce((acc,cval) => acc + cval.score, 0)
 
-    return  parseFloat(avgDrama/dramaMovie.length)
+    return  parseFloat((avgDrama/dramaMovie.length).toFixed(2))
     
 }
 
