@@ -68,19 +68,19 @@ function orderAlphabetically(moviesArray) {
 function turnHoursToMinutes(moviesArray) {
   const newArray = moviesArray.map(movie => movie)
   newArray.forEach( elem => {
-    if(elem.duration === '2h'){
-      const fuckH = elem.duration.replace("h", "");
-      const hourToMin = Number(fuckH[0]*60)
-      elem.duration = hourToMin
+    
+    if(elem.duration === "2h"){
+      const fuckH = elem.duration.replace(/\D/g, "");
+      const minutes = Number(fuckH*60)
+      elem.duration = minutes
     }
-   if(typeof elem.duration === "string"){
-       const strReplace = elem.duration.replace("h", "").replace("min", "").split(" ")
-       const hoursToMinutes = Number(strReplace[0]*60) 
-       const minutes = Number(strReplace[1])  
+    else if(typeof elem.duration === "string"){
+       const strReplace = elem.duration.replace(/\D/g, "")
+       const hoursToMinutes = Number(strReplace.slice(0,1)*60)
+       const minutes = Number(strReplace.slice(1))  
        elem.duration = hoursToMinutes + minutes
    } 
-  }                 
-  )
+  })                 
    return newArray; 
 }
 
