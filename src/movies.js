@@ -64,10 +64,25 @@ function orderAlphabetically(moviesArray) {
    return sortedMovies.slice(0,20);
   }
 
-
-
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  const newArray = moviesArray.map(movie => movie)
+  newArray.forEach( elem => {
+    if(elem.duration === '2h'){
+      const fuckH = elem.duration.replace("h", "");
+      const hourToMin = Number(fuckH[0]*60)
+      elem.duration = hourToMin
+    }
+   if(typeof elem.duration === "string"){
+       const strReplace = elem.duration.replace("h", "").replace("min", "").split(" ")
+       const hoursToMinutes = Number(strReplace[0]*60) 
+       const minutes = Number(strReplace[1])  
+       elem.duration = hoursToMinutes + minutes
+   } 
+  }                 
+  )
+   return newArray; 
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
