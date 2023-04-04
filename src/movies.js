@@ -10,27 +10,41 @@ function getAllDirectors(moviesArray) {
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
-    const hisMovie = moviesArray.filter(eachmovie => eachmovie.director === 'Steven Spielberg');
-    const movieDr = hisMovie.filter(each => each.genre === 'Drama');
+    const hisMovie = moviesArray.filter(eachmovie => eachmovie.director == 'Steven Spielberg');
+    const movieDr = hisMovie.filter(elem => elem.genre.includes('Drama'));
     return movieDr.length;
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+        if (moviesArray.lenght === 0) {
+            return 0;
+        }
+        else {
+        const allScores = moviesArray.filter (each => each.score);
+        const scoreScore = allScores.reduce((accumulator, currentScore) => accumulator + currentScore);
+        const averageScore = scoreScore / (moviesArray.length);
+        return averageScore.toFixed(2);
+        }
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-    const dramaMo = moviesArray.filter (each => each.genre == 'Drama');
+    const dramaMo = moviesArray.filter (each => each.genre.includes('Drama'));
+
+    if (dramaMo.length === 0) {
+        return 0;
+    }
+    else {
     const dramaScore = dramaMo.map(each => each.score);
     const totalScore = dramaScore.reduce((accumulator, currentValue) => accumulator + currentValue);
     return totalScore / dramaMo.length;
+    }
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-    const newArray = moviesArray.map(each.year => + each.title);
-    
-    const orderMovie = newArray.map( each =>  )
+    const newArray = moviesArray.map(each => each.year + each.title);
     const movieTitle = moviesArray.title;
 
     return movieYear;
@@ -46,6 +60,5 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
-
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
