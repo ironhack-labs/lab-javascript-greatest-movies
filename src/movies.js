@@ -44,29 +44,96 @@ function dramaMoviesScore(moviesArray) {
 
     const dramaMovies = moviesArray.filter(movie => movie.genre.includes('Drama'));
     if (dramaMovies.length === 0) {
-      return 0;
+        return 0;
     }
     const totalScore = dramaMovies.reduce((accumulator, movie) => {
-      if (movie.score) {
-        return accumulator + movie.score;
-      } else {
-        return accumulator;
-      }
+        if (movie.score) {
+            return accumulator + movie.score;
+        } else {
+            return accumulator;
+        }
     }, 0);
     const averageScore = totalScore / dramaMovies.length;
-    return Math.round(averageScore * 100) / 100; 
-   
+    return Math.round(averageScore * 100) / 100;
+
 
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) { }
+function orderByYear(moviesArray) {
+    const sortedMovies = moviesArray.slice();
+
+    sortedMovies.sort(function (a, b) {
+        if (a.year === b.year) {
+
+            return a.title.localeCompare(b.title);
+        }
+        return a.year - b.year;
+    });    
+ 
+    return sortedMovies;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) { }
+function orderAlphabetically(moviesArray) {
+    const titles = moviesArray.map(movie => movie.title);
+    const sortedTitles = titles.sort((a, b) => a.localeCompare(b));
+    const top20Titles = sortedTitles.slice(0, 20);
+    return top20Titles;
+ }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) { }
+function turnHoursToMinutes(moviesArray) { 
+    const newMovies = moviesArray.map(movie => {
+        const newMovie = Object.assign({}, movie);
+    
+        const duration = newMovie.duration;
+        const hourIndex = duration.indexOf('h');
+        const minIndex = duration.indexOf('min');
+    
+        if (hourIndex > -1) {
+          const hours = parseInt(duration.slice(0, hourIndex));
+          newMovie.duration = hours * 60;
+        }
+    
+        if (minIndex > -1) {
+          const minutes = parseInt(duration.slice(hourIndex + 2, minIndex));
+          newMovie.duration += minutes;
+        }
+    
+        return newMovie;
+      });
+    
+      return newMovies;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) { }
+function bestYearAvg(moviesArray) { 
+    if (moviesArray.length === 0) {
+        return null;
+      }
+      const years = moviesArray.map(function(movie) {
+        return movie.year;
+      }).filter(function(year, index, array) {
+        return array.indexOf(year) === index;
+      });
+    
+      let bestYear = 0;
+      let bestRate = 0;
+      years.forEach(function(year) {
+        const yearMovies = moviesArray.filter(function(movie) {
+          return movie.year === year;
+        });
+        const totalScore = yearMovies.reduce(function(accumulator, movie) {
+          return accumulator + movie.score;
+        }, 0);
+        const averageScore = totalScore / yearMovies.length;
+    
+        if (averageScore > bestRate || (averageScore === bestRate && year < bestYear)) {
+          bestYear = year;
+          bestRate = averageScore;
+        }
+      });
+    
+      return 'The best year was ' + bestYear + ' with an average score of ' + bestRate.toFixed(2);
+}
