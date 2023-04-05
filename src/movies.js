@@ -178,10 +178,12 @@ const movies = [
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 
 
-function getAllDirectors(moviesArray) {
-    return moviesArray.map(moviesArray.director)
-
+function getAllDirectors(movies) {
+    const moviesArray = movies.map(allDirector => allDirector.director);
+    return moviesArray;
     }
+    const result = getAllDirectors(movies);
+    console.log(result);
 
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -220,13 +222,40 @@ function scoresAverage(movies) {
   console.log(scoresAverage(movies));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(movies) {
+  const genreDrama = movies.filter((counter) => {
+    return counter.genre.includes('Drama');
+  });
+    averageTotal = average(genreDrama);
+    return averageTotal.toFixed(2);
+  };
+  
+  console.log(dramaMoviesScore(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(movies) {
+return movies.sort((a, b) => a.year - b.year);
+}
+const resultYear = orderByYear(movies);
+console.log(resultYear);
+
+
+
+
+
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+
+function orderAlphabetically(movies) {
+  const titles = movies.map((element) => movies.title);
+  titles.sort((a,b) => a - b);
+
+  const twentyMovies = titles.splice(0, 5);
+  return twentyMovies;
+  
+
+};
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
