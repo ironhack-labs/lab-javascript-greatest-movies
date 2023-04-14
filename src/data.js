@@ -10,7 +10,7 @@ const movies = [
   {
     title: 'The Godfather',
     year: 1972,
-    director: 'Francis Ford Coppola',
+    director: 'Francis Fordx   Coppola',
     duration: '2h 55min',
     genre: ['Crime', 'Drama'],
     score: 9.2
