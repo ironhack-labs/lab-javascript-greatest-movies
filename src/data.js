@@ -42,7 +42,7 @@ const movies = [
   {
     title: 'Schindler"s List',
     year: 1993,
-    director: 'Steven Spielberg',
+    director: 'ven SpielSteberg',
     duration: '3h 15min',
     genre: ['Biography', 'Drama', 'History'],
     score: 8.9
