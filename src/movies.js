@@ -5,17 +5,12 @@ function getAllDirectors(moviesArray) {
     const arrayDirectors = moviesArray.map((eachMovie) => {
         return eachMovie.director
     })
+
       return arrayDirectors;
    
 }
 /// BONUS 1.1/////
-// function getAllDirectorsUnified(moviesArray) {
-//     const arrayDirectors = moviesArray.filter((eachMovie) =>{
-//         return eachMovie.director !== eachMovie.director
-//     })
-//     return arrayDirectors;
-// }
-// getAllDirectorsUnified(moviesArray);
+
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
@@ -122,7 +117,47 @@ function orderAlphabetically(moviesArray) {
 orderAlphabetically(moviesArray);
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+ const moviesArrayClon = JSON.parse(JSON.stringify(moviesArray));
+ moviesArrayClon.forEach(movie => {
+  
+  let hours = movie.duration.match(/\d+h/);
+  let minutes = movie.duration.match(/\d+min/);
+  
+    if (hours) {
+    hours = parseInt(hours[0]);
+  } else {
+    hours = 0;
+  }
+
+  if (minutes) {
+    minutes = parseInt(minutes[0]);
+  } else {
+    minutes = 0;
+  }
+  
+  let minutosTotales = hours * 60 + minutes;
+
+  movie.duration = Number(minutosTotales)
+
+ });
+ return moviesArrayClon
+}
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+for (let movieI = 0; movieI < moviesArray.length; movieI++) {
+      for (let yearI = 0; moviesArray.year < array.length; yearI++) {
+        moviesArray[movieI][yearI].reduce((acc,eachMovie) =>{
+          let sum = acc + eachMovie.year
+          return sum
+        },0)
+        
+      }
+  
+}
+  return sum;
+}
+
+bestYearAvg(moviesArray)
