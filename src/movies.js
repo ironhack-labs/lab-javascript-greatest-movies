@@ -4,7 +4,7 @@
 function getAllDirectors(moviesArray) {
 
     const director = moviesArray.map((eachMovie) => {
-        const listDirectors = eachMovie.director
+        return eachMovie.director
 
 
     })
@@ -30,7 +30,6 @@ function howManyMovies(moviesArray) {
     return SpielbergDramaMovies.length
 
 }
-
 
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
