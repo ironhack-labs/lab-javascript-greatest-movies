@@ -124,10 +124,6 @@ function orderAlphabetically(moviesArray) {
 
     finalAlpha.sort()
 
-    if (finalAlpha > 20) {
-        return finalAlpha
-    }
-
     return finalAlpha.slice(0, 20)
 
 
