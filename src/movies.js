@@ -106,25 +106,18 @@ function orderAlphabetically(moviesArray) {
 function turnHoursToMinutes(moviesArray) {
     const orderArray = JSON.parse(JSON.stringify(moviesArray))
 
-    return moviesArray.map(function (movie) {
-        let hours = 0;
-        let minutes = 0;
-        if (movie.duration.indexOf('h') !== -1) {
-            hours = parseInt(movie.duration.substring(0, movie.duration.indexOf('h')));
+    return orderArray.map(e => {
+        let newHora = parseInt(e.duration.split('h', 1)[0]) * 60
+        let min = e.duration.split(' ', 2)[1]
+        if (typeof min === "undefined") {
+            min = 0
+        } else {
+            min = parseInt(min.toString().replace(/[^0-9]+/g, ""))
         }
-        if (movie.duration.indexOf('min') !== -1) {
-            minutes = parseInt(movie.duration.substring(movie.duration.indexOf(' '), movie.duration.indexOf('min')));
-        }
-        let totalMinutes = (hours * 60) + minutes;
-        return {
-            title: movie.title,
-            year: movie.year,
-            director: movie.director,
-            duration: totalMinutes,
-            genre: movie.genre,
-            score: movie.score
-        };
-    });
+        let total = newHora + min
+        return { duration: total }
+    })
+
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
