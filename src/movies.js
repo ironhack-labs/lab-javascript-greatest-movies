@@ -121,4 +121,14 @@ function turnHoursToMinutes(moviesArray) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) { }
+function bestYearAvg(moviesArray) {
+
+    const arrayCiudad = arrayRespuesta.reduce((acc, el) => {
+        if (!acc[el.Ciudad]) {
+            acc[el.Ciudad] = 1
+        } else {
+            acc[el.Ciudad]++
+        }
+        return acc
+    }, {})
+}
