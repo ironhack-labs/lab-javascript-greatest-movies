@@ -2,21 +2,26 @@
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
-  const allDirectors = moviesArray.map((movie) => movie.director)
+  // const allDirectors = moviesArray.map((movie) => movie.director)
 
   // Compares if the first index where the current is inside the same array...
   //is the same as the current value, if true, don't discards it
-  const filter = allDirectors.filter((director, index, self) => {
-    return self.indexOf(director) === index
-  })
+  // const filter = allDirectors.filter((director, index, self) => {
+  //   return self.indexOf(director) === index
+  // })
 
-  // If the value is not in the array, it pushes insdie of it
-  let filtered = []
-  allDirectors.forEach((director) => {
-    filtered.includes(director) ? void 0 : filtered.push(director)
-  })
+  // The two first const can be transformed into:
+  const allDirectorsFiltered = moviesArray
+    .map((movie) => movie.director)
+    .filter((director, index, self) => self.indexOf(director) === index)
 
-  return filter
+    // Old School method
+  // let filtered = []
+  // allDirectors.forEach((director) => {
+  //   filtered.includes(director) ? void 0 : filtered.push(director)
+  // })
+
+  return allDirectorsFiltered
 }
 
 
