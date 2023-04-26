@@ -26,7 +26,9 @@ function scoresAverage(moviesArray) {
     }   
     
     let sum = moviesArray.reduce(function(accum, movie){
-        return accum + movie.score
+        if (!movie.score){
+            return accum
+        }else {return accum + movie.score}
     },0)
     
     let avg = sum/moviesArray.length;
