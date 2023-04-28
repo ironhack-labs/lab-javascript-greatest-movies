@@ -57,17 +57,70 @@ function dramaMoviesScore(moviesArray) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
     let sortedMovies = JSON.parse(JSON.stringify(moviesArray))
+    
     sortedMovies.sort(function(a,b){
-        a.year!=b.year? a.year+b.year:a.name+b.name
+        if (a.year!==b.year){
+            return a.year-b.year
+        }else {
+            return a.title.localeCompare(b.title)
+        }
     })
     return sortedMovies
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+    let copy = JSON.parse(JSON.stringify(moviesArray))
+    
+    let movieTitles = copy.map(copy => copy.title)
+    movieTitles.sort(function(a,b){return a.localeCompare(b)})
+    return movieTitles.slice(0,20)
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+    let copy = JSON.parse(JSON.stringify(moviesArray))
+    return copy.map(function(movie){
+        const durationParts = movie.duration.split(" ")       
+        let hours = parseInt(durationParts[0]) 
+        let minutes
+        if (durationParts.length===1){
+            minutes = 0
+        }else {minutes = parseInt(durationParts[1])}        
+        
+        const durationInMinutes = hours*60+ minutes
+        return {...movie,
+                duration:durationInMinutes}
+    })    
+}
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+    if (moviesArray.length===0) {return null}
+    else{
+        let moviesByYear=orderByYear(moviesArray);
+    }
+    const result ={}
+    
+    yearGroups= moviesByYear.reduce((acc, movie) => {
+            const year = movie.year;
+            const score = movie.score;
+
+            if (year in acc){
+                acc[year].push(score)
+            } else {
+                acc[year]=[score]
+            }
+
+            return acc
+        },result);
+        
+    let avgScoresByYear = yearGroups.year.reduce((acc, score)=>{
+        
+    })
+        return avgScoresByYear;
+    }
+    return `The best year was <YEAR> with an average score of <RATE>`
+
+
