@@ -62,8 +62,16 @@ function orderByYear(moviesArray) {
         if (a.year!==b.year){
             return a.year-b.year
         }else {
+          if(!a.title&&!b.title){
+            return a.score-b.score
+          }else if (!a.title) {
+            return -1 
+          } else if (!b.title) {
+            return 1 
+          } else {
             return a.title.localeCompare(b.title)
-        }
+          }
+       }
     })
     return sortedMovies
 }
@@ -97,9 +105,10 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
+    let moviesByYear
     if (moviesArray.length===0) {return null}
     else{
-        let moviesByYear=orderByYear(moviesArray);
+        moviesByYear=orderByYear(moviesArray);
     }
     const result ={}
     
@@ -116,11 +125,44 @@ function bestYearAvg(moviesArray) {
             return acc
         },result);
         
-    let avgScoresByYear = yearGroups.year.reduce((acc, score)=>{
-        
-    })
-        return avgScoresByYear;
+    let avgScoresByYear = Object.keys(yearGroups).reduce((acc, year)=>{
+        let moviesForYear = yearGroups[year]
+        let totalScore = moviesForYear.reduce((sum, score)=>{
+            return sum += score
+        },0)
+        let yearAvgScore= totalScore/moviesForYear.length
+        acc[year] = yearAvgScore
+      return acc
+    },{});
+  
+    let bestYear
+    let bestScore
+    if(Object.keys(avgScoresByYear).length===1){
+        bestYear = Object.keys(avgScoresByYear)[0]
+        bestScore = avgScoresByYear[bestYear]
+    } else {
+       let bestYears = []
+        for (let year in avgScoresByYear){         
+        if (bestScore===undefined||avgScoresByYear[year]>bestScore){
+            bestYear = year
+            bestScore = avgScoresByYear[bestYear]
+            bestYears = [bestYear]
+          } else if(avgScoresByYear[year]===bestScore){
+            bestYears.push(year)
+        }
+           
     }
-    return `The best year was <YEAR> with an average score of <RATE>`
+   bestYear=bestYears.sort()[0]
+}
+  return `The best year was ${bestYear} with an average score of ${bestScore}`
+}
 
 
+/*let bestYear
+  let bestScore = 0
+  for (let year in avgScoresByYear){
+    if (avgScoresByYear[year]>bestScore){
+      bestYear = year
+      bestScore = avgScoresByYear[year]
+    }
+  }*/
