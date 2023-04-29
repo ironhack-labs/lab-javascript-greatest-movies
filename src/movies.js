@@ -156,13 +156,3 @@ function bestYearAvg(moviesArray) {
 }
   return `The best year was ${bestYear} with an average score of ${bestScore}`
 }
-
-
-/*let bestYear
-  let bestScore = 0
-  for (let year in avgScoresByYear){
-    if (avgScoresByYear[year]>bestScore){
-      bestYear = year
-      bestScore = avgScoresByYear[year]
-    }
-  }*/
