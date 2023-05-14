@@ -69,31 +69,67 @@ function orderAlphabetically(moviesArray) {
     const otherArr = newMoviesArr.slice(0,20)
     return otherArr
    }else{
-   
-    // newMoviesArr.map((movie) => {
-    //     return { title: movie.title }
-    // })
-    //newMoviesArr.sort((a, b) => a.title.localeCompare(b.title));
     return newMoviesArr
    }
 }
-console.log(orderAlphabetically([{ title: 'xyz' }, { title: 'abc' }]))
-console.log(orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-    const moviesArrayCopy = moviesArray.slice()
+    const moviesArrayCopy = moviesArray.slice();
     moviesArrayCopy.map((movie) => {
-        const minutes = Number(`${movie.duration[3]}` + `${movie.duration[4]}`);
-        const hour = Number(movie.duration[0] * 60);
-        movie.duration = Number(hour + minutes)
-        return movie
+        let minutes = 0;
+        if(movie.duration.length>2){
+             minutes = Number(`${movie.duration[3]}` + `${movie.duration[4]}`);
+        }else{
+             minutes = 0;
+        }
+        const hour = Number(movie.duration[0])*60;
+        movie.duration = Number(hour + minutes);
+        return movie;
     })
-    return moviesArrayCopy
+    return moviesArrayCopy;
 }
-let test2 = [{ duration: '0h 31min' }]
-//console.log(turnHoursToMinutes(movies))
-//console.log(turnHoursToMinutes(test))
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) { }
+function bestYearAvg(moviesArray) {
+    if (moviesArray.length===0){
+        return null;
+    };
+    let yearMovie = 0;
+    let sumScore = 0;
+    let countOfMovies =0;
+    let averagePerYear =0;
+    const averagePerYearArr = [];
+   for(let i =0;i<moviesArray.length;i++){
+    if (moviesArray[i].year === moviesArray[i+1].year||moviesArray[i].year === moviesArray[i-1].year){
+        yearMovie = moviesArray[i].year;
+        sumScore += moviesArray[i].score;
+        countOfMovies ++;
+        console.log(yearMovie)
+        console.log(sumScore)
+    }else{
+        averagePerYear = sumScore/countOfMovies;
+        console.log(`El promedio del año ${yearMovie} es ${averagePerYear}`)
+        averagePerYearArr.push({year:yearMovie, average:averagePerYear});
+    }
+   }
+    return averagePerYearArr;
+
+ }
+
+
+ const newMoviesArr = [
+    { year: 2000, score: 9 },
+    { year: 2000, score: 8 },
+    { year: 2001, score: 8 },
+    { year: 1978, score: 10 },
+    { year: 1978, score: 7 }
+  ];
+//   console.log(newMoviesArr[0])
+//   for(let i =0;i<newMoviesArr.length-1;i++){
+    
+//     console.log(`el año del indice ${i} es ${newMoviesArr[i].year}`)
+//     console.log(`el año del indice ${i+1} es ${newMoviesArr[i+1].year}`)
+//   }
+ console.log(bestYearAvg(newMoviesArr));
