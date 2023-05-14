@@ -60,29 +60,31 @@ function orderByYear(movies) {
     });
     return moviesCopy;
 }
-const test = [
-    { title: 'aab' },
-    { title: 'aaa' },
-    { title: 'abc' },
-    { title: 'acb' },
-    { title: 'abb' }
-]
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-    const moviesArrayCopy = moviesArray.map((movie) => {
-        return { title: movie.title }
-    })
-    moviesArrayCopy.sort((a, b) => a.title.localeCompare(b.title));
-    return moviesArrayCopy
+    moviesArray.sort((a, b) => a.title.localeCompare(b.title));
+    const newMoviesArr = moviesArray.map((movie)=>{return movie.title})
+   if(newMoviesArr.length>=20){
+    const otherArr = newMoviesArr.slice(0,20)
+    return otherArr
+   }else{
+   
+    // newMoviesArr.map((movie) => {
+    //     return { title: movie.title }
+    // })
+    //newMoviesArr.sort((a, b) => a.title.localeCompare(b.title));
+    return newMoviesArr
+   }
 }
-//console.log(orderAlphabetically(test))
-//console.log(orderAlphabetically(movies))
+console.log(orderAlphabetically([{ title: 'xyz' }, { title: 'abc' }]))
+console.log(orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
     const moviesArrayCopy = moviesArray.slice()
     moviesArrayCopy.map((movie) => {
-        const minutes = Number(movie.duration[3] + movie.duration[4]);
+        const minutes = Number(`${movie.duration[3]}` + `${movie.duration[4]}`);
         const hour = Number(movie.duration[0] * 60);
         movie.duration = Number(hour + minutes)
         return movie
@@ -91,7 +93,7 @@ function turnHoursToMinutes(moviesArray) {
 }
 let test2 = [{ duration: '0h 31min' }]
 //console.log(turnHoursToMinutes(movies))
-console.log(turnHoursToMinutes(test))
+//console.log(turnHoursToMinutes(test))
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) { }
