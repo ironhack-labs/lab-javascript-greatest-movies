@@ -75,10 +75,53 @@ function dramaMoviesScore(moviesArray) {
 console.log(dramaMoviesScore(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+
+function orderByYear(moviesArray) {
+
+    let clonedMoviesArray = moviesArray.slice()
+    
+    let sortedByYearClonedMoviesArray = clonedMoviesArray.sort(
+        function(movie1, movie2){
+            if(movie1.year>movie2.year){
+                return 1;
+            } else if(movie1.year<movie2.year){
+                return -1;
+            }
+            else {
+                return 0;
+            }
+        }
+    )
+    return sortedByYearClonedMoviesArray;
+}
+console.log(orderByYear(movies))
+console.log(movies)
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+    let clonedMoviesSlicedArray = moviesArray.slice()
+
+    let sortedByTitleClonedMoviesSlicedArray = clonedMoviesSlicedArray.sort(
+        function(movie1, movie2){
+            if(movie1.title>movie2.title){
+                return 1;
+            } else if(movie1.title<movie2.title){
+                return -1;
+            }
+            else {
+                return 0;
+            }
+        }
+    )
+    let titlesArr = sortedByTitleClonedMoviesSlicedArray.map(
+        // movies => (movies.director)
+        function(movieTitle){
+            return movieTitle.title;
+        }
+    )
+    return titlesArr.slice(0, 20);
+}
+console.log(orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
