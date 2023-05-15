@@ -3,6 +3,10 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
   return moviesArray.map(movie => movie.director)
+  // bonus 1.1 not reached and cannot logically pass "should return a new array with the same length as the original one"
+  const directors = moviesArray.map(movie => movie.director)
+  // return directors.filter((director, index) => index == directors.indexOf(director))
+  return directors.filter((director, index, array) => index == array.indexOf(director))
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -13,6 +17,7 @@ function howManyMovies(moviesArray) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
+  // nice idea by pmiossec: const allScores = moviesArray.filter(m => m.score).map(m => m.score);
   if (moviesArray.length == 0) return 0
   return Math.round(moviesArray.reduce(
       (accumulator, movie) => {
@@ -46,6 +51,17 @@ function orderByYear(moviesArray) {
   return moviesArray2
 }
 
+// in fact for the compareFn (sort here) only the positivity matters (to indicate the relative order of the two elements)
+// nice solution by pmiossec:
+// function orderByYear(moviesArray) {
+//   return moviesArray.map(m => m).sort((m1, m2) => {
+//       if (m1.year !== m2.year) {
+//           return m1.year - m2.year;
+//       }
+//       return m1.title.localeCompare(m2.title);
+//   });
+// }
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
   const titlesArray2 = moviesArray.map(movie => movie.title)
@@ -58,7 +74,21 @@ function orderAlphabetically(moviesArray) {
   return titlesArray2.slice(0, 20) // if 20 > Array.length, slice returns a shorter array
 }
 
+// nice solution by pmiossec:
+// function orderAlphabetically(moviesArray) {
+//   let count = 0;
+//   return moviesArray
+//       .map(m => m)
+//       .sort((m1, m2) => m1.title.localeCompare(m2.title))
+//       .map(m => m.title)
+//       .filter(m => {
+//           count++;
+//           return count <= 20;
+//       });
+// }
+
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+// solution by pmiossec: same idea but uses parseInt() instead of Number()
 function turnHoursToMinutes(moviesArray) {
   const moviesArray2 = moviesArray.map(function(movie) {
     // map creates a new array
@@ -109,18 +139,42 @@ function bestYearAvg(moviesArray) {
   if (moviesArray.length == 0) return null
   let bestYear = 0
   let bestAvg  = 0
-  moviesArray.forEach(function(movie) {
+  moviesArray.forEach(function(movie) { // not very performant... could optimize by skipping the calculation of the average of the year was already calculated...
     let movieYearAvg = scoresAverage(moviesArray.filter(movie2 => movie2.year == movie.year)) // average of all the movies this year
-    
-    if (movie.year == 1921) {
-      console.log(movie.year + " " + movieYearAvg)
-    }
-
     if      (movieYearAvg > bestAvg) {bestAvg = movieYearAvg; bestYear = movie.year} // brackets now required because of the ";" between expressions
     else if (movieYearAvg == bestAvg) bestYear = movie.year >= bestYear ? bestYear : movie.year // keep the older year in case of a tie
   })
   return `The best year was ${bestYear} with an average score of ${bestAvg}`
 }
+
+// nice solution by pmiossec: saves object entries in an array at index = year, and each object is {total: movie.score, count: countOfMoviesWithThatScore}
+// function bestYearAvg(moviesArray) {
+//   if (moviesArray.length === 0) {
+//       return null;
+//   }
+
+//   const aggregate = moviesArray.reduce((acc, movie) => {
+//     var obj = acc[movie.year];
+//     if(obj === undefined) {
+//         acc[movie.year] = { total: movie.score, count: 1};
+//     } else {
+//         obj.total += movie.score;
+//         obj.count++;
+//     }
+//     return acc;
+//   }, []);
+
+//  const bestYear = aggregate.reduce((acc, movieData, i) => {
+//     // console.log(movieData, i);
+//     const movieAvg = movieData.total / movieData.count;
+//     if(movieAvg > acc.avg) {
+//             return { year: i, avg: movieAvg};
+//     }
+//     return acc;
+//   }, { year: -1000, avg: -1})
+
+//   return `The best year was ${bestYear.year} with an average score of ${bestYear.avg}`
+// }
 
 /* {
   "title": "The Shawshank Redemption",
