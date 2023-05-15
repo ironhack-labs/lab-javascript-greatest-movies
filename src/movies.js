@@ -57,11 +57,13 @@ function scoresAverage(moviesArray) {
 function dramaMoviesScore(moviesArray) {
     if(moviesArray.length === 0){
         return 0;
+    } else if(!moviesArray.some(movie => movie.genre.includes('Drama'))){
+        return 0
     }
 
     const dramaMovie = moviesArray.filter(function(movie){
         return movie.genre.includes('Drama');
-    });
+    }); 
 
     const scoreDramaMovie = dramaMovie.reduce(function(sum, movie){
         if(!movie.score){
@@ -69,6 +71,7 @@ function dramaMoviesScore(moviesArray) {
         }
         return sum + movie.score;
     }, 0);
+
     let avgScoreDramaMovie = scoreDramaMovie / dramaMovie.length;
     return Math.round(avgScoreDramaMovie * 100) / 100 ;
 }
