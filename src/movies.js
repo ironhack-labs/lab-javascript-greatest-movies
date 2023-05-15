@@ -3,9 +3,10 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
   return moviesArray.map((element) => element.director);
-  /* BONUS clean array
-  return [...new Set(movies.map((element) => element.director))];
-  */
+}
+// BONUS clean array
+function cleanArray(moviesArray) {
+  return [...new Set(moviesArray.map((element) => element.director))];
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -92,7 +93,40 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  //map
+  return moviesArray.map((element) => {
+    //split the time into hours and mins
+    const splitTime = element.duration.split(" ");
+    let minutes = "";
+    let hours = "";
+    //check if duration was less than 1h, means that the first item of the split array includes 'min'
+    //does the same if the duration was more than 59 min
+    if (String(splitTime[0]).includes("min")) {
+      minutes = String(splitTime[0]).replace("min", "");
+    } else if (
+      String(splitTime[0]).includes("h") &&
+      String(splitTime[1]).includes("min")
+    ) {
+      hours = String(splitTime[0]).replace("h", "");
+      minutes = String(splitTime[1]).replace("min", "");
+    } else {
+      hours = String(splitTime[0]).replace("h", "");
+    }
+    let totMins = 0;
+    //sum all the minutes
+    if (minutes === "") {
+      totMins = Number(hours) * 60;
+    } else if (hours === "") totMins = Number(minutes);
+    else {
+      totMins = Number(minutes) + Number(hours) * 60;
+    }
+    //return the object with the duration key updated
+    return { ...element, duration: totMins };
+  });
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  const yearArr = [...new Set(moviesArray.map((element) => element.year))];
+}
