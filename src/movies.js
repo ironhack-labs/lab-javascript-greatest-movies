@@ -6,7 +6,7 @@ function getAllDirectors(moviesArray) {
 const allDirectors = moviesArray.map(name =>{
         return name.director;
     })
-    return allDirectors
+    return allDirectors;
 }
 
 //  Bonus 1
@@ -29,23 +29,23 @@ function howManyMovies(moviesArray) {
 
     const spielbergMovie = moviesArray.filter(function(movie){    
         if(movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')){
-            counter++
+            counter++;
         }
     });
-    return counter
+    return counter;
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
     if(moviesArray.length === 0){
-        return 0
+        return 0;
     }
    
     const totalScore = moviesArray.reduce(function(sum, movie){
-        if(movie.score === undefined){
-            movie.score = 0
+        if(!movie.score){
+            movie.score = 0;
         }
-        return sum + movie.score
+        return sum + movie.score;
     }, 0);
 
     let avgScore = totalScore / moviesArray.length;
@@ -54,15 +54,47 @@ function scoresAverage(moviesArray) {
 
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+    if(moviesArray.length === 0){
+        return 0;
+    }
+
+    const dramaMovie = moviesArray.filter(function(movie){
+        return movie.genre.includes('Drama');
+    });
+
+    const scoreDramaMovie = dramaMovie.reduce(function(sum, movie){
+        if(!movie.score){
+            movie.score = 0;
+        }
+        return sum + movie.score;
+    }, 0);
+    let avgScoreDramaMovie = scoreDramaMovie / dramaMovie.length;
+    return Math.round(avgScoreDramaMovie * 100) / 100 ;
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
     const copyMovies = [...moviesArray]
+
+    copyMovies.sort((a, b) => (a.year > b.year ? 1 : -1))
+
+    return copyMovies
 }
     
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+    const copyMovies = [...moviesArray];
+    const twentyFirstMovie =[];
+ 
+    copyMovies.sort((a, b) => (a.title > b.title ? 1 : -1))
+    copyMovies.length = 20
+
+    copyMovies.map((value) => {
+        twentyFirstMovie.push(value.title);
+    });
+    return twentyFirstMovie
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
