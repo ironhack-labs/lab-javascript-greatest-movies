@@ -59,7 +59,7 @@ function orderByYear(moviesArray) {
 //       if (m1.year !== m2.year) {
 //           return m1.year - m2.year;
 //       }
-//       return m1.title.localeCompare(m2.title);
+//       return m1.title.toLowerCase().localeCompare(m2.title.toLowerCase());
 //   });
 // }
 
