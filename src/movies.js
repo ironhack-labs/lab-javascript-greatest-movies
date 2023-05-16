@@ -18,6 +18,7 @@ function howManyMovies(moviesArray) {
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
   // nice idea by pmiossec: const allScores = moviesArray.filter(m => m.score).map(m => m.score);
+  // parseFloat(float.toFixed(2))
   if (moviesArray.length == 0) return 0
   return Math.round(moviesArray.reduce(
       (accumulator, movie) => {
