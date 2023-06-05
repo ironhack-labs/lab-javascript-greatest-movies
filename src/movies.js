@@ -5,15 +5,15 @@ let sample = [
     director: "Francis Ford Coppola",
     duration: "2h 55min",
     genre: ["Crime", "Drama"],
-    score: 8,
+    score: 10,
   },
   {
     title: "The Godfather: Part II",
-    year: 1974,
+    year: 1921,
     director: "Francis Ford Coppola",
     duration: "3h 22min",
     genre: ["Crime", "Drama"],
-    score: 9,
+    score: 10,
   },
 ];
 
@@ -121,7 +121,7 @@ function bestYearAvg(moviesArray) {
     }
   });
 
-  let topYear = "";
+  let topYear;
 
   let topAverage = 0;
 
@@ -135,6 +135,10 @@ function bestYearAvg(moviesArray) {
       ).toFixed(2)
     );
 
+    if (averageYearScore == topAverage && topYear > Number(score)) {
+      topYear = Number(score);
+    }
+
     if (averageYearScore > topAverage) {
       topYear = Number(score);
       topAverage = averageYearScore;
@@ -145,3 +149,4 @@ function bestYearAvg(moviesArray) {
 
   return `The best year was ${topYear} with an average score of ${topAverage}`;
 }
+console.log(bestYearAvg(sample));
