@@ -86,13 +86,62 @@ function dramaMoviesScore(moviesArray) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  return [];
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  return [];
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  return [];
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+
+function bestYearAvg(moviesArray) {
+  if (moviesArray.length === 0) {
+    return null;
+  }
+
+  let years = {};
+
+  moviesArray.forEach((movie) => {
+    if (!years.hasOwnProperty(movie.year)) {
+      years[movie.year] = [];
+    }
+
+    if (!movie.score || movie.score === "") {
+      years[movie.year].push(0);
+    } else {
+      years[movie.year].push(movie.score);
+    }
+  });
+
+  let topYear = "";
+
+  let topAverage = 0;
+
+  for (score in years) {
+    let numberOfMovies = years[score].length;
+    let averageYearScore = Number(
+      (
+        years[score].reduce((acc, curr) => {
+          return acc + curr;
+        }) / numberOfMovies
+      ).toFixed(2)
+    );
+
+    if (averageYearScore > topAverage) {
+      topYear = Number(score);
+      topAverage = averageYearScore;
+    }
+
+    years[score] = averageYearScore;
+  }
+
+  return `The best year was ${topYear} with an average score of ${topAverage}`;
+}
