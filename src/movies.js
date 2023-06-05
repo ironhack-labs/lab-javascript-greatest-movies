@@ -8,7 +8,39 @@ let sample = [
     score: 10,
   },
   {
-    title: "The Godfather: Part II",
+    title: "A Godfather: Part II",
+    year: 1921,
+    director: "Francis Ford Coppola",
+    duration: "3h 22min",
+    genre: ["Crime", "Drama"],
+    score: 10,
+  },
+  {
+    title: "The Godfather",
+    year: 1972,
+    director: "Francis Ford Coppola",
+    duration: "2h 55min",
+    genre: ["Crime", "Drama"],
+    score: 10,
+  },
+  {
+    title: "A Godfather: Part II",
+    year: 1921,
+    director: "Francis Ford Coppola",
+    duration: "3h 22min",
+    genre: ["Crime", "Drama"],
+    score: 10,
+  },
+  {
+    title: "The Godfather",
+    year: 1972,
+    director: "Francis Ford Coppola",
+    duration: "2h 55min",
+    genre: ["Crime", "Drama"],
+    score: 10,
+  },
+  {
+    title: "A Godfather: Part II",
     year: 1921,
     director: "Francis Ford Coppola",
     duration: "3h 22min",
@@ -55,8 +87,6 @@ function scoresAverage(moviesArray) {
   return Number((totalScore / moviesArray.length).toFixed(2));
 }
 
-console.log(scoresAverage(sample));
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
   if (moviesArray.length === 0) {
@@ -87,18 +117,45 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-  return [];
+  return moviesArray.sort((a, b) => {
+    return a.year - b.year;
+  });
 }
+
+console.log("Sort: ", orderByYear(sample));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-  return [];
+  let firstTwenty = [];
+
+  moviesArray.forEach((movie, index) => {
+    if (index < 20) {
+      firstTwenty.push(movie.title);
+    }
+  });
+
+  return firstTwenty.sort((a, b) => {
+    return a - b;
+  });
 }
+
+console.log("ALPHA: ", orderAlphabetically(sample));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-  return [];
+  let newArray = moviesArray;
+
+  newArray.map((movie) => {
+    let minutes = Number(movie.duration.split("min").join("").slice(-2));
+    let hours = Number(movie.duration.split("h")[0]) * 60;
+
+    movie.duration = minutes + hours;
+  });
+
+  return newArray;
 }
+
+console.log(turnHoursToMinutes(sample));
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 
@@ -149,4 +206,3 @@ function bestYearAvg(moviesArray) {
 
   return `The best year was ${topYear} with an average score of ${topAverage}`;
 }
-console.log(bestYearAvg(sample));
