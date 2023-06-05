@@ -67,10 +67,16 @@ function orderByYear(moviesArray) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-
+  const sortedNames = moviesArray
+    .map((movie) => movie.title)
+    .sort()
+    .slice(0, 20);
+  return sortedNames;
 }
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  const moviesInMins = moviesArray.map((movie) => movie.duration * 60);
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
