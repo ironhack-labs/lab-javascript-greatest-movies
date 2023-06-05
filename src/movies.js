@@ -47,7 +47,7 @@ function orderByYear(moviesArray) {
     if (a.year !== b.year) {
       return a.year - b.year;
     } else {
-      return a.title - b.title;
+      return a.title.localeCompare(b.title);
     }
   });
 }
