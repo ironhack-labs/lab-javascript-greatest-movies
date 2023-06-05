@@ -10,9 +10,18 @@ function howManyMovies(moviesArray) {
   if (moviesArray.length === 0) {
     return 0;
   }
-  if (moviesArray.director !== "Steven Spielberg") {
-    return 0;
+
+  let count = 0;
+  for (let i = 0; i < moviesArray.length; i++) {
+    if (
+      moviesArray[i].genre.includes("Drama") &&
+      moviesArray[i].director === "Steven Spielberg"
+    ) {
+      count++;
+    }
   }
+
+  return count;
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
@@ -21,24 +30,71 @@ function scoresAverage(moviesArray) {
     return 0;
   }
 
-  const scores = moviesArray.map((el) => el.score);
-  const sum = scores
+  const scores = moviesArray
+    .map((el) => el.score || 0)
     .reduce((acc, el, i, arr) => acc + el / arr.length, 0)
     .toFixed(2);
-  return Number(sum);
+  return Number(scores);
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+
+function dramaMoviesScore(moviesArray) {
+  const filteredMovies = moviesArray.filter((movie) =>
+    movie.genre.includes("Drama")
+  );
+  if (filteredMovies.length === 0) return 0;
+
+  const totalScore = filteredMovies.reduce(
+    (accumulator, movie) => accumulator + movie.score,
+    0
+  );
+  const averageScore = totalScore / filteredMovies.length;
+  return parseFloat(averageScore.toFixed(2));
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  const newArr = moviesArray
+    .slice()
+    .map((el) => el)
+    .sort((a, b) => {
+      if (a.year !== b.year) {
+        return a.year - b.year;
+      } else {
+        return a.title.localeCompare(b.title);
+      }
+    });
+  return newArr;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  const newArr = moviesArray
+    .map((el) => el.title)
+    .sort((a, b) => a.localeCompare(b))
+    .slice(0, 20);
+  return newArr;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  return moviesArray.map((item) => {
+    const durationString = item.duration;
+    const [hours, minutes] = durationString.split("h ");
+
+    const totalMinutes = parseInt(hours) * 60 + parseInt(minutes);
+
+    return {
+      ...item,
+      duration: totalMinutes,
+    };
+  });
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  if (moviesArray.length === 0) {
+    return null;
+  }
+}
