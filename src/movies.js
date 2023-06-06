@@ -23,10 +23,15 @@ return pickedMovie.length
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
+    
+    if (moviesArray.length === 0) { return 0};
 
    let total = moviesArray.map((item) => item.score);
 
+
    let movieScore = total.reduce(function (acc, num) {
+    
+
      if (!num) {
        return acc;
      } else {
@@ -34,7 +39,7 @@ function scoresAverage(moviesArray) {
      }
    }, 0);
 
-   let result = (movieScore / moviesArray.length).toFixed(2);
+   let result = Number((movieScore / moviesArray.length).toFixed(2));
 
    console.log(`this is overall score: ${result}`);
 
@@ -55,7 +60,7 @@ function dramaMoviesScore(moviesArray) {
 
 
 
-    
+
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
