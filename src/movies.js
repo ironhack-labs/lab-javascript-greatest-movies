@@ -33,10 +33,9 @@ function scoresAverage(moviesArray) {
     }
     let result = 0;
     return result + Number((moviesArray.map(movie => {
-        if (movie.score === undefined) {
-            return 0
-        }
         return movie.score;
+    }).filter(score => {
+        return score !== undefined;
     }).reduce((accumulator, currentValue) => accumulator + currentValue, 0) / moviesArray.length).toFixed(2))
 }
 
