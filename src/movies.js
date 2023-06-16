@@ -112,19 +112,19 @@ function orderAlphabetically(moviesArray) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
 
-    const array = moviesArray.map((objs) => {
+    const array = moviesArray.map( (objs) => {
+        //linea 117 la aprendi este martes con Carlos! me resolvió el problema 
+        const objsCopy = JSON.parse( JSON.stringify( objs ) )
 
-        const objsCopy = JSON.parse(JSON.stringify(objs))
+        objsCopy.duration = objsCopy.duration.match( /\d+/g ).map( Number );
+        const hoursToMinutes = objsCopy.duration[0] * 60;
+        const minutes = objsCopy.duration[1]; 
 
-        objsCopy.duration = objsCopy.duration.match(/\d+/g).map(Number)
-        const hoursToMinutes = objsCopy.duration[0] * 60
-        const minutes = objsCopy.duration[1] 
-
-        if(objsCopy.duration.length < 2){
+        if ( objsCopy.duration.length < 2 ) {
 
             objsCopy.duration = hoursToMinutes 
 
-          } else{
+          } else {
             objsCopy.duration = hoursToMinutes + minutes 
   
           };
