@@ -106,13 +106,40 @@ function orderAlphabetically(moviesArray) {
 
     const sortedArray = orderByYear(moviesArray)
     return sortedArray.slice(0, 20).map(el => el.title);
-    // alguien me puede decir porque funciona este codigo? La #5 tambien ordena por año no?
+    
+}
+
+// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(moviesArray) {
+
+    const array = moviesArray.map((objs) => {
+
+        const objsCopy = JSON.parse(JSON.stringify(objs))
+
+        objsCopy.duration = objsCopy.duration.match(/\d+/g).map(Number)
+        const hoursToMinutes = objsCopy.duration[0] * 60
+        const minutes = objsCopy.duration[1] 
+
+        if(objsCopy.duration.length < 2){
+
+            objsCopy.duration = hoursToMinutes 
+
+          } else{
+            objsCopy.duration = hoursToMinutes + minutes 
+  
+          };
+      
+        return objsCopy
+        
+    })
+
+    return array;
+
 }
 
 
-// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
-
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+
+}
 
