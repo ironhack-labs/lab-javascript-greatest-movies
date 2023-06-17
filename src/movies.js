@@ -66,7 +66,7 @@ function scoresAverage(moviesArray) {
         }
     }, 0);
 
-    let total = totalScore / moviesArray.length
+    const total = totalScore / moviesArray.length
 
     return Number(total.toFixed(2));
 }
@@ -113,23 +113,21 @@ function orderAlphabetically(moviesArray) {
 function turnHoursToMinutes(moviesArray) {
 
     const array = moviesArray.map( (objs) => {
-        //linea 117 la aprendi este martes con Carlos! me resolvió el problema 
         const objsCopy = JSON.parse( JSON.stringify( objs ) )
 
-        objsCopy.duration = objsCopy.duration.match( /\d+/g ).map( Number );
-        const hoursToMinutes = objsCopy.duration[0] * 60;
-        const minutes = objsCopy.duration[1]; 
+        const duration = objsCopy.duration.split(" ");
+        let finalDuration = 0
+        for (const time of duration){
+            if (time.includes("h")) {
+                finalDuration += parseInt(time.replace("h","")) * 60;
+            } else if (time.includes("min")) {
+                finalDuration += parseInt(time.replace("min",""))
+            }
+        }
 
-        if ( objsCopy.duration.length < 2 ) {
-
-            objsCopy.duration = hoursToMinutes 
-
-          } else {
-            objsCopy.duration = hoursToMinutes + minutes 
-  
-          };
+         objsCopy.duration = finalDuration
       
-        return objsCopy
+         return objsCopy
         
     })
 
@@ -140,6 +138,24 @@ function turnHoursToMinutes(moviesArray) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
+    if (moviesArray.length === 0) return null;
 
+    const bestAvg = moviesArray.reduce((accumulator, currentValue) => {
+        if (accumulator[currentValue.year]) {
+            accumulator[currentValue.year].push(currentValue.score)
+        } else {
+            accumulator[currentValue.year] = [currentValue.score]
+        }
+        return accumulator;
+    }, {})
+    
+
+    const objectFinal = Object.keys(bestAvg).map((cur) => ({
+            year: cur,
+            score: bestAvg[cur].reduce((acc, current) => acc + (current / bestAvg[cur].length), 0) 
+        })).sort((a,b) => b.score - a.score)
+
+
+    return "The best year was " + objectFinal[0].year + " with an average score of " + objectFinal[0].score;
 }
 
