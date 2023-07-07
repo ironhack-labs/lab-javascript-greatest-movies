@@ -76,5 +76,32 @@ function bestYearAvg(moviesArray) {
     if (moviesArray.length === 0) {
         return null;
     }
-    
-}
+
+    const dictionary = {};
+    moviesArray.forEach(movie => {
+        if (!dictionary[movie.year]) {
+            dictionary[movie.year] = [];
+            dictionary[movie.year].push(movie);
+        } else {
+            dictionary[movie.year].push(movie);
+        }
+    });
+
+    let highest = 0;
+    let bestYear;
+
+    for (const year in dictionary) {
+        const currentYearAverage = scoresAverage(dictionary[year]);
+        if (currentYearAverage > highest) {
+            highest = currentYearAverage;
+            bestYear = year;
+        } else if (currentYearAverage === highest) {
+            const oldestYear = year < bestYear ? year : bestYear;
+            bestYear = oldestYear;
+        }
+    }
+ 
+    return `The best year was ${bestYear} with an average score of ${highest}`;
+} 
+
+
