@@ -59,9 +59,32 @@ function orderAlphabetically(moviesArray)
 function turnHoursToMinutes(moviesArray)
 {
     let newArray = moviesArray.slice();
+    
+    let newMovies = [];
 
-    return newArray
-      
+    function getRightTime(array)
+    {
+        let durationArray = array.map(e => e.duration);
+        let hours = durationArray.map(e => Number(e.slice(0, 1)));
+        let minutes = durationArray.map(e => Number(e.slice(2, -3)));
+
+        for(let [i, k] of array.entries())
+        {
+            newMovies.push(
+            {
+                "title": k.title,
+                "year": k.year,
+                "director": k.director,
+                "duration": hours[i] * 60 + minutes[i],
+                "genre": k.genre,
+                "score": k.score
+            })
+        }
+    }
+
+    getRightTime(newArray)
+
+    return newMovies
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
