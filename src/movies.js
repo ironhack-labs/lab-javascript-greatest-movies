@@ -92,7 +92,24 @@ function bestYearAvg(moviesArray)
 {
     if(moviesArray.length === 0) return null;
 
-    
+    let objectYears = moviesArray.reduce((acc, e) => 
+    {
+        let year = e.year;
 
-    return `The best year was <YEAR> with an average score of <RATE>`
+        !acc[year] ? acc[year] = [e] : acc[year].push(e);
+     
+        return acc;
+    }, {})
+
+    let arrayYears = Object.values(objectYears);
+
+    let averageScore = arrayYears.map((e) =>
+    {
+        return e.reduce((acc, r) => acc + r.score, 0) / e.length;
+    })
+
+    let maxAverage = Math.max(...averageScore);
+    let bestYear = arrayYears[averageScore.indexOf(maxAverage)][0].year;
+
+    return `The best year was ${bestYear} with an average score of ${maxAverage}`
 }
