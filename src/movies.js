@@ -3,6 +3,7 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(movies) {
     const allDirectors = movies.map((movie) => movie.director)
+    // return movies.map((movie) => movie.director)
     return allDirectors;
 }
 //No duplicates
@@ -29,6 +30,9 @@ function scoresAverage(moviesArray) {
     if (moviesArray.length===0 ){ return 0}
   
     const sumScore = moviesArray.reduce((acc, curr) => {
+        //if(!curr.score) return acc
+        //return acc+val.score
+
         if (curr.score !== undefined && curr.score !== null) {
         return (acc+ curr.score) } else
         return acc},0)
@@ -63,16 +67,10 @@ function orderByYear(moviesArray) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-    const newOrderedArray = movies.slice().sort((a,b)=> a.title.localeCompare(b.title))
-    // const moviesList = (newOrderedArray.map((movie)=>movie.title)).slice(0,20);
-   const moviesList = newOrderedArray.map((movie)=>movie.title)
+    const newOrderedArray = moviesArray.slice().sort((a,b)=> a.title.localeCompare(b.title))
+    const moviesList = (newOrderedArray.map((movie)=>movie.title)).slice(0,20);
 
-   const shortList = moviesList.slice(0,20);
-    if (moviesList.length < 20) {
-        return moviesList;
-    } else {
-        return shortList;
-    } 
+    return moviesList;
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
