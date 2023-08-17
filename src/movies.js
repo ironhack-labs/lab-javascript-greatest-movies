@@ -17,9 +17,9 @@ function howManyMovies(moviesArray) {
   if (moviesArray.length === 0) {
     return 0;
   }
-  const StevenSpielbergMovies = moviesArray.filter((movie) => {
+  const StevenSpielbergMovies = moviesArray.filter(function(movie)  {
     const StevenSpielbergMovies = movie.director === "Steven Spielberg";
-    const isMovieADrama = movie.genre.indexOf("Drama") <= 0;
+    const isMovieADrama = movie.genre.indexOf("Drama")  > -1;
 
     return StevenSpielbergMovies && isMovieADrama;
   });
@@ -28,11 +28,13 @@ function howManyMovies(moviesArray) {
 
 const round = (value, digits) =>
   Math.round(value * 10 ** digits) / 10 ** digits;
+
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
-  if (movies.length === 0) {
+  if (moviesArray.length === 0) {
     return 0;
   }
+
   const sumOfScores = moviesArray.reduce((accumulator, moviesArray) => {
     if (moviesArray.score) {
       return accumulator + moviesArray.score;
@@ -40,6 +42,7 @@ function scoresAverage(moviesArray) {
       return accumulator;
     }
   }, 0);
+
   const averageScore = sumOfScores / moviesArray.length;
   return round(averageScore, 2);
 }
