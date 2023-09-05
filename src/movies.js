@@ -3,11 +3,44 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {}
 
+function getAllDirectors(movies) {
+  const directors = movies
+    .map((movie) => {
+      return movie.director;
+    })
+    .filter((value, index, originalArray) => {
+      return originalArray.indexOf(value) === index;
+    });
+  return directors;
+}
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies(moviesArray) {}
+function howManyMovies(moviesArray) {
+ const directors = moviesArray
+//  .map((title) => { 
+//     return movie.title; 
+//  })
+ 
+ .filter((movie) => {
+      return movie.director === "Steven Spielberg" && movie.genre.includes("Drama")
+})
+
+return directors.length;
+
+}
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+return moviesArray.reduce((accumulator, currentValue) => {
+return accumulator + currentValue.score;
+}
+,0)
+
+
+
+}
+
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {}
@@ -23,3 +56,12 @@ function turnHoursToMinutes(moviesArray) {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
+
+// array.reduce(function (accumulator, currentValue) {
+//   return accumulator + currentValue;
+// });
+
+
+
+// Iteration 3: All scores average - Get the average of all scores with 2 decimals
+
