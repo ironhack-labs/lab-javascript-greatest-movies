@@ -30,7 +30,7 @@ function scoresAverage(moviesArray) {
     }, 0);
 
     const averageScores = totalScores / moviesArray.length;
-    return averageScores.toFixed(2);
+    return parseFloat (averageScores.toFixed(2));
 }
 
 
