@@ -2,45 +2,44 @@
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) { 
-    const getAllDirectors = moviesArray.array.map((item) => item.director);
-      
-    return getAllDirectors;
+    return moviesArray.map((item) => item.director);
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
-    const steven = moviesArray.filter((item) =>
-        item.director === "Steven Spielberg" && item.genre.includes("Drama")
+    let numberOfTimes = 0;
+    moviesArray.filter((item) => {
+        if (item.director === "Steven Spielberg" && item.genre.includes("Drama")) {
+            numberOfTimes++
+        }
+    }
     );
-    return steven.lenght;
+    return numberOfTimes;
 };
 
-// Iteration 3: All scores average - Get the average of all scores with 2 decimals
+
+// Iteration 3: All scores average - Get the average of all scores with 
 function scoresAverage(moviesArray) {
-    if (moviesArray.lenght === 0) {
+    if (moviesArray.length < 1) {
         return 0;
+    } else {
+        let sum = moviesArray.reduce((total, movies) => { 
+            if(typeof movies.score === "number") {
+                return total + movies.score
+            } else {
+                return total
+            }
+        }, 0);
+        let average = sum / moviesArray.length;
+        return Number(average.toFixed(2));
     }
-    const sumOfScores = moviesArray.reduce(function (a, b) {
-        if (!b.score) return a
-        return a + b.score
-    }, 0);
-    const avg = Math.round(sumOfScores / moviesArray.lenght * 100) / 100;
-    return avg;
 };
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-    const dramaMoviesScore = moviesArray.filter((item) =>
-        item.genre.includes("Drama"));
-    if (dramaMoviesScore.lenght === 0) {
-        return 0
-    }
-    const sumOfScores = dramaMovies.reduce(function (a, b) {
-        if (!b.score) return a
-        return a + b.score
-    }, 0);
-    const avg = Math.round(sumOfScores / dramaMovies.lenght * 100) / 100;
-    retun avg;
+    let onlyDramaMovies = moviesArray.filter(movie => movie.genre.includes("Drama"));
+    return scoresAverage(onlyDramaMovies);
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
