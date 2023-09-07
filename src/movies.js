@@ -98,11 +98,33 @@ return originalMovieSortedAsc;
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
     const copyArray = moviesArray.map (x => x);
-    
+    const copyArrayMovieTitles = copyArray.sort ((a, b) => {
+    if (a.title > b.title ) {
+        return 1;
+    }
+    else if (a.title < b.title ) {
+        return -1;
+    }
+    else {
+        return 0;
+    }
+    })
+    const titlesArray20 = copyArrayMovieTitles.slice (0,20).map ((movie)=>{
+        return movie.title;
+    });
+    return titlesArray20;
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+    const newArray = moviesArray.map (() => {
+
+    }
+    const hours:
+    const minutes:
+    const totalMinutes = hours * 60 + minutes;
+    )
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
