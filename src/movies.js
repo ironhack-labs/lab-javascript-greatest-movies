@@ -46,7 +46,7 @@ function dramaMoviesScore(moviesArray) {
         return movie.genre.includes("Drama")
     })
 
-    const arrWithScore = dramaMovies.filter((movie) => {
+    /*const arrWithScore = dramaMovies.filter((movie) => {
         return movie.score;
     }) 
 
@@ -63,7 +63,9 @@ function dramaMoviesScore(moviesArray) {
         return 0;
     }
 
-    return Number((totalDrama / arrWithScore.length).toFixed(2))
+    return Number((totalDrama / arrWithScore.length).toFixed(2))*/
+
+   return scoresAverage(dramaMovies)
 
 }
 
