@@ -138,7 +138,7 @@ Again, rounded to 2 decimals!
 
 <br>
 
-### Iteration 5: Order by year
+### Iteration 5: Order by year // use sort method
 
 We need to sort the movies in ascending order by their release year. This should be easy using one of the **methods** we have just learned. :wink:
 Create a function `orderByYear()` that receives an array as a parameter and returns a _new sorted array_.
