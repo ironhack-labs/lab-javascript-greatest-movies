@@ -84,25 +84,82 @@ function orderAlphabetically(moviesArray) {
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
     let newArray = [...moviesArray];
-    newArray.forEach(movie => {
+
+    newArray= newArray.map(movie => {
       let collect = [];
       if (movie.duration.length > 2){
-        collect.push(parseInt(movie.duration.slice(0,1)))
-        collect.push(parseInt(movie.duration.slice(3,5)))
-        converted = parseInt(collect[0]*60+collect[1])
-        movie.duration = Number(converted)
+        let hours = parseInt(movie.duration.slice(0,1))*60
+        let minutes = parseInt(movie.duration.slice(3,5))
+ 
+
+        /*collect.push(parseInt(movie.duration.slice(0,1)))
+        collect.push(parseInt(movie.duration.slice(3,5)))*/
+
+        let time = hours+minutes
+        return {...movie,duration: time }
       }
 
       else{
-        collect.push(parseInt(movie.duration.slice(0,1)))
-        converted = parseInt(collect[0]*60)
-        movie.duration = Number(converted)
+        /*collect.push(parseInt(movie.duration.slice(0,1)))*/
+        let hours = parseInt(movie.duration.slice(0,1))*60
+
+        return {...movie,duration: hours }
       }
-    
+      
     })
     return newArray}; 
-    // TYPEOF CONVERTED IS A NUMBER - JASMINE DOES NOT RECOGNIZE
-    // Returning newArray Cloned from Original Array - Jasmine does not recognize
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray){
+    if (moviesArray.length === 0){return null}
+    // Step 1 -Sort by Year
+        arrayToWork = [...moviesArray]
+        let uniqueYears = {}
+        arrayToWork.map((movie) =>{
+            if (!uniqueYears[movie.year]){uniqueYears[movie.year]=[]}//current year is not on uniqueYears{}
+        });
+        console.log(uniqueYears) // Array of unique Years
+        console.log(Object.keys(uniqueYears).length) // Nr of keys in object for reference/test
+
+        for(i=0; i<arrayToWork.length;i++){
+            let currentMovie=arrayToWork[i];
+            let objectList=Object.keys(uniqueYears)
+            for (j=0;j<objectList.length;j++){
+                console.log("comparing "+currentMovie.year+" to "+objectList[j]) //nested for loop to compare each movie.year to each key (year) on uniqueYears object
+                if (currentMovie.year == objectList[j]){
+                    console.log("SAME YEAR HERE!")      //if years are the same, adds the score of that movie to the listed array
+                    uniqueYears[objectList[j]].push(currentMovie.score)
+                }
+            }
+        }
+        console.log(uniqueYears) // final object with scores sorted by year
+        //Step 2- avg of each year
+
+        console.log(uniqueYears[Object.keys(uniqueYears)[0]])// acessing array of scores for specific year
+        let testList = uniqueYears[Object.keys(uniqueYears)[0]];
+
+        testList = testList.reduce((total,each) =>{ //
+            return total+each                       //testing reduce on specific year
+        })
+        console.log(testList+" works!!")                       // Works :D
+
+let maxAverage = 0;  // setting vars to input year and score avg
+let maxYear = 0;
+
+for (let i = 0; i < Object.keys(uniqueYears).length; i++) {
+    let year = Object.keys(uniqueYears)[i];
+    let scores = uniqueYears[year];
+    let average = scores.reduce((a, b) => a + b, 0) / scores.length;
+
+    if (average > maxAverage) {
+        maxAverage = average;
+        maxYear = year;
+    }
+
+    console.log(`Average for year ${year}: ${average}`);
+}
+
+
+return(`The best year was ${maxYear} with an average score of ${maxAverage}`)
+}
