@@ -32,7 +32,6 @@ function scoresAverage(moviesArray) {
         return true;
       }
     });
-
     const sumScore = hasScore.reduce((acum, eachRate) => {
       return acum + eachRate.score;
     }, 0);
@@ -89,7 +88,42 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  //Mia original tras mucho sufrimiento
+  const copyMoviesArray = JSON.parse(JSON.stringify(moviesArray));
+
+  const newDurationArray = copyMoviesArray.map((param) => {
+    return param.duration.split(" ");
+  });
+
+  const calcNewDuration = newDurationArray.map((param) => {
+    let hora = parseInt(param[0]) * 60;
+    let minutos = parseInt(param[1]);
+
+    if (isNaN(minutos)) {
+      return hora;
+    } else {
+      return hora + minutos;
+    }
+  });
+
+  const finalArray = copyMoviesArray.map((movie, index) => {
+    return { ...movie, duration: calcNewDuration[index] };
+  });
+
+  return finalArray;
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  if (!moviesArray.length) {
+    return null;
+  } else if (moviesArray.length === 1) {
+    return `The best year was ${moviesArray[0].year} with an average score of ${moviesArray[0].score}`;
+  } else {
+    const avgMoviesArray = moviesArray.map((param) => {
+      if (avgMoviesArray.year === "undefined") {
+      }
+    });
+  }
+}
