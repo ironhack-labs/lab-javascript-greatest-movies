@@ -119,37 +119,37 @@ function turnHoursToMinutes(moviesArray) {
   });
 }
 
-// BONUS - Iteration 8: Best yearly score average - Bfunction bestYearAvg(moviesArray) {
-  function bestYearAvg(moviesArray) {
-    if (moviesArray.length === 0) {
-        return null;
-    }
+// BONUS - Iteration 8: Best yearly score average
+function bestYearAvg(moviesArray) {
+  if (moviesArray.length === 0) {
+      return null;
+  }
 
-    const yearlyData = {};
+  const yearlyData = {};
 
-    for (const movie of moviesArray) {
-        const year = movie.year;
-        const score = movie.score;
+  for (const movie of moviesArray) {
+      const year = movie.year;
+      const score = movie.score;
 
-        if (!yearlyData[year]) {
-            yearlyData[year] = { totalScore: 0, movieCount: 0 };
-        }
+      if (!yearlyData[year]) {
+          yearlyData[year] = { totalScore: 0, movieCount: 0 };
+      }
 
-        yearlyData[year].totalScore += score;
-        yearlyData[year].movieCount += 1;
-    }
+      yearlyData[year].totalScore += score;
+      yearlyData[year].movieCount += 1;
+  }
 
-    let bestYear = null;
-    let bestAverage = -1;
+  let bestYear = null;
+  let bestAverage = -1;
 
-    for (const year in yearlyData) {
-        const averageScore = yearlyData[year].totalScore / yearlyData[year].movieCount;
+  for (const year in yearlyData) {
+      const averageScore = yearlyData[year].totalScore / yearlyData[year].movieCount;
 
-        if (averageScore > bestAverage || (averageScore === bestAverage && year < bestYear)) {
-            bestYear = year;
-            bestAverage = averageScore;
-        }
-    }
+      if (averageScore > bestAverage || (averageScore === bestAverage && year < bestYear)) {
+          bestYear = year;
+          bestAverage = averageScore;
+      }
+  }
 
-    return `The best year was ${bestYear} with an average score of ${bestAverage}`;
+  return `The best year was ${bestYear} with an average score of ${bestAverage}`;
 }
