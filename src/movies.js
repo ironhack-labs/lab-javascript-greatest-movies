@@ -118,9 +118,9 @@ function bestYearAvg(moviesArray) {
         let yearExists = objectYears.find(e => e.year === movie.year)
         if (yearExists) {
             yearExists.totalScore.push(movie.score)
-            console.log("Entrando en IF")
+            // console.log("Entrando en IF")
         } else {
-            console.log("entrando en else el año es ", movie.year)
+            //console.log("entrando en else el año es ", movie.year)
             objectYears.push({
                 year: movie.year,
                 totalScore: [movie.score]
