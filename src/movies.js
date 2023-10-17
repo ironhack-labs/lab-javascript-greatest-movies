@@ -68,12 +68,15 @@ function orderByYear(moviesArray) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-
     const orderbyNameCopy = JSON.parse(JSON.stringify(moviesArray))
     const orderMovies = orderbyNameCopy.sort((a, b) => {
         return a.title.localeCompare(b.title)
     })
-    const moviesName = orderbyNameCopy.map((eachMovie) => {
+    if (moviesArray.length > 20) {
+        return orderMovies.slice(0, 20)
+    }
+
+    const moviesName = orderMovies.map((eachMovie) => {
         return eachMovie.title
     })
     return moviesName
