@@ -123,14 +123,13 @@ function bestYearAvg(moviesArray) {
     const arr = moviesArray.map(eachMovie => {
         return {
             year: eachMovie.year,
-            score: [eachMovie.score],
             score: getAvg(eachMovie.year)
         }
     })
     let bestScore = 0
     let bestYear = 0
     arr.forEach(eachYear => {
-        if (bestScore < eachYear.score && bestYear < eachYear.year) {
+        if (bestScore < eachYear.score) {
             bestScore = eachYear.score
             bestYear = eachYear.year
         }
