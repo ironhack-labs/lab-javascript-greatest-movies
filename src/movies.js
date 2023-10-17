@@ -1,20 +1,99 @@
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors(moviesArray) {}
+/*
+function getAllDirectors(moviesArray) {
+  let allDirectors = [];
+  allDirectors = movies.map((movie)=>{
+    return (movie.director);
+  });
+  return allDirectors;
+}
+*/
+function getAllDirectors(moviesArray) {
+  return moviesArray.map(listDirectors=>listDirectors.director)
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies(moviesArray) {}
+function howManyMovies(moviesArray) {
+  let dramaStevenS = moviesArray.filter((movie)=>{
+    return movie.director==="Steven Spielberg" && movie.genre.includes('Drama')
+  })
+  return dramaStevenS.length;
+}
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+  if (moviesArray.length === 0) {
+    // return 0 when the array is empty
+    return 0;
+  }
+
+  let total = moviesArray.reduce((accumulator, currentValue) => {
+    // reduce to add the one value on top of the other
+    // accumulator + currentValue is basically adding each value on top of the other infinity
+
+    if (currentValue.score) {
+      // if "currentValue.score" exists we sum to the accumulator
+      return accumulator + currentValue.score;
+    }
+    // if there's no value on the main goal we return only the accumulator
+    return accumulator;
+  }, 0);
+  // reduce with objects give a initial value to the sum (0)
+
+  let decimal = (total / moviesArray.length).toFixed(2);
+  // we divide to get the average and then use .toFixed(2) so we can round to 2 decimal cases
+
+  return + decimal;
+  // return the value of the average as a number using the + to convert the string into a number
+}
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+  if (moviesArray.length === 0) {
+    // return 0 when the array is empty
+    return 0;
+  }
+  // filter the drama movies, using .filter and .includes to only catch the drama movies
+  let dramaMovies = moviesArray.filter((movie)=> movie.genre.includes('Drama'));
+  // check if there's drama movies after the filter
+  if (dramaMovies.length === 0) {
+    // return 0 if there's no movies
+    return 0;
+  }
+  let total = dramaMovies.reduce((accumulator, drama) => {
+    // same logic as in iteration 3 but now we have to take care about the genre
+    if (drama.score) {
+      return accumulator + drama.score;
+  }
+  return accumulator;
+  }, 0);
+
+  return total / dramaMovies.length;
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
 
+  let sortedMovies = [...moviesArray];
+  // (...) is used to create a copy of a array so we don't alter the original one
+
+  sortedMovies.sort((a, b) => {
+    // .sort to sort the movies
+
+    if (a.year !== b.year) {
+      // we compare the .year of 2 movies, if the years are different it will return the difference so we can order them
+      return a.year - b.year;
+    }
+
+    // if the years are the same, .localeCompare will order them alphabetically
+    return a.title.localeCompare(b.title);
+  });
+
+  return sortedMovies;
+  }
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
 
