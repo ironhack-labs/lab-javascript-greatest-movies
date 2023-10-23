@@ -2001,3 +2001,41 @@ const movies = [
     score: 8
   }
 ];
+
+const allDirectors = movies.map(function (elm) {
+  return elm.director
+})
+//console.log(allDirectors)
+
+const onlySteven = movies.filter(function (elm) {
+  return elm.director === "Steven Spielberg"
+})
+
+//console.log(onlySteven)
+
+let scoresAvg = movies.reduce((acc, elm) => {
+  if (!elm.score) return acc
+  const total = acc + elm.score;
+  return total
+}, 0);
+
+let resolved = scoresAvg / movies.length
+
+//console.log(scoresAvg) 
+
+const years = movies.map(function (elm) {
+  return elm.year
+})
+
+const sortedYears = years.sort((a, b) => a - b)
+
+//console.log(sortedYears)//
+
+const orderAlphabetically = movies.map(function (elm) {
+  return elm.title
+})
+
+const ordered = orderAlphabetically.sort()
+final = ordered.splice(0, 20)
+
+//console.log(final)
