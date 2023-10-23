@@ -3,7 +3,8 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
     const dirArray = moviesArray.map(movie => movie.director);
-    return dirArray;
+    const filteredArray = dirArray.filter((director, index, arr) => arr.indexOf(director) == index)
+    return filteredArray;
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
