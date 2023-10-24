@@ -40,19 +40,14 @@ function scoresAverage(moviesArray) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-    if (moviesArray.length == 0) {
-        return 0
-    } 
-    const score = moviesArray.reduce(function(acc, movie){
-        if (movie.score) {
-            return acc + movie.score } else {
-                return acc
-        }
-    },0)
-    let avg = score / moviesArray.length
-    return Math.round(avg*100)/100
+    let dramaMovies = []
+    moviesArray.forEach(function(elm){
+        if (elm.genre.includes("Drama")) {
+            dramaMovies.push(elm)
+            }
+    })
+    return scoresAverage(dramaMovies)
     }
-
 
 
 
