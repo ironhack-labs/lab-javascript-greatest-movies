@@ -31,11 +31,16 @@ function scoresAverage(moviesArray) {
   if (!moviesArray.length) {
     return 0;
   }
-  const theFilteredArr = moviesArray.filter((element) => element.score !== "");
+  const theFilteredArr = moviesArray.filter(
+    (element) => (element.score ? element.score : 0)
+    // element.score || 0
+  );
   const getScore = theFilteredArr.map((element) => element.score);
-  const sumScores = getScore.reduce((arr, curr) => arr + curr, 0);
+  const sumScores = getScore.reduce((arr, curr) => {
+    return arr + curr;
+  }, 0);
   //console.log(sumScores);
-  const theAvg = sumScores / getScore.length;
+  const theAvg = sumScores / moviesArray.length;
 
   return +theAvg.toFixed(2);
 }
@@ -121,11 +126,18 @@ function bestYearAvg(moviesArray) {
       emptyObj[key] = sumScore / emptyObj[key].length;
     }
   }
-  const newSorted = Object.entries(emptyObj).sort((a, b) => b[1] - a[1]);
+  const newSorted = Object.entries(emptyObj).sort((a, b) => {
+    return b[1] - a[1];
+    // if (a[0][1] === b[0][1]) {
+    //   return b[0];
+    // } else {
+    //   return b[1] - a[1];
+    // }
+  });
 
-  //console.log(+newSorted[0][0]);
+  console.log(newSorted);
 
-  return `The best year was ${newSorted[0][0]} with an average score of ${newSorted[0][1]}`; //newSorted[0];
+  //newSorted[0];
 }
 
 console.log(bestYearAvg(movies));
