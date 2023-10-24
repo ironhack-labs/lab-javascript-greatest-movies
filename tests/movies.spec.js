@@ -40,6 +40,7 @@ describe('Function "getAllDirectors"', () => {
   });
 });
 
+
 // Iteration 2
 
 describe('Function "howManyMovies"', () => {
