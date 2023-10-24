@@ -137,7 +137,7 @@ function bestYearAvg(moviesArray) {
 
   console.log(newSorted);
 
-  //newSorted[0];
+  return `The best year was ${newSorted[0][0]} with an average score of ${newSorted[0][1]}`; //newSorted[0];
 }
 
 console.log(bestYearAvg(movies));
