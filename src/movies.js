@@ -72,31 +72,57 @@ function bestYearAvg(moviesArray) {
         return null;
        }
 
-       const sortedMovie = moviesArray.sort((a,b)=> a.year - b.year);
+    //    const sortedMovie = moviesArray.sort((a,b)=> a.year - b.year);
 
-       let yearArr = [];
+    //    let yearArr = [];
 
-       for (let i = 0; i <sortedMovie.length; i++){
-         yearArr [i] = [];
-         for (let x = 0; x < sortedMovie.length; x++){
-            if (sortedMovie[i].year === sortedMovie[x].year){
-                yearArr[i].push(sortedMovie[x]);
-            }
-        }
-       }
+    //    for (let i = 0; i <sortedMovie.length; i++){
+    //      yearArr [i] = [];
+    //      for (let x = 0; x < sortedMovie.length; x++){
+    //         if (sortedMovie[i].year === sortedMovie[x].year){
+    //             yearArr[i].push(sortedMovie[x]);
+    //         }
+    //     }
+    //    }
 
-       let highestAvg = 0;
-       let oldestYear = 0;
+    //    let highestAvg = 0;
+    //    let oldestYear = 0;
 
-       for (let sameYearMovie of yearArr){
-        let avg = scoresAverage (sameYearMovie);
+    //    for (let sameYearMovie of yearArr){
+    //     let avg = scoresAverage (sameYearMovie);
       
+    //     if(avg > highestAvg){
+    //         highestAvg = avg;
+    //         oldestYear = sameYearMovie[0].year;
+    //     }
+    //    }
+
+    //    return `The best year was ${oldestYear} with an average score of ${highestAvg}`;
+
+    const movieObj = {};
+
+    moviesArray.forEach(movie => {
+        if(!movieObj[movie.year]){
+            movieObj[movie.year] = [];
+            movieObj[movie.year].push(movie);
+        }
+        else{
+            movieObj[movie.year].push(movie);
+        }
+    });
+
+    let highestAvg = 0;
+    let oldestYear = 0;
+
+    for(let year in movieObj){
+        let avg = scoresAverage(movieObj[year]);
+
         if(avg > highestAvg){
             highestAvg = avg;
-            oldestYear = sameYearMovie[0].year;
-        }
-       }
+            oldestYear = year;
+         }
+    }
 
-       return `The best year was ${oldestYear} with an average score of ${highestAvg}`;
+    return `The best year was ${oldestYear} with an average score of ${highestAvg}`;
 }
 
