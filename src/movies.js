@@ -146,10 +146,37 @@ function orderAlphabetically(moviesArray) {
     return sortedByTitle;
   }
 }
-console.log(orderAlphabetically(testArr));
+//console.log(orderAlphabetically(testArr));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  // 1. clone array safely
+  // https://stackoverflow.com/questions/9885821/copying-of-an-array-of-objects-to-another-array-without-object-reference-in-java
+  let durationToMinutes = JSON.parse(JSON.stringify(moviesArray));
+  // trnaslate the duration into a minutes number
+  for (let i = 0; i < durationToMinutes.length; i++){
+    durationToMinutes[i].duration = toNumMins(durationToMinutes[i].duration);
+  }
+  return durationToMinutes;
+}
+// console.log(turnHoursToMinutes(testArr));
+// console.log(testArr);
+
+function toNumMins(hoursAndMinutesStr) {
+  let strToNumMins = hoursAndMinutesStr.split(" ");
+  for (let i = 0; i < strToNumMins.length; i++) {
+    if (strToNumMins[i].includes("h")) strToNumMins[i] = strToNumMins[i].replace("h", "");
+    if (strToNumMins[i].includes("min")) strToNumMins[i] = strToNumMins[i].replace("min", "");
+    strToNumMins[i] = parseInt(strToNumMins[i]);
+    if (i === 0) strToNumMins[i] *= 60;
+  }
+  let totalMins = strToNumMins.reduce(function (sum, currVal) {
+    return sum + currVal;
+  });
+  return totalMins;
+}
+// let testObj = { duration: "2h 22min" };
+// console.log(hoursMins(testObj));
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
