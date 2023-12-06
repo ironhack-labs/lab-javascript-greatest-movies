@@ -5,7 +5,7 @@ let testArr = [
     director: "Frank Darabont",
     duration: "2h 22min",
     genre: ["Crime", "Drama"],
-    score: 5.3,
+    score: 8.3,
   },
   {
     title: "A Godfather",
@@ -16,8 +16,24 @@ let testArr = [
     score: 9.2,
   },
   {
+    title: "A Godfather",
+    year: 1965,
+    director: "Francis Ford Coppola",
+    duration: "2h 55min",
+    genre: ["Crime", "Drama"],
+    score: 9.2,
+  },
+  {
     title: 'Xchindler"s List',
-    year: 1993,
+    year: 1994,
+    director: "Steven Spielberg",
+    duration: "3h 15min",
+    genre: ["Biography", "Drama", "History"],
+    score: 8.9,
+  },
+  {
+    title: 'Xchindler"s List',
+    year: 2003,
     director: "Steven Spielberg",
     duration: "3h 15min",
     genre: ["Biography", "Drama", "History"],
@@ -154,7 +170,7 @@ function turnHoursToMinutes(moviesArray) {
   // https://stackoverflow.com/questions/9885821/copying-of-an-array-of-objects-to-another-array-without-object-reference-in-java
   let durationToMinutes = JSON.parse(JSON.stringify(moviesArray));
   // trnaslate the duration into a minutes number
-  for (let i = 0; i < durationToMinutes.length; i++){
+  for (let i = 0; i < durationToMinutes.length; i++) {
     durationToMinutes[i].duration = toNumMins(durationToMinutes[i].duration);
   }
   return durationToMinutes;
@@ -165,8 +181,10 @@ function turnHoursToMinutes(moviesArray) {
 function toNumMins(hoursAndMinutesStr) {
   let strToNumMins = hoursAndMinutesStr.split(" ");
   for (let i = 0; i < strToNumMins.length; i++) {
-    if (strToNumMins[i].includes("h")) strToNumMins[i] = strToNumMins[i].replace("h", "");
-    if (strToNumMins[i].includes("min")) strToNumMins[i] = strToNumMins[i].replace("min", "");
+    if (strToNumMins[i].includes("h"))
+      strToNumMins[i] = strToNumMins[i].replace("h", "");
+    if (strToNumMins[i].includes("min"))
+      strToNumMins[i] = strToNumMins[i].replace("min", "");
     strToNumMins[i] = parseInt(strToNumMins[i]);
     if (i === 0) strToNumMins[i] *= 60;
   }
@@ -175,10 +193,79 @@ function toNumMins(hoursAndMinutesStr) {
   });
   return totalMins;
 }
-// let testObj = { duration: "2h 22min" };
-// console.log(hoursMins(testObj));
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+
+  // 0. return null if array[]
+  if (moviesArray.length==0) return null;
+
+  // 1. order the input array by year
+  let orderedByYear = orderByYear(moviesArray);
+
+  // 2. find unique years and put them in years array
+  let lastYear = 0;
+  let years = [];
+  orderedByYear.forEach((element) => {
+    if (element.year != lastYear) {
+      years.push(element.year);
+      lastYear = element.year;
+    }
+  });
+
+  // 2. make 2d array with same years as first level of depth
+  let yearsAs2dArray = [[]];
+  // loop thorugh years and compare to big array
+  for (let i = 0; i < years.length; i++){
+    let temp = [];
+    for (let j = 0; j < orderedByYear.length; j++){
+      if (orderedByYear[j].year === years[i]){
+        temp.push(orderedByYear[j]);
+      }
+    }
+    yearsAs2dArray.push(temp);
+  }
+  // get rid of empty first element
+  yearsAs2dArray.shift();
+
+  // 3. loop through 2D array for each year and get average score
+  // make an array with objects for avr score and year 
+  //reuse --> scoresAverage(moviesArray)
+  let yearAndAvrScore = [];
+  for (let i = 0; i < yearsAs2dArray.length; i++){
+    let avrScore = scoresAverage(yearsAs2dArray[i]);
+    let tempObj = {};
+    tempObj.year = yearsAs2dArray[i][0].year;
+    tempObj.avrScore = avrScore;
+    yearAndAvrScore.push(tempObj);
+  }
+
+  // sort the new array with avrScore and year according to score
+  yearAndAvrScore.sort(function (a, b) {
+    let scoreA = a.avrScore;
+    let scoreB = b.avrScore;
+    if (scoreA > scoreB) return -1;
+    if (scoreB > scoreA) return 1;
+    if (scoreB === scoreA) {
+      if (a.year > b.year) return 1;
+      if (b.year > a.year) return -1;
+    }
+  });
+  
+  //The best year was <YEAR> with an average score of <RATE>
+  return `The best year was ${yearAndAvrScore[0].year} with an average score of ${yearAndAvrScore[0].avrScore}`;
+}
+
+console.log(bestYearAvg(testArr));
+
+
+// {
+//   title: "A Godfather",
+//   year: 1972,
+//   director: "Francis Ford Coppola",
+//   duration: "2h 55min",
+//   genre: ["Crime", "Drama"],
+//   score: 9.2,
+// }
 
 // https://github.com/ironhack-labs/lab-javascript-greatest-movies/pull/3669
