@@ -25,6 +25,38 @@ let testArr = [
   },
 ];
 
+let testArr20 = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "1",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "1",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "1",
+];
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
@@ -101,27 +133,18 @@ function orderByYear(moviesArray) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-  // make copy
-  let sortedByScore = moviesArray.map(function (element) {
-    return element;
+  // 1. make copy
+  let sortedByTitle = moviesArray.map(function (element) {
+    return element.title;
   });
-  // sort by score
-  sortedByScore.sort(function (a, b) {
-    let scoreA = a.score;
-    let scoreB = b.score;
-    if (scoreA > scoreB) return -1;
-    if (scoreB > scoreA) return 1;
-    if (scoreB == scoreA) return 0;
-  });
-  // only first 20 or fewer
-  let topTwenty = [];
-  for (let i = 0; i < 20; i++) {
-    topTwenty[i] = sortedByScore[i].title;
-    if (i == sortedByScore.length - 1) break;
+  // 2. sort by title
+  sortedByTitle.sort();
+  // 3. only return 20 or less elements
+  if (sortedByTitle.length > 20) {
+    return sortedByTitle.slice(0, 20);
+  } else {
+    return sortedByTitle;
   }
-  // sort by title
-  topTwenty.sort();
-  return topTwenty;
 }
 console.log(orderAlphabetically(testArr));
 
@@ -130,3 +153,5 @@ function turnHoursToMinutes(moviesArray) {}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
+
+// https://github.com/ironhack-labs/lab-javascript-greatest-movies/pull/3669
