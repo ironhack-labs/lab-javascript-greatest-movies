@@ -196,31 +196,50 @@ function toNumMins(hoursAndMinutesStr) {
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
-
   // 0. return null if array[]
-  if (moviesArray.length==0) return null;
+  if (moviesArray.length == 0) return null;
 
-  // 1. order the input array by year
-  let orderedByYear = orderByYear(moviesArray);
+  //   // 1. order the input array by year
+  //   let orderedByYear = orderByYear(moviesArray);
 
-  // 2. find unique years and put them in years array
-  let lastYear = 0;
-  let years = [];
-  orderedByYear.forEach((element) => {
-    if (element.year != lastYear) {
-      years.push(element.year);
-      lastYear = element.year;
-    }
+  //   // 2. find unique years and put them in years array
+  //   let lastYear = 0;
+  //   let years = [];
+  //   orderedByYear.forEach((element) => {
+  //     if (element.year != lastYear) {
+  //       years.push(element.year);
+  //       lastYear = element.year;
+  //     }
+  //   });
+
+  // 1. make an array containing every year once
+  let allYears = [];
+  moviesArray.forEach((element) => {
+    allYears.push(element.year);
   });
+  //console.log(years);
+
+  // sort years
+  allYears.sort(function (a, b) {
+    return b - a;
+  });
+  //console.log(allYears);
+
+  // every year only once
+  let years = [];
+  allYears.forEach((element) => {
+    if (!years.includes(element)) years.push(element);
+  });
+  //console.log(years);
 
   // 2. make 2d array with same years as first level of depth
   let yearsAs2dArray = [[]];
   // loop thorugh years and compare to big array
-  for (let i = 0; i < years.length; i++){
+  for (let i = 0; i < years.length; i++) {
     let temp = [];
-    for (let j = 0; j < orderedByYear.length; j++){
-      if (orderedByYear[j].year === years[i]){
-        temp.push(orderedByYear[j]);
+    for (let j = 0; j < moviesArray.length; j++) {
+      if (moviesArray[j].year === years[i]) {
+        temp.push(moviesArray[j]);
       }
     }
     yearsAs2dArray.push(temp);
@@ -229,10 +248,10 @@ function bestYearAvg(moviesArray) {
   yearsAs2dArray.shift();
 
   // 3. loop through 2D array for each year and get average score
-  // make an array with objects for avr score and year 
+  // make an array with objects for avr score and year
   //reuse --> scoresAverage(moviesArray)
   let yearAndAvrScore = [];
-  for (let i = 0; i < yearsAs2dArray.length; i++){
+  for (let i = 0; i < yearsAs2dArray.length; i++) {
     let avrScore = scoresAverage(yearsAs2dArray[i]);
     let tempObj = {};
     tempObj.year = yearsAs2dArray[i][0].year;
@@ -247,17 +266,15 @@ function bestYearAvg(moviesArray) {
     if (scoreA > scoreB) return -1;
     if (scoreB > scoreA) return 1;
     if (scoreB === scoreA) {
-      if (a.year > b.year) return 1;
-      if (b.year > a.year) return -1;
+      return a.year - b.year;
     }
   });
-  
+
   //The best year was <YEAR> with an average score of <RATE>
   return `The best year was ${yearAndAvrScore[0].year} with an average score of ${yearAndAvrScore[0].avrScore}`;
 }
 
-console.log(bestYearAvg(testArr));
-
+//console.log(bestYearAvg(testArr));
 
 // {
 //   title: "A Godfather",
