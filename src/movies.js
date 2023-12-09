@@ -51,13 +51,40 @@ const dramaScore= (moviesArray.filter(function (element) {
 }
 console.log(dramaMoviesScore(movies))
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  let yearlyOrdered= [...moviesArray]
+  yearlyOrdered = yearlyOrdered.sort(function(a,b){
+    if( a.year===b.year){
+      return  a.title.localeCompare(b.title)
+  }
+    return a.year-b.year
+  })
+  
+  return yearlyOrdered
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  let orderTitles= moviesArray.map(function(element){
+    return element.title
+  })
+  
+  return orderTitles.sort().slice(0,20)
+}
+
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  let moviesDuration= moviesArray.map(function(element){
+    return element.duration
+  })
+ let moviesDurationSplit= moviesDuration.map(function(element){
+  return element.split(" ")
+})
+  return moviesDurationSplit
+}
+
+console.log(turnHoursToMinutes(movies))
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
