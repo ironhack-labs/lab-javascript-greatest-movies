@@ -107,95 +107,56 @@ function bestYearAvg(moviesArray) {
   }
   // create a deep copy of the array
   let clonedMovies = JSON.parse(JSON.stringify(moviesArray));
+
   // sort the array by year
   clonedMovies.sort((a, b) => {
     return a.year - b.year;
   });
-  console.log("Sorted Cloned Array: ", clonedMovies);
-  let scoresAndYears = [];
-  // set the initial value for the year to the first elements year
-  let currentYear = scoresAndYears[0].year;
-  let combinedScore = 0;
-  // filter the elements with the same year
-  scoresAndYears = clonedMovies.map((element, index) => {
-    if (element.year === currentYear) {
-      combinedScore += element.score;
+  // Make an array with the uniquified years
+  let uniquifiedYears = [];
+  for (let i = 0; i < clonedMovies.length; i++) {
+    if (!uniquifiedYears.includes(clonedMovies[i].year)) {
+      uniquifiedYears.push(clonedMovies[i].year);
     }
-    // if the function arrives at an element with a different year
-    // it will switch the currentYear value to that year and call the same function
-    if (element.year !== currentYear) {
-      currentYear = element.year;
-      combinedScore += element.score;
+  }
+  // make an array with the years where the rest of the necessary data can be added
+  let allScores = uniquifiedYears.map((year) => {
+    return { year: year, score: 0, count: 0 };
+  });
+  
+  // fill the array with the score data and a count of movies per year
+  let j = 0;
+  clonedMovies.forEach((movie) => {
+    if (movie.year === uniquifiedYears[j]) {
+      allScores[j].score += movie.score;
+      allScores[j].count += 1;
     }
-    return { year: currentYear, score: combinedScore };
+    if (movie.year !== uniquifiedYears[j]) {
+      j++;
+      allScores[j].score += movie.score;
+      allScores[j].count += 1;
+    }
   });
 
-  // sort the array by average score and determine the best
-  scoresAndYears.sort((a, b) => {
-    a.score - b.score;
+  // make an array that holds the year and the calculated average for each year
+  let scoresAverage = [];
+  allScores.forEach((element) => {
+    scoresAverage.push({
+      year: element.year,
+      average: element.score / element.count,
+    });
   });
-  console.log("Scores and Years sorted: ", scoresAndYears);
-  const bestYear = scoresAndYears[0].year;
-  const yearScore = scoresAndYears[0].score;
-  console.log(scoresAndYears);
+
+  // sort the array by average score or if there is a tie, by the older year
+  scoresAverage.sort((a, b) => {
+    if (a.average === b.average) {
+      return a.year - b.year;
+    }
+    return b.average - a.average;
+  });
+
+  // return the top of the array in the answer
+  const bestYear = scoresAverage[0].year;
+  const yearScore = scoresAverage[0].average;
   return `The best year was ${bestYear} with an average score of ${yearScore}`;
 }
-
-moviesTest = [
-  {
-    title: "Forrest Gump",
-    year: 1994,
-    director: "Robert Zemeckis",
-    duration: "2h 22min",
-    genre: ["Comedy", "Drama", "Romance"],
-    score: 8.8,
-  },
-  {
-    title: "Star Wars: Episode V - The Empire Strikes Back",
-    year: 1980,
-    director: "Irvin Kershner",
-    duration: "2h 4min",
-    genre: ["Action", "Adventure", "Fantasy", "Sci-Fi"],
-    score: 8.8,
-  },
-  {
-    title: "Inception",
-    year: 2010,
-    director: "Christopher Nolan",
-    duration: "2h 28min",
-    genre: ["Action", "Adventure", "Sci-Fi", "Thriller"],
-    score: 8.8,
-  },
-  {
-    title: "The Lord of the Rings: The Two Towers",
-    year: 2002,
-    director: "Peter Jackson",
-    duration: "2h 59min",
-    genre: ["Adventure", "Drama", "Fantasy"],
-    score: 8.7,
-  },
-  {
-    title: 'One Flew Over the Cuckoo"s Nest',
-    year: 1975,
-    director: "Milos Forman",
-    duration: "2h 13min",
-    genre: ["Drama"],
-    score: 8.7,
-  },
-  {
-    title: "Goodfellas",
-    year: 1990,
-    director: "Martin Scorsese",
-    duration: "2h 26min",
-    genre: ["Crime", "Drama"],
-    score: 8.7,
-  },
-  {
-    title: "The Matrix",
-    year: 1999,
-    director: "Lana Wachowski",
-    duration: "2h 16min",
-    genre: ["Action", "Sci-Fi"],
-    score: 8.7,
-  },
-];
