@@ -1998,7 +1998,34 @@ const movies = [
     director: 'Peter Weir',
     duration: '2h 8min',
     genre: ['Comedy', 'Drama'],
-    score: 8
+    score: ""
   }
 ];
+function scoresAverage(moviesArray) {
+  let result = 0
+  if (moviesArray.length === 0) {
+    return result
+  }
+  console.log(moviesArray)
 
+ let scores= moviesArray.map(scores=> scores.score)
+ console.log(scores)
+ 
+ 
+ let suma = 0
+ for (let i = 0 ; i < scores.length; i ++){
+  let element = scores[i];
+  if (element===" "||element===""||element===undefined){
+    element= 0
+    console.log("hola")
+  }
+  suma += element 
+  
+ }
+
+let avg = suma / scores.length
+result = avg
+
+ return parseFloat(result.toFixed(2))
+}
+console.log(scoresAverage(movies))
