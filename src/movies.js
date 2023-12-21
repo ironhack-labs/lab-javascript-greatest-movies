@@ -11,7 +11,8 @@ function howManyMovies(moviesArray) {
     if (moviesArray.length === 0) {
         return 0
     }
-    const spielbergMovies = moviesArray.filter(movies => movies.director === 'Steven Spielberg' && movies.genre === 'Drama')
+    const spielbergMovies = moviesArray.filter(movies => 
+        movies.director === 'Steven Spielberg' && movies.genre.includes ('Drama') === true)
     return spielbergMovies.length
 }
 
