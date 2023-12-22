@@ -41,13 +41,16 @@ function dramaMoviesScore(moviesArray) {
         return 0
     }
     const allDramaMovies = moviesArray.filter(movies => {
-        movies.genre.includes ("Drama")
+        return movies.genre.includes ("Drama") === true
     })
 
     const sum = allDramaMovies.reduce((acum, element) => {
-        return acum + element.score
+        if (allDramaMovies.includes("Drama")) {
+            return 0
+        } else {
+            return acum + element.score
+        }
     }, 0)
-
     return sum/allDramaMovies.length
 }
 
