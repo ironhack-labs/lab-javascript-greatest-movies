@@ -2001,31 +2001,57 @@ const movies = [
     score: ""
   }
 ];
+
+const movies2 = [
+  {
+    title: 'The Shawshank Redemption',
+    year: 1994,
+    director: 'Frank Darabont',
+    duration: '2h 22min',
+    genre: ['Crime', 'Drama'],
+    score: 9.3
+  }
+]
+
 function scoresAverage(moviesArray) {
   let result = 0
-  if (moviesArray.length === 0) {
+  if (moviesArray.length === 0) {//if is empty = 0
     return result
   }
-  console.log(moviesArray)
 
- let scores= moviesArray.map(scores=> scores.score)
- console.log(scores)
- 
- 
+ let scores= moviesArray.map(scores=> scores.score) 
  let suma = 0
  for (let i = 0 ; i < scores.length; i ++){
   let element = scores[i];
-  if (element===" "||element===""||element===undefined){
-    element= 0
-    console.log("hola")
+  if (element === " " || element === "" || element === undefined ) {//if if one of the movies does not have score = 0
+    element = 0
+    
   }
   suma += element 
   
  }
 
-let avg = suma / scores.length
+let avg = suma / scores.length// average 
 result = avg
 
- return parseFloat(result.toFixed(2))
+ return parseFloat(result.toFixed(2))//number with two decimals
 }
-console.log(scoresAverage(movies))
+
+
+
+// Iteration 4: Drama movies - Get the average of Drama Movies
+console.log("hola")
+
+function dramaMoviesScore(moviesArray) {
+  
+  const dramaMovies = moviesArray.filter(movie => movie.genre.includes('Drama'));console.log(typeof dramaMovies)//creamos un array con las pelis de drama
+  if (dramaMovies.length === 0) {
+    return 0
+  }
+  let average=scoresAverage(dramaMovies)
+  return average
+  }
+
+ 
+
+console.log(dramaMoviesScore(movies2))

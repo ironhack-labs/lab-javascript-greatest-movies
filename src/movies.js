@@ -64,49 +64,19 @@ result = avg
  return parseFloat(result.toFixed(2))//number with two decimals
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+console.log("hola")
+
+
+function dramaMoviesScore(moviesArray) {
+  
+  const dramaMovies = moviesArray.filter(movie => movie.genre.includes('Drama'));console.log(typeof dramaMovies)//creamos un array con las pelis de drama
+  if (dramaMovies.length === 0) {
+    return 0
+  }
+  let average=scoresAverage(dramaMovies)
+  return average
+  }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {}
