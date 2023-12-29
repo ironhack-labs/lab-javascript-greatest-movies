@@ -32,7 +32,7 @@ function scoresAverage(moviesArray) {
     }, 0)
 
     //falta redondear a 2
-    return allScores/moviesArray.length
+    return +(allScores/moviesArray.length).toFixed(2)
 }   
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -49,7 +49,7 @@ function dramaMoviesScore(moviesArray) {
     }, 0)
 
 //falta redondear a 2
-    return sum / allDramaMovies.length
+    return +(sum / allDramaMovies.length).toFixed(2)
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
