@@ -1998,6 +1998,61 @@ const movies = [
     director: 'Peter Weir',
     duration: '2h 8min',
     genre: ['Comedy', 'Drama'],
-    score: 8
+    score: ""
   }
 ];
+
+const movies2 = [
+  {
+    title: 'B',
+    year: 2011,
+    director: 'Frank Darabont',
+    duration: '2h 22min',
+    genre: ['Crime', 'Drama'],
+    score: 9.3
+  },
+  {
+  title: 'A',
+    year: 2011,
+    director: 'David Yates',
+    duration: '2h',
+    genre: ['Adventure', 'Drama', 'Fantasy', 'Mystery'],
+    score: 8.1},
+    {
+      title: 'Dead Poets Society',
+      year: 1989,
+      director: 'Peter Weir',
+      duration: '30min',
+      genre: ['Comedy', 'Drama'],
+    }  
+]
+console.log( typeof movies2)
+
+function bestYearAvg(moviesArray) {
+  let minorYear=0
+  let highYear=0
+  for (let i = 0; i < moviesArray.length; i++) {
+    const element = moviesArray[i].year;
+    if (highYear < element){
+      highYear=element
+    }
+    if (minorYear===0){
+      minorYear=element
+    }else if( minorYear > element){
+      minorYear=element
+    }
+
+
+
+
+
+
+
+
+    console.log(minorYear)
+
+    console.log(highYear)
+  }
+  return element
+}
+console.log(bestYearAvg(movies))
