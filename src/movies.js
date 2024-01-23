@@ -3,7 +3,7 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
     const allDirectors = moviesArray.map(movie => movie.director);
-    return allDirectors;
+    return [...new Set(allDirectors)];
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -87,21 +87,34 @@ function turnHoursToMinutes(moviesArray) {
         const hours = str.slice(0, str.indexOf('h'))
         const mins = str.slice(str.indexOf('h') + 2, str.indexOf('min'))
 
-        const newTime = Number((hours * 60) + mins);
+        const newTime = Number(mins) + (hours * 60);
 
-        console.log(newTime);
+        
         return newTime;
 
     }
 
     minutesArray.forEach((movie) => {
         const newTime = hoursToMinutes(movie.duration);
-        movie.duration = newTime;
+        movie.duration = Number(newTime);
     });
-
+    
+    console.log(minutesArray);
     return minutesArray;
 
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) { }
+function bestYearAvg(moviesArray) {
+    const bestYear = [];
+
+    moviesArray.forEach((movie) => {
+        let obj = {};
+        obj[`${movie.year}`] = ``;
+        bestYear.push(obj);
+    })
+
+
+
+    console.log(bestYear);
+}
