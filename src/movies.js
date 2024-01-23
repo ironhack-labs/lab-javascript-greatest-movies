@@ -27,7 +27,7 @@ function scoresAverage(moviesArray) {
         }
     }) / scores.length);
     
-    return avg.toFixed(2);
+    return Number(avg.toFixed(2));
     
 }
 
@@ -38,10 +38,10 @@ function dramaMoviesScore(moviesArray) {
 
     if (dramas.length === 0) {return 0};
 
-    const total = dramas.reduce(acc, movie => acc + movie.score, 0);
+    const total = dramas.reduce((acc, movie) => acc + movie.score, 0);
     const avg = total / dramas.length
 
-    return avg.toFixed(2);
+    return Number(avg.toFixed(2));
 
 }
 
