@@ -3,7 +3,7 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
     const allDirectors = moviesArray.map(movies => movies.director);
-    return allDirectors; 
+    return [...new Set(allDirectors) ]; 
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -13,7 +13,7 @@ function howManyMovies(moviesArray) {
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {
+/*function scoresAverage(moviesArray) {
     const averageScore = moviesArray.reduce((acc, current) => {
         if (current.score !== undefined) {
             acc += current.score;
@@ -25,8 +25,16 @@ function scoresAverage(moviesArray) {
             return 0;
         }
     return Math.round(averageScore * 100) / 100; 
-
 }
+*/
+function scoresAverage(moviesArray) {
+    if (moviesArray.length === 0) return 0;
+    const totalScores = moviesArray.reduce((acc, movie) => {
+      return movie.score ? acc + movie.score : acc;
+    }, 0);
+    return Number((totalScores / moviesArray.length).toFixed(2));
+  }
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
@@ -51,7 +59,7 @@ function orderByYear(moviesArray) {
         if (a.year !== b.year) {
             return a.year - b.year;
         } else {
-            return a.title.localeCompare(b.titel);
+            return a.title.localeCompare(b.title);
         }
     });
     return sortMovies;
@@ -60,7 +68,7 @@ function orderByYear(moviesArray) {
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
     const sortMovies = moviesArray.slice();
-    sortMovies.sort((a,b) => a.title.localeCompare(b.titel));
+    sortMovies.sort((a,b) => a.title.localeCompare(b.title));
     const titles = sortMovies.slice(0, 20).map(movies => movies.title);
 
     return titles;
@@ -77,9 +85,9 @@ function turnHoursToMinutes(moviesArray) {
   
       for (const part of durationArray) {
         if (part.includes('h')) {
-          totalMinutes += parseInt(part) * 60;
+          totalMinutes += parseInt(part, 10) * 60;
         } else if (part.includes('min')) {
-          totalMinutes += parseInt(part);
+          totalMinutes += parseInt(part, 10);
         }
       }
       movies.duration = totalMinutes;
@@ -88,8 +96,12 @@ function turnHoursToMinutes(moviesArray) {
     return modifiedMovies;
 }
 
+
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
+    if (!moviesArray.length) {
+        return null; 
+      }
       const years = {};
       
       moviesArray.forEach(movies => {
