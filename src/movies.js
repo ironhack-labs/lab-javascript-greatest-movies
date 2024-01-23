@@ -27,7 +27,7 @@ function scoresAverage(moviesArray) {
         }
     }) / scores.length);
     
-    return avg % 1 !== 0 ? avg.toFixed(2) : avg;
+    return avg.toFixed(2);
     
 }
 
@@ -36,12 +36,12 @@ function dramaMoviesScore(moviesArray) {
 
     const dramas = moviesArray.filter(movie => movie.genre.includes(`Drama`));
 
-    const avg = Math.round((dramas.reduce(function(acc, curr) {
-         return acc + curr.score;
-       
-    }, 0) / dramas.length));
+    if (dramas.length === 0) {return 0};
 
-    return avg;
+    const total = dramas.reduce(acc, movie => acc + movie.score, 0);
+    const avg = total / dramas.length
+
+    return avg.toFixed(2);
 
 }
 
