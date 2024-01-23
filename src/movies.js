@@ -77,8 +77,8 @@ function turnHoursToMinutes(moviesArray) {
         minutes = parseInt(part);
       }
     });
-    movie.duration = hours * 60 + minutes;
-    return movie;
+
+    return { ...movie, duration: hours * 60 + minutes };
   });
 }
 
