@@ -115,6 +115,4 @@ function bestYearAvg(moviesArray) {
     })
 
 
-
-    console.log(bestYear);
 }
