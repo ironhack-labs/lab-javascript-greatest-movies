@@ -2001,3 +2001,15 @@ const movies = [
     score: 8
   }
 ];
+
+function howManyMovies(moviesArray) {
+  if (moviesArray.length === 0) {
+      return 0;}
+  const stevenMovies = moviesArray.filter((movie) => {
+  return movie.director === "Steven Spielberg" && movie.genre.includes("Drama")})
+  return stevenMovies.length;
+}
+
+//console.log(movies)
+const count = howManyMovies(movies);
+console.log(count)
