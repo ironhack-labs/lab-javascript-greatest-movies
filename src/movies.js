@@ -8,15 +8,14 @@ function getAllDirectors(moviesArray) {
 
   directorsArray.forEach((element) => {
     if (
-      directorsArray.indexOf(element) !=
-directorsArray.lastIndexOf(element) &&
+      directorsArray.indexOf(element) != directorsArray.lastIndexOf(element) &&
       directorsArray.lastIndexOf(element) != -1
     ) {
       directorsArray.splice(element, 1);
     }
   });
 
-  return directorsArray
+  return directorsArray;
 
   // orrrrrr only add the director to array if includes() is false
   // delete multiple instances of duplicate directors... for each and... firstIndex + lastIndex while last index is not -1 then, remove with splice(lastIndex, 1element to remove)
@@ -45,7 +44,7 @@ const testArr = [
     director: "Stanley Kubrick",
     duration: "1h 28min",
     genre: ["Drama", "War"],
-    score: 8.4,
+    score: 6.2,
   },
 ];
 
@@ -85,7 +84,42 @@ const testArr2 = [
 console.log(howManyMovies(testArr2));
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+  if (moviesArray.length > 0) {
+    average = moviesArray.reduce((accumulator, currentValue) => {
+      if (currentValue.score != "" && Object.keys(currentValue).length != 0) {
+        return (accumulator += currentValue.score);
+      } else {
+        return (accumulator = accumulator);
+      }
+    }, 0);
+    average /= moviesArray.length;
+    return parseFloat(average.toFixed(2));
+  }
+  return 0;
+}
+
+console.log(
+  `Should be 3.8 = ${scoresAverage(
+    testArr
+  )} and its of type ${typeof scoresAverage(testArr)}`
+);
+console.log(`Should be 0 if empty - ${scoresAverage([])}`);
+console.log(
+  `Should be 2 if one empty - ${scoresAverage([
+    { score: 6 },
+    { score: "" },
+    {},
+  ])}`
+);
+
+/*it('should return 0 if an empty array is passed', () => {
+    expect(scoresAverage([])).toBe(0);
+  });
+
+  it('should return average even if one of the movies does not have score', () => {
+    expect(scoresAverage([{ score: 6 }, { score: '' }, {}])).toBe(2);
+  });*/
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {}
