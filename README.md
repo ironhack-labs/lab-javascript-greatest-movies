@@ -391,7 +391,7 @@ Create `bestYearAvg()` function that receives an array of movies and gives us an
 
   <br>
 
-  #### Sorting numbers - ascending order
+  #### Sorting numbers - descending order
 
   Here is an example of using the `sort()` method to sort an array of numbers in descending order:
 
