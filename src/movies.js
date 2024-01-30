@@ -6,6 +6,7 @@ function getAllDirectors(moviesArray) {
     return element.director;
   });
 
+  // If director shows up multiple times in array, splice the first instance
   directorsArray.forEach((element) => {
     if (
       directorsArray.indexOf(element) != directorsArray.lastIndexOf(element) &&
@@ -16,37 +17,7 @@ function getAllDirectors(moviesArray) {
   });
 
   return directorsArray;
-
-  // orrrrrr only add the director to array if includes() is false
-  // delete multiple instances of duplicate directors... for each and... firstIndex + lastIndex while last index is not -1 then, remove with splice(lastIndex, 1element to remove)
 }
-
-const testArr = [
-  {
-    title: "Paths of Glory",
-    year: 1957,
-    director: "Stanley Kubrick",
-    duration: "1h 28min",
-    genre: ["Drama", "War"],
-    score: 8.4,
-  },
-  {
-    title: "Django Unchained",
-    year: 2012,
-    director: "Quentin Tarantino",
-    duration: "2h 45min",
-    genre: ["Drama", "Western"],
-    score: 8.4,
-  },
-  {
-    title: "Paths of Glory 2 - Glororama",
-    year: 1957,
-    director: "Stanley Kubrick",
-    duration: "1h 28min",
-    genre: ["Drama", "War"],
-    score: 6.2,
-  },
-];
 
 console.log(getAllDirectors(testArr));
 
@@ -81,8 +52,6 @@ const testArr2 = [
   },
 ];
 
-console.log(howManyMovies(testArr2));
-
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
   if (moviesArray.length > 0) {
@@ -113,14 +82,6 @@ console.log(
   ])}`
 );
 
-/*it('should return 0 if an empty array is passed', () => {
-    expect(scoresAverage([])).toBe(0);
-  });
-
-  it('should return average even if one of the movies does not have score', () => {
-    expect(scoresAverage([{ score: 6 }, { score: '' }, {}])).toBe(2);
-  });*/
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
   const filteredArray = moviesArray.filter((element) =>
@@ -140,30 +101,13 @@ function orderByYear(moviesArray) {
       return a.title.localeCompare(b.title);
     }
   });
-  // moviesArray = moviesArray.sort((a, b) => a.title - b.title);
-  // moviesArray.sort((a, b) => a.title - b.title);
+
   let newArray = [];
   moviesArray.forEach((element) => {
     newArray.push(element);
   });
   return newArray;
 }
-let testArrYears = [
-  { title: "abc", year: 2002 },
-  { title: "bac", year: 1982 },
-  { title: "aab", year: 1982 },
-];
-console.log(orderByYear(testArrYears));
-
-/*Function "orderAlphabetically"
-should be declared
-should return an array
-should return a new array, not mutate the original one
-should only return the title of the movies, each value should be a string
-should return all of items when the array passed has fewer than 20 items
-If there are more than 20 elements, return only 20 of them.
-should order them alphabetically.
-should return the top 20 after ordering them alphabetically.*/
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
@@ -177,68 +121,7 @@ function orderAlphabetically(moviesArray) {
   }
 
   return titles;
-
-  //   let title = "";
-
-  //   for (let i = 0; i < 20; i++) {
-  //     title = Object.values(moviesArray[i])
-  //     newArray.push(title);
-  // }
-  //return newArray;
-  /*var names = items.map(function(item) {
-  return item['name'];
-});*/
 }
-
-const testArrAlpha = [
-  { title: "aab" },
-  { title: "bab" },
-  { title: "acb" },
-  { title: "aab" },
-  { title: "bab" },
-  { title: "acb" },
-  { title: "aab" },
-  { title: "bab" },
-  { title: "acb" },
-  { title: "aab" },
-  { title: "bab" },
-  { title: "acb" },
-  { title: "aab" },
-  { title: "bab" },
-  { title: "acb" },
-  { title: "aab" },
-  { title: "bab" },
-  { title: "acb" },
-  { title: "aab" },
-  { title: "bab" },
-  { title: "acb" },
-  { title: "aab" },
-  { title: "bab" },
-  { title: "acb" },
-  { title: "aab" },
-  { title: "bab" },
-  { title: "acb" },
-  { title: "aab" },
-  { title: "bab" },
-  { title: "acb" },
-  { title: "aab" },
-  { title: "bab" },
-  { title: "acb" },
-  { title: "aab" },
-  { title: "bab" },
-  { title: "acb" },
-];
-const alphaResult = orderAlphabetically(testArrAlpha);
-console.log(
-  "The result is the following:" +
-    alphaResult +
-    "and it´s of type: " +
-    typeof alphaResult +
-    "and the elements are of type: " +
-    typeof alphaResult[0] +
-    " and the elements are of length : " +
-    alphaResult.length
-);
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
