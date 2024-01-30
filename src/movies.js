@@ -19,8 +19,6 @@ function getAllDirectors(moviesArray) {
   return directorsArray;
 }
 
-console.log(getAllDirectors(testArr));
-
 function howManyMovies(moviesArray) {
   return moviesArray.reduce((accumulator, currentValue) => {
     return (
