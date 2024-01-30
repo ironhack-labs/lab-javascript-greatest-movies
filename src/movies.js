@@ -31,7 +31,9 @@ function scoresAverage(moviesArray) {
 
     const averageScore = sumOfScores / moviesArray.length
 
-    return averageScore
+    console.log(averageScore)
+
+    return Math.round(averageScore * 100) / 100
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -47,7 +49,7 @@ function dramaMoviesScore(moviesArray) {
     //Calculate Average
     const averageScore = sumOfScores / dramaMovies.length
 
-    return averageScore
+    return  Math.round(averageScore * 100) / 100
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
