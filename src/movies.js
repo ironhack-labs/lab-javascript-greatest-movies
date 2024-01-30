@@ -31,25 +31,6 @@ function howManyMovies(moviesArray) {
   }, 0);
 }
 
-const testArr2 = [
-  {
-    director: "Steven Spielberg",
-    genre: ["Action", "Drama", "Thriller"],
-  },
-  {
-    director: "James McTeigue",
-    genre: ["Action", "Drama"],
-  },
-  {
-    director: "Karl Moses",
-    genre: ["Thriller", "Drama"],
-  },
-  {
-    director: "Steven Spielberg",
-    genre: ["Drama", "Thriller"],
-  },
-];
-
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
   if (moviesArray.length > 0) {
@@ -66,20 +47,6 @@ function scoresAverage(moviesArray) {
   return 0;
 }
 
-console.log(
-  `Should be 3.8 = ${scoresAverage(
-    testArr
-  )} and its of type ${typeof scoresAverage(testArr)}`
-);
-console.log(`Should be 0 if empty - ${scoresAverage([])}`);
-console.log(
-  `Should be 2 if one empty - ${scoresAverage([
-    { score: 6 },
-    { score: "" },
-    {},
-  ])}`
-);
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
   const filteredArray = moviesArray.filter((element) =>
@@ -87,8 +54,6 @@ function dramaMoviesScore(moviesArray) {
   );
   return scoresAverage(filteredArray);
 }
-
-console.log(dramaMoviesScore(testArr));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
@@ -122,7 +87,93 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  // Regex to capture all digits before "h" and all digits before "m"
+  let regexHours = /\d+h/;
+  let regexMin = /\d+m/;
 
+  // Extract duration in hours and minutes. Parse from string to integer and convert hours to minutes
+  let newArray = moviesArray.map((element) => {
+    let hours = element.duration.match(regexHours);
+    let minutes = element.duration.match(regexMin);
+    if (minutes == null) minutes = 0;
+    let newDuration = parseInt(hours) * 60 + parseInt(minutes)
+    return {
+      title: element.title,
+      year: element.year,
+      director: element.director,
+      duration: newDuration,
+      genre: element.genre,
+      score: element.score,
+    };
+  });
+
+  return newArray;
+}
+
+const testArr = [
+  {
+    title: "Paths of Glory",
+    year: 1957,
+    director: "Stanley Kubrick",
+    duration: "1h 28min",
+    genre: ["Drama", "War"],
+    score: 8.4,
+  },
+  {
+    title: "Django Unchained",
+    year: 2012,
+    director: "Quentin Tarantino",
+    duration: "2h 45min",
+    genre: ["Drama", "Western"],
+    score: 8.4,
+  },
+  {
+    title: "Django 2",
+    year: 2012,
+    director: "Quentin Tarantino",
+    duration: "2h",
+    genre: ["Drama", "Western"],
+    score: 8.4,
+  },
+];
+
+console.log(turnHoursToMinutes(testArr));
+
+/*// Iteration 7
+describe('Function "turnHoursToMinutes"', () => {
+  it('should be declared', () => {
+    expect(typeof turnHoursToMinutes).toBe('function');
+  });
+
+  it('should return an array', () => {
+    expect(turnHoursToMinutes(movies) instanceof Array).toBe(true);
+  });
+
+  it('should return a new array, not mutate the original one', () => {
+    const returnValue = turnHoursToMinutes(movies);
+    expect(returnValue instanceof Array).toBe(true);
+    expect(turnHoursToMinutes(movies)).not.toBe(movies);    
+  });
+
+  it('should return an array of movies with duration as a number', () => {
+    expect(typeof turnHoursToMinutes(movies)[0].duration).toBe('number');
+  });
+
+  it('should return an array of movies with the correct duration for a 31 minute movie', () => {
+    const movieTry = [{ duration: '0h 31min' }];
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(31);
+  });
+
+  it('should return an array of movies with the correct duration for a 341 minute movie', () => {
+    const movieTry = [{ duration: '5h 41min' }];
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(341);
+  });
+
+  it('should return an array of movies with the correct duration for a 2 hour movie', () => {
+    const movieTry = [{ duration: '2h' }];
+    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(120);
+  });
+});*/
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
