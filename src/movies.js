@@ -123,15 +123,49 @@ console.log(
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-    const filteredArray = moviesArray.filter(element => element.genre.includes('Drama'));
-    return scoresAverage(filteredArray);
+  const filteredArray = moviesArray.filter((element) =>
+    element.genre.includes("Drama")
+  );
+  return scoresAverage(filteredArray);
 }
 
 console.log(dramaMoviesScore(testArr));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  moviesArray = moviesArray.sort((a, b) => {
+    if (a.year !== b.year) {
+      return a.year - b.year;
+    } else {
+      return a.title.localeCompare(b.title);
+    }
+  });
 
+  // moviesArray = moviesArray.sort((a, b) => a.title - b.title);
+  // moviesArray.sort((a, b) => a.title - b.title);
+  let newArray = [];
+  moviesArray.forEach((element) => {
+    newArray.push(element);
+  });
+  return newArray;
+}
+
+/*Function "orderAlphabetically"
+should be declared
+should return an array
+should return a new array, not mutate the original one
+should only return the title of the movies, each value should be a string
+should return all of items when the array passed has fewer than 20 items
+If there are more than 20 elements, return only 20 of them.
+should order them alphabetically.
+should return the top 20 after ordering them alphabetically.*/
+
+let testArrYears = [
+  { title: "abc", year: 2002 },
+  { title: "bac", year: 1982 },
+  { title: "aab", year: 1982 },
+];
+console.log(orderByYear(testArrYears));
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
 
