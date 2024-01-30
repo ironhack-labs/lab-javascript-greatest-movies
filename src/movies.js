@@ -20,15 +20,35 @@ function howManyMovies(moviesArray) {
     
     //We return the filtered Spielberg Movies
     return numberOfSpielbergMovies
-
-
 }
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+    if (moviesArray.length == 0) return 0;
+    
+    const sumOfScores = moviesArray.reduce((acum, currentValue) => {return acum + currentValue.score
+    }, 0)
+
+    const averageScore = sumOfScores / moviesArray.length
+
+    return averageScore
+}
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+    //First we filter Drama movies
+    const dramaMovies = moviesArray.filter(movie => movie.genre.includes('Drama') )
+
+    if (dramaMovies.length == 0) return 0
+    //Calculate total score
+    const sumOfScores = dramaMovies.reduce((acum, currentValue) => {return acum + currentValue.score
+    }, 0)
+
+    //Calculate Average
+    const averageScore = sumOfScores / dramaMovies.length
+
+    return averageScore
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {}
