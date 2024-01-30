@@ -140,7 +140,6 @@ function orderByYear(moviesArray) {
       return a.title.localeCompare(b.title);
     }
   });
-
   // moviesArray = moviesArray.sort((a, b) => a.title - b.title);
   // moviesArray.sort((a, b) => a.title - b.title);
   let newArray = [];
@@ -149,6 +148,12 @@ function orderByYear(moviesArray) {
   });
   return newArray;
 }
+let testArrYears = [
+  { title: "abc", year: 2002 },
+  { title: "bac", year: 1982 },
+  { title: "aab", year: 1982 },
+];
+console.log(orderByYear(testArrYears));
 
 /*Function "orderAlphabetically"
 should be declared
@@ -160,14 +165,80 @@ If there are more than 20 elements, return only 20 of them.
 should order them alphabetically.
 should return the top 20 after ordering them alphabetically.*/
 
-let testArrYears = [
-  { title: "abc", year: 2002 },
-  { title: "bac", year: 1982 },
-  { title: "aab", year: 1982 },
-];
-console.log(orderByYear(testArrYears));
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  moviesArray = moviesArray.sort((a, b) => a.title.localeCompare(b.title));
+  let titles = moviesArray.map((element) => {
+    return element.title;
+  });
+
+  if (titles.length > 20) {
+    titles = titles.slice(0, 20);
+  }
+
+  return titles;
+
+  //   let title = "";
+
+  //   for (let i = 0; i < 20; i++) {
+  //     title = Object.values(moviesArray[i])
+  //     newArray.push(title);
+  // }
+  //return newArray;
+  /*var names = items.map(function(item) {
+  return item['name'];
+});*/
+}
+
+const testArrAlpha = [
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+];
+const alphaResult = orderAlphabetically(testArrAlpha);
+console.log(
+  "The result is the following:" +
+    alphaResult +
+    "and it´s of type: " +
+    typeof alphaResult +
+    "and the elements are of type: " +
+    typeof alphaResult[0] +
+    " and the elements are of length : " +
+    alphaResult.length
+);
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
