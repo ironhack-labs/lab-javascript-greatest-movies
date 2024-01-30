@@ -12,13 +12,39 @@ function getAllDirectors(moviesArray) {
       directorsArray.indexOf(element) != directorsArray.lastIndexOf(element) &&
       directorsArray.lastIndexOf(element) != -1
     ) {
-      directorsArray.splice(element, 1);
+      directorsArray.splice(directorsArray.indexOf(element), 1);
     }
   });
 
   return directorsArray;
 }
-
+const testArr = [
+  {
+    title: "Paths of Glory",
+    year: 1957,
+    director: "Stanley Kubrick",
+    duration: "1h 28min",
+    genre: ["Drama", "War"],
+    score: 8.4,
+  },
+  {
+    title: "Django Unchained",
+    year: 2012,
+    director: "Quentin Tarantino",
+    duration: "2h 45min",
+    genre: ["Drama", "Western"],
+    score: 8.4,
+  },
+  {
+    title: "Django 2",
+    year: 2012,
+    director: "Quentin Tarantino",
+    duration: "2h",
+    genre: ["Drama", "Western"],
+    score: 8.4,
+  },
+];
+console.log(getAllDirectors(testArr));
 function howManyMovies(moviesArray) {
   return moviesArray.reduce((accumulator, currentValue) => {
     return (
@@ -65,6 +91,9 @@ function orderByYear(moviesArray) {
     }
   });
 
+  //****************************************************************************************** */
+  //just map it in order to convert into array
+
   let newArray = [];
   moviesArray.forEach((element) => {
     newArray.push(element);
@@ -97,7 +126,7 @@ function turnHoursToMinutes(moviesArray) {
     let hours = element.duration.match(regexHours);
     let minutes = element.duration.match(regexMin);
     if (minutes == null) minutes = 0;
-    let newDuration = parseInt(hours) * 60 + parseInt(minutes)
+    let newDuration = parseInt(hours) * 60 + parseInt(minutes);
     return {
       title: element.title,
       year: element.year,
@@ -111,69 +140,70 @@ function turnHoursToMinutes(moviesArray) {
   return newArray;
 }
 
-const testArr = [
-  {
-    title: "Paths of Glory",
-    year: 1957,
-    director: "Stanley Kubrick",
-    duration: "1h 28min",
-    genre: ["Drama", "War"],
-    score: 8.4,
-  },
-  {
-    title: "Django Unchained",
-    year: 2012,
-    director: "Quentin Tarantino",
-    duration: "2h 45min",
-    genre: ["Drama", "Western"],
-    score: 8.4,
-  },
-  {
-    title: "Django 2",
-    year: 2012,
-    director: "Quentin Tarantino",
-    duration: "2h",
-    genre: ["Drama", "Western"],
-    score: 8.4,
-  },
-];
-
-console.log(turnHoursToMinutes(testArr));
-
-/*// Iteration 7
-describe('Function "turnHoursToMinutes"', () => {
-  it('should be declared', () => {
-    expect(typeof turnHoursToMinutes).toBe('function');
-  });
-
-  it('should return an array', () => {
-    expect(turnHoursToMinutes(movies) instanceof Array).toBe(true);
-  });
-
-  it('should return a new array, not mutate the original one', () => {
-    const returnValue = turnHoursToMinutes(movies);
-    expect(returnValue instanceof Array).toBe(true);
-    expect(turnHoursToMinutes(movies)).not.toBe(movies);    
-  });
-
-  it('should return an array of movies with duration as a number', () => {
-    expect(typeof turnHoursToMinutes(movies)[0].duration).toBe('number');
-  });
-
-  it('should return an array of movies with the correct duration for a 31 minute movie', () => {
-    const movieTry = [{ duration: '0h 31min' }];
-    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(31);
-  });
-
-  it('should return an array of movies with the correct duration for a 341 minute movie', () => {
-    const movieTry = [{ duration: '5h 41min' }];
-    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(341);
-  });
-
-  it('should return an array of movies with the correct duration for a 2 hour movie', () => {
-    const movieTry = [{ duration: '2h' }];
-    expect(turnHoursToMinutes(movieTry)[0].duration).toBe(120);
-  });
-});*/
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  // Control for empty array and single element array
+  if (moviesArray.length == 0) {
+    return null;
+  } else if (moviesArray.length == 1) {
+    return (
+      "The best year was " +
+      moviesArray[0].year +
+      " with an average score of " +
+      moviesArray[0].score
+    );
+  } else {
+    // Map a new array with only years
+    let orderedYearsArray = moviesArray.map((element) => {
+      return { year: element.year, score: element.score };
+    });
+
+    // In ascending order
+    orderedYearsArray.sort((a, b) => a.year - b.year);
+
+    // Remove duplicate years to get a list of unique years
+    /*orderedYearsArray.forEach((element) => {
+      if (
+        orderedYearsArray.indexOf(element) !=
+          orderedYearsArray.lastIndexOf(element) &&
+        orderedYearsArray.lastIndexOf(element) != -1
+      ) {
+        orderedYearsArray.splice(orderedYearsArray.indexOf(element), 1);
+      }
+    });*/
+    // For each year, find the average but only save the highest average score
+    let topAvg = 0;
+    let topYear = 0;
+    let currentAvg = 0;
+    let j = 0;
+
+    for (let i = 0; i < orderedYearsArray.length; i++) {
+      numFilms = 1;
+      yearScore = orderedYearsArray[i].score;
+      if (
+        orderedYearsArray[i + 1].year == orderedYearsArray[i].year &&
+        i + 1 < orderedYearsArray.length
+      ) {
+        j = i;
+        while (
+          j + 1 < orderedYearsArray.length &&
+          orderedYearsArray[j + 1].year == orderedYearsArray[j].year
+        ) {
+          yearScore += orderedYearsArray[j + 1].score;
+          numFilms++;
+          j++;
+        }
+        i = j;
+      }
+      currentAvg = yearScore / numFilms;
+
+      if (currentAvg > topAvg) {
+        topAvg = currentAvg;
+        topYear = orderedYearsArray[i].year;
+      }
+      yearScore = 0;
+    }
+    return "The best year was " + topYear + " with an average score of " + topAvg;
+  }
+}
+
