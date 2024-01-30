@@ -91,15 +91,18 @@ function orderByYear(moviesArray) {
     }
   });
 
-  //****************************************************************************************** */
-  //just map it in order to convert into array
-
-  let newArray = [];
-  moviesArray.forEach((element) => {
-    newArray.push(element);
-  });
+  // Map a new array and return it
+  let newArray = moviesArray.map((element) => element);
   return newArray;
 }
+
+const testArrayyyy = [
+  { title: 'abc', year: 2002 },
+  { title: 'bac', year: 1982 },
+  { title: 'aab', year: 1982 }
+];
+
+console.log(orderByYear(testArrayyyy));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
@@ -161,22 +164,13 @@ function bestYearAvg(moviesArray) {
     // In ascending order
     orderedYearsArray.sort((a, b) => a.year - b.year);
 
-    // Remove duplicate years to get a list of unique years
-    /*orderedYearsArray.forEach((element) => {
-      if (
-        orderedYearsArray.indexOf(element) !=
-          orderedYearsArray.lastIndexOf(element) &&
-        orderedYearsArray.lastIndexOf(element) != -1
-      ) {
-        orderedYearsArray.splice(orderedYearsArray.indexOf(element), 1);
-      }
-    });*/
     // For each year, find the average but only save the highest average score
     let topAvg = 0;
     let topYear = 0;
     let currentAvg = 0;
     let j = 0;
 
+    // Iterate through, adding scores (checking for multiple yearly entries) and recording highest year and average
     for (let i = 0; i < orderedYearsArray.length; i++) {
       numFilms = 1;
       yearScore = orderedYearsArray[i].score;
@@ -203,7 +197,8 @@ function bestYearAvg(moviesArray) {
       }
       yearScore = 0;
     }
-    return "The best year was " + topYear + " with an average score of " + topAvg;
+    return (
+      "The best year was " + topYear + " with an average score of " + topAvg
+    );
   }
 }
-
