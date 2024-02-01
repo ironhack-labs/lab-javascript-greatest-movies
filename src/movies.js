@@ -68,6 +68,7 @@ function howManyMovies(moviesArray) {
   ];
   
   console.log(howManyMovies(testArr2));
+  console.log("hello everyone");
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
@@ -87,7 +88,9 @@ function scoresAverage(moviesArray) {
   console.log(scoresAverage(scoresArray));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {}
