@@ -119,18 +119,57 @@ function orderByYear(moviesArray) {
   return sortedMovies;
 }
 
-const yearArray = [
-  { title: 'abc', year: 2002 },
-  { title: 'bac', year: 1982 },
-  { title: 'aab', year: 1982 }
+// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
+function orderAlphabetically(moviesArray) {
+  const copyArray = [...moviesArray];
+  const sortedMovies = copyArray.toSorted((a, b) => {
+    return a.title.localeCompare(b.title);
+  });
+  const mappedMovies = sortedMovies.map((element) => element.title);
+
+  return mappedMovies.slice(0, 20);
+}
+
+const alphaArray = [
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
+  { title: "aab" },
+  { title: "bab" },
+  { title: "acb" },
 ];
 
-console.log(orderByYear(yearArray));
-
-
-// Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
-
+console.log(orderAlphabetically(alphaArray));
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
 
