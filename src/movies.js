@@ -34,15 +34,6 @@ function howManyMovies(moviesArray) {
   return stevenDramaMovies.length;
 }
 
-/* const movies = [
-    {
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      director: 'Frank Darabont',
-      duration: '2h 22min',
-      genre: ['Crime', 'Drama'],
-      score: 9.3
-    },] */
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
   if (moviesArray.length === 0) {
@@ -72,8 +63,38 @@ function dramaMoviesScore(moviesArray) {
   return scoresAverage(dramaMovies);
 }
 
+/* const movies = [
+    {
+      title: 'The Shawshank Redemption',
+      year: 1994,
+      director: 'Frank Darabont',
+      duration: '2h 22min',
+      genre: ['Crime', 'Drama'],
+      score: 9.3
+    },] */
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  const newMoviesArray = [...moviesArray];
+  function compareYears(a, b) {
+    if (a.year < b.year) {
+      return -1;
+    } else if (a.year > b.year) {
+      return 1;
+    } else {
+      if (a.title < b.title) {
+        return -1;
+      } else if (a.title > b.title) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  }
+  newMoviesArray.sort(compareYears);
+
+  //console.log(newMoviesArray);
+  return newMoviesArray;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
