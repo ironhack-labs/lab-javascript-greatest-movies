@@ -59,19 +59,11 @@ function dramaMoviesScore(moviesArray) {
   const dramaMovies = moviesArray.filter((movie) =>
     movie.genre.includes("Drama")
   );
+
   //console.log(scoresAverage(dramaMovies));
   return scoresAverage(dramaMovies);
 }
 
-/* const movies = [
-    {
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      director: 'Frank Darabont',
-      duration: '2h 22min',
-      genre: ['Crime', 'Drama'],
-      score: 9.3
-    },] */
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
   const newMoviesArray = [...moviesArray];
@@ -97,10 +89,82 @@ function orderByYear(moviesArray) {
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  const newMoviesArray = [];
+  moviesArray.forEach((movie) => {
+    newMoviesArray.push(movie.title);
+  });
+  newMoviesArray.sort(function (a, b) {
+    if (a < b) {
+      return -1;
+    } else if (a > b) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+
+  //console.log(newMoviesArray.slice(0,20));
+  return newMoviesArray.slice(0, 20);
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  let newMoviesArray = moviesArray.map((movie) => {
+    return { ...movie, duration: movieMinutes(movie) };
+  });
 
+  function movieMinutes(movie) {
+    let totalminutes = 0;
+    let splitTime = movie.duration.split(" ");
+    if (!splitTime[1]) {
+      totalminutes += parseInt(splitTime[0]) * 60;
+    } else {
+      totalminutes += parseInt(splitTime[0]) * 60 + parseInt(splitTime[1]);
+    }
+    return totalminutes;
+  }
+
+  //console.log(newMoviesArray);
+  return newMoviesArray;
+}
+
+/* const movies = [
+    {
+      title: 'The Shawshank Redemption',
+      year: 1994,
+      director: 'Frank Darabont',
+      duration: '2h 22min',
+      genre: ['Crime', 'Drama'],
+      score: 9.3
+    },] */
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+    if (moviesArray.length === 0) {
+        return null;
+      }
+
+
+  const years = moviesArray.map((movie) => {
+    return movie.year;
+  });
+
+  let uniqueYears = [];
+  years.forEach((year) => {
+    if (!uniqueYears.includes(year)) {
+      uniqueYears.push(year);
+    }
+  });
+
+  let highScore = 0;
+  let highestYear = 0;
+  uniqueYears.forEach(year => {
+    const yearArray = moviesArray.filter(movie => year === movie.year);
+    highestYear = year;
+    if (scoresAverage(yearArray) > highScore) {
+        highScore = scoresAverage(yearArray);
+    }
+  });
+
+  console.log(`The best year was ${highestYear} with an average score of ${highScore}`);
+}
