@@ -421,7 +421,7 @@ describe('Function "turnHoursToMinutes"', () => {
   });
 
   it('should return an array of movies with the correct duration for a 2 hour movie', () => {
-    const movieTry = [{ duration: '2h' }];
+    const movieTry = [{ duration: '2h 00min' }];
     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(120);
   });
 });
