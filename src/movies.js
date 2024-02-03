@@ -94,6 +94,7 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
+    // creamos un nuevo array con map, duplicado moviesArray y para cada objeto duplicamos el original y le cambiamos la duracion
     const timeFormatArr = moviesArray.map(movie => {
         return {
             ...movie,
@@ -119,5 +120,40 @@ function timeToMin(data) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+    if (moviesArray.length === 0) {
+      return null;
+    }
+  
+    const averageScoresByYear = {};
+    const numberOfMoviesByYear = {};
+  
+    moviesArray.forEach(movie => {
+      const releaseYear = movie.year;
+      if (!averageScoresByYear[releaseYear]) {
+        averageScoresByYear[releaseYear] = movie.score;
+        numberOfMoviesByYear[releaseYear] = 1;
+      } else {
+        averageScoresByYear[releaseYear] += movie.score;
+        numberOfMoviesByYear[releaseYear]++;
+      }
+    });
+  
+    for (const year in averageScoresByYear) {
+      averageScoresByYear[year] /= numberOfMoviesByYear[year];
+    }
 
+    console.log(averageScoresByYear)
+  
+    let bestYear = null;
+    let bestAvg = 0;
+  
+    for (const year in averageScoresByYear) {
+      if (averageScoresByYear[year] > bestAvg || (averageScoresByYear[year] === bestAvg && year < bestYear)) {
+        bestYear = year;
+        bestAvg = averageScoresByYear[year];
+      }
+    }
+  
+    return `The best year was ${bestYear} with an average score of ${bestAvg}`;
+  }
