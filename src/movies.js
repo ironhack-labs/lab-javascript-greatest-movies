@@ -72,3 +72,22 @@ function orderAlphabetically(moviesArray) {
 }
 console.log(orderAlphabetically(movies))
 
+// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(moviesArray) {
+    return moviesArray.map(movies => {
+        const duration = movies.duration.split(' ')
+        let minutes = 0
+        duration.forEach(time => {
+            if (time.includes('h')) {
+                minutes += parseInt(time) * 60
+
+            }
+            else if (time.includes('min')) {
+                minutes += parseInt(time)
+            }
+        });
+        return { ...movies, duration: minutes }
+    })
+}
+console.log(turnHoursToMinutes(movies))
+
