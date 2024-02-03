@@ -16,8 +16,7 @@ function getAllDirectors(moviesArray) {
       uniqueDirectos.push(director);
     }
   });
-
-  //console.log(uniqueDirectos);
+ 
   return uniqueDirectos;
 }
 
@@ -30,7 +29,6 @@ function howManyMovies(moviesArray) {
     movie.genre.includes("Drama")
   );
 
-  //console.log(stevenDramaMovies.length);
   return stevenDramaMovies.length;
 }
 
@@ -50,7 +48,6 @@ function scoresAverage(moviesArray) {
   }
 
   let averageScore = totalScore / moviesArray.length;
-  //console.log(Math.round(averageScore * 100) / 100);
   return Math.round(averageScore * 100) / 100;
 }
 
@@ -60,7 +57,6 @@ function dramaMoviesScore(moviesArray) {
     movie.genre.includes("Drama")
   );
 
-  //console.log(scoresAverage(dramaMovies));
   return scoresAverage(dramaMovies);
 }
 
@@ -84,7 +80,6 @@ function orderByYear(moviesArray) {
   }
   newMoviesArray.sort(compareYears);
 
-  //console.log(newMoviesArray);
   return newMoviesArray;
 }
 
@@ -104,7 +99,6 @@ function orderAlphabetically(moviesArray) {
     }
   });
 
-  //console.log(newMoviesArray.slice(0,20));
   return newMoviesArray.slice(0, 20);
 }
 
@@ -125,27 +119,16 @@ function turnHoursToMinutes(moviesArray) {
     return totalminutes;
   }
 
-  //console.log(newMoviesArray);
   return newMoviesArray;
 }
 
-/* const movies = [
-    {
-      title: 'The Shawshank Redemption',
-      year: 1994,
-      director: 'Frank Darabont',
-      duration: '2h 22min',
-      genre: ['Crime', 'Drama'],
-      score: 9.3
-    },] */
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
-    if (moviesArray.length === 0) {
-        return null;
-      }
+  if (moviesArray.length === 0) {
+    return null;
+  }
 
-
-  const years = moviesArray.map((movie) => {
+  /* const years = moviesArray.map((movie) => {
     return movie.year;
   });
 
@@ -154,17 +137,28 @@ function bestYearAvg(moviesArray) {
     if (!uniqueYears.includes(year)) {
       uniqueYears.push(year);
     }
+  }); */
+  //Can also use code below to replace commented code above. They both do the exact same thing.
+  let uniqueYears = [...new Set(moviesArray.map((movie) => movie.year))];
+
+  let yearsAverage = [];
+  uniqueYears.forEach((year) => {
+    const yearArray = moviesArray.filter((movie) => year === movie.year);
+    const yearAverage = scoresAverage(yearArray);
+    yearsAverage.push({ year, yearAverage });
   });
 
   let highScore = 0;
   let highestYear = 0;
-  uniqueYears.forEach(year => {
-    const yearArray = moviesArray.filter(movie => year === movie.year);
-    highestYear = year;
-    if (scoresAverage(yearArray) > highScore) {
-        highScore = scoresAverage(yearArray);
+  yearsAverage.forEach((year) => {
+    if (year.yearAverage > highScore) {
+      highScore = year.yearAverage;
+      highestYear = year;
+    }
+    if (year.yearAverage === highScore) {
+      highestYear = year.year < highestYear.year ? year : highestYear;
     }
   });
 
-  console.log(`The best year was ${highestYear} with an average score of ${highScore}`);
+  return `The best year was ${highestYear.year} with an average score of ${highestYear.yearAverage}`;
 }
