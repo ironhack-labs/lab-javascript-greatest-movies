@@ -91,3 +91,8 @@ function turnHoursToMinutes(moviesArray) {
 }
 console.log(turnHoursToMinutes(movies))
 
+function orderByYear(moviesArray) {}
+    
+
+// BONUS - Iteration 8: Best yearly score average - Best yearly score average
+function bestYearAvg(moviesArray) {}
