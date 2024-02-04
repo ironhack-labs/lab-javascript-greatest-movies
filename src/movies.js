@@ -35,7 +35,26 @@ return spielbergDramaCount
 // console.log(howManyMovies(movies))
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+// If statement to return 0 if the array is empty
+    if (moviesArray.length === 0) {
+        return 0;
+      }
+// Use map function to create a new array called zeroScore. The new array checks if the score in the original array is NaN or empty. If it is, it sets it to 0
+    const zeroScore = moviesArray.map(function (movie) {
+        if (isNaN(movie.score) || movie.score === '') {
+            movie.score = 0;
+        }
+        return movie
+    });
+// Use the reduce function to calculate the average by summing the movie scores (sets 0 as the initial value) and dividing it by the number of objects in the array zeroScore (because it has the normalized score where NaNs or '' are converted to value 0)
+    const average = moviesArray.reduce((total, movie) => total + movie.score, 0) / zeroScore.length ;
+// Creates the rounded average by using the parseFloat 
+    const roundedAverage = parseFloat(average.toFixed(2))
+    return roundedAverage
+}
+
+//console.log(scoresAverage(movies))
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {}
