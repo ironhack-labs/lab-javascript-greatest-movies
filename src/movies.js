@@ -14,10 +14,25 @@ function getAllDirectors(moviesArray) {
     return uniqueDirectors;
 }
 
-console.log(getAllDirectors(movies))
+//console.log(getAllDirectors(movies))
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies(moviesArray) {}
+function howManyMovies(moviesArray) {
+// If statement to return 0 if the array is empty
+    if (moviesArray.length === 0) {
+        return 0;
+      }
+// Use .filter to find all the movies that are directed by Spielberg and(&&) that include 'Drama' as genre (genre is an array, this is why it requires .includes) and store them in the spielbergDrama variable
+    const spielbergDrama = moviesArray.filter (function(movie) {
+        return movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')
+    });
+// Use .length to count the length of the new spielbergDrama array
+const spielbergDramaCount = spielbergDrama.length
+// Close the function returning the count
+return spielbergDramaCount
+}
+
+// console.log(howManyMovies(movies))
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {}
