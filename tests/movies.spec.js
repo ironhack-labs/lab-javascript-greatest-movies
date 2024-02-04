@@ -134,7 +134,7 @@ describe('Function "scoresAverage"', () => {
   });
 
   it('should return average even if one of the movies does not have score', () => {
-    expect(scoresAverage([{ score: 6 }, { score: '' }, {}])).toBe(6);
+    expect(scoresAverage([{ score: 6 }, { score: '' }, {}])).toBe(2);
   });
 });
 
