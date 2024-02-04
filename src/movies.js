@@ -29,6 +29,19 @@ const testArr = [
 
 console.log(getAllDirectors(testArr));
 
+//Iteration 1.1 Clean the array of directors-using filter method
+function removeDuplicates(data){
+  return data.filter((value, index)=> data.indexOf(value)=== index);
+}
+//console.log(removeDuplicates(getAllDirectors).length)
+
+//OR using Sets
+//Sets are a new object type with ES6 (ES2015) that allows you to create collections of unique values. 
+// function removeDuplicates2(data){
+//   return [...new Set(data)]
+// }
+
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(moviesArray) {
   let sum = 0;
