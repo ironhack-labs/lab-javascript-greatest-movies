@@ -8,7 +8,6 @@ function getAllDirectors(movies) {
 	// });
 	// return directors;
 }
-
 const allDirectors = getAllDirectors(movies);
 console.log(allDirectors);
 
@@ -32,7 +31,6 @@ function scoresAverage(movies) {
 	if (movies.length == 0) {
 		return 0;
 	}
-
 	// **************************** way 1
 	// const totalScore = movies.reduce(function (sum, movie) {
 	// // OR (||) operator checks if movie.score is truthy
