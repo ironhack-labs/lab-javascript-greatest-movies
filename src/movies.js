@@ -2,7 +2,6 @@
 function getAllDirectors(movies) {
 	const directorArray = movies.map((eachElem) => eachElem.director);
 	return directorArray;
-
 	// or alternative
 	// const directors = movies.map(function (eachElem) {
 	// 	return eachElem.director;
