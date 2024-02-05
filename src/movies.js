@@ -23,10 +23,13 @@ function scoresAverage(moviesArray) {
     if (moviesArray.length === 0){
         return 0;
     }
- const totalScore = moviesArray.reduce((acc , eachScore) =>{
-    return acc + eachScore.score
+ const totalScore = moviesArray.reduce((acc , movie) =>{
+    const movieScore = movie.score || 0
+    return acc + movieScore
  }, 0) / moviesArray.length
-    return totalScore
+    const roundedAverage = Math.round(totalScore * 100) / 100
+
+    return roundedAverage
 }
 
 
@@ -45,39 +48,9 @@ function dramaMoviesScore(moviesArray) {
 const averageDramaMovies = scoresAverage(dramaMovies)
 return averageDramaMovies
 
-if(dramaMovies.length > 0) {
-
-}
-    return dramaMovies[0].score;
 }
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-    const moviesCopy = JSON.parse(JSON.stringify(moviesArray))
-    moviesCopy.sort(function (a, b){
-        if (a.year < b.year){
-        return -1
-        }
-
-        else if (a.year > b.year){
-            return 1
-        }
-
-        else{
-
-        if(a.title < b.title){
-            return -1
-        }
-
-        else if(a.title > b.title){
-            return 1
-        }
-    }
-
-        return 0
-
-    })
-       return moviesCopy.map(movie => [movie])
-
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
