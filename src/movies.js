@@ -10,7 +10,6 @@ function getAllDirectors(moviesArray) {
     const directorUnico = directores.filter((director, index, self) => {
         return self.indexOf(director) === index;
     });
-
     return directorUnico;     
 }
 //console.log(getAllDirectors(movies))
@@ -23,17 +22,42 @@ function howManyMovies(moviesArray) {
     })
     return SpielbergDrama.length;
 }
-
 //console.log(howManyMovies(movies))
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) {}
+function scoresAverage(moviesArray) {
+     
+    const averange = moviesArray.reduce((acc, curr) => {
+        return acc + (curr.score ? curr.score : 0)
+    }, 0)
+
+    const totalAverage = moviesArray.length > 0 ? parseFloat((averange/moviesArray.length).toFixed(2)) : 0;
+    return totalAverage;
+}
+
+//console.log(scoresAverage(movies))
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+
+    // Filtrar películas de drama
+    const dramaMovies = moviesArray.filter(movie => movie.genre.includes('Drama'));
+    // Calcular el promedio - películas de drama
+    const averageDrama = dramaMovies.reduce((acc, curr) => {
+        return acc + (curr.score ? curr.score : 0);
+    }, 0);
+    
+    const totalDrama = dramaMovies.length > 0 ? parseFloat((averageDrama / dramaMovies.length).toFixed(2)) : 0;
+    
+    return totalDrama;
+}
+
+//console.log(dramaMoviesScore(movies))
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
