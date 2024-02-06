@@ -78,6 +78,7 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
+    // VARIANT 1
     // const sortedArray = [...moviesArray].sort((a, b) => a.year - b.year);
     // return sortedArray
     // VARIANT 2
@@ -86,12 +87,14 @@ function orderByYear(moviesArray) {
     //         return b.title - a.title;
     //     } return a.year > b.year ? 1 : -1;
     // })
+// create a sortedArray variant that uses the spread operator to create a new array from the moviesArray, then uses the sort function to sort movies
     const sortedArray = [...moviesArray].sort(function(a, b) {
         if (a.year < b.year) return -1;
         if (a.year > b.year) return 1;
         if (a.title < b.title) return -1;
         if (a.title > b.title) return 1;
     })
+
     // const sortedArray = [...moviesArray].sort((a, b) => {
     //     if (a.year !== b.year) {
     //         return a.year - b.year;
@@ -107,19 +110,20 @@ function orderByYear(moviesArray) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
+// Create a sortedAlphabetically variant that uses the spread operator to create a new array from the moviesArray, then uses the sort function to sort movies by title
     const sortedAlphabetically = [...moviesArray].sort(function(a, b) {
         if (a.title < b.title) return -1;
         if (a.title > b.title) return 1;
     });
-
+// Create a new variant with a new array that only contains the title, using the map function
     const justTitles = sortedAlphabetically.map (el => el.title);
-    
+// Create a new variant with just the first 20, using the slice function 
     const firstTwenty = justTitles.slice(0, 20);
 
     return firstTwenty
 }
 
-console.log(orderAlphabetically(movies))
+//console.log(orderAlphabetically(movies))
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
