@@ -91,6 +91,9 @@ function scoresAverage(moviesArray) {
   let average = scores / moviesArray.length;
   return parseFloat(average.toFixed(2));
 }
+
+
+//testing the function
 const scoresArray = [{ score: 8 }, { score: 9 }, { score: 9 }];
 console.log(scoresAverage(scoresArray));
 console.log(scoresAverage([{ score: 6 }, { score: "" }, {}]));
