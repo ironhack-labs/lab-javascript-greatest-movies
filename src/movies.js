@@ -20,30 +20,57 @@ function howManyMovies(moviesArray) {
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
-  const resultScores =
-    moviesArray.reduce((acc, movie) => {
-      return acc + movie.score;
-    }, 0) / moviesArray.length;
+  if (moviesArray.length === 0) {
+    return 0;
+  }
 
-  const redondearResult = parseFloat(resultScores.toFixed(2));
-  return redondearResult;
+  const scoresSum = moviesArray.reduce((acc, movie) => {
+    if (movie.score) {
+      return acc + movie.score;
+    }
+    return acc;
+  }, 0);
+
+  const avg = scoresSum / moviesArray.length;
+  return Number(avg.toFixed(2));
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-  const dramaMovies = moviesArray.filter((movie) => {
-    return movie.genre === movie.genre.includes("Drama");
-    if (dramaMovies.length === 0) {
-      return 0;
-    }
+  const dramaMoviesArr = moviesArray.filter((movie) => {
+    return movie.genre.includes("Drama");
   });
+  return scoresAverage(dramaMoviesArr);
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  const sortedArr = [...moviesArray].sort((a, b) => {
+    if (a.year === b.year) {
+      return a.title.localeCompare(b.title);
+    }
+
+    return a.year - b.year;
+  });
+
+  return sortedArr;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+
+function orderAlphabetically(moviesArray) {
+  const sortedByTitle = [...moviesArray].sort((a, b) => {
+    return a.title.localeCompare(b.title);
+  });
+
+  const onlyTitlesArray = sortedByTitle.map((movie) => {
+    return movie.title;
+  });
+
+  const slicedArray = onlyTitlesArray.slice(0, 20);
+
+  return slicedArray;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {}
