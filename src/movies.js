@@ -72,7 +72,61 @@ function orderAlphabetically(moviesArray) {
 console.log(orderAlphabetically(movies));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+  const newArray = moviesArray.map((movie) => ({ ...movie }));
+  newArray.forEach((movie) => {
+    const duration = movie.duration.split(" ");
+    const hours = parseInt(duration[0]) || 0;
+    const minutes = parseInt(duration[1]) || 0;
+
+    movie.duration = hours * 60 + minutes;
+  });
+
+  return newArray;
+}
+
+console.log(turnHoursToMinutes(movies));
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  if (moviesArray.length === 0) {
+    return null;
+  }
+
+  const averageScoresByYear = {};
+  const numberOfMoviesByYear = {};
+
+  moviesArray.forEach(movie => {
+    const releaseYear = movie.year;
+    if (!averageScoresByYear[releaseYear]) {
+      averageScoresByYear[releaseYear] = movie.score;
+      numberOfMoviesByYear[releaseYear] = 1;
+    } else {
+      averageScoresByYear[releaseYear] += movie.score;
+      numberOfMoviesByYear[releaseYear]++;
+    }
+  });
+  console.log(averageScoresByYear)
+  console.log(numberOfMoviesByYear)
+
+  for (const year in averageScoresByYear) {
+    averageScoresByYear[year] /= numberOfMoviesByYear[year];
+  }
+
+  console.log(averageScoresByYear)
+
+  let bestYear = null;
+  let bestAvg = 0;
+
+  for (const year in averageScoresByYear) {
+    if (averageScoresByYear[year] > bestAvg || (averageScoresByYear[year] === bestAvg && year < bestYear)) {
+      bestYear = year;
+      bestAvg = averageScoresByYear[year];
+    }
+    
+  }
+  console.log(bestYear)
+  console.log(bestAvg)
+
+  return `The best year was ${bestYear} with an average score of ${bestAvg}`;
+}
