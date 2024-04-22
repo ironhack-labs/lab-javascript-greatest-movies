@@ -30,7 +30,7 @@ const movies = [
     duration: '2h 32min',
     genre: ['Action', 'Crime', 'Drama', 'Thriller'],
     score: 9
-  },
+  }
   {
     title: '12 Angry Men',
     year: 1957,
