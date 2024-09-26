@@ -1,10 +1,46 @@
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors(moviesArray) {}
+
+
+  //  title: 'The Shawshank Redemption',
+  //  year: 1994,
+  //  director: 'Frank Darabont',
+  //  duration: '2h 22min',
+  //   genre: ['Crime', 'Drama'],
+  //  score: 9.3
+  
+  
+function getAllDirectors(moviesArray) {
+  let directors = [];
+  moviesArray.map(movie => {
+   directors.push(movie.director)
+  }) 
+  return directors;
+}
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies(moviesArray) {}
+function howManyMovies(moviesArray) {
+  const director = "Steven Spielberg";
+  const genre = "Drama";
+  const bySpielberg = moviesArray.filter((element) => element.director === director).filter((element) => element.genre.includes(genre));
+  return bySpielberg.length;
+  // let count = 0;
+
+  // let dramaMovies = moviesArray.filter(function (bySpielberg) {
+  //   return bySpielberg.director == "Steven Spielberg";
+  // })
+  // let dramaGenre = moviesArray.filter(function (drama) {
+  //   return drama.genre == "Drama";
+  //  })
+
+  // return count;
+}
+
+
+  
+
+
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {}
