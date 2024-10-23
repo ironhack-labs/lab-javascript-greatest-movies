@@ -2001,3 +2001,5 @@ const movies = [
     score: 8
   }
 ];
+
+console.log(movies[2].genre.includes("Drama"))
