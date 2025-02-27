@@ -8,7 +8,7 @@ const movies = [
     score: 9.3
   },
   {
-    title: 'The Godfather',
+    title: 'The Godfather 2 1231 123 123 123 12 1',
     year: 1972,
     director: 'Francis Ford Coppola',
     duration: '2h 55min',
