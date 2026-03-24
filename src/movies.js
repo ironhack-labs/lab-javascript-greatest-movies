@@ -86,8 +86,8 @@ function turnHoursToMinutes(moviesArray) {
         let horas = tiempo.includes("h") ? tiempo.split("h")[0] : 0; // separamos horas si hay horas, sino 0 en horas
         let minutos = tiempo.includes("min") ? tiempo.split("h")[1] : 0; // separamos minutos sino 0 minutos
 
-        return {...moviesArray, // retornamos a arrayMinutos,  copia todas las propiedades y duration: en minutos
-            duration: parseInt(horas)*60 + parseInt(minutos) // convertidos a entero y modificamos duration por minutos
+        return {...pelicula, // retornamos pelicula,  copia todas las propiedades y.. 
+            duration: parseInt(horas)*60 + parseInt(minutos) // duration: en minutos , convertidos a entero y por minutos
          };
         });
 
