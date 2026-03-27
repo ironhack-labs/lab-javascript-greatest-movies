@@ -3,6 +3,12 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
     return moviesArray.map(movie=> movie.director);
+
+    /**
+     * OTRA SOLUCION
+     * return [...new Set(movies.map(movie) => movie.director))];
+     * // El spread operator con Set (lo de arriba) elimina duplicados
+     */
 }
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
@@ -24,6 +30,17 @@ function scoresAverage(moviesArray) {
      */
     if(!moviesArray.length) return 0;
     return Number((moviesArray.reduce((acc, curr) => curr.score ? acc + curr.score : acc+0,0)/moviesArray.length).toFixed(2));
+
+    /**
+     * OTRA SOLUCIÓN
+     * if(movie.length === 0) return 0;
+     * 
+     * const totalScore = movies.reduce((sum, movie)=>{
+     *  return sum + (movie.score || 0); //Si no existe movie.score, devuelve 0
+     * }, 0);
+     * 
+     * return parseFloat(totalScore/movies.length).toFixed(2);
+     */
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -37,6 +54,12 @@ function dramaMoviesScore(moviesArray) {
     const dramaArray = moviesArray.filter((movie) => movie.genre.includes("Drama"));
     if(!dramaArray.length)return 0;
     return Number((dramaArray.reduce((acc, curr)=> acc+curr.score, 0)/dramaArray.length).toFixed(2));
+
+    /**
+     * OTRA SOLUCION
+     * Las dos primeras lineas igual
+     * return scoresAverage(dramaArray);
+     */
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
@@ -56,6 +79,14 @@ function orderByYear(moviesArray) {
         }
     });
     return copy;
+
+    /**
+     * OTRA SOLUCION
+     * return [..movies].sort((a,b) =>{
+     *  if(a.year === b.year) return a.title.localeCompare(b.title);
+     *  return a.year - b.year;
+     * });
+     */
 
 }
 
@@ -105,7 +136,52 @@ function turnHoursToMinutes(moviesArray) {
         };
     });
 
+    /**
+     * OTRA SOLUCIÓN
+     * return movies.map(movie =>{
+     *  const duration = movie.duration;
+     * let minutes = 0;
+     * if(duration.includes("h"))
+     * minutes += parseInt(duration.split("h")[0]) * 60;
+     * if(duration.includes("min")) minutes += parseInt(duration.split(" "[1]).replace("min",""));
+     * })
+     * 
+     * return{
+     *  ...movie,
+     * duration: minutes
+     * };
+     */
+
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+    if(!moviesArray.length) return null;
+
+    const yearScores ={};
+
+    moviesArray.forEach(movie =>{
+        if(!yearScores[movie.year])yearScores[movie.year] = [];
+
+        yearScores[movie.year].push(movie.score || 0);
+
+    });
+
+    let bestYear = null;
+    let bestAverage = 0;
+
+    for(let year in yearScores){
+        const average = yearScores[year].reduce((sum, score) => sum +score, 0);
+        yearScores[year].length;
+
+        if(average>bestAverage){
+            bestAverage = average;
+            bestYear = year;
+        }else if(average === bestAverage){
+            bestYear = Math.min(bestYear, year);
+        }
+    }
+
+    return `The best year was ${bestYear} with an average of ${bestAverage}`;
+
+}
