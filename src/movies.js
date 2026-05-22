@@ -3,10 +3,13 @@
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 import movies from './data.js';
 
+window.movies = movies;
+
 function getAllDirectors(movies) {
     let moviesArray = movies.map(movie => movie.director);
     return [... new Set(moviesArray)];
 }
+window.getAllDirectors = getAllDirectors;
 console.log(getAllDirectors(movies));
 
 
@@ -14,6 +17,7 @@ console.log(getAllDirectors(movies));
 function howManyMovies(moviesArray) {
    return moviesArray.filter(movie => movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')).length;
 }
+window.howManyMovies = howManyMovies;
 console.log(howManyMovies(movies));
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
@@ -26,8 +30,9 @@ function scoresAverage(moviesArray) {
             return acc;
         }
     }, 0);
-    return (totalScore / moviesArray.length).toFixed(2);
+    return Number((totalScore / moviesArray.length).toFixed(2));
 }
+window.scoresAverage = scoresAverage;
 console.log(scoresAverage(movies));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
@@ -41,8 +46,9 @@ function dramaMoviesScore(moviesArray) {
             return acc
         }
     },0);
-    return (totalDramaScore / dramaMovies.length).toFixed(2);
+    return Number((totalDramaScore / dramaMovies.length).toFixed(2));
 }
+window.dramaMoviesScore = dramaMoviesScore;
 console.log(dramaMoviesScore(movies));
 // It is better 0.01 btw
 
@@ -56,19 +62,21 @@ function orderByYear(moviesArray) {
     });
     return sortedMovies;
 }
+window.orderByYear = orderByYear;
 console.log(orderByYear(movies));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
     let sortedMovies = [...moviesArray].sort((a, b) => a.title.localeCompare(b.title));
-    return sortedMovies.slice(0, 20);
+    return sortedMovies.slice(0, 20).map(movie => movie.title);
 }
+window.orderAlphabetically = orderAlphabetically;
 console.log(orderAlphabetically(movies));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
     return moviesArray.map(movie=>{
-        movie.duration = movie.duration.split(' ').reduce((acc, time) => {
+        const duration = movie.duration.split(' ').reduce((acc, time) => {
             if (time.includes('h')) {
                 return acc + parseInt(time) * 60;
             } else if (time.includes('min')) {
@@ -77,8 +85,9 @@ function turnHoursToMinutes(moviesArray) {
                 return acc;
             }
     },0);
-    return movie;
+    return {...movie, duration};
 }); }
+window.turnHoursToMinutes = turnHoursToMinutes;
 console.log(turnHoursToMinutes(movies))
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
@@ -117,4 +126,5 @@ function bestYearAvg(movies) {
 
     return `The best year was ${bestYear} with an average score of ${bestAverage}`;
 }
+window.bestYearAvg = bestYearAvg;
 console.log(bestYearAvg(movies));
