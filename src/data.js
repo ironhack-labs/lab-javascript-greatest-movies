@@ -2001,3 +2001,28 @@ const movies = [
     score: 8
   }
 ];
+const getAllDirectors = movies.map(movie => movie.director);
+const getAllDirectorsUnique = [...new Set(getAllDirectors)];
+console.log(getAllDirectorsUnique);
+
+const howManyMovies = movies.filter(movie => movie.director === 'Steven Spielberg' && movie.genre.includes('Drama')).length;
+console.log(howManyMovies);
+
+const scoresAverage = movies.reduce((accumulator, movie) => accumulator + (movie.score || 0), 0) / movies.length;
+console.log(scoresAverage.toFixed(2));
+
+const DramaMoviesScore = movies.filter(movie => movie.genre.includes('Drama')).reduce((accumulator, movie) => accumulator + (movie.score || 0), 0) / movies.filter(movie => movie.genre.includes('Drama')).length;
+console.log(DramaMoviesScore.toFixed(2));
+
+const orderByYear = [...movies].sort((a, b) => {
+  return a.year - b.year;
+});
+console.log(orderByYear);
+
+const orderAlphabetically = [...movies].sort((a, b) => {
+  if (a.title < b.title) return -1;
+  if (a.title > b.title) return 1;
+  return 0;
+});
+console.log(orderAlphabetically);
+
